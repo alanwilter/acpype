@@ -1,0 +1,121 @@
+== A Comparative Test for ACPYPE ==
+
+Running a testing routine, I used `pymol` to generate 22 pdb files.
+They are tripeptides of every usual amino acid residue
+including 2 variants for HIS. All peptides have N- and T- termini.
+
+I used GROMACS 4.5 with all these tripeptides to generate topology files with AMBER99SB forcefield as reference.
+
+OBS: peptides JJJ.pdb (Hip-Hip-Hip) and RRR.pdb (Arg-Arg-Arg): their net charge should be +3, but _gasteiger_
+method (the way how ACPYPE try to guess the net charge of the molecule if not
+given) failed to get the right value, instead it says it is 'Zero', for which SQM programme will fail to calculate the atomic partial charges. So be aware
+that ACPYPE may guess a wrong net charge when running it on your own molecule.
+
+Next, I used ACPYPE to generate the topologies and parameters for these 22 entries and compare theirs
+results with the ones from GROMACS reference.
+
+By using ACPYPE with option '-a amber' (which means parm99.dat + gaff.dat +
+frcmod.ff99SB + frcmod.parmbsc0), it seems to give better results than using just GAFF (the default option in ACPYPE) when comparing with GROMACS outputs, i.e., the former basically got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference, while the latter missed just a few more.
+
+A more detailed comparison between ACPYPE with option '-a amber' against
+GROMACS' AMBER99SB (including a Single Point Energy minimisation with GROMACS) results and it can be seen that they *match* except by:
+    _in terms of topology_
+    * entries HHH (Hie-Hie-Hie), JJJ (Hip-Hip-Hip), OOO (Hid-Hid-Hid), RRR (Arg-Arg-Arg) and WWW (Trp-Trp-Trp) have some improper dihedrals inverted;
+    * WWW which has 3 extra improper dihedrals related to atoms sharing in the 5-ring and 6-ring of the TRP. These improper dihedrals would be there in order to keep the planarity between 5-ring and 6-ring;
+    * YYY (Tyr-Tyr-Tyr) for which atom CZ (id 15, 36 and 57) got atom type CA instead of C in GROMACS.
+    _in terms of parameters_
+    * charges (can be either _gasteiger_ or _bcc_ with ACPYPE);
+    * YYY: 6 bonds and 9 dihedrals, all involving atom CZ (id 15, 36 and 57), because of atom type changing mentioned above;
+
+When we look the bonded potential energies for all entries, the difference is no bigger than 0.002% (even for the entries with inverted improper dihedrals) with one solely exception: YYY with 1.9%, because of the atom type change seen above.
+
+The source code for these tests can be seen [http://code.google.com/p/acpype/source/browse/trunk/test/check_acpype.py here].
+
+See detailed output [ResiduesTest here]
+
+== ACPYPE and OPLS/AA Parameters Generation (Experimental) ==
+
+The biggest problem here is to guess the correct atom type according to OPLS/AA
+forcefield.
+
+Looking at `.../gromacs/top/ffoplsaanb.itp` file and one can see e.g.:
+{{{
+[ atomtypes ]
+; full atom descriptions are available in ffoplsaa.atp
+; name    bond_type    mass         charge   ptype   sigma        epsilon
+...
+ opls_015   C2  6      14.02700     0.285       A    3.80000e-01  4.93712e-01 ; SIG
+ opls_016   C2  6      14.02700    -0.100       A    3.90500e-01  4.93712e-01 ; SIG
+...
+}}}
+
+In this example, atom types `opls_015` and `opls_016` shared the same `bond_type` but differs
+by charge and van der waals parameters. Having the same `bond_type` means that
+they share the same _bonded_ parameters as seen in `.../gromacs/top/ffoplsaabon.itp`.
+
+Since ACPYPE uses ANTECHAMBER, for it, all atom types found will be also the `bond_type`
+and their charges will be calculated specifically. So the "trick" here is to map the
+GAFF or AMBER atom type against OPLS atom type.
+
+I did it by creating a mapping dictionary that links GAFF or AMBER atom type to a list
+of possible OPLS atom types based on the 22 pdb entries mentioned above by comparing
+GROMACS' OPLS output with ACPYPE's GAFF and AMBER results.
+
+This is not ideal. The correct approach would involve determining the atom chemical function
+based on its surrounding chemical neighbourhood, which ANTECHAMBER does but not for
+OPLS/AA atom types.
+
+Nevertheless, I hope ACPYPE can be helpful since it also shows in the ACPYPE
+GROMACS OPLS _itp_ output file a suggestion of possible replacements for the OPLS
+atom types guessed by ACPYPE.
+
+Another alternative would be to port the algorithm developed in
+[http://labmm.iq.ufrj.br/mktop MKTOP] (done in _perl_ and following the correct
+approach mentioned above) that determines the OPLS/AA atom types to _python_ and
+then add it to ACPYPE (under study).
+
+Still, since that for `bond_types`, the chances that one picked the right `bond_type`
+are almost sure (but not always, sometimes a CT can be CT_2 or CT_3 in OPLS/AA),
+the _bonded_ parameters (i.e., the topology) determined by ACPYPE are fundamentally
+correct, leaving just one opened end: the _bonded_ parameters may not be present
+in `.../gromacs/top/ffoplsaabon.itp`, and for that `grompp` will fail showing which
+lines in your _itp_ file have missing parameters.
+
+However, calculated parameters derived for AMBER99SB/GAFF are there and one can just
+enable them by commenting out (remove "`;`") in that line.
+
+*BUT*, although many parameters for AMBER99SB may be identical to the ones for
+OPLS/AA, e.g.:
+{{{
+(from .../gromacs/top/ffamber99sbbon.itp)
+X   CA  CA  X     3    30.33400     0.00000   -30.33400     0.00000     0.00000     0.00000 ; intrpol.bsd.on C6H6
+
+(from .../gromacs/top/ffoplsaabon.itp)
+  X      CA     CA     X       3     30.33400   0.00000 -30.33400   0.00000   0.00000   0.00000 ; aromatic ring
+}}}
+
+these parameters were NOT calculated for OPLS/AA and so one will find several divergences, e.g.:
+{{{
+(from .../gromacs/top/ffamber99sbbon.itp)
+CT  CT  C   N     3     2.51040     4.18400     1.67360    -6.69440     0.00000     0.00000     ; new99sb
+
+(from .../gromacs/top/ffoplsaabon.itp)
+  CT     CT     C      N       3      4.83252  -7.65254   1.68196   1.13805   0.00000   0.00000 ; propanamide
+}}}
+
+As for improper dihedrals, one can assume they are if not identical, at least equivalent, so one can
+use the parameters derived for AMBER99SB by ACPYPE/ANTECHAMBER with OPLS/AA
+by removing "`;`" in the respective lines of your generated _itp_ file.
+
+Nevertheless, an ideal solution would involve finding the right OPLS atom types and parameters
+calculation according to [http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)].
+Be aware of it!
+
+By the way, it is important to emphasise that the mechanism used by ANTECHAMBER to
+find the topology (i.e., how atoms are connected in bonds, angles and dihedrals)
+of a chemical compound is pretty reliable for an all-atoms forcefields-like (it is just
+the way how AMBER forcefields are developed).
+
+And a last observation. If one finds in the GROMACS OPLS _itp_ file generated an
+atom type like `opls_x` with mass `0.000`, it's because my mapping dictionary failed
+to guess a putative OPLS atom type. Please let me know about it if you run into it.
