@@ -1,0 +1,108 @@
+Remarks Ligand_CNS.par created by acpype (Rev: 359) on Wed Jan 26 15:24:56 2011
+
+set echo=false end
+
+{ Bonds: atomType1 atomType2 kb r0 }
+BOND   c3_   h1_    335.9   1.0930
+BOND   ca_   ha_    344.3   1.0870
+BOND   c3_   hc_    337.3   1.0920
+BOND   oh_   ho_    369.6   0.9740
+BOND    c_    n_    478.2   1.3450
+BOND    c_    o_    648.0   1.2140
+BOND   c3_   c3_    303.1   1.5350
+BOND   c3_    n_    330.6   1.4600
+BOND   c3_   oh_    314.1   1.4260
+BOND   c3_   ca_    323.5   1.5130
+BOND   ca_   ca_    478.4   1.3870
+
+{ Angles: aType1 aType2 aType3 kt t0 }
+ANGLe   c3_   c3_   hc_     46.4   110.05
+ANGLe   c3_   c3_   h1_     46.4   110.07
+ANGLe   c3_   oh_   ho_     47.1   108.16
+ANGLe   ca_   ca_   ha_     48.5   120.01
+ANGLe   ca_   c3_   h1_     46.8   110.95
+ANGLe   ca_   c3_   hc_     47.0   110.15
+ANGLe    n_   c3_   h1_     49.8   109.32
+ANGLe   oh_   c3_   h1_     51.0   109.88
+ANGLe   h1_   c3_   h1_     39.2   109.55
+ANGLe   hc_   c3_   hc_     39.4   108.35
+ANGLe    c_    n_   c3_     63.9   121.35
+ANGLe   c3_   c3_   ca_     63.2   112.09
+ANGLe   c3_    n_   c3_     63.1   115.56
+ANGLe   c3_   c3_   oh_     67.7   109.43
+ANGLe   c3_   c3_   c3_     63.2   110.63
+ANGLe   c3_   c3_    n_     65.8   112.13
+ANGLe   c3_   ca_   ca_     63.8   120.63
+ANGLe   ca_   ca_   ca_     67.2   119.97
+ANGLe   ca_   c3_    n_     66.3   112.43
+ANGLe   ca_   c3_   oh_     67.9   110.55
+ANGLe    n_    c_    o_     75.8   122.03
+ANGLe    n_    c_    n_     74.8   113.38
+
+{ Proper Dihedrals: aType1 aType2 aType3 aType4 kt period phase }
+DIHEdral   c3_    n_   c3_   c3_           0.000    0     0.00
+DIHEdral   ha_   ca_   ca_   ha_           3.625    2   180.00
+DIHEdral   ca_   c3_   oh_   ho_           0.167    3     0.00
+DIHEdral   c3_   ca_   ca_   ha_           3.625    2   180.00
+DIHEdral    c_    n_   c3_   ca_           0.000    0     0.00
+DIHEdral   c3_   c3_   oh_   ho_  MULT 2   0.250    1     0.00
+                                           0.160    3     0.00
+DIHEdral   c3_   c3_   c3_    n_           0.156    3     0.00
+DIHEdral    n_   c3_   c3_   oh_           0.156    3     0.00
+DIHEdral   ca_   ca_   c3_    n_           0.000    0     0.00
+DIHEdral   c3_   c3_   c3_   c3_  MULT 3   0.200    1   180.00
+                                           0.250    2   180.00
+                                           0.180    3     0.00
+DIHEdral    c_    n_   c3_   h1_           0.000    0     0.00
+DIHEdral   ca_   ca_   c3_   oh_           0.000    0     0.00
+DIHEdral   c3_    n_   c3_   ca_           0.000    0     0.00
+DIHEdral   c3_   c3_   c3_   oh_           0.156    3     0.00
+DIHEdral   h1_   c3_   c3_   hc_           0.156    3     0.00
+DIHEdral   ca_   ca_   c3_   h1_           0.000    0     0.00
+DIHEdral   oh_   c3_   c3_   h1_  MULT 2   0.250    1     0.00
+                                           0.000    0     0.00
+DIHEdral   ca_   ca_   ca_   ha_           3.625    2   180.00
+DIHEdral   c3_   ca_   ca_   ca_           3.625    2   180.00
+DIHEdral   c3_   c3_   c3_   ca_           0.156    3     0.00
+DIHEdral   c3_    n_   c3_   h1_           0.000    0     0.00
+DIHEdral    n_   c3_   c3_   hc_           0.156    3     0.00
+DIHEdral   c3_   c3_    n_   c3_           0.000    0     0.00
+DIHEdral    n_   c3_   c3_   h1_           0.156    3     0.00
+DIHEdral   ca_   c3_   c3_   h1_           0.156    3     0.00
+DIHEdral   h1_   c3_   oh_   ho_           0.167    3     0.00
+DIHEdral   ca_   ca_   ca_   ca_           3.625    2   180.00
+DIHEdral    c_    n_   c3_   c3_  MULT 3   0.530    1     0.00
+                                           0.150    3   180.00
+                                           0.500    4   180.00
+DIHEdral   h1_   c3_   c3_   h1_           0.156    3     0.00
+DIHEdral   c3_   c3_   c3_   hc_           0.160    3     0.00
+DIHEdral   ca_   c3_   c3_    n_           0.156    3     0.00
+DIHEdral    o_    c_    n_   c3_           2.500    2   180.00
+DIHEdral   ca_   ca_   ca_   c3_           3.625    2   180.00
+DIHEdral    n_    c_    n_   c3_           2.500    2   180.00
+DIHEdral   c3_   c3_   ca_   ca_           0.000    0     0.00
+DIHEdral   oh_   c3_   c3_   oh_  MULT 2   1.175    2     0.00
+                                           0.144    3     0.00
+DIHEdral   c3_   c3_   c3_   h1_           0.156    3     0.00
+DIHEdral   ca_   ca_   c3_   hc_           0.000    0     0.00
+
+{ Improper Dihedrals: aType1 aType2 aType3 aType4 kt period phase }
+IMPRoper   ca_   ca_   ca_   c3_           1.1    2   180.00
+IMPRoper    c_   c3_    n_   c3_           1.1    2   180.00
+IMPRoper   ca_   ca_   ca_   ha_           1.1    2   180.00
+IMPRoper    o_    c_    n_    n_          10.5    2   180.00
+IMPRoper   c3_   ca_   ca_   ca_           1.1    2   180.00
+
+{ Nonbonded: Type Emin sigma; (1-4): Emin/2 sigma }
+NONBonded    c_    0.086000    3.399670    0.043000    3.399670
+NONBonded   c3_    0.109400    3.399670    0.054700    3.399670
+NONBonded   ca_    0.086000    3.399670    0.043000    3.399670
+NONBonded    n_    0.170000    3.249999    0.085000    3.249999
+NONBonded    o_    0.210000    2.959922    0.105000    2.959922
+NONBonded   oh_    0.210400    3.066473    0.105200    3.066473
+NONBonded   h1_    0.015700    2.471353    0.007850    2.471353
+NONBonded   ha_    0.015000    2.599642    0.007500    2.599642
+NONBonded   hc_    0.015700    2.649533    0.007850    2.649533
+NONBonded   ho_    0.000000    0.000000    0.000000    0.000000
+
+set echo=true end

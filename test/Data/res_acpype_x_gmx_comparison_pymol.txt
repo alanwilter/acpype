@@ -1,0 +1,580 @@
+usePymol: True, useGmx45: False, ffType: amber, cType: bcc, doOpls: False
+
+File AAA.pdb : residue ALA
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   158.596   155.797810 x -91.291190
+     Coulomb-14   41.912   1611.040000 x 935.821000
+   Coulomb_(SR)   29.162   -1468.100000 x -1039.970000
+      Potential   70.009   352.940000 x 105.849000
+    Proper_Dih.   0.000
+         Bonded   0.001
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File CCC.pdb : residue CYS
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   116.361   185.693300 x -30.380700
+     Coulomb-14   45.075   1487.210000 x 816.854000
+   Coulomb_(SR)   34.874   -1302.630000 x -848.348000
+      Potential   55.922   386.382000 x 170.311000
+    Proper_Dih.   0.000
+         Bonded   0.001
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File DDD.pdb : residue ASP
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   21.077   505.612700 x 640.643700
+     Coulomb-14   14.179   1671.190000 x 1434.240000
+   Coulomb_(SR)   31.983   -1163.060000 x -791.079000
+      Potential   15.842   717.267000 x 852.288000
+    Proper_Dih.   0.000
+         Bonded   0.005
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File EEE.pdb : residue GLU
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   8.540   587.141100 x 536.998100
+     Coulomb-14   42.214   1623.360000 x 938.081000
+   Coulomb_(SR)   61.105   -1039.420000 x -404.284000
+      Potential   5.993   836.655000 x 786.511000
+    Proper_Dih.   0.000
+         Bonded   0.000
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File FFF.pdb : residue PHE
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   161.843   97.707800 x -157.992200
+     Coulomb-14   47.375   1605.160000 x 844.710000
+   Coulomb_(SR)   32.956   -1531.600000 x -1026.850000
+      Potential   77.771   328.787000 x 73.085800
+    Proper_Dih.   0.000
+         Bonded   0.001
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.001
+
+File GGG.pdb : residue GLY
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   198.645   247.560550 x -250.960450
+     Coulomb-14   58.662   1579.500000 x 652.931000
+   Coulomb_(SR)   31.689   -1350.790000 x -922.742000
+      Potential   89.166   559.098000 x 60.572100
+    Proper_Dih.   0.000
+         Bonded   0.002
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File HHH.pdb : residue HIE
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.014
+     Non_Bonded   78.840   -43.184200 x -204.087200
+     Coulomb-14   30.967   1386.110000 x 956.877000
+   Coulomb_(SR)   19.003   -1412.070000 x -1143.740000
+      Potential   31.251   514.942000 x 354.020000
+    Proper_Dih.   1.524   0.902774 x 0.889012
+         Bonded   0.003
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File III.pdb : residue ILE
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   166.466   137.436200 x -206.775800
+     Coulomb-14   59.038   1579.500000 x 646.988000
+   Coulomb_(SR)   40.813   -1441.460000 x -853.160000
+      Potential   78.758   437.045000 x 92.837500
+    Proper_Dih.   0.000
+         Bonded   0.002
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File JJJ.pdb : residue HIP
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.006
+     Non_Bonded   23.950   1258.121400 x 956.807200
+     Coulomb-14   36.527   1688.380000 x 1071.660000
+   Coulomb_(SR)   76.923   -410.028000 x -94.622200
+      Potential   15.708   1918.340000 x 1617.010000
+    Proper_Dih.   0.464   1.173330 x 1.167880
+         Bonded   0.002
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.001
+
+File KKK.pdb : residue LYS
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   35.036   1065.684300 x 692.308300
+     Coulomb-14   29.263   1853.880000 x 1311.380000
+   Coulomb_(SR)   21.394   -790.514000 x -621.390000
+      Potential   28.459   1311.970000 x 938.601000
+    Proper_Dih.   0.000
+         Bonded   0.003
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File LLL.pdb : residue LEU
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   131.657   122.665100 x -387.480900
+     Coulomb-14   51.785   1539.860000 x 742.444000
+   Coulomb_(SR)   20.220   -1420.690000 x -1133.420000
+      Potential   134.617   378.966000 x -131.186000
+    Proper_Dih.   0.000
+         Bonded   0.002
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File MMM.pdb : residue MET
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   192.357   156.030700 x -168.943300
+     Coulomb-14   46.915   1610.330000 x 854.836000
+   Coulomb_(SR)   29.729   -1448.140000 x -1017.620000
+      Potential   85.070   382.003000 x 57.031200
+    Proper_Dih.   0.000
+         Bonded   0.001
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.001
+
+File NNN.pdb : residue ASN
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   29.664   -791.537600 x -1125.360600
+     Coulomb-14   62.544   734.353000 x 275.060000
+   Coulomb_(SR)   8.272   -1516.880000 x -1391.410000
+      Potential   42.536   -450.961000 x -784.777000
+    Proper_Dih.   0.000
+         Bonded   0.002
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File OOO.pdb : residue HID
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.002
+     Non_Bonded   97.795   -6.615200 x -299.956200
+     Coulomb-14   52.610   1433.260000 x 679.217000
+   Coulomb_(SR)   32.089   -1435.700000 x -974.998000
+      Potential   43.943   667.550000 x 374.209000
+    Proper_Dih.   0.211   1.050330 x 1.048110
+         Bonded   0.000
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File PPP.pdb : residue PRO
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   69.000   381.490600 x 118.260600
+     Coulomb-14   40.091   1366.150000 x 818.448000
+   Coulomb_(SR)   28.620   -993.977000 x -709.505000
+      Potential   28.547   922.104000 x 658.873000
+    Proper_Dih.   0.000
+         Bonded   0.000
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File QQQ.pdb : residue GLN
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   37.899   -585.653900 x -943.071700
+     Coulomb-14   110.994   801.748000 x -88.145800
+   Coulomb_(SR)   38.322   -1389.470000 x -856.994000
+      Potential   67.703   -170.502000 x -527.921000
+    Proper_Dih.   0.000
+         Bonded   0.000
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File RRR.pdb : residue ARG
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+    25 CZ AC: CM   x   AMB: CA
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+('    ac: ', [[23, 25, 1, 0.136, 375720.0], [25, 26, 1, 0.136, 375720.0], [25, 29, 1, 0.136, 375720.0]])
+('    ag: ', [[23, 25, 1, 0.134, 402500.0], [25, 26, 1, 0.134, 402500.0], [25, 29, 1, 0.134, 402500.0]])
+    ==> Comparing angles
+('    ac: ', [[20, 23, 25, 1, 120.0, 540.0], [23, 25, 26, 1, 120.0, 610.0], [23, 25, 29, 1, 120.0, 610.0], [24, 23, 25, 1, 120.0, 410.0], [25, 26, 27, 1, 120.0, 410.0], [25, 26, 28, 1, 120.0, 410.0], [25, 29, 30, 1, 120.0, 410.0], [25, 29, 31, 1, 120.0, 410.0], [26, 25, 29, 1, 120.0, 610.0]])
+('    ag: ', [[20, 23, 25, 1, 120.0, 420.0], [23, 25, 26, 1, 120.0, 590.0], [23, 25, 29, 1, 120.0, 590.0], [24, 23, 25, 1, 120.0, 420.0], [25, 26, 27, 1, 120.0, 420.0], [25, 26, 28, 1, 120.0, 420.0], [25, 29, 30, 1, 120.0, 420.0], [25, 29, 31, 1, 120.0, 420.0], [26, 25, 29, 1, 120.0, 590.0]])
+    ==> Comparing dihedrals
+('    ac: ', [[20, 23, 25, 26, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [20, 23, 25, 29, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [23, 25, 26, 27, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [23, 25, 26, 28, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [23, 25, 29, 30, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [23, 25, 29, 31, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [23, 26, 25, 29, 1, 180.0, 4.602, 2.0], [24, 23, 25, 26, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [24, 23, 25, 29, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [26, 25, 29, 30, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [26, 25, 29, 31, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [27, 26, 25, 29, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0], [28, 26, 25, 29, 3, 2.51, 0.0, -2.51, 0.0, 0.0, 0.0]])
+('    ag: ', [[20, 23, 25, 26, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [20, 23, 25, 29, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [23, 25, 26, 27, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [23, 25, 26, 28, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [23, 25, 29, 30, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [23, 25, 29, 31, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [23, 26, 25, 29, 1, 180.0, 43.932, 2.0], [24, 23, 25, 26, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [24, 23, 25, 29, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [26, 25, 29, 30, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [26, 25, 29, 31, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [29, 25, 26, 27, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0], [29, 25, 26, 28, 3, 20.083, 0.0, -20.083, 0.0, 0.0, 0.0]])
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   10.665   101.079000 x 90.298800
+       Dihedral   3.313   34.525483 x 35.708602
+     Non_Bonded   98.859   -9.131800 x -800.210800
+     Coulomb-14   147.820   1010.940000 x -483.428000
+   Coulomb_(SR)   68.071   -1033.170000 x -329.881000
+      Potential   181.522   364.245000 x -446.805000
+    Proper_Dih.   0.021
+         Bonded   5.349   373.376800 x 353.405800
+ Ryckaert-Bell.   3.321   34.436600 x 35.619700
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   4.363   237.773000 x 227.399000
+
+File SSS.pdb : residue SER
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   166.538   280.964800 x -186.947200
+     Coulomb-14   76.998   1654.180000 x 380.496000
+   Coulomb_(SR)   58.369   -1380.470000 x -574.698000
+      Potential   97.153   481.620000 x 13.712300
+    Proper_Dih.   0.000
+         Bonded   0.002
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File TTT.pdb : residue THR
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   97.732   -15.487400 x -682.993400
+     Coulomb-14   115.380   1335.860000 x -205.459000
+   Coulomb_(SR)   64.579   -1353.100000 x -479.287000
+      Potential   145.797   209.674000 x -457.834000
+    Proper_Dih.   0.000
+         Bonded   0.001
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File VVV.pdb : residue VAL
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+        dihedrals OK
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.000
+     Non_Bonded   130.938   140.107000 x -452.864000
+     Coulomb-14   86.723   1562.940000 x 207.507000
+   Coulomb_(SR)   53.560   -1423.560000 x -661.098000
+      Potential   153.806   385.531000 x -207.437000
+    Proper_Dih.   0.000
+         Bonded   0.001
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.001
+
+File WWW.pdb : residue TRP
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+        atomtypes OK
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+        bonds OK
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+('    ac: ', [[10, 22, 24, 15, 1, 180.0, 4.602, 2.0], [16, 24, 15, 13, 1, 180.0, 4.602, 2.0], [34, 46, 48, 39, 1, 180.0, 4.602, 2.0], [40, 48, 39, 37, 1, 180.0, 4.602, 2.0], [58, 70, 72, 63, 1, 180.0, 4.602, 2.0], [64, 72, 63, 61, 1, 180.0, 4.602, 2.0]])
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   0.051
+     Non_Bonded   91.555   -6.897600 x -81.677500
+     Coulomb-14   35.407   1564.920000 x 1010.830000
+   Coulomb_(SR)   30.641   -1564.300000 x -1084.990000
+      Potential   23.272   321.459000 x 246.649000
+    Proper_Dih.   14.112   0.203565 x 0.174838
+         Bonded   0.009
+ Ryckaert-Bell.   0.000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.000
+
+File YYY.pdb : residue TYR
+Compare ACPYPE x GMX AMBER99SB topol & param
+    ==> Comparing atomtypes AC x AMBER
+    15 CZ AC: CA   x   AMB: C
+    36 CZ AC: CA   x   AMB: C
+    57 CZ AC: CA   x   AMB: C
+    ==> Comparing pairs
+        pairs OK
+    ==> Comparing bonds
+('    ac: ', [[13, 15, 1, 0.14, 392460.0], [15, 18, 1, 0.14, 392460.0], [34, 36, 1, 0.14, 392460.0], [36, 39, 1, 0.14, 392460.0], [55, 57, 1, 0.14, 392460.0], [57, 60, 1, 0.14, 392460.0]])
+('    ag: ', [[13, 15, 1, 0.141, 392460.0], [15, 18, 1, 0.141, 392460.0], [34, 36, 1, 0.141, 392460.0], [36, 39, 1, 0.141, 392460.0], [55, 57, 1, 0.141, 392460.0], [57, 60, 1, 0.141, 392460.0]])
+    ==> Comparing angles
+        angles OK
+    ==> Comparing dihedrals
+('    ac: ', [[13, 15, 16, 17, 3, 7.531, 0.0, -7.531, 0.0, 0.0, 0.0], [17, 16, 15, 18, 3, 7.531, 0.0, -7.531, 0.0, 0.0, 0.0], [34, 36, 37, 38, 3, 7.531, 0.0, -7.531, 0.0, 0.0, 0.0], [38, 37, 36, 39, 3, 7.531, 0.0, -7.531, 0.0, 0.0, 0.0], [55, 57, 58, 59, 3, 7.531, 0.0, -7.531, 0.0, 0.0, 0.0], [59, 58, 57, 60, 3, 7.531, 0.0, -7.531, 0.0, 0.0, 0.0]])
+('    ag: ', [[13, 15, 16, 17, 3, 19.246, 0.0, -19.246, 0.0, 0.0, 0.0], [18, 15, 16, 17, 3, 19.246, 0.0, -19.246, 0.0, 0.0, 0.0], [34, 36, 37, 38, 3, 19.246, 0.0, -19.246, 0.0, 0.0, 0.0], [39, 36, 37, 38, 3, 19.246, 0.0, -19.246, 0.0, 0.0, 0.0], [55, 57, 58, 59, 3, 19.246, 0.0, -19.246, 0.0, 0.0, 0.0], [60, 57, 58, 59, 3, 19.246, 0.0, -19.246, 0.0, 0.0, 0.0]])
+Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)
+          Angle   0.000
+       Dihedral   7.853   55.359134 x 60.077034
+     Non_Bonded   67.131   -127.757000 x -388.689000
+     Coulomb-14   48.220   1340.250000 x 693.988000
+   Coulomb_(SR)   25.825   -1492.110000 x -1106.780000
+      Potential   115.035   220.902000 x -33.213500
+    Proper_Dih.   0.000
+         Bonded   1.918   348.659000 x 355.475500
+ Ryckaert-Bell.   7.868   55.246100 x 59.964000
+          LJ-14   0.000
+        LJ_(SR)   0.000
+           Bond   0.965   215.030000 x 217.126000

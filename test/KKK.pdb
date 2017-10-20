@@ -1,0 +1,151 @@
+ATOM      1  N   LYS K   1     161.930  45.953   8.985  1.00  0.00           N
+ATOM      2  CA  LYS K   1     163.373  46.205   8.960  1.00  0.00           C
+ATOM      3  C   LYS K   1     163.661  47.707   8.927  1.00  0.00           C
+ATOM      4  O   LYS K   1     162.908  48.432   8.240  1.00  0.00           O
+ATOM      5  CB  LYS K   1     163.984  45.453   7.744  1.00  0.00           C
+ATOM      6  CG  LYS K   1     165.533  45.501   7.636  1.00  0.00           C
+ATOM      7  CD  LYS K   1     166.142  44.760   6.445  1.00  0.00           C
+ATOM      8  CE  LYS K   1     167.667  44.937   6.471  1.00  0.00           C
+ATOM      9  NZ  LYS K   1     168.268  44.197   5.347  1.00  0.00           N
+ATOM     10  HA  LYS K   1     163.809  45.807   9.892  1.00  0.00           H
+ATOM     11 2HB  LYS K   1     163.536  45.850   6.811  1.00  0.00           H
+ATOM     12 3HB  LYS K   1     163.687  44.386   7.802  1.00  0.00           H
+ATOM     13 2HG  LYS K   1     165.970  45.106   8.574  1.00  0.00           H
+ATOM     14 3HG  LYS K   1     165.865  46.553   7.549  1.00  0.00           H
+ATOM     15 2HD  LYS K   1     165.729  45.160   5.498  1.00  0.00           H
+ATOM     16 3HD  LYS K   1     165.862  43.689   6.494  1.00  0.00           H
+ATOM     17 2HE  LYS K   1     168.096  44.567   7.425  1.00  0.00           H
+ATOM     18 3HE  LYS K   1     167.932  46.014   6.410  1.00  0.00           H
+ATOM     19 1HZ  LYS K   1     167.918  44.551   4.450  1.00  0.00           H
+ATOM     20 2HZ  LYS K   1     169.287  44.319   5.323  1.00  0.00           H
+ATOM     21 3HZ  LYS K   1     168.025  43.226   5.485  1.00  0.00           H
+ATOM     22 1HT  LYS K   1     161.759  44.944   9.042  1.00  0.00           H
+ATOM     23 2HT  LYS K   1     161.516  46.423   9.802  1.00  0.00           H
+ATOM     24 3HT  LYS K   1     161.506  46.329   8.123  1.00  0.00           H
+ATOM     25  N   LYS K   2     164.792  48.178   9.710  1.00  0.00           N
+ATOM     26  CA  LYS K   2     165.091  49.588   9.562  1.00  0.00           C
+ATOM     27  C   LYS K   2     166.609  49.822   9.669  1.00  0.00           C
+ATOM     28  O   LYS K   2     167.261  49.186  10.515  1.00  0.00           O
+ATOM     29  CB  LYS K   2     164.287  50.374  10.637  1.00  0.00           C
+ATOM     30  CG  LYS K   2     164.433  51.917  10.562  1.00  0.00           C
+ATOM     31  CD  LYS K   2     163.659  52.723  11.605  1.00  0.00           C
+ATOM     32  CE  LYS K   2     163.924  54.217  11.369  1.00  0.00           C
+ATOM     33  NZ  LYS K   2     163.159  55.017  12.341  1.00  0.00           N
+ATOM     34  H   LYS K   2     165.401  47.506  10.346  1.00  0.00           H
+ATOM     35  HA  LYS K   2     164.830  49.973   8.564  1.00  0.00           H
+ATOM     36 2HB  LYS K   2     164.586  50.021  11.644  1.00  0.00           H
+ATOM     37 3HB  LYS K   2     163.211  50.129  10.530  1.00  0.00           H
+ATOM     38 2HG  LYS K   2     164.134  52.251   9.548  1.00  0.00           H
+ATOM     39 3HG  LYS K   2     165.496  52.198  10.687  1.00  0.00           H
+ATOM     40 2HD  LYS K   2     163.978  52.433  12.625  1.00  0.00           H
+ATOM     41 3HD  LYS K   2     162.579  52.491  11.529  1.00  0.00           H
+ATOM     42 2HE  LYS K   2     163.632  54.513  10.340  1.00  0.00           H
+ATOM     43 3HE  LYS K   2     165.009  54.435  11.458  1.00  0.00           H
+ATOM     44 1HZ  LYS K   2     163.444  54.792  13.301  1.00  0.00           H
+ATOM     45 2HZ  LYS K   2     163.335  56.020  12.218  1.00  0.00           H
+ATOM     46 3HZ  LYS K   2     162.185  54.802  12.181  1.00  0.00           H
+ATOM     47  N   LYS K   3     167.166  50.791   8.733  1.00  0.00           N
+ATOM     48  CA  LYS K   3     168.583  51.035   8.880  1.00  0.00           C
+ATOM     49  C   LYS K   3     168.903  52.468   8.477  1.00  0.00           C
+ATOM     50  O   LYS K   3     168.392  53.059   7.473  1.00  0.00           O
+ATOM     51  CB  LYS K   3     169.357  49.994   8.016  1.00  0.00           C
+ATOM     52  CG  LYS K   3     170.903  50.079   8.129  1.00  0.00           C
+ATOM     53  CD  LYS K   3     171.689  49.083   7.272  1.00  0.00           C
+ATOM     54  CE  LYS K   3     173.188  49.307   7.519  1.00  0.00           C
+ATOM     55  NZ  LYS K   3     173.975  48.353   6.718  1.00  0.00           N
+ATOM     56  OXT LYS K   3     169.766  53.045   9.216  1.00  0.00           O
+ATOM     57  H   LYS K   3     166.546  51.309   7.977  1.00  0.00           H
+ATOM     58  HA  LYS K   3     168.918  50.961   9.927  1.00  0.00           H
+ATOM     59 2HB  LYS K   3     169.054  50.115   6.956  1.00  0.00           H
+ATOM     60 3HB  LYS K   3     169.047  48.975   8.315  1.00  0.00           H
+ATOM     61 2HG  LYS K   3     171.185  49.954   9.193  1.00  0.00           H
+ATOM     62 3HG  LYS K   3     171.259  51.077   7.822  1.00  0.00           H
+ATOM     63 2HD  LYS K   3     171.449  49.233   6.201  1.00  0.00           H
+ATOM     64 3HD  LYS K   3     171.390  48.049   7.528  1.00  0.00           H
+ATOM     65 2HE  LYS K   3     173.436  49.176   8.594  1.00  0.00           H
+ATOM     66 3HE  LYS K   3     173.469  50.350   7.262  1.00  0.00           H
+ATOM     67 1HZ  LYS K   3     173.796  48.486   5.717  1.00  0.00           H
+ATOM     68 2HZ  LYS K   3     174.982  48.497   6.851  1.00  0.00           H
+ATOM     69 3HZ  LYS K   3     173.702  47.430   7.024  1.00  0.00           H
+CONECT    1    2   22   23   24
+CONECT    2    1    3    5   10
+CONECT    3    2
+CONECT    3    4
+CONECT    3    4
+CONECT    3   25
+CONECT    4    3
+CONECT    4    3
+CONECT    5    2    6   11   12
+CONECT    6    5    7   13   14
+CONECT    7    6    8   15   16
+CONECT    8    7    9   17   18
+CONECT    9    8   19   20   21
+CONECT   10    2
+CONECT   11    5
+CONECT   12    5
+CONECT   13    6
+CONECT   14    6
+CONECT   15    7
+CONECT   16    7
+CONECT   17    8
+CONECT   18    8
+CONECT   19    9
+CONECT   20    9
+CONECT   21    9
+CONECT   22    1
+CONECT   23    1
+CONECT   24    1
+CONECT   25    3   26   34
+CONECT   26   25   27   29   35
+CONECT   27   26
+CONECT   27   28
+CONECT   27   28
+CONECT   27   47
+CONECT   28   27
+CONECT   28   27
+CONECT   29   26   30   36   37
+CONECT   30   29   31   38   39
+CONECT   31   30   32   40   41
+CONECT   32   31   33   42   43
+CONECT   33   32   44   45   46
+CONECT   34   25
+CONECT   35   26
+CONECT   36   29
+CONECT   37   29
+CONECT   38   30
+CONECT   39   30
+CONECT   40   31
+CONECT   41   31
+CONECT   42   32
+CONECT   43   32
+CONECT   44   33
+CONECT   45   33
+CONECT   46   33
+CONECT   47   27   48   57
+CONECT   48   47   49   51   58
+CONECT   49   48
+CONECT   49   50
+CONECT   49   50
+CONECT   49   56
+CONECT   50   49
+CONECT   50   49
+CONECT   51   48   52   59   60
+CONECT   52   51   53   61   62
+CONECT   53   52   54   63   64
+CONECT   54   53   55   65   66
+CONECT   55   54   67   68   69
+CONECT   56   49
+CONECT   57   47
+CONECT   58   48
+CONECT   59   51
+CONECT   60   51
+CONECT   61   52
+CONECT   62   52
+CONECT   63   53
+CONECT   64   53
+CONECT   65   54
+CONECT   66   54
+CONECT   67   55
+CONECT   68   55
+CONECT   69   55
+END

@@ -1,0 +1,62 @@
+Remarks Ligand_CNS.inp created by acpype (Rev: 359) on Wed Jan 26 15:24:56 2011
+
+topology
+  @Ligand_CNS.top
+end
+
+parameters
+  @Ligand_CNS.par
+  nbonds
+      atom cdie shift eps=1.0  e14fac=0.4   tolerance=0.5
+      cutnb=9.0 ctonnb=7.5 ctofnb=8.0
+      nbxmod=5 vswitch wmin 1.0
+  end
+  remark dielectric constant eps set to 1.0
+end
+
+flags exclude elec ? end
+
+segment name="    "
+  chain
+   coordinates @Ligand_NEW.pdb
+  end
+end
+coordinates @Ligand_NEW.pdb
+coord copy end
+
+! Remarks If you want to shake up the coordinates a bit ...
+ vector do (x=x+6*(rand()-0.5)) (all)
+ vector do (y=y+6*(rand()-0.5)) (all)
+ vector do (z=z+6*(rand()-0.5)) (all)
+ write coordinates output=Ligand_rand.pdb end
+
+! Remarks RMS diff after randomisation and before minimisation
+coord rms sele=(known and not hydrogen) end
+
+print threshold=0.02 bonds
+print threshold=3.0 angles
+print threshold=3.0 dihedrals
+print threshold=3.0 impropers
+
+! Remarks Do Powell energy minimisation
+minimise powell
+  nstep=250 drop=40.0
+end
+
+write coordinates output=Ligand_NEW_min.pdb end
+write structure   output=Ligand_CNS.psf end
+
+! constraints interaction (not hydro) (not hydro) end
+
+print threshold=0.02 bonds
+print threshold=3.0 angles
+print threshold=3.0 dihedrals
+print threshold=3.0 impropers
+
+flags exclude * include vdw end energy end
+distance from=(not hydro) to=(not hydro) cutoff=2.6 end
+
+! Remarks RMS fit after minimisation
+coord fit sele=(known and not hydrogen) end
+
+stop

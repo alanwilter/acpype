@@ -1,0 +1,15 @@
+; Ligand_GMX.top created by acpype (Rev: 359) on Wed Jan 26 15:24:56 2011
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               2               yes             0.5     0.8333
+
+; Include Ligand_GMX.itp topology
+#include "Ligand_GMX.itp"
+
+[ system ]
+ Ligand
+
+[ molecules ]
+; Compound        nmols
+ Ligand           1     
