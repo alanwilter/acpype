@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <h1>ACPYPE Submit</h1>
+        
+  <form method="post" enctype="multipart/form-data">
+    
+    {% csrf_token %}
+    <a>File:</a><input type="file" name="myfile">
+    
+  </form>
+  <form action="" method="POST">
+                {{ form.as_p }}
+   </form>
+
+  {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+  {% endif %}
+  <button type="submit">Submit</button>
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+{% endblock content %}
+<select id="id_test" name="test">
+    <optgroup label="Group 1">
+        <option value="1">Choice 1</option>
+        <option value="2">Choice 2</option>
+    </optgroup>
+    <optgroup label="Group 2">
+        <option value="3">Choice 3</option>
+        <option value="4">Choice 4</option>
+    </optgroup>
+    <option value="5">Choice 5</option>
+</select>
