@@ -1,0 +1,23 @@
+Instructions:
+
+1) Create a virtual enviroment:
+"python3 -m venv py3env"
+
+2) Enable virtualenv:
+". py3env/bin/activate"
+
+3) Install requirements:
+pip install -r requirements.txt
+
+4) Copy acpypeserver folder into py3env;
+
+5) Type "cd acpypeserver";
+
+6) Type 'python3 manage.py makemigrations";
+
+7) Type 'python3 manage.py migrate";
+
+8) Type 'python3 manage.py runserver";
+
+9) Open "http://127.0.0.1:8000/" in a browser;
+
