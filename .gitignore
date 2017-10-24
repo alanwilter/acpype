@@ -3,3 +3,4 @@ __pycache__/
 *$py.class
 .pydevproject
 .project
+acpypeserver/db.sqlite3
