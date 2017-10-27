@@ -1,0 +1,5 @@
+; to test
+; grompp -f md.mdp -c em.gro -p lasom63_GMX.top -o md.tpr
+; mdrun -v -deffnm md
+integrator               = md
+nsteps                   = 1000

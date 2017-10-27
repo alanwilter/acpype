@@ -1,0 +1,5 @@
+; to test
+; grompp -f em.mdp -c lasom63_GMX.gro -p lasom63_GMX.top -o em.tpr -v
+; mdrun -v -deffnm em
+integrator               = steep
+nsteps                   = 500

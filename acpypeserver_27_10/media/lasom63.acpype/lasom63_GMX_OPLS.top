@@ -1,0 +1,14 @@
+; lasom63_GMX_OPLS.top created by acpype (Rev: 0) on Fri Oct 27 14:27:56 2017
+
+; Include forcefield parameters
+#include "ffoplsaa.itp"
+
+; Include lasom63_GMX.itp topology
+#include "lasom63_GMX.itp"
+
+[ system ]
+ lasom63
+
+[ molecules ]
+; Compound        nmols
+ lasom63          1     
