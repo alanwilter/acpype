@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <h1>ACPYPE Submit</h1>
+        
+  <form method="post" action="{% url 'saved' %}" enctype="multipart/form-data">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+  <div id="address"></div>
+  <button type="submit" value = "submit">Submit</button>
+
+</form>
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+{% endblock content %}
