@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}CcpNmr ACPYPE{% endblock %}
+{% block content %}
+
+<div class="pageTitle">Upload a file with coordinates</div>
+<div class="pageHelp">A file in PDB or MOL2 format. Max size is <b>{{ maxFileSize }}</b> Mb.</div>
+
+<form class="upload" enctype="multipart/form-data" method="post" action="upload">
+    <field class="head" title="Upload a Molecule Project">
+        <h2>Molecule Project</h2>
+    </field>
+    {% for field in form %}
+    {% ifequal field.label 'File' %}
+    <field>
+        <p title="{{ field.help_text}}"><label>{{field.label}} {% for error in field.errors %}<span class="errors">{{ error }}</span>{% endfor %}</label>{{ field }}</p>
+    </fieldset>
+    {% else %}
+    {% ifchanged %}
+    <fieldset class="collapse"><div class="toggle"><a>&nbsp;</a></div>
+    <div class="collapsible">
+    {% endifchanged %}
+        <p title="{{ field.help_text}}"><label>{{field.label}} {% for error in field.errors %}<span class="errors">{{ error }}</span>{% endfor %}</label>{{ field }}</p>
+    {% endifequal %}
+    {% endfor %}
+    </div>
+    </fieldset>
+    <div class="buttonSubmit">
+        <button title="Submit and run your job" type="submit">Submit</button>
+    </div>
+</form>
+
+{% endblock %}

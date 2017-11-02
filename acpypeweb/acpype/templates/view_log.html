@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Job Log{% endblock %}
+{% block logo %}acpype{% endblock %}
+
+{% block content %}
+
+Job: <b>{{ jobId }}</b> &laquo; <a href="javascript:history.back()">Go back</a>
+
+<pre>{{ content }}</pre>
+
+<br/>
+{% endblock %}
