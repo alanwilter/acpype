@@ -10,5 +10,17 @@ class Submition(models.Model):
 	net_charge = models.IntegerField(default=0, null=True)
 	multiplicity = models.PositiveIntegerField(default=1, null=True)
 	atom_type = models.CharField(max_length=20,choices=my_choices2, blank=False, default='gaff')
+
+class Job(models.Model):
+	juser = models.CharField(max_length=30)
+	jname = models.CharField(max_length=255)
+	jdate = models.CharField(max_length=30)
+	jstatus = models.CharField(max_length=20)
+	jpid = models.PositiveIntegerField()
+	def __unicode__(self):
+		return "%s %s %s %s" % (self.juser, self.jname, self.jdate, self.jstatus)
+	class Meta:
+		abstract = True
+        
 	
 		
