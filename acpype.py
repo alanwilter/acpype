@@ -62,7 +62,7 @@ import re
 svnId = '$Id: acpype.py 10101 2017-01-17 22:13:52Z alanwilter $'
 try:
     svnRev, svnDate, svnTime = svnId.split()[2:5]
-except:
+except Exception:
     svnRev, svnDate, svnTime = '0', '0', '0'
 year = datetime.today().year
 tag = "%s %s Rev: %s" % (svnDate, svnTime, svnRev)
@@ -348,6 +348,7 @@ def invalidArgs(text=None):
         print('ERROR: ' + text)
     sys.exit(1)
 
+
 # verNum = string.split(sys.version)[0]
 verNum = re.sub('[^0-9\.]', '', sys.version.split()[0])
 version = verNum.split('.')  # string.split(verNum, ".")
@@ -531,7 +532,7 @@ def _getoutput(cmd):
     out = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE).communicate()[0][:-1]
     try:
         o = str(out.decode())
-    except:
+    except Exception:
         o = str(out)
     return o
 
@@ -623,7 +624,7 @@ class AbstractTopol(object):
             else:
                 try:
                     charge = float(log.strip().split('equal to the total charge (')[-1].split(') based on Gasteiger atom type, exit')[0])
-                except:
+                except Exception:
                     error = True
 
             if error:
@@ -671,7 +672,7 @@ class AbstractTopol(object):
                 self.printDebug(out)
             try:
                 tmpFile = open('tmp', 'r')
-            except:
+            except Exception:
                 rmtree(self.tmpDir)
                 raise
 
@@ -700,7 +701,7 @@ class AbstractTopol(object):
         longSet = set()
         id_ = 0
         items = list(coords.items())
-        l = len(items)
+        ll = len(items)
         for item in items:
             id_ += 1
             if len(item[1]) > 1:  # if True means atoms with same coordinates
@@ -710,7 +711,7 @@ class AbstractTopol(object):
 #        for i in xrange(0,len(data),f):
 #            fdata += (data[i:i+f])+' '
 
-            for id2 in range(id_, l):
+            for id2 in range(id_, ll):
                 item2 = items[id2]
                 c1 = list(map(float, [item[0][i:i + 8] for i in range(0, 24, 8)]))
                 c2 = list(map(float, [item2[0][i:i + 8] for i in range(0, 24, 8)]))
@@ -721,7 +722,7 @@ class AbstractTopol(object):
                 if dist2 < maxDist2:  # and not longOK:
                     longSet.add(str(item[1]))
                     longSet.add(str(item2[1]))
-            if str(item[1]) not in longSet and l > 1:
+            if str(item[1]) not in longSet and ll > 1:
                 longd += "%s\n" % item[1]
 
         if dups:
@@ -936,7 +937,7 @@ a        """
         else:
             try:
                 os.remove(self.acMol2FileName)
-            except:
+            except Exception:
                 pass
             signal.signal(signal.SIGALRM, self.signal_handler)
             signal.alarm(self.timeTol)
@@ -973,7 +974,7 @@ a        """
         for item in out:
             vec = item.split()
             dict_pids[vec[2]] = vec[1]
-        while 1:
+        while True:
             try:
                 pid = dict_pids[pid]
                 pids.append(pid)
@@ -1033,7 +1034,7 @@ a        """
             try:
                 os.remove(self.acTopFileName)
                 os.remove(self.acXyzFileName)
-            except:
+            except Exception:
                 pass
             self.printMess("Executing Sleap...")
             self.printDebug(cmd)
@@ -1094,7 +1095,7 @@ a        """
             try:
                 os.remove(self.acTopFileName)
                 os.remove(self.acXyzFileName)
-            except:
+            except Exception:
                 pass
             self.printMess("Executing Tleap...")
             self.printDebug(cmd)
@@ -1315,7 +1316,7 @@ a        """
         elif flag != 'RESIDUE_LABEL':
             try:  # try if it's integer
                 ndata = list(map(int, sdata))
-            except:  # it's string
+            except Exception:
                 ndata = sdata
         else:
             ndata = sdata
@@ -1359,8 +1360,8 @@ a        """
         for rawLine in self.xyzFileData[2:]:
             line = rawLine.replace('\r', '').replace('\n', '')
             data += line
-        l = len(data)
-        ndata = list(map(float, [data[i:i + 12] for i in range(0, l, 12)]))
+        ll = len(data)
+        ndata = list(map(float, [data[i:i + 12] for i in range(0, ll, 12)]))
 
         gdata = []
         for i in range(0, len(ndata), 3):
@@ -1543,7 +1544,7 @@ a        """
             if idAtom4raw > 0:
                 try:
                     atomsPrev = properDih[-1].atoms
-                except:
+                except Exception:
                     atomsPrev = []
                 properDih.append(dihedral)
                 if idAtom3raw < 0 and atomsPrev == atoms:
@@ -1558,7 +1559,7 @@ a        """
                 improperDih.append(dihedral)
         try:
             atomPairs = sorted(atomPairs)
-        except:
+        except Exception:
             pass
         self.properDihedrals = properDih
         self.improperDihedrals = improperDih
@@ -2837,7 +2838,7 @@ iod phase }\n")
             id_ = 0
             for dih in item:
                 # id_ = item.index(dih)
-                l = len(item)
+                ll = len(item)
                 a1 = dih.atoms[0].atomType.atomTypeName + '_'
                 a2 = dih.atoms[1].atomType.atomTypeName + '_'
                 a3 = dih.atoms[2].atomType.atomTypeName + '_'
@@ -2847,10 +2848,10 @@ iod phase }\n")
                     kp = dih.kPhi
                 p = dih.period
                 ph = dih.phase * radPi
-                if l > 1:
+                if ll > 1:
                     if id_ == 0:
                         line = "DIHEdral %5s %5s %5s %5s  MULT %1i %7.3f %4i %8\
-.2f\n" % (a1, a2, a3, a4, l, kp, p, ph)
+.2f\n" % (a1, a2, a3, a4, ll, kp, p, ph)
                     else:
                         line = "%s %7.3f %4i %8.2f\n" % (40 * " ", kp, p, ph)
                 else:
@@ -2958,7 +2959,6 @@ eriod phase }\n")
             topFile.write("\n{ Proper Dihedrals: name1 name2 name3 name4 }\n")
             for item in self.condensedProperDihedrals:
                 for dih in item:
-                    l = len(item)
                     a1Name = dih.atoms[0].atomName
                     a2Name = dih.atoms[1].atomName
                     a3Name = dih.atoms[2].atomName
@@ -3394,6 +3394,7 @@ class Dihedral(object):
     def __repr__(self):
         return '<%s, ang=%.2f>' % (self.atoms, self.phase * 180 / Pi)
 
+
 if __name__ == '__main__':
     t0 = time.time()
     print(header)
@@ -3568,7 +3569,7 @@ if __name__ == '__main__':
             molecule.createACTopol()
             molecule.createMolTopol()
         acpypeFailed = False
-    except:
+    except Exception:
         exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
         print("ACPYPE FAILED: %s" % exceptionValue)
         if options.debug:
@@ -3585,18 +3586,18 @@ if __name__ == '__main__':
     if options.ipython:
         try:
             from IPython.Shell import IPShellEmbed  # @UnresolvedImport @UnusedImport
-        except:
+        except Exception:
             from IPython.frontend.terminal.embed import InteractiveShellEmbed as IPShellEmbed  # @UnresolvedImport @Reimport
         ipshell = IPShellEmbed()
         ipshell()
 
     try:
         rmtree(molecule.tmpDir)
-    except:
+    except Exception:
         pass
     if acpypeFailed:
         sys.exit(1)
     try:
         os.chdir(molecule.rootDir)
-    except:
+    except Exception:
         pass
