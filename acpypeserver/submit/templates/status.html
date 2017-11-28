@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Job List</h2>
+<meta http-equiv="refresh" content="5">
+{% if job_list %}
+
+    {% for job in job_list %}
+
+        <table class="table table-bordered">
+          {% if admin %}{% ifchanged %}<tr><td align="left"><a>User: <b><i>{{ job.juser }}</i></b></a></td></tr>{% endifchanged %}{% endif %}
+          <tr><td align="left"><h5>Job Name</h5></td><td align="left"><h5>Date</h5></td><td align="left"><h5>Status</h5></td></tr>
+          <tr><td align="left"><a>{{ job.molecule_file}}</a></td><td align="left"><a>{{ job.date }}</a></td><td align="left"><a>{{ job.jstatus }}</a></td><td align="left">
+                 
+          <tr><td colspan="2" align="left">             
+             <input type="hidden" name="juser" value="{{ job.juser }}"/>
+             <input type="hidden" name="jpid" value="{{ job.jcelery_id }}"/>
+             <input type="hidden" name="jname" value="{{ job.molecule_file }}"/>
+             <input type="hidden" name="jdate" value="{{ job.date }}"/>
+             <input type="hidden" name="jstatus" value="{{ job.jstatus }}"/>
+             {% ifequal job.jstatus 'STARTED' %}<input type="submit" name="func" value="Cancel Job" onclick="return confirmSubmit()"/>{% endifequal %}
+             
+             {% ifequal job.jstatus 'DONE' %}
+                <input type="submit" name="func" value="Download"/>
+                <input type="submit" name="func" value="View Log"/>
+                <input type="submit" name="func" value="Delete" onclick="return confirmSubmit()"/>
+             {% endifequal %}
+             {% ifequal job.jstatus 'Failed' %}
+                <input type="submit" name="func" value="View Log"/>
+
+                <input type="submit" name="func" value="Delete" onclick="return confirmSubmit()"/>
+             {% endifequal %}
+             {% ifequal job.jstatus 'Cancelled' %}
+                <input type="submit" name="func" value="Delete" onclick="return confirmSubmit()"/>
+             {% endifequal %}
+             {% ifequal job.jstatus 'Deleted' %}
+                <input type="submit" name="func" value="Remove from DB" onclick="return confirmSubmit()"/>
+             {% endifequal %}</p>
+            </form></td></tr>
+            
+        </table>
+    {% endfor %}
+
+{% else %}
+    <p>No jobs are available yet.</p>
+{% endif %}
+
+{% endblock %}
