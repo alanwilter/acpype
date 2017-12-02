@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <h1>ACPYPE Submit</h1>
+
+       
+  <form method="post" action="{% url 'Run' %}" enctype="multipart/form-data">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+   
+  
+  <button type="submit" value = "submit">Submit</button>
+</form> 
+
+
+{% endblock content %}
+
