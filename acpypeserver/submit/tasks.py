@@ -43,7 +43,7 @@ def process(user_name,cm,nc,ml,at,mfs):
 	db.close()
 	user_email = get_email['email']
 	message = "Your Job '{}', has finished in {} \n ACPYPE Server Team ".format(name_file,dt_email)
-	email = yagmail.SMTP('luciano8kagami@gmail.com', '3339luc1642')
+	email = yagmail.SMTP('luciano8kagami@gmail.com', 'secret')
 	email.send(user_email, 'ACPYPE Server', message)
 			
 	try:
