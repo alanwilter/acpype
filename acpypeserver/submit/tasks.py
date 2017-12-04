@@ -27,7 +27,7 @@ def process(user_name,cm,nc,ml,at,mfs):
 	execute_acpype = 'acpype -c {} -n {} -m {} -a {} -i {} -b {} > {}_{}.out'.format(cm,nc,ml,at,mfs,folder_name,user_name,dt)
 	os.system(execute_acpype)
 	output_filename = '{}_acpype_{}'.format(name_file,dt)
-	dir_name = '{}.acpype'.format(name_file)
+	dir_name = '{}.acpype'.format(folder_name)
 	shutil.make_archive(output_filename, 'zip', dir_name)
 	log_file = '{}_{}.out'.format(user_name,dt)
 	job = Submition.objects.filter(juser=user_name).get(jstatus="STARTED")
@@ -43,7 +43,7 @@ def process(user_name,cm,nc,ml,at,mfs):
 	db.close()
 	user_email = get_email['email']
 	message = "Your Job '{}', has finished in {} \n ACPYPE Server Team ".format(name_file,dt_email)
-	email = yagmail.SMTP('luciano8kagami@gmail.com', 'secret')
+	email = yagmail.SMTP('luciano8kagami@gmail.com', '3339luc1642')
 	email.send(user_email, 'ACPYPE Server', message)
 			
 	try:
