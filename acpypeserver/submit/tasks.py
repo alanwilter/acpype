@@ -97,22 +97,22 @@ def process(user_name,cm,nc,ml,at,mfs):
 def cleanup():
 	media_dir=os.chdir(settings.MEDIA_ROOT)
 	os.chdir(settings.MEDIA_ROOT)
-	today = datetime.today()
-	pass_date = datetime.today() - timedelta(days=7)
-	job = Submition.objects.filter(date__range=[pass_date, today]).values('jzipped')
+	init_date = datetime.today() - timedelta(days=14)
+	final_date = datetime.today() - timedelta(days=7)
+	job = Submition.objects.filter(date__range=[init_date, final_date]).values('jzipped')
 	for file in job:
 		if os.path.exists(file['jzipped']+'.zip'):
 			os.remove(file['jzipped']+'.zip')
 		else:
 			pass
-	job = Submition.objects.filter(date__range=[pass_date, today]).values('jlog')
+	job = Submition.objects.filter(date__range=[init_date, final_date]).values('jlog')
 	for file in job:
 		if os.path.exists(file['jlog']):
 			os.remove(file['jlog'])
 		else:
 			pass
 	try:
-		for job in Submition.objects.filter(date__range=[pass_date, today]):
+		for job in Submition.objects.filter(date__range=[init_date, final_date]):
 			job.jstatus = 'DELETED'
 			job.save()
 	except:
