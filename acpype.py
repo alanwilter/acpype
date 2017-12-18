@@ -3179,10 +3179,10 @@ class ACTopol(AbstractTopol):
                     self.printWarn("Setting sqm for antechamber")
                     return None
                     qprog = 'sqm'
-        else:
-            self.printWarn("Old version of antechamber. Strongly consider upgrading to AmberTools")
-            self.printWarn("Setting mopac for antechamber")
-            qprog = 'mopac'
+#        else:
+#            self.printWarn("Old version of antechamber. Strongly consider upgrading to AmberTools")
+#            self.printWarn("Setting mopac for antechamber")
+#            qprog = 'mopac'
         self.qFlag = qDict[qprog]
         self.outTopols = [outTopol]
         if outTopol == 'all':
