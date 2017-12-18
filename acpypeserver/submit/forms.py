@@ -20,7 +20,7 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(label="Password", max_length=30, 
                                widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
 
-class SubmitionForm(forms.Form):
+class SubmissionForm(forms.Form):
     molecule_file = forms.FileField(help_text="Required: Select a PDB, MDL or MOL2 file")
     
     charge_method = forms.ChoiceField(

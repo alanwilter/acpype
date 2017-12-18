@@ -4,7 +4,7 @@ from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from submit.models import Submition
+from submit.models import Submission
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -13,11 +13,11 @@ from django.shortcuts import render, redirect
 from django import forms
 from acpypeserver import settings as acpypesetting
 import os
-from submit.models import Submition
+from submit.models import Submission
 from .tasks import process
 import os.path
 import pymysql.cursors
-from .forms import SignUpForm, SubmitionForm
+from .forms import SignUpForm, SubmissionForm
 from django.utils import timezone
 from acpypeserver.celery import app
 from django.contrib.auth.decorators import user_passes_test
@@ -40,9 +40,9 @@ class AuthRequiredMiddleware(object):
 def Run(request):
     user_name = request.user.username
     if request.method == 'POST':
-        form = SubmitionForm(request.POST, request.FILES)
+        form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid():
-            file = Submition(molecule_file = request.FILES['molecule_file'])
+            file = Submission(molecule_file = request.FILES['molecule_file'])
             file.juser = user_name
             file.jstatus = 'RUNNING'
             file.save()
@@ -68,7 +68,7 @@ def callStatusFunc(request):
         jpid = request.POST.get('jpid')
         db = pymysql.connect(host = DATABASE_HOST, user = DATABASE_USER, passwd = DATABASE_PASSWORD, db = DATABASE_NAME)
         cursor = pymysql.cursors.DictCursor(db)
-        sql = "SELECT `jzipped` FROM `submit_submition` WHERE `jcelery_id`=%s"
+        sql = "SELECT `jzipped` FROM `submit_Submission` WHERE `jcelery_id`=%s"
         cursor.execute(sql, (jpid))
         jzipped = cursor.fetchone()
         db.close()
@@ -83,7 +83,7 @@ def callStatusFunc(request):
         elif func == 'log':
             db = pymysql.connect(host = DATABASE_HOST, user = DATABASE_USER, passwd = DATABASE_PASSWORD, db = DATABASE_NAME)
             cursor = pymysql.cursors.DictCursor(db)
-            sql = "SELECT `jlog` FROM `submit_submition` WHERE `jcelery_id`=%s"
+            sql = "SELECT `jlog` FROM `submit_Submission` WHERE `jcelery_id`=%s"
             cursor.execute(sql, (jpid))
             jlog = cursor.fetchone()
             fname = jlog['jlog']
@@ -95,13 +95,13 @@ def callStatusFunc(request):
             return render_to_response('view_log.html', {'file':pageText, 'jobId':jpid})
 
         elif func == 'delete':
-            job = Submition.objects.get(jcelery_id = jpid)
+            job = Submission.objects.get(jcelery_id = jpid)
             job.jstatus = "DELETED"
             job.save()
 
         elif func == 'cancel':
             app.control.revoke(jpid)
-            job = Submition.objects.get(jcelery_id = jpid)
+            job = Submission.objects.get(jcelery_id = jpid)
             job.jstatus = "CANCELED"
             job.save()
             os.chdir(acpypesetting.MEDIA_ROOT)
@@ -112,7 +112,7 @@ def callStatusFunc(request):
         elif func == 'delete_db':
             db = pymysql.connect(host = DATABASE_HOST, user = DATABASE_USER, passwd = DATABASE_PASSWORD, db = DATABASE_NAME)
             cursor = pymysql.cursors.DictCursor(db)
-            sql = "DELETE FROM `submit_submition` WHERE `jcelery_id`= %s"
+            sql = "DELETE FROM `submit_Submission` WHERE `jcelery_id`= %s"
             cursor.execute(sql, (jpid))
             db.commit()
             db.close()            
@@ -121,21 +121,21 @@ def callStatusFunc(request):
 class input(CreateView):
     
     template_name = 'submit.html'
-    model = Submition
+    model = Submission
     fields = ('molecule_file','charge_method','net_charge','multiplicity','atom_type')
 
 class status(ListView):
-    model = Submition
+    model = Submission
     template_name = 'status.html'
     def get_queryset(self):
-        return Submition.objects.filter(juser=self.request.user).exclude(jstatus='Deleted')
+        return Submission.objects.filter(juser=self.request.user).exclude(jstatus='Deleted')
 
 
 class adminstatus(ListView):
-    model = Submition
+    model = Submission
     template_name = 'status.html'
     def get_queryset(self):
-        return Submition.objects.all()
+        return Submission.objects.all()
        
 def signup(request):
     if request.method == 'POST':
