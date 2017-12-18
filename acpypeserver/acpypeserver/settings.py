@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -75,7 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'acpypeserver.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -83,13 +81,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'acpype_db',
-        'USER': 'lpkagami',
-        'PASSWORD': '3085luc9973',
+        'USER': 'acpype_mysql',
+        'PASSWORD': '@Cpype18',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -119,16 +116,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-CELERY_RESULT_BACKEND = 'db+mysql://lpkagami:3085luc9973@localhost/acpype_db'
+CELERY_RESULT_BACKEND = 'db+mysql://acpype_mysql:@Cpype18@localhost/acpype_db'
 CELERY_TIMEZONE = TIME_ZONE
 LOGIN_REDIRECT_URL = ('..')
 LOGIN_URL = ('login')
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'acpypeserver@gmail.com' 
+EMAIL_HOST_USER = 'acpypeserver@gmail.com'
 EMAIL_HOST_PASSWORD = 'secret'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
