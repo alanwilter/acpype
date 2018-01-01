@@ -64,7 +64,7 @@ def process(user_name, cm, nc, ml, at, mfs):
 
     else:
         log_file = '{}_{}.out'.format(user_name, dt)
-        job = Submission.objects.filter(juser=user_name).get(jstatus="STARTED")
+        job = Submission.objects.filter(juser=user_name).get(jstatus="RUNNING")
         job.jstatus = "FAILED"
         job.jlog = log_file
         job.save()
