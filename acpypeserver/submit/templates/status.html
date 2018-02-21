@@ -36,7 +36,7 @@ else
           {% if user.is_superuser %}{% ifchanged %}<tr><td align="left"><a>User: <b><i>{{ job.juser }}</i></b></a></td></tr>{% endifchanged %}{% endif %}
           <tr><td align="left"><h5>Job Name</h5></td><td align="left"><h5>Date</h5></td><td align="left"><h5>Status</h5></td></tr>
           <tr><td align="left"><a>{{ job.jname}}</a></td><td align="left"><a>{{ job.date }}</a></td><td align="left"><a style="font-weight: bold; color: {{ job.jstatus|statusColor }};">{{ job.jstatus }}</a></td></tr>
-                 
+
           <tr><td colspan="2" align="left">
              <form method="post" action="{% url 'callStatusFunc' %}" enctype="multipart/form-data">
              {% csrf_token %}
@@ -44,7 +44,7 @@ else
              <input type="hidden" name="jpid" value="{{ job.jcelery_id }}"/>
              <input type="hidden" name="jname" value="{{ job.molecule_file }}"/>
              <input type="hidden" name="jdate" value="{{ job.date }}"/>
-                       
+
              {% ifequal job.jstatus 'Running' %}
              <button type="submit" name="func" value = "cancel"><span class="glyphicon glyphicon-remove-sign"></span> Cancel Job </button>
              {% endifequal %}
@@ -66,9 +66,9 @@ else
              {% endifequal %}</p>
             </form>
            </p>
-            
+
         </table>
- 
+
     {% endfor %}
     <input type=button value="Back" onClick="javascript:history.go(-1);">
 {% else %}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-my_choices1 = [('bcc', "bcc (default)"), ('gasteiger', "gasteiger"), ('user', "user")]
+my_choices1 = [('bcc', "bcc (default)"), ('gas', "gasteiger"), ('user', "user")]
 my_choices2 = [('gaff', "GAFF (default)"), ('gaff2', 'GAFF2'), ('amber', "AMBER")]
 
 
