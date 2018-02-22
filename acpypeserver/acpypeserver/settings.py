@@ -24,7 +24,7 @@ SECRET_KEY = 'secret'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [] # ['192.168.56.101', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.56.101', 'localhost', '127.0.0.1']
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
