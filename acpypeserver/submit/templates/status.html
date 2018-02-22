@@ -38,8 +38,8 @@ else
         <table class="status">
           {% if user.is_superuser %}{% ifchanged %}<tr><td align="left"><a>User: <b><i>{{ job.juser }}</i></b></a></td></tr>{% endifchanged %}{% endif %}
           <tr><td align="left"><h5>Job Name</h5></td><td align="left"><h5>Date</h5></td><td align="left"><h5>Status</h5></td></tr>
-          <tr><td align="left"><a>{{ job.jname}}</a></td><td align="left"><a>{{ job.date }}</a></td><td align="left"><a style="font-weight: bold; color: {{ job.jstatus|statusColor }};">{{ job.jstatus }}</a></td></tr>
-
+          <tr><td align="left"><a>{{ job.jname}}</a></td><td align="left"><a>{{ job.date }}</a></td><td align="left">
+                 <a style="font-weight: bold; color: {{ job.jstatus|statusColor }};">{{ job.jstatus }}</a></td></tr>
           <tr><td colspan="2" align="left">
              <form method="post" action="{% url 'callStatusFunc' %}" enctype="multipart/form-data">
              {% csrf_token %}
@@ -47,7 +47,6 @@ else
              <input type="hidden" name="jpid" value="{{ job.jcelery_id }}"/>
              <input type="hidden" name="jname" value="{{ job.molecule_file }}"/>
              <input type="hidden" name="jdate" value="{{ job.date }}"/>
-
              {% ifequal job.jstatus 'Running' %}
              <button type="submit" name="func" value = "cancel" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel Job </button>
              {% endifequal %}
@@ -66,9 +65,8 @@ else
              {% ifequal job.jstatus 'Deleted' %}
                 <button type="submit" name="func" value = "delete_db" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete_DB </button>
              {% endifequal %}</p>
-            </form>
-           </p>
-
+            </form></td></tr>
+            {% ifequal job.jstatus 'Running' %}<tr><td colspan="3"><a style="font-size: 12px; color:#646464; font-style:italic;">Running for {{ job.date|timesince }}</a></td></tr>{% endifequal %}
         </table>
 
     {% endfor %}

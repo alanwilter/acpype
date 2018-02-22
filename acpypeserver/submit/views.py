@@ -24,7 +24,6 @@ from django.contrib.auth.decorators import user_passes_test
 from celery import uuid
 import shutil
 
-
 DATABASE_HOST = acpypesetting.DATABASES['default']['HOST']
 DATABASE_USER = acpypesetting.DATABASES['default']['USER']
 DATABASE_PASSWORD = acpypesetting.DATABASES['default']['PASSWORD']
@@ -64,7 +63,7 @@ def Run(request):
             name = ((str(mfs)).split('_')[0])
             file.jname = ((str(name)).split('.')[0])
             file.save()
-            process_task = process.apply_async((user_name, cm, nc, ml, at, mfs, task_id), task_id = task_id)
+            process_task = process.apply_async((user_name, cm, nc, ml, at, mfs, task_id), task_id=task_id)
         else:
             return render(request, 'submit.html', locals())
     return HttpResponseRedirect('/status/')
@@ -99,7 +98,7 @@ def callStatusFunc(request):
             fuser = jlog['juser']
             fmol = jlog['molecule_file']
             fdata = jlog['date']
-            fdata_str = fdata.strftime(' %A %b %d %H:%M %Y')
+            fdata_str = fdata.strftime(' %a %b %d %H:%M %Y')
             os.chdir(acpypesetting.MEDIA_ROOT)
             pageFile = open(fname, "r")
             pageText = pageFile.read();
@@ -119,7 +118,7 @@ def callStatusFunc(request):
             job.jstatus = "Deleted"
             job.save()
             os.chdir(acpypesetting.MEDIA_ROOT)
-            rmdir = str(acpypesetting.MEDIA_ROOT+"/"+folder_name)
+            rmdir = str(acpypesetting.MEDIA_ROOT + "/" + folder_name)
             try:
                 shutil.rmtree(rmdir)
             except:
