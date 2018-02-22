@@ -21,6 +21,9 @@ from .forms import SignUpForm, SubmissionForm
 from django.utils import timezone
 from acpypeserver.celery import app
 from django.contrib.auth.decorators import user_passes_test
+from celery import uuid
+import shutil
+
 
 DATABASE_HOST = acpypesetting.DATABASES['default']['HOST']
 DATABASE_USER = acpypesetting.DATABASES['default']['USER']
@@ -56,11 +59,12 @@ def Run(request):
             at = request.POST.get('atom_type')
             mf = molecule_file.name
             mfs = str(mf)
-            process_task = process.delay(user_name, cm, nc, ml, at, mfs)
-            file.jcelery_id = process_task.id
+            task_id = uuid()
+            file.jcelery_id = task_id
             name = ((str(mfs)).split('_')[0])
             file.jname = ((str(name)).split('.')[0])
             file.save()
+            process_task = process.apply_async((user_name, cm, nc, ml, at, mfs, task_id), task_id = task_id)
         else:
             return render(request, 'submit.html', locals())
     return HttpResponseRedirect('/status/')
@@ -77,40 +81,65 @@ def callStatusFunc(request):
         jzipped = cursor.fetchone()
         db.close()
         if func == 'download':
-            zip_filename = jzipped['jzipped'] + '.zip'
+            zip_filename = jzipped['jzipped']
             zip_path = acpypesetting.MEDIA_ROOT
             os.chdir(acpypesetting.MEDIA_ROOT)
             zipfile = open(zip_filename, 'rb')
             response = HttpResponse(zipfile, content_type='application/zip')
-            response['Content-Disposition'] = 'attachment; filename={}'.format(zip_filename)
+            name_zipfile = ((str(zip_filename)).split('_')[3])
+            response['Content-Disposition'] = 'attachment; filename={}'.format(name_zipfile)
             return response
         elif func == 'log':
             db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
             cursor = pymysql.cursors.DictCursor(db)
-            sql = "SELECT `jlog` FROM `submit_submission` WHERE `jcelery_id`=%s"
+            sql = "SELECT `jlog`, `juser`, `molecule_file`, `date` FROM `submit_submission` WHERE `jcelery_id`=%s"
             cursor.execute(sql, (jpid))
             jlog = cursor.fetchone()
             fname = jlog['jlog']
+            fuser = jlog['juser']
+            fmol = jlog['molecule_file']
+            fdata = jlog['date']
+            fdata_str = fdata.strftime(' %A %b %d %H:%M %Y')
             os.chdir(acpypesetting.MEDIA_ROOT)
             pageFile = open(fname, "r")
             pageText = pageFile.read();
             pageFile.close()
             db.close()
-            return render_to_response('view_log.html', {'file':pageText, 'jobId':jpid})
+            job = fuser + " | " + fmol + " | " + fdata_str
+            return render_to_response('view_log.html', {'file':pageText, 'jobId':job})
 
         elif func == 'delete':
+            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+            cursor = pymysql.cursors.DictCursor(db)
+            sql = "SELECT `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+            cursor.execute(sql, (jpid))
+            user_folder = cursor.fetchone()
+            folder_name = user_folder['usr_folder']
             job = Submission.objects.get(jcelery_id=jpid)
             job.jstatus = "Deleted"
             job.save()
+            os.chdir(acpypesetting.MEDIA_ROOT)
+            rmdir = str(acpypesetting.MEDIA_ROOT+"/"+folder_name)
+            try:
+                shutil.rmtree(rmdir)
+            except:
+                pass
 
         elif func == 'cancel':
+            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+            cursor = pymysql.cursors.DictCursor(db)
+            sql = "SELECT `molecule_file` FROM `submit_submission` WHERE `jcelery_id`=%s"
+            cursor.execute(sql, (jpid))
+            molecule_file = cursor.fetchone()
+            mol = molecule_file['molecule_file']
             app.control.revoke(jpid)
             job = Submission.objects.get(jcelery_id=jpid)
             job.jstatus = "Cancelled"
             job.save()
             os.chdir(acpypesetting.MEDIA_ROOT)
-            if os.path.exists(mfs):
-                os.remove(mfs)
+
+            if os.path.exists(mol):
+                os.remove(mol)
             else:
                 pass
         elif func == 'delete_db':

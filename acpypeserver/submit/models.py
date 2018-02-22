@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 my_choices1 = [('bcc', "bcc (default)"), ('gas', "gasteiger"), ('user', "user")]
-my_choices2 = [('gaff', "GAFF (default)"), ('gaff2', 'GAFF2'), ('amber', "AMBER")]
+my_choices2 = [('gaff', "GAFF (default)"), ('gaff2', "GAFF2"), ('amber', "AMBER")]
 
 
 class Submission(models.Model):
@@ -18,6 +18,8 @@ class Submission(models.Model):
     jzipped = models.CharField(max_length=255, null=True, blank=True)
     jlog = models.CharField(max_length=255)
     date = models.DateTimeField(default=timezone.now)
+    runFlag = models.CharField(max_length=255, default='False')
+    usr_folder = models.CharField(max_length=255)
 
     class Meta:
         ordering = ['date']

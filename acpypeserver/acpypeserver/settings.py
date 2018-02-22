@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.56.101', 'localhost', '127.0.0.1']
 
@@ -124,7 +124,7 @@ CELERY_TIMEZONE = TIME_ZONE
 LOGIN_REDIRECT_URL = ('..')
 LOGIN_URL = ('login')
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'server.acpype@gmail.com'
-EMAIL_HOST_PASSWORD = 'secret'
+EMAIL_HOST_USER = 'acpypeserver@gmail.com'
+EMAIL_HOST_PASSWORD = '3339Luc1642'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
