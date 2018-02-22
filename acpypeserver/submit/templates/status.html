@@ -49,23 +49,22 @@ else
              <input type="hidden" name="jdate" value="{{ job.date }}"/>
 
              {% ifequal job.jstatus 'Running' %}
-             <button type="submit" name="func" value = "cancel"><span class="glyphicon glyphicon-remove-sign"></span> Cancel Job </button>
+             <button type="submit" name="func" value = "cancel" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel Job </button>
              {% endifequal %}
              {% ifequal job.jstatus 'Finished' %}
               <button type="submit" name="func" value = "download"><span class="glyphicon glyphicon-download-alt"></span> Download </button>
               <button type="submit" name="func" value = "log"><span class="glyphicon glyphicon-eye-open"></span> View Log </button>
-              <button type="submit" name="func" value = "delete"><span class="glyphicon glyphicon-remove"></span> Delete </button>
+              <button type="submit" name="func" value = "delete" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete </button>
              {% endifequal %}
              {% ifequal job.jstatus 'Failed' %}
                 <button type="submit" name="func" value = "log"><span class="glyphicon glyphicon-eye-open"></span> View Log </button>
-
-                <button type="submit" name="func" value = "delete"><span class="glyphicon glyphicon-remove"></span> Delete </button>
+                <button type="submit" name="func" value = "delete" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete </button>
              {% endifequal %}
              {% ifequal job.jstatus 'Cancelled' %}
-                <button type="submit" name="func" value = "delete"><span class="glyphicon glyphicon-remove"></span> Delete </button>
+                <button type="submit" name="func" value = "delete" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete </button>
              {% endifequal %}
              {% ifequal job.jstatus 'Deleted' %}
-                <button type="submit" name="func" value = "delete_db"><span class="glyphicon glyphicon-remove"></span> Delete_DB </button>
+                <button type="submit" name="func" value = "delete_db" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete_DB </button>
              {% endifequal %}</p>
             </form>
            </p>
