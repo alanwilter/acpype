@@ -37,10 +37,10 @@ class SubmissionForm(forms.Form):
                                       help_text="Optional: integer (2S+1), default = 1",
                                       initial='1')
     atom_type = forms.ChoiceField(
-        choices=(('gaff', 'GAFF (default)'), ('gaff2', 'GAFF2'), ('amber', 'AMBER')
-                 ), required=False,
-        help_text='Optional: Select atom type'
-    )
+        choices=(('gaff', 'GAFF (default)'), ('gaff2', 'GAFF2'), ('amber', 'AMBER')),
+        required=False, help_text='Optional: Select atom type')
+    runFlag = forms.CharField(max_length=255, required=False)
+    usr_folder = forms.CharField(required=False)
 
     def clean_file(self):
         file = self.cleaned_data['molecule_file']
