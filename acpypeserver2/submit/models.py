@@ -18,11 +18,10 @@ class Submission(models.Model):
     jzipped = models.CharField(max_length=255, null=True, blank=True)
     jlog = models.CharField(max_length=255)
     date = models.DateTimeField(default=timezone.now)
-    runFlag = models.BooleanField(max_length=255, default=False)
     usr_folder = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']
 
         def __unicode__(self):
             return self.jcelery_id
