@@ -162,6 +162,11 @@ class status(ListView):
     model = Submission
     template_name = 'status.html'
 
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['is_running'] = Submission.objects.filter(juser=self.request.user, jstatus='Running').exists()
+        return data
+
     def get_queryset(self):
         return Submission.objects.filter(juser=self.request.user).exclude(jstatus='Deleted')
 

@@ -23,7 +23,8 @@ else
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-{% if object_list.last.jstatus == 'Running' %}
+
+{% if is_running %}
 <meta http-equiv="refresh" content="5"> <center><h0>Page automatically refreshed every 5 seconds | {% now "jS M y H:i" %}</h0></center>
 {% else %}<center><h0>No running jobs.</h0></center>
 {% endif %}
