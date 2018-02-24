@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}Status{% endblock %}
@@ -6,7 +7,7 @@
 {% block content %}
 
 {% load tags %}
-
+{% load static %}
 <script type="text/javascript">
 function confirmSubmit()
 {
@@ -18,30 +19,25 @@ else
 }
 </script>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
-{% for job in object_list %}
-    {% ifchanged %}{% if job.runFlag %} <meta http-equiv="refresh" content="5"> <center><h0>Page automatically refreshed every 5 seconds.| {% now "jS M y H:i" %}</h0></center>
-    {% endif %}
-    {% endifchanged %}
-
-{% endfor %}
+{% if is_running %}
+<meta http-equiv="refresh" content="5"> <center><h0>Page automatically refreshed every 5 seconds | {% now "jS F Y H:i" %}</h0></center>
+{% else %}<center><h0>No running jobs.</h0></center>
+{% endif %}
 
 {% if object_list %}
 
     {% for job in object_list %}
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/base.css' %}"/>
     <table cellspacing="0" width="100%">
 
     </table>
         <table class="status">
           {% if user.is_superuser %}{% ifchanged %}<tr><td align="left"><a>User: <b><i>{{ job.juser }}</i></b></a></td></tr>{% endifchanged %}{% endif %}
           <tr><td align="left"><h5>Job Name</h5></td><td align="left"><h5>Date</h5></td><td align="left"><h5>Status</h5></td></tr>
-          <tr><td align="left"><a>{{ job.jname}}</a></td><td align="left"><a>{{ job.date }}</a></td><td align="left"><a style="font-weight: bold; color: {{ job.jstatus|statusColor }};">{{ job.jstatus }}</a></td></tr>
+          <tr><td align="left"><a>{{ job.jname}}</a></td><td align="left"><a>{{ job.date|date:"jS F Y H:i:s" }}</a></td><td align="left"><a style="font-weight: bold; color: {{ job.jstatus|statusColor }};">{{ job.jstatus }}</a></td></tr>
 
           <tr><td colspan="2" align="left">
              <form method="post" action="{% url 'callStatusFunc' %}" enctype="multipart/form-data">
@@ -73,9 +69,9 @@ else
            </p>
             {% ifequal job.jstatus 'Running' %}<tr><td colspan="3"><a style="font-size: 12px; color:#646464; font-style:italic;">Running for {{ job.date|timesince }}</a></td></tr>{% endifequal %}
         </table>
-
+        
     {% endfor %}
-    <input type=button value="Back" onClick="javascript:history.go(-1);">
+    <div class="buttonSubmit"><input type=button value="Back" onClick="javascript:history.go(-1);"></div>
 {% else %}
     <p>No jobs are available yet.</p>
 {% endif %}
