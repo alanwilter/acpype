@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}CcpNmr ACPYPE{% endblock %}
+{% block logo %}acpype{% endblock %}
+{% block content %}
+{% load tags %}
+
+<div class="pageTitle">Upload a file with coordinates</div>
+<div class="pageHelp">A file in PDB or MOL2 format. Max size is <b>{% settings_value "MAX_UPLOAD_SIZE" %}</b> Mb.</div>
+<center>{% for error in form.molecule_file.errors %}<span class="errors"><b>{{ error }}</b></span>{% endfor %}</center>
+
+<fieldset class="head">
+<h2>Molecule Project</h2>
+<form method="post" action="{% url 'Run' %}" enctype="multipart/form-data">
+{% csrf_token %}
+
+<p title="Required: Select a PDB, MDL or MOL2 file."><label>{{form.molecule_file.label}}</label>{{ form.molecule_file }}</p>
+<p title="Optional: Select a charge method."><label>{{form.charge_method.label}} {% for error in form.charge_method.errors %}<span class="errors">{{ error }}</span>{% endfor %}</label>{{ form.charge_method }}</p>
+<p title="Optional: enter an integer, if none ACPYPE will try to guess."><label>{{form.net_charge.label}} {% for error in form.net_charge.errors %}<span class="errors">{{ error }}</span>{% endfor %}</label>{{ form.net_charge }}</p>
+<p title="Optional: integer (2S+1), default = 1"><label>{{form.multiplicity.label}} {% for error in form.multiplicity.errors %}<span class="errors">{{ error }}</span>{% endfor %}</label>{{ form.multiplicity }}</p>
+<p title='Optional: Select atom type.'><label>{{form.atom_type.label}} {% for error in form.atom_type.errors %}<span class="errors">{{ error }}</span>{% endfor %}</label>{{ form.atom_type }}</p>
+</fieldset>
+<div class="buttonSubmit"><button type="submit" value = "submit" title="Submit and run your job">Submit</button></div>
+</form>
+
+{% endblock content %}
