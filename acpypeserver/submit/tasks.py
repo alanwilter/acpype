@@ -107,19 +107,20 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
 def cleanup():
     media_dir = os.chdir(settings.MEDIA_ROOT)
     os.chdir(settings.MEDIA_ROOT)
-    init_date = datetime.today() - timedelta(days=14)
-    final_date = datetime.today() - timedelta(days=7)
-    job = Submission.objects.filter(date__range=[init_date, final_date], juser=user_name).values('usr_folder')
+    init_date = datetime.today() - timedelta(minutes=8)
+    final_date = datetime.today() - timedelta(minutes=4)
+    job = Submission.objects.filter(date__range=[init_date, final_date]).values('usr_folder')
 
-    for foder in job:
+    for folder in job:
+        
         if os.path.exists(folder['usr_folder']):
             shutil.rmtree(folder['usr_folder'])
         else:
             pass
 
     try:
-        for job in Submission.objects.filter(date__range=[init_date, final_date], juser=user_name):
-            job.jstatus = 'Deleted'
+        for job in Submission.objects.filter(date__range=[init_date, final_date]):
+            job.jstatus = 'Deleted_by_time'
             job.save()
     except:
         pass
