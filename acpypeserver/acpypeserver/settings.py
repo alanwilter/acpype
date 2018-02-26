@@ -128,5 +128,5 @@ EMAIL_HOST_USER = 'acpypeserver@gmail.com'
 EMAIL_HOST_PASSWORD = 'secret'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-CONTENT_TYPES = ['mol2','pdb']
-MAX_UPLOAD_SIZE = 1 # in MB
+CONTENT_TYPES = ['mol2', 'mol', 'pdb']
+MAX_UPLOAD_SIZE = 1  # in MB
