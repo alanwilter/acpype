@@ -5,12 +5,13 @@ from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from acpypeserver import settings
 from django.core.exceptions import ValidationError
+from submit.models import Submission
 
-def file_size(molecule_file): # add this to some file where you can import it from
+
+def file_size(molecule_file):  # add this to some file where you can import it from
         limit = settings.MAX_UPLOAD_SIZE * 1024 * 1024
         if molecule_file.size > limit:
-            raise ValidationError(' File too large. Size should not exceed ' + str(settings.MAX_UPLOAD_SIZE) + ' MB.')
-
+            raise ValidationError(' File too large. Size should not exceed ' + str(settings.MAX_UPLOAD_SIZE) + ' Mb.')
 
 
 class SignUpForm(UserCreationForm):
@@ -42,4 +43,7 @@ class SubmissionForm(forms.Form):
     atom_type = forms.ChoiceField(
             choices=(("gaff", 'GAFF (default)'), ("gaff2", 'GAFF2'), ("amber", 'AMBER')),
             required=False)
-    usr_folder = forms.CharField(required=False)
+
+    class Meta:
+        model = Submission
+        fields = ('molecule_file', 'charge_method', 'multiplicity', 'atom_type',)

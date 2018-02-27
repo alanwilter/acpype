@@ -45,7 +45,7 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
     path_to_logfile = settings.MEDIA_ROOT + '/' + user_folder + '/' + log_file
     path_to_zipfile = settings.MEDIA_ROOT + '/' + user_folder + '/' + zip_name
     out = os.system(execute_acpype)
-    
+
     if out == 0:
         dir_name = '{}.acpype'.format(folder_name)
         shutil.make_archive(output_filename, 'zip', dir_name)
@@ -109,17 +109,18 @@ def cleanup():
     os.chdir(settings.MEDIA_ROOT)
     init_date = datetime.today() - timedelta(days=14)
     final_date = datetime.today() - timedelta(days=7)
-    job = Submission.objects.filter(date__range=[init_date, final_date], juser=user_name).values('usr_folder')
+    job = Submission.objects.filter(date__range=[init_date, final_date]).values('usr_folder')
 
-    for foder in job:
+    for folder in job:
+
         if os.path.exists(folder['usr_folder']):
             shutil.rmtree(folder['usr_folder'])
         else:
             pass
 
     try:
-        for job in Submission.objects.filter(date__range=[init_date, final_date], juser=user_name):
-            job.jstatus = 'Deleted'
+        for job in Submission.objects.filter(date__range=[init_date, final_date]):
+            job.jstatus = 'Deleted_by_time'
             job.save()
     except:
         pass
