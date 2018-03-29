@@ -1,14 +1,10 @@
 from __future__ import absolute_import, unicode_literals
-import shutil
+import shutil, os, os.path, csv, io, pymysql.cursors, django.contrib.auth
 from acpypeserver import settings
-from celery import shared_task
-import pymysql.cursors
-import django.contrib.auth
+from celery import shared_task, app
 from .models import Submission
-import os
-import os.path
 from datetime import datetime, timedelta
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from celery.task.schedules import crontab
 from celery.decorators import periodic_task
 
@@ -31,7 +27,7 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
     path_to_run = settings.MEDIA_ROOT + '/' + user_folder + '/'
     shutil.move(path_to_molfile, path_to_run)
     os.chdir(path_to_run)
-    folder_name = user_name + '_' + dt
+    folder_name = name_file
     job = Submission.objects.filter(jcelery_id=task_id).get(jstatus="Running")
     job.charge_method = cm
     job.net_charge = nc
@@ -102,6 +98,23 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
         fail_silently=False,
         )
 
+
+@periodic_task(run_every=(crontab(hour=7, minute=30, day_of_week=1)), name="buildcsv", ignore_result=True)
+def buildcsv():
+    dt = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+    csv_name = dt + 'submit_table'
+    db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+    cursor = db.cursor()
+    sql = "SELECT `jname`, `molecule_file`, `charge_method`, `net_charge`, `multiplicity`, `atom_type`, `juser`, `jstatus` FROM `submit_submission`"
+    cursor.execute(sql)
+    get_csv = cursor.fetchall()
+    attachment_csv_file = io.StringIO()
+    writer = csv.writer(attachment_csv_file)
+    for row in get_csv:
+        writer.writerow(row)
+    email = EmailMessage('ACPYPE Server - Submit Table', 'CSV attachment. \nACPYPE Server Team', 'acpypeserver@gmail.com', ['acpypeserver@gmail.com'])
+    email.attach('attachment_file_name.csv', attachment_csv_file.getvalue(), 'text/csv')
+    email.send(fail_silently=False)
 
 @periodic_task(run_every=(crontab(minute='*')), name="cleanup", ignore_result=True)
 def cleanup():
