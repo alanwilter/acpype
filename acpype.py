@@ -613,7 +613,7 @@ class Topology_14(object):
         return index
 
     def p7_array_read(self, buff, flag_string):
-        '''?'''
+        '''Convert AMBER topology data to python array'''
         myarray = array.array('d')
         i = buff.index(flag_string)
         i = self.skipline(buff, i)
