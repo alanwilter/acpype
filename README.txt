@@ -33,6 +33,12 @@ It was inspired by:
 
 - xplo2d (G.J. Kleywegt)
 
+For Non-uniform 1-4 scale factor conversion (e.g. if using GLYCAM06), please cite:
+
+Austen Bernardi, Roland Faller, Dirk Reith, Karl N. Kirschner, "Conversion of
+GLYCAM06 Force-Field Parameters from AMBER to GROMACS Topologies"
+submitted for review, April 2018."
+
 For Antechamber, please cite:
 1.  Wang, J., Wang, W., Kollman P. A.; Case, D. A. "Automatic atom type and
     bond type perception in molecular mechanical calculations". Journal of
