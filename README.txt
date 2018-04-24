@@ -41,6 +41,12 @@ For Antechamber, please cite:
     "Development and testing of a general AMBER force field". Journal of
     Computational Chemistry, 25, 2004, 1157-1174.
 
+For Non-uniform 1-4 scale factor conversion (e.g. if using GLYCAM06), please cite:
+
+Austen Bernardi, Roland Faller, Dirk Reith, Karl N. Kirschner, "Conversion of
+GLYCAM06 Force-Field Parameters from AMBER to GROMACS Topologies"
+submitted for review, April 2018."
+
 If you use this code, I am glad if you cite:
 
 SOUSA DA SILVA, A. W. & VRANKEN, W. F.
