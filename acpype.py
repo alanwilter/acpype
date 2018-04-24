@@ -1,22 +1,8 @@
 #!/usr/bin/env python
-
-from __future__ import print_function
-from datetime import datetime
-from shutil import copy2
-from shutil import rmtree
-import traceback
-import signal
-import time
-import optparse
-import math
-import os
-import pickle
-import sys
-import subprocess as sub
-import re
+# pylint: disable=global-statement,broad-except,fixme,too-many-instance-attributes,too-many-locals,too-many-nested-blocks,too-many-statements,too-many-statements,too-many-branches,too-many-lines,too-few-public-methods,too-many-arguments,too-many-public-methods
 
 """
-    Requirements: Python 2.6 or higher or Python 3.x
+    Requirements: Python 3.3 or higher
                   Antechamber (from AmberTools preferably)
                   OpenBabel (optional, but strongly recommended)
 
@@ -44,6 +30,12 @@ import re
         "Development and testing of a general AMBER force field". Journal of
         Computational Chemistry, 25, 2004, 1157-1174.
 
+    For Non-uniform 1-4 scale factor conversion (e.g. if using GLYCAM06), please cite:
+
+    Austen Bernardi, Roland Faller, Dirk Reith, Karl N. Kirschner, "Conversion of
+    GLYCAM06 Force-Field Parameters from AMBER to GROMACS Topologies"
+    submitted for review, April 2018."
+
     If you use this code, I am glad if you cite:
 
     SOUSA DA SILVA, A. W. & VRANKEN, W. F.
@@ -59,16 +51,30 @@ import re
     alanwilter _at_ gmail _dot_ com
 """
 
-svnId = '$Id: acpype.py 10101 2017-01-17 22:13:52Z alanwilter $'
-try:
-    svnRev, svnDate, svnTime = svnId.split()[2:5]
-except Exception:
-    svnRev, svnDate, svnTime = '0', '0', '0'
-year = datetime.today().year
-tag = "%s %s Rev: %s" % (svnDate, svnTime, svnRev)
+import traceback
+import signal
+import time
+import argparse
+import math
+import os
+import pickle
+import sys
+import subprocess as sub
+import re
+import abc
+import array  # to pacify PyLint
+from datetime import datetime
+from shutil import copy2
+from shutil import rmtree
 
-lineHeader = \
-    '''
+if sys.version_info < (3, 2):
+    print('ERROR: Sorry, you need python 3.3 or higher')
+    sys.exit(1)
+
+year = datetime.today().year
+tag = "2018-04-23T14:27:36UTC"
+
+lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
 ''' % (tag, year)
 frameLine = (len(lineHeader) - 2) * '='
@@ -186,8 +192,8 @@ dictOplsAtomType2OplsGmxCode = \
 
 # reverse dictOplsAtomType2OplsGmxCode
 oplsCode2AtomTypeDict = {}
-for k, v in list(dictOplsAtomType2OplsGmxCode.items()):
-    for code in v:
+for k, vv in list(dictOplsAtomType2OplsGmxCode.items()):
+    for code in vv:
         oplsCode2AtomTypeDict[code] = k
 #        if code in oplsCode2AtomTypeDict.keys():
 #            oplsCode2AtomTypeDict[code].append(k)
@@ -245,13 +251,11 @@ a2oD = {'amber99_2': ['opls_235', 'opls_271'],
         'amber99_43': ['opls_154'],
         'amber99_45': ['opls_272'],
         'amber99_47': ['opls_202'],
-        'amber99_48': ['opls_200'],
-        }
+        'amber99_48': ['opls_200'], }
 
-global pid
 pid = 0
 
-head = "%s created by acpype (Rev: " + svnRev + ") on %s\n"
+head = "%s created by acpype (v: " + tag + ") on %s\n"
 
 date = datetime.now().ctime()
 
@@ -311,10 +315,12 @@ quit
 
 
 def dotproduct(aa, bb):
+    '''scalar product'''
     return sum((a * b) for a, b in zip(aa, bb))
 
 
 def crosproduct(a, b):
+    '''cross product'''
     c = [a[1] * b[2] - a[2] * b[1],
          a[2] * b[0] - a[0] * b[2],
          a[0] * b[1] - a[1] * b[0]]
@@ -322,14 +328,17 @@ def crosproduct(a, b):
 
 
 def length(v):
+    '''distance between 2 vectors'''
     return math.sqrt(dotproduct(v, v))
 
 
 def vec_sub(aa, bb):
+    '''vector A - B'''
     return [a - b for a, b in zip(aa, bb)]
 
 
 def imprDihAngle(a, b, c, d):
+    '''calculate improper dihedral angle'''
     ba = vec_sub(a, b)
     bc = vec_sub(c, b)
     cb = vec_sub(b, c)
@@ -338,36 +347,27 @@ def imprDihAngle(a, b, c, d):
     n2 = crosproduct(cb, cd)
     angle = math.acos(dotproduct(n1, n2) / (length(n1) * length(n2))) * 180 / Pi
     cp = crosproduct(n1, n2)
-    if (dotproduct(cp, bc) < 0):
+    if dotproduct(cp, bc) < 0:
         angle = -1 * angle
     return angle
 
 
-def invalidArgs(text=None):
-    if text:
-        print('ERROR: ' + text)
-    sys.exit(1)
+def distanceAA(c1, c2):
+    '''Distance between two atoms'''
+    # print c1, c2
+    dist2 = (c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2 + (c1[0] - c2[0]) ** 2 + \
+            (c1[2] - c2[2]) ** 2
+    # dist2 = math.sqrt(dist2)
+    return dist2
 
 
-# verNum = string.split(sys.version)[0]
-verNum = re.sub('[^0-9\.]', '', sys.version.split()[0])
-version = verNum.split('.')  # string.split(verNum, ".")
-verList = list(map(int, version))
-if verList < [2, 6, 0]:
-    invalidArgs(text="Python version %s\n       Sorry, you need python 2.6 or higher" % verNum)
-
-try:
-    set()
-except NameError:
-    from sets import Set as set  # @UnresolvedImport
-
-
-def elapsedTime(seconds, suffixes=['y', 'w', 'd', 'h', 'm', 's'], add_s=False, separator=' '):
+def elapsedTime(seconds, add_s=False, separator=' '):
     """
     Takes an amount of seconds and turns it into a human-readable amount of time.
     """
+    suffixes = ['y', 'w', 'd', 'h', 'm', 's']
     # the formatted time string to be returned
-    time = []
+    atime = []
 
     # the pieces of time to iterate over (days, hours, minutes, etc)
     # - the first piece in each tuple is the suffix (d, h, w)
@@ -381,16 +381,15 @@ def elapsedTime(seconds, suffixes=['y', 'w', 'd', 'h', 'm', 's'], add_s=False, s
 
     # for each time piece, grab the value and remaining seconds, and add it to
     # the time string
-    for suffix, length in parts:
-        value = seconds // length
+    for suffix, alength in parts:
+        value = seconds // alength
         if value > 0:
-            seconds = seconds % length
-            time.append('%s%s' % (str(value),
-                                  (suffix, (suffix, suffix + 's')[value > 1])[add_s]))
+            seconds = seconds % alength
+            atime.append('%s%s' % (str(value), (suffix, (suffix, suffix + 's')[value > 1])[add_s]))
         if seconds < 1:
             break
 
-    return separator.join(time)
+    return separator.join(atime)
 
 
 def splitBlock(dat):
@@ -411,19 +410,15 @@ def splitBlock(dat):
     return dict_
 
 
-def getParCode(line):
-    key = line.replace(' -', '-').replace('- ', '-').split()[0]
-    return key
-
-
 def parseFrcmod(lista):
+    '''Parse FRCMOD file'''
     heads = ['MASS', 'BOND', 'ANGL', 'DIHE', 'IMPR', 'HBON', 'NONB']
     dict_ = {}
     for line in lista[1:]:
         line = line.strip()
         if line[:4] in heads:
-            head = line[:4]
-            dict_[head] = []
+            ahead = line[:4]
+            dict_[ahead] = []
             dd = {}
             continue
         elif line:
@@ -433,10 +428,10 @@ def parseFrcmod(lista):
                     dd[key].append(line)
             else:
                 dd[key] = [line]
-            dict_[head] = dd
-    for k in dict_.keys():
-        if not dict_[k]:
-            dict_.pop(k)
+            dict_[ahead] = dd
+    for kk in dict_:
+        if not dict_[kk]:
+            dict_.pop(kk)
     return dict_
 
 
@@ -457,74 +452,93 @@ def parmMerge(fdat1, fdat2, frcmod=False):
     if frcmod:
         dHeads = {'MASS': 0, 'BOND': 1, 'ANGL': 2, 'DIHE': 3, 'IMPR': 4, 'HBON': 5, 'NONB': 7}
         dat2 = parseFrcmod(open(fdat2).readlines())  # dict
-        for k in dat2:
-            for parEntry in dat2[k]:
+        for kk in dat2:
+            for parEntry in dat2[kk]:
                 idFirst = None
-                for line in dat1[dHeads[k]][:]:
+                for line in dat1[dHeads[kk]][:]:
                     if line:
                         key = line.replace(' -', '-').replace('- ', '-').split()[0]
                         if key == parEntry:
                             if not idFirst:
-                                idFirst = dat1[dHeads[k]].index(line)
-                            dat1[dHeads[k]].remove(line)
-                rev = dat2[k][parEntry][:]
+                                idFirst = dat1[dHeads[kk]].index(line)
+                            dat1[dHeads[kk]].remove(line)
+                rev = dat2[kk][parEntry][:]
                 rev.reverse()
                 if idFirst is None:
                     idFirst = 0
                 for ll in rev:
-                    if dHeads[k] in [0, 1, 7]:  # MASS has title in index 0 and so BOND, NONB
-                        dat1[dHeads[k]].insert(idFirst + 1, ll)
+                    if dHeads[kk] in [0, 1, 7]:  # MASS has title in index 0 and so BOND, NONB
+                        dat1[dHeads[kk]].insert(idFirst + 1, ll)
                     else:
-                        dat1[dHeads[k]].insert(idFirst, ll)
+                        dat1[dHeads[kk]].insert(idFirst, ll)
         dat1[0][0] = mdat[0]
-        for k in dat1:
-            for line in dat1[k]:
+        for kk in dat1:
+            for line in dat1[kk]:
                 mdatFile.write(line + '\n')
         return mname
 
     dat2 = splitBlock(open(fdat2).readlines())
-    for k in dat1.keys()[:8]:
-        if k == 0:
-            lines = dat1[k][1:-1] + dat2[k][1:-1] + ['']
+    for kk in dat1.keys()[:8]:
+        if kk == 0:
+            lines = dat1[kk][1:-1] + dat2[kk][1:-1] + ['']
             for line in lines:
                 mdat.append(line)
-        if k == 1:
-            for i in dat1[k]:
+        if kk == 1:
+            for i in dat1[kk]:
                 if '-' in i:
-                    id1 = dat1[k].index(i)
+                    id1 = dat1[kk].index(i)
                     break
-            for j in dat2[k]:
+            for j in dat2[kk]:
                 if '-' in j:
-                    id2 = dat2[k].index(j)
+                    id2 = dat2[kk].index(j)
                     break
-            l1 = dat1[k][:id1]
-            l2 = dat2[k][:id2]
+            l1 = dat1[kk][:id1]
+            l2 = dat2[kk][:id2]
             line = ''
             for item in l1 + l2:
                 line += item.strip() + ' '
             mdat.append(line)
-            lines = dat1[k][id1:-1] + dat2[k][id2:-1] + ['']
+            lines = dat1[kk][id1:-1] + dat2[kk][id2:-1] + ['']
             for line in lines:
                 mdat.append(line)
-        if k in [2, 3, 4, 5, 6]:  # angles, p dih, imp dih
-            lines = dat1[k][:-1] + dat2[k][:-1] + ['']
+        if kk in [2, 3, 4, 5, 6]:  # angles, p dih, imp dih
+            lines = dat1[kk][:-1] + dat2[kk][:-1] + ['']
             for line in lines:
                 mdat.append(line)
-        if k == 7:
-            lines = dat1[k][:-1] + dat2[k][1:-1] + ['']
+        if kk == 7:
+            lines = dat1[kk][:-1] + dat2[kk][1:-1] + ['']
             for line in lines:
                 mdat.append(line)
-    for k in dat1.keys()[8:]:
-        for line in dat1[k]:
+    for kk in dat1.keys()[8:]:
+        for line in dat1[kk]:
             mdat.append(line)
-    for k in dat2.keys()[9:]:
-        for line in dat2[k]:
+    for kk in dat2.keys()[9:]:
+        for line in dat2[kk]:
             mdat.append(line)
     for line in mdat:
         mdatFile.write(line + '\n')
     mdatFile.close()
 
     return mname
+
+
+def job_pids_family(jpid):
+    '''INTERNAL: Return all job processes (PIDs)'''
+    apid = repr(jpid)
+    dict_pids = {}
+    pids = [apid]
+    cmd = "ps -A -o uid,pid,ppid|grep %i" % os.getuid()
+    out = _getoutput(cmd).split('\n')  # getoutput("ps -A -o uid,pid,ppid|grep %i" % os.getuid()).split('\n')
+    for item in out:
+        vec = item.split()
+        dict_pids[vec[2]] = vec[1]
+    while True:
+        try:
+            apid = dict_pids[apid]
+            pids.append(apid)
+        except KeyError:
+            break
+    return ' '.join(pids)
 
 
 def _getoutput(cmd):
@@ -537,37 +551,261 @@ def _getoutput(cmd):
     return o
 
 
+class Topology_14(object):
+
+    """
+    Amber topology abstraction for non-uniform 1-4 scale factors
+
+    """
+
+    def __init__(self) -> None:
+        self.pointers = array.array('d')
+        self.charge = array.array('d')
+        self.atom_type_index = array.array('d')
+        self.nonbonded_parm_index = array.array('d')
+        self.scee_scale_factor = array.array('d')
+        self.scnb_scale_factor = array.array('d')
+        self.dihedral_force_constants = array.array('d')
+        self.dihedral_periodicity = array.array('d')
+        self.dihedral_phase = array.array('d')
+        self.dihedral_yes_H = array.array('d')
+        self.dihedral_no_H = array.array('d')
+        self.lennard_jones_acoef = array.array('d')
+        self.lennard_jones_bcoef = array.array('d')
+
+    def read_amber_topology(self, buff):
+        '''Read AMBER topology file'''
+        flag_strings = ["%FLAG POINTERS",
+                        "%FLAG CHARGE",
+                        "%FLAG ATOM_TYPE_INDEX",
+                        "%FLAG NONBONDED_PARM_INDEX",
+                        "%FLAG SCEE_SCALE_FACTOR",
+                        "%FLAG SCNB_SCALE_FACTOR",
+                        "%FLAG DIHEDRAL_FORCE_CONSTANT",
+                        "%FLAG DIHEDRAL_PERIODICITY",
+                        "%FLAG DIHEDRAL_PHASE",
+                        "%FLAG DIHEDRALS_INC_HYDROGEN",
+                        "%FLAG DIHEDRALS_WITHOUT_HYDROGEN",
+                        "%FLAG LENNARD_JONES_ACOEF",
+                        "%FLAG LENNARD_JONES_BCOEF"]
+        attributes = ['pointers',
+                      'charge',
+                      'atom_type_index',
+                      'nonbonded_parm_index',
+                      'scee_scale_factor',
+                      'scnb_scale_factor',
+                      'dihedral_force_constants',
+                      'dihedral_periodicity',
+                      'dihedral_phase',
+                      'dihedral_yes_H',
+                      'dihedral_no_H',
+                      'lennard_jones_acoef',
+                      'lennard_jones_bcoef']
+        for i, _item in enumerate(attributes):
+            setattr(self, attributes[i], self.p7_array_read(buff, flag_strings[i]))
+
+    @staticmethod
+    def skipline(buff, index):
+        '''skip line'''
+        while buff[index] != '\n':
+            index += 1
+        index += 1
+        return index
+
+    def p7_array_read(self, buff, flag_string):
+        '''?'''
+        myarray = array.array('d')
+        i = buff.index(flag_string)
+        i = self.skipline(buff, i)
+        i = self.skipline(buff, i)
+        while 1:
+            while buff[i] == ' ' or buff[i] == '\t' or buff[i] == '\n':
+                i += 1
+            j = i
+            if buff[i] == '%':
+                break
+            while buff[i] != ' ' and buff[i] != '\t' and buff[i] != '\n':
+                i += 1
+            myarray.append(float(buff[j:i]))
+        return myarray
+
+    def print_gmx_pairs(self):
+        '''Generate non-bonded pairs list'''
+        pair_list = []
+        pair_buff = ("[ pairs_nb ]\n;       ai         aj  funct         qi         qj           sigma         epsilon\n")
+        pair_list.append(pair_buff)
+        dihedrals = self.dihedral_yes_H + self.dihedral_no_H
+        dih_number = len(dihedrals)
+        j = int(0)
+        while j < dih_number:
+            if dihedrals[j + 2] > 0:
+                parm_idx = int(dihedrals[j + 4]) - 1
+                scee_scale_factor = self.scee_scale_factor[parm_idx]
+                if scee_scale_factor == 0:
+                    scee_scale_factor = 1.2
+                ai = int(abs(dihedrals[j]) / 3)
+                al = int(abs(dihedrals[j + 3]) / 3)
+                qi = self.charge[ai] / 18.222615
+                ql = self.charge[al] / 18.222615 / scee_scale_factor
+                ntypes = int(self.pointers[1])
+                ai_index = int(self.atom_type_index[ai])
+                al_index = int(self.atom_type_index[al])
+                nb_parm_index = int(self.nonbonded_parm_index[ntypes * (ai_index - 1) + al_index - 1]) - 1
+                scnb_scale_factor = self.scnb_scale_factor[parm_idx]
+                if scnb_scale_factor == 0:
+                    scnb_scale_factor = 2
+                lj_acoeff = (self.lennard_jones_acoef[nb_parm_index] /
+                             scnb_scale_factor)
+                lj_bcoeff = (self.lennard_jones_bcoef[nb_parm_index] /
+                             scnb_scale_factor)
+                if lj_bcoeff != 0:
+                    sigma6 = lj_acoeff / lj_bcoeff
+                else:
+                    sigma6 = 1  # arbitrary and doesnt matter
+                epsilon = lj_bcoeff / 4 / sigma6 * 4.184
+                sigma = sigma6 ** (1 / 6) / 10
+                pair_buff = ("{:>10.0f} {:>10.0f} {:>6.0f} ".format(ai + 1, al + 1, 1) + "{:>10.6f} {:>10.6f} ".format(qi, ql) + "{:>15.5e} {:>15.5e}\n".format(sigma, epsilon))
+                pair_list.append(pair_buff)
+            j += 5
+        return ''.join(pair_list)
+
+    def hasNondefault14(self):
+        '''Check non-uniform 1-4 scale factor'''
+        for val in self.scee_scale_factor:
+            if (val != 0 and val != 1.2):
+                return True
+        for val in self.scnb_scale_factor:
+            if val != 0 and val != 2:
+                return True
+        return False
+
+    def patch_gmx_topol14(self, gmx_init_top):
+        '''Patch GMX topology file for non-uniform 1-4 scale factor'''
+        pair_buff = self.print_gmx_pairs()
+        jdefault = gmx_init_top.index("\n[ atomtypes ]")
+        ipair = gmx_init_top.index("[ pairs ]")
+        jpair = gmx_init_top.index("\n[ angles ]")
+        init_buff = ("[ defaults ]\n; nbfunc        comb-rule       gen-pairs       \n1               2               no              \n")
+        return (init_buff +
+                gmx_init_top[jdefault:ipair] +
+                pair_buff +
+                gmx_init_top[jpair:len(gmx_init_top)])
+
+
 class AbstractTopol(object):
 
     """
         Super class to build topologies
     """
+    __metaclass__ = abc.ABCMeta
 
+    @abc.abstractmethod
     def __init__(self):
         if self.__class__ is AbstractTopol:
             raise TypeError("Attempt to create istance of abstract class AbstractTopol")
+        self.debug = None
+        self.verbose = None
+        self.chargeVal = None
+        self.tmpDir = None
+        self.absInputFile = None
+        self.chargeType = None
+        self.babelExe = None
+        self.baseName = None
+        self.acExe = None
+        self.force = None
+        self.acBaseName = None
+        self.atomType = None
+        self.acMol2FileName = None
+        self.multiplicity = None
+        self.qFlag = None
+        self.ekFlag = None
+        self.timeTol = None
+        self.acXyzFileName = None
+        self.acTopFileName = None
+        self.sleapExe = None
+        self.acParDict = None
+        self.tleapExe = None
+        self.parmchkExe = None
+        self.acFrcmodFileName = None
+        self.gaffDatfile = None
+        self.homeDir = None
+        self.rootDir = None
+        self.extOld = None
+        self.engine = None
+        self.direct = None
+        self.disam = None
+        self.gmx4 = None
+        self.sorted = None
+        self.chiral = None
+        self.outTopols = None
+        self.ext = None
+        self.xyzFileData = None
+        self.obchiralExe = None
+        self.charmmBase = None
+        self.allhdg = None
+        self.topo14Data = None
+        self.atomPairs = None
+        self.properDihedralsGmx45 = None
+        self.properDihedralsAlphaGamma = None
+        self.properDihedralsCoefRB = None
+        self.resName = None
+        self.acLog = None
+        self.sleapLog = None
+        self.tleapLog = None
+        self.parmchkLog = None
+        self.inputFile = None
+        self.babelLog = None
+        self.absHomeDir = None
+        self.molTopol = None
+        self.topFileData = None
+        self.residueLabel = None
+        self._atomTypeNameList = None
+        self.atomTypeSystem = None
+        self.totalCharge = None
+        self.atoms = None
+        self.atomTypes = None
+        self.pbc = None
+        self.bonds = None
+        self.angles = None
+        self.properDihedrals = None
+        self.improperDihedrals = None
+        self.condensedProperDihedrals = None
+        self.chiralGroups = None
+        self.excludedAtoms = None
+        self.atomsGromacs = None
+        self.atomTypesGromacs = None
+        self.CnsTopFileName = None
+        self.CnsInpFileName = None
+        self.CnsParFileName = None
+        self.CnsPdbFileName = None
 
     def printDebug(self, text=''):
+        '''Debug log level'''
         if self.debug:
             print('DEBUG: %s' % text)
 
     def printWarn(self, text=''):
+        '''Warn log level'''
         if self.verbose:
             print('WARNING: %s' % text)
 
     def printError(self, text=''):
+        '''Error log level'''
         if self.verbose:
             print('ERROR: %s' % text)
 
     def printMess(self, text=''):
+        '''Info log level'''
         if self.verbose:
             print('==> %s' % text)
 
     def printQuoted(self, text=''):
+        '''Print quoted messages'''
         if self.verbose:
             print(10 * '+' + 'start_quote' + 59 * '+')
             print(text)
             print(10 * '+' + 'end_quote' + 61 * '+')
+        return
 
     def guessCharge(self):
         """
@@ -597,8 +835,7 @@ class AbstractTopol(object):
             self.printWarn("no charge value given, trying to guess one...")
             mol2FileForGuessCharge = self.inputFile
             if self.ext == ".pdb":
-                cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile,
-                                                      self.baseName)
+                cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile, self.baseName)
                 self.printDebug("guessCharge: " + cmd)
                 out = _getoutput(cmd)
                 self.printDebug(out)
@@ -633,7 +870,6 @@ class AbstractTopol(object):
                 self.printQuoted(log)
                 self.printMess("Trying with net charge = 0 ...")
 #                self.chargeVal = 0
-                return None
         charge = float(charge)
         charge2 = int(round(charge))
         drift = abs(charge2 - charge)
@@ -715,7 +951,7 @@ class AbstractTopol(object):
                 item2 = items[id2]
                 c1 = list(map(float, [item[0][i:i + 8] for i in range(0, 24, 8)]))
                 c2 = list(map(float, [item2[0][i:i + 8] for i in range(0, 24, 8)]))
-                dist2 = self.distance(c1, c2)
+                dist2 = distanceAA(c1, c2)
                 if dist2 < minDist2:
                     dist = math.sqrt(dist2)
                     shortd += "%8.5f       %s %s\n" % (dist, item[1], item2[1])
@@ -794,13 +1030,6 @@ class AbstractTopol(object):
 
         os.chdir(localDir)
         self.printDebug("setResNameCheckCoords done")
-
-    def distance(self, c1, c2):
-        # print c1, c2
-        dist2 = (c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2 + (c1[0] - c2[0]) ** 2 + \
-                (c1[2] - c2[2]) ** 2
-        # dist2 = math.sqrt(dist2)
-        return dist2
 
     def readMol2TotalCharge(self, mol2File):
         """Reads the charges in given mol2 file and returns the total
@@ -900,7 +1129,7 @@ Usage: antechamber -i  input file name
         Gasteiger          gas      7  |  Read in charge     rc      8
         Write out charge   wc       9  |  Delete Charge      dc     10
         ----------------------------------------------------------------
-a        """
+        """
         global pid
 
         self.printMess("Executing Antechamber...")
@@ -952,10 +1181,12 @@ a        """
         else:
             self.printQuoted(self.acLog)
             return True
+        return False
 
     def signal_handler(self, _signum, _frame):  # , pid = 0):
+        '''Signal handler'''
         global pid
-        pids = self.job_pids_family(pid)
+        pids = job_pids_family(pid)
         self.printDebug("PID: %s, PIDS: %s" % (pid, pids))
         self.printMess("Timed out! Process %s killed, max exec time (%ss) exceeded"
                        % (pids, self.timeTol))
@@ -964,25 +1195,8 @@ a        """
             os.kill(int(i), 15)
         raise Exception("Semi-QM taking too long to finish... aborting!")
 
-    def job_pids_family(self, jpid):
-        '''INTERNAL: Return all job processes (PIDs)'''
-        pid = repr(jpid)
-        dict_pids = {}
-        pids = [pid]
-        cmd = "ps -A -o uid,pid,ppid|grep %i" % os.getuid()
-        out = _getoutput(cmd).split('\n')  # getoutput("ps -A -o uid,pid,ppid|grep %i" % os.getuid()).split('\n')
-        for item in out:
-            vec = item.split()
-            dict_pids[vec[2]] = vec[1]
-        while True:
-            try:
-                pid = dict_pids[pid]
-                pids.append(pid)
-            except KeyError:
-                break
-        return ' '.join(pids)
-
     def delOutputFiles(self):
+        '''Delete temporary output files'''
         delFiles = ['mopac.in', 'tleap.in', 'sleap.in', 'fixbo.log',
                     'addhs.log', 'ac_tmp_ot.mol2', 'frcmod.ac_tmp', 'fragment.mol2',
                     self.tmpDir]  # , 'divcon.pdb', 'mopac.pdb', 'mopac.out'] #'leap.log'
@@ -996,6 +1210,7 @@ a        """
                     os.remove(file_)
 
     def checkXyzAndTopFiles(self):
+        '''Cehck XYZ and TOP files'''
         fileXyz = self.acXyzFileName
         fileTop = self.acTopFileName
         if os.path.exists(fileXyz) and os.path.exists(fileTop):
@@ -1005,6 +1220,7 @@ a        """
         return False
 
     def execSleap(self):
+        '''Execute sleap'''
         global pid
         self.makeDir()
 
@@ -1054,9 +1270,10 @@ a        """
             else:
                 self.printQuoted(self.sleapLog)
                 return True
+        return False
 
     def execTleap(self):
-
+        '''Execute tleap'''
         fail = False
 
         self.makeDir()
@@ -1107,8 +1324,10 @@ a        """
         else:
             self.printQuoted(self.tleapLog)
             return True
+        return False
 
     def checkLeapLog(self, log):
+        '''Check Leap log'''
         log = log.splitlines(True)
         check = ''
         block = False
@@ -1136,7 +1355,7 @@ a        """
         return None
 
     def execParmchk(self):
-
+        '''Execute parmchk'''
         self.makeDir()
         cmd = '%s -i %s -f mol2 -o %s' % (self.parmchkExe, self.acMol2FileName,
                                           self.acFrcmodFileName)
@@ -1169,8 +1388,10 @@ a        """
         else:
             self.printQuoted(self.parmchkLog)
             return True
+        return False
 
     def checkFrcmod(self):
+        '''Check FRCMOD file'''
         check = ""
         frcmodContent = open(self.acFrcmodFileName, 'r').readlines()
         for line in frcmodContent:
@@ -1179,13 +1400,15 @@ a        """
         return check
 
     def convertPdbToMol2(self):
+        '''Convert PDB to MOL2 by using babel'''
         if self.ext == '.pdb':
             if self.execBabel():
                 self.printError("convert pdb to mol2 via babel failed")
                 return True
+        return False
 
     def execBabel(self):
-
+        '''Execute babel'''
         self.makeDir()
 
         cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile,
@@ -1200,16 +1423,16 @@ a        """
         else:
             self.printQuoted(self.babelLog)
             return True
+        return False
 
     def makeDir(self):
-
+        '''Make Dir'''
         os.chdir(self.rootDir)
         self.absHomeDir = os.path.abspath(self.homeDir)
         if not os.path.exists(self.homeDir):
             os.mkdir(self.homeDir)
         os.chdir(self.homeDir)
         copy2(self.absInputFile, '.')
-
         return True
 
     def createACTopol(self):
@@ -1273,12 +1496,8 @@ a        """
             mess = "Pickle file %s already present... doing nothing" % pklFile
         self.printMess(mess)
         if dumpFlag:
-            with open(pklFile, "wb") as f:  # for python 2.6 or higher
-                # f = open(pklFile, "wb")
-                if verList[0] == 3:
-                    pickle.dump(self, f, protocol=2, fix_imports=True)
-                else:
-                    pickle.dump(self, f, protocol=2)
+            with open(pklFile, "wb") as f:  # for python 3.3 or higher
+                pickle.dump(self, f)
 
     def getFlagData(self, flag):
         """
@@ -1288,7 +1507,7 @@ a        """
         tFlag = '%FLAG ' + flag
         data = ''
 
-        if len(self.topFileData) == 0:
+        if not self.topFileData:
             raise Exception("PRMTOP file empty?")
 
         for rawLine in self.topFileData:
@@ -1354,7 +1573,7 @@ a        """
             For a given acFileXyz file, return a list of coords as:
             [[x1,y1,z1],[x2,y2,z2], etc.]
         """
-        if len(self.xyzFileData) == 0:
+        if not self.xyzFileData:
             raise Exception("INPCRD file empty?")
         data = ''
         for rawLine in self.xyzFileData[2:]:
@@ -1459,6 +1678,7 @@ a        """
         self.printDebug("getAtoms done")
 
     def getBonds(self):
+        '''Get Bonds'''
         uniqKbList = self.getFlagData('BOND_FORCE_CONSTANT')
         uniqReqList = self.getFlagData('BOND_EQUIL_VALUE')
         bondCodeHList = self.getFlagData('BONDS_INC_HYDROGEN')
@@ -1480,6 +1700,7 @@ a        """
         self.printDebug("getBonds done")
 
     def getAngles(self):
+        '''Get Angles'''
         uniqKtList = self.getFlagData('ANGLE_FORCE_CONSTANT')
         uniqTeqList = self.getFlagData('ANGLE_EQUIL_VALUE')
         # for list below, true atom number = index/3 + 1
@@ -1576,7 +1797,7 @@ a        """
             # print (self.obchiralExe, os.getcwd())
             cmd = '%s %s' % (self.obchiralExe, self.inputFile)
             # print(cmd)
-            out = map(int, re.findall('Atom (\d+) Is', _getoutput(cmd)))
+            out = map(int, re.findall(r'Atom (\d+) Is', _getoutput(cmd)))
             # print("*%s*" % out)
             chiralGroups = []
             for id_ in out:
@@ -1618,9 +1839,11 @@ a        """
 
         # Define hydrogen and heavy atom classes.
         def is_hydrogen(atom):
-            return (atom.mass < 1.2)
+            '''Check for H'''
+            return atom.mass < 1.2
 
         def is_heavy(atom):
+            '''Check for non H'''
             return not is_hydrogen(atom)
 
         # Build list of sorted atoms, assigning charge groups by heavy atom.
@@ -1634,7 +1857,7 @@ a        """
                 sorted_atoms.append(atom)
                 # Append all hydrogens.
                 for bonded_atom in bonded_atoms[atom]:
-                    if is_hydrogen(bonded_atom) and not (bonded_atom in sorted_atoms):
+                    if is_hydrogen(bonded_atom) and bonded_atom not in sorted_atoms:
                         # Append bonded hydrogen.
                         bonded_atom.cgnr = cgnr
                         sorted_atoms.append(bonded_atom)
@@ -1643,7 +1866,7 @@ a        """
         # Second pass: Add any remaining atoms.
         if len(sorted_atoms) < len(self.atoms):
             for atom in self.atoms:
-                if not (atom in sorted_atoms):
+                if atom not in sorted_atoms:
                     atom.cgnr = cgnr
                     sorted_atoms.append(atom)
                     cgnr += 1
@@ -1730,6 +1953,7 @@ a        """
         return chargeList, fix, limIds
 
     def getABCOEFs(self):
+        '''Get non-bonded coeficients'''
         uniqAtomTypeIdList = self.getFlagData('ATOM_TYPE_INDEX')
         nonBonIdList = self.getFlagData('NONBONDED_PARM_INDEX')
         rawACOEFs = self.getFlagData('LENNARD_JONES_ACOEF')
@@ -1786,7 +2010,7 @@ a        """
                 if phase in [0, 180]:
                     properDihedralsGmx45.append([item[0].atoms, phaseRaw, kPhi, period])
                     if self.gmx4:
-                        if kPhi > 0:
+                        if kPhi != 0:
                             V[period] = 2 * kPhi * cal
                         if period == 1:
                             C[0] += 0.5 * V[period]
@@ -1832,7 +2056,7 @@ a        """
         self.properDihedralsGmx45 = properDihedralsGmx45
 
     def writeCharmmTopolFiles(self):
-
+        '''Write CHARMM topology files'''
         self.printMess("Writing CHARMM files\n")
 
         # self.makeDir()
@@ -2054,6 +2278,7 @@ a        """
         # print delAtomTypes
 
     def writeGromacsTop(self, amb2gmx=False):
+        '''Write GMX topology file'''
         if self.atomTypeSystem == 'amber':
             d2opls = dictAtomTypeAmb2OplsGmxCode
         else:
@@ -2675,6 +2900,16 @@ a        """
             if nWat:
                 topText.append(" %-16s %-6i\n" % ('WAT', nWat))
 
+        if self.topo14Data.hasNondefault14():
+            citation = ('     Austen Bernardi, Roland Faller, Dirk Reith, Karl N. Kirschner, "Conversion of\n' +
+                        '     GLYCAM06 Force-Field Parameters from AMBER to GROMACS Topologies"\n' +
+                        '     submitted for review, April 2018."\n')
+            msg = ('Non-default 1-4 scale parameters detected.  Converting individually. Please cite:\n\n' +
+                   citation)
+
+            self.printMess(msg)
+            topText = self.topo14Data.patch_gmx_topol14(''.join(topText))
+
         gmxDir = os.path.abspath('.')
         topFileName = os.path.join(gmxDir, top)
         topFile = open(topFileName, 'w')
@@ -2692,6 +2927,7 @@ a        """
             otopFile.writelines(otopText)
 
     def writeGroFile(self):
+        '''Write GRO files'''
         # print "Writing GROMACS GRO file\n"
         self.printDebug("writing GRO file")
         gro = self.baseName + '_GMX.gro'
@@ -2745,6 +2981,7 @@ a        """
         groFile.write(text)
 
     def writeMdpFiles(self):
+        '''Write MDP for test with GROMACS'''
         emMdp = """; to test
 ; gmx grompp -f em.mdp -c {base}_GMX.gro -p {base}_GMX.top -o em.tpr -v
 ; gmx mdrun -ntmpi 1 -v -deffnm em
@@ -2763,6 +3000,7 @@ nsteps                   = 10000
         mdMdpFile.write(mdMdp)
 
     def writeCnsTopolFiles(self):
+        '''Write CNS topology files'''
         autoAngleFlag = True
         autoDihFlag = True
         cnsDir = os.path.abspath('.')
@@ -3084,7 +3322,7 @@ class ACTopol(AbstractTopol):
                  debug=False, outTopol='all', engine='tleap', allhdg=False,
                  timeTol=36000, qprog='sqm', ekFlag=None, verbose=True,
                  gmx4=False, disam=False, direct=False, is_sorted=False, chiral=False):
-
+        super(ACTopol, self).__init__()
         self.debug = debug
         self.verbose = verbose
         self.gmx4 = gmx4
@@ -3134,7 +3372,6 @@ class ACTopol(AbstractTopol):
             self.acExe = _getoutput('which antechamber') or ''  # '/Users/alan/Programmes/antechamber-1.27/exe/antechamber'
         if not os.path.exists(self.acExe):
             self.printError("no 'antechamber' executable!")
-            return None
         self.tleapExe = _getoutput('which tleap') or ''
         self.sleapExe = _getoutput('which sleap') or ''
         self.parmchkExe = _getoutput('which parmchk2') or ''
@@ -3177,7 +3414,6 @@ class ACTopol(AbstractTopol):
                 if not os.path.exists(os.path.join(os.path.dirname(self.acExe), qprog)):
                     self.printWarn("MOPAC is not installed")
                     self.printWarn("Setting sqm for antechamber")
-                    return None
                     qprog = 'sqm'
 #        else:
 #            self.printWarn("Old version of antechamber. Strongly consider upgrading to AmberTools")
@@ -3209,7 +3445,7 @@ class MolTopol(ACTopol):
     def __init__(self, acTopolObj=None, acFileXyz=None, acFileTop=None,
                  debug=False, basename=None, verbose=True, gmx4=False,
                  disam=False, direct=False, is_sorted=False, chiral=False):
-
+        super(MolTopol, self).__init__()
         self.chiral = chiral
         self.obchiralExe = _getoutput('which obchiral') or ''
         self.allhdg = False
@@ -3230,9 +3466,8 @@ class MolTopol(ACTopol):
             self.debug = self._parent.debug
             self.inputFile = self._parent.inputFile
         if not os.path.exists(acFileXyz) and not os.path.exists(acFileTop):
-            self.printError("Files '%s' and '%s' don't exist")
+            self.printError("Files '%s' and/or '%s' don't exist" % (acFileXyz, acFileTop))
             self.printError("molTopol object won't be created")
-            return None
 
 #         if not os.path.exists(self.obchiralExe) and self.chiral:
 #             self.printError("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
@@ -3240,6 +3475,8 @@ class MolTopol(ACTopol):
 
         self.xyzFileData = open(acFileXyz, 'r').readlines()
         self.topFileData = open(acFileTop, 'r').readlines()
+        self.topo14Data = Topology_14()
+        self.topo14Data.read_amber_topology(''.join(self.topFileData))
         self.printDebug("prmtop and inpcrd files loaded")
 
 #        self.pointers = self.getFlagData('POINTERS')
@@ -3396,167 +3633,76 @@ class Dihedral(object):
 
 
 if __name__ == '__main__':
-    t0 = time.time()
+    parser = argparse.ArgumentParser(usage=usage + epilog)
+    parser.add_argument('-i', '--input', action="store", dest='input', help="input file name with either extension '.pdb', '.mdl' or '.mol2' (mandatory if -p and -x not set)",)
+    parser.add_argument('-b', '--basename', action="store", dest='basename', help='a basename for the project (folder and output files)',)
+    parser.add_argument('-x', '--inpcrd', action="store", dest='inpcrd', help="amber inpcrd file name (always used with -p)",)
+    parser.add_argument('-p', '--prmtop', action="store", dest='prmtop', help="amber prmtop file name (always used with -x)",)
+    parser.add_argument('-c', '--charge_method', choices=['gas', 'bcc', 'user'], action="store", default='bcc', dest='charge_method', help="charge method: gas, bcc (default), user (user's charges in mol2 file)",)
+    parser.add_argument('-n', '--net_charge', action="store", type=int, default=0, dest='net_charge', help="net molecular charge (int), for gas default is 0",)
+    parser.add_argument('-m', '--multiplicity', action="store", type=int, default=1, dest='multiplicity', help="multiplicity (2S+1), default is 1",)
+    parser.add_argument('-a', '--atom_type', choices=['gaff', 'amber', 'gaff2', 'amber2'], action="store", default='gaff', dest='atom_type', help="atom type, can be gaff, gaff2, amber (AMBER14SB) or amber2 (AMBER14SB + GAFF2), default is gaff",)
+    parser.add_argument('-q', '--qprog', choices=['mopac', 'sqm', 'divcon'], action="store", default='sqm', dest='qprog', help="am1-bcc flag, sqm (default), divcon, mopac",)
+    parser.add_argument('-k', '--keyword', action="store", dest='keyword', help="mopac or sqm keyword, inside quotes",)
+    parser.add_argument('-f', '--force', action="store_true", dest='force', help='force topologies recalculation anew',)
+    parser.add_argument('-d', '--debug', action="store_true", dest='debug', help='for debugging purposes, keep any temporary file created',)
+    parser.add_argument('-o', '--outtop', choices=['all'] + outTopols, action="store", default='all', dest='outtop', help="output topologies: all (default), gmx, cns or charmm",)
+    parser.add_argument('-z', '--gmx4', action="store_true", dest='gmx4', help='write RB dihedrals old GMX 4.0',)
+    parser.add_argument('-t', '--cnstop', action="store_true", dest='cnstop', help='write CNS topology with allhdg-like parameters (experimental)',)
+    parser.add_argument('-e', '--engine', choices=['tleap', 'sleap'], action="store", default='tleap', dest='engine', help="engine: tleap (default) or sleap (not fully matured)",)
+    parser.add_argument('-s', '--max_time', type=int, action="store", default=36000, dest='max_time', help="max time (in sec) tolerance for sqm/mopac, default is 10 hours",)
+    parser.add_argument('-y', '--ipython', action="store_true", dest='ipython', help='start iPython interpreter',)
+    parser.add_argument('-w', '--verboseless', action="store_false", default=True, dest='verboseless', help='print nothing',)
+    parser.add_argument('-g', '--disambiguate', action="store_true", dest='disambiguate', help='disambiguate lower and uppercase atomtypes in GMX top file',)
+    parser.add_argument('-u', '--direct', action="store_true", dest='direct', help="for 'amb2gmx' mode, does a direct conversion, for any solvent",)
+    parser.add_argument('-l', '--sorted', action="store_true", dest='sorted', help="sort atoms for GMX ordering",)
+    parser.add_argument('-j', '--chiral', action="store_true", dest='chiral', help="create improper dihedral parameters for chiral atoms in CNS",)
+    args = parser.parse_args()
+
+    at0 = time.time()
     print(header)
 
-    parser = optparse.OptionParser(usage=usage + epilog)
-    parser.add_option('-i', '--input',
-                      action="store",
-                      dest='input',
-                      help="input file name with either extension '.pdb', '.mdl' or '.mol2' (mandatory if -p and -x not set)",)
-    parser.add_option('-b', '--basename',
-                      action="store",
-                      dest='basename',
-                      help='a basename for the project (folder and output files)',)
-    parser.add_option('-x', '--inpcrd',
-                      action="store",
-                      dest='inpcrd',
-                      help="amber inpcrd file name (always used with -p)",)
-    parser.add_option('-p', '--prmtop',
-                      action="store",
-                      dest='prmtop',
-                      help="amber prmtop file name (always used with -x)",)
-    parser.add_option('-c', '--charge_method',
-                      type='choice',
-                      choices=['gas', 'bcc', 'user'],
-                      action="store",
-                      default='bcc',
-                      dest='charge_method',
-                      help="charge method: gas, bcc (default), user (user's charges in mol2 file)",)
-    parser.add_option('-n', '--net_charge',
-                      action="store",
-                      type='int',
-                      default=0,
-                      dest='net_charge',
-                      help="net molecular charge (int), for gas default is 0",)
-    parser.add_option('-m', '--multiplicity',
-                      action="store",
-                      type='int',
-                      default=1,
-                      dest='multiplicity',
-                      help="multiplicity (2S+1), default is 1",)
-    parser.add_option('-a', '--atom_type',
-                      type='choice',
-                      choices=['gaff', 'amber', 'gaff2', 'amber2'],  # , 'bcc', 'sybyl']
-                      action="store",
-                      default='gaff',
-                      dest='atom_type',
-                      help="atom type, can be gaff, gaff2, amber (AMBER14SB) or amber2 (AMBER14SB + GAFF2), default is gaff",)
-    parser.add_option('-q', '--qprog',
-                      type='choice',
-                      choices=['mopac', 'sqm', 'divcon'],
-                      action="store",
-                      default='sqm',
-                      dest='qprog',
-                      help="am1-bcc flag, sqm (default), divcon, mopac",)
-    parser.add_option('-k', '--keyword',
-                      action="store",
-                      dest='keyword',
-                      help="mopac or sqm keyword, inside quotes",)
-    parser.add_option('-f', '--force',
-                      action="store_true",
-                      dest='force',
-                      help='force topologies recalculation anew',)
-    parser.add_option('-d', '--debug',
-                      action="store_true",
-                      dest='debug',
-                      help='for debugging purposes, keep any temporary file created',)
-    parser.add_option('-o', '--outtop',
-                      type='choice',
-                      choices=['all'] + outTopols,
-                      action="store",
-                      default='all',
-                      dest='outtop',
-                      help="output topologies: all (default), gmx, cns or charmm",)
-    parser.add_option('-z', '--gmx4',
-                      action="store_true",
-                      dest='gmx4',
-                      help='write RB dihedrals old GMX 4.0',)
-    parser.add_option('-t', '--cnstop',
-                      action="store_true",
-                      dest='cnstop',
-                      help='write CNS topology with allhdg-like parameters (experimental)',)
-    parser.add_option('-e', '--engine',
-                      type='choice',
-                      choices=['tleap', 'sleap'],
-                      action="store",
-                      default='tleap',
-                      dest='engine',
-                      help="engine: tleap (default) or sleap (not fully matured)",)
-    parser.add_option('-s', '--max_time',
-                      action="store",
-                      type='int',
-                      default=36000,
-                      dest='max_time',
-                      help="max time (in sec) tolerance for sqm/mopac, default is 10 hours",)
-    parser.add_option('-y', '--ipython',
-                      action="store_true",
-                      dest='ipython',
-                      help='start iPython interpreter',)
-    parser.add_option('-w', '--verboseless',
-                      action="store_false",
-                      default=True,
-                      dest='verboseless',
-                      help='print nothing',)
-    parser.add_option('-g', '--disambiguate',
-                      action="store_true",
-                      dest='disambiguate',
-                      help='disambiguate lower and uppercase atomtypes in GMX top file',)
-    parser.add_option('-u', '--direct',
-                      action="store_true",
-                      dest='direct',
-                      help="for 'amb2gmx' mode, does a direct conversion, for any solvent",)
-    parser.add_option('-l', '--sorted',
-                      action="store_true",
-                      dest='sorted',
-                      help="sort atoms for GMX ordering",)
-    parser.add_option('-j', '--chiral',
-                      action="store_true",
-                      dest='chiral',
-                      help="create improper dihedral parameters for chiral atoms in CNS",)
+    amb2gmxF = False
 
-    options, remainder = parser.parse_args()
+#     if args.chiral:
+#         args.cnstop = True
 
-    amb2gmx = False
-
-#     if options.chiral:
-#         options.cnstop = True
-
-    if not options.input:
-        amb2gmx = True
-        if not options.inpcrd or not options.prmtop:
+    if not args.input:
+        amb2gmxF = True
+        if not args.inpcrd or not args.prmtop:
             parser.error("missing input files")
-    elif options.inpcrd or options.prmtop:
+    elif args.inpcrd or args.prmtop:
         parser.error("either '-i' or ('-p', '-x'), but not both")
 
-    if options.debug:
-        text = "Python Version %s" % verNum
-        print('DEBUG: %s' % text)
+    if args.debug:
+        texta = "Python Version %s" % sys.version
+        print('DEBUG: %s' % texta)
 
-    if options.direct and not amb2gmx:
+    if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode")
 
     try:
-        if amb2gmx:
+        if amb2gmxF:
             print("Converting Amber input files to Gromacs ...")
-            system = MolTopol(acFileXyz=options.inpcrd, acFileTop=options.prmtop,
-                              debug=options.debug, basename=options.basename,
-                              verbose=options.verboseless, gmx4=options.gmx4,
-                              disam=options.disambiguate, direct=options.direct,
-                              is_sorted=options.sorted, chiral=options.chiral)
+            system = MolTopol(acFileXyz=args.inpcrd, acFileTop=args.prmtop,
+                              debug=args.debug, basename=args.basename,
+                              verbose=args.verboseless, gmx4=args.gmx4,
+                              disam=args.disambiguate, direct=args.direct,
+                              is_sorted=args.sorted, chiral=args.chiral)
+
             system.printDebug("prmtop and inpcrd files parsed")
             system.writeGromacsTopolFiles(amb2gmx=True)
         else:
-            molecule = ACTopol(options.input, chargeType=options.charge_method,
-                               chargeVal=options.net_charge, debug=options.debug,
-                               multiplicity=options.multiplicity, atomType=options.atom_type,
-                               force=options.force, outTopol=options.outtop,
-                               engine=options.engine, allhdg=options.cnstop,
-                               basename=options.basename, timeTol=options.max_time,
-                               qprog=options.qprog, ekFlag='''"%s"''' % options.keyword,
-                               verbose=options.verboseless, gmx4=options.gmx4,
-                               disam=options.disambiguate, direct=options.direct,
-                               is_sorted=options.sorted, chiral=options.chiral)
+            molecule = ACTopol(args.input, chargeType=args.charge_method,
+                               chargeVal=args.net_charge, debug=args.debug,
+                               multiplicity=args.multiplicity, atomType=args.atom_type,
+                               force=args.force, outTopol=args.outtop,
+                               engine=args.engine, allhdg=args.cnstop,
+                               basename=args.basename, timeTol=args.max_time,
+                               qprog=args.qprog, ekFlag='''"%s"''' % args.keyword,
+                               verbose=args.verboseless, gmx4=args.gmx4,
+                               disam=args.disambiguate, direct=args.direct,
+                               is_sorted=args.sorted, chiral=args.chiral)
 
             if not molecule.acExe:
                 molecule.printError("no 'antechamber' executable... aborting ! ")
@@ -3572,18 +3718,18 @@ if __name__ == '__main__':
     except Exception:
         exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
         print("ACPYPE FAILED: %s" % exceptionValue)
-        if options.debug:
+        if args.debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
         acpypeFailed = True
 
-    execTime = int(round(time.time() - t0))
+    execTime = int(round(time.time() - at0))
     if execTime == 0:
-        msg = "less than a second"
+        amsg = "less than a second"
     else:
-        msg = elapsedTime(execTime)
-    print("Total time of execution: %s" % msg)
+        amsg = elapsedTime(execTime)
+    print("Total time of execution: %s" % amsg)
 
-    if options.ipython:
+    if args.ipython:
         try:
             from IPython.Shell import IPShellEmbed  # @UnresolvedImport @UnusedImport
         except Exception:
