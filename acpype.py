@@ -72,7 +72,7 @@ if sys.version_info < (3, 2):
     sys.exit(1)
 
 year = datetime.today().year
-tag = "2018-04-23T14:27:36UTC"
+tag = "2018-04-24T16:44:17UTC"
 
 lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
@@ -3322,7 +3322,7 @@ class ACTopol(AbstractTopol):
                  debug=False, outTopol='all', engine='tleap', allhdg=False,
                  timeTol=36000, qprog='sqm', ekFlag=None, verbose=True,
                  gmx4=False, disam=False, direct=False, is_sorted=False, chiral=False):
-        super(ACTopol, self).__init__()
+        super().__init__()
         self.debug = debug
         self.verbose = verbose
         self.gmx4 = gmx4
@@ -3445,7 +3445,6 @@ class MolTopol(ACTopol):
     def __init__(self, acTopolObj=None, acFileXyz=None, acFileTop=None,
                  debug=False, basename=None, verbose=True, gmx4=False,
                  disam=False, direct=False, is_sorted=False, chiral=False):
-        super(MolTopol, self).__init__()
         self.chiral = chiral
         self.obchiralExe = _getoutput('which obchiral') or ''
         self.allhdg = False
