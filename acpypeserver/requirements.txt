@@ -8,4 +8,4 @@ PyMySQL==0.7.11
 pytz==2017.3
 SQLAlchemy==1.1.15
 vine==1.1.4
-
+djangorestframework==3.8.2
