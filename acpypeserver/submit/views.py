@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os, os.path, pymysql.cursors, shutil
 from django.shortcuts import render, render_to_response
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
@@ -12,17 +13,20 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django import forms
 from acpypeserver import settings as acpypesetting
-import os
 from submit.models import Submission
 from .tasks import process
-import os.path
-import pymysql.cursors
 from .forms import SignUpForm, SubmissionForm
 from django.utils import timezone
 from acpypeserver.celery import app
 from django.contrib.auth.decorators import user_passes_test
 from celery import uuid
-import shutil
+from .serializers import SubmissionSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status as statushttp
+from django.http import Http404
+from rest_framework.decorators import api_view
+
 
 DATABASE_HOST = acpypesetting.DATABASES['default']['HOST']
 DATABASE_USER = acpypesetting.DATABASES['default']['USER']
@@ -41,7 +45,7 @@ class AuthRequiredMiddleware(object):
             return HttpResponseRedirect(reverse('/login/'))
             return None
 
-
+@login_required
 def Run(request):
     user_name = request.user.username
     if request.method == 'POST':
@@ -192,3 +196,52 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+"""
+REST function
+
+"""
+@api_view(['GET', 'POST'])
+def submit_list(request):
+    
+    if request.method == 'GET':
+        user_name = request.GET.get('user_name')
+        password = request.GET.get('password')
+        user = authenticate(request, username=user_name, password=password)
+        if user is not None:
+            submits = Submission.objects.filter(juser=user_name)
+            objects = SubmissionSerializer(submits, many=True)
+            return Response(objects.data)
+        else:
+            return Response(print(user_name),status=statushttp.HTTP_401_UNAUTHORIZED)
+
+    elif request.method == 'POST':
+        user_name = request.POST['user_name']
+        password = request.POST['password']
+        user = authenticate(request, username=user_name, password=password)
+        if user is not None:
+            form = SubmissionForm(request.POST, request.FILES)
+            if form.is_valid():
+                file = Submission(molecule_file=request.FILES['molecule_file'])
+                file.juser = user_name
+                file.jstatus = 'Running'
+                file.save()
+                molecule_file = request.FILES['molecule_file']
+                cm = request.POST.get('charge_method')
+                nc = request.POST.get('net_charge')
+                ml = request.POST.get('multiplicity')
+                at = request.POST.get('atom_type')
+                mf = molecule_file.name
+                mfs = str(mf)
+                task_id = uuid()
+                file.jcelery_id = task_id
+                name = ((str(mfs)).split('_')[0])
+                file.jname = ((str(name)).split('.')[0])
+                file.save()
+                process_task = process.apply_async((user_name, cm, nc, ml, at, mfs, task_id), task_id=task_id)
+                return Response(status=statushttp.HTTP_202_ACCEPTED)
+            else:
+                Response(status=statushttp.HTTP_406_NOT_ACCEPTABLE)
+        else:
+           return Response(status=statushttp.HTTP_401_UNAUTHORIZED)

@@ -16,9 +16,9 @@ class Submission(models.Model):
     jstatus = models.CharField(max_length=255, null=True, blank=True)
     jcelery_id = models.CharField(max_length=255, null=True, blank=True)
     jzipped = models.CharField(max_length=255, null=True, blank=True)
-    jlog = models.CharField(max_length=255)
+    jlog = models.CharField(max_length=255,blank=True)
     date = models.DateTimeField(default=timezone.now)
-    usr_folder = models.CharField(max_length=255)
+    usr_folder = models.CharField(max_length=255, blank=True)
 
     class Meta:
         ordering = ['-date']
