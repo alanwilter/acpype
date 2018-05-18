@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from django.core.mail import send_mail, EmailMessage
 from celery.task.schedules import crontab
 from celery.decorators import periodic_task
+import re
 
 DATABASE_HOST = settings.DATABASES['default']['HOST']
 DATABASE_USER = settings.DATABASES['default']['USER']
@@ -46,6 +47,11 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
         dir_name = '{}.acpype'.format(folder_name)
         shutil.make_archive(output_filename, 'zip', dir_name)
         job.jstatus = "Finished"
+        file = open (log_file, "r")
+        lines = file.read()
+        match = re.findall("Total time of execution:.*$",lines,re.MULTILINE)[0]
+        spl = match.split(':')[1]
+        job.runtime = spl
         job.jzipped = path_to_zipfile
         job.jlog = path_to_logfile
         job.usr_folder = user_folder
@@ -105,7 +111,7 @@ def buildcsv():
     csv_name = dt + 'submit_table'
     db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
     cursor = db.cursor()
-    sql = "SELECT `jname`, `molecule_file`, `charge_method`, `net_charge`, `multiplicity`, `atom_type`, `juser`, `jstatus` FROM `submit_submission`"
+    sql = "SELECT `jname`, `molecule_file`, `charge_method`, `net_charge`, `multiplicity`, `atom_type`, `juser`, `jstatus`, `runtime` FROM `submit_submission`"
     cursor.execute(sql)
     get_csv = cursor.fetchall()
     attachment_csv_file = io.StringIO()
