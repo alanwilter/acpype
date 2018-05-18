@@ -19,6 +19,7 @@ class Submission(models.Model):
     jlog = models.CharField(max_length=255,blank=True)
     date = models.DateTimeField(default=timezone.now)
     usr_folder = models.CharField(max_length=255, blank=True)
+    runtime = models.CharField(max_length=30,blank=True)
 
     class Meta:
         ordering = ['-date']
