@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'submit',
     'acpypeserver',
     'rest_framework',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 CONTENT_TYPES = ['mol2', 'mol', 'pdb']
 MAX_UPLOAD_SIZE = 1  # in MB
+GEOIP_PATH = BASE_DIR + '/geoip/'
