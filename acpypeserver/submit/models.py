@@ -1,9 +1,20 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
+from django.contrib.gis.geoip2 import GeoIP2
+
+g = GeoIP2()
+cty = g.country('google.com')
+ctyname = cty['country_name']
 
 my_choices1 = [('bcc', "bcc (default)"), ('gas', "gasteiger"), ('user', "user")]
 my_choices2 = [('gaff', "GAFF (default)"), ('gaff2', "GAFF2"), ('amber', "AMBER")]
 
+class MyUser(AbstractUser):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=254)
+    country = models.CharField(max_length=50, default=ctyname)
 
 class Submission(models.Model):
     jname = models.CharField(max_length=255, null=True, blank=True)
