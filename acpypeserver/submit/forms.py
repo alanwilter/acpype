@@ -5,18 +5,7 @@ from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from acpypeserver import settings
 from django.core.exceptions import ValidationError
-from submit.models import Submission
-from django_countries.fields import LazyTypedChoiceField
-from django.utils.translation import ugettext as _
-from django.contrib.gis.geoip2 import GeoIP2
-
-g = GeoIP2()
-cty = g.country('google.com')
-ctycode = cty['country_code']
-ctyname = cty['country_name']
-
-
-COUNTRIES = ((ctycode, _(ctyname)),)
+from submit.models import Submission, MyUser
 
 def file_size(molecule_file):  # add this to some file where you can import it from
         limit = settings.MAX_UPLOAD_SIZE * 1024 * 1024
@@ -28,10 +17,10 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-    country = LazyTypedChoiceField(choices=COUNTRIES, widget=forms.HiddenInput())
+    country = forms.CharField(required=False, widget=forms.HiddenInput())
 
     class Meta:
-        model = User
+        model = MyUser
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
 
