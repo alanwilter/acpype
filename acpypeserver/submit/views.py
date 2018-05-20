@@ -26,7 +26,7 @@ from rest_framework.response import Response
 from rest_framework import status as statushttp
 from django.http import Http404
 from rest_framework.decorators import api_view
-
+from rest_framework.renderers import JSONRenderer
 
 DATABASE_HOST = acpypesetting.DATABASES['default']['HOST']
 DATABASE_USER = acpypesetting.DATABASES['default']['USER']
@@ -77,13 +77,14 @@ def callStatusFunc(request):
     if request.method == 'POST':
         func = request.POST.get('func')
         jpid = request.POST.get('jpid')
-        db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-        cursor = pymysql.cursors.DictCursor(db)
-        sql = "SELECT `jzipped` FROM `submit_submission` WHERE `jcelery_id`=%s"
-        cursor.execute(sql, (jpid))
-        jzipped = cursor.fetchone()
-        db.close()
+        
         if func == 'download':
+            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+            cursor = pymysql.cursors.DictCursor(db)
+            sql = "SELECT `jzipped` FROM `submit_submission` WHERE `jcelery_id`=%s"
+            cursor.execute(sql, (jpid))
+            jzipped = cursor.fetchone()
+            db.close()
             zip_filename = jzipped['jzipped']
             zip_path = acpypesetting.MEDIA_ROOT
             os.chdir(acpypesetting.MEDIA_ROOT)
@@ -92,6 +93,7 @@ def callStatusFunc(request):
             name_zipfile = ((str(zip_filename)).split('_')[3])
             response['Content-Disposition'] = 'attachment; filename={}'.format(name_zipfile)
             return response
+
         elif func == 'log':
             db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
             cursor = pymysql.cursors.DictCursor(db)
@@ -145,6 +147,7 @@ def callStatusFunc(request):
                 os.remove(mol)
             else:
                 pass
+
         elif func == 'delete_db':
             db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
             cursor = pymysql.cursors.DictCursor(db)
@@ -152,6 +155,7 @@ def callStatusFunc(request):
             cursor.execute(sql, (jpid))
             db.commit()
             db.close()
+
     return HttpResponseRedirect('/status/')
 
 
@@ -206,13 +210,388 @@ REST function
 def submit_list(request):
     
     if request.method == 'GET':
+
         user_name = request.GET.get('user_name')
         password = request.GET.get('password')
+        func = request.GET.get('func')
+        celery_id = request.GET.get('celery_id')
+        mol_name = request.GET.get('molecule_file')
         user = authenticate(request, username=user_name, password=password)
+        
         if user is not None:
-            submits = Submission.objects.filter(juser=user_name)
-            objects = SubmissionSerializer(submits, many=True)
-            return Response(objects.data)
+            if func is None:
+                submits = Submission.objects.filter(juser=user_name, molecule_file=mol_name)
+                objects = SubmissionSerializer(submits, many=True)
+                content = JSONRenderer().render(objects.data)
+                return HttpResponse(content, content_type ='text/plain')
+
+            elif func == 'gaff_mol2':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_bcc_gaff.mol2'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'pkl':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'.pkl'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'ac_frcmod':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_AC.frcmod'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'ac_inpcrd':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_AC.inpcrd'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'ac_prmtop':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_AC.prmtop'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'charmm_inp':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_CHARMM.inp'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'ac_lib':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_bcc_gaff.mol2'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'charmm_prm':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_CHARMM.prm'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'charmm_rtf':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_CHARMM.rtf'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'cns_inp':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_CNS.inp'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'cns_par':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_CNS.par'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'cns_top':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_CNS.top'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'gmx_gro':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_GMX.gro'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    readFile = open(fname, "r")
+                    fileText = readFile.read();
+                    readFile.close()
+                    db.close()
+                    print(fileText)
+                else:
+                    print('Not found')
+
+            elif func == 'gmx_itp':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_GMX.itp'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'gmx_top':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_GMX.top'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'gmx_opls_itp':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_GMX_OPLS.itp'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'gmx_opls_top':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_GMX_OPLS.top'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'new_pdb':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/'+mol_name+'_NEW.pdb'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+
+            elif func == 'leap_log':
+                db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
+                cursor = pymysql.cursors.DictCursor(db)
+                sql = "SELECT `molecule_file`, `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
+                cursor.execute(sql, (celery_id))
+                jopen = cursor.fetchone()
+                fmol = jopen['molecule_file']
+                fold = jopen['usr_folder']
+                mfs = str(fmol)
+                name = ((str(mfs)).split('_')[0])
+                mol_name = ((str(name)).split('.')[0])
+                fname = fold+'/'+mol_name+'.acpype/leap.log'
+                os.chdir(acpypesetting.MEDIA_ROOT)
+                if os.path.exists(fname):
+                    with open(fname) as f:
+                        return HttpResponse(f, content_type ='text/plain')
+                else:
+                    return Response('Not found')
+            else:
+                return Response('Function not found')
+
+
         else:
             return Response(print(user_name),status=statushttp.HTTP_401_UNAUTHORIZED)
 
