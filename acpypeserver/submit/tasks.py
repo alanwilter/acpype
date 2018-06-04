@@ -122,17 +122,17 @@ def buildcsv():
     email.attach('attachment_file_name.csv', attachment_csv_file.getvalue(), 'text/csv')
     email.send(fail_silently=False)
     dt = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
-    csv_name = dt + 'submit_table'
+    csv_name = dt + 'user_table'
     db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-    cursor = db.cursor()
-    sql = "SELECT `jname`, `molecule_file`, `charge_method`, `net_charge`, `multiplicity`, `atom_type`, `juser`, `jstatus`, `runtime` FROM `submit_submission`"
+    cursor = pymysql.cursors.DictCursor(db)
+    sql = "SELECT `juser`, `country` FROM `submit_myuser`"
     cursor.execute(sql)
     get_csv = cursor.fetchall()
     attachment_csv_file = io.StringIO()
     writer = csv.writer(attachment_csv_file)
     for row in get_csv:
         writer.writerow(row)
-    email = EmailMessage('ACPYPE Server - Submit Table', 'CSV attachment. \nACPYPE Server Team', 'acpypeserver@gmail.com', ['acpypeserver@gmail.com'])
+    email = EmailMessage('ACPYPE Server - User Table', 'CSV attachment. \nACPYPE Server Team', 'acpypeserver@gmail.com', ['acpypeserver@gmail.com'])
     email.attach('attachment_file_name.csv', attachment_csv_file.getvalue(), 'text/csv')
     email.send(fail_silently=False)
 
