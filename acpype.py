@@ -72,7 +72,7 @@ if sys.version_info < (3, 2):
     sys.exit(1)
 
 year = datetime.today().year
-tag = "2018-04-24T16:44:17UTC"
+tag = "2018-09-20T16:44:17UTC"
 
 lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
@@ -2753,11 +2753,11 @@ Usage: antechamber -i  input file name
                 line = \
                     "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % \
                     (id1, id2, id3, id4, 3, c0, c1, c2, c3, c4, c5) \
-                    + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
+                    +" ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
                 oline = \
                     "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % \
                     (id1, id2, id3, id4, 3, c0, c1, c2, c3, c4, c5) \
-                    + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
+                    +" ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
                 temp.append(line)
                 otemp.append(oline)
             temp.sort()
@@ -3395,26 +3395,26 @@ class ACTopol(AbstractTopol):
         self.acMol2FileName = acMol2FileName
         self.charmmBase = '%s_CHARMM' % base
         # check for which version of antechamber
-        if 'amber10' in self.acExe:
-            if qprog == 'sqm':
-                self.printWarn("SQM is not implemented in AmberTools 1.2")
-                self.printWarn("Setting mopac for antechamber")
-                qprog = 'mopac'
-            elif qprog == 'divcon':
-                if not os.path.exists(os.path.join(os.path.dirname(self.acExe), qprog)):
-                    self.printWarn("DIVCON is not installed")
-                    self.printWarn("Setting mopac for antechamber")
-                    qprog = 'mopac'
-        elif 'amber1' in self.acExe:
-            if qprog == 'divcon':
-                self.printWarn("DIVCON is not implemented in AmberTools > 1.3 anymore")
-                self.printWarn("Setting sqm for antechamber")
-                qprog = 'sqm'
-            elif qprog == 'mopac':
-                if not os.path.exists(os.path.join(os.path.dirname(self.acExe), qprog)):
-                    self.printWarn("MOPAC is not installed")
-                    self.printWarn("Setting sqm for antechamber")
-                    qprog = 'sqm'
+#         if 'amber10' in self.acExe:
+#             if qprog == 'sqm':
+#                 self.printWarn("SQM is not implemented in AmberTools 1.2")
+#                 self.printWarn("Setting mopac for antechamber")
+#                 qprog = 'mopac'
+#             elif qprog == 'divcon':
+#                 if not os.path.exists(os.path.join(os.path.dirname(self.acExe), qprog)):
+#                     self.printWarn("DIVCON is not installed")
+#                     self.printWarn("Setting mopac for antechamber")
+#                     qprog = 'mopac'
+#         elif 'amber1' in self.acExe:
+#             if qprog == 'divcon':
+#                 self.printWarn("DIVCON is not implemented in AmberTools > 1.3 anymore")
+#                 self.printWarn("Setting sqm for antechamber")
+#                 qprog = 'sqm'
+#             elif qprog == 'mopac':
+#                 if not os.path.exists(os.path.join(os.path.dirname(self.acExe), qprog)):
+#                     self.printWarn("MOPAC is not installed")
+#                     self.printWarn("Setting sqm for antechamber")
+#                     qprog = 'sqm'
 #        else:
 #            self.printWarn("Old version of antechamber. Strongly consider upgrading to AmberTools")
 #            self.printWarn("Setting mopac for antechamber")
