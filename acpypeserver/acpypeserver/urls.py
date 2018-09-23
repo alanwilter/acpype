@@ -33,7 +33,6 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^status/$', login_required(views.status.as_view()), name='status'),
     url (r'^adminstatus/$', user_passes_test(lambda u: u.is_superuser, login_url='status')(views.adminstatus.as_view()), name='adminstatus'),
-    url(r'submission', views.submit_list),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
