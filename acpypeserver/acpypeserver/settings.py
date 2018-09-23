@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'submit',
     'acpypeserver',
-    'rest_framework',
     'django_countries',
 ]
 
@@ -129,7 +128,7 @@ LOGIN_REDIRECT_URL = ('..')
 LOGIN_URL = ('login')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'acpypeserver@gmail.com'
-EMAIL_HOST_PASSWORD = '3339Luc1642'
+EMAIL_HOST_PASSWORD = 'secret'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 CONTENT_TYPES = ['mol2', 'mol', 'pdb']
