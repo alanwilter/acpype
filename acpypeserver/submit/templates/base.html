@@ -1,0 +1,79 @@
+{% autoescape off %}
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/base.css' %}"/>
+    <link rel="Shortcut Icon" href="{% static 'images/favicon.ico' %}"/>
+    <script type="text/javascript" src="{% static 'js/CollapsedFieldsets.js' %}"></script>
+  </head>
+  <body>
+<div class="outer-container">
+    <div class="header">
+        <div class="title">
+            <table>
+            <tr><td><span class="homesite"><a href="http://www.ccpn.ac.uk"><img src="{% static 'images/acpype_logo.png' %}" alt="logo"/></a></span></td></tr>
+            <tr><td colspan="2"><div class="login">
+            {% if request.user.is_authenticated %} <b> Welcome </b> '{{ request.user.username }}'   [<a href="{% url 'logout' %}">Logout</a>]
+				{% else %}<a href="{% url 'login' %}">Login</a>{% endif %}</li>
+            </div></td></tr>
+            </table>
+        </div>
+    </div>
+    <div class="path">
+    </div>
+    <div class="inner-container">
+    <div class="main">
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="navigation">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+	            <li><a href="{% url 'submit' %}">Submit</a></li>
+	            {% if request.user.is_superuser %}
+	            <li><a href="{% url 'adminstatus' %}">Status</a></li>
+                {% else %}
+	            <li><a href="{% url 'status' %}">Status</a></li>
+	            {% endif %}
+	        </ul>
+            
+        </div>
+        <div class="clearer">&nbsp;</div>
+    </div>
+    </div>
+    <div class="footer">
+    <p>ACPYPE Server Team &copy; 2018</p>
+    </div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7430162-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!--[if IE 6]>
+<script type="text/javascript">
+    /*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; }
+    var IE6UPDATE_OPTIONS = {
+        icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+    }
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+  </body>
+</html>
+
+{% endautoescape %}
