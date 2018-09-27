@@ -124,6 +124,7 @@ GROMACS < v.4.5
 grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr
 mdrun -v -deffnm md
 vmd md.gro md.trr
+```
 
 GROMACS > v.5.0
 ```bash
@@ -144,6 +145,8 @@ GROMACS > v.5.0
 ```bash
 grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
 gmx mdrun -ntmpi 2 -v -deffnm em
+
+```
 
 #### To Emulate amb2gmx.pl
 
