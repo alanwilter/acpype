@@ -68,12 +68,12 @@ alanwilter _at_ gmail _dot_ com
 ##### Introduction
 
 To run *acpype* with its all functionalities, you need *ANTECHAMBER* from package
-[http://amber.scripps.edu/#AmberTools AmberTools] and
-[http://openbabel.org/wiki/Main_Page Open Babel] if your input files are of PDB
+[AmberTools](http://ambermd.org/) and
+[Open Babel](http://openbabel.org/wiki/Main_Page) if your input files are of PDB
 format.
 
 However, if one wants *acpype* just to emulate *amb2gmx.pl*, one needs nothing
-at all but *[http://www.python.org Python]*.
+at all but *[Python](http://www.python.org)*.
 
 At the moment, is possible to download *acpype* using git:
 ```bash
