@@ -75,7 +75,7 @@ format.
 However, if one wants *acpype* just to emulate *amb2gmx.pl*, one needs nothing
 at all but *[http://www.python.org Python]*.
 
-At the moment, *acpype* is for download via git:
+At the moment, is possible to download *acpype* using git:
 ```bash
 git clone https://github.com/alanwilter/acpype.git
 ```
@@ -133,8 +133,8 @@ mdrun -v -deffnm md
 vmd md.gro md.trr
 ```
 ###### With openmpi, for a dual core
-```bash
 GROMACS < v.4.5
+```bash
 grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
 om-mpirun -n 2 mdrun_mpi -v -deffnm em
 grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr
