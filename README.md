@@ -79,12 +79,6 @@ At the moment, is possible to download *acpype* using git:
 ```bash
 git clone https://github.com/alanwilter/acpype.git
 ```
-
-Yet, it is possible to install using Anaconda package Python 3.6:
-
-```bash
-conda install -c acpype -c openbabel acpype
-```
 ##### To Test
 
 At folder *acpype/test*, type:
@@ -109,11 +103,27 @@ At folder acpype, type:
 
 And re-login or start another shell session.
 
+
+Yet, it is possible to install using Anaconda package Python 3.6:
+
+```bash
+conda install -c acpype -c openbabel acpype
+```
+
 ##### To Verify with GMX
+GROMACS < v.4.5
 ```bash
 cd FFF.acpype/
 grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
 mdrun -v -deffnm em
+# And if you have VMD
+vmd em.gro em.trr
+```
+GROMACS > v.5.0
+```bash
+cd FFF.acpype/
+gmx grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
+gmx mdrun -v -deffnm em
 # And if you have VMD
 vmd em.gro em.trr
 ```
@@ -129,7 +139,7 @@ vmd md.gro md.trr
 GROMACS > v.5.0
 ```bash
 gmx grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr
-mdrun -v -deffnm md
+gmx mdrun -v -deffnm md
 vmd md.gro md.trr
 ```
 ###### With openmpi, for a dual core
@@ -143,7 +153,7 @@ vmd md.gro md.trr
 ```
 GROMACS > v.5.0
 ```bash
-grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
+gmx grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
 gmx mdrun -ntmpi 2 -v -deffnm em
 
 ```
