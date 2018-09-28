@@ -17,7 +17,7 @@
     <div class="header">
         <div class="title">
             <table>
-            <tr><td><span class="homesite"><a href="http://www.ccpn.ac.uk"><img src="{% static 'images/acpype_logo.png' %}" alt="logo"/></a></span></td></tr>
+            <tr><td><span class="homesite"><a href="https://www.ccpn.ac.uk/"><img src="{% static 'images/acpype_logo.png' %}" alt="logo"/></a></span></td></tr>
             <tr><td colspan="2"><div class="login">
             {% if request.user.is_authenticated %} <b> Welcome </b> '{{ request.user.username }}'   [<a href="{% url 'logout' %}">Logout</a>]
 				{% else %}<a href="{% url 'login' %}">Login</a>{% endif %}</li>
@@ -50,7 +50,7 @@
     </div>
     </div>
     <div class="footer">
-    <p>ACPYPE Server Team &copy; 2018</p>
+    <p>ACPYPE Server Team {% now "Y" %}</p>
     </div>
 
 <script type="text/javascript">
