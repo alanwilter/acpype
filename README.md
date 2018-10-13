@@ -107,7 +107,7 @@ And re-login or start another shell session.
 Yet, it is possible to install using Anaconda package Python 3.6:
 
 ```bash
-conda install -c acpype -c openbabel acpype
+conda install -c acpype -c ambermd acpype
 ```
 
 ##### To Verify with GMX
