@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # pylint: disable=global-statement,broad-except,fixme,too-many-instance-attributes,too-many-locals,too-many-nested-blocks,too-many-statements,too-many-statements,too-many-branches,too-many-lines,too-few-public-methods,too-many-arguments,too-many-public-methods
 
 """
