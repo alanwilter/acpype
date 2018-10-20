@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^status/$', login_required(views.status.as_view()), name='status'),
     url (r'^adminstatus/$', user_passes_test(lambda u: u.is_superuser, login_url='status')(views.adminstatus.as_view()), name='adminstatus'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
 path('accounts/login/', auth_views.LoginView.as_view()),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
