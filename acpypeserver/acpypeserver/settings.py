@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'acpype_db',
         'USER': 'acpype_mysql',
-        'PASSWORD': '@Cpype18',
+        'PASSWORD': 'secret',
         'HOST': 'localhost',
         'PORT': '',
     }
