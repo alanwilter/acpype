@@ -53,9 +53,13 @@ else
              {% ifequal job.jstatus 'Cancelled' %}
                 <button type="submit" name="func" value = "delete" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete </button>
              {% endifequal %}
+             {% ifequal job.jstatus 'Queued' %}
+                <button type="submit" name="func" value = "delete" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete </button>
+             {% endifequal %}
              {% ifequal job.jstatus 'Deleted' %}
                 <button type="submit" name="func" value = "delete_db" onclick="return confirmSubmit()"><span class="glyphicon glyphicon-remove"></span> Delete_DB </button>
              {% endifequal %}</p>
+
             </form></td></tr>
             {% ifequal job.jstatus 'Running' %}<tr><td colspan="3"><a style="font-size: 12px; color:#646464; font-style:italic;">Running for {{ job.date|timesince }}</a></td></tr>{% endifequal %}
         </table>
