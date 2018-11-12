@@ -29,7 +29,8 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
     shutil.move(path_to_molfile, path_to_run)
     os.chdir(path_to_run)
     folder_name = name_file
-    job = Submission.objects.filter(jcelery_id=task_id).get(jstatus="Running")
+    job = Submission.objects.filter(jcelery_id=task_id).get(jstatus="Queued")
+    job.jstatus = "Running"
     job.charge_method = cm
     job.net_charge = nc
     job.multiplicity = ml
