@@ -58,7 +58,7 @@ def Run(request):
         if form.is_valid():
             file = Submission(molecule_file=request.FILES['molecule_file'])
             file.juser = user_name
-            file.jstatus = 'Running'
+            file.jstatus = 'Queued'
             file.save()
             molecule_file = request.FILES['molecule_file']
             cm = request.POST.get('charge_method')
@@ -177,7 +177,7 @@ class status(ListView):
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        data['is_running'] = Submission.objects.filter(juser=self.request.user, jstatus='Running').exists()
+        data['is_running'] = Submission.objects.filter(juser=self.request.user, jstatus='Running').exists() or Submission.objects.filter(juser=self.request.user, jstatus='Queued').exists()
         return data
 
     def get_queryset(self):
