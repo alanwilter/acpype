@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.filter
 def statusColor(value):
-    color = {'Deleted':'orange', 'Running':'blue', 'Failed':'red',
+    color = {'Deleted':'orange', 'Queued':'black','Running':'blue', 'Failed':'red',
               'Cancelled':'magenta', 'Finished':'green'}
     return color.get(value, 'black')
 
