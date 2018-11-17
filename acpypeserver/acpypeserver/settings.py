@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'acpype_db',
         'USER': 'acpype_mysql',
-        'PASSWORD': 'secret',
+        'PASSWORD': '@Cpype18',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -119,6 +119,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+STATIC_ROOT = BASE_DIR
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -130,7 +131,7 @@ LOGIN_URL = ('login')
 LOGOUT_REDIRECT_URL = ('home')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'acpypeserver@gmail.com'
-EMAIL_HOST_PASSWORD = 'secret'
+EMAIL_HOST_PASSWORD = '3339Luc1642'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 CONTENT_TYPES = ['mol2', 'mol', 'pdb']
