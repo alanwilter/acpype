@@ -8,15 +8,6 @@ from django.core.mail import send_mail, EmailMessage
 from celery.task.schedules import crontab
 from celery.decorators import periodic_task
 import re
-import smtplib
-import mimetypes
-from email.mime.multipart import MIMEMultipart
-from email import encoders
-from email.message import Message
-from email.mime.audio import MIMEAudio
-from email.mime.base import MIMEBase
-from email.mime.image import MIMEImage
-from email.mime.text import MIMEText
 
 DATABASE_HOST = settings.DATABASES['default']['HOST']
 DATABASE_USER = settings.DATABASES['default']['USER']
