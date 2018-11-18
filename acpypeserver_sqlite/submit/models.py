@@ -2,9 +2,13 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.contrib.gis.geoip2 import GeoIP2
+from urllib.request import urlopen
+import json
+
+data = json.loads(urlopen("http://ip.jsontest.com/").read())
 
 g = GeoIP2()
-cty = g.country('google.com')
+cty = g.country(data["ip"])
 ctyname = cty['country_name']
 
 my_choices1 = [('bcc', "bcc (default)"), ('gas', "gasteiger"), ('user', "user")]
