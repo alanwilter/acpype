@@ -1,13 +1,22 @@
 from __future__ import absolute_import, unicode_literals
-import shutil, os, os.path, csv, io, pymysql.cursors, django.contrib.auth
+import shutil, os, os.path, csv, io, django.contrib.auth
 from acpypeserver import settings
 from celery import shared_task, app
-from .models import Submission
+from .models import Submission, MyUser
 from datetime import datetime, timedelta
 from django.core.mail import send_mail, EmailMessage
 from celery.task.schedules import crontab
 from celery.decorators import periodic_task
 import re
+import smtplib
+import mimetypes
+from email.mime.multipart import MIMEMultipart
+from email import encoders
+from email.message import Message
+from email.mime.audio import MIMEAudio
+from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
+from email.mime.text import MIMEText
 
 DATABASE_HOST = settings.DATABASES['default']['HOST']
 DATABASE_USER = settings.DATABASES['default']['USER']
@@ -57,19 +66,13 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
         job.jlog = path_to_logfile
         job.usr_folder = user_folder
         job.save()
-
-        db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-        cursor = pymysql.cursors.DictCursor(db)
-        sql = "SELECT `email` FROM `submit_myuser` WHERE `username`=%s"
-        cursor.execute(sql, (user_name))
-        get_email = cursor.fetchone()
-        db.close()
-        user_email = get_email['email']
+        eml = MyUser.objects.get(username=user_name)
+        user_email = eml.email
         message = "Your Job '{}', has finished in {} \n\n ACPYPE Server Team ".format(name_file, dt_email)
         send_mail(
         'ACPYPE Server',
         message,
-        'from@example.com',
+        'acpypeserver@gmail.com',
         [user_email],
         fail_silently=False,
         )
@@ -89,13 +92,8 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
             os.remove(mfs)
         else:
             pass
-        db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-        cursor = pymysql.cursors.DictCursor(db)
-        sql = "SELECT `email` FROM `auth_user` WHERE `username`=%s"
-        cursor.execute(sql, (str(user_name)))
-        get_email = cursor.fetchone()
-        db.close()
-        user_email = get_email['email']
+        eml = MyUser.objects.get(username=user_name)
+        user_email = eml.email
         message = "Your Job '{}', has failed. \n\n ACPYPE Server Team ".format(name_file)
         send_mail(
         'ACPYPE Server',
@@ -106,36 +104,28 @@ def process(user_name, cm, nc, ml, at, mfs, task_id):
         )
 
 
-@periodic_task(run_every=(crontab(hour=7, minute=30, day_of_week=1)), name="buildcsv", ignore_result=True)
+@periodic_task(run_every=(crontab(minute=0, hour=0, day_of_week='sunday')), name="buildcsv", ignore_result=True)
 def buildcsv():
     dt = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
-    csv_name = dt + 'submit_table'
-    db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-    cursor = db.cursor()
-    sql = "SELECT `jname`, `molecule_file`, `charge_method`, `net_charge`, `multiplicity`, `atom_type`, `juser`, `jstatus`, `runtime` FROM `submit_submission`"
-    cursor.execute(sql)
-    get_csv = cursor.fetchall()
+    csv_name = dt + '_submit_table.csv'
     attachment_csv_file = io.StringIO()
     writer = csv.writer(attachment_csv_file)
-    for row in get_csv:
-        writer.writerow(row)
-    email = EmailMessage('ACPYPE Server - Submit Table', 'CSV attachment. \nACPYPE Server Team', 'acpypeserver@gmail.com', ['acpypeserver@gmail.com'])
-    email.attach('attachment_file_name.csv', attachment_csv_file.getvalue(), 'text/csv')
-    email.send(fail_silently=False)
-    dt = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
-    csv_name = dt + 'user_table'
-    db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-    cursor = pymysql.cursors.DictCursor(db)
-    sql = "SELECT `juser`, `country` FROM `submit_myuser`"
-    cursor.execute(sql)
-    get_csv = cursor.fetchall()
-    attachment_csv_file = io.StringIO()
-    writer = csv.writer(attachment_csv_file)
-    for row in get_csv:
-        writer.writerow(row)
-    email = EmailMessage('ACPYPE Server - User Table', 'CSV attachment. \nACPYPE Server Team', 'acpypeserver@gmail.com', ['acpypeserver@gmail.com'])
-    email.attach('attachment_file_name.csv', attachment_csv_file.getvalue(), 'text/csv')
-    email.send(fail_silently=False)
+    
+    for obj in Submission.objects.all():
+        writer.writerow([obj.jname, obj.charge_method,obj.net_charge,obj.multiplicity,obj.atom_type,obj.jstatus,obj.date,obj.runtime])
+
+    csv_name2 = dt + '_user_table.csv'
+    attachment_csv_file2 = io.StringIO()
+    writer2 = csv.writer(attachment_csv_file2)
+    
+    for obj in MyUser.objects.all():
+        writer2.writerow([obj.username, obj.first_name,obj.last_name,obj.email,obj.country])
+    
+      
+    message = EmailMessage('Acpype Server - Tables', 'Tables', 'acpypeserver@gmail.com', ['acpypeserver@gmail.com'])
+    message.attach(csv_name, attachment_csv_file.getvalue(), 'text/csv')
+    message.attach(csv_name2, attachment_csv_file2.getvalue(), 'text/csv')
+    message.send(fail_silently=False)
 
 @periodic_task(run_every=(crontab(minute='*')), name="cleanup", ignore_result=True)
 def cleanup():
