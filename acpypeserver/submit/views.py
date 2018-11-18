@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os, os.path, pymysql.cursors, shutil
+import os, os.path, shutil
 from django.shortcuts import render, render_to_response
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
@@ -12,7 +12,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django import forms
-from acpypeserver import settings as acpypesetting
 from submit.models import Submission
 from .tasks import process
 from .forms import SignUpForm, SubmissionForm
@@ -32,12 +31,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from submit.models import Submission, MyUser
 from django.core.mail import EmailMessage
-
-DATABASE_HOST = acpypesetting.DATABASES['default']['HOST']
-DATABASE_USER = acpypesetting.DATABASES['default']['USER']
-DATABASE_PASSWORD = acpypesetting.DATABASES['default']['PASSWORD']
-DATABASE_NAME = acpypesetting.DATABASES['default']['NAME']
-
+from acpypeserver import settings as acpypesetting
 
 def home(request):
         return render(request, 'index.html')
@@ -84,48 +78,33 @@ def callStatusFunc(request):
         jpid = request.POST.get('jpid')
         
         if func == 'download':
-            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-            cursor = pymysql.cursors.DictCursor(db)
-            sql = "SELECT `jzipped` FROM `submit_submission` WHERE `jcelery_id`=%s"
-            cursor.execute(sql, (jpid))
-            jzipped = cursor.fetchone()
-            db.close()
-            zip_filename = jzipped['jzipped']
+            zip_name = Submission.objects.get(jcelery_id=jpid)
+            zip_filename = zip_name.jzipped
             zip_path = acpypesetting.MEDIA_ROOT
             os.chdir(acpypesetting.MEDIA_ROOT)
             zipfile = open(zip_filename, 'rb')
             response = HttpResponse(zipfile, content_type='application/zip')
-            name_zipfile = ((str(zip_filename)).split('_')[3])
+            name_zipfile = ((str(zip_filename)).split('_')[4] + '.zip')
             response['Content-Disposition'] = 'attachment; filename={}'.format(name_zipfile)
             return response
 
         elif func == 'log':
-            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-            cursor = pymysql.cursors.DictCursor(db)
-            sql = "SELECT `jlog`, `juser`, `molecule_file`, `date` FROM `submit_submission` WHERE `jcelery_id`=%s"
-            cursor.execute(sql, (jpid))
-            jlog = cursor.fetchone()
-            fname = jlog['jlog']
-            fuser = jlog['juser']
-            fmol = jlog['molecule_file']
-            fdata = jlog['date']
+            log = Submission.objects.get(jcelery_id=jpid)
+            fname = log.jlog
+            fuser = log.juser
+            fmol = log.molecule_file
+            fdata = log.date
             fdata_str = fdata.strftime(' %a %b %d %H:%M %Y')
             os.chdir(acpypesetting.MEDIA_ROOT)
             pageFile = open(fname, "r")
             pageText = pageFile.read();
             pageFile.close()
-            db.close()
-            job = fuser + " | " + fmol + " | " + fdata_str
+            job = str(fuser) + " | " + str(fmol) + " | " + str(fdata_str)
             return render_to_response('view_log.html', {'file':pageText, 'jobId':job})
 
         elif func == 'delete':
-            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-            cursor = pymysql.cursors.DictCursor(db)
-            sql = "SELECT `usr_folder` FROM `submit_submission` WHERE `jcelery_id`=%s"
-            cursor.execute(sql, (jpid))
-            user_folder = cursor.fetchone()
-            folder_name = user_folder['usr_folder']
             job = Submission.objects.get(jcelery_id=jpid)
+            folder_name = job.usr_folder
             job.jstatus = "Deleted"
             job.save()
             os.chdir(acpypesetting.MEDIA_ROOT)
@@ -136,14 +115,9 @@ def callStatusFunc(request):
                 pass
 
         elif func == 'cancel':
-            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-            cursor = pymysql.cursors.DictCursor(db)
-            sql = "SELECT `molecule_file` FROM `submit_submission` WHERE `jcelery_id`=%s"
-            cursor.execute(sql, (jpid))
-            molecule_file = cursor.fetchone()
-            mol = molecule_file['molecule_file']
-            app.control.revoke(jpid)
             job = Submission.objects.get(jcelery_id=jpid)
+            mol = job.molecule_file
+            app.control.revoke(jpid)
             job.jstatus = "Cancelled"
             job.save()
             os.chdir(acpypesetting.MEDIA_ROOT)
@@ -154,13 +128,8 @@ def callStatusFunc(request):
                 pass
 
         elif func == 'delete_db':
-            db = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, passwd=DATABASE_PASSWORD, db=DATABASE_NAME)
-            cursor = pymysql.cursors.DictCursor(db)
-            sql = "DELETE FROM `submit_submission` WHERE `jcelery_id`= %s"
-            cursor.execute(sql, (jpid))
-            db.commit()
-            db.close()
-
+            Submission.objects.get(jcelery_id=jpid).delete()
+            return HttpResponseRedirect('/adminstatus/')
     return HttpResponseRedirect('/status/')
 
 
