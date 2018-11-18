@@ -84,7 +84,7 @@ def callStatusFunc(request):
             os.chdir(acpypesetting.MEDIA_ROOT)
             zipfile = open(zip_filename, 'rb')
             response = HttpResponse(zipfile, content_type='application/zip')
-            name_zipfile = ((str(zip_filename)).split('_')[4] + '.zip')
+            name_zipfile = ((str(zip_filename)).split('_')[4])
             response['Content-Disposition'] = 'attachment; filename={}'.format(name_zipfile)
             return response
 
