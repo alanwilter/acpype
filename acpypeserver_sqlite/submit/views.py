@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os, os.path, sqlite3, shutil
+import os, os.path, shutil
 from django.shortcuts import render, render_to_response
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
@@ -12,7 +12,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django import forms
-from acpypeserver import settings as acpypesetting
 from submit.models import Submission
 from .tasks import process
 from .forms import SignUpForm, SubmissionForm
@@ -32,12 +31,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from submit.models import Submission, MyUser
 from django.core.mail import EmailMessage
-
-DATABASE_HOST = acpypesetting.DATABASES['default']['HOST']
-DATABASE_USER = acpypesetting.DATABASES['default']['USER']
-DATABASE_PASSWORD = acpypesetting.DATABASES['default']['PASSWORD']
-DATABASE_NAME = acpypesetting.DATABASES['default']['NAME']
-
+from acpypeserver import settings as acpypesetting
 
 def home(request):
         return render(request, 'index.html')
@@ -90,7 +84,7 @@ def callStatusFunc(request):
             os.chdir(acpypesetting.MEDIA_ROOT)
             zipfile = open(zip_filename, 'rb')
             response = HttpResponse(zipfile, content_type='application/zip')
-            name_zipfile = ((str(zip_filename)).split('_')[3])
+            name_zipfile = ((str(zip_filename)).split('_')[4] + '.zip')
             response['Content-Disposition'] = 'attachment; filename={}'.format(name_zipfile)
             return response
 
