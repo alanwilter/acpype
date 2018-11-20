@@ -107,11 +107,11 @@ And re-login or start another shell session.
 Yet, it is possible to install using Anaconda package Python 3.6:
 
 ```bash
-conda install -c acpype -c ambermd acpype
+conda install -c acpype acpype
 ```
 
 ##### To Verify with GMX
-GROMACS < v.4.5
+GROMACS < v.5.0
 ```bash
 cd FFF.acpype/
 grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
@@ -129,7 +129,7 @@ vmd em.gro em.trr
 ```
 
 ##### For MD, do:
-GROMACS < v.4.5
+GROMACS < v.5.0
 ```bash
 grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr
 mdrun -v -deffnm md
@@ -143,7 +143,7 @@ gmx mdrun -v -deffnm md
 vmd md.gro md.trr
 ```
 ###### With openmpi, for a dual core
-GROMACS < v.4.5
+GROMACS < v.5.0
 ```bash
 grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
 om-mpirun -n 2 mdrun_mpi -v -deffnm em
