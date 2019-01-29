@@ -50,7 +50,9 @@ For Antechamber, please cite:
 If you use this code, I am glad if you cite:
 
 > SOUSA DA SILVA, A. W. & VRANKEN, W. F.
-> ACPYPE - AnteChamber PYthon Parser interfacE. Manuscript submitted.
+ACPYPE - AnteChamber PYthon Parser interfacE.
+BMC Research Notes 2012, 5:367 doi:10.1186/1756-0500-5-367
+http://www.biomedcentral.com/1756-0500/5/367
 
 > BATISTA, P. R.; WILTER, A.; DURHAM, E. H. A. B. & PASCUTTI, P. G. Molecular
 Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
