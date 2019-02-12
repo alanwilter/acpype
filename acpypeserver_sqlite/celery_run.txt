@@ -1,1 +1,0 @@
-celery -A acpypeserver worker --loglevel=info --concurrency=1
