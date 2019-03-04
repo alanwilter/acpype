@@ -72,7 +72,7 @@ if sys.version_info < (3, 2):
     sys.exit(1)
 
 year = datetime.today().year
-tag = "2018-09-20T16:44:17UTC"
+tag = "2019-03-04T18:44:00UTC"
 
 lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
@@ -602,7 +602,10 @@ class Topology_14(object):
                       'lennard_jones_acoef',
                       'lennard_jones_bcoef']
         for i, _item in enumerate(attributes):
-            setattr(self, attributes[i], self.p7_array_read(buff, flag_strings[i]))
+            try:
+                setattr(self, attributes[i], self.p7_array_read(buff, flag_strings[i]))
+            except Exception:
+                print('Skipping non-existent attributes', attributes[i], flag_strings[i])
 
     @staticmethod
     def skipline(buff, index):
@@ -685,8 +688,8 @@ class Topology_14(object):
         jdefault = gmx_init_top.index("\n[ atomtypes ]")
         ipair = gmx_init_top.index("[ pairs ]")
         jpair = gmx_init_top.index("\n[ angles ]")
-        init_buff = ("[ defaults ]\n; nbfunc        comb-rule       gen-pairs       \n1               2               no              \n")
-        return (init_buff +
+        init_buff = ("\n\n[ defaults ]\n; nbfunc        comb-rule       gen-pairs       \n1               2               no              \n")
+        return (gmx_init_top.splitlines()[0] + init_buff +
                 gmx_init_top[jdefault:ipair] +
                 pair_buff +
                 gmx_init_top[jpair:len(gmx_init_top)])
@@ -3473,7 +3476,7 @@ class MolTopol(ACTopol):
 #             self.printWarn("Consider installing http://openbabel.org")
 
         self.xyzFileData = open(acFileXyz, 'r').readlines()
-        self.topFileData = open(acFileTop, 'r').readlines()
+        self.topFileData = [ x for x in open(acFileTop, 'r').readlines() if not x.startswith('%COMMENT') ]
         self.topo14Data = Topology_14()
         self.topo14Data.read_amber_topology(''.join(self.topFileData))
         self.printDebug("prmtop and inpcrd files loaded")
