@@ -478,7 +478,7 @@ def parmMerge(fdat1, fdat2, frcmod=False):
         return mname
 
     dat2 = splitBlock(open(fdat2).readlines())
-    for kk in dat1.keys()[:8]:
+    for kk in list(dat1)[:8]:
         if kk == 0:
             lines = dat1[kk][1:-1] + dat2[kk][1:-1] + ['']
             for line in lines:
@@ -509,10 +509,10 @@ def parmMerge(fdat1, fdat2, frcmod=False):
             lines = dat1[kk][:-1] + dat2[kk][1:-1] + ['']
             for line in lines:
                 mdat.append(line)
-    for kk in dat1.keys()[8:]:
+    for kk in list(dat1)[8:]:
         for line in dat1[kk]:
             mdat.append(line)
-    for kk in dat2.keys()[9:]:
+    for kk in list(dat2)[9:]:
         for line in dat2[kk]:
             mdat.append(line)
     for line in mdat:
@@ -2601,7 +2601,7 @@ Usage: antechamber -i  input file name
             resid = atom.resid
             resname = self.residueLabel[resid]
             if not self.direct:
-                if resname in list(ionsDict.keys()) + ['WAT']:
+                if resname in list(ionsDict) + ['WAT']:
                     break
             aName = atom.atomName
             aType = atom.atomType.atomTypeName
