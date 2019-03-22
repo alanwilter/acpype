@@ -3323,7 +3323,7 @@ class ACTopol(AbstractTopol):
     def __init__(self, inputFile, chargeType='bcc', chargeVal=None,
                  multiplicity='1', atomType='gaff', force=False, basename=None,
                  debug=False, outTopol='all', engine='tleap', allhdg=False,
-                 timeTol=36000, qprog='sqm', ekFlag=None, verbose=True,
+                 timeTol=10800, qprog='sqm', ekFlag=None, verbose=True,
                  gmx4=False, disam=False, direct=False, is_sorted=False, chiral=False):
         super().__init__()
         self.debug = debug
@@ -3652,7 +3652,7 @@ if __name__ == '__main__':
     parser.add_argument('-z', '--gmx4', action="store_true", dest='gmx4', help='write RB dihedrals old GMX 4.0',)
     parser.add_argument('-t', '--cnstop', action="store_true", dest='cnstop', help='write CNS topology with allhdg-like parameters (experimental)',)
     parser.add_argument('-e', '--engine', choices=['tleap', 'sleap'], action="store", default='tleap', dest='engine', help="engine: tleap (default) or sleap (not fully matured)",)
-    parser.add_argument('-s', '--max_time', type=int, action="store", default=36000, dest='max_time', help="max time (in sec) tolerance for sqm/mopac, default is 10 hours",)
+    parser.add_argument('-s', '--max_time', type=int, action="store", default=10800, dest='max_time', help="max time (in sec) tolerance for sqm/mopac, default is 10 hours",)
     parser.add_argument('-y', '--ipython', action="store_true", dest='ipython', help='start iPython interpreter',)
     parser.add_argument('-w', '--verboseless', action="store_false", default=True, dest='verboseless', help='print nothing',)
     parser.add_argument('-g', '--disambiguate', action="store_true", dest='disambiguate', help='disambiguate lower and uppercase atomtypes in GMX top file',)
