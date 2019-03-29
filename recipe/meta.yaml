@@ -17,8 +17,8 @@ requirements:
     - ambertools
 
 test:
-  imports:
-    - acpype
+  commands:
+    - acpype -h
 
 about:
   home: https://github.com/alanwilter/acpype
