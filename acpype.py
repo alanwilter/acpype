@@ -3634,7 +3634,7 @@ class Dihedral(object):
         return '<%s, ang=%.2f>' % (self.atoms, self.phase * 180 / Pi)
 
 
-if __name__ == '__main__':
+def init_main():
     parser = argparse.ArgumentParser(usage=usage + epilog)
     parser.add_argument('-i', '--input', action="store", dest='input', help="input file name with either extension '.pdb', '.mdl' or '.mol2' (mandatory if -p and -x not set)",)
     parser.add_argument('-b', '--basename', action="store", dest='basename', help='a basename for the project (folder and output files)',)
@@ -3749,3 +3749,6 @@ if __name__ == '__main__':
         os.chdir(molecule.rootDir)
     except Exception:
         pass
+
+if __name__ == '__main__':
+    init_main()                # necessary for to call in anaconda package;
