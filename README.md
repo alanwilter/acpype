@@ -35,28 +35,28 @@ It was inspired by:
 
 For Non-uniform 1-4 scale factor conversion (e.g. if using GLYCAM06), please cite:
 
-> Austen Bernardi, Roland Faller, Dirk Reith, Karl N. Kirschner, "Conversion of
-GLYCAM06 Force-Field Parameters from AMBER to GROMACS Topologies"
-submitted for review, April 2018.
+> BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for
+nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBER
+to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241
 
 For Antechamber, please cite:
-> 1.  Wang, J., Wang, W., Kollman P. A.; Case, D. A. "Automatic atom type and
-    bond type perception in molecular mechanical calculations". Journal of
-    Molecular Graphics and Modelling , 25, 2006, 247260.
-> 2.  Wang, J., Wolf, R. M.; Caldwell, J. W.; Kollman, P. A.; Case, D. A.
-    "Development and testing of a general AMBER force field". Journal of
-    Computational Chemistry, 25, 2004, 1157-1174.
+> 1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
+     bond type perception in molecular mechanical calculations. Journal of Molecular
+     Graphics and Modelling 25, 2 (2006), 247–260. doi: 10.1016/j.jmgm.2005.12.005
+> 2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
+     Development and testing of a General Amber Force Field. Journal of Computational
+     Chemistry 25, 9 (2004), 1157–1174. doi: 10.1002/jcc.20035
 
 If you use this code, I am glad if you cite:
 
 > SOUSA DA SILVA, A. W. & VRANKEN, W. F.
 ACPYPE - AnteChamber PYthon Parser interfacE.
-BMC Research Notes 2012, 5:367 doi:10.1186/1756-0500-5-367
+BMC Research Notes 5 (2012), 367 doi:10.1186/1756-0500-5-367
 http://www.biomedcentral.com/1756-0500/5/367
 
 > BATISTA, P. R.; WILTER, A.; DURHAM, E. H. A. B. & PASCUTTI, P. G. Molecular
 Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
-Cell Biochemistry and Biophysics, 44, 395-404, 2006.
+Cell Biochemistry and Biophysics 44 (2006), 395-404. doi: 10.1385/CBB:44:3:395
 
 Alan Wilter Sousa da Silva, D.Sc.
 Bioinformatician, UniProt, EMBL-EBI
