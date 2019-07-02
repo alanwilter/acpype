@@ -1,6 +1,6 @@
 package:
   name: acpype
-  version: "2019.03.22.14.36"
+  version: "2019.07.02.16.09"
 
 source:
   git_rev: "recipe"
