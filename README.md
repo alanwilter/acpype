@@ -51,7 +51,7 @@ If you use this code, I am glad if you cite:
 
 > SOUSA DA SILVA, A. W. & VRANKEN, W. F.
 ACPYPE - AnteChamber PYthon Parser interfacE.
-BMC Research Notes 5 (2012), 367 doi:10.1186/1756-0500-5-367
+BMC Research Notes 5 (2012), 367 doi: 10.1186/1756-0500-5-367
 http://www.biomedcentral.com/1756-0500/5/367
 
 > BATISTA, P. R.; WILTER, A.; DURHAM, E. H. A. B. & PASCUTTI, P. G. Molecular
