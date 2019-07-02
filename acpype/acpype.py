@@ -76,7 +76,7 @@ if sys.version_info < (3, 2):
     sys.exit(1)
 
 year = datetime.today().year
-tag = "2019-03-22T14:36:00UTC"
+tag = "2019-07-02T16:09:00UTC"
 
 lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
