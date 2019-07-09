@@ -124,10 +124,10 @@ integrator              = md        ; leap-frog integrator
 nsteps                  = 1000      ; 2 * 1000 = 2 ps (should be 50000: 100 ps)
 dt                      = 0.002     ; 2 fs
 ; Output control
-nstxout                 = 2       ; save coordinates every 1.0 ps
-nstvout                 = 2       ; save velocities every 1.0 ps
-nstenergy               = 2       ; save energies every 1.0 ps
-nstlog                  = 2       ; update log file every 1.0 ps
+nstxout                 = 10       ; save coordinates every 1.0 ps
+nstvout                 = 10       ; save velocities every 1.0 ps
+nstenergy               = 10       ; save energies every 1.0 ps
+nstlog                  = 10       ; update log file every 1.0 ps
 ; Bond parameters
 continuation            = no        ; first dynamics run
 constraint_algorithm    = lincs     ; holonomic constraints
