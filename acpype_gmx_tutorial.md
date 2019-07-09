@@ -1,46 +1,47 @@
-#summary An example illustrating how to use ACPYPE with GROMACS
-#labels Phase-Deploy
-= Tutorial Using ACPYPE for GROMACS =
+# Tutorial Using ACPYPE for GROMACS
 
-== Introduction ==
+#### An example illustrating how to use ACPYPE with GROMACS
+
+
+## Introduction
 
 This tutorial is to show how to prepare a system to run on GROMACS, starting
 with a PDB file for a complex protein/ligand.
 
-It is a mere proof of concept. One should be aware of how ACPYPE is trying to do
-it. If you have suggestions about how to improve this tutorial, please send a
+It is a mere proof of concept. One should be aware of how ACPYPE works.
+If you have suggestions about how to improve this tutorial, please send a
 comment to alanwilter@gmail.com.
 
-*NB:* Besides *acpype*, *antechamber* and *babel*, you will need GROMACS, which
+**NB:** Besides **acpype**, **antechamber** and **babel**, you will need GROMACS, which
 comes with AMBER force fields now.
 
-== Getting GROMACS ==
+## Getting GROMACS
 
-Install [http://www.gromacs.org/ GROMACS].
+Install [GROMACS](http://www.gromacs.org/).
 Something like:
 
-  * `conda install -c bioconda gromacs` # if you use conda, or
+  * `conda install -c bioconda gromacs # if you use conda, or`
 
-  * `sudo apt-get install gromacs` # if you use Ubuntu Linux, or
+  * `sudo apt-get install gromacs # if you use Ubuntu Linux, or`
 
-  * `brew install gromacs` # if you use Mac
+  * `brew install gromacs # if you use Mac`
 
 should do the trick.
 
-== Running an Example ==
+## Running an Example
 
-This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
+This is for protein 1BVG.pdb (get it at [PDB](http://www.pdb.org)), a homodimer
 (HIV protease) with a ligand called DMP. We will use force field Amber99SB.
 
 Luckily, this pdb file has all hydrogens for the ligand, which is necessary for
-*antechamber*. One can use either, e.g., `babel -h _mol_w/o_H_.pdb _mol_with_H.pdb`
-or [http://www.yasara.org YASARA View] to automatically add missing hydrogens to
+**antechamber**. One can use either, e.g., `babel -h _mol_w/o_H_.pdb _mol_with_H.pdb`
+or [YASARA View](http://www.yasara.org) to automatically add missing hydrogens to
 your compound. The former just puts 'H' for atom names while the latter puts
 more meaningful atom name, e.g., 'HCA' for a H bonded to a CA and not a simply
-'H' as *babel* does.
+'H' as **babel** does.
 
 In a script-like way:
-{{{
+```
 # Assuming Complex.pdb (= 1BVG.pdb), split it in Protein.pdb and Ligand.pdb
 wget http://www.ebi.ac.uk/pdbe/entry-files/download/pdb1bvg.ent -O 1BVG.pdb
 
@@ -88,7 +89,7 @@ nsteps      = 200           ; Maximum number of (minimization) steps to perform
 
 ; Parameters describing how to find the neighbors of each atom and how to calculate the interactions
 nstlist         = 1         ; Frequency to update the neighbor list and long range forces
-cutoff-scheme	= Verlet    ; Buffered neighbor searching
+cutoff-scheme   = Verlet    ; Buffered neighbor searching
 ns_type         = grid      ; Method to determine neighbor list (simple, grid)
 coulombtype     = cutoff    ; Treatment of long range electrostatic interactions
 rcoulomb        = 1.0       ; Short-range electrostatic cut-off
@@ -178,6 +179,6 @@ gmx mdrun -v -deffnm md
 
 # Visualise with VMD
 vmd md.gro md.trr
-}}}
+```
 
 Voila!
