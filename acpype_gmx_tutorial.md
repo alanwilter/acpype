@@ -164,18 +164,17 @@ EOF
 gmx grompp -f ions.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
 cp Complex.top Complex_ion.top
 
-gmx genion -s ions.tpr -o 1AKI_solv_ions.gro -p topol.top -pname NA -nname CL -neutral # 13
 echo 15| gmx genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p Complex_ion.top
 
 mv Complex_ion.top Complex.top
 
 # Run minimisaton
 gmx grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
-gmx mdrun -v -deffnm em
+gmx_d mdrun -v -deffnm em
 
 # Run a short simulation
 gmx grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr # -r em.gro
-gmx mdrun -v -deffnm md
+gmx_d mdrun -v -deffnm md
 
 # Visualise with VMD
 vmd md.gro md.trr
