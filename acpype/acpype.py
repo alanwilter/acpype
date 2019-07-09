@@ -3646,7 +3646,7 @@ def init_main():
     parser.add_argument('-x', '--inpcrd', action="store", dest='inpcrd', help="amber inpcrd file name (always used with -p)",)
     parser.add_argument('-p', '--prmtop', action="store", dest='prmtop', help="amber prmtop file name (always used with -x)",)
     parser.add_argument('-c', '--charge_method', choices=['gas', 'bcc', 'user'], action="store", default='bcc', dest='charge_method', help="charge method: gas, bcc (default), user (user's charges in mol2 file)",)
-    parser.add_argument('-n', '--net_charge', action="store", type=int, default=0, dest='net_charge', help="net molecular charge (int), for gas default is 0",)
+    parser.add_argument('-n', '--net_charge', action="store", type=int, default=None, dest='net_charge', help="net molecular charge (int), for gas default is 0",)
     parser.add_argument('-m', '--multiplicity', action="store", type=int, default=1, dest='multiplicity', help="multiplicity (2S+1), default is 1",)
     parser.add_argument('-a', '--atom_type', choices=['gaff', 'amber', 'gaff2', 'amber2'], action="store", default='gaff', dest='atom_type', help="atom type, can be gaff, gaff2, amber (AMBER14SB) or amber2 (AMBER14SB + GAFF2), default is gaff",)
     parser.add_argument('-q', '--qprog', choices=['mopac', 'sqm', 'divcon'], action="store", default='sqm', dest='qprog', help="am1-bcc flag, sqm (default), divcon, mopac",)

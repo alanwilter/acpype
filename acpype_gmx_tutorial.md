@@ -124,9 +124,10 @@ integrator              = md        ; leap-frog integrator
 nsteps                  = 1000      ; 2 * 1000 = 2 ps (should be 50000: 100 ps)
 dt                      = 0.002     ; 2 fs
 ; Output control
-nstxout                 = 10       ; save coordinates every 1.0 ps
-nstvout                 = 10       ; save velocities every 1.0 ps
-nstenergy               = 10       ; save energies every 1.0 ps
+nstxout-compressed      = 2        ; save compressed coordinates every 20 fs
+nstxout                 = 0        ; save coordinates
+nstvout                 = 0        ; save velocities
+nstenergy               = 10       ; save energies every 20 fs
 nstlog                  = 10       ; update log file every 1.0 ps
 ; Bond parameters
 continuation            = no        ; first dynamics run
@@ -176,8 +177,36 @@ gmx_d mdrun -v -deffnm em
 gmx grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr # -r em.gro
 gmx_d mdrun -v -deffnm md
 
+# Create vmd.tcl file
+cat << EOF >| vmd.tcl
+display projection Orthographic
+display rendermode GLSL
+mol modselect 0 0 protein
+mol modstyle 0 0 NewCartoon 0.300000 10.000000 4.100000 0
+mol modcolor 0 0 Structure
+mol addrep 0
+mol modselect 1 0 noh and resname DMP
+mol modstyle 1 0 Licorice 0.300000 12.000000 12.000000
+mol modcolor 1 0 Type
+color Type C white
+mol addrep 0
+mol modselect 2 0 noh same resid as within 8 of resname DMP
+mol modstyle 2 0 Licorice 0.200000 12.000000 12.000000
+mol addrep 0
+mol modselect 3 0 noh same resid as within 8 of resname DMP
+mol representation Licorice 0.200000 12.000000 12.000000
+mol modstyle 3 0 HBonds 3.000000 20.000000 1.000000
+mol modcolor 3 0 ColorID 0
+mol modstyle 3 0 HBonds 3.000000 20.000000 6.000000
+mol modcolor 3 0 ColorID 4
+mol smoothrep 0 0 5
+mol smoothrep 0 1 5
+mol smoothrep 0 2 5
+mol smoothrep 0 3 5
+EOF
+
 # Visualise with VMD
-vmd md.gro md.trr
+vmd md.gro md.xtc -e vmd.tcl
 ```
 
 Voila!
