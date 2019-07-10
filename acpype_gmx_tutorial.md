@@ -15,6 +15,15 @@ comment to alanwilter@gmail.com.
 **NB:** Besides **acpype**, **antechamber** and **babel**, you will need GROMACS, which
 comes with AMBER force fields now.
 
+
+```
+cd
+git clone https://github.com/alanwilter/acpype.git
+alias acpype='~/acpype/acpype/acpype.py'
+tar xfz amber18.tar.gz
+source amber18/amber.sh
+```
+
 ## Getting GROMACS
 
 Install [GROMACS](http://www.gromacs.org/).
@@ -42,6 +51,9 @@ more meaningful atom name, e.g., 'HCA' for a H bonded to a CA and not a simply
 
 In a script-like way:
 ```
+mkdir acpype_tutorial
+cd acpype_tutorial
+
 # Assuming Complex.pdb (= 1BVG.pdb), split it in Protein.pdb and Ligand.pdb
 wget http://www.ebi.ac.uk/pdbe/entry-files/download/pdb1bvg.ent -O 1BVG.pdb
 
@@ -53,8 +65,10 @@ cp Protein.pdb ProteinAmber.pdb
 # Process with pdb2gmx and define water
 gmx pdb2gmx -ff amber99sb -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water spce -ignh
 
+antechamber -i Ligand.pdb -o Ligand.mol2 -fi pdb -fo mol2 -c gas
+
 # Generate Ligand topology file with acpype (GAFF)
-acpype -di Ligand.pdb -c gas
+acpype -di Ligand.mol2 -c gas
 
 # Merge Protein2.pdb + updated Ligand_NEW.pdb -> Complex.pdb
 grep -h ATOM Protein2.pdb Ligand.acpype/Ligand_NEW.pdb >| Complex.pdb
