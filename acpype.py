@@ -71,8 +71,8 @@ from datetime import datetime
 from shutil import copy2
 from shutil import rmtree
 
-if sys.version_info < (3, 6):
-    print('ERROR: Sorry, you need python 3.6 or higher')
+if sys.version_info < (3, 5):
+    print('ERROR: Sorry, you need python 3.5 or higher')
     sys.exit(1)
 
 year = datetime.today().year
