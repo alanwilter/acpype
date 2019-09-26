@@ -1,0 +1,39 @@
+#sample residuegen input file
+
+#INPUT_FILE:	structure file in ac format, generated from a Gaussian output with 'antechamber'
+#             	(Cmd: antechamber -fi gout -fo ac -i input.gout -o output.ac)
+INPUT_FILE    	ala.ac
+
+#CONF_NUM: 	Number of conformations applied
+CONF_NUM    	2
+
+#ESP_FILE:   	esp file generated from gaussian output with 'espgen'
+#             	(cmd: espgen -i input.gout -o output.esp)
+# 	      	if multiple conformations applied, catenate all the CONF_NUM esp files into ESP_FILE
+#             	(cmd: cat output1.esp output2.esp output3.esp ... > output.esp)
+ESP_FILE    	ala.esp
+
+#SEP_BOND: 	bonds that separate residue and caps, input in a format of (Atom_Name1 Atom_Name2), 
+#		where Atom_Name1 belongs to the residue and Atom_Name2 belongs to a cap. 
+#		must not show up more than three times
+SEP_BOND    	N1 C2
+SEP_BOND 	C5 N2 
+
+#NET_CHARGE: 	net charge of the residue, such as 0 of ALA and -1 of ASP and 1 of LYS
+NET_CHARGE   	0
+
+#ATOM_CHARGE: 	predefined atom charge, input in a format of (Atom_Name Partial_Charge)
+#              	can show up multiple times. 
+ATOM_CHARGE   	N1 -0.4175  
+ATOM_CHARGE   	H4 0.2719
+ATOM_CHARGE   	C5 0.5973 
+ATOM_CHARGE   	O2 -0.5679  
+
+#PREP_FILE: 	prep file name 
+PREP_FILE:  	ala.prep
+
+#RESIDUE_FILE_NAME: 	residue file name in PREP_FILE
+RESIDUE_FILE_NAME:  	ala.res
+
+#RESIDUE_SYMBOL: 	residue symbol in PREP_FILE
+RESIDUE_SYMBOL:  	ALA	

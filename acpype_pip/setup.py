@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import setuptools
+
+with open("README.md", "r") as fh:
+
+    long_description = fh.read()
+
+setuptools.setup(
+
+     name='acpype',  
+
+     version='2019-09-26T19_44_00UTC',
+
+     scripts=['scripts/acpype.py',] ,
+
+     author='Alan Wilter Sousa da Silva',
+
+     author_email='alanwilter@gmail.com',
+
+     description='ACPYPE - AnteChamber PYthon Parser interfacE',
+
+     long_description=long_description,
+
+     long_description_content_type="text/markdown",
+
+     url="https://github.com/alanwilter/acpype",
+
+     packages=['scripts', 'ffamber_additions', 'test','amber17-6'],
+
+     package_dir={'acpype':
+                 'acpype'},
+
+     include_package_data=True,
+
+     keywords='acpype',
+
+     entry_points={'console_scripts': ['acpype = scripts.acpype:init_main']},
+
+     classifiers=[
+          'Intended Audience :: Science/Research',
+          'Natural Language :: English',
+          'Programming Language :: Python :: 3.7',
+          'Topic :: Scientific/Engineering :: Bio-Informatics'
+      ],
+    install_requires=[],
+    zip_safe=False
+
+ )

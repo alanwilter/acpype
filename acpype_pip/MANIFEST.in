@@ -1,0 +1,17 @@
+include amber17-6/bin/*
+include amber17-6/bin/to_be_dispatched/*
+include amber17-6/dat/*
+include amber17-6/dat/antechamber/*
+include amber17-6/dat/fd_data/*
+include amber17-6/dat/pixmap/*
+include amber17-6/dat/rism3d/*
+include amber17-6/dat/leap/cmd/*
+include amber17-6/dat/leap/cmd/oldff/*
+include amber17-6/dat/leap/lib/*
+include amber17-6/dat/leap/lib/oldff/*
+include amber17-6/dat/leap/parm/*
+include amber17-6/dat/leap/prep/*
+include amber17-6/dat/leap/prep/oldff/*
+include amber17-6/dat/leap/prep/protonated_nucleic/*
+include amber17-6/dat/rism3d/electron_rdf/*
+include amber17-6/lib/*
