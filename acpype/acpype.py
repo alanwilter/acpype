@@ -68,15 +68,14 @@ import re
 import abc
 import array  # to pacify PyLint
 from datetime import datetime
-from shutil import copy2
-from shutil import rmtree
+from shutil import copy2, rmtree, which
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
     sys.exit(1)
 
 year = datetime.today().year
-tag = "2019-07-10T18:04:00UTC"
+tag = "2019-09-26T19:44:00UTC"
 
 lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
@@ -3403,14 +3402,14 @@ class ACTopol(AbstractTopol):
                     self.acExe = ac_path
                     break
         if not self.acExe:
-            self.acExe = _getoutput('which antechamber') or ''  # '/Users/alan/Programmes/antechamber-1.27/exe/antechamber'
+            self.acExe = which('antechamber')  # '/Users/alan/Programmes/antechamber-1.27/exe/antechamber'
         if not os.path.exists(self.acExe):
             self.printError("no 'antechamber' executable!")
-        self.tleapExe = _getoutput('which tleap') or ''
-        self.sleapExe = _getoutput('which sleap') or ''
-        self.parmchkExe = _getoutput('which parmchk2') or ''
-        self.babelExe = _getoutput('which babel') or ''
-        if not os.path.exists(self.babelExe):
+        self.tleapExe = which('tleap')
+        self.sleapExe = which('sleap')
+        self.parmchkExe = which('parmchk2')
+        self.babelExe = which('babel')
+        if not os.path.exists(str(self.babelExe)):
             if self.ext != '.mol2' and self.ext != '.mdl':  # and self.ext != '.mol':
                 self.printError("no 'babel' executable; you need it if input is PDB")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
@@ -3758,4 +3757,10 @@ def init_main():
 
 
 if __name__ == '__main__':
+    # For pip package
+    #LOCAL_PATH = os.getcwd()
+    #os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber17-6_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber17-6_linux/bin:'+ LOCAL_PATH +'/amber17-6_linux/dat/'
+    #os.environ["AMBERHOME"] = LOCAL_PATH +'/amber17-6_linux'
+    #os.environ["ACHOME"] = LOCAL_PATH +'/amber17-6_linux/bin/'
+    #os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber17-6_linux/lib'
     init_main()  # necessary for to call in anaconda package;
