@@ -27,7 +27,7 @@ setuptools.setup(
 
      url="https://github.com/alanwilter/acpype",
 
-     packages=['scripts', 'ffamber_additions', 'test','amber17-6'],
+     packages=['scripts', 'amber17-6_linux','amber17-6_os'],
 
      package_dir={'acpype':
                  'acpype'},

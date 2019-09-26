@@ -1,0 +1,161 @@
+#<> indicates an element of the format
+#{} indicates optional
+#[n] indicates width of n
+#* indicates that many may be added sequentially
+#other are string literals
+#a, b, c, and d represent the four atom names of a dihedral
+#A, B, C, and D represent the four Karplus constants described in Chou et al. JACS (2003) 125 p.8959-8966
+#if optional type is C, then the Karplus function specified in Perez et al. JACS (2001) 123 p.7081-7093 will be used, and A, B, and C will be taken as C0, C1, and C2
+#<format>
+#{type}<+/-/ ><a[4]><+/-/ ><b[4]><+/-/ ><c[4]><+/-/ ><d[4]><A[6]><B[6]><C[6]>{<D[6]>}
+#<reslabel[4]>*
+#)*
+#</format>
+
+C HA   CA   CB   HB    5.40 -1.37  3.61
+ILE VAL 
+
+C HA   CA   CB   HB    4.42 -1.37  3.61
+THR 
+
+C HA   CA   CB   HB2   6.63 -1.37  3.61
+ALA 
+C HA   CA   CB   HB2   6.01 -1.37  3.61
+ARG ASP ASN ASH GLN GLU GLH HIE HID HIP LEU LYS MET PHE PRO TRP TYR 
+C HA   CA   CB   HB2   5.32 -1.37  3.61
+CYS CYX 
+C HA   CA   CB   HB2   5.03 -1.37  3.61
+SER 
+
+C HA   CA   CB   HB3   6.63 -1.37  3.61
+ALA 
+C HA   CA   CB   HB3   6.01 -1.37  3.61
+ARG ASP ASN ASH GLN GLU GLH HIE HID HIP LEU LYS MET PHE PRO TRP TYR 
+C HA   CA   CB   HB3   5.32 -1.37  3.61
+CYS CYX 
+C HA   CA   CB   HB3   5.03 -1.37  3.61
+SER 
+
+C N    CA   CB   HB    2.08 -0.75  1.15
+ILE VAL 
+C N    CA   CB   HB    1.77 -0.75  1.15
+THR 
+
+C N    CA   CB   HB2   2.47 -0.75  1.15
+ALA 
+C N    CA   CB   HB2   2.28 -0.75  1.15
+ARG ASP ASN ASH GLU GLN GLH HIE HID HIP LEU LYS MET PHE TRP TYR 
+C N    CA   CB   HB2   2.23 -0.75  1.15
+PRO 
+C N    CA   CB   HB2   2.06 -0.75  1.15
+CYS CYX 
+C N    CA   CB   HB2   1.97 -0.75  1.15
+SER 
+
+C N    CA   CB   HB3   2.47 -0.75  1.15
+ALA 
+C N    CA   CB   HB3   2.28 -0.75  1.15
+ARG ASP ASN ASH GLU GLN GLH HIE HID HIP LEU LYS MET PHE TRP TYR 
+C N    CA   CB   HB3   2.23 -0.75  1.15
+PRO 
+C N    CA   CB   HB3   2.06 -0.75  1.15
+CYS CYX 
+C N    CA   CB   HB3   1.97 -0.75  1.15
+SER 
+
+C C    CA   CB   HB    3.11 -1.58  2.01
+ILE VAL 
+C C    CA   CB   HB    2.62 -1.58  2.01
+THR 
+
+C C    CA   CB   HB2   3.72 -1.58  2.01
+ALA 
+C C    CA   CB   HB2   3.41 -1.58  2.01
+ARG ASP ASN ASH GLU GLN GLH HIE HID HIP LEU LYS MET PHE PRO TRP TYR 
+C C    CA   CB   HB2   3.07 -1.58  2.01
+CYS CYX 
+C C    CA   CB   HB2   2.92 -1.58  2.01
+SER 
+
+C C    CA   CB   HB3   3.72 -1.58  2.01
+ALA 
+C C    CA   CB   HB3   3.41 -1.58  2.01
+ARG ASP ASN ASH GLU GLN GLH HIE HID HIP LEU LYS MET PHE PRO TRP TYR 
+C C    CA   CB   HB3   3.07 -1.58  2.01
+CYS CYX 
+C C    CA   CB   HB3   2.92 -1.58  2.01
+SER 
+
+
+C HA   CA   CB   CG    5.09 -0.96  2.67
+ASN 
+C HA   CA   CB   CG    4.48 -0.96  2.67
+ASP 
+C HA   CA   CB   CG    4.32 -0.96  2.67
+HIE HID HIP 
+C HA   CA   CB   CG    3.57 -0.96  2.67
+MET 
+C HA   CA   CB   CG    3.49 -0.96  2.67
+ARG GLU GLN GLH LYS PRO 
+C HA   CA   CB   CG    3.41 -0.96  2.67
+LEU 
+C HA   CA   CB   CG    3.33 -0.96  2.67
+PHE TRP TYR 
+
+C HA   CA   CB   CG1   3.26 -0.96  2.67
+VAL 
+C HA   CA   CB   CG2   3.26 -0.96  2.67
+VAL 
+
+C HA   CA   CB   CG2   3.18 -0.96  2.67
+ILE 
+C HA   CA   CB   CG2   2.77 -0.96  2.67
+THR 
+
+C N    CA   CB   CG    1.54 -0.49  0.65
+ASN 
+C N    CA   CB   CG    1.35 -0.49  0.65
+ASP 
+C N    CA   CB   CG    1.30 -0.49  0.65
+HIE HID HIP 
+C N    CA   CB   CG    1.06 -0.49  0.65
+MET 
+C N    CA   CB   CG    1.03 -0.49  0.65
+ARG GLU GLN GLH LYS 
+C N    CA   CB   CG    1.01 -0.49  0.65
+LEU PRO 
+C N    CA   CB   CG    0.98 -0.49  0.65
+PHE TRP TYR 
+
+ N    CA   CB   CG1   2.64  0.26 -0.22     6
+VAL 
+ N    CA   CB   CG2   2.64  0.26 -0.22     6
+VAL 
+ N    CA   CB   CG2   2.64  0.26 -0.22     6
+ILE 
+ N    CA   CB   CG2   2.01  0.21 -0.12     7
+THR 
+
+C C    CA   CB   CG    2.52 -0.87  1.15
+ASN 
+C C    CA   CB   CG    2.22 -0.87  1.15
+ASP 
+C C    CA   CB   CG    2.14 -0.87  1.15
+HIE HID HIP 
+C C    CA   CB   CG    1.76 -0.87  1.15
+MET 
+C C    CA   CB   CG    1.72 -0.87  1.15
+ARG GLU GLN GLH LYS PRO 
+C C    CA   CB   CG    1.68 -0.87  1.15
+LEU 
+C C    CA   CB   CG    1.64 -0.87  1.15
+PHE TRP TYR 
+
+ C    CA   CB   CG1   3.42 -0.59  0.17     5
+VAL 
+ C    CA   CB   CG2   3.42 -0.59  0.17     5
+VAL 
+ C    CA   CB   CG2   3.42 -0.59  0.17     5
+ILE 
+ C    CA   CB   CG2   2.76 -0.67  0.19    17
+THR 
