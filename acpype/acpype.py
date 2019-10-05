@@ -75,7 +75,9 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-tag = "2019-09-26T19:44:00UTC"
+__updated__ = "2019-10-05T12:26:00CEST"
+# tag = "2019-09-26T19:44:00UTC"
+tag = __updated__
 
 lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
@@ -554,7 +556,7 @@ def _getoutput(cmd):
     return o
 
 
-class Topology_14(object):
+class Topology_14():
 
     """
     Amber topology abstraction for non-uniform 1-4 scale factors
@@ -678,10 +680,10 @@ class Topology_14(object):
     def hasNondefault14(self):
         '''Check non-uniform 1-4 scale factor'''
         for val in self.scee_scale_factor:
-            if (val != 0 and val != 1.2):
+            if val not in (0, 1.2):
                 return True
         for val in self.scnb_scale_factor:
-            if val != 0 and val != 2:
+            if val not in (0, 1.2):
                 return True
         return False
 
@@ -698,7 +700,7 @@ class Topology_14(object):
                 gmx_init_top[jpair:len(gmx_init_top)])
 
 
-class AbstractTopol(object):
+class AbstractTopol():
 
     """
         Super class to build topologies
@@ -811,7 +813,6 @@ class AbstractTopol(object):
             print(10 * '+' + 'start_quote' + 59 * '+')
             print(text)
             print(10 * '+' + 'end_quote' + 61 * '+')
-        return
 
     def guessCharge(self):
         """
@@ -1909,8 +1910,6 @@ Usage: antechamber -i   input file name
         # Renumber atoms in sorted list, starting from 1.
         for (index, atom) in enumerate(self.atoms):
             atom.id = index + 1
-
-        return
 
     def setAtomPairs(self):
         """
@@ -3402,14 +3401,14 @@ class ACTopol(AbstractTopol):
                     self.acExe = ac_path
                     break
         if not self.acExe:
-            self.acExe = which('antechamber')  # '/Users/alan/Programmes/antechamber-1.27/exe/antechamber'
+            self.acExe = which('antechamber') or ''  # '/Users/alan/Programmes/antechamber-1.27/exe/antechamber'
         if not os.path.exists(self.acExe):
             self.printError("no 'antechamber' executable!")
-        self.tleapExe = which('tleap')
-        self.sleapExe = which('sleap')
-        self.parmchkExe = which('parmchk2')
-        self.babelExe = which('babel')
-        if not os.path.exists(str(self.babelExe)):
+        self.tleapExe = which('tleap') or ''
+        self.sleapExe = which('sleap') or ''
+        self.parmchkExe = which('parmchk2') or ''
+        self.babelExe = which('babel') or ''
+        if not os.path.exists(self.babelExe):
             if self.ext != '.mol2' and self.ext != '.mdl':  # and self.ext != '.mol':
                 self.printError("no 'babel' executable; you need it if input is PDB")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
@@ -3454,7 +3453,7 @@ class MolTopol(ACTopol):
                  debug=False, basename=None, verbose=True, gmx4=False,
                  disam=False, direct=False, is_sorted=False, chiral=False):
         self.chiral = chiral
-        self.obchiralExe = _getoutput('which obchiral') or ''
+        self.obchiralExe = which('obchiral') or ''
         self.allhdg = False
         self.debug = debug
         self.gmx4 = gmx4
@@ -3530,7 +3529,7 @@ class MolTopol(ACTopol):
             self.sortAtomsForGromacs()
 
 
-class Atom(object):
+class Atom():
 
     """
         Charges in prmtop file has to be divide by 18.2223 to convert to charge
@@ -3564,7 +3563,7 @@ class Atom(object):
         return '<Atom id=%s, name=%s, %s>' % (self.id, self.atomName, self.atomType)
 
 
-class AtomType(object):
+class AtomType():
 
     """
         AtomType per atom in gaff or amber.
@@ -3583,7 +3582,7 @@ class AtomType(object):
         return '<AtomType=%s>' % self.atomTypeName
 
 
-class Bond(object):
+class Bond():
 
     """
         attributes: pair of Atoms, spring constant (kcal/mol), dist. eq. (Ang)
@@ -3601,7 +3600,7 @@ class Bond(object):
         return '<%s, r=%s>' % (self.atoms, self.rEq)
 
 
-class Angle(object):
+class Angle():
 
     """
         attributes: 3 Atoms, spring constant (kcal/mol/rad^2), angle eq. (rad)
@@ -3619,7 +3618,7 @@ class Angle(object):
         return '<%s, ang=%.2f>' % (self.atoms, self.thetaEq * 180 / Pi)
 
 
-class Dihedral(object):
+class Dihedral():
 
     """
         attributes: 4 Atoms, spring constant (kcal/mol), periodicity,
@@ -3640,6 +3639,11 @@ class Dihedral(object):
 
 
 def init_main():
+
+    """
+        Main funcition, to satisfy Conda
+    """
+
     parser = argparse.ArgumentParser(usage=usage + epilog)
     parser.add_argument('-i', '--input', action="store", dest='input', help="input file name with either extension '.pdb', '.mdl' or '.mol2' (mandatory if -p and -x not set)",)
     parser.add_argument('-b', '--basename', action="store", dest='basename', help='a basename for the project (folder and output files)',)
@@ -3758,9 +3762,9 @@ def init_main():
 
 if __name__ == '__main__':
     # For pip package
-    #LOCAL_PATH = os.getcwd()
-    #os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber17-6_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber17-6_linux/bin:'+ LOCAL_PATH +'/amber17-6_linux/dat/'
-    #os.environ["AMBERHOME"] = LOCAL_PATH +'/amber17-6_linux'
-    #os.environ["ACHOME"] = LOCAL_PATH +'/amber17-6_linux/bin/'
-    #os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber17-6_linux/lib'
+    # LOCAL_PATH = os.getcwd()
+    # os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber17-6_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber17-6_linux/bin:'+ LOCAL_PATH +'/amber17-6_linux/dat/'
+    # os.environ["AMBERHOME"] = LOCAL_PATH +'/amber17-6_linux'
+    # os.environ["ACHOME"] = LOCAL_PATH +'/amber17-6_linux/bin/'
+    # os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber17-6_linux/lib'
     init_main()  # necessary for to call in anaconda package;
