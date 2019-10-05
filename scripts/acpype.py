@@ -69,6 +69,7 @@ import abc
 import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
+import site
 
 # For pip package
 if which('antechamber') is None:
