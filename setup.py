@@ -11,7 +11,7 @@ setuptools.setup(
 
      name='acpype',  
 
-     version='2019-09-26T19_44_00UTC',
+     version='201910051226',
 
      scripts=['scripts/acpype.py',] ,
 
