@@ -1,0 +1,267 @@
+#!/opt/anaconda1anaconda2anaconda3/bin/python
+# Run most of AmberTools serial tests
+''' Require: AMBERHOME
+
+You need to call amber.setup_test_folders first (only do once)
+
+     amber.setup_test_folders
+
+Then run test (anywhere)
+
+    amber.run_tests
+
+Adjust the test by updating env TEST_TASK (please lookt at the code)
+'''
+
+from time import time
+from contextlib import contextmanager
+import os
+import sys
+import subprocess
+
+
+@contextmanager
+def change_folder(where):
+    here = os.getcwd()
+    os.chdir(where)
+    yield
+    os.chdir(here)
+
+
+def cat_dif_files(amberhome):
+    print('*' * 50)
+    print("Oops")
+    print('*' * 50)
+    with change_folder(amberhome):
+        output = subprocess.check_output(
+            'find . -iname "*.dif"', shell=True).decode()
+
+        files = [fn for fn in output.split('\n') if fn]
+        for fn in files:
+            with open(fn) as fh:
+                print(fn)
+                print(fh.read())
+
+
+def get_tests_from_test_name(test_name, makefile_fn):
+    # test.serial.sander.MM has a bunch of small tests.
+    with open(makefile_fn) as fh:
+        lines = fh.readlines()
+
+    index_0 = 0
+    index_next = -1
+    for index, line in enumerate(lines):
+        if line.startswith(test_name):
+            break
+    index_0 = index
+
+    for index in range(index_0 + 1, 1000):
+        if lines[index].startswith('test.'):
+            break
+
+    index_next = index
+    my_lines = [
+        word for word in ''.join(lines[index_0:index_next]).strip().split()
+        if word != '\\'
+    ]
+    my_lines.pop(0)
+    return my_lines
+
+
+def create_test_suite(excluded_tests):
+    amberhome = os.getenv('AMBERHOME')
+    if amberhome is None:
+        raise EnvironmentError("Must set AMBERHOME")
+
+    amber_test_dir = amberhome + '/test'
+    ambertools_test_dir = amberhome + '/AmberTools/test'
+
+    amber_test_suite_dict = {
+        'serial.MM': [
+            test
+            for test in get_tests_from_test_name(
+                'test.serial.sander.MM', amber_test_dir + '/Makefile') + [
+                    'test.nmode',
+                ] if test not in ['test.serial.sander.emap']
+        ],
+        'serial.QMMM':
+        get_tests_from_test_name('test.serial.QMMM',
+                                 amber_test_dir + '/Makefile'),
+        'serial.sander.SEBOMD': ['test.serial.sander.SEBOMD'],
+        'sanderapi': ['test.serial.sanderapi'],
+    }
+
+    ambertools_test_suite_dict = {
+        'fast': [
+            'test.cpptraj', 'test.pytraj', 'test.parmed', 'test.pdb4amber',
+            'test.leap', 'test.antechamber', 'test.unitcell', 'test.reduce',
+            'test.nab', 'test.mdgx', 'test.resp', 'test.sqm', 'test.gbnsr6',
+            'test.elsize', 'test.paramfit', 'test.FEW', 'test.cphstats',
+            'test.cpinutil'
+        ],
+        'mmpbsa': [
+            'test.mmpbsa',
+            'test.mm_pbsa',
+        ],
+        'rism': ['test.rism1d', 'test.rism3d.periodic'],
+        'python': [
+            'test.pytraj',
+            # 'test.pymsmt', 'test.pytraj', 'test.parmed', 'test.pdb4amber',
+            # 'test.pymsmt'
+        ],
+    }
+
+    for test_suite_dict in [amber_test_suite_dict, ambertools_test_suite_dict]:
+        for k in test_suite_dict:
+            for test in excluded_tests:
+                try:
+                    test_suite_dict[k].remove(test)
+                except ValueError:
+                    pass
+
+
+    def gather(suite_dict, test_dir):
+        for task, suite in suite_dict.items():
+            suite_dict[task] = [(test_name, test_dir) for test_name in suite]
+
+    gather(ambertools_test_suite_dict, ambertools_test_dir)
+    gather(amber_test_suite_dict, amber_test_dir)
+
+    all_suits = amber_test_suite_dict.copy()
+    all_suits.update(ambertools_test_suite_dict)
+
+    return all_suits
+
+
+def execute(command):
+    then = time()
+    # adapted from StackOverflow
+    # http://stackoverflow.com/a/4418193
+    print(' '.join(command))
+    output_lines = []
+    process = subprocess.Popen(
+        command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+    # Poll process for new output until finished
+    while True:
+        nextline = process.stdout.readline().decode('utf-8')
+        if nextline == '' and process.poll() is not None:
+            break
+        sys.stdout.write('.')
+        sys.stdout.flush()
+
+        output_lines.append(nextline)
+    output = ''.join(output_lines)
+    now = time()
+    time_diff = now - then
+    if 'Program error' in output or 'possible FAILURE' in output or 'No rule to make target' in output:
+        print('{0:.1f} (s), FAILURE'.format(time_diff))
+    else:
+        print('{0:.1f} (s), PASSED'.format(time_diff))
+    return output, time_diff
+
+
+def test_me(opt):
+    sanderapi_tests = [
+        'test.parm7', 'Fortran', 'Fortran2', 'C', 'CPP', 'Python', 'clean'
+    ]
+    amberhome = os.getenv('AMBERHOME')
+    if not amberhome:
+        raise EnvironmentError("Must set AMBERHOME")
+    ambertools_test_dir = amberhome + '/AmberTools/test'
+    amber_test_dir = amberhome + '/test'
+
+    ERRORS = []
+    ALL_OUTPUTS = []
+    TIME_DICT = {}
+    test_suite_dict = create_test_suite(opt.exclude)
+    test_task = opt.task
+
+    try:
+        test_suite = test_suite_dict[
+            test_task] if test_task != 'all' else 'all'
+    except KeyError:
+        test_suite = [
+            (test_task, ambertools_test_dir),
+        ]
+
+    def run_all(test_suite):
+        for (me, test_dir) in test_suite:
+            with change_folder(test_dir):
+                output, time_diff = execute(['make', me])
+                TIME_DICT[me] = time_diff
+                ALL_OUTPUTS.extend(output.split('\n'))
+                if ('Program error' in output or
+                        'possible FAILURE' in output or
+                        'No rule to make target' in output):
+                    ERRORS.append(output)
+
+    print('test_suite', sorted(test_suite))
+    # amberXX/test/
+    if test_task in ['serial.MM', 'serial.QMMM', 'serial.sander.SEBOMD']:
+        print('serial MM and QMMM')
+        test_folder = amber_test_dir
+    # amberXX/AmberTools/test/
+    else:
+        print(amberhome + '/AmberTools/test/')
+        test_folder = ambertools_test_dir
+
+    if test_task == 'all':
+        for _, test_suite in test_suite_dict.items():
+            run_all(test_suite)
+    else:
+        if test_task == 'python':
+            # need to test sanderapi too
+            run_all(test_suite_dict['sanderapi'])
+
+        print('test_folder', test_folder)
+        run_all(test_suite)
+
+    if ERRORS:
+        for out in ERRORS:
+            print(out)
+
+    n_passes = n_fails = n_program_errors = 0
+
+    for line in ALL_OUTPUTS:
+        if 'PASSED' in line:
+            n_passes += 1
+        if 'Program error' in line:
+            n_program_errors += 1
+        if 'possible FAILURE' in line:
+            n_fails += 1
+
+    if n_fails > 0:
+        cat_dif_files(amberhome)
+
+    print("{} file comparisons passed".format(n_passes))
+    print("{} file comparisons failed".format(n_fails))
+    print("{} tests experienced errors".format(n_program_errors))
+    print(TIME_DICT)
+
+    assert len(ERRORS) == 0
+
+
+def main(args=None):
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-t', '--task',
+            default='fast',
+            help='test task')
+    parser.add_argument('-x', '--exclude',
+            default=[],
+            help='Exlude tests')
+    opt = parser.parse_args(args)
+    if opt.exclude:
+        # "test.parmed, test.pytraj"
+        if os.path.isfile(opt.exclude):
+            with open(opt.exclude) as fh:
+                opt.exclude = fh.read().replace('\n', '').split(',')
+        else:
+            opt.exclude = opt.exclude.split(',')
+        print('exclude', opt.exclude)
+    test_me(opt)
+
+
+if __name__ == '__main__':
+    main()

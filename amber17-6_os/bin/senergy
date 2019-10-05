@@ -1,0 +1,266 @@
+#!/usr/bin/perl
+
+# Randal R. Ketchem, Ph.D.                619.784.8754 (voice1)
+# Department of Molecular Biology, MB-9   619.784.9879 (voice2)
+# The Scripps Research Institute          619.784.9985 (FAX)
+# 10550 N. Torrey Pines Road              ketchemr@scripps.edu (email)
+# La Jolla, CA 92037-1027                 http://www.scripps.edu/~ketchemr
+
+# Modified by Christopher Cilley (cdcilley@scripps.edu)  6/1/99
+# - Reduced to 2 decimal places to facilitate printing without line wrapping.
+
+if($#ARGV < 0)
+{
+   $prgName = `basename $0`;
+   chop($prgName);
+   die <<EOHELP;
+
+Usage: $prgName [Sander output file(s)]
+
+This program scans Sander output files and extracts the final step energy
+info. It creates a table containing each term (angle, bond, etc.). It then
+creates a file with statistics on the terms to help in rejecting
+structures from an ensemble. Structures are suspect when a specific energy
+term is greater than twice the standard deviation from the mean for that
+term.
+
+Note:  You can fit all the info on a page in landscape by using enscript.
+  enscript -r -fCourier7 -o phiN.senergy.ps phiN.senergy
+  lp phiN.senergy.ps
+
+v1.0 Randal Ketchem (ketchemr\@scripps.edu)
+
+EOHELP
+}
+
+# NSTEP = 31000  TIME(PS) =   66.000  TEMP(K) =     2.47  PRESS =       .00
+# Etot   =  -44594.0535  EKtot   =      50.4904  EPtot      =  -44644.5439
+# BOND   =      36.3890  ANGLE   =     143.0904  DIHED      =     360.5146
+# 1-4 NB =     195.7954  1-4 EEL =   -2551.1584  VDWAALS    =    6210.8647
+# EELEC  =  -49055.9004  EHBOND  =        .0000  CONSTRAINT =      15.8608
+# EAMBER (non-constraint) =  -44660.4047
+
+# Create the table header.
+printf("%15s", " ");
+printf("%11s %11s %11s ", "Etot", "EKtot", "EPtot");
+printf("%11s %11s %11s ", "BOND", "ANGLE", "DIHED");
+printf("%11s %11s %11s ", "1-4 NB", "1-4 EEL", "VDWAALS");
+printf("%11s %11s %11s ", "EELEC", "EHBOND", "CONSTRAINT");
+printf("%11s\n", "EAMBER");
+
+FILE:
+foreach $file (@ARGV)
+{
+# Grab the number of steps from the sander output file.
+   open(IN, $file) || die "Can't open file $file.\n";
+   while(<IN>)
+   {
+      next unless /nstlim/;
+      $nstlim = $_;
+      $nstlim =~ s/\s//g;
+      $nstlim =~ s/.*nstlim=//;
+      $nstlim =~ s/,.*//;
+   }
+   close(IN);
+
+# Grab the energy terms.
+   open(IN, $file) || die "Can't open file $file.\n";
+   while(<IN>)
+   {
+# Just want the last step.
+      next unless /NSTEP/;
+      @words = split;
+      next unless($words[0] eq "NSTEP" && $words[2] == $nstlim);
+
+# Get the first energy term line.
+      $line = <IN>;
+      @words = split(' ', $line);
+      $etot = $words[2]; $ektot = $words[5]; $eptot = $words[8];
+
+# And the second.
+      $line = <IN>;
+      @words = split(' ', $line);
+      $bond = $words[2]; $angle = $words[5]; $dihed = $words[8];
+
+# And the third.
+      $line = <IN>;
+      @words = split(' ', $line);
+      $nb = $words[3]; $eel = $words[7]; $vdw = $words[10];
+
+# And the fourth.
+      $line = <IN>;
+      @words = split(' ', $line);
+      $eelec = $words[2]; $ehbond = $words[5]; $const = $words[8];
+
+# And the last.
+      $line = <IN>;
+      @words = split(' ', $line);
+      $eamber = $words[3];
+
+# Add to the term lists to be used for statistics later.
+      @etot = (@etot, $etot);
+      @ektot = (@ektot, $ektot);
+      @eptot = (@eptot, $eptot);
+      @bond = (@bond, $bond);
+      @angle = (@angle, $angle);
+      @dihed = (@dihed, $dihed);
+      @nb = (@nb, $nb);
+      @eel = (@eel, $eel);
+      @vdw = (@vdw, $vdw);
+      @eelec = (@eelec, $eelec);
+      @ehbond = (@ehbond, $ehbond);
+      @const = (@const, $const);
+      @eamber = (@eamber, $eamber);
+
+# Skip to the next file. This is done to avoid the NSTEP lines after the
+# last step.
+      next FILE;
+   }
+   close(IN);
+}
+
+# Calculate the statistics for each term.
+&stddev("Etot",       @etot);
+&stddev("EKtot",      @ektot);
+&stddev("EPtot",      @eptot);
+&stddev("BOND",       @bond);
+&stddev("ANGLE",      @angle);
+&stddev("DIHED",      @dihed);
+&stddev("1-4 NB",     @nb);
+&stddev("1-4 EEL",    @eel);
+&stddev("VDWAALS",    @vdw);
+&stddev("EELEC",      @eelec);
+&stddev("EHBOND",     @ehbond);
+&stddev("CONSTRAINT", @const);
+&stddev("EAMBER",     @eamber);
+
+sub stddev
+{
+# Grab the function arguments.
+   local($name, @numList) = @_;
+# Declare these local so they are reset at each call.
+   local($low, $high, $number, $sum, $mean, $diff, $diffSum);
+   local($variance, $stdDev, $percentError);
+
+   $listSize = scalar(@numList);
+# Die if the list is empty or contains only one value.
+   die("Must be two or more numbers in list.") if($listSize <= 1);
+
+# Set initial low and high values to first number in list.
+   $low = $numList[0];
+   $high = $numList[0];
+
+# Go through the number list to find the low, high and sum.
+   foreach $number (@numList)
+   {
+      $sum += $number;
+      $low = $number if($low > $number);
+      $high = $number if($high < $number);
+   }
+# Calculate the mean.
+   $mean = $sum / $listSize;
+
+# Get the difference of each term from the mean and sum the squares.
+   foreach $number (@numList)
+   {
+      $diff = ($number - $mean);
+      $diffSum += ($diff * $diff);
+   }
+# Calculate the variance.
+   $variance = $diffSum / ($listSize - 1);
+# And the standard deviation.
+   $stdDev = sqrt($variance);
+# And the percent error.
+   $percentError = 0 if($mean == 0);
+   $percentError = (($stdDev / $mean) * 100) if($mean != 0);
+
+   $lowLine .= sprintf("%11.3f ", $low);
+   $highLine .= sprintf("%11.3f ", $high);
+   $rangeLine .= sprintf("%11.3f ", $high-$low);
+   $meanLine .= sprintf("%11.3f ", $mean);
+   $varianceLine .= sprintf("%11.3f ", $variance);
+   $sdLine .= sprintf("%11.3f ", $stdDev);
+   $sd2Line .= sprintf("%11.3f ", 2.0 * $stdDev + $mean);
+   $perrorLine .= sprintf("%11.3f ", $percentError);
+
+# Save the mean and standard deviation for use in the term table.
+   $mean{$name} = $mean;
+   $sd{$name} = $stdDev;
+}
+
+# Print the term table.
+for($count = 0; $count <= $#etot; ++$count)
+{
+   $inputName = `basename $ARGV[$count]`;
+   chop($inputName);
+   printf("%-15s", $inputName);
+   &CheckTerm($etot[$count],   $mean{'Etot'},       $sd{'Etot'});
+   print " ";
+   &CheckTerm($ektot[$count],  $mean{'EKtot'},      $sd{'EKtot'});
+   print " ";
+   &CheckTerm($eptot[$count],  $mean{'EPtot'},      $sd{'EPtot'});
+   print " ";
+   &CheckTerm($bond[$count],   $mean{'BOND'},       $sd{'BOND'});
+   print " ";
+   &CheckTerm($angle[$count],  $mean{'ANGLE'},      $sd{'ANGLE'});
+   print " ";
+   &CheckTerm($dihed[$count],  $mean{'DIHED'},      $sd{'DIHED'});
+   print " ";
+   &CheckTerm($nb[$count],     $mean{'1-4 NB'},     $sd{'1-4 NB'});
+   print " ";
+   &CheckTerm($eel[$count],    $mean{'1-4 EEL'},    $sd{'1-4 EEL'});
+   print " ";
+   &CheckTerm($vdw[$count],    $mean{'VDWAALS'},    $sd{'VDWAALS'});
+   print " ";
+   &CheckTerm($eelec[$count],  $mean{'EELEC'},      $sd{'EELEC'});
+   print " ";
+   &CheckTerm($ehbond[$count], $mean{'EHBOND'},     $sd{'EHBOND'});
+   print " ";
+   &CheckTerm($const[$count],  $mean{'CONSTRAINT'}, $sd{'CONSTRAINT'});
+   print " ";
+   &CheckTerm($eamber[$count], $mean{'EAMBER'},     $sd{'EAMBER'});
+
+   print "\n";
+}
+print "\n";
+print "*   before value denotes >= (mean + 1 * SD)\n";
+print "**  before value denotes >= (mean + 2 * SD)\n";
+print "*** before value denotes >= (mean + 3 * SD)\n";
+
+print "\n\n";
+chop($lowLine);
+printf("%-15s$lowLine\n", "Low:");
+chop($highLine);
+printf("%-15s$highLine\n", "High:");
+chop($rangeLine);
+printf("%-15s$rangeLine\n", "Range:");
+chop($meanLine);
+printf("%-15s$meanLine\n", "Mean:");
+chop($varianceLine);
+printf("%-15s$varianceLine\n", "Variance:");
+chop($sdLine);
+printf("%-15s$sdLine\n", "Std Deviation:");
+chop($sd2Line);
+printf("%-15s$sd2Line\n", "(2*SD)+Mean:");
+chop($perrorLine);
+printf("%-15s$perrorLine\n", "Percent Error:");
+
+# Place *'s to denote deviation from standard deviation.
+sub CheckTerm
+{
+   local($value, $mean, $sd) = @_;
+   local($field);
+
+   if($value == 0.0 && $mean == 0.0 && $sd == 0.0)
+      { $field = sprintf("%11.3f",  $value); }
+   elsif($value >= ($mean + 3.0 * $sd))
+      { $field = sprintf("***%8.3f",  $value); }
+   elsif($value >= ($mean + 2.0 * $sd))
+      { $field = sprintf("**%9.3f",  $value); }
+   elsif($value >= ($mean + $sd))
+      { $field = sprintf("*%10.3f",  $value); }
+   else
+      { $field = sprintf("%11.3f",  $value); }
+
+   print $field;
+}

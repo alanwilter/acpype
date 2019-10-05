@@ -1,0 +1,4 @@
+#!/opt/anaconda1anaconda2anaconda3/bin/python
+from parmed.scripts import guiapp
+
+guiapp()

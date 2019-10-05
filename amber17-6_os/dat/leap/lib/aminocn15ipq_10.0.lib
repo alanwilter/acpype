@@ -1,0 +1,105 @@
+!!index array str
+ "CNALA"
+!entry.CNALA.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+    "N"     "N"     0   1   131072   1   7  -0.57031
+    "H"     "H"     0   1   131072   2   1   0.36471
+    "CA"    "CX"    0   1   131072   3   6   0.11803
+    "HA"    "H1"    0   1   131072   4   1   0.10563
+    "CB"    "CT"    0   1   131072   5   6  -0.21429
+    "HB1"   "HC"    0   1   131072   6   1   0.08171
+    "HB2"   "HC"    0   1   131072   7   1   0.08171
+    "HB3"   "HC"    0   1   131072   8   1   0.08171
+    "C"     "C"     0   1   131072   9   6   0.59774
+    "O"     "O"     0   1   131072  10   8  -0.53351
+    "OXT"   "OH"    0   1   131072  11   8  -0.56629
+    "HXT"   "HO"    0   1   131072  12   1   0.45316
+!entry.CNALA.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "N" "N" 0 -1 0.0
+ "H" "H" 0 -1 0.0
+ "CA" "CX" 0 -1 0.0
+ "HA" "H1" 0 -1 0.0
+ "CB" "CT" 0 -1 0.0
+ "HB1" "HC" 0 -1 0.0
+ "HB2" "HC" 0 -1 0.0
+ "HB3" "HC" 0 -1 0.0
+ "C" "C" 0 -1 0.0
+ "O" "O" 0 -1 0.0
+ "OXT" "OH" 0 -1 0.0
+ "HXT" "HO" 0 -1 0.0
+!entry.CNALA.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.CNALA.unit.childsequence single int
+ 2
+!entry.CNALA.unit.connect array int
+ 1
+ 0
+!entry.CNALA.unit.connectivity table  int atom1x  int atom2x  int flags
+ 1 2 1
+ 1 3 1
+ 3 4 1
+ 3 5 1
+ 3 9 1
+ 5 6 1
+ 5 7 1
+ 5 8 1
+ 9 10 1
+ 9 11 1
+ 11 12 1
+!entry.CNALA.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R" 1
+ "R" 1 "A" 1
+ "R" 1 "A" 2
+ "R" 1 "A" 3
+ "R" 1 "A" 4
+ "R" 1 "A" 5
+ "R" 1 "A" 6
+ "R" 1 "A" 7
+ "R" 1 "A" 8
+ "R" 1 "A" 9
+ "R" 1 "A" 10
+ "R" 1 "A" 11
+ "R" 1 "A" 12
+!entry.CNALA.unit.name single str
+ "CNALA"
+!entry.CNALA.unit.positions table  dbl x  dbl y  dbl z
+ 0.054000 -0.225600 0.015300
+ -0.414900 0.513900 0.535700
+ 1.512700 -0.021500 0.070600
+ 1.997600 -0.859900 -0.437600
+ 1.887100 1.287300 -0.652200
+ 1.530800 1.270500 -1.684800
+ 1.445200 2.149100 -0.146300
+ 2.971500 1.418500 -0.670300
+ 2.016700 -0.004200 1.504200
+ 1.351000 0.367400 2.449800
+ 3.295400 -0.251600 1.607800
+ 3.631900 -0.444300 0.716800
+!entry.CNALA.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 1 0 0 0 0 0
+!entry.CNALA.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "CNALA" 1 13 1 "p" 0
+!entry.CNALA.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.CNALA.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.CNALA.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0

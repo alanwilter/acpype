@@ -1,0 +1,56 @@
+#!/usr/bin/perl
+
+if ($ARGV[0] eq "-help" or $#ARGV < 1) { die "
+USAGE:   $0 [d/t] sander_output_files
+
+Where 'd' is used to create a list of distance restraint 
+violations and 't' is used to create a list of torsion 
+restraint violations. The violations are taken from a list
+of sander output files, which may contain wildcards.
+$0 creates a list of the violations including 
+the number of structures in which each violation occurs,
+the mean violation, the distance bin or the violated side 
+of the torsion restraint, the restraint, and the crosspeak 
+number (if distance restraints are being examined). Violations
+are listed from most frequent to least frequent. Equally 
+frequent violations are listed from largest mean violation
+to smallest.
+\n";
+}
+
+$flag = lc(shift(@ARGV));
+
+foreach $file (@ARGV) {
+	if ($flag eq "d") { $input = "grep ' d ' ".$file." | "; }
+	elsif ($flag eq "t") { $input = "grep ' t\$' ".$file." | "; }
+	open(VIOLS, $input) or die "can't open $file";
+	while (<VIOLS>) {
+		$_ =~ s/^\s+//;
+		@field = split(/\s+/, $_);
+		$field[6] = substr($field[6], 0, -1);
+		$restraint = sprintf "%8.3f  %5s %3s %-3s -- %5s %3s %-3s",
+   $field[8], $field[0], $field[1], $field[2], $field[4], $field[5], $field[6];
+		$xpkno{$restraint} = $field[12];
+		++$number{$restraint};
+		unless ( $violation{$restraint} ) {
+			$violation{$restraint} = $field[9];
+			$sum_violations{$restraint} = $field[9];
+		}
+		else {
+			$sum_violations{$restraint} += $field[9];
+		}
+	}
+}
+foreach $restraint (keys %violation) {
+	$mean = $sum_violations{$restraint}/$number{$restraint};
+	push @output, sprintf "%5d   %6.3f  %s   %4s", $number{$restraint}, $mean, $restraint, $xpkno{$restraint};
+}
+@sorted_output = sort biggest_first @output;
+print "---------------------------------------------------------------\n";
+print " #viols   mean      bin     first atom      second atom   xpkno\n";
+print "---------------------------------------------------------------\n";
+foreach $violation (@sorted_output) { print "$violation\n"; }
+
+sub biggest_first { $b cmp $a; }
+end;
+

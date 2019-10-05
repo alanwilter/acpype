@@ -1,0 +1,211 @@
+#!/bin/sh
+set -e
+
+print_help() {
+    echo "`basename $0` [options]"
+    echo ""
+    echo "Options"
+    echo "-------"
+    echo "    -h, --help    Print this message and exit"
+    echo "    -v VERSION, --version VERSION"
+    echo "                  What version of Python do you want installed? Input"
+    echo "                  can be either 2 (default) or 3. Note, Phenix support"
+    echo "                  requires Python 2"
+    echo "    -p PREFIX, --prefix PREFIX"
+    exit 1
+}
+
+error() {
+    echo "Error occurred during Python install:"
+    echo ""
+    echo "$1"
+    exit 1
+}
+
+# Unset global conda environment variables in this installation shell to avoid
+# conflicts with an existing anaconda/miniconda installation
+unset CONDA_ENV_PATH
+unset CONDA_DEFAULT_ENV
+
+mac=0
+kernel="`uname -s`"
+version=2
+prefix=''
+MINICONDA_VERSION=4.3.11 # update to latest version for each AmberTools release
+
+# Process command-line
+while [ $# -ge 1 ]; do
+    case "$1" in
+        -h|--help)
+            print_help
+            ;;
+        -v|--version)
+            shift;
+            if [ $# -lt 1 ]; then
+                print_help
+            fi
+            version=$1
+            ;;
+        -p|--prefix)
+            shift;
+            if [ $# -lt 1 ]; then
+                print_help
+            fi
+            prefix=$1
+            ;;
+        *)
+            echo "Unsupported argument: $1"
+            print_help
+            ;;
+    esac
+    shift
+done
+
+# Check environment variables and possible erroneous input
+if [ "$prefix" = "" ]; then
+    if [ -z "$AMBERHOME" ]; then
+        echo "AMBERHOME must be set!"
+        exit 1
+    fi
+    prefix=$AMBERHOME
+fi
+
+echo "This script will download and install a version of Python compatible"
+echo "with every component of AmberTools and install all required and optional"
+echo "prerequisites. The Python distribution is downloaded for your operating"
+echo "system from Miniconda."
+echo ""
+
+if [ "$version" = "2" ]; then
+    echo "Downloading Python 2.7 Miniconda"
+elif [ "$version" = "3" ]; then
+    echo "Downloading Python 3 Miniconda"
+else
+    echo "Unsupported Python/conda version: $version"
+    echo "Pick 2 or 3"
+    exit 1
+fi
+
+# Get OS information
+if [ "$kernel" = "Darwin" ]; then
+    echo "Detected Mac OS X operating system. Downloading the Mac installer"
+    mac=1
+    # We need the default DYLD_FALLBACK_LIBRARY_PATH to kick in for zlib
+    # linking. Since Amber config.h may set this (and developmental versions did
+    # not include the suggested default in "man dyld") we explicitly unset it
+    # here to ensure that the Miniconda install will work. miniconda.sh already
+    # unsets DYLD_LIBRARY_PATH
+    unset DYLD_FALLBACK_LIBRARY_PATH
+    # We need a program in /sbin, and users may have removed this from their
+    # PATH. So make sure it's there
+    export PATH="${PATH}:/sbin"
+elif [ "$kernel" = "Linux" ]; then
+    echo "Detected Linux kernel. Downloading the Linux installer"
+else
+    echo "Unrecognized kernel (`uname -s`); assuming Linux"
+fi
+
+echo "Downloading the latest Miniconda distribution"
+if [ $mac -eq 1 ]; then
+    curl -# https://repo.continuum.io/miniconda/Miniconda${version}-${MINICONDA_VERSION}-MacOSX-x86_64.sh > \
+                miniconda.sh
+else
+    # Try to figure out if the machine builds 32- or 64-bit binaries,
+    # respectively.
+    bit=64
+    case "`uname -m`" in
+        i686)
+            echo "    Detected 32-bit Linux"
+            bit=32
+            ;;
+        i386)
+            echo "    Detected 32-bit Linux"
+            bit=32
+            ;;
+        i486)
+            echo "    Detected 32-bit Linux"
+            bit=32
+            ;;
+        i586)
+            echo "    Detected 32-bit Linux"
+            bit=32
+            ;;
+        x86)
+            echo "    Detected 32-bit Linux"
+            bit=32
+            ;;
+        x86_64)
+            echo "    Detected 64-bit Linux"
+            ;;
+        x64)
+            echo "    Detected 64-bit Linux"
+            ;;
+        *)
+            echo "    Could not determine 32-bit or 64-bit kernel. Assuming 64"
+            ;;
+    esac
+    if [ $bit -eq 32 ]; then
+        wget https://repo.continuum.io/miniconda/Miniconda${version}-${MINICONDA_VERSION}-Linux-x86.sh \
+            -O miniconda.sh
+    else
+        wget https://repo.continuum.io/miniconda/Miniconda${version}-${MINICONDA_VERSION}-Linux-x86_64.sh \
+            -O miniconda.sh
+    fi
+fi
+
+if [ -d "$prefix/miniconda" ]; then
+    echo "Deleting existing miniconda at $prefix/miniconda"
+    /bin/rm -fr "$prefix/miniconda"
+fi
+
+echo "Installing Miniconda Python."
+bash miniconda.sh -b -p "$prefix/miniconda" || error "Installing miniconda failed"
+
+export PATH="$prefix/miniconda/bin":"$PATH"
+echo "Updating and installing required and optional packages..."
+# don't need to install mkl (100 MB)
+$prefix/miniconda/bin/conda update conda -y
+$prefix/miniconda/bin/pip install pip --upgrade
+$prefix/miniconda/bin/conda install -y \
+    nomkl || error "Installing packages"
+$prefix/miniconda/bin/conda install -y \
+    conda-build numpy scipy cython ipython notebook || error "Installing packages"
+
+# if [ -f $AMBERHOME/mkrelease_at ]; then
+#     echo "Detect development mode. Install Cython"
+#     $AMBERHOME/miniconda/bin/conda install cython -y
+# fi
+
+# Use pip to install matplotlib so we don't have to pull in the entire Qt
+# dependency. And cache inside the Miniconda directory, since we don't want to
+# be writing outside $AMBERHOME unless specifically requested to
+$prefix/miniconda/bin/pip --cache-dir=$prefix/miniconda/pkgs \
+    install matplotlib || install_matplotlib='yes'
+
+if [ ! -z "$install_matplotlib" ]; then
+    $prefix/miniconda/bin/conda install -y matplotlib || error "Installing packages"
+fi
+echo "Creating symlinks to $prefix/bin and $prefix/lib"
+mkdir -p $prefix/bin
+mkdir -p $prefix/lib
+cwd=`pwd`
+cd "$prefix/bin"
+ln -sf ../miniconda/bin/python amber.python || error "Linking Amber's Miniconda Python"
+ln -sf ../miniconda/bin/conda amber.conda || error "Linking Amber's Miniconda conda"
+ln -sf ../miniconda/bin/ipython amber.ipython || error "Linking Amber's Miniconda ipython"
+ln -sf ../miniconda/bin/jupyter amber.jupyter || error "Linking Amber's Miniconda jupyter"
+ln -sf ../miniconda/bin/pip amber.pip || error "Linking Amber's Miniconda pip"
+cd "$prefix/lib"
+for dir in ../miniconda/lib/tcl*; do
+    ln -sf "$dir" || error "Linking TCL library folder $dir"
+done
+for dir in ../miniconda/lib/tk*; do
+    ln -sf "$dir" || error "Linking TK library folder $dir"
+done
+cd $cwd
+echo ""
+echo "Done. Miniconda installed in $prefix/miniconda"
+
+/bin/rm -f miniconda.sh
+
+$prefix/miniconda/bin/conda clean --all --yes
