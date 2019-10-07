@@ -84,8 +84,6 @@ if which('antechamber') is None:
         os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_os/'
         os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_os/bin/'
         os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_os/lib/'
-else:
-    pass
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
@@ -96,7 +94,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-10-07T18:32:01CEST"
+__updated__ = "2019-10-07T21:01:39CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
