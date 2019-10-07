@@ -7,12 +7,12 @@ with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2019-10-07T22:17:31CEST"
+__updated__ = "2019-10-07T23:00:59CEST"
 version = __updated__[:19].replace('-', '').replace('T', '').replace(':', '')
 
 setuptools.setup(
     name='acpype',
-    version='201910051226',
+    version=version,
     scripts=['scripts/acpype.py', ],
     author='Alan Wilter Sousa da Silva',
     author_email='alanwilter@gmail.com',
