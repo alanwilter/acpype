@@ -94,7 +94,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-10-07T21:01:39CEST"
+__updated__ = "2019-10-07T22:17:09CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
