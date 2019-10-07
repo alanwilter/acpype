@@ -32,5 +32,6 @@ include amber17-6_os/dat/leap/prep/oldff/*
 include amber17-6_os/dat/leap/prep/protonated_nucleic/*
 include amber17-6_os/dat/rism3d/electron_rdf/*
 include amber17-6_os/lib/*
+include amber17-6_os/lib/amber_3rd_party/*
 include amber17-6_os/include/*
 
