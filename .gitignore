@@ -18,7 +18,7 @@ build/
 develop-eggs/
 dist/
 eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -56,4 +56,4 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-pip-selfcheck.json 
+pip-selfcheck.json
