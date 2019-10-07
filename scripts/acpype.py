@@ -73,19 +73,19 @@ import site
 
 # For pip package
 if which('antechamber') is None:
-	LOCAL_PATH = site.getsitepackages()[0]
-	if sys.platform == 'linux':
-		os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber17-6_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber17-6_linux/bin:'+ LOCAL_PATH +'/amber17-6_linux/dat/'
-		os.environ["AMBERHOME"] = LOCAL_PATH +'/amber17-6_linux/'
-		os.environ["ACHOME"] = LOCAL_PATH +'/amber17-6_linux/bin/'
-		os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber17-6_linux/lib/'
-	elif sys.platform == 'darwin':
-		os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber17-6_os/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber17-6_os/bin:'+ LOCAL_PATH +'/amber17-6_os/dat/'
-		os.environ["AMBERHOME"] = LOCAL_PATH +'/amber17-6_os/'
-		os.environ["ACHOME"] = LOCAL_PATH +'/amber17-6_os/bin/'
-		os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber17-6_os/lib/'
+    LOCAL_PATH = site.getsitepackages()[0]
+    if sys.platform == 'linux':
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_linux/bin:' + LOCAL_PATH + '/amber17-6_linux/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_linux/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_linux/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_linux/lib/'
+    elif sys.platform == 'darwin':
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_os/bin:' + LOCAL_PATH + '/amber17-6_os/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_os/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_os/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_os/lib/'
 else:
-	pass
+    pass
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
@@ -96,7 +96,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-10-05T12:26:00CEST"
+__updated__ = "2019-10-07T18:32:01CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
