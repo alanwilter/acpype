@@ -94,7 +94,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-10-07T22:17:09CEST"
+__updated__ = "2019-10-08T09:09:22CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -702,7 +702,7 @@ class Topology_14():
             if val not in (0, 1.2):
                 return True
         for val in self.scnb_scale_factor:
-            if val not in (0, 1.2):
+            if val not in (0, 2):
                 return True
         return False
 

@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2019-10-07T23:20:34CEST"
+__updated__ = "2019-10-08T09:10:49CEST"
 version = __updated__[:19].replace('-', '').replace('T', '').replace(':', '')
 
 setuptools.setup(
