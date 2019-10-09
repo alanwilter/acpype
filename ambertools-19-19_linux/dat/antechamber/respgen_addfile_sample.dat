@@ -1,0 +1,22 @@
+//predefined charges in a format of (CHARGE partial_charge atom_ID atom_name)
+CHARGE	-0.417500	7	N1
+CHARGE	 0.271900	8	H4
+CHARGE	 0.597300	15	C5
+CHARGE	-0.567900	16	O2
+//charge groups in a format of (GROUP num_atom net_charge)
+GROUP	10	  0.00000
+//atoms in the group in a format of (ATOM atom_ID atom_name)
+ATOM	7	N1
+ATOM	8	H4
+ATOM	9	C3
+ATOM	10	H5
+ATOM	11	C4
+ATOM	12	H6
+ATOM	13	H7
+ATOM	14	H8
+ATOM	15	C5
+ATOM	16	O2
+//definition for the second group
+//GROUP ..	..
+//ATOM	..	..
+//ATOM	..	.. 

@@ -20,7 +20,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/alanwilter/acpype",
-    packages=['scripts', 'amber17-6_linux', 'amber17-6_os'],
+    packages=['scripts', 'amber19-0_linux', 'amber19-0_os'],
     package_dir={'acpype':
                  'acpype'},
     include_package_data=True,

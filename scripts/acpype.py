@@ -75,15 +75,15 @@ import site
 if which('antechamber') is None:
     LOCAL_PATH = site.getsitepackages()[0]
     if sys.platform == 'linux':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_linux/bin:' + LOCAL_PATH + '/amber17-6_linux/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_linux/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_linux/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_linux/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_linux/bin:' + LOCAL_PATH + '/amber19-0_linux/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_linux/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_linux/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_linux/lib/'
     elif sys.platform == 'darwin':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_os/bin:' + LOCAL_PATH + '/amber17-6_os/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_os/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_os/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_os/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_os/bin:' + LOCAL_PATH + '/amber19-0_os/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_os/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_os/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_os/lib/'
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
@@ -3782,8 +3782,8 @@ def init_main():
 if __name__ == '__main__':
     # For pip package
     # LOCAL_PATH = os.getcwd()
-    # os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber17-6_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber17-6_linux/bin:'+ LOCAL_PATH +'/amber17-6_linux/dat/'
-    # os.environ["AMBERHOME"] = LOCAL_PATH +'/amber17-6_linux'
-    # os.environ["ACHOME"] = LOCAL_PATH +'/amber17-6_linux/bin/'
-    # os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber17-6_linux/lib'
+    # os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber19-0_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber19-0_linux/bin:'+ LOCAL_PATH +'/amber19-0_linux/dat/'
+    # os.environ["AMBERHOME"] = LOCAL_PATH +'/amber19-0_linux'
+    # os.environ["ACHOME"] = LOCAL_PATH +'/amber19-0_linux/bin/'
+    # os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber19-0_linux/lib'
     init_main()  # necessary for to call in anaconda package;

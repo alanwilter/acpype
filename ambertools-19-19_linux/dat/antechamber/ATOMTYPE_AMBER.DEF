@@ -1,0 +1,150 @@
+# Please go to the end to see rules of defining an atom  
+
+============================================================================================
+                        Definition begin
+============================================================================================
+--------------------------------------------------------------------------------------------
+WILDATOM XX C N O S P
+WILDATOM XA O S
+WILDATOM XB N P
+WILDATOM XC F Cl Br I
+-------------------------------------------------------------------------------------------- 
+ f1  f2    f3  f4  f5  f6  f7  f8      			f9         	f10 
+-------------------------------------------------------------------------------------------- 
+ATD  CT    *   6   4   &                                    
+ATD  C     *   6   3   *   *   *       	      	 	(XA1)			&
+ATD  CN    *   6   3   *   *   [RG5,RG6,AR1.AR2.AR3]   	(C3,C3,N3(H))		&
+ATD  CB    *   6   3   *   *   [RG5,RG6,AR1.AR2.AR3]    &
+ATD  CR    *   6   3   *   *   [RG5,AR1.AR2.AR3]        (N3,N3)			&
+ATD  CR    *   6   3   *   *   [RG5,AR1.AR2.AR3]        (N2,N3(H))		&
+ATD  CK    *   6   3   *   *   [RG5,AR1.AR2.AR3]        (N2,N3) 		&	 
+ATD  CC    *   6   3   0   *   [RG5,AR1.AR2.AR3]        (C3,N3(C3,H))		&
+ATD  CC    *   6   3   0   *   [RG5,AR1.AR2.AR3]        (C3,N2(C3))		&
+ATD  CW    *   6   3   *   *   [RG5,AR1.AR2.AR3]        (C3,N3(H))		&
+ATD  CV    *   6   3   *   *   [RG5,AR1.AR2.AR3]        (C3,N2)			&
+ATD  C*    *   6   3   *   *   [RG5,AR1.AR2.AR3]        (C3,C3)			&
+ATD  CQ    *   6   3   *   *   [RG6,AR1.AR2.AR3]        (N2,N2)			&
+ATD  CM    *   6   3   *   *   [RG6,AR1.AR2.AR3]        (C3,C3(N2(C3(N3(C3))))) &
+ATD  CM    *   6   3   *   *   [RG6,AR1.AR2.AR3]        (C3,C3(N3(C3(N3(C3))))) &
+ATD  CM    *   6   3   *   *   [RG6,AR1.AR2.AR3]        (C3,N3(C3(N2(C3(C3))))) &
+ATD  CM    *   6   3   *   *   [RG6,AR1.AR2.AR3]        (N3,C3(C3(N3(C3(N3))))) &
+ATD  CA    *   6   3   *   *   [AR1.AR2.AR3]             &	
+ATD  CA    *   6   3   *   *   *                	(N3,N3,N3)  		&
+ATD  CD    *   6   3   *   *   *                        (C3,C3)			& 
+ATD  CM    *   6   3   &
+ATD  CZ    *   6   2   &
+ATD  H     *   1   1   *   *   *                        (N)			&
+ATD  HO    *   1   1   *   *   *                        (O)			&
+ATD  HS    *   1   1   *   *   *                        (S)			&
+ATD  HP    *   1   1   *   *   *                        (C(N4))			&
+ATD  HW    *   1   1   *   *   *                        (O(H1))			&
+ATD  H3    *   1   1   *   3   *                        (C4)			&
+ATD  H2    *   1   1   *   2   *                        (C4)			&
+ATD  H1    *   1   1   *   1   *                        (C4)			&
+ATD  HC    *   1   1   *   *   *                        (C4)			&
+ATD  H5    *   1   1   *   2   *                        (XX[AR1.AR2.AR3])	&
+ATD  H4    *   1   1   *   1   *                        (XX[AR1.AR2.AR3])	&
+ATD  HA    *   1   1   *   *   *                        (XX[AR1.AR2.AR3])	&
+ATD  HA    *   1   1   &
+ATD  F     *   9   1   &
+ATD  Cl    *   17  1   &
+ATD  Br    *   35  1   &
+ATD  I     *   53  1   &
+ATD  P     *   15  &
+ATD  N1    *   7   1   &   
+ATD  NB    *   7   2   *   *   [RG5,AR1.AR2.AR3]         & 
+ATD  NC    *   7   2   *   *   [RG6,AR1.AR2.AR3]         & 
+ATD  N2    *   7   *   *   *   *                         (C3(N3,N3))		&
+ATD  N2    *   7   *   *   *   *                         (C3(N3,N3))		&
+ATD  NO    *   7   3   *   *   *                         (O1,O1)		&
+ATD  NA    *   7   3   1   *   [RG5.RG6,AR1.AR2.AR3]     & 
+ATD  N2    *   7   3   *   *   [NR]                      (XX[AR1.AR2.AR3]) 	&
+ATD  N*    *   7   3   *   *   [AR1.AR2.AR3]             &
+ATD  N     *   7   3   *   *   *                         (C3(XA1))		&
+ATD  NT    *   7   3   &   
+ATD  N3    *   7   4   &   
+ATD  O2    *   8   1   *   *   *                         (C(O1))		&
+ATD  O2    *   8   1   *   *   *                         (P)			&
+ATD  O     *   8   1   *   *   *                         (C)			&
+ATD  O     *   8   1   *   *   *                         (S)			&
+ATD  OH    *   8   2   1   & 
+ATD  OW    *   8   2   2   & 
+ATD  OS    *   8   2   & 
+ATD  SH    *   16  2   1   &
+ATD  SH    *   16  2   2   &
+ATD  S     *   16  2   & 
+ATD  SO    *   16  4   & 
+ATD  LP   *    0   &
+ATD  DU  &
+--------------------------------------------------------------------------------------------
+============================================================================================
+
+
+
+
+============================================================================================
+			Field descriptions
+============================================================================================
+(1)  ATD, which stands for atom type definition, ATD should always in the first three columns 
+(2)  Atom type name, can be letters or numbers   
+(3)  Residue names, which means this description is only applied to atoms in special residues
+(4)  Atomic number 
+(5)  Number of attached atoms 
+(6)  Number of attached hydrogen atoms
+(7)  For hydrogen, number of the electron-withdrawal atoms connected to the atom that the 
+     hydrogen attached
+(8)  atomic property
+(9)  Chemical environment definitions
+
+
+============================================================================================
+			Specific symbols
+============================================================================================
+*  Ignore this field
+&  End of definition 
+.  "or" operation in the ring and aromatity descriptions 
+
+
+============================================================================================
+			Predefined words
+============================================================================================
+EW   Electron-withdraw atom
+AA   Amino acid residue
+NA   Nucleic acid
+BIO  AA + NA
+
+AR1  Pure aromatic atom (benzene and pyridine)
+AR2  Atom in a planar ring, usually the ring has two continuous single bonds
+AR3  Atom in a planar ring, which has one or several double bonds formed between outside atoms
+     and ring atoms
+AR4  Atom other than AR1, AR2, AR3 and AR5. 
+AR5  Pure aliphatic atom in a ring, which is made of sp3 carbon
+
+RG   Ring (from 3-membered to nine-membered)
+RG3  3-membered ring 
+RG4  4-membered ring 
+RG5  5-membered ring 
+RG6  6-membered ring 
+RG7  7-membered ring 
+RG8  8-membered ring 
+RG9  9-membered ring 
+NR   non-ring atom 
+
+SB   Single bond
+DB   Double bond
+TB   Triple bond
+AB   Aromatic bond
+sb   Single bond, including aromatic single
+db   Double bond, including aromatic double
+tb   Triple bond
+ 
+============================================================================================
+			Miscellaneous
+============================================================================================
+1. maximum line length is 500 characters
+2. no space in the atomic property string
+3. no space in the chemical environment string 
+4. no filed missing before &
+5. the definition order is crucial, special atom types should defined before the more general 
+   ones
+6. Bonds in COO- and -NO2 are considered as double bonds

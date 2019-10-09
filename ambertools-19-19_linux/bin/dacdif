@@ -1,0 +1,328 @@
+#!/bin/sh
+#set -vx
+
+# Amber test-output filter and diff-er.
+#    Originally by George Seibel for Amber 3.0 Rev A
+#    4.0: added egrep -v and sed to screen irrelevant stuff -Bill Ross
+#    Modifications by Dave Case
+#    Rewritten in sh with floating point truncation, Scott Brozell, TSRI
+
+# define variables with constant values
+dif_ext=dif
+
+# create usage statement
+usage()
+{
+cat << EOF
+Usage: $0 [-k] [-s] [-r relerr] [-a abserr] [-t {0,1,2,3,4,5,6,7,8}]  \
+          [-v] [-w] original_file new_files
+
+Description
+       Strip irrelevant differences from all files and then diff
+       original_file with each new_file, sending diff's to new_file.$dif_ext
+       Note that the options should precede the arguments.
+
+Options
+       -k
+              keep the new_files and the temporary files; the default is
+              to remove the new_files if the diff passes and to remove
+              the temporary files.
+
+       -s
+              ignore the sign of floating point numbers.
+
+       -t n={0,1,2,3,4,5,6,7,8}
+              truncate the last n digits of floating point numbers.
+
+       -v
+              do not emit verbose messages that indicate the processing status.
+
+       -w
+              ignore whitespace.  Note that trailing whitespace and
+              blank lines are removed regardless of this option.
+
+       -r <relerr>  Ignore errors with relative diffs less than <relerr>;
+              uses Nelson Beebe's ndiff program.
+
+       -a <abserr>  Ignore errors with absolute diffs less than <abserr>;
+              uses Nelson Beebe's ndiff program.  Ignored if "-r" is set.
+       -f     test is allowed to fail (print "(ignored)" after "possible FAILURE:")
+EOF
+
+exit 1;
+}
+
+# standardize command line options
+optionlist='kst:vwr:a:f'
+set -- `getopt "$optionlist" "$@"`
+
+# parse options
+on='on'
+tmpdir="ddtmp."
+# To wit dacdif's usage in dhfr/Run.dhfr will create these temporary files:
+#ddtmp.mdout.dhfr
+#ddtmp.mdout.dhfr.save
+keep_files=''
+ignore_sign=''
+ignore_whitespace=''
+truncate=''
+failmsg='possible FAILURE:'
+verbose=$on
+while [ $# -gt 0 ]
+do
+    case "$1" in
+        -k)    keep_files=$on; ;;
+        -s)    ignore_sign=$on ;;
+        -t)    truncate=$on; shift; digits=$1 ;;
+        -v)    verbose='' ;;
+        -w)    ignore_whitespace=$on ;;
+        -r)    ndiff=$on; shift; relerr=$1 ;;
+        -a)    ndiffa=$on; shift; abserr=$1 ;;
+        -f)    failmsg="possible FAILURE: (ignored)";;
+        --)    shift; break ;;
+        -*)    usage ;;
+        *)     break ;;
+    esac
+    shift
+done
+
+# command requires at least 2 arguments
+if [ $# -lt 2 ]
+then
+    usage;
+fi
+
+# if either file does not exist, print FAILURE and exit
+for path in $@; do
+  if [ ! -e $path ]; then
+    echo "${failmsg}  file $path does not exist."
+    echo "=============================================================="
+    exit
+  fi
+done
+
+# Perform the following transformations on all files:
+# ## denotes cut and pasted lines from example files
+#
+# Delete lines that begin with |
+##| Run on 12/26/2003 at 12:09:28
+##|  MDIN: gbin
+##| Total time                 1.54 (100.0% of ALL  )
+#
+# Delete lines that contain VERSION
+##%VERSION  VERSION_STAMP = V0001.000  DATE = 08/06/01  11:44:33
+#
+# Delete version lines for these programs:
+##          Amber 16 PMEMD                              2016
+##          Amber 16 SANDER                              2016
+##Welcome to acdoctor 17.2: check and diagnosis problems in molecular input files.
+##Welcome to antechamber 17.2: molecular input file processor.
+#
+# Removing all path specific information could be done, but instead we
+# merely remove these explicit instances:
+# Remove lines referring to 'dat/leap/', since these may depend on AMBERHOME
+# Remove lines referring to reduce database, since these may depend on AMBERHOME
+# Remove path prefix from antechamber et al.; these depend on AMBERHOME:
+##Running: /tmp/amber/bin/atomtype -i ACDOCTOR_BOND.ac -o ACDOCTOR_ATOM.ac -p gaff
+##/tmp/amber/bin/acdoctor: Fatal Error!
+##/tmp/amber/bin/to_be_dispatched/acdoctor: Fatal Error!
+# Remove message lines referring to 'teLeap', since these depend on AMBERHOME:
+##/tmp/amber/bin/teLeap: Note.
+#
+# Remove lines referring to dates; whoever did this did not document it.
+# Remove leap log lines referring to dates:
+##log started: Mon Feb 26 16:38:46 2018
+#
+# Convert lowercase floating point exponent delimiters to uppercase:
+#  e+  ->  E+
+#  e-  ->  E-
+# Delete useless floating point exponent fields, ie,
+#  E+, E-, E+0, E-0, E+00, E-00, etc.
+# Delete leading zeros in floating point exponent fields, ie,
+#  E+004 -> E+4
+#  E-005 -> E-5
+# Prepend zero to floating point numbers beginning with ., ie, convert:
+#    . ->  0.
+#   -. -> -0.
+# Convert all forms of floating point zero to 0., ie,
+#  -0. ->  0., +0. ->  0., -0.0 ->  0.0, etc.
+#
+# Convert DOS line terminators to UNIX line terminators
+#
+# Remove trailing whitespace
+#
+# Remove blank lines
+#
+# Optionally remove signs, truncate digits, and remove whitespace
+
+for path in $@
+do
+    file=`echo $path | sed 's@/@_@g'`  # convert pathname into unique filename
+    cat $path |
+    # use @ (or |) to delimit regular expressions to improve readability.
+    # this requires \@ for regular expression addresses.
+    # see UNIX Power Tools, 2nd ed., p617.
+    sed -e '\@^|@d' \
+        -e '\@VERSION@d' \
+        -e '\@^          Amber .. SANDER@d' \
+        -e '\@^          Amber .. PMEMD@d' \
+        -e '\@^Welcome to acdoctor[. 0-9]*: @d' \
+        -e '\@^Welcome to antechamber[. 0-9]*: @d' \
+        -e '\@Database of HETATM@d' \
+        -e '\@dat/leap/@d' \
+        -e 's|^Running: [-a-zA-Z0-9\.@_/]*bin/|Running:|' \
+        -e 's|^Running: [-a-zA-Z0-9\.@_/]*bin/to_be_dispatched/|Running:|' \
+        -e 's|^[-a-zA-Z0-9\._@/]*bin/\([a-zA-Z0-9_]*\): Fatal Error|\1: Fatal Error|' \
+        -e 's|^[-a-zA-Z0-9\._@/]*bin/to_be_dispatched/\([a-zA-Z0-9_]*\): Fatal Error|\1: Fatal Error|' \
+        -e 's|^[-a-zA-Z0-9\._@/]*bin/teLeap: |teLeap: |' \
+        -e 's|^log started: [MTWTFSS][ouehrau][oeduitn] [A-GJL-PR-VYa-gjl-pr-vy][A-GJL-PR-VYa-gjl-pr-vy][A-GJL-PR-VYa-gjl-pr-vy] [ 0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9] [12][90][0-9][0-9]|log started: |' \
+        -e '\@.* on ../../....@d' \
+        -e 's@e+@E+@g' \
+        -e 's@e-@E-@g' \
+        -e 's@E[-+]0*\([^0-9]\)@\1@g' \
+        -e 's@E[-+]0*$@@g' \
+        -e 's@E\([-+]\)0*\([1-9]\)@E\1\2@g' \
+        -e 's@ \([- ]\)\.\([0-9]\)@\10.\2@g' \
+        -e 's@[-+ ]0\.0*\([^0-9]\)@ 0.\1@g' \
+        -e 's@[-+ ]0\.0*$@ 0.@g' \
+        -e 's@$@@' \
+        -e 's@ *$@@' \
+        -e '\@^$@d' \
+        > $tmpdir$file
+    if [ "$ignore_sign" = "$on" ]
+    then
+        mv $tmpdir$file $tmpdir$file.t
+        sed -e 's@[-+]\([0-9][0-9]*\.[0-9]*\)@ \1@g' \
+            $tmpdir$file.t > $tmpdir$file
+        if [ "$keep_files" != "$on" ]
+        then
+            /bin/rm $tmpdir$file.t
+        fi
+    fi
+    if [ "$truncate" = "$on" ]
+    then
+        mv $tmpdir$file $tmpdir$file.t
+        case "$digits" in
+            0)    cat $tmpdir$file.t > $tmpdir$file ;;
+            1)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            2)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            3)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            4)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            5)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            6)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            7)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            8)    sed -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      -e 's@\([-+]\{0,1\}[0-9][0-9]*\.[0-9]*\)[0-9]@\1@g' \
+                      $tmpdir$file.t > $tmpdir$file ;;
+            *)    usage ;;
+        esac
+        if [ "$keep_files" != "$on" ]
+        then
+            /bin/rm $tmpdir$file.t
+        fi
+    fi
+done
+
+# get original file
+original=$1
+file=`echo $original | sed 's@/@_@g'`  # convert pathname into unique filename
+old=$tmpdir$file
+shift
+
+# diff old with each new file storing diff's in file with extension dif_ext
+for path in $@
+do
+    file=`echo $path | sed 's@/@_@g'`  # convert pathname into unique filename
+    new=$tmpdir$file
+    if [ "$verbose" = "$on" ]
+    then
+        echo "diffing $original with $path"
+    fi
+    if [ "$ignore_whitespace" = "$on" ]
+    then
+        diff -w $old $new > $path.$dif_ext
+    else
+        if [ "$ndiff" = "$on" ]
+        then
+            #  $AMBERHOME/bin/ndiff -r $relerr $old $new > $path.$dif_ext
+            awk -f $AMBERHOME/test/ndiff.awk -v RELERR=$relerr \
+                 $old $new > $path.$dif_ext
+        elif [ "$ndiffa" = "$on" ]
+        then
+            awk -f $AMBERHOME/test/ndiff.awk -v ABSERR=$abserr \
+                 $old $new > $path.$dif_ext
+        else
+            diff $old $new > $path.$dif_ext
+        fi
+    fi
+    status=$?
+    if [ $status -eq 0 ]
+    then
+        if [ "$verbose" = "$on" ]
+        then
+            echo "PASSED"
+        fi
+        if [ "$keep_files" != "$on" ]
+        then
+            /bin/rm $path.$dif_ext $path
+        else
+            /bin/rm $path.$dif_ext
+        fi
+    else
+        #Figure out the directory we are in and the main test directory
+        #for writing TEST_FAILURES info file
+        fulldir=`pwd`
+        dacdifdir=`echo $0 | sed s/dacdif//`
+        echo "${failmsg}  check $path.$dif_ext"
+        echo "${failmsg}  check $path.$dif_ext" >> $dacdifdir/TEST_FAILURES.diff
+        echo $fulldir >> $dacdifdir/TEST_FAILURES.diff
+        cat $path.$dif_ext >> $dacdifdir/TEST_FAILURES.diff
+        echo "---------------------------------------" >> $dacdifdir/TEST_FAILURES.diff
+    fi
+    echo "=============================================================="
+    if [ "$keep_files" != "$on" ]
+    then
+        /bin/rm $new
+    fi
+done
+
+if [ "$keep_files" != "$on" ]
+then
+    /bin/rm $old
+fi
+exit
+

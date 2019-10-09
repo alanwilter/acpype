@@ -1,0 +1,38 @@
+# NetCDF C Configuration Summary
+==============================
+
+# General
+-------
+NetCDF Version:		4.6.1
+Configured On:		Sat Apr 27 01:58:54 EDT 2019
+Host System:		x86_64-apple-darwin18.5.0
+Build Directory: 	/Users/haichit/miniconda3/conda-bld/ambertools_1556344599056/work/AmberTools/src/netcdf-4.6.1
+Install Prefix:         /Users/haichit/miniconda3/conda-bld/ambertools_1556344599056/work
+
+# Compiling Options
+-----------------
+C Compiler:		/usr/bin/clang
+CFLAGS:			-fPIC -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -DBINTRAJ 
+CPPFLAGS:		
+LDFLAGS:		
+AM_CFLAGS:		
+AM_CPPFLAGS:		
+AM_LDFLAGS:		
+Shared Library:		no
+Static Library:		yes
+Extra libraries:	-lm 
+
+# Features
+--------
+NetCDF-2 API:		yes
+HDF4 Support:		no
+NetCDF-4 API:		no
+NC-4 Parallel Support:	no
+PNetCDF Support:	no
+DAP2 Support:		no
+DAP4 Support:		no
+Diskless Support:	yes
+MMap Support:		no
+JNA Support:		no
+CDF5 Support:		yes
+ERANGE fill Support:	no
