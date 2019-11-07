@@ -94,7 +94,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-11-07T21:50:01CET"
+__updated__ = "2019-11-07T23:16:00CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -1463,7 +1463,7 @@ Usage: antechamber -i   input file name
         '''Execute babel'''
         self.makeDir()
 
-        cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile,
+        cmd = '%s -ipdb %s -omol2 -O %s.mol2' % (self.babelExe, self.inputFile,
                                               self.baseName)
         self.printDebug(cmd)
         self.babelLog = _getoutput(cmd)
