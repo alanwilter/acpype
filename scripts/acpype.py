@@ -94,7 +94,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-10-08T09:09:22CEST"
+__updated__ = "2019-11-07T20:58:22CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -3426,7 +3426,7 @@ class ACTopol(AbstractTopol):
         self.tleapExe = which('tleap') or ''
         self.sleapExe = which('sleap') or ''
         self.parmchkExe = which('parmchk2') or ''
-        self.babelExe = which('babel') or ''
+        self.babelExe = which('babel') or which('obabel') or ''
         if not os.path.exists(self.babelExe):
             if self.ext != '.mol2' and self.ext != '.mdl':  # and self.ext != '.mol':
                 self.printError("no 'babel' executable; you need it if input is PDB")
