@@ -736,7 +736,7 @@ class AbstractTopol():
         self.tmpDir = None
         self.absInputFile = None
         self.chargeType = None
-        self.babelExe = None
+        self.obabelExe = None
         self.baseName = None
         self.acExe = None
         self.force = None
@@ -781,7 +781,7 @@ class AbstractTopol():
         self.tleapLog = None
         self.parmchkLog = None
         self.inputFile = None
-        self.babelLog = None
+        self.obabelLog = None
         self.absHomeDir = None
         self.molTopol = None
         self.topFileData = None
@@ -861,7 +861,7 @@ class AbstractTopol():
             self.printWarn("no charge value given, trying to guess one...")
             mol2FileForGuessCharge = self.inputFile
             if self.ext == ".pdb":
-                cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile, self.baseName)
+                cmd = '%s -ipdb %s -omol2 -O %s.mol2' % (self.obabelExe, self.inputFile, self.baseName)
                 self.printDebug("guessCharge: " + cmd)
                 out = _getoutput(cmd)
                 self.printDebug(out)
@@ -1452,28 +1452,28 @@ Usage: antechamber -i   input file name
         return check
 
     def convertPdbToMol2(self):
-        '''Convert PDB to MOL2 by using babel'''
+        '''Convert PDB to MOL2 by using obabel'''
         if self.ext == '.pdb':
-            if self.execBabel():
-                self.printError("convert pdb to mol2 via babel failed")
+            if self.execObabel():
+                self.printError("convert pdb to mol2 via obabel failed")
                 return True
         return False
 
-    def execBabel(self):
-        '''Execute babel'''
+    def execObabel(self):
+        '''Execute obabel'''
         self.makeDir()
 
-        cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile,
+        cmd = '%s -ipdb %s -omol2 -O %s.mol2' % (self.obabelExe, self.inputFile,
                                               self.baseName)
         self.printDebug(cmd)
-        self.babelLog = _getoutput(cmd)
+        self.obabelLog = _getoutput(cmd)
         self.ext = '.mol2'
         self.inputFile = self.baseName + self.ext
         self.acParDict['ext'] = 'mol2'
         if os.path.exists(self.inputFile):
             self.printMess("* Babel OK *")
         else:
-            self.printQuoted(self.babelLog)
+            self.printQuoted(self.obabelLog)
             return True
         return False
 
@@ -3426,14 +3426,14 @@ class ACTopol(AbstractTopol):
         self.tleapExe = which('tleap') or ''
         self.sleapExe = which('sleap') or ''
         self.parmchkExe = which('parmchk2') or ''
-        self.babelExe = which('babel') or ''
-        if not os.path.exists(self.babelExe):
+        self.obabelExe = which('obabel') or ''
+        if not os.path.exists(self.obabelExe):
             if self.ext != '.mol2' and self.ext != '.mdl':  # and self.ext != '.mol':
-                self.printError("no 'babel' executable; you need it if input is PDB")
+                self.printError("no 'obabel' executable; you need it if input is PDB")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
                 sys.exit(1)
             else:
-                self.printWarn("no 'babel' executable, no PDB file as input can be used!")
+                self.printWarn("no 'obabel' executable, no PDB file as input can be used!")
         acBase = base + '_AC'
         self.acBaseName = acBase
         self.acXyzFileName = acBase + '.inpcrd'
