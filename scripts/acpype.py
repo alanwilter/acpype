@@ -126,7 +126,7 @@ leapAmberFile = 'leaprc.protein.ff14SB'  # 'leaprc.ff14SB'
 
 cal = 4.184
 Pi = 3.141593
-qConv = 18.222281775  # 18.2223
+qConv = 18.2223
 radPi = 57.295780  # 180/Pi
 maxDist = 3.0
 minDist = 0.5
