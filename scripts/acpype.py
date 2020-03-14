@@ -75,7 +75,7 @@ import site
 if which('antechamber') is None:
     LOCAL_PATH = site.getsitepackages()[0]
     if sys.platform == 'linux':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_linux/bin:' + LOCAL_PATH + '/amber17-6_linux/dat/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_linux/bin:' + LOCAL_PATH + '/amber17-6_linux/dat/'
         os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_linux/'
         os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_linux/bin/'
         os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_linux/lib/'
