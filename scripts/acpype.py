@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # pylint: disable=global-statement,broad-except,fixme,too-many-instance-attributes,too-many-locals,too-many-nested-blocks,too-many-statements,too-many-statements,too-many-branches,too-many-lines,too-few-public-methods,too-many-arguments,too-many-public-methods
 
 """
@@ -75,15 +76,15 @@ import site
 if which('antechamber') is None:
     LOCAL_PATH = site.getsitepackages()[0]
     if sys.platform == 'linux':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_linux/bin:' + LOCAL_PATH + '/amber19-0_linux/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_linux/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_linux/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_linux/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_linux/bin:' + LOCAL_PATH + '/amber17-6_linux/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_linux/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_linux/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_linux/lib/'
     elif sys.platform == 'darwin':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_os/bin:' + LOCAL_PATH + '/amber19-0_os/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_os/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_os/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_os/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_os/bin:' + LOCAL_PATH + '/amber17-6_os/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_os/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_os/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_os/lib/'
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
@@ -94,7 +95,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-11-07T23:16:00CET"
+__updated__ = "2020-03-14T11:44:00CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -126,7 +127,7 @@ leapAmberFile = 'leaprc.protein.ff14SB'  # 'leaprc.ff14SB'
 
 cal = 4.184
 Pi = 3.141593
-qConv = 18.222281775  # 18.2223
+qConv = 18.2223
 radPi = 57.295780  # 180/Pi
 maxDist = 3.0
 minDist = 0.5
