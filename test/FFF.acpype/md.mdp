@@ -1,0 +1,5 @@
+; to test
+; gmx grompp -f md.mdp -c em.gro -p FFF_GMX.top -o md.tpr
+; gmx mdrun -ntmpi 1 -v -deffnm md
+integrator               = md
+nsteps                   = 10000

@@ -1,0 +1,5 @@
+; to test
+; gmx grompp -f em.mdp -c AAA_GMX.gro -p AAA_GMX.top -o em.tpr -v
+; gmx mdrun -ntmpi 1 -v -deffnm em
+integrator               = steep
+nsteps                   = 500

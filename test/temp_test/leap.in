@@ -1,0 +1,12 @@
+verbosity 1
+source leaprc.ff99SB
+source leaprc.gaff
+loadoff Ligand.acpype/Ligand_AC.lib
+loadamberparams Ligand.acpype/Ligand_AC.frcmod
+complex = loadpdb ComplexAmber.pdb
+solvatebox complex TIP3PBOX 10.0
+addions complex Na+ 23
+addions complex Cl- 27
+saveamberparm complex ComplexAmber.prmtop ComplexAmber.inpcrd
+savepdb complex ComplexNAMD.pdb
+quit

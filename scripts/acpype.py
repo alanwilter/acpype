@@ -75,15 +75,15 @@ import site
 if which('antechamber') is None:
     LOCAL_PATH = site.getsitepackages()[0]
     if sys.platform == 'linux':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_linux/bin:' + LOCAL_PATH + '/amber19-0_linux/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_linux/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_linux/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_linux/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_linux/bin:' + LOCAL_PATH + '/amber17-6_linux/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_linux/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_linux/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_linux/lib/'
     elif sys.platform == 'darwin':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_os/bin:' + LOCAL_PATH + '/amber19-0_os/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_os/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_os/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_os/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_os/bin:' + LOCAL_PATH + '/amber17-6_os/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_os/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_os/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_os/lib/'
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
@@ -94,7 +94,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2019-11-07T23:16:00CET"
+__updated__ = "2020-03-14T11:44:00UTC"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -861,7 +861,7 @@ class AbstractTopol():
             self.printWarn("no charge value given, trying to guess one...")
             mol2FileForGuessCharge = self.inputFile
             if self.ext == ".pdb":
-                cmd = '%s -ipdb %s -omol2 -O %s.mol2' % (self.babelExe, self.inputFile, self.baseName)
+                cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile, self.baseName)
                 self.printDebug("guessCharge: " + cmd)
                 out = _getoutput(cmd)
                 self.printDebug(out)
@@ -1463,7 +1463,7 @@ Usage: antechamber -i   input file name
         '''Execute babel'''
         self.makeDir()
 
-        cmd = '%s -ipdb %s -omol2 -O %s.mol2' % (self.babelExe, self.inputFile,
+        cmd = '%s -ipdb %s -omol2 %s.mol2' % (self.babelExe, self.inputFile,
                                               self.baseName)
         self.printDebug(cmd)
         self.babelLog = _getoutput(cmd)
@@ -3426,7 +3426,7 @@ class ACTopol(AbstractTopol):
         self.tleapExe = which('tleap') or ''
         self.sleapExe = which('sleap') or ''
         self.parmchkExe = which('parmchk2') or ''
-        self.babelExe = which('obabel') or which('babel') or ''
+        self.babelExe = which('babel') or ''
         if not os.path.exists(self.babelExe):
             if self.ext != '.mol2' and self.ext != '.mdl':  # and self.ext != '.mol':
                 self.printError("no 'babel' executable; you need it if input is PDB")
@@ -3782,8 +3782,8 @@ def init_main():
 if __name__ == '__main__':
     # For pip package
     # LOCAL_PATH = os.getcwd()
-    # os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber19-0_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber19-0_linux/bin:'+ LOCAL_PATH +'/amber19-0_linux/dat/'
-    # os.environ["AMBERHOME"] = LOCAL_PATH +'/amber19-0_linux'
-    # os.environ["ACHOME"] = LOCAL_PATH +'/amber19-0_linux/bin/'
-    # os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber19-0_linux/lib'
+    # os.environ["PATH"] += os.pathsep + LOCAL_PATH +'amber17-6_linux/bin/to_be_dispatched:'+ LOCAL_PATH +'/amber17-6_linux/bin:'+ LOCAL_PATH +'/amber17-6_linux/dat/'
+    # os.environ["AMBERHOME"] = LOCAL_PATH +'/amber17-6_linux'
+    # os.environ["ACHOME"] = LOCAL_PATH +'/amber17-6_linux/bin/'
+    # os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber17-6_linux/lib'
     init_main()  # necessary for to call in anaconda package;

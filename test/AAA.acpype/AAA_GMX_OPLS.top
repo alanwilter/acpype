@@ -1,0 +1,14 @@
+; AAA_GMX_OPLS.top created by acpype (v: 2019-10-08T09:09:22CEST) on Fri Mar 13 18:46:36 2020
+
+; Include forcefield parameters
+#include "ffoplsaa.itp"
+
+; Include AAA_GMX.itp topology
+#include "AAA_GMX.itp"
+
+[ system ]
+ AAA
+
+[ molecules ]
+; Compound        nmols
+ AAA              1     

@@ -1,0 +1,15 @@
+; dmp_GMX.top created by acpype (v: 2019-10-08T09:09:22CEST) on Fri Mar 13 19:04:23 2020
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               2               yes             0.5     0.8333
+
+; Include dmp_GMX.itp topology
+#include "dmp_GMX.itp"
+
+[ system ]
+ dmp
+
+[ molecules ]
+; Compound        nmols
+ dmp              1     

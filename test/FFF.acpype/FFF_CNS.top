@@ -1,0 +1,462 @@
+Remarks FFF_CNS.top created by acpype (v: 2019-10-08T09:09:22CEST) on Fri Mar 13 18:48:35 2020
+
+set echo=false end
+
+autogenerate angles=True dihedrals=True end
+
+{ atomType  mass }
+MASS n4_     14.010
+MASS c3_     12.010
+MASS c_      12.010
+MASS o_      16.000
+MASS ca_     12.010
+MASS hx_      1.008
+MASS hc_      1.008
+MASS ha_      1.008
+MASS hn_      1.008
+MASS n_      14.010
+MASS h1_      1.008
+
+RESIdue PHE
+
+GROUP
+
+{ atomName  atomType  Charge }
+ATOM N     TYPE= n4_   CHARGE=  -0.8476 END
+ATOM CA    TYPE= c3_   CHARGE=   0.0395 END
+ATOM C     TYPE= c_    CHARGE=   0.6301 END
+ATOM O     TYPE= o_    CHARGE=  -0.5351 END
+ATOM CB    TYPE= c3_   CHARGE=  -0.0641 END
+ATOM CG    TYPE= ca_   CHARGE=  -0.1383 END
+ATOM CD1   TYPE= ca_   CHARGE=  -0.1305 END
+ATOM CD2   TYPE= ca_   CHARGE=  -0.1305 END
+ATOM CE1   TYPE= ca_   CHARGE=  -0.1210 END
+ATOM CE2   TYPE= ca_   CHARGE=  -0.1210 END
+ATOM CZ    TYPE= ca_   CHARGE=  -0.1110 END
+ATOM HA    TYPE= hx_   CHARGE=   0.1127 END
+ATOM HHB   TYPE= hc_   CHARGE=   0.0977 END
+ATOM H1    TYPE= hc_   CHARGE=   0.0977 END
+ATOM HHD   TYPE= ha_   CHARGE=   0.1415 END
+ATOM H2    TYPE= ha_   CHARGE=   0.1415 END
+ATOM HHE   TYPE= ha_   CHARGE=   0.1470 END
+ATOM H3    TYPE= ha_   CHARGE=   0.1470 END
+ATOM HZ    TYPE= ha_   CHARGE=   0.1470 END
+ATOM HHT   TYPE= hn_   CHARGE=   0.4758 END
+ATOM H4    TYPE= hn_   CHARGE=   0.4758 END
+ATOM H5    TYPE= hn_   CHARGE=   0.4758 END
+ATOM N     TYPE= n_    CHARGE=  -0.4659 END
+ATOM CA    TYPE= c3_   CHARGE=   0.0047 END
+ATOM C     TYPE= c_    CHARGE=   0.6051 END
+ATOM O     TYPE= o_    CHARGE=  -0.7611 END
+ATOM CB    TYPE= c3_   CHARGE=  -0.0401 END
+ATOM CG    TYPE= ca_   CHARGE=  -0.0843 END
+ATOM CD1   TYPE= ca_   CHARGE=  -0.1205 END
+ATOM CD2   TYPE= ca_   CHARGE=  -0.1205 END
+ATOM CE1   TYPE= ca_   CHARGE=  -0.1260 END
+ATOM CE2   TYPE= ca_   CHARGE=  -0.1260 END
+ATOM CZ    TYPE= ca_   CHARGE=  -0.1250 END
+ATOM H     TYPE= hn_   CHARGE=   0.2945 END
+ATOM HA    TYPE= h1_   CHARGE=   0.1087 END
+ATOM HHB   TYPE= hc_   CHARGE=   0.0802 END
+ATOM H6    TYPE= hc_   CHARGE=   0.0802 END
+ATOM HHD   TYPE= ha_   CHARGE=   0.1310 END
+ATOM H7    TYPE= ha_   CHARGE=   0.1310 END
+ATOM HHE   TYPE= ha_   CHARGE=   0.1335 END
+ATOM H8    TYPE= ha_   CHARGE=   0.1335 END
+ATOM HZ    TYPE= ha_   CHARGE=   0.1330 END
+ATOM N     TYPE= n_    CHARGE=  -0.4539 END
+ATOM CA    TYPE= c3_   CHARGE=  -0.0883 END
+ATOM C     TYPE= c_    CHARGE=   0.9266 END
+ATOM O     TYPE= o_    CHARGE=  -0.7948 END
+ATOM CB    TYPE= c3_   CHARGE=  -0.0541 END
+ATOM CG    TYPE= ca_   CHARGE=  -0.0383 END
+ATOM CD1   TYPE= ca_   CHARGE=  -0.1340 END
+ATOM CD2   TYPE= ca_   CHARGE=  -0.1340 END
+ATOM CE1   TYPE= ca_   CHARGE=  -0.1675 END
+ATOM CE2   TYPE= ca_   CHARGE=  -0.1675 END
+ATOM CZ    TYPE= ca_   CHARGE=  -0.2100 END
+ATOM OXT   TYPE= o_    CHARGE=  -0.7948 END
+ATOM H     TYPE= hn_   CHARGE=   0.3515 END
+ATOM HA    TYPE= h1_   CHARGE=   0.0717 END
+ATOM HHB   TYPE= hc_   CHARGE=   0.0862 END
+ATOM H9    TYPE= hc_   CHARGE=   0.0862 END
+ATOM HHD   TYPE= ha_   CHARGE=   0.1575 END
+ATOM H10   TYPE= ha_   CHARGE=   0.1575 END
+ATOM HHE   TYPE= ha_   CHARGE=   0.1365 END
+ATOM H11   TYPE= ha_   CHARGE=   0.1365 END
+ATOM HZ    TYPE= ha_   CHARGE=   0.1310 END
+
+{ Bonds: atomName1  atomName2 }
+BOND N     HHT  
+BOND N     H4   
+BOND N     H5   
+BOND CA    HA   
+BOND CB    HHB  
+BOND CB    H1   
+BOND CD1   HHD  
+BOND CD2   H2   
+BOND CE1   HHE  
+BOND CE2   H3   
+BOND CZ    HZ   
+BOND N     H    
+BOND CA    HA   
+BOND CB    HHB  
+BOND CB    H6   
+BOND CD1   HHD  
+BOND CD2   H7   
+BOND CE1   HHE  
+BOND CE2   H8   
+BOND CZ    HZ   
+BOND N     H    
+BOND CA    HA   
+BOND CB    HHB  
+BOND CB    H9   
+BOND CD1   HHD  
+BOND CD2   H10  
+BOND CE1   HHE  
+BOND CE2   H11  
+BOND CZ    HZ   
+BOND N     CA   
+BOND CA    C    
+BOND CA    CB   
+BOND C     O    
+BOND C     N    
+BOND CB    CG   
+BOND CG    CD1  
+BOND CG    CD2  
+BOND CD1   CE1  
+BOND CD2   CE2  
+BOND CE1   CZ   
+BOND CE2   CZ   
+BOND N     CA   
+BOND CA    C    
+BOND CA    CB   
+BOND C     O    
+BOND C     N    
+BOND CB    CG   
+BOND CG    CD1  
+BOND CG    CD2  
+BOND CD1   CE1  
+BOND CD2   CE2  
+BOND CE1   CZ   
+BOND CE2   CZ   
+BOND N     CA   
+BOND CA    C    
+BOND CA    CB   
+BOND C     O    
+BOND C     OXT  
+BOND CB    CG   
+BOND CG    CD1  
+BOND CG    CD2  
+BOND CD1   CE1  
+BOND CD2   CE2  
+BOND CE1   CZ   
+BOND CE2   CZ   
+
+{ Angles: atomName1 atomName2 atomName3}
+ANGLe N     CA    HA   
+ANGLe CA    N     HHT  
+ANGLe CA    N     H4   
+ANGLe CA    N     H5   
+ANGLe CA    CB    HHB  
+ANGLe CA    CB    H1   
+ANGLe C     CA    HA   
+ANGLe C     N     H    
+ANGLe CB    CA    HA   
+ANGLe CG    CB    HHB  
+ANGLe CG    CB    H1   
+ANGLe CG    CD1   HHD  
+ANGLe CG    CD2   H2   
+ANGLe CD1   CE1   HHE  
+ANGLe CD2   CE2   H3   
+ANGLe CE1   CD1   HHD  
+ANGLe CE1   CZ    HZ   
+ANGLe CE2   CD2   H2   
+ANGLe CE2   CZ    HZ   
+ANGLe CZ    CE1   HHE  
+ANGLe CZ    CE2   H3   
+ANGLe HHB   CB    H1   
+ANGLe HHT   N     H4   
+ANGLe HHT   N     H5   
+ANGLe H4    N     H5   
+ANGLe N     CA    HA   
+ANGLe CA    N     H    
+ANGLe CA    CB    HHB  
+ANGLe CA    CB    H6   
+ANGLe C     CA    HA   
+ANGLe C     N     H    
+ANGLe CB    CA    HA   
+ANGLe CG    CB    HHB  
+ANGLe CG    CB    H6   
+ANGLe CG    CD1   HHD  
+ANGLe CG    CD2   H7   
+ANGLe CD1   CE1   HHE  
+ANGLe CD2   CE2   H8   
+ANGLe CE1   CD1   HHD  
+ANGLe CE1   CZ    HZ   
+ANGLe CE2   CD2   H7   
+ANGLe CE2   CZ    HZ   
+ANGLe CZ    CE1   HHE  
+ANGLe CZ    CE2   H8   
+ANGLe HHB   CB    H6   
+ANGLe N     CA    HA   
+ANGLe CA    N     H    
+ANGLe CA    CB    HHB  
+ANGLe CA    CB    H9   
+ANGLe C     CA    HA   
+ANGLe CB    CA    HA   
+ANGLe CG    CB    HHB  
+ANGLe CG    CB    H9   
+ANGLe CG    CD1   HHD  
+ANGLe CG    CD2   H10  
+ANGLe CD1   CE1   HHE  
+ANGLe CD2   CE2   H11  
+ANGLe CE1   CD1   HHD  
+ANGLe CE1   CZ    HZ   
+ANGLe CE2   CD2   H10  
+ANGLe CE2   CZ    HZ   
+ANGLe CZ    CE1   HHE  
+ANGLe CZ    CE2   H11  
+ANGLe HHB   CB    H9   
+ANGLe N     CA    C    
+ANGLe N     CA    CB   
+ANGLe CA    C     O    
+ANGLe CA    C     N    
+ANGLe CA    CB    CG   
+ANGLe C     CA    CB   
+ANGLe C     N     CA   
+ANGLe O     C     N    
+ANGLe CB    CG    CD1  
+ANGLe CB    CG    CD2  
+ANGLe CG    CD1   CE1  
+ANGLe CG    CD2   CE2  
+ANGLe CD1   CG    CD2  
+ANGLe CD1   CE1   CZ   
+ANGLe CD2   CE2   CZ   
+ANGLe CE1   CZ    CE2  
+ANGLe N     CA    C    
+ANGLe N     CA    CB   
+ANGLe CA    C     O    
+ANGLe CA    C     N    
+ANGLe CA    CB    CG   
+ANGLe C     CA    CB   
+ANGLe C     N     CA   
+ANGLe O     C     N    
+ANGLe CB    CG    CD1  
+ANGLe CB    CG    CD2  
+ANGLe CG    CD1   CE1  
+ANGLe CG    CD2   CE2  
+ANGLe CD1   CG    CD2  
+ANGLe CD1   CE1   CZ   
+ANGLe CD2   CE2   CZ   
+ANGLe CE1   CZ    CE2  
+ANGLe N     CA    C    
+ANGLe N     CA    CB   
+ANGLe CA    C     O    
+ANGLe CA    C     OXT  
+ANGLe CA    CB    CG   
+ANGLe C     CA    CB   
+ANGLe O     C     OXT  
+ANGLe CB    CG    CD1  
+ANGLe CB    CG    CD2  
+ANGLe CG    CD1   CE1  
+ANGLe CG    CD2   CE2  
+ANGLe CD1   CG    CD2  
+ANGLe CD1   CE1   CZ   
+ANGLe CD2   CE2   CZ   
+ANGLe CE1   CZ    CE2  
+
+{ Proper Dihedrals: name1 name2 name3 name4 }
+DIHEdral N     CA    CB    HHB  
+DIHEdral N     CA    CB    H1   
+DIHEdral CA    C     N     H    
+DIHEdral HHT   N     CA    C    
+DIHEdral H4    N     CA    C    
+DIHEdral H5    N     CA    C    
+DIHEdral C     CA    CB    HHB  
+DIHEdral C     CA    CB    H1   
+DIHEdral C     N     CA    HA   
+DIHEdral O     C     CA    HA   
+DIHEdral O     C     N     H    
+DIHEdral HHT   N     CA    CB   
+DIHEdral H4    N     CA    CB   
+DIHEdral H5    N     CA    CB   
+DIHEdral CB    CG    CD1   HHD  
+DIHEdral CB    CG    CD2   H2   
+DIHEdral CG    CB    CA    HA   
+DIHEdral CG    CD1   CE1   HHE  
+DIHEdral CG    CD2   CE2   H3   
+DIHEdral CD1   CG    CB    HHB  
+DIHEdral CD1   CG    CB    H1   
+DIHEdral CD1   CG    CD2   H2   
+DIHEdral CD1   CE1   CZ    HZ   
+DIHEdral CD2   CG    CB    HHB  
+DIHEdral CD2   CG    CB    H1   
+DIHEdral CD2   CG    CD1   HHD  
+DIHEdral CD2   CE2   CZ    HZ   
+DIHEdral CE1   CZ    CE2   H3   
+DIHEdral CE2   CZ    CE1   HHE  
+DIHEdral CZ    CE1   CD1   HHD  
+DIHEdral CZ    CE2   CD2   H2   
+DIHEdral HHT   N     CA    HA   
+DIHEdral H4    N     CA    HA   
+DIHEdral H5    N     CA    HA   
+DIHEdral HA    CA    C     N    
+DIHEdral HA    CA    CB    HHB  
+DIHEdral HA    CA    CB    H1   
+DIHEdral HHD   CD1   CE1   HHE  
+DIHEdral H2    CD2   CE2   H3   
+DIHEdral HHE   CE1   CZ    HZ   
+DIHEdral H3    CE2   CZ    HZ   
+DIHEdral N     CA    CB    HHB  
+DIHEdral N     CA    CB    H6   
+DIHEdral CA    C     N     H    
+DIHEdral C     CA    N     H    
+DIHEdral C     CA    CB    HHB  
+DIHEdral C     CA    CB    H6   
+DIHEdral C     N     CA    HA   
+DIHEdral O     C     CA    HA   
+DIHEdral O     C     N     H    
+DIHEdral CB    CA    N     H    
+DIHEdral CB    CG    CD1   HHD  
+DIHEdral CB    CG    CD2   H7   
+DIHEdral CG    CB    CA    HA   
+DIHEdral CG    CD1   CE1   HHE  
+DIHEdral CG    CD2   CE2   H8   
+DIHEdral CD1   CG    CB    HHB  
+DIHEdral CD1   CG    CB    H6   
+DIHEdral CD1   CG    CD2   H7   
+DIHEdral CD1   CE1   CZ    HZ   
+DIHEdral CD2   CG    CB    HHB  
+DIHEdral CD2   CG    CB    H6   
+DIHEdral CD2   CG    CD1   HHD  
+DIHEdral CD2   CE2   CZ    HZ   
+DIHEdral CE1   CZ    CE2   H8   
+DIHEdral CE2   CZ    CE1   HHE  
+DIHEdral CZ    CE1   CD1   HHD  
+DIHEdral CZ    CE2   CD2   H7   
+DIHEdral H     N     CA    HA   
+DIHEdral HA    CA    C     N    
+DIHEdral HA    CA    CB    HHB  
+DIHEdral HA    CA    CB    H6   
+DIHEdral HHD   CD1   CE1   HHE  
+DIHEdral H7    CD2   CE2   H8   
+DIHEdral HHE   CE1   CZ    HZ   
+DIHEdral H8    CE2   CZ    HZ   
+DIHEdral N     CA    CB    HHB  
+DIHEdral N     CA    CB    H9   
+DIHEdral C     CA    N     H    
+DIHEdral C     CA    CB    HHB  
+DIHEdral C     CA    CB    H9   
+DIHEdral O     C     CA    HA   
+DIHEdral CB    CA    N     H    
+DIHEdral CB    CG    CD1   HHD  
+DIHEdral CB    CG    CD2   H10  
+DIHEdral CG    CB    CA    HA   
+DIHEdral CG    CD1   CE1   HHE  
+DIHEdral CG    CD2   CE2   H11  
+DIHEdral CD1   CG    CB    HHB  
+DIHEdral CD1   CG    CB    H9   
+DIHEdral CD1   CG    CD2   H10  
+DIHEdral CD1   CE1   CZ    HZ   
+DIHEdral CD2   CG    CB    HHB  
+DIHEdral CD2   CG    CB    H9   
+DIHEdral CD2   CG    CD1   HHD  
+DIHEdral CD2   CE2   CZ    HZ   
+DIHEdral CE1   CZ    CE2   H11  
+DIHEdral CE2   CZ    CE1   HHE  
+DIHEdral CZ    CE1   CD1   HHD  
+DIHEdral CZ    CE2   CD2   H10  
+DIHEdral OXT   C     CA    HA   
+DIHEdral H     N     CA    HA   
+DIHEdral HA    CA    CB    HHB  
+DIHEdral HA    CA    CB    H9   
+DIHEdral HHD   CD1   CE1   HHE  
+DIHEdral H10   CD2   CE2   H11  
+DIHEdral HHE   CE1   CZ    HZ   
+DIHEdral H11   CE2   CZ    HZ   
+DIHEdral N     CA    C     O    
+DIHEdral N     CA    C     N    
+DIHEdral N     CA    CB    CG   
+DIHEdral CA    C     N     CA   
+DIHEdral CA    CB    CG    CD1  
+DIHEdral CA    CB    CG    CD2  
+DIHEdral C     CA    CB    CG   
+DIHEdral C     N     CA    C    
+DIHEdral C     N     CA    CB   
+DIHEdral O     C     CA    CB   
+DIHEdral O     C     N     CA   
+DIHEdral CB    CA    C     N    
+DIHEdral CB    CG    CD1   CE1  
+DIHEdral CB    CG    CD2   CE2  
+DIHEdral CG    CD1   CE1   CZ   
+DIHEdral CG    CD2   CE2   CZ   
+DIHEdral CD1   CG    CD2   CE2  
+DIHEdral CD1   CE1   CZ    CE2  
+DIHEdral CD2   CG    CD1   CE1  
+DIHEdral CD2   CE2   CZ    CE1  
+DIHEdral N     CA    C     O    
+DIHEdral N     CA    C     N    
+DIHEdral N     CA    CB    CG   
+DIHEdral CA    C     N     CA   
+DIHEdral CA    CB    CG    CD1  
+DIHEdral CA    CB    CG    CD2  
+DIHEdral C     CA    CB    CG   
+DIHEdral C     N     CA    C    
+DIHEdral C     N     CA    CB   
+DIHEdral O     C     CA    CB   
+DIHEdral O     C     N     CA   
+DIHEdral CB    CA    C     N    
+DIHEdral CB    CG    CD1   CE1  
+DIHEdral CB    CG    CD2   CE2  
+DIHEdral CG    CD1   CE1   CZ   
+DIHEdral CG    CD2   CE2   CZ   
+DIHEdral CD1   CG    CD2   CE2  
+DIHEdral CD1   CE1   CZ    CE2  
+DIHEdral CD2   CG    CD1   CE1  
+DIHEdral CD2   CE2   CZ    CE1  
+DIHEdral N     CA    C     O    
+DIHEdral N     CA    C     OXT  
+DIHEdral N     CA    CB    CG   
+DIHEdral CA    CB    CG    CD1  
+DIHEdral CA    CB    CG    CD2  
+DIHEdral C     CA    CB    CG   
+DIHEdral O     C     CA    CB   
+DIHEdral CB    CA    C     OXT  
+DIHEdral CB    CG    CD1   CE1  
+DIHEdral CB    CG    CD2   CE2  
+DIHEdral CG    CD1   CE1   CZ   
+DIHEdral CG    CD2   CE2   CZ   
+DIHEdral CD1   CG    CD2   CE2  
+DIHEdral CD1   CE1   CZ    CE2  
+DIHEdral CD2   CG    CD1   CE1  
+DIHEdral CD2   CE2   CZ    CE1  
+
+{ Improper Dihedrals: aName1 aName2 aName3 aName4 }
+IMPRoper CG    CE1   CD1   HHD  
+IMPRoper CG    CE2   CD2   H2   
+IMPRoper CD1   CZ    CE1   HHE  
+IMPRoper CD2   CZ    CE2   H3   
+IMPRoper CE1   CE2   CZ    HZ   
+IMPRoper C     CA    N     H    
+IMPRoper CG    CE1   CD1   HHD  
+IMPRoper CG    CE2   CD2   H7   
+IMPRoper CD1   CZ    CE1   HHE  
+IMPRoper CD2   CZ    CE2   H8   
+IMPRoper CE1   CE2   CZ    HZ   
+IMPRoper C     CA    N     H    
+IMPRoper CG    CE1   CD1   HHD  
+IMPRoper CG    CE2   CD2   H10  
+IMPRoper CD1   CZ    CE1   HHE  
+IMPRoper CD2   CZ    CE2   H11  
+IMPRoper CE1   CE2   CZ    HZ   
+IMPRoper CA    N     C     O    
+IMPRoper CD1   CD2   CG    CB   
+IMPRoper CA    N     C     O    
+IMPRoper CB    CD1   CG    CD2  
+IMPRoper CA    O     C     OXT  
+IMPRoper CB    CD1   CG    CD2  
+
+END {RESIdue PHE}
+
+set echo=true end

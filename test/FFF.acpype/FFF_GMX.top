@@ -1,0 +1,15 @@
+; FFF_GMX.top created by acpype (v: 2019-10-08T09:09:22CEST) on Fri Mar 13 18:48:35 2020
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               2               yes             0.5     0.8333
+
+; Include FFF_GMX.itp topology
+#include "FFF_GMX.itp"
+
+[ system ]
+ FFF
+
+[ molecules ]
+; Compound        nmols
+ FFF              1     

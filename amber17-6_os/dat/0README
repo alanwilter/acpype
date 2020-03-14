@@ -1,0 +1,537 @@
+
+1.  Specifying a force field
+
+     Amber  is designed to work with several simple types of
+force field, although it is most commonly used with  parame-
+terizations  developed  by Peter Kollman and his co-workers.
+One significant recent development is that there are  now  a
+variety of such parameterizations, with no obvious "default"
+value.  The "traditional" parameterization uses  fixed  par-
+tial charges, centered on atoms.  Examples of this are ff86,
+ff94, ff96, ff98 and ff99 (described below).  The default in
+versions 5 and 6 of Amber was ff94; a comparable default now
+would probably be ff99, but users should consult the  papers
+listed  below  to  see  a detailed discussion of the changes
+made.
+
+     Less extensively used, but very promising, recent modi-
+fications  add  polarizable  dipoles  to  atoms, so that the
+charge description depends upon the environment; such poten-
+tials  are called "polarizable" or "non-additive".  Examples
+are ff02 and ff02EP: the former has atom-based  charges  (as
+in the traditional parameterization), and the latter adds in
+off-center charges (or "extra points"),  primarily  to  help
+describe  better  the  angular dependence of hydrogen bonds.
+Again, users should consult the papers cited  below  to  see
+details of how these new force fields have been developed.
+
+     In  order to tell LEaP which force field is being used,
+the four types of information described  below  need  to  be
+provided.   This  is  generally accomplished by selecting an
+appropriate leaprc file, which loads the information  needed
+for a specific force field.  (See section 2.2, below).
+
+ (1)   A  listing of the atom types, what elements they cor-
+       respond to, and their hybridizations.  This  informa-
+       tion  is  encoded  as  a set of LEaP commands, and is
+       normally read from a leaprc file.
+
+ (2)   Residue descriptions (or "topologies") that  describe
+       the  chemical nature of amino acids, nucleotides, and
+       so on.  These files specify the connectivities,  atom
+       types,  charges,  and other information.  These files
+       have a "prep" format (a now-obsolete part  of  Amber)
+       and  have  a  ".in" extension.  Standard libraries of
+       residue descriptions are in the  amber7/dat/leap/prep
+       directory.   The  antechamber  program may be used to
+       generate prep files for other organic molecules.
+
+ (3)   Parameter files  give  force  constants,  equilibrium
+       bond  lengths  and  angles, Lennard-Jones parameters,
+       and the like.  Standard files have  a  ".dat"  exten-
+       sion, and are found in amber6/dat/leap/parm.
+
+ (4)   Extensions  or  changes  to  the  parameters  can  be
+       included in frcmod files.  The  expectation  is  that
+       the  user  will  load  a  large, "standard" parameter
+       file, and (if needed)  a  smaller  frcmod  file  that
+       keeps  track of any changes to the default parameters
+       that are needed.  The frcmod files for  changing  the
+       default water model (which is TIP3P) into other water
+       models are in  files  like  amber7/dat/leap/parm/frc-
+       mod.tip4p.  The parmchk program (part of Antechamber)
+       can also generate frcmod files.
+
+1.1.  Description of the database files
+
+     The following files are in the  amber7/dat/leap  direc-
+tory.   Files  with a ".in" extension are in the prep subdi-
+rectory, those with a ".dat" extension are in the parm  sub-
+directory, as are the "frcmod" files.
+____________________________________________________________
+
+
+     Amber 1999 and 2002 force fields
+       parm99.dat       Force field, for amino acids and some organic molecules;
+                             can be used with either additive or
+                             non-additive treatment of electrostatics
+       parm99EP.dat       Like parm99.dat, but with "extra-points": off-center
+                             atomic charges, somewhat like lone-pairs
+       gaff.dat           Newer (and still experimental) force field for quite
+                             general organic molecules.
+
+       all_nuc02.in       Nucleic acid input for building database, for a non-
+                        additive (polarizable) force field without extra points.
+       all_amino02.in     Amino acid input ...
+       all_aminoct02.in   COO- amino acid input ...
+       all_aminont02.in   NH3+ amino acid input ....
+
+       all_nuc02EP.in     Nucleic acid input for building database, for a non-
+                          additive (polarizable) force field with extra points.
+       all_amino02EP.in     Amino acid input ...
+       all_aminoct02EP.in   COO- amino acid input ...
+       all_aminont02EP.in   NH3+ amino acid input ....
+
+     Amber 1994 (Cornell et al.) force field
+       all_nuc94.in       Nucleic acid input for building database.
+       all_amino94.in     Amino acid input for building database.
+       all_aminoct94.in   COO- amino acid input for database.
+       all_aminont94.in   NH3+ amino acid input for database.
+       nacl.in            Ion file
+       parm94.dat         1994 force field file.
+       parm96.dat         modified version of 1994 force field, for proteins
+       parm98.dat        modified version of 1994 force field, for nucleic acids
+
+     Amber 1984, 1986 (Weiner et al.) force fields
+       all.in             All atom database input.
+
+       allct.in           All atom database input, COO- Amino acids.
+       allnt.in           All atom database input, NH3+ Amino acids.
+       uni.in             United atom database input.
+       unict.in           United atom database input, COO- Amino acids.
+       unint.in           United atom database input, NH3+ Amino acids.
+       parm91X.dat        Parameters for 1984, 1986 force fields
+
+     Solvent models:
+       water.in           topology definition for several water models
+       meoh.in            topology file for methanol
+       chcl3.in           topology file for chloroform
+       nma.in             topology file for N-methylacetamide
+
+       frcmod.tip4p       parameter changes from TIP3P -> TIP4P
+       frcmod.tip5p       parameter changes from TIP3P -> TIP5P
+       frcmod.spce        parameter changes from TIP3P -> SPC/E
+       frcmod.pol3        parameter changes from TIP3P -> POL3
+       frcmod.meoh        paramters for methanol
+       frcmod.chcl3       paramters for chloroform
+       frcmod.nma         paramters for N-methyacetamide
+
+     Miscellaneous:
+       nucgen.dat         Nucgen nucleic acid conformations.
+       PROTON_INFO*       Files needed for protonate
+       map.DG-AMBER       needed for NMR input generation.
+
+____________________________________________________________
+
+
+
+1.2.  Specifying which force field you want in LEaP
+
+     Various combinations of the above files make sense, and
+we have moved to an "ff" (force field) nomenclature to iden-
+tify  these;  examples  would  then  be  ff94 (which was the
+default in Amber 5 and 6), ff99, etc.  The most straightfor-
+ward way to specify which force field you want is to use one
+of the leaprc files in $AMBERHOME/dat/leap/cmd.   The  sytax
+is:
+
+     xleap -s -f <filename>
+
+
+Here,  the  -s  flag tells LEaP to ignore any leaprc file it
+might find, and the -f flag tells it to start with  commands
+for  some  other file.  Here are the combinations we support
+and recommend:
+
++-------------------------------------------------------------+
+|            How to specify force fields in LEaP              |
+|  filename                topology               parameters  |
++-------------------------------------------------------------+
+|leaprc.ff86          Weiner et al. 1986         parm91X.dat  |
+|leaprc.ff94          Cornell et al. 1994        parm94.dat   |
+|leaprc.ff96                   "                 parm96.dat   |
+|leaprc.ff98                   "                 parm98.dat   |
+|leaprc.ff99                   "                 parm99.dat   |
+|leaprc.ff02     reduced (polarizable) charges   parm99.dat   |
+|leaprc.ff02EP         " + extra points          parm99EP.dat |
+|leaprc.gaff                 none                gaff.dat     |
++-------------------------------------------------------------+
+Notes:
+
+ (1)   Unlike  previous  versions  of  Amber,  there  is  no
+       default leaprc file anymore.  If you make a link from
+       one of the files above to a file named  leaprc,  then
+       that will become the default.  For example:
+
+            cd $AMBERHOME/dat/leap/cmd
+            ln -s leaprc.ff99 leaprc
+
+       will  provide  a  good  default for many users; after
+       this you could just invoke tleap or xleap without any
+       arguments,  and  it would automatically load the ff99
+       force field.  If you put  leaprc.ff94  in  the  above
+       link  command, you would be making the Cornell et al.
+       force field the default, which was  the  behavior  of
+       versions  5  and 6 of Amber.  Note also that a leaprc
+       file in the current  directory  overrides  any  other
+       such  files that might be present in the search path.
+
+ (2)   The first five choices in the  above  table  are  for
+       additive  (non-polarizable)  simulations;  you should
+       use saveAmberParm (or saveAmberParmPert) to save  the
+       prmtop file, and keep the default ipol=0 in sander or
+       gibbs.
+
+ (3)   The ff02 entries in the above table are for non-addi-
+       tive  (polarizable) force fields.  Use saveAmberParm-
+       Pol to save the prmtop file, and set  ipol=1  in  the
+       sander  or  gibbs  input  file.   Note that POL3 is a
+       polarizable water model, so you need to  use  saveAm-
+       berParmPol for it as well.
+
+ (4)   The files above assume that nucleic acids are DNA, if
+       not   explicitly   specified.     Use    the    files
+       leaprc.rna.ff98,  leaprc.rna.ff99, leaprc.rna.ff02 or
+       leaprc.rna.ff00EP to make the default  RNA.   If  you
+       have  mixture  of  DNA and RNA, you will need to edit
+       your  PDB  file,  or  use  the   loadPdbUsingSequence
+
+       command  in LEaP (see that chapter) in order to spec-
+       ify which nucelotide is which.
+
+ (5)   There is also a leaprc.gaff file, which sets  you  up
+       for the "general" Amber force field.  This is primar-
+       ily for use with Antechamber (see that chapter),  and
+       does not load any topology files.
+
+ (6)   The leaprc.ff86 files gives the 1986 all-atom parame-
+       ters; Amber no  longer  directly  supports  the  1984
+       united atom parameter set.
+
+ (7)   Our  experience  with generalized Born simulations is
+       all with ff94 or ff99; the current GB models are  not
+       compatible  with  polarizable  force  fields.  The GB
+       options igb=3 or 4 (see Chapter 5) were  derived  for
+       use  with  ff94.   Replacing explicit water with a GB
+       model is equivalent to specifying a  different  force
+       field,  and users should be aware that none of the GB
+       options (in Amber or elsewhere)  is  as  "mature"  as
+       simulations with explicit solvent; user discretion is
+       advised!
+
+
+1.3.  1999 and 2002 force fields
+
+     The ff99 force field [1] represents a new direction for
+Amber-related   force  fields,  pointing  towards  "general"
+organic and bioorganic systems.  The atom types  are  mostly
+those  of  Cornell et al. (see below), but changes have been
+made in many torsional parameters, and this parameterization
+supports  both additive and non-additive (polarizable) force
+fields.  The topology and coordinate  files  for  the  small
+molecule  test  cases  used in the development of this force
+field are in the parm99_lib subdirectory.   The  ff99  force
+field  uses  these parameters, along with the topologies and
+charges from the Cornell et al. force field,  to  create  an
+all-atom nonpolarizable force field for proteins and nucleic
+acids.  This is probably the best  "general  purpose"  force
+field included here for biomolecules.
+
+     The  ff02 force field is a polarizable variant of ff99.
+Here,  the  charges  were  determined   at   the   B3LYP/cc-
+pVTZ//HF/6-31g*  level,  and hence are more like "gas-phase"
+charges.   During  charge   fitting   the   correction   for
+intramolecular  self  polarization  has  been  included [2].
+Bond polarization arising from interactions with a condensed
+phase  environment  are achieved through polarizable dipoles
+attached to the atoms.  These are determined from  isotropic
+atomic  polarizabilities  assigned  to each atom, taken from
+experimental work of Applequist.  The dipoles can either  be
+determined  at each step through an iterative scheme, or can
+be treated as additional dynamical variables, and propagated
+through  dynamics along with the atomic positions, in a man-
+ner analogous Car-Parinello  dynamics.   Derivation  of  the
+polarizable force field required only minor changes in dihe-
+dral terms and  a few modification  of  the  van  der  Waals
+parameters.
+
+     The user also has a choice to use the polarizable force
+field with extra points on which  additional  point  charges
+are  located;  this is called ff02EP.  The additional points
+are located on electron donating atoms (e.g.  O,N,S),  which
+mimic  the presence of electron lone pairs [3].  For nucleic
+acids we chose to  use  extra  interacting  points  only  on
+nucleic acid bases and not on sugars or phosphate groups.
+
+     There  is  not  (yet)  a  full published description of
+this, but a good deal of preliminary work on small molecules
+is  available  [2,4].   Beyond  small  molecules, our intial
+tests have focussed on small  proteins  and  double  helical
+oligonucleotides,  in additive TIP3P water solution.  Such a
+simulation model, (using a  polarizable  solute  in  a  non-
+polarizable  solvent) gains some of the advantages of polar-
+ization at only a small extra cost, compared to  a  standard
+force  field  model.   In  particular, the polarizable force
+field appears  better  suited  to  reproduce  intermolecular
+interactions  and  directionality of H-bonding in biological
+systems than the additive force field.  Initial  tests  show
+ff02EP  behaves slightly better than ff02, but it is not yet
+clear how significant or widespread these  differences  will
+be.
+
+     The  gaff.dat  ("general  Amber  force field") is yet a
+further step towards general purpose organic molecules.   It
+is  primarily  used in conjunction with the antechamber pro-
+gram, and users should consult that chapter for more  infor-
+mation.   A  paper describing these parameters is being pre-
+pared for publication.
+
+
+1.4.  The Cornell et al. (1994) force field
+
+     Contained in ff94 are  parameters  from  the  so-called
+"second  generation"  force  field  developed in the Kollman
+group in the early 1990's [5].  These parameters  are  espe-
+cially  derived  for solvated systems, and when used with an
+appropriate 1-4 electrostatic scale factor, have been  shown
+to  perform  well  at modelling many organic molecules.  The
+parameters in parm94.dat omit the hydrogen bonding terms  of
+earlier  force  fields.  This is an all-atom force field; no
+united-atom  counterpart  is  provided.   1-4  electrostatic
+interactions  are  scaled by 1.2 instead of the value of 2.0
+that had been used in earlier force fields.
+
+     Charges were derived using Hartree-Fock theory with the
+6-31G* basis set, because this exaggerates the dipole moment
+of most residues by 10-20%.  It thus "builds in" the  amount
+of polarization which would be expected in aqueous solution.
+This is necessary for carrying out condensed  phase  simula-
+tions  with an effective two-body force field which does not
+include explicit polarization.  The charge-fitting procedure
+is described in Appendix D.
+
+     The  ff96  force  field  [6] differs from parm94.dat in
+that the torsions for  and  have been modified  in  response
+to  ab  initio calculations [7] which showed that the energy
+difference between conformations were quite  different  than
+calculated  by Cornell et al. (using parm94.dat).  To create
+parm96.dat, common V1 and V2 parameters were used for  and ,
+which were empirically adjusted to reproduce the energy dif-
+ference between extended and constrained alpha helical ener-
+gies  for  the alanine tetrapeptide.  This led to a signifi-
+cant improvement between molecular  mechanical  and  quantum
+mechanical  relative  energies  for the remaining members of
+the set of tetrapeptides studied by  Beachy  et  al.   Users
+should  be aware that parm96.dat has not been as extensively
+used as parm94.dat, and that it almost certainly has its own
+biases and idiosyncracies [8,9].
+
+     The  ff98  force  field [10] differs from parm94.dat in
+torsion angle parameters involving the glycosidic torsion in
+nucleic acids.  These serve to improve the predicted helical
+repeat and sugar pucker profiles.
+
+
+1.5.  The Weiner et al. (1984,1986) force fields
+
+     The ff86 parameters are described in early papers  from
+the Kollman and Case groups [11,12].  [The "parm91" designa-
+tion is somewhat unfortunate: this file  is  really  only  a
+corrected version of the paramters described in the 1984 and
+1986 papers listed above.]  These parameters are not  gener-
+ally  recommended any more, but may still be useful for vac-
+uum simulations of nucleic acids and proteins using  a  dis-
+tance-dependent  dielectric,  or  for comparisons to earlier
+work.  The material in parm91X.dat is the parameter set dis-
+tributed  with  Amber  4.0.  The STUB nonbonded set has been
+copied from parmuni.dat; these sets of parameters are appro-
+priate  for united atom calculations using the "larger" car-
+bon radii referred to in the "note added in  proof"  of  the
+1984 JACS paper.  If these values are used for a united atom
+calculation, the parameter scnb should be set  to  8.0;  for
+all-atom calculations use 2.0.  The scee parameter should be
+set to 2.0 for both united atom and all-atom variants.  Note
+that  the  default  value for scee is sander is now 1.2 (the
+value for 1994 and later force fields; users must explicitly
+change this in their inputs for the earlier force fields.
+
+     A number of terms in the non-bonded list of parm91X.dat
+should be noted.  The non-bonded terms for I(iodine),CU(cop-
+per)  and  MG(magnesium) have not been carefully calibrated,
+but are given as approximate values.  In  the  STUB  set  of
+non-bonded  parameters,  we  have  included parameters for a
+large hydrated monovalent cation (IP) that represent work by
+Singh et al 1985 on large hydrated counterions for DNA. Sim-
+ilar values are included for a hydrated anion (IM).
+
+     The non-bonded potentials for  hydrogen-bond  pairs  in
+ff86  uses  a Lennard-Jones 10-12 potential.  If you want to
+run sander with ff86, you will need to recompile, adding the
+-DHAS_10_12 flag to your MACHINE file.
+
+1.6.  Ions
+
+     For alkali ions with TIP3P waters, we have provided the
+values of Aqvist [13], which are adjusted for  Amber's  non-
+bonded  atom  pair  combining  rules to give the same ion-OW
+potentials as in the original (which were designed  for  SPC
+water);  these values reproduce the first peak of the radial
+distribution for ion-OW and the relative  free  energies  of
+solvation  in  water  of  the various ions.  Note that these
+values would have to be changed if a water model other  than
+TIP3P were to be used.  These potentials may also need modi-
+fication if absolute free energies of solvation  are  impor-
+tant [14].
+
+1.7.  Solvent models
+
+     Amber  now  provides  direct  support for several water
+models.  The default water model is TIP3P [15].  This  model
+will  be  used  for  residues with names HOH or WAT.  If you
+want to use other water models, execute the  following  leap
+commands after loading your leaprc file:
+
+     WAT = PL3                    (residues named WAT in pdb file will be POL3)
+     loadAmberParams frcmod.pol3  (sets the HW,OW parameters to POL3)
+
+(The  above is obviously for the POL3 model.)  The water.lib
+file contains TIP3P [15], TIP4P [15,16],  TIP5P  [17],  POL3
+[18]  and SPC/E [19] models for water; these are called TP3,
+T4P, T5P,  PL3  and  SPC,  respectively.   By  default,  the
+residue  name  in the prmtop file will be WAT, regardless of
+which water model is used.  If you want to change  this  (in
+order  to  keep  track  of  which water model you are using,
+say), you can change the residue name to whatever you  like.
+For example,
+
+     WAT = TP4
+     set WAT.1 name "TP4"
+
+would make a special label in PDB and prtmop files for TIP4P
+water.  Note that Brookhaven  format  files  allow  at  most
+three characters for the residue label.
+
+     In  addition,  non-polarizable  models  for the organic
+solvents methanol, chloroform and N-methylacetamide are pro-
+vided.   The  input  files  for  a  single  molecule  are in
+amber7/dat/leap/prep, and the corresponding frcmod files are
+in   amber7/dat/leap/parm.   Pre-equlibrated  boxes  are  in
+amber7/dat/leap/lib.  For example, to solvate a simple  pep-
+tide in methanol, you could do the following:
+
+     source leaprc.ff99                     (get a standard force field)
+     loadAmberParams frcmod.meoh            (get methanol parameters)
+     peptide = sequence { ACE VAL NME }     (construct a simple peptide)
+     solvateBox peptide MEOHBOX 12.0 0.8    (solvate the peptide with meoh)
+     saveAmberParm peptide prmtop prmcrd
+     quit
+
+Similar commands will work for other solvent models.
+
+1.   J.  Wang,  P.  Cieplak  & P.A. Kollman. How well does a
+     restrained electrostatic potential (RESP) model perform
+     in  calcluating  conformational energies of organic and
+     biological    molecules?.     J.     Comput.     Chem.
+     21, 1049-1074(2000).
+
+2.   P. Cieplak, J. Caldwell & P. Kollman. Molecular Mechan-
+     ical Models for Organic and  Biological  Systems  Going
+     Beyond  the  Atom Centered Two Body Additive Approxima-
+     tion: Aqueous Solution Free Energies of Methanol and N-
+     Methyl Acetamide, Nucleic Acid Base, and Amide Hydrogen
+     Bonding and Chloroform/Water Partition Coefficients  of
+     the   Nucleic   Acid   Bases.    J.   Computat.  Chem.
+     22, 1048-1057(2001).
+
+3.   R.W. Dixon & P.A. Kollman. Advancing Beyond  the  Atom-
+     Centered  Model  in  Additive and Nonadditive Molecular
+     Mechanics..  J. Computat. Chem.  18, 1632-1646(1997).
+
+4.   E.   Meng,   P.   Cieplak,   J.W.   Caldwell   &   P.A.
+     Kollman. Accurate  solvation  free  energies of acetate
+     and methylammonium ions calculated with  a  polarizable
+     water      model.       J.      Am.     Chem.     Soc.
+     116, 12061-12062(1994).
+
+5.   W.D. Cornell, P. Cieplak, C.I. Bayly, I.R. Gould,  K.M.
+     Merz, Jr., D.M. Ferguson, D.C. Spellmeyer, T. Fox, J.W.
+     Caldwell &  P.A.  Kollman. A  second  generation  force
+     field  for  the  simulation of proteins, nucleic acids,
+     and   organic   molecules.    J.   Am.   Chem.    Soc.
+     117, 5179-5197(1995).
+
+6.   P.A. Kollman, R. Dixon, W. Cornell, T. Fox, C. Chipot &
+     A. Pohorille.  The development/application of a  'mini-
+     malist'  organic/biochemical  molecular  mechanic force
+     field using a combination of ab initio calculations and
+     experimental data.  In Computer Simulation of Biomolec-
+     ular Systems, Vol. 3, A. Wilkinson, P.  Weiner  &  W.F.
+     van Gunsteren, Ed. Elsevier, (1997).   pp. 83-96.
+
+7.   M.D.   Beachy  &  R.A.  Friesner. J.  Am.  Chem.  Soc.
+     119, 5908-5920(1997).
+
+8.   L. Wang, Y. Duan,  R.  Shortle,  B.  Imperiali  &  P.A.
+     Kollman. Study of the stability and unfolding mechanism
+     of BBA1 by molecular dynamics simulations at  different
+     termperatures.  Prot. Sci.  8, 1292-1304(1999).
+
+9.   J.  Higo,  N.  Ito, M. Kuroda, S. Ono, N. Nakajima & H.
+     Nakamura. Energy landscape of a peptide  consisting  of
+     -helix, 310 helix, -turn, -hairpin and other disordered
+     conformations.  Prot. Sci.  10, 1160-1171(2001).
+
+10.  T.E. Cheatham, III, P. Cieplak & P.A. Kollman. A  modi-
+     fied  version  of  the  Cornell et al. force field with
+     improved sugar pucker phases and  helical  repeat.   J.
+     Biomol. Struct. Dyn.  16, 845-862(1999).
+
+11.  S.J.  Weiner,  P.A.  Kollman, D.A. Case, U.C. Singh, C.
+     Ghio, G. Alagona, S. Profeta, Jr. &  P.  Weiner. A  new
+     force  field  for  molecular  mechanical  simulation of
+     nucleic  acids  and  proteins.   J.  Am.  Chem.   Soc.
+     106, 765-784(1984).
+
+12.  S.J.  Weiner, P.A. Kollman, D.T. Nguyen & D.A. Case. An
+     all-atom force field for simulations  of  proteins  and
+     nucleic acids.  J. Computat. Chem.  7, 230-252(1986).
+
+13.  J. qvist. Ion-water interaction potentials derived from
+     free energy perturbation simulations.  J. Phys.  Chem.
+     94, 8021-8024(1990).
+
+14.  T.  Darden, D. Pearlman & L.G. Pedersen. Ionic charging
+     free energies: Spherical versus periodic boundary  con-
+     ditions.  J. Chem. Phys.  109, 10921-10935(1998).
+
+15.  W.L.  Jorgensen,  J.  Chandrasekhar,  J.  Madura & M.L.
+     Klein. Comparison of  Simple  Potential  Functions  for
+     Simulating    Liquid    Water.     J.    Chem.   Phys.
+     79, 926-935(1983).
+
+16.  W.L.   Jorgensen    &    J.D.    Madura. Mol.    Phys.
+     56, 1381(1985).
+
+17.  M.W.  Mahoney  &  W.L. Jorgensen. A five-site model for
+     liquid  water  and  the  reproduction  of  the  density
+     anomaly  by rigid, nonpolarizable potential functions.
+     J. Chem. Phys.  112, 8910-8922(2000).
+
+18.  J.W. Caldwell & P.A. Kollman. Structure and  properties
+     of  neat  liquids using nonadditive molecular dynamics:
+     Water, methanol and N-methylacetamide.  J. Phys. Chem.
+     99, 6208-6219(1995).
+
+19.  H.J.C.  Berendsen,  J.R.  Grigera & T.P. Straatsma. The
+     missing term in effective pair  potentials.   J.  Phys.
+     Chem.  91, 6269-6271(1987).

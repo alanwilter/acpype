@@ -1,0 +1,235 @@
+Remarks AAA_CNS.top created by acpype (v: 2019-10-08T09:09:22CEST) on Fri Mar 13 18:46:36 2020
+
+set echo=false end
+
+autogenerate angles=True dihedrals=True end
+
+{ atomType  mass }
+MASS n4_     14.010
+MASS c3_     12.010
+MASS c_      12.010
+MASS o_      16.000
+MASS hx_      1.008
+MASS hc_      1.008
+MASS hn_      1.008
+MASS n_      14.010
+MASS h1_      1.008
+
+RESIdue ALA
+
+GROUP
+
+{ atomName  atomType  Charge }
+ATOM N     TYPE= n4_   CHARGE=  -1.1286 END
+ATOM CA    TYPE= c3_   CHARGE=   0.0995 END
+ATOM C     TYPE= c_    CHARGE=   0.6591 END
+ATOM O     TYPE= o_    CHARGE=  -0.6011 END
+ATOM CB    TYPE= c3_   CHARGE=  -0.0981 END
+ATOM HA    TYPE= hx_   CHARGE=   0.0557 END
+ATOM HHB   TYPE= hc_   CHARGE=   0.0494 END
+ATOM H1    TYPE= hc_   CHARGE=   0.0494 END
+ATOM H2    TYPE= hc_   CHARGE=   0.0494 END
+ATOM HHT   TYPE= hn_   CHARGE=   0.3948 END
+ATOM H3    TYPE= hn_   CHARGE=   0.3948 END
+ATOM H4    TYPE= hn_   CHARGE=   0.3948 END
+ATOM N     TYPE= n_    CHARGE=  -0.5579 END
+ATOM CA    TYPE= c3_   CHARGE=   0.0267 END
+ATOM C     TYPE= c_    CHARGE=   0.6261 END
+ATOM O     TYPE= o_    CHARGE=  -0.5591 END
+ATOM CB    TYPE= c3_   CHARGE=  -0.1071 END
+ATOM H     TYPE= hn_   CHARGE=   0.3305 END
+ATOM HA    TYPE= h1_   CHARGE=   0.1227 END
+ATOM HHB   TYPE= hc_   CHARGE=   0.0497 END
+ATOM H5    TYPE= hc_   CHARGE=   0.0497 END
+ATOM H6    TYPE= hc_   CHARGE=   0.0497 END
+ATOM N     TYPE= n_    CHARGE=  -0.5369 END
+ATOM CA    TYPE= c3_   CHARGE=   0.0537 END
+ATOM C     TYPE= c_    CHARGE=   0.8486 END
+ATOM O     TYPE= o_    CHARGE=  -0.6058 END
+ATOM CB    TYPE= c3_   CHARGE=  -0.1001 END
+ATOM OXT   TYPE= o_    CHARGE=  -0.6058 END
+ATOM H     TYPE= hn_   CHARGE=   0.2995 END
+ATOM HA    TYPE= h1_   CHARGE=   0.1227 END
+ATOM HHB   TYPE= hc_   CHARGE=   0.0580 END
+ATOM H7    TYPE= hc_   CHARGE=   0.0580 END
+ATOM H8    TYPE= hc_   CHARGE=   0.0580 END
+
+{ Bonds: atomName1  atomName2 }
+BOND N     HHT  
+BOND N     H3   
+BOND N     H4   
+BOND CA    HA   
+BOND CB    HHB  
+BOND CB    H1   
+BOND CB    H2   
+BOND N     H    
+BOND CA    HA   
+BOND CB    HHB  
+BOND CB    H5   
+BOND CB    H6   
+BOND N     H    
+BOND CA    HA   
+BOND CB    HHB  
+BOND CB    H7   
+BOND CB    H8   
+BOND N     CA   
+BOND CA    C    
+BOND CA    CB   
+BOND C     O    
+BOND C     N    
+BOND N     CA   
+BOND CA    C    
+BOND CA    CB   
+BOND C     O    
+BOND C     N    
+BOND N     CA   
+BOND CA    C    
+BOND CA    CB   
+BOND C     O    
+BOND C     OXT  
+
+{ Angles: atomName1 atomName2 atomName3}
+ANGLe N     CA    HA   
+ANGLe CA    N     HHT  
+ANGLe CA    N     H3   
+ANGLe CA    N     H4   
+ANGLe CA    CB    HHB  
+ANGLe CA    CB    H1   
+ANGLe CA    CB    H2   
+ANGLe C     CA    HA   
+ANGLe C     N     H    
+ANGLe CB    CA    HA   
+ANGLe HHB   CB    H1   
+ANGLe HHB   CB    H2   
+ANGLe H1    CB    H2   
+ANGLe HHT   N     H3   
+ANGLe HHT   N     H4   
+ANGLe H3    N     H4   
+ANGLe N     CA    HA   
+ANGLe CA    N     H    
+ANGLe CA    CB    HHB  
+ANGLe CA    CB    H5   
+ANGLe CA    CB    H6   
+ANGLe C     CA    HA   
+ANGLe C     N     H    
+ANGLe CB    CA    HA   
+ANGLe HHB   CB    H5   
+ANGLe HHB   CB    H6   
+ANGLe H5    CB    H6   
+ANGLe N     CA    HA   
+ANGLe CA    N     H    
+ANGLe CA    CB    HHB  
+ANGLe CA    CB    H7   
+ANGLe CA    CB    H8   
+ANGLe C     CA    HA   
+ANGLe CB    CA    HA   
+ANGLe HHB   CB    H7   
+ANGLe HHB   CB    H8   
+ANGLe H7    CB    H8   
+ANGLe N     CA    C    
+ANGLe N     CA    CB   
+ANGLe CA    C     O    
+ANGLe CA    C     N    
+ANGLe C     CA    CB   
+ANGLe C     N     CA   
+ANGLe O     C     N    
+ANGLe N     CA    C    
+ANGLe N     CA    CB   
+ANGLe CA    C     O    
+ANGLe CA    C     N    
+ANGLe C     CA    CB   
+ANGLe C     N     CA   
+ANGLe O     C     N    
+ANGLe N     CA    C    
+ANGLe N     CA    CB   
+ANGLe CA    C     O    
+ANGLe CA    C     OXT  
+ANGLe C     CA    CB   
+ANGLe O     C     OXT  
+
+{ Proper Dihedrals: name1 name2 name3 name4 }
+DIHEdral N     CA    CB    HHB  
+DIHEdral N     CA    CB    H1   
+DIHEdral N     CA    CB    H2   
+DIHEdral CA    C     N     H    
+DIHEdral HHT   N     CA    C    
+DIHEdral H3    N     CA    C    
+DIHEdral H4    N     CA    C    
+DIHEdral C     CA    CB    HHB  
+DIHEdral C     CA    CB    H1   
+DIHEdral C     CA    CB    H2   
+DIHEdral C     N     CA    HA   
+DIHEdral O     C     CA    HA   
+DIHEdral O     C     N     H    
+DIHEdral HHT   N     CA    CB   
+DIHEdral H3    N     CA    CB   
+DIHEdral H4    N     CA    CB   
+DIHEdral HHT   N     CA    HA   
+DIHEdral H3    N     CA    HA   
+DIHEdral H4    N     CA    HA   
+DIHEdral HA    CA    C     N    
+DIHEdral HA    CA    CB    HHB  
+DIHEdral HA    CA    CB    H1   
+DIHEdral HA    CA    CB    H2   
+DIHEdral N     CA    CB    HHB  
+DIHEdral N     CA    CB    H5   
+DIHEdral N     CA    CB    H6   
+DIHEdral CA    C     N     H    
+DIHEdral C     CA    N     H    
+DIHEdral C     CA    CB    HHB  
+DIHEdral C     CA    CB    H5   
+DIHEdral C     CA    CB    H6   
+DIHEdral C     N     CA    HA   
+DIHEdral O     C     CA    HA   
+DIHEdral O     C     N     H    
+DIHEdral CB    CA    N     H    
+DIHEdral H     N     CA    HA   
+DIHEdral HA    CA    C     N    
+DIHEdral HA    CA    CB    HHB  
+DIHEdral HA    CA    CB    H5   
+DIHEdral HA    CA    CB    H6   
+DIHEdral N     CA    CB    HHB  
+DIHEdral N     CA    CB    H7   
+DIHEdral N     CA    CB    H8   
+DIHEdral C     CA    N     H    
+DIHEdral C     CA    CB    HHB  
+DIHEdral C     CA    CB    H7   
+DIHEdral C     CA    CB    H8   
+DIHEdral O     C     CA    HA   
+DIHEdral CB    CA    N     H    
+DIHEdral OXT   C     CA    HA   
+DIHEdral H     N     CA    HA   
+DIHEdral HA    CA    CB    HHB  
+DIHEdral HA    CA    CB    H7   
+DIHEdral HA    CA    CB    H8   
+DIHEdral N     CA    C     O    
+DIHEdral N     CA    C     N    
+DIHEdral CA    C     N     CA   
+DIHEdral C     N     CA    C    
+DIHEdral C     N     CA    CB   
+DIHEdral O     C     CA    CB   
+DIHEdral O     C     N     CA   
+DIHEdral CB    CA    C     N    
+DIHEdral N     CA    C     O    
+DIHEdral N     CA    C     N    
+DIHEdral CA    C     N     CA   
+DIHEdral C     N     CA    C    
+DIHEdral C     N     CA    CB   
+DIHEdral O     C     CA    CB   
+DIHEdral O     C     N     CA   
+DIHEdral CB    CA    C     N    
+DIHEdral N     CA    C     O    
+DIHEdral N     CA    C     OXT  
+DIHEdral O     C     CA    CB   
+DIHEdral CB    CA    C     OXT  
+
+{ Improper Dihedrals: aName1 aName2 aName3 aName4 }
+IMPRoper C     CA    N     H    
+IMPRoper C     CA    N     H    
+IMPRoper CA    N     C     O    
+IMPRoper CA    N     C     O    
+IMPRoper CA    O     C     OXT  
+
+END {RESIdue ALA}
+
+set echo=true end

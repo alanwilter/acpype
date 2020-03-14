@@ -7,7 +7,7 @@ A tool based in Python to use Antechamber to generate topologies for chemical co
 from setuptools import setup
 
 setup(name='acpype',
-      version='2019.10.05.12.26',
+      version='2020.03.14.11.44',
       description='ACPYPE - AnteChamber PYthon Parser interfacE',
       classifiers=[
           'Intended Audience :: Science/Research',

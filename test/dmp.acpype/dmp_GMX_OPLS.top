@@ -1,0 +1,14 @@
+; dmp_GMX_OPLS.top created by acpype (v: 2019-10-08T09:09:22CEST) on Fri Mar 13 19:04:23 2020
+
+; Include forcefield parameters
+#include "ffoplsaa.itp"
+
+; Include dmp_GMX.itp topology
+#include "dmp_GMX.itp"
+
+[ system ]
+ dmp
+
+[ molecules ]
+; Compound        nmols
+ dmp              1     

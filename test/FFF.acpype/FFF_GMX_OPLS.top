@@ -1,0 +1,14 @@
+; FFF_GMX_OPLS.top created by acpype (v: 2019-10-08T09:09:22CEST) on Fri Mar 13 18:48:35 2020
+
+; Include forcefield parameters
+#include "ffoplsaa.itp"
+
+; Include FFF_GMX.itp topology
+#include "FFF_GMX.itp"
+
+[ system ]
+ FFF
+
+[ molecules ]
+; Compound        nmols
+ FFF              1     

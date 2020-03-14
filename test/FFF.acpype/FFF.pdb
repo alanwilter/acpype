@@ -1,0 +1,184 @@
+ATOM      1  N   PHE F   1     103.626  24.331   5.396  1.00  0.00           N
+ATOM      2  CA  PHE F   1     105.071  24.490   5.226  1.00  0.00           C
+ATOM      3  C   PHE F   1     105.427  25.974   5.082  1.00  0.00           C
+ATOM      4  O   PHE F   1     104.773  26.620   4.202  1.00  0.00           O
+ATOM      5  CB  PHE F   1     105.590  23.758   3.953  1.00  0.00           C
+ATOM      6  CG  PHE F   1     105.369  22.238   3.834  1.00  0.00           C
+ATOM      7  CD1 PHE F   1     104.265  21.791   3.087  1.00  0.00           C
+ATOM      8  CD2 PHE F   1     106.213  21.304   4.430  1.00  0.00           C
+ATOM      9  CE1 PHE F   1     103.974  20.436   3.017  1.00  0.00           C
+ATOM     10  CE2 PHE F   1     105.941  19.942   4.325  1.00  0.00           C
+ATOM     11  CZ  PHE F   1     104.805  19.509   3.642  1.00  0.00           C
+ATOM     12  HA  PHE F   1     105.573  24.090   6.122  1.00  0.00           H
+ATOM     13 2HB  PHE F   1     106.678  23.945   3.852  1.00  0.00           H
+ATOM     14 3HB  PHE F   1     105.143  24.237   3.055  1.00  0.00           H
+ATOM     15 1HD  PHE F   1     103.645  22.515   2.570  1.00  0.00           H
+ATOM     16 2HD  PHE F   1     107.087  21.633   4.978  1.00  0.00           H
+ATOM     17 1HE  PHE F   1     103.096  20.111   2.474  1.00  0.00           H
+ATOM     18 2HE  PHE F   1     106.608  19.217   4.770  1.00  0.00           H
+ATOM     19  HZ  PHE F   1     104.573  18.455   3.600  1.00  0.00           H
+ATOM     20 1HT  PHE F   1     103.392  23.336   5.505  1.00  0.00           H
+ATOM     21 2HT  PHE F   1     103.322  24.847   6.232  1.00  0.00           H
+ATOM     22 3HT  PHE F   1     103.144  24.708   4.565  1.00  0.00           H
+ATOM     23  N   PHE F   2     106.427  26.499   5.986  1.00  0.00           N
+ATOM     24  CA  PHE F   2     106.591  27.940   5.991  1.00  0.00           C
+ATOM     25  C   PHE F   2     108.082  28.294   6.138  1.00  0.00           C
+ATOM     26  O   PHE F   2     108.690  27.765   7.121  1.00  0.00           O
+ATOM     27  CB  PHE F   2     105.840  28.586   7.199  1.00  0.00           C
+ATOM     28  CG  PHE F   2     104.311  28.394   7.307  1.00  0.00           C
+ATOM     29  CD1 PHE F   2     103.856  27.395   8.188  1.00  0.00           C
+ATOM     30  CD2 PHE F   2     103.404  29.128   6.552  1.00  0.00           C
+ATOM     31  CE1 PHE F   2     102.505  27.083   8.228  1.00  0.00           C
+ATOM     32  CE2 PHE F   2     102.045  28.822   6.617  1.00  0.00           C
+ATOM     33  CZ  PHE F   2     101.602  27.784   7.435  1.00  0.00           C
+ATOM     34  H   PHE F   2     107.003  25.852   6.678  1.00  0.00           H
+ATOM     35  HA  PHE F   2     106.260  28.424   5.065  1.00  0.00           H
+ATOM     36 2HB  PHE F   2     106.041  29.675   7.205  1.00  0.00           H
+ATOM     37 3HB  PHE F   2     106.299  28.220   8.142  1.00  0.00           H
+ATOM     38 1HD  PHE F   2     104.583  26.885   8.814  1.00  0.00           H
+ATOM     39 2HD  PHE F   2     103.759  29.930   5.914  1.00  0.00           H
+ATOM     40 1HE  PHE F   2     102.164  26.287   8.878  1.00  0.00           H
+ATOM     41 2HE  PHE F   2     101.333  29.387   6.032  1.00  0.00           H
+ATOM     42  HZ  PHE F   2     100.554  27.522   7.453  1.00  0.00           H
+ATOM     43  N   PHE F   3     108.646  29.160   5.126  1.00  0.00           N
+ATOM     44  CA  PHE F   3     110.082  29.362   5.180  1.00  0.00           C
+ATOM     45  C   PHE F   3     110.430  30.805   4.849  1.00  0.00           C
+ATOM     46  O   PHE F   3     109.675  31.629   4.226  1.00  0.00           O
+ATOM     47  CB  PHE F   3     110.807  28.448   4.135  1.00  0.00           C
+ATOM     48  CG  PHE F   3     110.643  26.916   4.248  1.00  0.00           C
+ATOM     49  CD1 PHE F   3     109.694  26.307   3.406  1.00  0.00           C
+ATOM     50  CD2 PHE F   3     111.359  26.153   5.165  1.00  0.00           C
+ATOM     51  CE1 PHE F   3     109.408  24.959   3.565  1.00  0.00           C
+ATOM     52  CE2 PHE F   3     111.079  24.795   5.298  1.00  0.00           C
+ATOM     53  CZ  PHE F   3     110.086  24.206   4.519  1.00  0.00           C
+ATOM     54  OXT PHE F   3     111.590  31.167   5.239  1.00  0.00           O
+ATOM     55  H   PHE F   3     108.030  29.626   4.329  1.00  0.00           H
+ATOM     56  HA  PHE F   3     110.517  29.185   6.173  1.00  0.00           H
+ATOM     57 2HB  PHE F   3     111.892  28.666   4.166  1.00  0.00           H
+ATOM     58 3HB  PHE F   3     110.492  28.753   3.116  1.00  0.00           H
+ATOM     59 1HD  PHE F   3     109.201  26.915   2.654  1.00  0.00           H
+ATOM     60 2HD  PHE F   3     112.125  26.624   5.771  1.00  0.00           H
+ATOM     61 1HE  PHE F   3     108.649  24.500   2.942  1.00  0.00           H
+ATOM     62 2HE  PHE F   3     111.629  24.194   6.010  1.00  0.00           H
+ATOM     63  HZ  PHE F   3     109.841  23.162   4.656  1.00  0.00           H
+CONECT    1    2   20   21   22
+CONECT    2    1    3    5   12
+CONECT    3    2
+CONECT    3    4
+CONECT    3    4
+CONECT    3   23
+CONECT    4    3
+CONECT    4    3
+CONECT    5    2    6   13   14
+CONECT    6    5
+CONECT    6    7
+CONECT    6    7
+CONECT    6    8
+CONECT    7    6
+CONECT    7    6
+CONECT    7    9   15
+CONECT    8    6
+CONECT    8   10
+CONECT    8   10
+CONECT    8   16
+CONECT    9    7
+CONECT    9   11
+CONECT    9   11
+CONECT    9   17
+CONECT   10    8
+CONECT   10    8
+CONECT   10   11   18
+CONECT   11    9
+CONECT   11    9
+CONECT   11   10   19
+CONECT   12    2
+CONECT   13    5
+CONECT   14    5
+CONECT   15    7
+CONECT   16    8
+CONECT   17    9
+CONECT   18   10
+CONECT   19   11
+CONECT   20    1
+CONECT   21    1
+CONECT   22    1
+CONECT   23    3   24   34
+CONECT   24   23   25   27   35
+CONECT   25   24
+CONECT   25   26
+CONECT   25   26
+CONECT   25   43
+CONECT   26   25
+CONECT   26   25
+CONECT   27   24   28   36   37
+CONECT   28   27
+CONECT   28   29
+CONECT   28   29
+CONECT   28   30
+CONECT   29   28
+CONECT   29   28
+CONECT   29   31   38
+CONECT   30   28
+CONECT   30   32
+CONECT   30   32
+CONECT   30   39
+CONECT   31   29
+CONECT   31   33
+CONECT   31   33
+CONECT   31   40
+CONECT   32   30
+CONECT   32   30
+CONECT   32   33   41
+CONECT   33   31
+CONECT   33   31
+CONECT   33   32   42
+CONECT   34   23
+CONECT   35   24
+CONECT   36   27
+CONECT   37   27
+CONECT   38   29
+CONECT   39   30
+CONECT   40   31
+CONECT   41   32
+CONECT   42   33
+CONECT   43   25   44   55
+CONECT   44   43   45   47   56
+CONECT   45   44
+CONECT   45   46
+CONECT   45   46
+CONECT   45   54
+CONECT   46   45
+CONECT   46   45
+CONECT   47   44   48   57   58
+CONECT   48   47
+CONECT   48   49
+CONECT   48   49
+CONECT   48   50
+CONECT   49   48
+CONECT   49   48
+CONECT   49   51   59
+CONECT   50   48
+CONECT   50   52
+CONECT   50   52
+CONECT   50   60
+CONECT   51   49
+CONECT   51   53
+CONECT   51   53
+CONECT   51   61
+CONECT   52   50
+CONECT   52   50
+CONECT   52   53   62
+CONECT   53   51
+CONECT   53   51
+CONECT   53   52   63
+CONECT   54   45
+CONECT   55   43
+CONECT   56   44
+CONECT   57   47
+CONECT   58   47
+CONECT   59   49
+CONECT   60   50
+CONECT   61   51
+CONECT   62   52
+CONECT   63   53
+END
