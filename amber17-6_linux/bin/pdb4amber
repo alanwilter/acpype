@@ -1,7 +1,0 @@
-#!/opt/anaconda1anaconda2anaconda3/bin/python
-
-import sys
-
-if __name__ == '__main__':
-    from pdb4amber import pdb4amber
-    sys.exit(pdb4amber.main())
