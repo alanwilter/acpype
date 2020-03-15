@@ -76,15 +76,15 @@ import site
 if which('antechamber') is None:
     LOCAL_PATH = site.getsitepackages()[0]
     if sys.platform == 'linux':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_linux/bin:' + LOCAL_PATH + '/amber17-6_linux/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_linux/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_linux/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_linux/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_linux/bin:' + LOCAL_PATH + '/amber19-0_linux/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_linux/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_linux/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_linux/lib/'
     elif sys.platform == 'darwin':
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber17-6_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber17-6_os/bin:' + LOCAL_PATH + '/amber17-6_os/dat/'
-        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber17-6_os/'
-        os.environ["ACHOME"] = LOCAL_PATH + '/amber17-6_os/bin/'
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber17-6_os/lib/'
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_os/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_os/bin:' + LOCAL_PATH + '/amber19-0_os/dat/'
+        os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_os/'
+        os.environ["ACHOME"] = LOCAL_PATH + '/amber19-0_os/bin/'
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + '/amber19-0_os/lib/'
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
@@ -95,7 +95,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2020-03-14T11:44:00CET"
+__updated__ = "2020-03-15T13:27:00CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -673,8 +673,8 @@ class Topology_14():
                     scee_scale_factor = 1.2
                 ai = int(abs(dihedrals[j]) / 3)
                 al = int(abs(dihedrals[j + 3]) / 3)
-                qi = self.charge[ai] / 18.222615
-                ql = self.charge[al] / 18.222615 / scee_scale_factor
+                qi = self.charge[ai] / qConv
+                ql = self.charge[al] / qConv / scee_scale_factor
                 ntypes = int(self.pointers[1])
                 ai_index = int(self.atom_type_index[ai])
                 al_index = int(self.atom_type_index[al])
