@@ -673,8 +673,8 @@ class Topology_14():
                     scee_scale_factor = 1.2
                 ai = int(abs(dihedrals[j]) / 3)
                 al = int(abs(dihedrals[j + 3]) / 3)
-                qi = self.charge[ai] / 18.222615
-                ql = self.charge[al] / 18.222615 / scee_scale_factor
+                qi = self.charge[ai] / qConv
+                ql = self.charge[al] / qConv / scee_scale_factor
                 ntypes = int(self.pointers[1])
                 ai_index = int(self.atom_type_index[ai])
                 al_index = int(self.atom_type_index[al])
