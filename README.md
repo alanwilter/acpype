@@ -113,7 +113,7 @@ conda install -c acpype acpype
 ```
 
 ```bash
-pip install -U git+https://github.com/alanwilter/acpype.git
+pip3 install -U git+https://github.com/alanwilter/acpype.git
 ```
 
 ##### To Verify with GMX
