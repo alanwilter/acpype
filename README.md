@@ -106,10 +106,14 @@ At folder acpype, type:
 And re-login or start another shell session.
 
 
-Yet, it is possible to install using Anaconda package Python 3.6:
+Yet, it is possible to install using Anaconda package Python 3.6 or Pip:
 
 ```bash
 conda install -c acpype acpype
+```
+
+```bash
+pip install -U git+https://github.com/alanwilter/acpype.git
 ```
 
 ##### To Verify with GMX
