@@ -70,11 +70,11 @@ import abc
 import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
-import site
+import sysconfig
 
 # For pip package
 if which('antechamber') is None:
-    LOCAL_PATH = site.getsitepackages()[0]
+    LOCAL_PATH = sysconfig.get_paths()["purelib"]
     if sys.platform == 'linux':
         os.environ["PATH"] += os.pathsep + LOCAL_PATH + 'amber19-0_linux/bin/to_be_dispatched:' + LOCAL_PATH + '/amber19-0_linux/bin:' + LOCAL_PATH + '/amber19-0_linux/dat/'
         os.environ["AMBERHOME"] = LOCAL_PATH + '/amber19-0_linux/'
