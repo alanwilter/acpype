@@ -95,7 +95,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2020-03-15T13:27:00CET"
+__updated__ = "2020-05-27T16:16:00CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -1203,10 +1203,7 @@ Usage: antechamber -i   input file name
         if exten == 'mol':
             exten = 'mdl'
 
-        cmd = '%s -dr no -i %s -fi %s -o %s -fo mol2 %s -nc %s -m %s -s 2 -df %i -at\
- %s -pf y %s' % (self.acExe, self.inputFile, exten, self.acMol2FileName,
-                 ct, self.chargeVal, self.multiplicity, self.qFlag, at,
-                 self.ekFlag)
+        cmd = '%s -dr no -i %s -fi %s -o %s -fo mol2 %s -nc %s -m %s -s 2 -df %s -at %s -pf y %s' % (self.acExe, self.inputFile, exten, self.acMol2FileName, ct, self.chargeVal, self.multiplicity, self.qFlag, at, self.ekFlag)
 
         if self.debug:
             self.printMess("Debugging...")
@@ -1465,7 +1462,7 @@ Usage: antechamber -i   input file name
         self.makeDir()
 
         cmd = '%s -ipdb %s -omol2 -O %s.mol2' % (self.babelExe, self.inputFile,
-                                              self.baseName)
+                                                 self.baseName)
         self.printDebug(cmd)
         self.babelLog = _getoutput(cmd)
         self.ext = '.mol2'
@@ -3472,6 +3469,7 @@ class MolTopol(ACTopol):
     def __init__(self, acTopolObj=None, acFileXyz=None, acFileTop=None,
                  debug=False, basename=None, verbose=True, gmx4=False,
                  disam=False, direct=False, is_sorted=False, chiral=False):
+        super().__init__()
         self.chiral = chiral
         self.obchiralExe = which('obchiral') or ''
         self.allhdg = False
