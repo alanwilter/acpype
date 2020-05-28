@@ -95,7 +95,7 @@ if sys.version_info < (3, 6):
     sys.exit(1)
 
 year = datetime.today().year
-__updated__ = "2020-05-27T16:16:00CEST"
+__updated__ = "2020-05-28T15:01:09CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -3453,7 +3453,7 @@ class ACTopol(AbstractTopol):
                           'leapGaffFile': leapGaffFile}
 
 
-class MolTopol(ACTopol):
+class MolTopol(AbstractTopol):
 
     """"
         Class to write topologies and parameters files for several applications
