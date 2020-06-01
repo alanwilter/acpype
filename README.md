@@ -82,7 +82,7 @@ at all but *[Python](http://www.python.org)*.
 
 There several ways of obtaining `acpype`:
 
-1. Via **[CONDA](https://anaconda.org/search?q=acpype)**:
+1) Via **[CONDA](https://anaconda.org/search?q=acpype)**:
 
   ```bash
   conda install -c conda-forge acpype
@@ -94,7 +94,7 @@ There several ways of obtaining `acpype`:
   conda install -c acpype acpype
   ```
 
-1. Via **[PyPI](https://pypi.org/project/acpype/)**:
+2) Via **[PyPI](https://pypi.org/project/acpype/)**:
 
   ```bash
   pip install git+https://github.com/alanwilter/acpype.git
@@ -102,7 +102,7 @@ There several ways of obtaining `acpype`:
 
   note that `pip install acpype`, unfortunately, is not picking the original one.
 
-1. By downloading it via `git`:
+3) By downloading it via `git`:
 
   ```bash
   git clone https://github.com/alanwilter/acpype.git
