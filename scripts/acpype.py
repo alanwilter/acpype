@@ -92,7 +92,7 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-06-08T16:20:28CEST"
+__updated__ = "2020-06-08T17:29:42CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -3352,7 +3352,8 @@ stop
         if os.path.exists(self.obchiralExe):
             self.printDebug("chiralGroups %i" % len(self.chiralGroups))
         else:
-            self.printDebug("No 'obchiral' to process chiral atoms. Consider installing http://openbabel.org")
+            self.printDebug("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
+            self.printDebug("'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org")
 
 
 class ACTopol(AbstractTopol):
@@ -3493,10 +3494,6 @@ class MolTopol(AbstractTopol):
             self.printError("Files '%s' and/or '%s' don't exist" % (acFileXyz, acFileTop))
             self.printError("molTopol object won't be created")
 
-#         if not os.path.exists(self.obchiralExe) and self.chiral:
-#             self.printError("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-#             self.printWarn("Consider installing http://openbabel.org")
-
         self.xyzFileData = open(acFileXyz, 'r').readlines()
         self.topFileData = [x for x in open(acFileTop, 'r').readlines() if not x.startswith('%COMMENT')]
         self.topo14Data = Topology_14()
@@ -3524,8 +3521,8 @@ class MolTopol(AbstractTopol):
 
         self.getChirals()
         if not os.path.exists(self.obchiralExe) and self.chiral:
-            self.printError("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-            self.printWarn("Consider installing http://openbabel.org")
+            self.printWarn("No 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
+            self.printWarn("'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org")
         elif self.chiral and not self.chiralGroups:
             self.printWarn("No chiral atoms found")
 
