@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2020-06-08T21:52:31CEST"
+__updated__ = "2020-06-08T22:38:13CEST"
 version = __updated__[:19].replace('-', '').replace('T', '').replace(':', '')
 
 setuptools.setup(
@@ -32,6 +32,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3.7',
         'Topic :: Scientific/Engineering :: Bio-Informatics'
     ],
+    python_requires='>=3.6',
     install_requires=[],
     zip_safe=False
 )
