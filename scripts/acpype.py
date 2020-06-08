@@ -89,14 +89,10 @@ if which('antechamber') is None:
 
 if sys.version_info < (3, 6):
     print('ERROR: Sorry, you need python 3.6 or higher')
-    sys.exit(1)
-
-if sys.version_info < (3, 6):
-    print('ERROR: Sorry, you need python 3.6 or higher')
-    sys.exit(1)
+    sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-06-08T13:01:17CEST"
+__updated__ = "2020-06-08T16:20:28CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -905,7 +901,7 @@ class AbstractTopol():
         if drift > diffTol:
             self.printError("Net charge drift '%3.5f' bigger than tolerance '%3.5f'" % (drift, diffTol))
             if not self.force:
-                sys.exit(1)
+                sys.exit(7)
         self.chargeVal = str(charge2)
         self.printMess("... charge set to %i" % charge2)
         os.chdir(localDir)
@@ -957,7 +953,7 @@ class AbstractTopol():
         if len(residues) > 1:
             self.printError("more than one residue detected '%s'" % str(residues))
             self.printError("verify your input file '%s'. Aborting ..." % self.inputFile)
-            sys.exit(1)
+            sys.exit(9)
 
         dups = ""
         shortd = ""
@@ -1010,7 +1006,7 @@ class AbstractTopol():
             else:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 rmtree(self.tmpDir)
-                sys.exit(1)
+                sys.exit(11)
 
         resname = list(residues)[0].strip()
         newresname = resname
@@ -1339,12 +1335,10 @@ Usage: antechamber -i   input file name
         if self.execAntechamber():
             self.printError("Antechamber failed")
             fail = True
-            # sys.exit(1)
 
         if self.execParmchk():
             self.printError("Parmchk failed")
             fail = True
-            # sys.exit(1)
 
         if fail:
             return True
@@ -2055,7 +2049,7 @@ Usage: antechamber -i   input file name
                 phase = int(phaseRaw)  # in degree
                 if period > 4 and self.gmx4:
                     self.printError("Likely trying to convert ILDN to RB, DO NOT use option '-z'")
-                    sys.exit(1)
+                    sys.exit(13)
                 if phase in [0, 180]:
                     properDihedralsGmx45.append([item[0].atoms, phaseRaw, kPhi, period])
                     if self.gmx4:
@@ -3421,7 +3415,12 @@ class ACTopol(AbstractTopol):
         if not self.acExe:
             self.acExe = which('antechamber') or ''  # '/Users/alan/Programmes/antechamber-1.27/exe/antechamber'
         if not os.path.exists(self.acExe):
-            self.printError("no 'antechamber' executable!")
+            self.printError("no 'antechamber' executable... aborting ! ")
+            hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
+            hint2 = "HINT2: is 'antechamber' in your $PATH?\n    What 'which antechamber' in your terminal says?\n    'alias' doesn't work for ACPYPE."
+            self.printMess(hint1)
+            self.printMess(hint2)
+            sys.exit(17)
         self.tleapExe = which('tleap') or ''
         self.sleapExe = which('sleap') or ''
         self.parmchkExe = which('parmchk2') or ''
@@ -3430,7 +3429,7 @@ class ACTopol(AbstractTopol):
             if self.ext != '.mol2' and self.ext != '.mdl':  # and self.ext != '.mol':
                 self.printError("no 'babel' executable; you need it if input is PDB")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
-                sys.exit(1)
+                sys.exit(15)
             else:
                 self.printWarn("no 'babel' executable, no PDB file as input can be used!")
         acBase = base + '_AC'
@@ -3734,14 +3733,6 @@ def init_main():
                                disam=args.disambiguate, direct=args.direct,
                                is_sorted=args.sorted, chiral=args.chiral)
 
-            if not molecule.acExe:
-                molecule.printError("no 'antechamber' executable... aborting ! ")
-                hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
-                hint2 = "HINT2: is 'antechamber' in your $PATH?\n    What 'which antechamber' in your terminal says?\n    'alias' doesn't work for ACPYPE."
-                molecule.printMess(hint1)
-                molecule.printMess(hint2)
-                sys.exit(1)
-
             molecule.createACTopol()
             molecule.createMolTopol()
         acpypeFailed = False
@@ -3767,7 +3758,7 @@ def init_main():
     except Exception:
         pass
     if acpypeFailed:
-        sys.exit(1)
+        sys.exit(19)
     try:
         os.chdir(molecule.rootDir)
     except Exception:
