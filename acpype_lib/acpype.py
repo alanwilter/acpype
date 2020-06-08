@@ -71,7 +71,6 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
-import IPython
 
 # For pip package
 if which('antechamber') is None:
@@ -92,7 +91,7 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-06-08T17:29:42CEST"
+__updated__ = "2020-06-08T21:49:42CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -3748,6 +3747,7 @@ def init_main():
     print("Total time of execution: %s" % amsg)
 
     if args.ipython:
+        import IPython  # pylint: disable=import-outside-toplevel
         IPython.embed()
 
     try:
