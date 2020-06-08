@@ -57,3 +57,6 @@ coverage.xml
 docs/_build/
 
 pip-selfcheck.json
+test/*acpype
+test/*.gro
+test/*.top
