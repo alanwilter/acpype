@@ -91,15 +91,18 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-06-08T21:49:42CEST"
+__updated__ = "2020-06-13T12:15:12CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
+cur_version = tag[:19].replace('-', '.').replace('T', '-').replace(':', '.')
 
 lineHeader = '''
 | ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
-''' % (tag, year)
+''' % (cur_version, year)
 frameLine = (len(lineHeader) - 2) * '='
 header = '%s%s%s' % (frameLine, lineHeader, frameLine)
+
+print(header)
 
 #    TODO:
 #        Howto Charmm and Amber with NAMD
@@ -284,6 +287,8 @@ usage = \
     """
     acpype -i _file_ [-c _string_] [-n _int_] [-m _int_] [-a _string_] [-f] etc. or
     acpype -p _prmtop_ -x _inpcrd_ [-d]"""
+
+# usage = '\r{}\nusage: {}'.format(header.ljust(len('usage:')), usage) # to re-think
 
 epilog = \
     """
@@ -3685,7 +3690,6 @@ def init_main():
     args = parser.parse_args()
 
     at0 = time.time()
-    print(header)
 
     amb2gmxF = False
 
