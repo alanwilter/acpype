@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+'''
+File needed for PyPI
+'''
 import setuptools
 
 with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2020-06-08T22:38:13CEST"
-version = __updated__[:19].replace('-', '').replace('T', '').replace(':', '')
+__updated__ = "2020-06-13T12:25:09CEST"
+version = __updated__[:19].replace('-', '.').replace('T', '-').replace(':', '.')
 
 setuptools.setup(
     name='acpype',
