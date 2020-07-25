@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+'''
+File needed for PyPI
+'''
 import setuptools
 
 with open("README.md", "r") as fh:

@@ -84,29 +84,29 @@ There several ways of obtaining `acpype`:
 
 1) Via **[CONDA](https://anaconda.org/search?q=acpype)**:
 
-  ```bash
+```bash
   conda install -c conda-forge acpype
-  ```
+```
 
   or, if you want to be sure to get the latest (sometimes `conda-forge` channel is still lagging behind)
 
-  ```bash
+```bash
   conda install -c acpype acpype
-  ```
+```
 
 2) Via **[PyPI](https://pypi.org/project/acpype/)**:
 
-  ```bash
+```bash
   pip install git+https://github.com/alanwilter/acpype.git
-  ```
+```
 
   note that `pip install acpype`, unfortunately, is not picking the original one.
 
 3) By downloading it via `git`:
 
-  ```bash
+```bash
   git clone https://github.com/alanwilter/acpype.git
-  ```
+```
 
 **NB:** Installing via `conda` gives you `AmberTools17` and `OpenBabel2.4`, while
 via `pip/git` you get `AmberTools19` and `OpenBabel3` (which lacks `obchiral`,
