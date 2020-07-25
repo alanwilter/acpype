@@ -9,32 +9,31 @@ with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2020-06-13T12:25:09CEST"
-version = __updated__[:19].replace('-', '.').replace('T', '-').replace(':', '.')
+__updated__ = "2020-07-25T08:41:39CEST"
+version = __updated__[:19].replace("-", "").replace("T", "").replace(":", "")
 
 setuptools.setup(
-    name='acpype',
+    name="acpype",
     version=version,
-    scripts=['acpype_lib/acpype.py', ],
-    author='Alan Wilter Sousa da Silva',
-    author_email='alanwilter@gmail.com',
-    description='ACPYPE - AnteChamber PYthon Parser interfacE',
+    scripts=["acpype_lib/acpype.py"],
+    author="Alan Wilter Sousa da Silva",
+    author_email="alanwilter@gmail.com",
+    description="ACPYPE - AnteChamber PYthon Parser interfacE",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/alanwilter/acpype",
-    packages=['acpype_lib', 'amber19-0_linux', 'amber19-0_os'],
-    package_dir={'acpype':
-                 'acpype'},
+    packages=["acpype_lib", "amber19-0_linux", "amber19-0_os"],
+    package_dir={"acpype": "acpype"},
     include_package_data=True,
-    keywords='acpype',
-    entry_points={'console_scripts': ['acpype = acpype_lib.acpype:init_main']},
+    keywords="acpype",
+    entry_points={"console_scripts": ["acpype = acpype_lib.acpype:init_main"]},
     classifiers=[
-        'Intended Audience :: Science/Research',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 3.7',
-        'Topic :: Scientific/Engineering :: Bio-Informatics'
+        "Intended Audience :: Science/Research",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3.7",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
     install_requires=[],
-    zip_safe=False
+    zip_safe=False,
 )
