@@ -118,7 +118,7 @@ but this is not critical). Our `AmberTools19` comes with binary `charmmgen` from
 At folder `acpype/test`, type:
 
 ```bash
-../acpype.py -i FFF.pdb
+../acpype_lib/acpype.py -i FFF.pdb
 ```
 
 It'll create a folder called *FFF.acpype*, and inside it one may find topology

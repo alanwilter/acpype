@@ -43,13 +43,13 @@ def addMolPep(cnsPepPath, molName):
     pepFile = pepFile.splitlines(1)
     pepFile.reverse()
     for line in pepFile:
-        if line != '\n':
-            if 'SET ECHO' in line.upper():
+        if line != "\n":
+            if "SET ECHO" in line.upper():
                 an_id = pepFile.index(line)
                 pepFile.insert(an_id + 1, txt)
                 break
     pepFile.reverse()
-    nPepFile = open(cnsPepPath, 'w')
+    nPepFile = open(cnsPepPath, "w")
     nPepFile.writelines(pepFile)
     nPepFile.close()
     print("%s added to %s" % (molName, cnsPepPath))
@@ -61,17 +61,18 @@ def addMolPar(cnsParPath, molParPath):
         Add parameters of MOL.par in CNS paralldhg*.pro file
         input: cns par file path to be modified and MOL.par file
     """
+
     def formatLine(line, n):
         items = line.split()
         mult = eval(items[6])
         if len(items) < len(items) + (mult - 1) * 3:
             for i in range(1, mult):
                 line += molFile[n + i]
-            n += (mult - 1)
+            n += mult - 1
         return line, n
 
-    pars = ['BOND', 'ANGLe', 'DIHEdral', 'IMPRoper', 'NONBonded']
-    molName = os.path.basename(molParPath).split('_')[0]
+    pars = ["BOND", "ANGLe", "DIHEdral", "IMPRoper", "NONBonded"]
+    molName = os.path.basename(molParPath).split("_")[0]
     txt = "! Parameters for Heterocompound %s\n" % molName
     end = "! end %s\n\n" % molName
 
@@ -86,9 +87,9 @@ def addMolPar(cnsParPath, molParPath):
     for n in range(len(molFile)):
         line = molFile[n]
         if line.strip()[0:4] in [x[0:4] for x in pars]:
-            if 'DIHE' in line and 'MULT' in line:
+            if "DIHE" in line and "MULT" in line:
                 line, n = formatLine(line, n)
-            elif 'IMPR' in line and 'MULT' in line:
+            elif "IMPR" in line and "MULT" in line:
                 line, n = formatLine(line, n)
             molList.append(line)
         n += 1
@@ -96,8 +97,8 @@ def addMolPar(cnsParPath, molParPath):
     parList = parFile.splitlines(1)
     parList.reverse()
     for line in parList:
-        if line != '\n':
-            if 'SET ECHO' in line.upper():
+        if line != "\n":
+            if "SET ECHO" in line.upper():
                 an_id = parList.index(line)
                 break
     parList.insert(an_id + 1, txt)
@@ -121,7 +122,7 @@ def addMolPar(cnsParPath, molParPath):
     parList.insert(an_id + 1, end)
 
     parList.reverse()
-    nParFile = open(cnsParPath, 'w')
+    nParFile = open(cnsParPath, "w")
     nParFile.writelines(parList)
     nParFile.close()
     print("%s added to %s" % (molName, cnsParPath))
@@ -143,9 +144,9 @@ def addMolTop(cnsTopPath, molTopPath):
         Add topol of MOL.top in CNS topalldhg*.pro file
         input: cns top file path to be modified and MOL.top file
     """
-    keys = ['RESIdue', 'GROUP', 'ATOM', 'BOND', 'ANGLe', 'DIHEdral', 'IMPRoper']
-    molName = os.path.basename(molTopPath).split('_')[0]
-    ions = '\nPRESidue IONS\nEND\n\n'
+    keys = ["RESIdue", "GROUP", "ATOM", "BOND", "ANGLe", "DIHEdral", "IMPRoper"]
+    molName = os.path.basename(molTopPath).split("_")[0]
+    ions = "\nPRESidue IONS\nEND\n\n"
 
     txt = "! Topol for Heterocompound %s\n" % molName
     end = "\n"
@@ -160,18 +161,18 @@ def addMolTop(cnsTopPath, molTopPath):
     molTop = []
 
     for line in molFile:
-        if line.strip()[0:4] == 'MASS':
+        if line.strip()[0:4] == "MASS":
             molMass.append(line)
         if line.strip()[0:4] in [x[0:4] for x in keys]:
             molTop.append(line)
-        if line.strip()[0:3] == 'END':
+        if line.strip()[0:3] == "END":
             molTop.append(line)
 
     topList = topFile.splitlines(1)
     topList.reverse()
     for line in topList:
-        if line != '\n':
-            if 'SET ECHO' in line.upper():
+        if line != "\n":
+            if "SET ECHO" in line.upper():
                 an_id = topList.index(line)
                 break
 
@@ -187,7 +188,7 @@ def addMolTop(cnsTopPath, molTopPath):
     topList.insert(an_id + 1, end)
 
     topList.reverse()
-    nTopFile = open(cnsTopPath, 'w')
+    nTopFile = open(cnsTopPath, "w")
     nTopFile.writelines(topList)
     nTopFile.close()
     print("%s added to %s" % (molName, cnsTopPath))
@@ -195,7 +196,7 @@ def addMolTop(cnsTopPath, molTopPath):
 
 
 class AcpypeForCcpnProject(object):
-    '''
+    """
         Class to take a Ccpn project, check if it has an
         unusual chem comp and call ACPYPE API to generate
         a folder with acpype results
@@ -205,7 +206,7 @@ class AcpypeForCcpnProject(object):
         acpypeDictFilesList = acpypeProject.acpypeDictFiles
         returns a dict with list of the files inside chem chomp acpype folder
         or None
-    '''
+    """
 
     def __init__(self, project):
 
@@ -214,13 +215,13 @@ class AcpypeForCcpnProject(object):
         self.acpypeDictFiles = None
 
     def getHeteroMols(self):
-        '''Return a list [] of chains obj'''
+        """Return a list [] of chains obj"""
         ccpnProject = self.project
         maxNumberAtoms = 300  # MAXATOM in AC is 256, then it uses memory reallocation
         other = []
         molSys = ccpnProject.findFirstMolSystem()
         for chain in molSys.chains:
-            if chain.molecule.molType == 'other':
+            if chain.molecule.molType == "other":
                 numRes = len(chain.residues)
                 if numRes == 1:
                     numberAtoms = [len(x.atoms) for x in chain.residues][0]
@@ -233,10 +234,25 @@ class AcpypeForCcpnProject(object):
         self.heteroMols = other
         return other
 
-    def run(self, chain=None, chargeType='bcc', chargeVal=None, guessCharge=False,
-            multiplicity='1', atomType='gaff', force=False, basename=None,
-            debug=False, outTopol='all', engine='tleap', allhdg=False,
-            timeTol=36000, qprog='sqm', ekFlag=None, outType='mol2'):
+    def run(
+        self,
+        chain=None,
+        chargeType="bcc",
+        chargeVal=None,
+        guessCharge=False,
+        multiplicity="1",
+        atomType="gaff",
+        force=False,
+        basename=None,
+        debug=False,
+        outTopol="all",
+        engine="tleap",
+        allhdg=False,
+        timeTol=36000,
+        qprog="sqm",
+        ekFlag=None,
+        outType="mol2",
+    ):
 
         ccpnProject = self.project
 
@@ -254,7 +270,7 @@ class AcpypeForCcpnProject(object):
         for chain in other:
             if chargeVal is None and not guessCharge:
                 chargeVal = chain.molecule.formalCharge
-#            pdbCode = ccpnProject.name
+            #            pdbCode = ccpnProject.name
             res = chain.findFirstResidue()
             resName = res.ccpCode.upper()
             if chargeVal is None:
@@ -264,26 +280,38 @@ class AcpypeForCcpnProject(object):
             random.seed()
             d = [random.choice(letters) for x in range(10)]
             randString = "".join(d)
-            randString = 'test'
-            dirTemp = '/tmp/ccpn2acpype_%s' % randString
+            randString = "test"
+            dirTemp = "/tmp/ccpn2acpype_%s" % randString
             if not os.path.exists(dirTemp):
                 os.mkdir(dirTemp)
 
-            if outType == 'mol2':
-                resTempFile = os.path.join(dirTemp, '%s.mol2' % resName)
+            if outType == "mol2":
+                resTempFile = os.path.join(dirTemp, "%s.mol2" % resName)
             else:
-                resTempFile = os.path.join(dirTemp, '%s.pdb' % resName)
+                resTempFile = os.path.join(dirTemp, "%s.pdb" % resName)
 
             entry = ccpnProject.currentNmrEntryStore.findFirstEntry()
             strucGen = entry.findFirstStructureGeneration()
             refStructure = strucGen.structureEnsemble.sortedModels()[0]
 
-            if outType == 'mol2':
+            if outType == "mol2":
                 mol2Format = Mol2Format.Mol2Format(ccpnProject)
-                mol2Format.writeChemComp(resTempFile, chemCompVar=chain.findFirstResidue().chemCompVar, coordSystem='pdb', minimalPrompts=True, forceNamingSystemName='XPLOR')
+                mol2Format.writeChemComp(
+                    resTempFile,
+                    chemCompVar=chain.findFirstResidue().chemCompVar,
+                    coordSystem="pdb",
+                    minimalPrompts=True,
+                    forceNamingSystemName="XPLOR",
+                )
             else:
                 pdbFormat = PdbFormat.PdbFormat(ccpnProject)
-                pdbFormat.writeCoordinates(resTempFile, exportChains=[chain], structures=[refStructure], minimalPrompts=True, forceNamingSystemName='XPLOR')
+                pdbFormat.writeCoordinates(
+                    resTempFile,
+                    exportChains=[chain],
+                    structures=[refStructure],
+                    minimalPrompts=True,
+                    forceNamingSystemName="XPLOR",
+                )
 
             origCwd = os.getcwd()
             os.chdir(dirTemp)
@@ -292,16 +320,31 @@ class AcpypeForCcpnProject(object):
             print(header)
 
             try:
-                molecule = ACTopol(resTempFile, chargeType=chargeType,
-                                   chargeVal=chargeVal, debug=debug, multiplicity=multiplicity,
-                                   atomType=atomType, force=force, outTopol=outTopol,
-                                   engine=engine, allhdg=allhdg, basename=basename,
-                                   timeTol=timeTol, qprog=qprog, ekFlag='''"%s"''' % ekFlag)
+                molecule = ACTopol(
+                    resTempFile,
+                    chargeType=chargeType,
+                    chargeVal=chargeVal,
+                    debug=debug,
+                    multiplicity=multiplicity,
+                    atomType=atomType,
+                    force=force,
+                    outTopol=outTopol,
+                    engine=engine,
+                    allhdg=allhdg,
+                    basename=basename,
+                    timeTol=timeTol,
+                    qprog=qprog,
+                    ekFlag='''"%s"''' % ekFlag,
+                )
 
                 if not molecule.acExe:
                     molecule.printError("no 'antechamber' executable... aborting!")
                     hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
-                    hint2 = "HINT2: is 'antechamber' in your $PATH?\n    What 'which antechamber' in your terminal says?\n    'alias' doesn't work for ACPYPE."
+                    hint2 = (
+                        "HINT2: is 'antechamber' in your $PATH?"
+                        + "    What 'which antechamber' in your terminal says?"
+                        + "    'alias' doesn't work for ACPYPE."
+                    )
                     molecule.printMess(hint1)
                     molecule.printMess(hint2)
                     sys.exit(1)
@@ -329,10 +372,10 @@ class AcpypeForCcpnProject(object):
                 raise
             print("Total time of execution: %s" % msg)
             if not acpypeFailed:
-                acpypeDict[resName] = [x for x in dirWalk(os.path.join(dirTemp, '%s.acpype' % resName))]
+                acpypeDict[resName] = [x for x in dirWalk(os.path.join(dirTemp, "%s.acpype" % resName))]
             else:
                 acpypeDict[resName] = []
-#                sys.exit(1)
+            #                sys.exit(1)
 
             os.chdir(origCwd)
             self.acpypeDictFiles = acpypeDict
