@@ -20,6 +20,8 @@ RUN mkdir /home/amber19 && mkdir /home/test
 
 COPY amber19-0_linux /home/amber19
 
+COPY amber19-0_linux/dat /usr/local/dat
+
 COPY acpype_lib/acpype.py /home/
 
 COPY test /home/test
@@ -29,8 +31,13 @@ RUN touch /root/.bashrc \
 
 RUN cd /home/ && ln -s $PWD/acpype.py /usr/local/bin/acpype
 
-RUN cd /home/amber19/bin && ln -s $PWD/antechamber /usr/local/bin/antechamber
+RUN cd /home/amber19/bin/to_be_dispatched && ln -s $PWD/antechamber /usr/local/bin/antechamber
 
-ENTRYPOINT ["acpype"]
+RUN cd /home/amber19/bin/to_be_dispatched && ln -s $PWD/charmmgen /usr/local/bin/charmmgen
 
-CMD ["-i"]
+RUN cd /home/amber19/bin/ && ln -s $PWD/tleap /usr/local/bin/tleap
+
+RUN cd /home/amber19/bin/ && ln -s $PWD/teLeap /usr/local/bin/teLeap
+
+
+RUN cd /home/amber19/bin/to_be_dispatched && ln -s $PWD/parmchk2 /usr/local/bin/parmchk2
