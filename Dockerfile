@@ -39,5 +39,10 @@ RUN cd /home/amber19/bin/ && ln -s $PWD/tleap /usr/local/bin/tleap
 
 RUN cd /home/amber19/bin/ && ln -s $PWD/teLeap /usr/local/bin/teLeap
 
-
 RUN cd /home/amber19/bin/to_be_dispatched && ln -s $PWD/parmchk2 /usr/local/bin/parmchk2
+
+ENV ACHOME="/home/amber19/bin"
+
+ENV LD_LIBRARY_PATH="/home/amber19/lib"
+
+ENV AMBERHOME="/home/amber19"
