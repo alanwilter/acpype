@@ -1,5 +1,6 @@
 #To build:
 #docker build /path/to/acpype/ --tag acpype:2020.07.25.08.41
+#user acpype.sh to run
 
 FROM ubuntu:18.04
 
@@ -16,15 +17,11 @@ RUN apt-get update && apt-get install -y \
     gcc \
     libgfortran3
 
-RUN mkdir /home/amber19 && mkdir /home/test
-
 COPY amber19-0_linux /home/amber19
 
 COPY amber19-0_linux/dat /usr/local/dat
 
 COPY acpype_lib/acpype.py /home/
-
-COPY test /home/test
 
 RUN touch /root/.bashrc \
  && echo "export AMBERHOME='/home/amber19'\nexport ACHOME='/home/amber19/bin'\nexport LD_LIBRARY_PATH='/home/amber19/lib'\n" >> /root/.bashrc
