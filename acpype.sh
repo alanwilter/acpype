@@ -1,5 +1,5 @@
 #!/bin/bash
-# use docker pull acpype
+# use docker pull lpkagami/acpype
 # command: sh acpype.sh -i molecule.mol2
 
 while [ "$#" -gt 0 ]; do
