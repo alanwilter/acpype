@@ -4034,12 +4034,12 @@ Usage: antechamber -i   input file name
 
         if self.topo14Data.hasNondefault14():
             citation = (
-                "     BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for\n"
-                + "     nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBER\n"
-                + '     to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241"\n'
+                "\tBERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for\n"
+                "\tnonuniform 1-4 scale factors: Conversion of the GLYCAM06 force field from AMBER\n"
+                "\tto GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241\n"
             )
 
-            msg = "Non-default 1-4 scale parameters detected.  Converting individually. Please cite:\n\n" + citation
+            msg = "Non-default 1-4 scale parameters detected.  Converting individually. Please cite:\n\n{}".format(citation)
 
             self.printMess(msg)
             topText = self.topo14Data.patch_gmx_topol14("".join(topText))
