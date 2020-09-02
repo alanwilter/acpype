@@ -25,16 +25,16 @@
     For Non-uniform 1-4 scale factor conversion (e.g. if using GLYCAM06), please cite:
 
     BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for
-    nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBER
+    nonuniform 1-4 scale factors: Conversion of the GLYCAM06 force field from AMBER
     to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241
 
     For Antechamber, please cite:
     1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
        bond type perception in molecular mechanical calculations. Journal of Molecular
-       Graphics and Modelling 25, 2 (2006), 247–260. doi: 10.1016/j.jmgm.2005.12.005
+       Graphics and Modelling 25, 2 (2006), 247-260. doi: 10.1016/j.jmgm.2005.12.005
     2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
        Development and testing of a General Amber Force Field. Journal of Computational
-       Chemistry 25, 9 (2004), 1157–1174. doi: 10.1002/jcc.20035
+       Chemistry 25, 9 (2004), 1157-1174. doi: 10.1002/jcc.20035
 
     If you use this code, I am glad if you cite:
 
@@ -106,7 +106,7 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-07-25T09:06:13CEST"
+__updated__ = "2020-09-02T11:49:19CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -4035,7 +4035,7 @@ Usage: antechamber -i   input file name
         if self.topo14Data.hasNondefault14():
             citation = (
                 "     BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for\n"
-                + "     nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBER\n"
+                + "     nonuniform 1-4 scale factors: Conversion of the GLYCAM06 force field from AMBER\n"
                 + '     to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241"\n'
             )
 
