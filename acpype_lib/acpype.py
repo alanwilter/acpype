@@ -106,7 +106,7 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-09-02T11:49:19CEST"
+__updated__ = "2020-10-22T13:52:53CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -3064,7 +3064,8 @@ Usage: antechamber -i   input file name
             cmd = cmd.replace("-pf y", "-pf n")
             self.printDebug(cmd)
 
-    #         _log = _getoutput(cmd)
+            log = _getoutput(cmd)
+            self.printQuoted(log)
 
     def writePdb(self, file_):
         """
