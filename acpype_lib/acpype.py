@@ -106,7 +106,7 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-10-22T13:52:53CEST"
+__updated__ = "2020-10-24T12:16:34CEST"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -1412,6 +1412,12 @@ def _getoutput(cmd):
     return o
 
 
+def while_replace(string):
+    while "  " in string:
+        string = string.replace("  ", " ")
+    return string
+
+
 class Topology_14:
 
     """
@@ -1660,28 +1666,28 @@ class AbstractTopol:
     def printDebug(self, text=""):
         """Debug log level"""
         if self.debug:
-            print("DEBUG: %s" % text)
+            print("DEBUG: %s" % while_replace(text))
 
     def printWarn(self, text=""):
         """Warn log level"""
         if self.verbose:
-            print("WARNING: %s" % text)
+            print("WARNING: %s" % while_replace(text))
 
     def printError(self, text=""):
         """Error log level"""
         if self.verbose:
-            print("ERROR: %s" % text)
+            print("ERROR: %s" % while_replace(text))
 
     def printMess(self, text=""):
         """Info log level"""
         if self.verbose:
-            print("==> %s" % text)
+            print("==> %s" % while_replace(text))
 
     def printQuoted(self, text=""):
         """Print quoted messages"""
         if self.verbose:
             print(10 * "+" + "start_quote" + 59 * "+")
-            print(text)
+            print(while_replace(text))
             print(10 * "+" + "end_quote" + 61 * "+")
 
     def guessCharge(self):
@@ -1728,7 +1734,7 @@ class AbstractTopol:
             if self.debug:
                 self.printMess("Debugging...")
                 cmd = cmd.replace("-pf y", "-pf n")
-                print(cmd)
+                print(while_replace(cmd))
 
             log = _getoutput(cmd).strip()
 
@@ -3064,7 +3070,8 @@ Usage: antechamber -i   input file name
             cmd = cmd.replace("-pf y", "-pf n")
             self.printDebug(cmd)
 
-            log = _getoutput(cmd)
+        log = _getoutput(cmd)
+        if self.debug:
             self.printQuoted(log)
 
     def writePdb(self, file_):
@@ -4974,7 +4981,7 @@ def init_main():
 
     if args.debug:
         texta = "Python Version %s" % sys.version
-        print("DEBUG: %s" % texta)
+        print("DEBUG: %s" % while_replace(texta))
 
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode")
