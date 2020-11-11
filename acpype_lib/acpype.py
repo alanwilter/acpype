@@ -71,6 +71,7 @@ from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
 
+MAXTIME = 3 * 3600
 # For pip package
 if which("antechamber") is None:
     LOCAL_PATH = sysconfig.get_paths()["purelib"]
@@ -106,7 +107,7 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-10-24T12:16:34CEST"
+__updated__ = "2020-11-11T22:59:34CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -4491,7 +4492,7 @@ class ACTopol(AbstractTopol):
         outTopol="all",
         engine="tleap",
         allhdg=False,
-        timeTol=10800,
+        timeTol=MAXTIME,
         qprog="sqm",
         ekFlag=None,
         verbose=True,
@@ -4928,9 +4929,9 @@ def init_main():
         "--max_time",
         type=int,
         action="store",
-        default=10800,
+        default=MAXTIME,
         dest="max_time",
-        help="max time (in sec) tolerance for sqm/mopac, default is 10 hours",
+        help="max time (in sec) tolerance for sqm/mopac, default is %i hours" % (MAXTIME // 3600),
     )
     parser.add_argument(
         "-y", "--ipython", action="store_true", dest="ipython", help="start iPython interpreter",
