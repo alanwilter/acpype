@@ -107,7 +107,7 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2020-11-11T22:59:34CET"
+__updated__ = "2021-02-05T22:15:50CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -3403,14 +3403,14 @@ Usage: antechamber -i   input file name
         # """
         # ==============================================================================================================
 
-        headNa = """
+        headNa = f"""
 [ moleculetype ]
   ; molname       nrexcl
   NA+             1
 
 [ atoms ]
   ; id_    at type res nr  residu name     at name  cg nr  charge   mass
-    1       IP      1          NA+         NA+       1      1     22.9898
+    1       %s      1          NA+         NA+       1      1     22.9898
 """
         headCl = """
 [ moleculetype ]
@@ -3419,7 +3419,7 @@ Usage: antechamber -i   input file name
 
 [ atoms ]
   ; id_    at type res nr  residu name     at name  cg nr  charge   mass
-    1       IM      1         CL-           CL-      1     -1     35.45300
+    1       %s      1         CL-           CL-      1     -1     35.45300
 """
         headK = """
 [ moleculetype ]
@@ -3428,7 +3428,7 @@ Usage: antechamber -i   input file name
 
 [ atoms ]
   ; id_    at type res nr  residu name     at name  cg nr  charge   mass
-    1       K       1          K+         K+       1      1     39.100
+    1       %s       1          K+         K+       1      1     39.100
 """
         headWaterTip3p = """
 [ moleculetype ]
@@ -3563,7 +3563,8 @@ Usage: antechamber -i   input file name
                 nIon = self.residueLabel.count(ion)
                 if nIon > 0:
                     idIon = self.residueLabel.index(ion)
-                    ionsSorted.append((idIon, nIon, ion))
+                    ionType = self.search(name=ion).atomType.atomTypeName
+                    ionsSorted.append((idIon, nIon, ion, ionType))
             ionsSorted.sort()
         else:
             itpText.append(headAtomtypes)
@@ -4020,7 +4021,7 @@ Usage: antechamber -i   input file name
 
         if not self.direct:
             for ion in ionsSorted:
-                topText.append(ionsDict[ion[2]])
+                topText.append(ionsDict[ion[2]] % ion[3])
 
             if nWat:
                 topText.append(headWater)
@@ -4700,6 +4701,16 @@ class MolTopol(AbstractTopol):
         if self.sorted:
             self.printMess("Sorting atoms for gromacs ordering.\n")
             self.sortAtomsForGromacs()
+
+    def search(self, name=None, alist=False):
+        """
+        returns a list with all atomName matching 'name'
+        or just the first case
+        """
+        ll = [x for x in self.atoms if x.atomName == name.upper()]
+        if ll and not alist:
+            ll = ll[0]
+        return ll
 
 
 class Atom:

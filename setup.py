@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
+"""
 File needed for PyPI
-'''
+"""
 import setuptools
 
 with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2020-10-24T12:16:34CEST"
+__updated__ = "2021-02-05T22:22:19CET"
 version = __updated__[:19].replace("-", "").replace("T", "").replace(":", "")
 
 setuptools.setup(

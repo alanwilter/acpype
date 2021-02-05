@@ -60,3 +60,4 @@ pip-selfcheck.json
 test/*acpype
 test/*.gro
 test/*.top
+/.mypy_cache/
