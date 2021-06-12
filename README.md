@@ -1,5 +1,10 @@
 # ACPYPE
 
+![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=social)
+![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=social)
+![Docker Pulls](https://img.shields.io/docker/pulls/lpkagami/acpype?style=social&logo=docker)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/lpkagami/acpype/latest?style=social&logo=docker)
+
 **AnteChamber PYthon Parser interfacE**
 
 A tool based in **Python** to use **Antechamber** to generate topologies for chemical
@@ -106,6 +111,18 @@ There several ways of obtaining `acpype`:
 
 ```bash
   git clone https://github.com/alanwilter/acpype.git
+```
+4) Via **[Docker](https://hub.docker.com/repository/docker/lpkagami/acpype/)**:
+5) 
+If you have Docker installed, you can run Acpype with the following shell command:
+
+On Linux / MacOS / Windows:
+```bash
+$ docker run --rm \
+    -v ${PWD}:/results \
+    -w /results \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    lpkagami/acpype:latest -i FFF.pdb
 ```
 
 **NB:** Installing via `conda` gives you `AmberTools17` and `OpenBabel2.4`, while
