@@ -113,18 +113,22 @@ There several ways of obtaining `acpype`:
   git clone https://github.com/alanwilter/acpype.git
 ```
 4) Via **[Docker](https://hub.docker.com/repository/docker/lpkagami/acpype/)**:
-5) 
+
 If you have Docker installed, you can run Acpype with the following shell command:
 
-On Linux / MacOS / Windows:
+On Linux / MacOS:
 ```bash
-$ docker run --rm \
-    -v ${PWD}:/results \
-    -w /results \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    lpkagami/acpype:latest -i FFF.pdb
+docker run --rm -v ${PWD}:/results -w /results -u $(id -u ${USER}):$(id -g ${USER}) lpkagami/acpype:latest -i FFF.pdb
 ```
-
+On Windows:
+Using Command Prompt:
+```bash
+docker run --rm -v %cd%:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
+```
+Using PowerShell:
+```bash
+docker run --rm -v ${PWD}:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
+```
 **NB:** Installing via `conda` gives you `AmberTools17` and `OpenBabel2.4`, while
 via `pip/git` you get `AmberTools19` and `OpenBabel3` (which lacks `obchiral`,
 but this is not critical). Our `AmberTools19` comes with binary `charmmgen` from
