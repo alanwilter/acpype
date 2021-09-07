@@ -16,7 +16,7 @@ comment to alanwilter@gmail.com.
 comes with AMBER force fields now.
 
 
-```
+```bash
 cd
 git clone https://github.com/alanwilter/acpype.git
 alias acpype='~/acpype/acpype/acpype.py'
@@ -50,7 +50,7 @@ more meaningful atom name, e.g., 'HCA' for a H bonded to a CA and not a simply
 'H' as **babel** does.
 
 In a script-like way:
-```
+```bash
 mkdir acpype_tutorial
 cd acpype_tutorial
 
