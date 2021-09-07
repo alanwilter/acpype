@@ -74,7 +74,6 @@ import sysconfig
 =======
 from openbabel import openbabel as ob
 from openbabel import pybel
->>>>>>> c9a845ef4c9143e34792cf5d5dd110a4557deeb3
 import io, json
 
 mdatFileInMemory = io.StringIO()
@@ -1195,15 +1194,13 @@ saveamberparm %(res)s %(acBase)s.prmtop %(acBase)s.inpcrd
 saveoff %(res)s %(acBase)s.lib
 quit
 """
-<<<<<<< HEAD
+
 def checkOpenBabelVersion():
     "check openbabel version"
     import openbabel as obl
     import warnings
     warnings.filterwarnings("ignore")
     return int(obl.OBReleaseVersion().replace('.',''))
-=======
->>>>>>> c9a845ef4c9143e34792cf5d5dd110a4557deeb3
 
 def checkSmiles(smiles):
     " Check if input is a smiles string "
