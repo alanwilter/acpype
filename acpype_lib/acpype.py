@@ -70,8 +70,11 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
+<<<<<<< HEAD
+=======
 from openbabel import openbabel as ob
 from openbabel import pybel
+>>>>>>> c9a845ef4c9143e34792cf5d5dd110a4557deeb3
 import io, json
 
 mdatFileInMemory = io.StringIO()
@@ -1192,6 +1195,15 @@ saveamberparm %(res)s %(acBase)s.prmtop %(acBase)s.inpcrd
 saveoff %(res)s %(acBase)s.lib
 quit
 """
+<<<<<<< HEAD
+def checkOpenBabelVersion():
+    "check openbabel version"
+    import openbabel as obl
+    import warnings
+    warnings.filterwarnings("ignore")
+    return int(obl.OBReleaseVersion().replace('.',''))
+=======
+>>>>>>> c9a845ef4c9143e34792cf5d5dd110a4557deeb3
 
 def checkSmiles(smiles):
     " Check if input is a smiles string "
@@ -2894,6 +2906,20 @@ Usage: antechamber -i   input file name
             Get chiral atoms, its 4 neighbours and improper dihedral angle
         """
         self.chiralGroups = []
+<<<<<<< HEAD
+        if checkOpenBabelVersion() > 300:
+            from openbabel import openbabel as ob
+            from openbabel import pybel
+
+        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+            import openbabel as ob
+            import pybel
+
+        self.printMess("Using OpenBabel v." + ob.OBReleaseVersion()+'\n')
+
+         # call checkOpenBabelVersion and print message
+=======
+>>>>>>> c9a845ef4c9143e34792cf5d5dd110a4557deeb3
         #if self.obchiralExe:
         # print (self.obchiralExe, os.getcwd())
         #cmd = "%s %s" % (self.obchiralExe, self.inputFile)
