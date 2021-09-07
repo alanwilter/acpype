@@ -70,8 +70,6 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
-<<<<<<< HEAD
-=======
 from openbabel import openbabel as ob
 from openbabel import pybel
 import io, json
