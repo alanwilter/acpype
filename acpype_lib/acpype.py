@@ -70,13 +70,10 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
-from openbabel import openbabel as ob
-from openbabel import pybel
 import io, json
 
 mdatFileInMemory = io.StringIO()
 sleapFileInMemory = io.StringIO()
-tleapFileInMemory = io.StringIO()
 pdbFileInMemory = io.StringIO()
 topFileInMemory = io.StringIO()
 itpFileInMemory = io.StringIO()
@@ -87,6 +84,7 @@ emMdpFileInMemory = io.StringIO()
 mdMdpFileInMemory = io.StringIO()
 parFileInMemory = io.StringIO()
 inpFileInMemory = io.StringIO()
+is_smiles = False
 
 MAXTIME = 3 * 3600
 # For pip package
@@ -1201,14 +1199,21 @@ def checkOpenBabelVersion():
     return int(obl.OBReleaseVersion().replace('.',''))
 
 def checkSmiles(smiles):
+
+    if checkOpenBabelVersion() > 300:
+        from openbabel import openbabel as ob
+        from openbabel import pybel
+
+    elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+        import openbabel as ob
+        import pybel
+
     " Check if input is a smiles string "
-    if not os.path.exists(smiles):
-        try:
-            pybel.readstring("smi", smiles)
-            return True
-        except:
-            return False
-    else:
+    pybel.ob.OBMessageHandler().SetOutputLevel(0)
+    try:
+        pybel.readstring("smi", smiles)
+        return True
+    except:
         return False
 
 def dotproduct(aa, bb):
@@ -1336,8 +1341,6 @@ def clearFileInMemory():
     mdatFileInMemory.truncate(0)
     sleapFileInMemory.seek(0)
     sleapFileInMemory.truncate(0)
-    tleapFileInMemory.seek(0)
-    tleapFileInMemory.truncate(0)
     pdbFileInMemory.seek(0)
     pdbFileInMemory.truncate(0)
     topFileInMemory.seek(0)
@@ -1844,8 +1847,9 @@ class AbstractTopol:
         if not os.path.exists(self.tmpDir):
             os.mkdir(self.tmpDir)
         # if not os.path.exists(os.path.join(tmpDir, self.inputFile)):
-        if checkSmiles(self.inputFile):
+        if is_smiles:
             self.convertSmilesToMol2()
+
         copy2(self.absInputFile, self.tmpDir)
         os.chdir(self.tmpDir)
 
@@ -1937,9 +1941,14 @@ class AbstractTopol:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 rmtree(self.tmpDir)
                 sys.exit(11)
+        try: #scape resname list index out of range
+            resname = list(residues)[0].strip()
+            newresname = resname
+        except:
+            self.printError("resname list index out of range, using default resname: 'LIG'")
+            resname = 'LIG'
+            newresname = resname
 
-        resname = list(residues)[0].strip()
-        newresname = resname
 
         # To avoid resname likes: 001 (all numbers), 1e2 (sci number), ADD : reserved terms for leap
         leapWords = [
@@ -2362,7 +2371,6 @@ Usage: antechamber -i   input file name
         tleapScpt = TLEAP_TEMPLATE % self.acParDict
 
         fp = open("tleap.in", "w")
-        tleapFileInMemory.write(tleapScpt)
         fp.write(tleapScpt)
         fp.close()
 
@@ -2469,17 +2477,27 @@ Usage: antechamber -i   input file name
         return False
 
     def convertSmilesToMol2(self):
+        if checkOpenBabelVersion() > 300:
+            from openbabel import openbabel as ob
+            from openbabel import pybel
+
+        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+            import openbabel as ob
+            import pybel
+
         """Convert Smiles to MOL2 by using babel"""
-        self.baseName = "smiles_molecule"
+
+        if not self.baseName:
+            self.baseName = 'smiles_molecule.mol2'
         self.ext = ".mol2"
         self.inputFile = self.baseName + self.ext
-        self.absInputFile = os.path.abspath("smiles_molecule.mol2")
-        print(self.inputFile)
+        self.absInputFile = os.path.abspath(self.inputFile)
+
         try:
             mymol = pybel.readstring("smi", str(self.smiles))
             mymol.addh()
             mymol.make3D()
-            mymol.write(self.ext.replace('.',''), self.inputFile, overwrite=True)
+            mymol.write(self.ext.replace('.',''), self.absInputFile, overwrite=True)
             return True
         except:
             return False
@@ -2560,27 +2578,18 @@ Usage: antechamber -i   input file name
                 self.molTopol.writeGromacsTopolFiles()
             if "charmm" in self.outTopols:
                 self.writeCharmmTopolFiles()
-        self.pickleSave()
-        "Output in JSON format"
+        try: #scape the pickle save error
+            self.pickleSave()
+        except:
+            self.printError("pickleSave failed")
+            pass
+
         if self.InMemory:
-            output={
-            "tleapFile":tleapFileInMemory.getvalue(),
-            "pdbFile":pdbFileInMemory.getvalue(),
-            "topFile":topFileInMemory.getvalue(),
-            "itpFile":itpFileInMemory.getvalue(),
-            "oitpFile":oitpFileInMemory.getvalue(),
-            "otopFile":otopFileInMemory.getvalue(),
-            "groFile":groFileInMemory.getvalue(),
-            "emMdpFile":emMdpFileInMemory.getvalue(),
-            "mdMdpFile":mdMdpFileInMemory.getvalue(),
-            "parFile":parFileInMemory.getvalue(),
-            "inpFile":inpFileInMemory.getvalue()}
             self.delOutputFiles()
             try:
                 rmtree(self.absHomeDir)
             except:
                 pass
-            return json.dumps(output)
         else:
             clearFileInMemory() # clear io memory
             self.delOutputFiles() # required to use on Jupyter Notebook
@@ -2901,7 +2910,7 @@ Usage: antechamber -i   input file name
             Get chiral atoms, its 4 neighbours and improper dihedral angle
         """
         self.chiralGroups = []
-<<<<<<< HEAD
+
         if checkOpenBabelVersion() > 300:
             from openbabel import openbabel as ob
             from openbabel import pybel
@@ -2913,8 +2922,7 @@ Usage: antechamber -i   input file name
         self.printMess("Using OpenBabel v." + ob.OBReleaseVersion()+'\n')
 
          # call checkOpenBabelVersion and print message
-=======
->>>>>>> c9a845ef4c9143e34792cf5d5dd110a4557deeb3
+
         #if self.obchiralExe:
         # print (self.obchiralExe, os.getcwd())
         #cmd = "%s %s" % (self.obchiralExe, self.inputFile)
@@ -4709,12 +4717,17 @@ class ACTopol(AbstractTopol):
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
         if checkSmiles(inputFile):
+            is_smiles = True
+        else:
+            is_smiles = False
+        if is_smiles:
             self.smiles = inputFile
             self.convertSmilesToMol2()
         else:
             if not os.path.exists(self.absInputFile):
                 self.printWarn("input file doesn't exist")
-
+        self.smiles = inputFile
+        self.convertSmilesToMol2()
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
         self.baseOriginal = baseOriginal
@@ -4837,6 +4850,8 @@ class MolTopol(AbstractTopol):
         self.sorted = is_sorted
         self.verbose = verbose
         self.inputFile = acFileTop
+        self.InMemory = False
+
         if acTopolObj:
             if not acFileXyz:
                 acFileXyz = acTopolObj.acXyzFileName
@@ -5019,6 +5034,78 @@ class Dihedral:
     def __repr__(self):
         return "<%s, ang=%.2f>" % (self.atoms, self.phase * 180 / Pi)
 
+def acpype_api(
+    inputFile,
+    chargeType="bcc",
+    chargeVal=None,
+    multiplicity="1",
+    atomType="gaff",
+    force=False,
+    basename=None,
+    debug=False,
+    outTopol="all",
+    engine="tleap",
+    allhdg=False,
+    timeTol=MAXTIME,
+    qprog="sqm",
+    ekFlag=None,
+    verbose=True,
+    gmx4=False,
+    disam=False,
+    direct=False,
+    is_sorted=False,
+    chiral=False,
+    InMemory = True,
+    is_smiles = False):
+
+    at0 = time.time()
+    print(header)
+
+    if debug:
+        texta = "Python Version %s" % sys.version
+        print("DEBUG: %s" % while_replace(texta))
+    try:
+        molecule = ACTopol(inputFile=inputFile, chargeType=chargeType, chargeVal=chargeVal, debug=debug, multiplicity=multiplicity, atomType=atomType, force=force,
+            outTopol=outTopol, engine=engine, allhdg=allhdg, basename=basename, timeTol=timeTol, qprog=qprog, ekFlag=ekFlag, verbose=verbose, gmx4=gmx4, disam=disam,
+            direct=direct, is_sorted=is_sorted, chiral=chiral, InMemory=InMemory)
+
+        molecule.createACTopol()
+        molecule.createMolTopol()
+        if not basename:
+            file_name = 'smiles_molecule.mol2'
+        else:
+            file_name = basename
+
+        "Output in JSON format"
+        output={
+            "file_name":file_name,
+            "pdbFile":pdbFileInMemory.getvalue(),
+            "topFile":topFileInMemory.getvalue(),
+            "itpFile":itpFileInMemory.getvalue(),
+            "oitpFile":oitpFileInMemory.getvalue(),
+            "otopFile":otopFileInMemory.getvalue(),
+            "groFile":groFileInMemory.getvalue(),
+            "emMdpFile":emMdpFileInMemory.getvalue(),
+            "mdMdpFile":mdMdpFileInMemory.getvalue(),
+            "parFile":parFileInMemory.getvalue(),
+            "inpFile":inpFileInMemory.getvalue()}
+
+    except Exception:
+        _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
+        print("ACPYPE FAILED: %s" % exceptionValue)
+        if debug:
+            traceback.print_tb(exceptionTraceback, file=sys.stdout)
+            output = {'file_name': "error"}
+
+    execTime = int(round(time.time() - at0))
+    if execTime == 0:
+        amsg = "less than a second"
+    else:
+        amsg = elapsedTime(execTime)
+    print("Total time of execution: %s" % amsg)
+
+    return json.dumps(output)
+
 
 def init_main():
 
@@ -5172,6 +5259,7 @@ def init_main():
         dest="chiral",
         help="create improper dihedral parameters for chiral atoms in CNS",
     )
+
     args = parser.parse_args()
 
     at0 = time.time()
@@ -5240,6 +5328,7 @@ def init_main():
 
             molecule.createACTopol()
             molecule.createMolTopol()
+
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
@@ -5271,9 +5360,9 @@ def init_main():
     except Exception:
         pass
 
-    if checkSmiles(args.input):
+    if is_smiles:
         try:
-            os.remove('smiles_molecule.mol2')
+            os.remove(basename+'.mol2')
         except Exception:
             pass
 
