@@ -1209,11 +1209,13 @@ def checkSmiles(smiles):
         import pybel
 
     " Check if input is a smiles string "
-    pybel.ob.OBMessageHandler().SetOutputLevel(0)
+
     try:
+        ob.obErrorLog.SetOutputLevel(0)
         pybel.readstring("smi", smiles)
         return True
     except:
+        ob.obErrorLog.SetOutputLevel(0)
         return False
 
 def dotproduct(aa, bb):
@@ -4717,18 +4719,19 @@ class ACTopol(AbstractTopol):
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
-        if checkSmiles(inputFile):
-            is_smiles = True
-        else:
-            is_smiles = False
-        if is_smiles:
-            self.smiles = inputFile
-            self.convertSmilesToMol2()
+        if not os.path.exists(self.absInputFile):
+            if checkSmiles(inputFile):
+                is_smiles = True
+            else:
+                is_smiles = False
+            if is_smiles:
+                self.smiles = inputFile
+                self.convertSmilesToMol2()
         else:
             if not os.path.exists(self.absInputFile):
                 self.printWarn("input file doesn't exist")
         self.smiles = inputFile
-        
+
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
         self.baseOriginal = baseOriginal
