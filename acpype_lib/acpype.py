@@ -2489,6 +2489,7 @@ Usage: antechamber -i   input file name
 
         if not self.baseName:
             self.baseName = 'smiles_molecule.mol2'
+
         self.ext = ".mol2"
         self.inputFile = self.baseName + self.ext
         self.absInputFile = os.path.abspath(self.inputFile)
@@ -4727,7 +4728,7 @@ class ACTopol(AbstractTopol):
             if not os.path.exists(self.absInputFile):
                 self.printWarn("input file doesn't exist")
         self.smiles = inputFile
-        self.convertSmilesToMol2()
+        
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
         self.baseOriginal = baseOriginal
