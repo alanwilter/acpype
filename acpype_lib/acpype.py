@@ -2490,7 +2490,7 @@ Usage: antechamber -i   input file name
         """Convert Smiles to MOL2 by using babel"""
 
         if not self.baseName:
-            self.baseName = 'smiles_molecule.mol2'
+            self.baseName = 'smiles_molecule'
 
         self.ext = ".mol2"
         self.inputFile = self.baseName + self.ext
