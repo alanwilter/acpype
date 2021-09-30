@@ -70,6 +70,21 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
+import io
+
+mdatFileInMemory = io.StringIO()
+sleapFileInMemory = io.StringIO()
+pdbFileInMemory = io.StringIO()
+topFileInMemory = io.StringIO()
+itpFileInMemory = io.StringIO()
+oitpFileInMemory = io.StringIO()
+otopFileInMemory = io.StringIO()
+groFileInMemory = io.StringIO()
+emMdpFileInMemory = io.StringIO()
+mdMdpFileInMemory = io.StringIO()
+parFileInMemory = io.StringIO()
+inpFileInMemory = io.StringIO()
+is_smiles = False
 
 MAXTIME = 3 * 3600
 # For pip package
@@ -1176,6 +1191,32 @@ saveoff %(res)s %(acBase)s.lib
 quit
 """
 
+def checkOpenBabelVersion():
+    "check openbabel version"
+    import openbabel as obl
+    import warnings
+    warnings.filterwarnings("ignore")
+    return int(obl.OBReleaseVersion().replace('.',''))
+
+def checkSmiles(smiles):
+
+    if checkOpenBabelVersion() > 300:
+        from openbabel import openbabel as ob
+        from openbabel import pybel
+
+    elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+        import openbabel as ob
+        import pybel
+
+    " Check if input is a smiles string "
+
+    try:
+        ob.obErrorLog.SetOutputLevel(0)
+        pybel.readstring("smi", smiles)
+        return True
+    except:
+        ob.obErrorLog.SetOutputLevel(0)
+        return False
 
 def dotproduct(aa, bb):
     """scalar product"""
@@ -1296,6 +1337,32 @@ def parseFrcmod(lista):
             dict_.pop(kk)
     return dict_
 
+def clearFileInMemory():
+    " Clear io.String memory "
+    mdatFileInMemory.seek(0)
+    mdatFileInMemory.truncate(0)
+    sleapFileInMemory.seek(0)
+    sleapFileInMemory.truncate(0)
+    pdbFileInMemory.seek(0)
+    pdbFileInMemory.truncate(0)
+    topFileInMemory.seek(0)
+    topFileInMemory.truncate(0)
+    itpFileInMemory.seek(0)
+    itpFileInMemory.truncate(0)
+    oitpFileInMemory.seek(0)
+    oitpFileInMemory.truncate(0)
+    otopFileInMemory.seek(0)
+    otopFileInMemory.truncate(0)
+    groFileInMemory.seek(0)
+    groFileInMemory.truncate(0)
+    emMdpFileInMemory.seek(0)
+    emMdpFileInMemory.truncate(0)
+    mdMdpFileInMemory.seek(0)
+    mdMdpFileInMemory.truncate(0)
+    parFileInMemory.seek(0)
+    parFileInMemory.truncate(0)
+    inpFileInMemory.seek(0)
+    inpFileInMemory.truncate(0)
 
 def parmMerge(fdat1, fdat2, frcmod=False):
     """merge two amber parm dat/frcmod files and save in /tmp"""
@@ -1337,6 +1404,7 @@ def parmMerge(fdat1, fdat2, frcmod=False):
         for kk in dat1:
             for line in dat1[kk]:
                 mdatFile.write(line + "\n")
+                mdatFileInMemory.write(line + "\n")
         return mname
 
     dat2 = splitBlock(open(fdat2).readlines())
@@ -1379,6 +1447,7 @@ def parmMerge(fdat1, fdat2, frcmod=False):
             mdat.append(line)
     for line in mdat:
         mdatFile.write(line + "\n")
+        mdatFileInMemory.write(line + "\n")
     mdatFile.close()
 
     return mname
@@ -1663,6 +1732,8 @@ class AbstractTopol:
         self.CnsInpFileName = None
         self.CnsParFileName = None
         self.CnsPdbFileName = None
+        self.smiles = None
+        self.InMemory = None
 
     def printDebug(self, text=""):
         """Debug log level"""
@@ -1778,6 +1849,9 @@ class AbstractTopol:
         if not os.path.exists(self.tmpDir):
             os.mkdir(self.tmpDir)
         # if not os.path.exists(os.path.join(tmpDir, self.inputFile)):
+        if is_smiles:
+            self.convertSmilesToMol2()
+
         copy2(self.absInputFile, self.tmpDir)
         os.chdir(self.tmpDir)
 
@@ -1869,9 +1943,14 @@ class AbstractTopol:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 rmtree(self.tmpDir)
                 sys.exit(11)
+        try: #scape resname list index out of range
+            resname = list(residues)[0].strip()
+            newresname = resname
+        except:
+            self.printError("resname list index out of range, using default resname: 'LIG'")
+            resname = 'LIG'
+            newresname = resname
 
-        resname = list(residues)[0].strip()
-        newresname = resname
 
         # To avoid resname likes: 001 (all numbers), 1e2 (sci number), ADD : reserved terms for leap
         leapWords = [
@@ -2233,6 +2312,7 @@ Usage: antechamber -i   input file name
         sleapScpt = SLEAP_TEMPLATE % self.acParDict
 
         fp = open("sleap.in", "w")
+        sleapFileInMemory.write(sleapScpt)
         fp.write(sleapScpt)
         fp.close()
 
@@ -2398,6 +2478,33 @@ Usage: antechamber -i   input file name
                 return True
         return False
 
+    def convertSmilesToMol2(self):
+        if checkOpenBabelVersion() > 300:
+            from openbabel import openbabel as ob
+            from openbabel import pybel
+
+        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+            import openbabel as ob
+            import pybel
+
+        """Convert Smiles to MOL2 by using babel"""
+
+        if not self.baseName:
+            self.baseName = 'smiles_molecule'
+
+        self.ext = ".mol2"
+        self.inputFile = self.baseName + self.ext
+        self.absInputFile = os.path.abspath(self.inputFile)
+
+        try:
+            mymol = pybel.readstring("smi", str(self.smiles))
+            mymol.addh()
+            mymol.make3D()
+            mymol.write(self.ext.replace('.',''), self.absInputFile, overwrite=True)
+            return True
+        except:
+            return False
+
     def execBabel(self):
         """Execute babel"""
         self.makeDir()
@@ -2430,6 +2537,8 @@ Usage: antechamber -i   input file name
             If successful, Amber Top and Xyz files will be generated
         """
         # sleap = False
+        if self.InMemory:
+            clearFileInMemory()
         if self.engine == "sleap":
             if self.execSleap():
                 self.printError("Sleap failed")
@@ -2452,6 +2561,8 @@ Usage: antechamber -i   input file name
         """
             Create molTop obj
         """
+        if self.InMemory:
+            clearFileInMemory()
         self.topFileData = open(self.acTopFileName, "r").readlines()
         self.molTopol = MolTopol(
             self,
@@ -2470,7 +2581,21 @@ Usage: antechamber -i   input file name
                 self.molTopol.writeGromacsTopolFiles()
             if "charmm" in self.outTopols:
                 self.writeCharmmTopolFiles()
-        self.pickleSave()
+        try: #scape the pickle save error
+            self.pickleSave()
+        except:
+            self.printError("pickleSave failed")
+            pass
+
+        if self.InMemory:
+            self.delOutputFiles()
+            try:
+                rmtree(self.absHomeDir)
+            except:
+                pass
+        else:
+            clearFileInMemory() # clear io memory
+            self.delOutputFiles() # required to use on Jupyter Notebook
 
     def pickleSave(self):
         """
@@ -2788,30 +2913,52 @@ Usage: antechamber -i   input file name
             Get chiral atoms, its 4 neighbours and improper dihedral angle
         """
         self.chiralGroups = []
-        if self.obchiralExe:
-            # print (self.obchiralExe, os.getcwd())
-            cmd = "%s %s" % (self.obchiralExe, self.inputFile)
-            # print(cmd)
-            out = map(int, re.findall(r"Atom (\d+) Is", _getoutput(cmd)))
-            # print("*%s*" % out)
-            chiralGroups = []
-            for id_ in out:
-                atChi = self.atoms[id_ - 1]
-                quad = []
-                for bb in self.bonds:
-                    bAts = bb.atoms[:]
-                    if atChi in bAts:
-                        bAts.remove(atChi)
-                        quad.append(bAts[0])
-                if len(quad) != 4:
-                    if self.chiral:
-                        self.printWarn(
-                            "Atom %s has less than 4 connections to 4 different atoms. It's NOT Chiral!" % atChi
-                        )
-                    continue
-                v1, v2, v3, v4 = [x.coords for x in quad]
-                chiralGroups.append((atChi, quad, imprDihAngle(v1, v2, v3, v4)))
-            self.chiralGroups = chiralGroups
+
+        if checkOpenBabelVersion() > 300:
+            from openbabel import openbabel as ob
+            from openbabel import pybel
+
+        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+            import openbabel as ob
+            import pybel
+
+        self.printMess("Using OpenBabel v." + ob.OBReleaseVersion()+'\n')
+
+         # call checkOpenBabelVersion and print message
+
+        #if self.obchiralExe:
+        # print (self.obchiralExe, os.getcwd())
+        #cmd = "%s %s" % (self.obchiralExe, self.inputFile)
+        # print(cmd)
+        #out = map(int, re.findall(r"Atom (\d+) Is", _getoutput(cmd)))
+        # print("*%s*" % out)
+        " obchiral script - replace the obchiral executable"
+        out=[]
+        filename, file_extension = os.path.splitext(self.inputFile)
+        mol = pybel.readfile(file_extension.replace('.',''),self.inputFile)
+        for ml in mol:
+            for at in ml:
+                if ob.OBStereoFacade(ml.OBMol).HasTetrahedralStereo(at.idx):
+                    out.append(at.idx)
+        " end of obchiral script "
+        chiralGroups = []
+        for id_ in out:
+            atChi = self.atoms[id_]
+            quad = []
+            for bb in self.bonds:
+                bAts = bb.atoms[:]
+                if atChi in bAts:
+                    bAts.remove(atChi)
+                    quad.append(bAts[0])
+            if len(quad) != 4:
+                if self.chiral:
+                    self.printWarn(
+                        "Atom %s has less than 4 connections to 4 different atoms. It's NOT Chiral!" % atChi
+                    )
+                continue
+            v1, v2, v3, v4 = [x.coords for x in quad]
+            chiralGroups.append((atChi, quad, imprDihAngle(v1, v2, v3, v4)))
+        self.chiralGroups = chiralGroups
 
     def sortAtomsForGromacs(self):
         """
@@ -3087,6 +3234,7 @@ Usage: antechamber -i   input file name
         pdbFile = open(file_, "w")
         fbase = os.path.basename(file_)
         pdbFile.write("REMARK " + head % (fbase, date))
+        pdbFileInMemory.write("REMARK " + head % (fbase, date))
         id_ = 1
         for atom in self.atoms:
             # id_ = self.atoms.index(atom) + 1
@@ -3119,8 +3267,10 @@ Usage: antechamber -i   input file name
                 s,
             )
             pdbFile.write(line)
+            pdbFileInMemory.write(line)
             id_ += 1
         pdbFile.write("END\n")
+        pdbFileInMemory.write("END\n")
 
     def writeGromacsTopolFiles(self, amb2gmx=False):
         """
@@ -4058,17 +4208,21 @@ Usage: antechamber -i   input file name
         topFileName = os.path.join(gmxDir, top)
         topFile = open(topFileName, "w")
         topFile.writelines(topText)
+        topFileInMemory.writelines(topText)
 
         if not amb2gmx:
             itpFileName = os.path.join(gmxDir, itp)
             itpFile = open(itpFileName, "w")
             itpFile.writelines(itpText)
+            itpFileInMemory.writelines(itpText)
             oitpFileName = os.path.join(gmxDir, oitp)
             oitpFile = open(oitpFileName, "w")
             oitpFile.writelines(oitpText)
+            oitpFileInMemory.writelines(oitpText)
             otopFileName = os.path.join(gmxDir, otop)
             otopFile = open(otopFileName, "w")
             otopFile.writelines(otopText)
+            otopFileInMemory.writelines(otopText)
 
     def writeGroFile(self):
         """Write GRO files"""
@@ -4079,7 +4233,9 @@ Usage: antechamber -i   input file name
         groFileName = os.path.join(gmxDir, gro)
         groFile = open(groFileName, "w")
         groFile.write(head % (gro, date))
+        groFileInMemory.write(head % (gro, date))
         groFile.write(" %i\n" % len(self.atoms))
+        groFileInMemory.write(" %i\n" % len(self.atoms))
         count = 1
         for atom in self.atoms:
             coords = [c * 0.1 for c in atom.coords]
@@ -4097,6 +4253,7 @@ Usage: antechamber -i   input file name
             if count == 100000:
                 count = 0
             groFile.write(line)
+            groFileInMemory.write(line)
         if self.pbc:
             boxX = self.pbc[0][0] * 0.1
             boxY = self.pbc[0][1] * 0.1
@@ -4138,6 +4295,7 @@ Usage: antechamber -i   input file name
             boxZ = max(Z) - min(Z)  # + 2.0
             text = "%11.5f %11.5f %11.5f\n" % (boxX * 20.0, boxY * 20.0, boxZ * 20.0)
         groFile.write(text)
+        groFileInMemory.write(text)
 
     def writeMdpFiles(self):
         """Write MDP for test with GROMACS"""
@@ -4160,7 +4318,9 @@ nsteps                   = 10000
         emMdpFile = open("em.mdp", "w")
         mdMdpFile = open("md.mdp", "w")
         emMdpFile.write(emMdp)
+        emMdpFileInMemory.write(emMdp)
         mdMdpFile.write(mdMdp)
+        mdMdpFileInMemory.write(mdMdp)
 
     def writeCnsTopolFiles(self):
         """Write CNS topology files"""
@@ -4194,9 +4354,12 @@ nsteps                   = 10000
 
         # print "Writing CNS PAR file\n"
         parFile.write("Remarks " + head % (par, date))
+        parFileInMemory.write("Remarks " + head % (par, date))
         parFile.write("\nset echo=false end\n")
+        parFileInMemory.write("\nset echo=false end\n")
 
         parFile.write("\n{ Bonds: atomType1 atomType2 kb r0 }\n")
+        parFileInMemory.write("\n{ Bonds: atomType1 atomType2 kb r0 }\n")
         lineSet = []
         for bond in self.bonds:
             a1Type = bond.atoms[0].atomType.atomTypeName + "_"
@@ -4212,8 +4375,10 @@ nsteps                   = 10000
                     lineSet.append(line)
         for item in lineSet:
             parFile.write(item)
+            parFileInMemory.write(item)
 
         parFile.write("\n{ Angles: aType1 aType2 aType3 kt t0 }\n")
+        parFileInMemory.write("\n{ Angles: aType1 aType2 aType3 kt t0 }\n")
         lineSet = []
         for angle in self.angles:
             a1 = angle.atoms[0].atomType.atomTypeName + "_"
@@ -4230,8 +4395,13 @@ nsteps                   = 10000
                     lineSet.append(line)
         for item in lineSet:
             parFile.write(item)
+            parFileInMemory.write(item)
 
         parFile.write(
+            "\n{ Proper Dihedrals: aType1 aType2 aType3 aType4 kt per\
+iod phase }\n"
+        )
+        parFileInMemory.write(
             "\n{ Proper Dihedrals: aType1 aType2 aType3 aType4 kt per\
 iod phase }\n"
         )
@@ -4267,8 +4437,13 @@ iod phase }\n"
             lineSet.add(seq)
         for item in lineSet:
             parFile.write(item)
+            parFileInMemory.write(item)
 
         parFile.write(
+            "\n{ Improper Dihedrals: aType1 aType2 aType3 aType4 kt p\
+eriod phase }\n"
+        )
+        parFileInMemory.write(
             "\n{ Improper Dihedrals: aType1 aType2 aType3 aType4 kt p\
 eriod phase }\n"
         )
@@ -4301,8 +4476,10 @@ eriod phase }\n"
 
         for item in lineSet:
             parFile.write(item)
+            parFileInMemory.write(item)
 
         parFile.write("\n{ Nonbonded: Type Emin sigma; (1-4): Emin/2 sigma }\n")
+        parFileInMemory.write("\n{ Nonbonded: Type Emin sigma; (1-4): Emin/2 sigma }\n")
         for at in self.atomTypes:
             A = at.ACOEF
             B = at.BCOEF
@@ -4316,49 +4493,67 @@ eriod phase }\n"
                 sig2 = sigma
             line = "NONBonded %5s %11.6f %11.6f %11.6f %11.6f\n" % (atName, epAmber, sigma, ep2, sig2)
             parFile.write(line)
+            parFileInMemory.write(line)
         parFile.write("\nset echo=true end\n")
+        parFileInMemory.write("\nset echo=true end\n")
 
         # print "Writing CNS TOP file\n"
         topFile.write("Remarks " + head % (top, date))
+        topFileInMemory.write("Remarks " + head % (top, date))
         topFile.write("\nset echo=false end\n")
+        topFileInMemory.write("\nset echo=false end\n")
         topFile.write("\nautogenerate angles=%s dihedrals=%s end\n" % (autoAngleFlag, autoDihFlag))
-
+        topFileInMemory.write("\nautogenerate angles=%s dihedrals=%s end\n" % (autoAngleFlag, autoDihFlag))
         topFile.write("\n{ atomType  mass }\n")
+        topFileInMemory.write("\n{ atomType  mass }\n")
+
         for at in self.atomTypes:
             atType = at.atomTypeName + "_"
             mass = at.mass
             line = "MASS %-5s %8.3f\n" % (atType, mass)
             topFile.write(line)
+            topFileInMemory.write(line)
 
         topFile.write("\nRESIdue %s\n" % self.residueLabel[0])
+        topFileInMemory.write("\nRESIdue %s\n" % self.residueLabel[0])
         topFile.write("\nGROUP\n")
+        topFileInMemory.write("\nGROUP\n")
 
         topFile.write("\n{ atomName  atomType  Charge }\n")
+        topFileInMemory.write("\n{ atomName  atomType  Charge }\n")
+
+
         for at in self.atoms:
             atName = at.atomName
             atType = at.atomType.atomTypeName + "_"
             charge = at.charge
             line = "ATOM %-5s TYPE= %-5s CHARGE= %8.4f END\n" % (atName, atType, charge)
             topFile.write(line)
+            topFileInMemory.write(line)
 
         topFile.write("\n{ Bonds: atomName1  atomName2 }\n")
+        topFileInMemory.write("\n{ Bonds: atomName1  atomName2 }\n")
         for bond in self.bonds:
             a1Name = bond.atoms[0].atomName
             a2Name = bond.atoms[1].atomName
             line = "BOND %-5s %-5s\n" % (a1Name, a2Name)
             topFile.write(line)
+            topFileInMemory.write(line)
 
         if not autoAngleFlag or 1:  # generating angles anyway
             topFile.write("\n{ Angles: atomName1 atomName2 atomName3}\n")
+            topFileInMemory.write("\n{ Angles: atomName1 atomName2 atomName3}\n")
             for angle in self.angles:
                 a1Name = angle.atoms[0].atomName
                 a2Name = angle.atoms[1].atomName
                 a3Name = angle.atoms[2].atomName
                 line = "ANGLe %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name)
                 topFile.write(line)
+                topFileInMemory.write(line)
 
         if not autoDihFlag or 1:  # generating angles anyway
             topFile.write("\n{ Proper Dihedrals: name1 name2 name3 name4 }\n")
+            topFileInMemory.write("\n{ Proper Dihedrals: name1 name2 name3 name4 }\n")
             for item in self.condensedProperDihedrals:
                 for dih in item:
                     a1Name = dih.atoms[0].atomName
@@ -4368,8 +4563,10 @@ eriod phase }\n"
                     line = "DIHEdral %-5s %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name, a4Name)
                     break
                 topFile.write(line)
+                topFileInMemory.write(line)
 
         topFile.write("\n{ Improper Dihedrals: aName1 aName2 aName3 aName4 }\n")
+        topFileInMemory.write("\n{ Improper Dihedrals: aName1 aName2 aName3 aName4 }\n")
         for dih in self.improperDihedrals:
             a1Name = dih.atoms[0].atomName
             a2Name = dih.atoms[1].atomName
@@ -4377,6 +4574,7 @@ eriod phase }\n"
             a4Name = dih.atoms[3].atomName
             line = "IMPRoper %-5s %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name, a4Name)
             topFile.write(line)
+            topFileInMemory.write(line)
 
         if self.chiral:
             for idhc in self.chiralGroups:
@@ -4387,13 +4585,17 @@ eriod phase }\n"
                 a4Name = neig[3].atomName
                 line = "IMPRoper %-5s %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name, a4Name)
                 topFile.write(line)
+                topFileInMemory.write(line)
 
         topFile.write("\nEND {RESIdue %s}\n" % self.residueLabel[0])
+        topFileInMemory.write("\nEND {RESIdue %s}\n" % self.residueLabel[0])
 
         topFile.write("\nset echo=true end\n")
+        topFileInMemory.write("\nset echo=true end\n")
 
         # print "Writing CNS INP file\n"
         inpFile.write("Remarks " + head % (inp, date))
+        inpFileInMemory.write("Remarks " + head % (inp, date))
         inpData = """
 topology
   @%(CNS_top)s
@@ -4465,13 +4667,14 @@ stop
         dictInp["CNS_ran"] = self.baseName + "_rand.pdb"
         line = inpData % dictInp
         inpFile.write(line)
-        if os.path.exists(self.obchiralExe):
-            self.printDebug("chiralGroups %i" % len(self.chiralGroups))
-        else:
-            self.printDebug("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-            self.printDebug(
-                "'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
-            )
+        inpFileInMemory.write(line)
+        #if os.path.exists(self.obchiralExe):
+        self.printDebug("chiralGroups %i" % len(self.chiralGroups))
+        #else:
+            #self.printDebug("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
+            #self.printDebug(
+                #"'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
+            #)
 
 
 class ACTopol(AbstractTopol):
@@ -4502,8 +4705,10 @@ class ACTopol(AbstractTopol):
         direct=False,
         is_sorted=False,
         chiral=False,
+        InMemory = False,
     ):
         super().__init__()
+        self.InMemory = InMemory
         self.debug = debug
         self.verbose = verbose
         self.gmx4 = gmx4
@@ -4515,7 +4720,18 @@ class ACTopol(AbstractTopol):
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
         if not os.path.exists(self.absInputFile):
-            self.printWarn("input file doesn't exist")
+            if checkSmiles(inputFile):
+                is_smiles = True
+            else:
+                is_smiles = False
+            if is_smiles:
+                self.smiles = inputFile
+                self.convertSmilesToMol2()
+        else:
+            if not os.path.exists(self.absInputFile):
+                self.printWarn("input file doesn't exist")
+        self.smiles = inputFile
+
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
         self.baseOriginal = baseOriginal
@@ -4638,6 +4854,8 @@ class MolTopol(AbstractTopol):
         self.sorted = is_sorted
         self.verbose = verbose
         self.inputFile = acFileTop
+        self.InMemory = False
+
         if acTopolObj:
             if not acFileXyz:
                 acFileXyz = acTopolObj.acXyzFileName
@@ -4677,14 +4895,13 @@ class MolTopol(AbstractTopol):
         self.getDihedrals()
 
         self.getChirals()
-        if not os.path.exists(self.obchiralExe) and self.chiral:
-            self.printWarn("No 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-            self.printWarn(
-                "'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
-            )
-        elif self.chiral and not self.chiralGroups:
-            self.printWarn("No chiral atoms found")
-
+        #if not os.path.exists(self.obchiralExe) and self.chiral:
+            #self.printWarn("No 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
+            #self.printWarn(
+                #"'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
+            #)
+        #elif self.chiral and not self.chiralGroups:
+            #self.printWarn("No chiral atoms found")
         # self.setAtomPairs()
 
         # self.getExcludedAtoms()
@@ -4820,7 +5037,6 @@ class Dihedral:
 
     def __repr__(self):
         return "<%s, ang=%.2f>" % (self.atoms, self.phase * 180 / Pi)
-
 
 def init_main():
 
@@ -4974,6 +5190,7 @@ def init_main():
         dest="chiral",
         help="create improper dihedral parameters for chiral atoms in CNS",
     )
+
     args = parser.parse_args()
 
     at0 = time.time()
@@ -5042,6 +5259,7 @@ def init_main():
 
             molecule.createACTopol()
             molecule.createMolTopol()
+
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
@@ -5073,8 +5291,14 @@ def init_main():
     except Exception:
         pass
 
+    if is_smiles:
+        try:
+            os.remove(basename+'.mol2')
+        except Exception:
+            pass
 
 if __name__ == "__main__":
+
     # For pip package
     # LOCAL_PATH = os.getcwd()
     # os.environ["PATH"] += (
