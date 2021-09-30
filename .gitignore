@@ -58,6 +58,10 @@ docs/_build/
 
 pip-selfcheck.json
 test/*acpype
+test/.acpype*
 test/*.gro
 test/*.top
 /.mypy_cache/
+/.pytest_cache/
+
+*.bak
