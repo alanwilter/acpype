@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 rm -fr temp_test
 
 mkdir -p temp_test
 
-cd temp_test
+cd temp_test || exit
 
 pdb2gmx="/sw/bin/pdb2gmx"
 editconf="/sw/bin/editconf"
@@ -14,20 +14,20 @@ grompp="/sw/bin/grompp"
 mdrun="/sw/bin/mdrun"
 mrun="" #"${mrun}"
 
-echo "\n#=#=# Test DMP from 1BVG for GROMACS #=#=#\n"
+echo -e "\n#=#=# Test DMP from 1BVG for GROMACS #=#=#\n"
 
 wget -c "http://www.pdbe.org/download/1BVG" -O 1BVG.pdb
-grep 'ATOM  ' 1BVG.pdb>| Protein.pdb
-grep 'HETATM' 1BVG.pdb>| Ligand.pdb
+grep 'ATOM  ' 1BVG.pdb >|Protein.pdb
+grep 'HETATM' 1BVG.pdb >|Ligand.pdb
 
-echo "\n#=#=# CHECK 1BVG.pdb" >| diff_out.log
-diff 1BVG.pdb ../Data/1BVG.pdb >> diff_out.log
+echo -e "\n#=#=# CHECK 1BVG.pdb" >|diff_out.log
+diff 1BVG.pdb ../Data/1BVG.pdb >>diff_out.log
 
 # Edit Protein.pdb according to ffAMBER (http://ffamber.cnsm.csulb.edu/#usage)
-sed s/PRO\ A\ \ \ 1/NPROA\ \ \ 1/g Protein.pdb | sed s/PRO\ B\ \ \ 1/NPROB\ \ \ 1/g \
-| sed s/PHE\ A\ \ 99/CPHEA\ \ 99/g | sed s/PHE\ B\ \ 99/CPHEB\ \ 99/g \
-| sed s/O\ \ \ CPHE/OC1\ CPHE/g | sed s/OXT\ CPHE/OC2\ CPHE/g \
-| sed s/HIS\ /HID\ /g | sed s/LYS\ /LYP\ /g | sed s/CYS\ /CYN\ /g >| ProteinAmber.pdb
+sed s/PRO\ A\ \ \ 1/NPROA\ \ \ 1/g Protein.pdb | sed s/PRO\ B\ \ \ 1/NPROB\ \ \ 1/g |
+    sed s/PHE\ A\ \ 99/CPHEA\ \ 99/g | sed s/PHE\ B\ \ 99/CPHEB\ \ 99/g |
+    sed s/O\ \ \ CPHE/OC1\ CPHE/g | sed s/OXT\ CPHE/OC2\ CPHE/g |
+    sed s/HIS\ /HID\ /g | sed s/LYS\ /LYP\ /g | sed s/CYS\ /CYN\ /g >|ProteinAmber.pdb
 
 \cp Protein.pdb ProteinAmber.pdb
 
@@ -38,32 +38,34 @@ ${pdb2gmx} -ff amber99sb -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -wat
 acpype -i Ligand.pdb
 
 # Merge Protein2.pdb + updated Ligand_NEW.pdb -> Complex.pdb
-grep -h ATOM Protein2.pdb Ligand.acpype/Ligand_NEW.pdb >| Complex.pdb
+grep -h ATOM Protein2.pdb Ligand.acpype/Ligand_NEW.pdb >|Complex.pdb
 
 # Edit Protein.top -> Complex.top
 \cp Ligand.acpype/Ligand_GMX.itp Ligand.itp
 \cp Protein.top Complex.top
 #  '#include "Ligand.itp"' has to be inserted right after ffamber**.itp line and before Protein_*.itp line in Complex.top.
-cat Complex.top | sed '/forcefield\.itp\"/a\
+# shellcheck disable=SC1004
+sed '/forcefield\.itp\"/a\
 #include "Ligand.itp"
-' >| Complex2.top
-echo "Ligand   1" >> Complex2.top
+' Complex.top >|Complex2.top
+echo "Ligand   1" >>Complex2.top
 \mv Complex2.top Complex.top
 
-echo "\n#=#=# CHECK parm99gaffff99SBparmbsc0File" >> diff_out.log
+echo -e "\n#=#=# CHECK parm99gaffff99SBparmbsc0File" >>diff_out.log
 # Generate Ligand topology file with acpype (AMBERbsc0)
 acpype -i Ligand.pdb -a amber -b Ligand_Amber -c gas
-diff -w /tmp/parm99gaffff99SB.dat ../../ffamber_additions/parm99SBgaff.dat >> diff_out.log
+# shellcheck disable=SC2129
+diff -w /tmp/parm99gaffff99SB.dat ../../ffamber_additions/parm99SBgaff.dat >>diff_out.log
 
-echo "\n#=#=# CHECK Ligand.itp" >> diff_out.log
-diff Ligand.itp ../Data/Ligand.itp >> diff_out.log
+echo -e "\n#=#=# CHECK Ligand.itp" >>diff_out.log
+diff Ligand.itp ../Data/Ligand.itp >>diff_out.log
 
 # Setup the box and add water
 ${editconf} -bt triclinic -f Complex.pdb -o Complex.pdb -d 1.0
 ${genbox} -cp Complex.pdb -cs ffamber_tip3p.gro -o Complex_b4ion.pdb -p Complex.top
 
 # Create em.mdp file
-cat << EOF >| EM.mdp
+cat <<EOF >|EM.mdp
 define                   = -DFLEXIBLE
 integrator               = cg ; steep
 nsteps                   = 200
@@ -85,7 +87,7 @@ optimize_fft             = yes
 EOF
 
 # Create md.mdp file
-cat << EOF >| MD.mdp
+cat <<EOF >|MD.mdp
 integrator               = md
 nsteps                   = 1000
 dt                       = 0.002
@@ -117,7 +119,7 @@ EOF
 # Setup ions
 ${grompp} -f EM.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
 \cp Complex.top Complex_ion.top
-echo 15| ${genion} -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p Complex_ion.top -norandom
+echo 15 | ${genion} -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p Complex_ion.top -norandom
 \mv Complex_ion.top Complex.top
 
 # Run minimisaton
@@ -135,13 +137,13 @@ ${grompp} -f MD.mdp -c em.gro -p Complex.top -o md.tpr
 ${mrun} ${mdrun} -v -deffnm md
 # vmd md.gro md.trr
 
-echo "\n#=#=# Test 'amb2gmx' Function on 1BVG #=#=#\n"
+echo -e "\n#=#=# Test 'amb2gmx' Function on 1BVG #=#=#\n"
 
 # Edit 1BVG.pdb and create ComplexAmber.pdb
-sed s/HIS\ /HID\ /g 1BVG.pdb | sed s/H1\ \ PRO/H3\ \ PRO/g >| ComplexAmber.pdb
+sed s/HIS\ /HID\ /g 1BVG.pdb | sed s/H1\ \ PRO/H3\ \ PRO/g >|ComplexAmber.pdb
 
 # Create a input file with commands for tleap and run it
-cat << EOF >| leap.in
+cat <<EOF >|leap.in
 verbosity 1
 source leaprc.ff99SB
 source leaprc.gaff
@@ -155,14 +157,15 @@ saveamberparm complex ComplexAmber.prmtop ComplexAmber.inpcrd
 savepdb complex ComplexNAMD.pdb
 quit
 EOF
-tleap -f leap.in >| leap.out
+tleap -f leap.in >|leap.out
 
 # convert AMBER to GROMACS
 acpype -p ComplexAmber.prmtop -x ComplexAmber.inpcrd
 
-echo "\n#=#=# CHECK ComplexAmber_GMX.top & ComplexAmber_GMX.gro" >> diff_out.log
-diff ComplexAmber_GMX.top ../Data/ComplexAmber_GMX.top >> diff_out.log
-diff ComplexAmber_GMX.gro ../Data/ComplexAmber_GMX.gro >> diff_out.log
+# shellcheck disable=SC2129
+echo -e "\n#=#=# CHECK ComplexAmber_GMX.top & ComplexAmber_GMX.gro" >>diff_out.log
+diff ComplexAmber_GMX.top ../Data/ComplexAmber_GMX.top >>diff_out.log
+diff ComplexAmber_GMX.gro ../Data/ComplexAmber_GMX.gro >>diff_out.log
 
 # Run EM and MD
 ${grompp} -f EM.mdp -c ComplexAmber_GMX.gro -p ComplexAmber_GMX.top -o em.tpr
