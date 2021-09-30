@@ -1,6 +1,5 @@
 #To build:
 #docker build /path/to/acpype/ --tag acpype:2020.07.25.08.41
-#use acpype.sh to run
 
 FROM ubuntu:18.04
 
