@@ -35,7 +35,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-            apt-get update
             DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
             apt-get install --no-install-recommends -y openbabel python3-openbabel python3-pip
             python -m pip install --upgrade pip
