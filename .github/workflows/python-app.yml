@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: |
             sudo apt-get update
-            "${{ env.DEBIAN_FRONTEND }}" sudo apt-get install -y --no-install-recommends tzdata
+            sudo apt-get install -y --no-install-recommends tzdata
             sudo apt-get install --no-install-recommends -y openbabel python3-openbabel python3-pip
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
