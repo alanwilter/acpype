@@ -40,9 +40,9 @@ jobs:
             sudo apt-get install --no-install-recommends -y openbabel python3-openbabel python3-pip
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            chmod +x /home/acpype_lib/acpype.py
-            ln -s /home/acpype_lib/acpype.py /usr/local/bin/acpype
-            export AMBERHOME=/home/amber19-0_linux
+            chmod +x acpype_lib/acpype.py
+            ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
+            export AMBERHOME=$PWD/amber19-0_linux
             export PATH=$PATH:$AMBERHOME/bin
 
       -  name: Lint with flake8
