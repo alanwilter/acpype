@@ -9,7 +9,6 @@ on:
    pull_request:
       branches:
       - master
-      - new_functions
 jobs:
    build:
       runs-on: ubuntu-latest
@@ -35,8 +34,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-            DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
-            apt-get install --no-install-recommends -y openbabel python3-openbabel python3-pip
+            sudo apt-get update
+            export DEBIAN_FRONTEND=noninteractive 
+            sudo apt-get install -y --no-install-recommends tzdata
+            sudo apt-get install --no-install-recommends -y openbabel python3-openbabel python3-pip
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             chmod +x /home/acpype_lib/acpype.py
