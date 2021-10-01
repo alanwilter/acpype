@@ -31,19 +31,20 @@ jobs:
             restore-keys: |
                ${{ runner.os }}-pip-
                ${{ runner.os }}-
-
+      - name: Set Env
+        run: |
+            echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
+            echo "AMBERHOME=$HOME/amber19-0_linux" >> $GITHUB_ENV
+            echo "$AMBERHOME/bin" >> $GITHUB_PATH
       - name: Install dependencies
         run: |
             sudo apt-get update
-            export DEBIAN_FRONTEND=noninteractive 
-            sudo apt-get install -y --no-install-recommends tzdata
+            "${{ env.DEBIAN_FRONTEND }}" sudo apt-get install -y --no-install-recommends tzdata
             sudo apt-get install --no-install-recommends -y openbabel python3-openbabel python3-pip
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
-            ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
-            export AMBERHOME=$PWD/amber19-0_linux
-            export PATH=$PATH:$AMBERHOME/bin
+            ln -s $HOME/acpype_lib/acpype.py /usr/local/bin/acpype
 
       -  name: Lint with flake8
          run: flake8 -v --count
