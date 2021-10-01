@@ -3695,18 +3695,14 @@ class AbstractTopol:
             # OW 629362.166 625.267765 spce
             # OW 581935.564 594.825035 tip3p
             #       print aTypeName, A, B
-            line = (
-                " %-8s %-11s %3.5f  %3.5f   A   %13.5e %13.5e"
-                % (
-                    aTypeName,
-                    aTypeName,
-                    0.0,
-                    0.0,
-                    sigma,
-                    epsilon,
-                )
-                + " ; %4.2f  %1.4f\n" % (r0, epAmber)
-            )
+            line = " %-8s %-11s %3.5f  %3.5f   A   %13.5e %13.5e" % (
+                aTypeName,
+                aTypeName,
+                0.0,
+                0.0,
+                sigma,
+                epsilon,
+            ) + " ; %4.2f  %1.4f\n" % (r0, epAmber)
             oline = "; %s:%s:opls_%s: %s\n" % (aTypeName, aTypeNameOpls, oaCode[0], repr(oaCode[1:]))
             # tmpFile.write(line)
             temp.append(line)
@@ -3958,40 +3954,32 @@ class AbstractTopol:
                 oat3 = id2oplsATDict.get(id3)
                 oat4 = id2oplsATDict.get(id4)
                 c0, c1, c2, c3, c4, c5 = dih[1]
-                line = (
-                    "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
-                    % (
-                        id1,
-                        id2,
-                        id3,
-                        id4,
-                        3,
-                        c0,
-                        c1,
-                        c2,
-                        c3,
-                        c4,
-                        c5,
-                    )
-                    + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
-                )
-                oline = (
-                    "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
-                    % (
-                        id1,
-                        id2,
-                        id3,
-                        id4,
-                        3,
-                        c0,
-                        c1,
-                        c2,
-                        c3,
-                        c4,
-                        c5,
-                    )
-                    + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
-                )
+                line = "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
+                    id1,
+                    id2,
+                    id3,
+                    id4,
+                    3,
+                    c0,
+                    c1,
+                    c2,
+                    c3,
+                    c4,
+                    c5,
+                ) + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
+                oline = "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
+                    id1,
+                    id2,
+                    id3,
+                    id4,
+                    3,
+                    c0,
+                    c1,
+                    c2,
+                    c3,
+                    c4,
+                    c5,
+                ) + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
                 temp.append(line)
                 otemp.append(oline)
             temp.sort()
@@ -5074,18 +5062,10 @@ def init_main():
         help="a basename for the project (folder and output files)",
     )
     parser.add_argument(
-        "-x",
-        "--inpcrd",
-        action="store",
-        dest="inpcrd",
-        help="amber inpcrd file name (always used with -p)",
+        "-x", "--inpcrd", action="store", dest="inpcrd", help="amber inpcrd file name (always used with -p)",
     )
     parser.add_argument(
-        "-p",
-        "--prmtop",
-        action="store",
-        dest="prmtop",
-        help="amber prmtop file name (always used with -x)",
+        "-p", "--prmtop", action="store", dest="prmtop", help="amber prmtop file name (always used with -x)",
     )
     parser.add_argument(
         "-c",
@@ -5133,18 +5113,10 @@ def init_main():
         help="am1-bcc flag, sqm (default), divcon, mopac",
     )
     parser.add_argument(
-        "-k",
-        "--keyword",
-        action="store",
-        dest="keyword",
-        help="mopac or sqm keyword, inside quotes",
+        "-k", "--keyword", action="store", dest="keyword", help="mopac or sqm keyword, inside quotes",
     )
     parser.add_argument(
-        "-f",
-        "--force",
-        action="store_true",
-        dest="force",
-        help="force topologies recalculation anew",
+        "-f", "--force", action="store_true", dest="force", help="force topologies recalculation anew",
     )
     parser.add_argument(
         "-d",
@@ -5163,11 +5135,7 @@ def init_main():
         help="output topologies: all (default), gmx, cns or charmm",
     )
     parser.add_argument(
-        "-z",
-        "--gmx4",
-        action="store_true",
-        dest="gmx4",
-        help="write RB dihedrals old GMX 4.0",
+        "-z", "--gmx4", action="store_true", dest="gmx4", help="write RB dihedrals old GMX 4.0",
     )
     parser.add_argument(
         "-t",
@@ -5195,19 +5163,10 @@ def init_main():
         help="max time (in sec) tolerance for sqm/mopac, default is %i hours" % (MAXTIME // 3600),
     )
     parser.add_argument(
-        "-y",
-        "--ipython",
-        action="store_true",
-        dest="ipython",
-        help="start iPython interpreter",
+        "-y", "--ipython", action="store_true", dest="ipython", help="start iPython interpreter",
     )
     parser.add_argument(
-        "-w",
-        "--verboseless",
-        action="store_false",
-        default=True,
-        dest="verboseless",
-        help="print nothing",
+        "-w", "--verboseless", action="store_false", default=True, dest="verboseless", help="print nothing",
     )
     parser.add_argument(
         "-g",
@@ -5224,11 +5183,7 @@ def init_main():
         help="for 'amb2gmx' mode, does a direct conversion, for any solvent",
     )
     parser.add_argument(
-        "-l",
-        "--sorted",
-        action="store_true",
-        dest="sorted",
-        help="sort atoms for GMX ordering",
+        "-l", "--sorted", action="store_true", dest="sorted", help="sort atoms for GMX ordering",
     )
     parser.add_argument(
         "-j",
