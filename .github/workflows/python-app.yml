@@ -34,8 +34,8 @@ jobs:
       - name: Set Env
         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
-            echo "AMBERHOME=$HOME/amber19-0_linux" >> $GITHUB_ENV
-            echo "$HOME/amber19-0_linux/bin" >> $GITHUB_PATH
+            echo "AMBERHOME=$PWD/amber19-0_linux" >> $GITHUB_ENV
+            echo "$PWD/amber19-0_linux/bin" >> $GITHUB_PATH
       - name: Install dependencies
         run: |
             sudo apt-get update
@@ -44,7 +44,7 @@ jobs:
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
-            ln -s $HOME/acpype_lib/acpype.py /usr/local/bin/acpype
+            ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
 
       -  name: Lint with flake8
          run: flake8 -v --count
@@ -56,5 +56,5 @@ jobs:
          run: |
             echo "$PATH"
             # which antechamber
-            ls -tlr $HOME/*
+            ls -tlr $PWD/*
             pytest --color=yes
