@@ -1202,11 +1202,11 @@ def checkOpenBabelVersion():
 
 def checkSmiles(smiles):
 
-    if checkOpenBabelVersion() > 300:
+    if checkOpenBabelVersion() >= 300:
         from openbabel import openbabel as ob
         from openbabel import pybel
 
-    elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+    elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
         import openbabel as ob
         import pybel
 
@@ -2483,11 +2483,11 @@ class AbstractTopol:
         return False
 
     def convertSmilesToMol2(self):
-        if checkOpenBabelVersion() > 300:
+        if checkOpenBabelVersion() >= 300:
             # from openbabel import openbabel as ob
             from openbabel import pybel
 
-        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+        elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
             # import openbabel as ob
             import pybel
 
@@ -2918,11 +2918,11 @@ class AbstractTopol:
         """
         self.chiralGroups = []
 
-        if checkOpenBabelVersion() > 300:
+        if checkOpenBabelVersion() >= 300:
             from openbabel import openbabel as ob
             from openbabel import pybel
 
-        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+        elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
             import openbabel as ob
             import pybel
 
