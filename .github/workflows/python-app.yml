@@ -54,7 +54,7 @@ jobs:
 
       -  name: Test with PyTest
          run: |
-            echo "<><><><><> $PATH"
-            which antechamber
+            echo "$PATH"
+            # which antechamber
             ls -tlr $HOME/*
             pytest --color=yes
