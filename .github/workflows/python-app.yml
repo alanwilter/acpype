@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-name: check_acpype_api2
+name: check_acpype_api3
 on:
    push:
       branches:
@@ -35,7 +35,7 @@ jobs:
         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$HOME/amber19-0_linux" >> $GITHUB_ENV
-            echo "$AMBERHOME/bin" >> $GITHUB_PATH
+            echo "$HOME/amber19-0_linux/bin" >> $GITHUB_PATH
       - name: Install dependencies
         run: |
             sudo apt-get update
