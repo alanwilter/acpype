@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-name: check_acpype_api11
+name: check_acpype_api12
 on:
    push:
       branches:
@@ -20,22 +20,22 @@ jobs:
          with:
             python-version: 3.8
 
-      # - name: Cache pip
-      #   uses: actions/cache@v2
-      #   with:
-      #       # This path is specific to Ubuntu
-      #       path: ~/.cache/pip
-      #       # Look to see if there is a cache hit for the corresponding requirements file
-      #       key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-      #       restore-keys: |
-      #          ${{ runner.os }}-pip-
-      #          ${{ runner.os }}-
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+            # This path is specific to Ubuntu
+            path: ~/.cache/pip
+            # Look to see if there is a cache hit for the corresponding requirements file
+            key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+            restore-keys: |
+               ${{ runner.os }}-pip-
+               ${{ runner.os }}-
 
       - name: Set Env
         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$PWD/amber19-0_linux" >> $GITHUB_ENV
-            echo "PYTHONPATH=/usr/lib/python3/dist-packages" >> $GITHUB_ENV
+            # echo "PYTHONPATH=/usr/lib/python3/dist-packages" >> $GITHUB_ENV
             echo "$PWD/amber19-0_linux/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
@@ -51,12 +51,15 @@ jobs:
       - name: Install OpenBabel Python Module
         run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
-            # python3 -vc "import openbabel; print(openbabel.OBReleaseVersion())"
+            ln -s /usr/lib/python3/dist-packages/openbabel /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/
+            echo "check here >>>>>>"
+            ls -ltr /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages
+            python3 -vc "import openbabel; print(openbabel.OBReleaseVersion())"
 
       - name: Install Pip
         run: |
-            # sudo apt-get install --no-install-recommends -y python3-pip
-            # python3 -m pip install --upgrade pip
+            sudo apt-get install --no-install-recommends -y python3-pip
+            python3 -m pip install --upgrade pip
             if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
             ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
