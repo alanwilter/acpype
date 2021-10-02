@@ -45,7 +45,7 @@ jobs:
       - name: Install OpenBabel
             sudo apt-get install --no-install-recommends -y openbabel
 
-      -name: Install OpenBabel Python Module
+      - name: Install OpenBabel Python Module
             sudo apt-get install --no-install-recommends -y python3-openbabel
 
       - name: Install Pip
