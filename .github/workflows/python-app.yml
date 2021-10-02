@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-name: check_acpype_api4
+name: check_acpype_api
 on:
    push:
       branches:
@@ -55,6 +55,7 @@ jobs:
       -  name: Test with PyTest
          run: |
             echo "$PATH"
-            # which antechamber
-            ls -tlr $PWD/*
+            which obabel
+            cd /home/runner/work/acpype/acpype/test
+            acpype -di AAA.pdb -c gas
             pytest --color=yes
