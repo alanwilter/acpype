@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-name: check_acpype_api
+name: check_acpype_api5
 on:
    push:
       branches:
@@ -31,16 +31,26 @@ jobs:
             restore-keys: |
                ${{ runner.os }}-pip-
                ${{ runner.os }}-
+
       - name: Set Env
         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$PWD/amber19-0_linux" >> $GITHUB_ENV
             echo "$PWD/amber19-0_linux/bin" >> $GITHUB_PATH
+
       - name: Install dependencies
         run: |
             sudo apt-get update
             sudo apt-get install -y --no-install-recommends tzdata
-            sudo apt-get install --no-install-recommends -y openbabel python3-openbabel python3-pip
+            
+      - name: Install OpenBabel
+            sudo apt-get install --no-install-recommends -y openbabel
+
+      -name: Install OpenBabel Python Module
+            sudo apt-get install --no-install-recommends -y python3-openbabel
+
+      - name: Install Pip
+            sudo apt-get install --no-install-recommends -y python3-pip
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
@@ -54,8 +64,6 @@ jobs:
 
       -  name: Test with PyTest
          run: |
-            echo "$PATH"
-            which obabel
             cd /home/runner/work/acpype/acpype/test
             acpype -di AAA.pdb -c gas
             pytest --color=yes
