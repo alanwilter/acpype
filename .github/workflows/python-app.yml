@@ -50,13 +50,13 @@ jobs:
       - name: Install OpenBabel Python Module
         run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
-            python3 -vc "import openbabel; print(openbabel.OBReleaseVersion())"
+            # python3 -vc "import openbabel; print(openbabel.OBReleaseVersion())"
 
       - name: Install Pip
         run: |
             sudo apt-get install --no-install-recommends -y python3-pip
-            python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+            python3 -m pip install --upgrade pip
+            if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
             ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
 
@@ -69,6 +69,8 @@ jobs:
       -  name: Test with PyTest
          run: |
             echo $PYTHONPATH
+            ls -l $(dirname $(which python3))/python*
+            python3 -c "import sys; print('\n'.join(sys.path))"
             echo "====${PWD}===="
             cd $PWD/test
             acpype -di AAA.pdb -c gas
