@@ -45,10 +45,12 @@ jobs:
       - name: Install OpenBabel
         run: |
             sudo apt-get install --no-install-recommends -y openbabel
+            echo "===$PWD==="
 
       - name: Install OpenBabel Python Module
         run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
+            python3 -vc "import openbabel; print(openbabel.OBReleaseVersion())"
 
       - name: Install Pip
         run: |
@@ -67,7 +69,6 @@ jobs:
       -  name: Test with PyTest
          run: |
             echo $PYTHONPATH
-            python3 -c "import openbabel; print(openbabel.OBReleaseVersion())"
             echo "====${PWD}===="
             cd $PWD/test
             acpype -di AAA.pdb -c gas
