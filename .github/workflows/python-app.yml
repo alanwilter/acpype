@@ -55,7 +55,7 @@ jobs:
 
       - name: Install Pip
         run: |
-            sudo apt-get install --no-install-recommends -y python3-pip
+            # sudo apt-get install --no-install-recommends -y python3-pip
             # python3 -m pip install --upgrade pip
             if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
