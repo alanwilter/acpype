@@ -5,7 +5,7 @@ on:
    push:
       branches:
       - master
-      # - new_functions
+      - new_functions
    pull_request:
       branches:
       - master
