@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-name: check_acpype_api12
+name: check_acpype_api
 on:
    push:
       branches:
@@ -35,7 +35,6 @@ jobs:
         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$PWD/amber19-0_linux" >> $GITHUB_ENV
-            # echo "PYTHONPATH=/usr/lib/python3/dist-packages" >> $GITHUB_ENV
             echo "$PWD/amber19-0_linux/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
@@ -46,15 +45,11 @@ jobs:
       - name: Install OpenBabel
         run: |
             sudo apt-get install --no-install-recommends -y openbabel
-            echo "===$PWD==="
 
-      - name: Install OpenBabel Python Module
+      - name: Install OpenBabel Python Module and Hack it
         run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
             ln -s /usr/lib/python3/dist-packages/openbabel /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/
-            echo "check here >>>>>>"
-            ls -ltr /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages
-            python3 -vc "import openbabel; print(openbabel.OBReleaseVersion())"
 
       - name: Install Pip
         run: |
@@ -72,10 +67,6 @@ jobs:
 
       -  name: Test with PyTest
          run: |
-            echo $PYTHONPATH
-            ls -l $(dirname $(which python3))/python*
-            python3 -c "import sys; print('\n'.join(sys.path))"
-            echo "====${PWD}===="
-            cd $PWD/test
-            acpype -di AAA.pdb -c gas
+            # cd $PWD/test
+            # acpype -di AAA.pdb -c gas
             pytest --color=yes
