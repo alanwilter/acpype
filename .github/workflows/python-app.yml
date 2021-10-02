@@ -35,7 +35,7 @@ jobs:
         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$PWD/amber19-0_linux" >> $GITHUB_ENV
-            echo "PYTHONPATH=/usr/lib/python3/dist-packages/openbabel" >> $GITHUB_ENV
+            echo "PYTHONPATH=/usr/lib/python3/dist-packages" >> $GITHUB_ENV
             echo "$PWD/amber19-0_linux/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
