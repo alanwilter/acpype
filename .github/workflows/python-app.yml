@@ -43,12 +43,15 @@ jobs:
             sudo apt-get install -y --no-install-recommends tzdata
             
       - name: Install OpenBabel
+        run: |
             sudo apt-get install --no-install-recommends -y openbabel
 
       - name: Install OpenBabel Python Module
+        run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
 
       - name: Install Pip
+        run: |
             sudo apt-get install --no-install-recommends -y python3-pip
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
