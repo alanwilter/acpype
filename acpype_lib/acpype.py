@@ -64,25 +64,13 @@ import os
 import pickle
 import sys
 import subprocess as sub
+import re
 import abc
 import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
-import io
 
-mdatFileInMemory = io.StringIO()
-sleapFileInMemory = io.StringIO()
-pdbFileInMemory = io.StringIO()
-topFileInMemory = io.StringIO()
-itpFileInMemory = io.StringIO()
-oitpFileInMemory = io.StringIO()
-otopFileInMemory = io.StringIO()
-groFileInMemory = io.StringIO()
-emMdpFileInMemory = io.StringIO()
-mdMdpFileInMemory = io.StringIO()
-parFileInMemory = io.StringIO()
-inpFileInMemory = io.StringIO()
 is_smiles = False
 
 MAXTIME = 3 * 3600
@@ -1190,23 +1178,20 @@ saveoff %(res)s %(acBase)s.lib
 quit
 """
 
-
 def checkOpenBabelVersion():
     "check openbabel version"
     import openbabel as obl
     import warnings
-
     warnings.filterwarnings("ignore")
-    return int(obl.OBReleaseVersion().replace(".", ""))
-
+    return int(obl.OBReleaseVersion().replace('.',''))
 
 def checkSmiles(smiles):
 
-    if checkOpenBabelVersion() >= 300:
+    if checkOpenBabelVersion() > 300:
         from openbabel import openbabel as ob
         from openbabel import pybel
 
-    elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
+    elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
         import openbabel as ob
         import pybel
 
@@ -1216,10 +1201,9 @@ def checkSmiles(smiles):
         ob.obErrorLog.SetOutputLevel(0)
         pybel.readstring("smi", smiles)
         return True
-    except Exception:
+    except:
         ob.obErrorLog.SetOutputLevel(0)
         return False
-
 
 def dotproduct(aa, bb):
     """scalar product"""
@@ -1300,8 +1284,8 @@ def elapsedTime(seconds, add_s=False, separator=" "):
 
 def splitBlock(dat):
     """split a amber parm dat file in blocks
-    0 = mass, 1 = extra + bond, 2 = angle, 3 = dihedral, 4 = improp, 5 = hbond
-    6 = equiv nbon, 7 = nbon, 8 = END, 9 = etc.
+       0 = mass, 1 = extra + bond, 2 = angle, 3 = dihedral, 4 = improp, 5 = hbond
+       6 = equiv nbon, 7 = nbon, 8 = END, 9 = etc.
     """
     dict_ = {}
     count = 0
@@ -1339,35 +1323,6 @@ def parseFrcmod(lista):
         if not dict_[kk]:
             dict_.pop(kk)
     return dict_
-
-
-def clearFileInMemory():
-    "Clear io.String memory"
-    mdatFileInMemory.seek(0)
-    mdatFileInMemory.truncate(0)
-    sleapFileInMemory.seek(0)
-    sleapFileInMemory.truncate(0)
-    pdbFileInMemory.seek(0)
-    pdbFileInMemory.truncate(0)
-    topFileInMemory.seek(0)
-    topFileInMemory.truncate(0)
-    itpFileInMemory.seek(0)
-    itpFileInMemory.truncate(0)
-    oitpFileInMemory.seek(0)
-    oitpFileInMemory.truncate(0)
-    otopFileInMemory.seek(0)
-    otopFileInMemory.truncate(0)
-    groFileInMemory.seek(0)
-    groFileInMemory.truncate(0)
-    emMdpFileInMemory.seek(0)
-    emMdpFileInMemory.truncate(0)
-    mdMdpFileInMemory.seek(0)
-    mdMdpFileInMemory.truncate(0)
-    parFileInMemory.seek(0)
-    parFileInMemory.truncate(0)
-    inpFileInMemory.seek(0)
-    inpFileInMemory.truncate(0)
-
 
 def parmMerge(fdat1, fdat2, frcmod=False):
     """merge two amber parm dat/frcmod files and save in /tmp"""
@@ -1409,7 +1364,6 @@ def parmMerge(fdat1, fdat2, frcmod=False):
         for kk in dat1:
             for line in dat1[kk]:
                 mdatFile.write(line + "\n")
-                mdatFileInMemory.write(line + "\n")
         return mname
 
     dat2 = splitBlock(open(fdat2).readlines())
@@ -1452,7 +1406,6 @@ def parmMerge(fdat1, fdat2, frcmod=False):
             mdat.append(line)
     for line in mdat:
         mdatFile.write(line + "\n")
-        mdatFileInMemory.write(line + "\n")
     mdatFile.close()
 
     return mname
@@ -1653,7 +1606,7 @@ class Topology_14:
 class AbstractTopol:
 
     """
-    Super class to build topologies
+        Super class to build topologies
     """
 
     __metaclass__ = abc.ABCMeta
@@ -1738,7 +1691,6 @@ class AbstractTopol:
         self.CnsParFileName = None
         self.CnsPdbFileName = None
         self.smiles = None
-        self.InMemory = None
 
     def printDebug(self, text=""):
         """Debug log level"""
@@ -1769,8 +1721,8 @@ class AbstractTopol:
 
     def guessCharge(self):
         """
-        Guess the charge of a system based on antechamber
-        Returns None in case of error
+            Guess the charge of a system based on antechamber
+            Returns None in case of error
         """
         done = False
         error = False
@@ -1847,7 +1799,7 @@ class AbstractTopol:
 
     def setResNameCheckCoords(self):
         """Set a 3 letter residue name
-        and check coords duplication
+           and check coords duplication
         """
         exit_ = False
         localDir = os.path.abspath(".")
@@ -1948,13 +1900,14 @@ class AbstractTopol:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 rmtree(self.tmpDir)
                 sys.exit(11)
-        try:  # scape resname list index out of range
+        try: #scape resname list index out of range
             resname = list(residues)[0].strip()
             newresname = resname
-        except Exception:
+        except:
             self.printError("resname list index out of range, using default resname: 'LIG'")
-            resname = "LIG"
+            resname = 'LIG'
             newresname = resname
+
 
         # To avoid resname likes: 001 (all numbers), 1e2 (sci number), ADD : reserved terms for leap
         leapWords = [
@@ -2069,7 +2022,8 @@ class AbstractTopol:
         self.printDebug("setResNameCheckCoords done")
 
     def readMol2TotalCharge(self, mol2File):
-        """Reads the charges in given mol2 file and returns the total"""
+        """Reads the charges in given mol2 file and returns the total
+        """
         charge = 0.0
         ll = []
         cmd = "%s -dr no -i %s -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf y" % (self.acExe, mol2File)
@@ -2097,100 +2051,99 @@ class AbstractTopol:
     def execAntechamber(self, chargeType=None, atomType=None):
         """To call Antechamber and execute it
 
-        Welcome to antechamber 17.3: molecular input file processor.
+Welcome to antechamber 17.3: molecular input file processor.
 
-        Usage: antechamber -i   input file name
-                           -fi  input file format
-                           -o   output file name
-                           -fo  output file format
-                           -c   charge method
-                           -cf  charge file name
-                           -nc  net molecular charge (int)
-                           -a   additional file name
-                           -fa  additional file format
-                           -ao  additional file operation
-                                crd   : only read in coordinate
-                                crg   : only read in charge
-                                radius: only read in radius
-                                name  : only read in atom name
-                                type  : only read in atom type
-                                bond  : only read in bond type
-                           -m   multiplicity (2S+1), default is 1
-                           -rn  residue name, overrides input file, default is MOL
-                           -rf  residue toplogy file name in prep input file,
-                                default is molecule.res
-                           -ch  check file name for gaussian, default is 'molecule'
-                           -ek  mopac or sqm keyword, inside quotes; overwrites previous ones
-                           -gk  gaussian job keyword, inside quotes
-                           -gm  gaussian memory keyword, inside quotes, such as "%mem=1000MB"
-                           -gn  gaussian number of processors keyword, inside quotes, such as "%nproc=8"
-                           -gv  add keyword to generate gesp file (for Gaussian 09 only)
-                                1    : yes
-                                0    : no, the default
-                           -ge  gaussian esp file generated by iop(6/50=1), default is g09.gesp
-                           -df  am1-bcc precharge flag, 2 - use sqm(default); 0 - use mopac
-                           -at  atom type
-                                gaff : the default
-                                gaff2: for gaff2 (beta-version)
-                                amber: for PARM94/99/99SB
-                                bcc  : bcc
-                                sybyl: sybyl
-                           -du  fix duplicate atom names: yes(y)[default] or no(n)
-                           -bk  component/block Id, for ccif
-                           -an  adjust atom names: yes(y) or no(n)
-                                the default is 'y' for 'mol2' and 'ac' and 'n' for the other formats
-                           -j   atom type and bond type prediction index, default is 4
-                                0    : no assignment
-                                1    : atom type
-                                2    : full  bond types
-                                3    : part  bond types
-                                4    : atom and full bond type
-                                5    : atom and part bond type
-                           -s   status information: 0(brief), 1(default) or 2(verbose)
-                           -eq  equalizing atomic charge, default is 1 for '-c resp' and '-c bcc' and 0
-                                for the other charge methods
-                                0    : no use
-                                1    : by atomic paths
-                                2    : by atomic paths and structural information, i.e. E/Z configurations
-                           -pf  remove intermediate files: yes(y) or no(n)[default]
-                           -pl  maximum path length to determin equivalence of atomic charges for resp and bcc,
-                                the smaller the value, the faster the algorithm, default is -1 (use full length),
-                                set this parameter to 10 to 30 if your molecule is big (# atoms >= 100)
-                           -dr  acdoctor mode: yes(y)[default] or no(n)
-                           -i -o -fi and -fo must appear; others are optional
-                           Use 'antechamber -L' to list the supported file formats and charge methods
+Usage: antechamber -i   input file name
+                   -fi  input file format
+                   -o   output file name
+                   -fo  output file format
+                   -c   charge method
+                   -cf  charge file name
+                   -nc  net molecular charge (int)
+                   -a   additional file name
+                   -fa  additional file format
+                   -ao  additional file operation
+                        crd   : only read in coordinate
+                        crg   : only read in charge
+                        radius: only read in radius
+                        name  : only read in atom name
+                        type  : only read in atom type
+                        bond  : only read in bond type
+                   -m   multiplicity (2S+1), default is 1
+                   -rn  residue name, overrides input file, default is MOL
+                   -rf  residue toplogy file name in prep input file,
+                        default is molecule.res
+                   -ch  check file name for gaussian, default is 'molecule'
+                   -ek  mopac or sqm keyword, inside quotes; overwrites previous ones
+                   -gk  gaussian job keyword, inside quotes
+                   -gm  gaussian memory keyword, inside quotes, such as "%mem=1000MB"
+                   -gn  gaussian number of processors keyword, inside quotes, such as "%nproc=8"
+                   -gv  add keyword to generate gesp file (for Gaussian 09 only)
+                        1    : yes
+                        0    : no, the default
+                   -ge  gaussian esp file generated by iop(6/50=1), default is g09.gesp
+                   -df  am1-bcc precharge flag, 2 - use sqm(default); 0 - use mopac
+                   -at  atom type
+                        gaff : the default
+                        gaff2: for gaff2 (beta-version)
+                        amber: for PARM94/99/99SB
+                        bcc  : bcc
+                        sybyl: sybyl
+                   -du  fix duplicate atom names: yes(y)[default] or no(n)
+                   -bk  component/block Id, for ccif
+                   -an  adjust atom names: yes(y) or no(n)
+                        the default is 'y' for 'mol2' and 'ac' and 'n' for the other formats
+                   -j   atom type and bond type prediction index, default is 4
+                        0    : no assignment
+                        1    : atom type
+                        2    : full  bond types
+                        3    : part  bond types
+                        4    : atom and full bond type
+                        5    : atom and part bond type
+                   -s   status information: 0(brief), 1(default) or 2(verbose)
+                   -eq  equalizing atomic charge, default is 1 for '-c resp' and '-c bcc' and 0 for the other chrg mthds
+                        0    : no use
+                        1    : by atomic paths
+                        2    : by atomic paths and structural information, i.e. E/Z configurations
+                   -pf  remove intermediate files: yes(y) or no(n)[default]
+                   -pl  maximum path length to determin equivalence of atomic charges for resp and bcc,
+                        the smaller the value, the faster the algorithm, default is -1 (use full length),
+                        set this parameter to 10 to 30 if your molecule is big (# atoms >= 100)
+                   -dr  acdoctor mode: yes(y)[default] or no(n)
+                   -i -o -fi and -fo must appear; others are optional
+                   Use 'antechamber -L' to list the supported file formats and charge methods
 
-                              List of the File Formats
+                      List of the File Formats
 
-                 file format type  abbre. index | file format type abbre. index
-                --------------------------------------------------------------
-                Antechamber        ac       1  | Sybyl Mol2         mol2    2
-                PDB                pdb      3  | Modified PDB       mpdb    4
-                AMBER PREP (int)   prepi    5  | AMBER PREP (car)   prepc   6
-                Gaussian Z-Matrix  gzmat    7  | Gaussian Cartesian gcrt    8
-                Mopac Internal     mopint   9  | Mopac Cartesian    mopcrt 10
-                Gaussian Output    gout    11  | Mopac Output       mopout 12
-                Alchemy            alc     13  | CSD                csd    14
-                MDL                mdl     15  | Hyper              hin    16
-                AMBER Restart      rst     17  | Jaguar Cartesian   jcrt   18
-                Jaguar Z-Matrix    jzmat   19  | Jaguar Output      jout   20
-                Divcon Input       divcrt  21  | Divcon Output      divout 22
-                SQM Input          sqmcrt  23  | SQM Output         sqmout 24
-                Charmm             charmm  25  | Gaussian ESP       gesp   26
-                Component cif      ccif    27  |
-                --------------------------------------------------------------
-                        AMBER restart file can only be read in as additional file.
+         file format type  abbre. index | file format type abbre. index
+        --------------------------------------------------------------
+        Antechamber        ac       1  | Sybyl Mol2         mol2    2
+        PDB                pdb      3  | Modified PDB       mpdb    4
+        AMBER PREP (int)   prepi    5  | AMBER PREP (car)   prepc   6
+        Gaussian Z-Matrix  gzmat    7  | Gaussian Cartesian gcrt    8
+        Mopac Internal     mopint   9  | Mopac Cartesian    mopcrt 10
+        Gaussian Output    gout    11  | Mopac Output       mopout 12
+        Alchemy            alc     13  | CSD                csd    14
+        MDL                mdl     15  | Hyper              hin    16
+        AMBER Restart      rst     17  | Jaguar Cartesian   jcrt   18
+        Jaguar Z-Matrix    jzmat   19  | Jaguar Output      jout   20
+        Divcon Input       divcrt  21  | Divcon Output      divout 22
+        SQM Input          sqmcrt  23  | SQM Output         sqmout 24
+        Charmm             charmm  25  | Gaussian ESP       gesp   26
+        Component cif      ccif    27  |
+        --------------------------------------------------------------
+                AMBER restart file can only be read in as additional file.
 
-                              List of the Charge Methods
+                      List of the Charge Methods
 
-                charge method     abbre. index | charge method    abbre. index
-                --------------------------------------------------------------
-                RESP               resp     1  |  AM1-BCC           bcc     2
-                CM1                cm1      3  |  CM2               cm2     4
-                ESP (Kollman)      esp      5  |  Mulliken          mul     6
-                Gasteiger          gas      7  |  Read in charge    rc      8
-                Write out charge   wc       9  |  Delete Charge     dc     10
-                --------------------------------------------------------------
+        charge method     abbre. index | charge method    abbre. index
+        --------------------------------------------------------------
+        RESP               resp     1  |  AM1-BCC           bcc     2
+        CM1                cm1      3  |  CM2               cm2     4
+        ESP (Kollman)      esp      5  |  Mulliken          mul     6
+        Gasteiger          gas      7  |  Read in charge    rc      8
+        Write out charge   wc       9  |  Delete Charge     dc     10
+        --------------------------------------------------------------
         """
         global pid
 
@@ -2316,7 +2269,6 @@ class AbstractTopol:
         sleapScpt = SLEAP_TEMPLATE % self.acParDict
 
         fp = open("sleap.in", "w")
-        sleapFileInMemory.write(sleapScpt)
         fp.write(sleapScpt)
         fp.close()
 
@@ -2483,18 +2435,18 @@ class AbstractTopol:
         return False
 
     def convertSmilesToMol2(self):
-        if checkOpenBabelVersion() >= 300:
-            # from openbabel import openbabel as ob
+        if checkOpenBabelVersion() > 300:
+            from openbabel import openbabel as ob
             from openbabel import pybel
 
-        elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-            # import openbabel as ob
+        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
+            import openbabel as ob
             import pybel
 
         """Convert Smiles to MOL2 by using babel"""
 
         if not self.baseName:
-            self.baseName = "smiles_molecule"
+            self.baseName = 'smiles_molecule'
 
         self.ext = ".mol2"
         self.inputFile = self.baseName + self.ext
@@ -2504,9 +2456,9 @@ class AbstractTopol:
             mymol = pybel.readstring("smi", str(self.smiles))
             mymol.addh()
             mymol.make3D()
-            mymol.write(self.ext.replace(".", ""), self.absInputFile, overwrite=True)
+            mymol.write(self.ext.replace('.',''), self.absInputFile, overwrite=True)
             return True
-        except Exception:
+        except:
             return False
 
     def execBabel(self):
@@ -2538,11 +2490,10 @@ class AbstractTopol:
 
     def createACTopol(self):
         """
-        If successful, Amber Top and Xyz files will be generated
+            If successful, Amber Top and Xyz files will be generated
         """
         # sleap = False
-        if self.InMemory:
-            clearFileInMemory()
+
         if self.engine == "sleap":
             if self.execSleap():
                 self.printError("Sleap failed")
@@ -2563,10 +2514,8 @@ class AbstractTopol:
 
     def createMolTopol(self):
         """
-        Create molTop obj
+            Create molTop obj
         """
-        if self.InMemory:
-            clearFileInMemory()
         self.topFileData = open(self.acTopFileName, "r").readlines()
         self.molTopol = MolTopol(
             self,
@@ -2585,30 +2534,22 @@ class AbstractTopol:
                 self.molTopol.writeGromacsTopolFiles()
             if "charmm" in self.outTopols:
                 self.writeCharmmTopolFiles()
-        try:  # scape the pickle save error
+        try: #scape the pickle save error
             self.pickleSave()
-        except Exception:
+        except:
             self.printError("pickleSave failed")
             pass
 
-        if self.InMemory:
-            self.delOutputFiles()
-            try:
-                rmtree(self.absHomeDir)
-            except Exception:
-                pass
-        else:
-            clearFileInMemory()  # clear io memory
-            self.delOutputFiles()  # required to use on Jupyter Notebook
+        self.delOutputFiles() # required to use on Jupyter Notebook
 
     def pickleSave(self):
         """
-        To restore:
-            from acpype import *
-            #import cPickle as pickle
-            import pickle
-            o = pickle.load(open('DDD.pkl','rb'))
-            NB: It fails to restore with ipython in Mac (Linux OK)
+            To restore:
+                from acpype import *
+                #import cPickle as pickle
+                import pickle
+                o = pickle.load(open('DDD.pkl','rb'))
+                NB: It fails to restore with ipython in Mac (Linux OK)
         """
         pklFile = self.baseName + ".pkl"
         dumpFlag = False
@@ -2627,7 +2568,7 @@ class AbstractTopol:
 
     def getFlagData(self, flag):
         """
-        For a given acFileTop flag, return a list of the data related
+            For a given acFileTop flag, return a list of the data related
         """
         block = False
         tFlag = "%FLAG " + flag
@@ -2683,8 +2624,8 @@ class AbstractTopol:
 
     def getResidueLabel(self):
         """
-        Get a 3 capital letters code from acFileTop
-        Returns a list.
+            Get a 3 capital letters code from acFileTop
+            Returns a list.
         """
         residueLabel = self.getFlagData("RESIDUE_LABEL")
         residueLabel = list(map(str, residueLabel))
@@ -2695,8 +2636,8 @@ class AbstractTopol:
 
     def getCoords(self):
         """
-        For a given acFileXyz file, return a list of coords as:
-        [[x1,y1,z1],[x2,y2,z2], etc.]
+            For a given acFileXyz file, return a list of coords as:
+            [[x1,y1,z1],[x2,y2,z2], etc.]
         """
         if not self.xyzFileData:
             raise Exception("INPCRD file empty?")
@@ -2717,11 +2658,11 @@ class AbstractTopol:
 
     def getAtoms(self):
         """
-        Set a list with all atoms objects build from dat in acFileTop
-        Set also if molTopol atom type system is gaff or amber
-        Set also list atomTypes
-        Set also resid
-        Set also molTopol total charge
+            Set a list with all atoms objects build from dat in acFileTop
+            Set also if molTopol atom type system is gaff or amber
+            Set also list atomTypes
+            Set also resid
+            Set also molTopol total charge
         """
         atomNameList = self.getFlagData("ATOM_NAME")
         atomTypeNameList = self.getFlagData("AMBER_ATOM_TYPE")
@@ -2850,8 +2791,8 @@ class AbstractTopol:
 
     def getDihedrals(self):
         """
-        Get dihedrals (proper and imp), condensed list of prop dih and
-        atomPairs
+            Get dihedrals (proper and imp), condensed list of prop dih and
+            atomPairs
         """
         uniqKpList = self.getFlagData("DIHEDRAL_FORCE_CONSTANT")
         uniqPeriodList = self.getFlagData("DIHEDRAL_PERIODICITY")
@@ -2914,32 +2855,32 @@ class AbstractTopol:
 
     def getChirals(self):
         """
-        Get chiral atoms, its 4 neighbours and improper dihedral angle
+            Get chiral atoms, its 4 neighbours and improper dihedral angle
         """
         self.chiralGroups = []
 
-        if checkOpenBabelVersion() >= 300:
+        if checkOpenBabelVersion() > 300:
             from openbabel import openbabel as ob
             from openbabel import pybel
 
-        elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
+        elif checkOpenBabelVersion() > 200 and checkOpenBabelVersion() < 300:
             import openbabel as ob
             import pybel
 
-        self.printMess("Using OpenBabel v." + ob.OBReleaseVersion() + "\n")
+        self.printMess("Using OpenBabel v." + ob.OBReleaseVersion()+'\n')
 
-        # call checkOpenBabelVersion and print message
+         # call checkOpenBabelVersion and print message
 
-        # if self.obchiralExe:
+        #if self.obchiralExe:
         # print (self.obchiralExe, os.getcwd())
-        # cmd = "%s %s" % (self.obchiralExe, self.inputFile)
+        #cmd = "%s %s" % (self.obchiralExe, self.inputFile)
         # print(cmd)
-        # out = map(int, re.findall(r"Atom (\d+) Is", _getoutput(cmd)))
+        #out = map(int, re.findall(r"Atom (\d+) Is", _getoutput(cmd)))
         # print("*%s*" % out)
         " obchiral script - replace the obchiral executable"
-        out = []
+        out=[]
         filename, file_extension = os.path.splitext(self.inputFile)
-        mol = pybel.readfile(file_extension.replace(".", ""), self.inputFile)
+        mol = pybel.readfile(file_extension.replace('.',''),self.inputFile)
         for ml in mol:
             for at in ml:
                 if ob.OBStereoFacade(ml.OBMol).HasTetrahedralStereo(at.idx):
@@ -2956,7 +2897,9 @@ class AbstractTopol:
                     quad.append(bAts[0])
             if len(quad) != 4:
                 if self.chiral:
-                    self.printWarn("Atom %s has less than 4 connections to 4 different atoms. It's NOT Chiral!" % atChi)
+                    self.printWarn(
+                        "Atom %s has less than 4 connections to 4 different atoms. It's NOT Chiral!" % atChi
+                    )
                 continue
             v1, v2, v3, v4 = [x.coords for x in quad]
             chiralGroups.append((atChi, quad, imprDihAngle(v1, v2, v3, v4)))
@@ -2964,14 +2907,14 @@ class AbstractTopol:
 
     def sortAtomsForGromacs(self):
         """
-        Re-sort atoms for gromacs, which expects all hydrogens to immediately
-        follow the heavy atom they are bonded to and belong to the same charge
-        group.
+            Re-sort atoms for gromacs, which expects all hydrogens to immediately
+            follow the heavy atom they are bonded to and belong to the same charge
+            group.
 
-        Currently, atom mass < 1.2 is taken to denote a proton.  This behavior
-        may be changed by modifying the 'is_hydrogen' function within.
+            Currently, atom mass < 1.2 is taken to denote a proton.  This behavior
+            may be changed by modifying the 'is_hydrogen' function within.
 
-        JDC 2011-02-03
+            JDC 2011-02-03
         """
 
         # Build dictionary of bonded atoms.
@@ -3026,8 +2969,8 @@ class AbstractTopol:
 
     def setAtomPairs(self):
         """
-        Set a list of pair of atoms pertinent to interaction 1-4 for vdw.
-        WRONG: Deprecated
+            Set a list of pair of atoms pertinent to interaction 1-4 for vdw.
+            WRONG: Deprecated
         """
         atomPairs = []
         for item in self.condensedProperDihedrals:
@@ -3042,11 +2985,11 @@ class AbstractTopol:
 
     def getExcludedAtoms(self):
         """
-        Returns a list of atoms with a list of its excluded atoms up to 3rd
-        neighbour.
-        It's implicitly indexed, i.e., a sequence of atoms in position n in
-        the excludedAtomsList corresponds to atom n (self.atoms) and so on.
-        NOT USED
+            Returns a list of atoms with a list of its excluded atoms up to 3rd
+            neighbour.
+            It's implicitly indexed, i.e., a sequence of atoms in position n in
+            the excludedAtomsList corresponds to atom n (self.atoms) and so on.
+            NOT USED
         """
         excludedAtomsIdList = self.getFlagData("EXCLUDED_ATOMS_LIST")
         numberExcludedAtoms = self.getFlagData("NUMBER_EXCLUDED_ATOMS")
@@ -3065,11 +3008,11 @@ class AbstractTopol:
 
     def balanceCharges(self, chargeList, FirstNonSoluteId=None):
         """
-        Note that python is very annoying about floating points.
-        Even after balance, there will always be some residue of order e-12
-        to e-16, which is believed to vanished once one writes a topology
-        file, say, for CNS or GMX, where floats are represented with 4 or 5
-        maximum decimals.
+            Note that python is very annoying about floating points.
+            Even after balance, there will always be some residue of order e-12
+            to e-16, which is believed to vanished once one writes a topology
+            file, say, for CNS or GMX, where floats are represented with 4 or 5
+            maximum decimals.
         """
         limIds = []
         # self.printDebug(chargeList)
@@ -3123,19 +3066,19 @@ class AbstractTopol:
 
     def setProperDihedralsCoef(self):
         """
-        It takes self.condensedProperDihedrals and returns
-        self.properDihedralsCoefRB, a reduced list of quartet atoms + RB.
-        Coeficients ready for GMX (multiplied by 4.184)
+            It takes self.condensedProperDihedrals and returns
+            self.properDihedralsCoefRB, a reduced list of quartet atoms + RB.
+            Coeficients ready for GMX (multiplied by 4.184)
 
-        self.properDihedralsCoefRB = [ [atom1,..., atom4], C[0:5] ]
+            self.properDihedralsCoefRB = [ [atom1,..., atom4], C[0:5] ]
 
-        For proper dihedrals: a quartet of atoms may appear with more than
-        one set of parameters and to convert to GMX they are treated as RBs.
+            For proper dihedrals: a quartet of atoms may appear with more than
+            one set of parameters and to convert to GMX they are treated as RBs.
 
-        The resulting coefs calculated here may look slighted different from
-        the ones calculated by amb2gmx.pl because python is taken full float
-        number from prmtop and not rounded numbers from rdparm.out as
-        amb2gmx.pl does.
+            The resulting coefs calculated here may look slighted different from
+            the ones calculated by amb2gmx.pl because python is taken full float
+            number from prmtop and not rounded numbers from rdparm.out as
+            amb2gmx.pl does.
         """
         properDihedralsCoefRB = []
         properDihedralsAlphaGamma = []
@@ -3226,17 +3169,16 @@ class AbstractTopol:
 
     def writePdb(self, file_):
         """
-        Write a new PDB file_ with the atom names defined by Antechamber
-        Input: file_ path string
-        The format generated here use is slightly different from
-        http://www.wwpdb.org/documentation/format23/sect9.html respected to
-        atom name
+            Write a new PDB file_ with the atom names defined by Antechamber
+            Input: file_ path string
+            The format generated here use is slightly different from
+            http://www.wwpdb.org/documentation/format23/sect9.html respected to
+            atom name
         """
         # TODO: assuming only one residue ('1')
         pdbFile = open(file_, "w")
         fbase = os.path.basename(file_)
         pdbFile.write("REMARK " + head % (fbase, date))
-        pdbFileInMemory.write("REMARK " + head % (fbase, date))
         id_ = 1
         for atom in self.atoms:
             # id_ = self.atoms.index(atom) + 1
@@ -3269,109 +3211,107 @@ class AbstractTopol:
                 s,
             )
             pdbFile.write(line)
-            pdbFileInMemory.write(line)
             id_ += 1
         pdbFile.write("END\n")
-        pdbFileInMemory.write("END\n")
 
     def writeGromacsTopolFiles(self, amb2gmx=False):
         """
-        # from ~/Programmes/amber10/dat/leap/parm/gaff.dat
-        #atom type        atomic mass        atomic polarizability        comments
-        ca                12.01                 0.360                    Sp2 C in pure aromatic systems
-        ha                1.008                 0.135                    H bonded to aromatic carbon
+            # from ~/Programmes/amber10/dat/leap/parm/gaff.dat
+            #atom type        atomic mass        atomic polarizability        comments
+            ca                12.01                 0.360                    Sp2 C in pure aromatic systems
+            ha                1.008                 0.135                    H bonded to aromatic carbon
 
-        #bonded atoms        harmonic force kcal/mol/A^2       eq. dist. Ang.  comments
-        ca-ha                  344.3*                           1.087**         SOURCE3  1496    0.0024    0.0045
-        * for gmx: 344.3 * 4.184 * 100 * 2 = 288110 kJ/mol/nm^2 (why factor 2?)
-        ** convert Ang to nm ( div by 10) for gmx: 1.087 A = 0.1087 nm
-        # CA HA      1    0.10800   307105.6 ; ged from 340. bsd on C6H6 nmodes; PHE,TRP,TYR (from ffamber99bon.itp)
-        # CA-HA  367.0    1.080       changed from 340. bsd on C6H6 nmodes; PHE,TRP,TYR (from parm99.dat)
+            #bonded atoms        harmonic force kcal/mol/A^2       eq. dist. Ang.  comments
+            ca-ha                  344.3*                           1.087**         SOURCE3  1496    0.0024    0.0045
+            * for gmx: 344.3 * 4.184 * 100 * 2 = 288110 kJ/mol/nm^2 (why factor 2?)
+            ** convert Ang to nm ( div by 10) for gmx: 1.087 A = 0.1087 nm
+            # CA HA      1    0.10800   307105.6 ; ged from 340. bsd on C6H6 nmodes; PHE,TRP,TYR (from ffamber99bon.itp)
+            # CA-HA  367.0    1.080       changed from 340. bsd on C6H6 nmodes; PHE,TRP,TYR (from parm99.dat)
 
-        # angle        HF kcal/mol/rad^2    eq angle degrees     comments
-        ca-ca-ha        48.5*             120.01                SOURCE3 2980   0.1509   0.2511
-        * to convert to gmx: 48.5 * 4.184 * 2 = 405.848 kJ/mol/rad^2 (why factor 2?)
-        # CA  CA  HA           1   120.000    418.400 ; new99 (from ffamber99bon.itp)
-        # CA-CA-HA    50.0      120.00 (from parm99.dat)
+            # angle        HF kcal/mol/rad^2    eq angle degrees     comments
+            ca-ca-ha        48.5*             120.01                SOURCE3 2980   0.1509   0.2511
+            * to convert to gmx: 48.5 * 4.184 * 2 = 405.848 kJ/mol/rad^2 (why factor 2?)
+            # CA  CA  HA           1   120.000    418.400 ; new99 (from ffamber99bon.itp)
+            # CA-CA-HA    50.0      120.00 (from parm99.dat)
 
-        # dihedral    idivf        barrier hight/2 kcal/mol  phase degrees       periodicity     comments
-        X -ca-ca-X    4           14.500*                    180.000             2.000           intrpol.bsd.on C6H6
-        *convert 2 gmx: 14.5/4 * 4.184 * 2 (?) (yes in amb2gmx, not in topolbuild, why?) = 30.334 or 15.167 kJ/mol
-        # X -CA-CA-X    4   14.50        180.0     2.         intrpol.bsd.on C6H6 (from parm99.dat)
-        # X CA CA  X    3   30.334       0.000   -30.33400     0.000     0.000     0.000   ; intrpol.bsd.on C6H6
-        ;propers treated as RBs in GMX to use combine multiple AMBER torsions per quartet (from ffamber99bon.itp)
+            # dihedral    idivf        barrier hight/2 kcal/mol  phase degrees       periodicity     comments
+            X -ca-ca-X    4           14.500*                    180.000             2.000           intrpol.bsd.on C6H6
+            *convert 2 gmx: 14.5/4 * 4.184 * 2 (?) (yes in amb2gmx, not in topolbuild, why?) = 30.334 or 15.167 kJ/mol
+            # X -CA-CA-X    4   14.50        180.0     2.         intrpol.bsd.on C6H6 (from parm99.dat)
+            # X CA CA  X    3   30.334       0.000   -30.33400     0.000     0.000     0.000   ; intrpol.bsd.on C6H6
+            ;propers treated as RBs in GMX to use combine multiple AMBER torsions per quartet (from ffamber99bon.itp)
 
-        # impr. dihedral        barrier hight/2      phase degrees       periodicity     comments
-        X -X -ca-ha             1.1*                  180.                      2.       bsd.on C6H6 nmodes
-        * to convert to gmx: 1.1 * 4.184 = 4.6024 kJ/mol/rad^2
-        # X -X -CA-HA         1.1          180.          2.           bsd.on C6H6 nmodes (from parm99.dat)
-        # X   X   CA  HA       1      180.00     4.60240     2      ; bsd.on C6H6 nmodes
-        ;impropers treated as propers in GROMACS to use correct AMBER analytical function (from ffamber99bon.itp)
+            # impr. dihedral        barrier hight/2      phase degrees       periodicity     comments
+            X -X -ca-ha             1.1*                  180.                      2.       bsd.on C6H6 nmodes
+            * to convert to gmx: 1.1 * 4.184 = 4.6024 kJ/mol/rad^2
+            # X -X -CA-HA         1.1          180.          2.           bsd.on C6H6 nmodes (from parm99.dat)
+            # X   X   CA  HA       1      180.00     4.60240     2      ; bsd.on C6H6 nmodes
+            ;impropers treated as propers in GROMACS to use correct AMBER analytical function (from ffamber99bon.itp)
 
-        # 6-12 parms     sigma = 2 * r * 2^(-1/6)    epsilon
-        # atomtype        radius Ang.                    pot. well depth kcal/mol      comments
-          ha                  1.4590*                      0.0150**                         Spellmeyer
-          ca                  1.9080                    0.0860                            OPLS
-        * to convert to gmx:
-            sigma = 1.4590 * 2^(-1/6) * 2 = 2 * 1.29982 Ang. = 2 * 0.129982 nm  = 1.4590 * 2^(5/6)/10 =  0.259964 nm
-        ** to convert to gmx: 0.0150 * 4.184 = 0.06276 kJ/mol
-        # amber99_3    CA     0.0000  0.0000  A   3.39967e-01  3.59824e-01 (from ffamber99nb.itp)
-        # amber99_22   HA     0.0000  0.0000  A   2.59964e-01  6.27600e-02 (from ffamber99nb.itp)
-        # C*          1.9080  0.0860             Spellmeyer
-        # HA          1.4590  0.0150             Spellmeyer (from parm99.dat)
-        # to convert r and epsilon to ACOEF and BCOEF
-        # ACOEF = sqrt(e1*e2) * (r1 + r2)^12 ; BCOEF = 2 * sqrt(e1*e2) * (r1 + r2)^6 = 2 * ACOEF/(r1+r2)^6
-        # to convert ACOEF and BCOEF to r and epsilon
-        # r = 0.5 * (2*ACOEF/BCOEF)^(1/6); ep = BCOEF^2/(4*ACOEF)
-        # to convert ACOEF and BCOEF to sigma and epsilon (GMX)
-        # sigma = (ACOEF/BCOEF)^(1/6) * 0.1 ; epsilon = 4.184 * BCOEF^2/(4*ACOEF)
-        #   ca   ca       819971.66        531.10
-        #   ca   ha        76245.15        104.66
-        #   ha   ha         5716.30         18.52
+            # 6-12 parms     sigma = 2 * r * 2^(-1/6)    epsilon
+            # atomtype        radius Ang.                    pot. well depth kcal/mol      comments
+              ha                  1.4590*                      0.0150**                         Spellmeyer
+              ca                  1.9080                    0.0860                            OPLS
+            * to convert to gmx:
+                sigma = 1.4590 * 2^(-1/6) * 2 = 2 * 1.29982 Ang. = 2 * 0.129982 nm  = 1.4590 * 2^(5/6)/10 =  0.259964 nm
+            ** to convert to gmx: 0.0150 * 4.184 = 0.06276 kJ/mol
+            # amber99_3    CA     0.0000  0.0000  A   3.39967e-01  3.59824e-01 (from ffamber99nb.itp)
+            # amber99_22   HA     0.0000  0.0000  A   2.59964e-01  6.27600e-02 (from ffamber99nb.itp)
+            # C*          1.9080  0.0860             Spellmeyer
+            # HA          1.4590  0.0150             Spellmeyer (from parm99.dat)
+            # to convert r and epsilon to ACOEF and BCOEF
+            # ACOEF = sqrt(e1*e2) * (r1 + r2)^12 ; BCOEF = 2 * sqrt(e1*e2) * (r1 + r2)^6 = 2 * ACOEF/(r1+r2)^6
+            # to convert ACOEF and BCOEF to r and epsilon
+            # r = 0.5 * (2*ACOEF/BCOEF)^(1/6); ep = BCOEF^2/(4*ACOEF)
+            # to convert ACOEF and BCOEF to sigma and epsilon (GMX)
+            # sigma = (ACOEF/BCOEF)^(1/6) * 0.1 ; epsilon = 4.184 * BCOEF^2/(4*ACOEF)
+            #   ca   ca       819971.66        531.10
+            #   ca   ha        76245.15        104.66
+            #   ha   ha         5716.30         18.52
 
-        For proper dihedrals: a quartet of atoms may appear with more than
-        one set of parameters and to convert to GMX they are treated as RBs;
-        use the algorithm:
-          for(my $j=$i;$j<=$lines;$j++){
-            my $period = $pn{$j};
-            if($pk{$j}>0) {
-              $V[$period] = 2*$pk{$j}*$cal;
-            }
-            # assign V values to C values as predefined #
-            if($period==1){
-              $C[0]+=0.5*$V[$period];
-              if($phase{$j}==0){
-                $C[1]-=0.5*$V[$period];
-              }else{
-                $C[1]+=0.5*$V[$period];
+            For proper dihedrals: a quartet of atoms may appear with more than
+            one set of parameters and to convert to GMX they are treated as RBs;
+            use the algorithm:
+              for(my $j=$i;$j<=$lines;$j++){
+                my $period = $pn{$j};
+                if($pk{$j}>0) {
+                  $V[$period] = 2*$pk{$j}*$cal;
+                }
+                # assign V values to C values as predefined #
+                if($period==1){
+                  $C[0]+=0.5*$V[$period];
+                  if($phase{$j}==0){
+                    $C[1]-=0.5*$V[$period];
+                  }else{
+                    $C[1]+=0.5*$V[$period];
+                  }
+                }elsif($period==2){
+                  if(($phase{$j}==180)||($phase{$j}==3.14)){
+                    $C[0]+=$V[$period];
+                    $C[2]-=$V[$period];
+                  }else{
+                    $C[2]+=$V[$period];
+                  }
+                }elsif($period==3){
+                  $C[0]+=0.5*$V[$period];
+                  if($phase{$j}==0){
+                    $C[1]+=1.5*$V[$period];
+                    $C[3]-=2*$V[$period];
+                  }else{
+                    $C[1]-=1.5*$V[$period];
+                    $C[3]+=2*$V[$period];
+                  }
+                }elsif($period==4){
+                  if(($phase{$j}==180)||($phase{$j}==3.14)){
+                    $C[2]+=4*$V[$period];
+                    $C[4]-=4*$V[$period];
+                  }else{
+                    $C[0]+=$V[$period];
+                    $C[2]-=4*$V[$period];
+                    $C[4]+=4*$V[$period];
+                  }
+                }
               }
-            }elsif($period==2){
-              if(($phase{$j}==180)||($phase{$j}==3.14)){
-                $C[0]+=$V[$period];
-                $C[2]-=$V[$period];
-              }else{
-                $C[2]+=$V[$period];
-              }
-            }elsif($period==3){
-              $C[0]+=0.5*$V[$period];
-              if($phase{$j}==0){
-                $C[1]+=1.5*$V[$period];
-                $C[3]-=2*$V[$period];
-              }else{
-                $C[1]-=1.5*$V[$period];
-                $C[3]+=2*$V[$period];
-              }
-            }elsif($period==4){
-              if(($phase{$j}==180)||($phase{$j}==3.14)){
-                $C[2]+=4*$V[$period];
-                $C[4]-=4*$V[$period];
-              }else{
-                $C[0]+=$V[$period];
-                $C[2]-=4*$V[$period];
-                $C[4]+=4*$V[$period];
-              }
-            }
-          }
         """
 
         self.printMess("Writing GROMACS files\n")
@@ -3386,8 +3326,8 @@ class AbstractTopol:
 
     def setAtomType4Gromacs(self):
         """Atom types names in Gromacs TOP file are not case sensitive;
-        this routine will append a '_' to lower case atom type.
-        E.g.: CA and ca -> CA and ca_
+           this routine will append a '_' to lower case atom type.
+           E.g.: CA and ca -> CA and ca_
         """
         if self.disam:
             self.printMess("Disambiguating lower and uppercase atomtypes in GMX top file.\n")
@@ -3555,7 +3495,7 @@ class AbstractTopol:
         # """
         # ==============================================================================================================
 
-        headNa = """
+        headNa = f"""
 [ moleculetype ]
   ; molname       nrexcl
   NA+             1
@@ -4210,21 +4150,17 @@ class AbstractTopol:
         topFileName = os.path.join(gmxDir, top)
         topFile = open(topFileName, "w")
         topFile.writelines(topText)
-        topFileInMemory.writelines(topText)
 
         if not amb2gmx:
             itpFileName = os.path.join(gmxDir, itp)
             itpFile = open(itpFileName, "w")
             itpFile.writelines(itpText)
-            itpFileInMemory.writelines(itpText)
             oitpFileName = os.path.join(gmxDir, oitp)
             oitpFile = open(oitpFileName, "w")
             oitpFile.writelines(oitpText)
-            oitpFileInMemory.writelines(oitpText)
             otopFileName = os.path.join(gmxDir, otop)
             otopFile = open(otopFileName, "w")
             otopFile.writelines(otopText)
-            otopFileInMemory.writelines(otopText)
 
     def writeGroFile(self):
         """Write GRO files"""
@@ -4235,9 +4171,7 @@ class AbstractTopol:
         groFileName = os.path.join(gmxDir, gro)
         groFile = open(groFileName, "w")
         groFile.write(head % (gro, date))
-        groFileInMemory.write(head % (gro, date))
         groFile.write(" %i\n" % len(self.atoms))
-        groFileInMemory.write(" %i\n" % len(self.atoms))
         count = 1
         for atom in self.atoms:
             coords = [c * 0.1 for c in atom.coords]
@@ -4255,7 +4189,6 @@ class AbstractTopol:
             if count == 100000:
                 count = 0
             groFile.write(line)
-            groFileInMemory.write(line)
         if self.pbc:
             boxX = self.pbc[0][0] * 0.1
             boxY = self.pbc[0][1] * 0.1
@@ -4297,7 +4230,6 @@ class AbstractTopol:
             boxZ = max(Z) - min(Z)  # + 2.0
             text = "%11.5f %11.5f %11.5f\n" % (boxX * 20.0, boxY * 20.0, boxZ * 20.0)
         groFile.write(text)
-        groFileInMemory.write(text)
 
     def writeMdpFiles(self):
         """Write MDP for test with GROMACS"""
@@ -4320,9 +4252,7 @@ nsteps                   = 10000
         emMdpFile = open("em.mdp", "w")
         mdMdpFile = open("md.mdp", "w")
         emMdpFile.write(emMdp)
-        emMdpFileInMemory.write(emMdp)
         mdMdpFile.write(mdMdp)
-        mdMdpFileInMemory.write(mdMdp)
 
     def writeCnsTopolFiles(self):
         """Write CNS topology files"""
@@ -4356,12 +4286,9 @@ nsteps                   = 10000
 
         # print "Writing CNS PAR file\n"
         parFile.write("Remarks " + head % (par, date))
-        parFileInMemory.write("Remarks " + head % (par, date))
         parFile.write("\nset echo=false end\n")
-        parFileInMemory.write("\nset echo=false end\n")
 
         parFile.write("\n{ Bonds: atomType1 atomType2 kb r0 }\n")
-        parFileInMemory.write("\n{ Bonds: atomType1 atomType2 kb r0 }\n")
         lineSet = []
         for bond in self.bonds:
             a1Type = bond.atoms[0].atomType.atomTypeName + "_"
@@ -4377,10 +4304,8 @@ nsteps                   = 10000
                     lineSet.append(line)
         for item in lineSet:
             parFile.write(item)
-            parFileInMemory.write(item)
 
         parFile.write("\n{ Angles: aType1 aType2 aType3 kt t0 }\n")
-        parFileInMemory.write("\n{ Angles: aType1 aType2 aType3 kt t0 }\n")
         lineSet = []
         for angle in self.angles:
             a1 = angle.atoms[0].atomType.atomTypeName + "_"
@@ -4397,13 +4322,8 @@ nsteps                   = 10000
                     lineSet.append(line)
         for item in lineSet:
             parFile.write(item)
-            parFileInMemory.write(item)
 
         parFile.write(
-            "\n{ Proper Dihedrals: aType1 aType2 aType3 aType4 kt per\
-iod phase }\n"
-        )
-        parFileInMemory.write(
             "\n{ Proper Dihedrals: aType1 aType2 aType3 aType4 kt per\
 iod phase }\n"
         )
@@ -4439,13 +4359,8 @@ iod phase }\n"
             lineSet.add(seq)
         for item in lineSet:
             parFile.write(item)
-            parFileInMemory.write(item)
 
         parFile.write(
-            "\n{ Improper Dihedrals: aType1 aType2 aType3 aType4 kt p\
-eriod phase }\n"
-        )
-        parFileInMemory.write(
             "\n{ Improper Dihedrals: aType1 aType2 aType3 aType4 kt p\
 eriod phase }\n"
         )
@@ -4478,10 +4393,8 @@ eriod phase }\n"
 
         for item in lineSet:
             parFile.write(item)
-            parFileInMemory.write(item)
 
         parFile.write("\n{ Nonbonded: Type Emin sigma; (1-4): Emin/2 sigma }\n")
-        parFileInMemory.write("\n{ Nonbonded: Type Emin sigma; (1-4): Emin/2 sigma }\n")
         for at in self.atomTypes:
             A = at.ACOEF
             B = at.BCOEF
@@ -4495,34 +4408,25 @@ eriod phase }\n"
                 sig2 = sigma
             line = "NONBonded %5s %11.6f %11.6f %11.6f %11.6f\n" % (atName, epAmber, sigma, ep2, sig2)
             parFile.write(line)
-            parFileInMemory.write(line)
         parFile.write("\nset echo=true end\n")
-        parFileInMemory.write("\nset echo=true end\n")
 
         # print "Writing CNS TOP file\n"
         topFile.write("Remarks " + head % (top, date))
-        topFileInMemory.write("Remarks " + head % (top, date))
         topFile.write("\nset echo=false end\n")
-        topFileInMemory.write("\nset echo=false end\n")
         topFile.write("\nautogenerate angles=%s dihedrals=%s end\n" % (autoAngleFlag, autoDihFlag))
-        topFileInMemory.write("\nautogenerate angles=%s dihedrals=%s end\n" % (autoAngleFlag, autoDihFlag))
         topFile.write("\n{ atomType  mass }\n")
-        topFileInMemory.write("\n{ atomType  mass }\n")
 
         for at in self.atomTypes:
             atType = at.atomTypeName + "_"
             mass = at.mass
             line = "MASS %-5s %8.3f\n" % (atType, mass)
             topFile.write(line)
-            topFileInMemory.write(line)
 
         topFile.write("\nRESIdue %s\n" % self.residueLabel[0])
-        topFileInMemory.write("\nRESIdue %s\n" % self.residueLabel[0])
         topFile.write("\nGROUP\n")
-        topFileInMemory.write("\nGROUP\n")
 
         topFile.write("\n{ atomName  atomType  Charge }\n")
-        topFileInMemory.write("\n{ atomName  atomType  Charge }\n")
+
 
         for at in self.atoms:
             atName = at.atomName
@@ -4530,31 +4434,26 @@ eriod phase }\n"
             charge = at.charge
             line = "ATOM %-5s TYPE= %-5s CHARGE= %8.4f END\n" % (atName, atType, charge)
             topFile.write(line)
-            topFileInMemory.write(line)
 
         topFile.write("\n{ Bonds: atomName1  atomName2 }\n")
-        topFileInMemory.write("\n{ Bonds: atomName1  atomName2 }\n")
         for bond in self.bonds:
             a1Name = bond.atoms[0].atomName
             a2Name = bond.atoms[1].atomName
             line = "BOND %-5s %-5s\n" % (a1Name, a2Name)
             topFile.write(line)
-            topFileInMemory.write(line)
 
         if not autoAngleFlag or 1:  # generating angles anyway
             topFile.write("\n{ Angles: atomName1 atomName2 atomName3}\n")
-            topFileInMemory.write("\n{ Angles: atomName1 atomName2 atomName3}\n")
             for angle in self.angles:
                 a1Name = angle.atoms[0].atomName
                 a2Name = angle.atoms[1].atomName
                 a3Name = angle.atoms[2].atomName
                 line = "ANGLe %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name)
                 topFile.write(line)
-                topFileInMemory.write(line)
 
         if not autoDihFlag or 1:  # generating angles anyway
             topFile.write("\n{ Proper Dihedrals: name1 name2 name3 name4 }\n")
-            topFileInMemory.write("\n{ Proper Dihedrals: name1 name2 name3 name4 }\n")
+
             for item in self.condensedProperDihedrals:
                 for dih in item:
                     a1Name = dih.atoms[0].atomName
@@ -4564,10 +4463,10 @@ eriod phase }\n"
                     line = "DIHEdral %-5s %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name, a4Name)
                     break
                 topFile.write(line)
-                topFileInMemory.write(line)
+
 
         topFile.write("\n{ Improper Dihedrals: aName1 aName2 aName3 aName4 }\n")
-        topFileInMemory.write("\n{ Improper Dihedrals: aName1 aName2 aName3 aName4 }\n")
+
         for dih in self.improperDihedrals:
             a1Name = dih.atoms[0].atomName
             a2Name = dih.atoms[1].atomName
@@ -4575,7 +4474,7 @@ eriod phase }\n"
             a4Name = dih.atoms[3].atomName
             line = "IMPRoper %-5s %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name, a4Name)
             topFile.write(line)
-            topFileInMemory.write(line)
+
 
         if self.chiral:
             for idhc in self.chiralGroups:
@@ -4586,17 +4485,13 @@ eriod phase }\n"
                 a4Name = neig[3].atomName
                 line = "IMPRoper %-5s %-5s %-5s %-5s\n" % (a1Name, a2Name, a3Name, a4Name)
                 topFile.write(line)
-                topFileInMemory.write(line)
 
         topFile.write("\nEND {RESIdue %s}\n" % self.residueLabel[0])
-        topFileInMemory.write("\nEND {RESIdue %s}\n" % self.residueLabel[0])
 
         topFile.write("\nset echo=true end\n")
-        topFileInMemory.write("\nset echo=true end\n")
 
         # print "Writing CNS INP file\n"
         inpFile.write("Remarks " + head % (inp, date))
-        inpFileInMemory.write("Remarks " + head % (inp, date))
         inpData = """
 topology
   @%(CNS_top)s
@@ -4668,20 +4563,19 @@ stop
         dictInp["CNS_ran"] = self.baseName + "_rand.pdb"
         line = inpData % dictInp
         inpFile.write(line)
-        inpFileInMemory.write(line)
-        # if os.path.exists(self.obchiralExe):
+        #if os.path.exists(self.obchiralExe):
         self.printDebug("chiralGroups %i" % len(self.chiralGroups))
-        # else:
-        # self.printDebug("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-        # self.printDebug(
-        # "'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
-        # )
+        #else:
+            #self.printDebug("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
+            #self.printDebug(
+                #"'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
+            #)
 
 
 class ACTopol(AbstractTopol):
 
     """
-    Class to build the AC topologies (Antechamber AmberTools)
+        Class to build the AC topologies (Antechamber AmberTools)
     """
 
     def __init__(
@@ -4706,10 +4600,8 @@ class ACTopol(AbstractTopol):
         direct=False,
         is_sorted=False,
         chiral=False,
-        InMemory=False,
     ):
         super().__init__()
-        self.InMemory = InMemory
         self.debug = debug
         self.verbose = verbose
         self.gmx4 = gmx4
@@ -4819,15 +4711,15 @@ class ACTopol(AbstractTopol):
 
 class MolTopol(AbstractTopol):
 
-    """ "
-    Class to write topologies and parameters files for several applications
+    """"
+        Class to write topologies and parameters files for several applications
 
-    http://amber.scripps.edu/formats.html (not updated to amber 10 yet)
+        http://amber.scripps.edu/formats.html (not updated to amber 10 yet)
 
-    Parser, take information in AC xyz and top files and convert to objects
+        Parser, take information in AC xyz and top files and convert to objects
 
-    INPUTS: acFileXyz and acFileTop
-    RETURN: molTopol obj or None
+        INPUTS: acFileXyz and acFileTop
+        RETURN: molTopol obj or None
     """
 
     def __init__(
@@ -4855,7 +4747,6 @@ class MolTopol(AbstractTopol):
         self.sorted = is_sorted
         self.verbose = verbose
         self.inputFile = acFileTop
-        self.InMemory = False
 
         if acTopolObj:
             if not acFileXyz:
@@ -4896,13 +4787,13 @@ class MolTopol(AbstractTopol):
         self.getDihedrals()
 
         self.getChirals()
-        # if not os.path.exists(self.obchiralExe) and self.chiral:
-        # self.printWarn("No 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-        # self.printWarn(
-        # "'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
-        # )
-        # elif self.chiral and not self.chiralGroups:
-        # self.printWarn("No chiral atoms found")
+        #if not os.path.exists(self.obchiralExe) and self.chiral:
+            #self.printWarn("No 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
+            #self.printWarn(
+                #"'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
+            #)
+        #elif self.chiral and not self.chiralGroups:
+            #self.printWarn("No chiral atoms found")
         # self.setAtomPairs()
 
         # self.getExcludedAtoms()
@@ -4934,18 +4825,18 @@ class MolTopol(AbstractTopol):
 class Atom:
 
     """
-    Charges in prmtop file has to be divide by 18.2223 to convert to charge
-    in units of the electron charge.
-    To convert ACOEF and BCOEF to r0 (Ang.) and epsilon (kcal/mol), as seen
-    in gaff.dat for example; same atom type (i = j):
-        r0 = 1/2 * (2 * ACOEF/BCOEF)^(1/6)
-        epsilon = 1/(4 * A) * BCOEF^2
-    To convert r0 and epsilon to ACOEF and BCOEF
-        ACOEF = sqrt(ep_i * ep_j) * (r0_i + r0_j)^12
-        BCOEF = 2 * sqrt(ep_i * ep_j) * (r0_i + r0_j)^6
-              = 2 * ACOEF/(r0_i + r0_j)^6
-    where index i and j for atom types.
-    Coord is given in Ang. and mass in Atomic Mass Unit.
+        Charges in prmtop file has to be divide by 18.2223 to convert to charge
+        in units of the electron charge.
+        To convert ACOEF and BCOEF to r0 (Ang.) and epsilon (kcal/mol), as seen
+        in gaff.dat for example; same atom type (i = j):
+            r0 = 1/2 * (2 * ACOEF/BCOEF)^(1/6)
+            epsilon = 1/(4 * A) * BCOEF^2
+        To convert r0 and epsilon to ACOEF and BCOEF
+            ACOEF = sqrt(ep_i * ep_j) * (r0_i + r0_j)^12
+            BCOEF = 2 * sqrt(ep_i * ep_j) * (r0_i + r0_j)^6
+                  = 2 * ACOEF/(r0_i + r0_j)^6
+        where index i and j for atom types.
+        Coord is given in Ang. and mass in Atomic Mass Unit.
     """
 
     def __init__(self, atomName, atomType, id_, resid, mass, charge, coord):
@@ -4968,7 +4859,7 @@ class Atom:
 class AtomType:
 
     """
-    AtomType per atom in gaff or amber.
+        AtomType per atom in gaff or amber.
     """
 
     def __init__(self, atomTypeName, mass, ACOEF, BCOEF):
@@ -4987,7 +4878,7 @@ class AtomType:
 class Bond:
 
     """
-    attributes: pair of Atoms, spring constant (kcal/mol), dist. eq. (Ang)
+        attributes: pair of Atoms, spring constant (kcal/mol), dist. eq. (Ang)
     """
 
     def __init__(self, atoms, kBond, rEq):
@@ -5005,7 +4896,7 @@ class Bond:
 class Angle:
 
     """
-    attributes: 3 Atoms, spring constant (kcal/mol/rad^2), angle eq. (rad)
+        attributes: 3 Atoms, spring constant (kcal/mol/rad^2), angle eq. (rad)
     """
 
     def __init__(self, atoms, kTheta, thetaEq):
@@ -5023,8 +4914,8 @@ class Angle:
 class Dihedral:
 
     """
-    attributes: 4 Atoms, spring constant (kcal/mol), periodicity,
-    phase (rad)
+        attributes: 4 Atoms, spring constant (kcal/mol), periodicity,
+        phase (rad)
     """
 
     def __init__(self, atoms, kPhi, period, phase):
@@ -5039,11 +4930,10 @@ class Dihedral:
     def __repr__(self):
         return "<%s, ang=%.2f>" % (self.atoms, self.phase * 180 / Pi)
 
-
 def init_main():
 
     """
-    Main funcition, to satisfy Conda
+        Main funcition, to satisfy Conda
     """
 
     parser = argparse.ArgumentParser(usage=usage + epilog)
@@ -5295,10 +5185,9 @@ def init_main():
 
     if is_smiles:
         try:
-            os.remove(args.basename + ".mol2")
+            os.remove(basename+'.mol2')
         except Exception:
             pass
-
 
 if __name__ == "__main__":
 
