@@ -1,4 +1,6 @@
-import sys, time, json
+import sys
+import time
+import json
 from acpype_lib.acpype import ACTopol, MAXTIME, while_replace, header, elapsedTime, traceback
 import io
 
@@ -24,9 +26,7 @@ md_mdp = io.StringIO()
 sqm_in = io.StringIO()
 sqm_out = io.StringIO()
 
-filesInMemory = [(em_mdp, 'em.mdp'),(AC_frcmod,'_AC.frcmod'),(AC_inpcrd,'_AC.inpcrd'),(AC_lib,'_AC.lib'), (AC_prmtop,'_AC.prmtop'),(bcc_gaff_mol2,'_bcc_gaff.mol2'), (CHARMM_inp,'_CHARMM.inp'),(CHARMM_prm,'_CHARMM.prm'),(CHARMM_rtf,'_CHARMM.rtf'), (CNS_inp, '_CNS.inp'),
-(CNS_par,'_CNS.par'),(CNS_top,'_CNS.top'),(GMX_OPLS_itp,'_GMX_OPLS.itp'),(GMX_OPLS_top,'_GMX_OPLS.top'),(GMX_gro,'_GMX.gro'),(GMX_itp,'_GMX.itp'),(GMX_top,'_GMX.top'),(NEW_pdb,'_NEW.pdb'), (md_mdp,'md.mdp'), (sqm_in,'sqm.in'),(sqm_out,'sqm.out')]
-
+filesInMemory = [(em_mdp, "em.mdp") , (AC_frcmod, "_AC.frcmod") , (AC_inpcrd, "_AC.inpcrd") , (AC_lib, "_AC.lib"), (AC_prmtop, "_AC.prmtop"), (bcc_gaff_mol2, "_bcc_gaff.mol2"), (CHARMM_inp, "_CHARMM.inp"), (CHARMM_prm, "_CHARMM.prm"), (CHARMM_rtf, "_CHARMM.rtf"), (CNS_inp, "_CNS.inp"), (CNS_par, "_CNS.par"), (CNS_top, "_CNS.top"), (GMX_OPLS_itp, "_GMX_OPLS.itp"), (GMX_OPLS_top, "_GMX_OPLS.top"), (GMX_gro, "_GMX.gro"), (GMX_itp, "_GMX.itp"), (GMX_top, "_GMX.top"), (NEW_pdb, "_NEW.pdb"), (md_mdp, "md.mdp"), (sqm_in, "sqm.in"), (sqm_out, "sqm.out")]
 
 
 def clearFileInMemory():
@@ -34,38 +34,19 @@ def clearFileInMemory():
         files[0].seek(0)
         files[0].truncate(0)
 
+
 def readFiles(basename):
     for files in filesInMemory:
-        if files[1] == 'em.mdp' or files[1] == 'md.mdp' or files[1] =='sqm.in' or files[1] == 'sqm.out':
+        if files[1] == "em.mdp" or files[1] == "md.mdp" or files[1] == "sqm.in" or files[1] == "sqm.out":
             filename = files[1]
         else:
-            filename = basename+files[1]
-        readfile = tuple(open(filename, 'r'))
+            filename = basename + files[1]
+        readfile = tuple(open(filename, "r"))
         for line in readfile:
             files[0].write(line)
 
-def acpype_api(
-    inputFile,
-    chargeType="bcc",
-    chargeVal=None,
-    multiplicity="1",
-    atomType="gaff",
-    force=False,
-    basename=None,
-    debug=False,
-    outTopol="all",
-    engine="tleap",
-    allhdg=False,
-    timeTol=MAXTIME,
-    qprog="sqm",
-    ekFlag=None,
-    verbose=True,
-    gmx4=False,
-    disam=False,
-    direct=False,
-    is_sorted=False,
-    chiral=False,
-    is_smiles = False):
+
+def acpype_api(inputFile, chargeType="bcc", chargeVal=None, multiplicity="1", atomType="gaff", force=False, basename=None, debug=False, outTopol="all", engine="tleap", allhdg=False, timeTol=MAXTIME, qprog="sqm", ekFlag=None, verbose=True, gmx4=False, disam=False, direct=False, is_sorted=False, chiral=False, is_smiles=False):
 
     at0 = time.time()
     print(header)
@@ -74,21 +55,18 @@ def acpype_api(
         texta = "Python Version %s" % sys.version
         print("DEBUG: %s" % while_replace(texta))
     try:
-        molecule = ACTopol(inputFile=inputFile, chargeType=chargeType, chargeVal=chargeVal, debug=debug, multiplicity=multiplicity, atomType=atomType, force=force,
-            outTopol=outTopol, engine=engine, allhdg=allhdg, basename=basename, timeTol=timeTol, qprog=qprog, ekFlag=ekFlag, verbose=verbose, gmx4=gmx4, disam=disam,
-            direct=direct, is_sorted=is_sorted, chiral=chiral)
-
+        molecule = ACTopol(inputFile=inputFile, chargeType=chargeType, chargeVal=chargeVal, debug=debug, multiplicity=multiplicity, atomType=atomType, force=force, outTopol=outTopol, engine=engine, allhdg=allhdg, basename=basename, timeTol=timeTol, qprog=qprog, ekFlag=ekFlag, verbose=verbose, gmx4=gmx4, disam=disam, direct=direct, is_sorted=is_sorted, chiral=chiral)
         molecule.createACTopol()
         molecule.createMolTopol()
         if not basename:
-            file_name = 'smiles_molecule'
+            file_name = "smiles_molecule"
         else:
             file_name = basename
 
         "Output in JSON format"
         readFiles(file_name)
-        output={
-            "file_name":file_name,
+        output = {
+            "file_name" : file_name,
             "em_mdp" : em_mdp.getvalue(),
             "AC_frcmod" : AC_frcmod.getvalue(),
             "AC_inpcrd" : AC_inpcrd.getvalue(),
@@ -116,7 +94,7 @@ def acpype_api(
         print("ACPYPE FAILED: %s" % exceptionValue)
         if debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
-            output = {'file_name': "error"}
+            output = {"file_name": "error"}
 
     execTime = int(round(time.time() - at0))
     if execTime == 0:
