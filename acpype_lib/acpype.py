@@ -5179,9 +5179,9 @@ def init_main():
     except Exception:
         pass
 
-    if is_smiles:
+    if checkSmiles(args.input):
         try:
-            os.remove(args.basename + ".mol2")
+            os.remove("smiles_molecule.mol2")
         except Exception:
             pass
 
