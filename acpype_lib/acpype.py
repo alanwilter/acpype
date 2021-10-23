@@ -3190,12 +3190,12 @@ class AbstractTopol:
             elif len(aName) == 1:
                 aName = " %s  " % aName
                 if "C" or "H" in aName:
-                    s = 'Xx'
+                    s = "Xx"
 
-    #        for ll in aName:
-    #            if ll.isalpha():
-    #                s = ll
-    #                break
+            #        for ll in aName:
+            #            if ll.isalpha():
+            #                s = ll
+            #                break
 
             rName = self.residueLabel[0]
             x = atom.coords[0]
@@ -3214,7 +3214,7 @@ class AbstractTopol:
                 1.0,
                 0.0,
                 10 * " ",
-                ''.join(filter(str.isalpha, s)),
+                "".join(filter(str.isalpha, s)),
             )
             pdbFile.write(line)
             id_ += 1
