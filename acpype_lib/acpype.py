@@ -3183,14 +3183,20 @@ class AbstractTopol:
         for atom in self.atoms:
             # id_ = self.atoms.index(atom) + 1
             aName = atom.atomName
-            if len(aName) == 2:
-                aName = " %s " % aName
+            if len(aName) == 2 or len(aName) == 3:
+                aName = "%s " % aName.capitalize()
+                s = aName
+
             elif len(aName) == 1:
                 aName = " %s  " % aName
-            for ll in aName:
-                if ll.isalpha():
-                    s = ll
-                    break
+                if "C" or "H" in aName:
+                    s = 'Xx'
+
+    #        for ll in aName:
+    #            if ll.isalpha():
+    #                s = ll
+    #                break
+
             rName = self.residueLabel[0]
             x = atom.coords[0]
             y = atom.coords[1]
@@ -3208,7 +3214,7 @@ class AbstractTopol:
                 1.0,
                 0.0,
                 10 * " ",
-                s,
+                ''.join(filter(str.isalpha, s)),
             )
             pdbFile.write(line)
             id_ += 1
