@@ -75,3 +75,15 @@ def test_glycam():
     assert molecule.topo14Data.hasNondefault14()
     assert len(molecule.topo14Data.scnb_scale_factor) == 31
     shutil.rmtree(molecule.absHomeDir)
+
+
+def test_sqm_tleap():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("benzene.pdb", chargeType="bcc", debug=True)
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert len(molecule.molTopol.atoms) == 12
+    assert len(molecule.molTopol.properDihedrals) == 24
+    assert len(molecule.molTopol.improperDihedrals) == 6
+    shutil.rmtree(molecule.absHomeDir)
