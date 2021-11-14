@@ -1659,7 +1659,7 @@ class AbstractTopol:
         self.outTopols = None
         self.ext = None
         self.xyzFileData = None
-        self.obchiralExe = None
+        # self.obchiralExe = None
         self.charmmBase = None
         self.allhdg = None
         self.topo14Data = None
@@ -1698,6 +1698,7 @@ class AbstractTopol:
         self.CnsParFileName = None
         self.CnsPdbFileName = None
         self.smiles = None
+        self.amb2gmx = None
 
     def printDebug(self, text=""):
         """Debug log level"""
@@ -2491,7 +2492,8 @@ class AbstractTopol:
         if not os.path.exists(self.homeDir):
             os.mkdir(self.homeDir)
         os.chdir(self.homeDir)
-        copy2(self.absInputFile, ".")
+        if self.absInputFile:
+            copy2(self.absInputFile, ".")
         return True
 
     def createACTopol(self):
@@ -2674,18 +2676,7 @@ class AbstractTopol:
         self._atomTypeNameList = atomTypeNameList
         massList = self.getFlagData("MASS")
         chargeList = self.getFlagData("CHARGE")
-        #        totalCharge = sum(chargeList)
-        #        self.printDebug('charge to be balanced: total %13.10f' % (totalCharge/qConv))
-
         resIds = self.getFlagData("RESIDUE_POINTER") + [0]
-        # to guess the resId of the last residue before ion or water
-        #        for resTemp in self.residueLabel:
-        #            if resTemp in ionOrWaterResNameList:
-        #                lastSoluteResId = self.residueLabel.index(resTemp) - 1
-        #                break
-        # print lastSoluteResId, self.residueLabel[lastSoluteResId]
-        # uniqAtomTypeId = self.getFlagData('ATOM_TYPE_INDEX') # for LJ
-        #        balanceChargeList = self.balanceCharges(chargeList)
         coords = self.getCoords()
         ACOEFs, BCOEFs = self.getABCOEFs()
 
@@ -2702,14 +2693,12 @@ class AbstractTopol:
                 atomName = atomName.upper()
             atomTypeName = atomTypeNameList[id_]
             if id_ + 1 == resIds[countRes]:
-                resid = countRes  # self.residueLabel[countRes]
+                resid = countRes
                 countRes += 1
             resName = self.residueLabel[resid]
             if resName in ionOrSolResNameList and not FirstNonSoluteId:
                 FirstNonSoluteId = id_
-                # print id_, resid, resName
             mass = massList[id_]
-            # charge = balanceChargeList[id_]
             charge = chargeList[id_]
             chargeConverted = charge / qConv
             totalCharge += charge
@@ -2736,7 +2725,7 @@ class AbstractTopol:
             self.atomTypeSystem = "amber"
 
         self.printDebug("Balanced TotalCharge %13.10f" % float(sum(balanceChargeList) / qConv))
-        self.totalCharge = int(totalCharge)
+        self.totalCharge = int(round(totalCharge / qConv))
 
         self.atoms = atoms
         self.atomTypes = atomTypes
@@ -3149,8 +3138,6 @@ class AbstractTopol:
         """Write CHARMM topology files"""
         self.printMess("Writing CHARMM files\n")
 
-        # self.makeDir()
-
         at = self.atomType
         self.getResidueLabel()
         res = self.resName  # self.residueLabel[0]
@@ -3223,7 +3210,7 @@ class AbstractTopol:
             id_ += 1
         pdbFile.write("END\n")
 
-    def writeGromacsTopolFiles(self, amb2gmx=False):
+    def writeGromacsTopolFiles(self):
         """
         # from ~/Programmes/amber10/dat/leap/parm/gaff.dat
         #atom type        atomic mass        atomic polarizability        comments
@@ -3329,7 +3316,7 @@ class AbstractTopol:
 
         self.writeGroFile()
 
-        self.writeGromacsTop(amb2gmx=amb2gmx)
+        self.writeGromacsTop()
 
         self.writeMdpFiles()
 
@@ -3389,7 +3376,7 @@ class AbstractTopol:
         # print modAtomTypes
         # print delAtomTypes
 
-    def writeGromacsTop(self, amb2gmx=False):
+    def writeGromacsTop(self):
         """Write GMX topology file"""
         if self.atomTypeSystem == "amber":
             d2opls = dictAtomTypeAmb2OplsGmxCode
@@ -3594,7 +3581,7 @@ class AbstractTopol:
 3   1   2
 #endif
 """
-        if self.direct and amb2gmx:
+        if self.direct and self.amb2gmx:
             self.printMess("Converting directly from AMBER to GROMACS.\n")
 
         # Dict of ions dealt by acpype emulating amb2gmx
@@ -3613,7 +3600,7 @@ class AbstractTopol:
         topText.append(headDefault)
 
         nSolute = 0
-        if not amb2gmx:
+        if not self.amb2gmx:
             topText.append(headItp % (itp, itp))
             otopText.append(headOpls)
             otopText.append(headItp % (itp, itp))
@@ -3656,7 +3643,7 @@ class AbstractTopol:
             # tmpFile.write(line)
             temp.append(line)
             otemp.append(oline)
-        if amb2gmx:
+        if self.amb2gmx:
             topText.append(headAtomtypes)
             topText += temp
             nWat = self.residueLabel.count("WAT")
@@ -3682,7 +3669,7 @@ class AbstractTopol:
             self.printDebug("type of water '%s'" % headWater[43:48].strip())
 
         if nSolute:
-            if amb2gmx:
+            if self.amb2gmx:
                 topText.append(headMoleculetype % self.baseName)
             else:
                 itpText.append(headMoleculetype % self.baseName)
@@ -3742,7 +3729,7 @@ class AbstractTopol:
             temp.append(line)
             otemp.append(oline)
         if temp:
-            if amb2gmx:
+            if self.amb2gmx:
                 topText.append(headAtoms)
                 topText += temp
             else:
@@ -3792,7 +3779,7 @@ class AbstractTopol:
         temp.sort()
         otemp.sort()
         if temp:
-            if amb2gmx:
+            if self.amb2gmx:
                 topText.append(headBonds)
                 topText += temp
             else:
@@ -3818,7 +3805,7 @@ class AbstractTopol:
             temp.append(line)
         temp.sort()
         if temp:
-            if amb2gmx:
+            if self.amb2gmx:
                 topText.append(headPairs)
                 topText += temp
             else:
@@ -3871,7 +3858,7 @@ class AbstractTopol:
         temp.sort()
         otemp.sort()
         if temp:
-            if amb2gmx:
+            if self.amb2gmx:
                 topText.append(headAngles)
                 topText += temp
             else:
@@ -3934,7 +3921,7 @@ class AbstractTopol:
             temp.sort()
             otemp.sort()
             if temp:
-                if amb2gmx:
+                if self.amb2gmx:
                     topText.append(headProDih)
                     topText += temp
                 else:
@@ -3991,7 +3978,7 @@ class AbstractTopol:
             temp.sort()
             otemp.sort()
             if temp:
-                if amb2gmx:
+                if self.amb2gmx:
                     topText.append(headProDihGmx45)
                     topText += temp
                 else:
@@ -4052,7 +4039,7 @@ class AbstractTopol:
         temp.sort()
         otemp.sort()
         if temp:
-            if amb2gmx:
+            if self.amb2gmx:
                 topText.append(headProDihAlphaGamma)
                 topText += temp
             else:
@@ -4110,7 +4097,7 @@ class AbstractTopol:
         temp.sort()
         otemp.sort()
         if temp:
-            if amb2gmx:
+            if self.amb2gmx:
                 topText.append(headImpDih)
                 topText += temp
             else:
@@ -4160,7 +4147,7 @@ class AbstractTopol:
         topFile = open(topFileName, "w")
         topFile.writelines(topText)
 
-        if not amb2gmx:
+        if not self.amb2gmx:
             itpFileName = os.path.join(gmxDir, itp)
             itpFile = open(itpFileName, "w")
             itpFile.writelines(itpText)
@@ -4604,8 +4591,10 @@ class ACTopol(AbstractTopol):
         direct=False,
         is_sorted=False,
         chiral=False,
+        amb2gmx=False,
     ):
         super().__init__()
+        self.amb2gmx = amb2gmx
         self.debug = debug
         self.verbose = verbose
         self.gmx4 = gmx4
@@ -4739,10 +4728,12 @@ class MolTopol(AbstractTopol):
         direct=False,
         is_sorted=False,
         chiral=False,
+        amb2gmx=False,
     ):
         super().__init__()
+        self.amb2gmx = amb2gmx
         self.chiral = chiral
-        self.obchiralExe = which("obchiral") or ""
+        # self.obchiralExe = which("obchiral") or ""
         self.allhdg = False
         self.debug = debug
         self.gmx4 = gmx4
@@ -4790,25 +4781,12 @@ class MolTopol(AbstractTopol):
 
         self.getDihedrals()
 
-        self.getChirals()
-        # if not os.path.exists(self.obchiralExe) and self.chiral:
-        # self.printWarn("No 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-        # self.printWarn(
-        # "'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
-        # )
-        # elif self.chiral and not self.chiralGroups:
-        # self.printWarn("No chiral atoms found")
-        # self.setAtomPairs()
-
-        # self.getExcludedAtoms()
-
-        # a list of FLAGS from acTopFile that matter
-        #        self.flags = ( 'POINTERS', 'ATOM_NAME', 'CHARGE', 'MASS', 'ATOM_TYPE_INDEX',
-        #                  'NUMBER_EXCLUDED_ATOMS', 'NONBONDED_PARM_INDEX',
-        #                  'RESIDUE_LABEL', 'BOND_FORCE_CONSTANT', 'BOND_EQUIL_VALUE',
-        #                  'ANGLE_FORCE_CONSTANT', 'ANGLE_EQUIL_VALUE',
-        #                  'DIHEDRAL_FORCE_CONSTANT', 'DIHEDRAL_PERIODICITY',
-        #                  'DIHEDRAL_PHASE', 'AMBER_ATOM_TYPE' )
+        if self.amb2gmx:
+            self.rootDir = os.path.abspath(".")
+            self.homeDir = f"{self.baseName}.amb2gmx"
+            self.makeDir()
+        else:
+            self.getChirals()
 
         # Sort atoms for gromacs output. # JDC
         if self.sorted:
@@ -5118,6 +5096,7 @@ def init_main():
             system = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
+                amb2gmx=True,
                 debug=args.debug,
                 basename=args.basename,
                 verbose=args.verboseless,
@@ -5129,7 +5108,7 @@ def init_main():
             )
 
             system.printDebug("prmtop and inpcrd files parsed")
-            system.writeGromacsTopolFiles(amb2gmx=True)
+            system.writeGromacsTopolFiles()
         else:
             molecule = ACTopol(
                 args.input,
@@ -5152,6 +5131,7 @@ def init_main():
                 direct=args.direct,
                 is_sorted=args.sorted,
                 chiral=args.chiral,
+                amb2gmx=False,
             )
 
             molecule.createACTopol()
@@ -5196,19 +5176,4 @@ def init_main():
 
 
 if __name__ == "__main__":
-
-    # For pip package
-    # LOCAL_PATH = os.getcwd()
-    # os.environ["PATH"] += (
-    #     os.pathsep
-    #     + LOCAL_PATH
-    #     + "amber19-0_linux/bin/to_be_dispatched:"
-    #     + LOCAL_PATH
-    #     + "/amber19-0_linux/bin:"
-    #     + LOCAL_PATH
-    #     + "/amber19-0_linux/dat/"
-    # )
-    # os.environ["AMBERHOME"] = LOCAL_PATH +'/amber19-0_linux'
-    # os.environ["ACHOME"] = LOCAL_PATH +'/amber19-0_linux/bin/'
-    # os.environ["LD_LIBRARY_PATH"] =LOCAL_PATH +'/amber19-0_linux/lib'
     init_main()  # necessary for to call in anaconda package;
