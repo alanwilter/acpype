@@ -107,18 +107,15 @@ if sys.version_info < (3, 6):
     sys.exit(5)
 
 year = datetime.today().year
-__updated__ = "2021-02-05T22:15:50CET"
+__updated__ = "2021-11-14T23:21:21CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
-lineHeader = """
-| ACPYPE: AnteChamber PYthon Parser interfacE v. %s (c) %s AWSdS |
-""" % (
-    tag,
-    year,
-)
+lineHeader = f"""
+| ACPYPE: AnteChamber PYthon Parser interfacE v. {tag} (c) {year} AWSdS |
+"""
 frameLine = (len(lineHeader) - 2) * "="
-header = "%s%s%s" % (frameLine, lineHeader, frameLine)
+header = f"{frameLine}{lineHeader}{frameLine}"
 
 #    TODO:
 #        Howto Charmm and Amber with NAMD
@@ -1280,7 +1277,7 @@ def elapsedTime(seconds, add_s=False, separator=" "):
         value = seconds // alength
         if value > 0:
             seconds = seconds % alength
-            atime.append("%s%s" % (str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
+            atime.append(f'{str(value)}{(suffix, (suffix, suffix + "s")[value > 1])[add_s]}')
         if seconds < 1:
             break
 
@@ -1339,7 +1336,7 @@ def parmMerge(fdat1, fdat2, frcmod=False):
         name2 = os.path.basename(fdat2).split(".dat")[0]
     mname = "/tmp/" + name1 + name2 + ".dat"
     mdatFile = open(mname, "w")
-    mdat = ["merged %s %s" % (name1, name2)]
+    mdat = [f"merged {name1} {name2}"]
 
     # if os.path.exists(mname): return mname
     dat1 = splitBlock(open(fdat1).readlines())
@@ -1422,7 +1419,7 @@ def job_pids_family(jpid):
     apid = repr(jpid)
     dict_pids = {}
     pids = [apid]
-    cmd = "ps -A -o uid,pid,ppid|grep %i" % os.getuid()
+    cmd = f"ps -A -o uid,pid,ppid|grep {os.getuid()}"
     out = _getoutput(cmd).split("\n")  # getoutput("ps -A -o uid,pid,ppid|grep %i" % os.getuid()).split('\n')
     for item in out:
         vec = item.split()
@@ -1703,22 +1700,22 @@ class AbstractTopol:
     def printDebug(self, text=""):
         """Debug log level"""
         if self.debug:
-            print("DEBUG: %s" % while_replace(text))
+            print(f"DEBUG: {while_replace(text)}")
 
     def printWarn(self, text=""):
         """Warn log level"""
         if self.verbose:
-            print("WARNING: %s" % while_replace(text))
+            print(f"WARNING: {while_replace(text)}")
 
     def printError(self, text=""):
         """Error log level"""
         if self.verbose:
-            print("ERROR: %s" % while_replace(text))
+            print(f"ERROR: {while_replace(text)}")
 
     def printMess(self, text=""):
         """Info log level"""
         if self.verbose:
-            print("==> %s" % while_replace(text))
+            print(f"==> {while_replace(text)}")
 
     def printQuoted(self, text=""):
         """Print quoted messages"""
@@ -1755,18 +1752,18 @@ class AbstractTopol:
             self.printWarn("no charge value given, trying to guess one...")
             mol2FileForGuessCharge = self.inputFile
             if self.ext == ".pdb":
-                cmd = "%s -ipdb %s -omol2 -O %s.mol2" % (self.babelExe, self.inputFile, self.baseName)
-                self.printDebug("guessCharge: " + cmd)
+                cmd = f"{self.babelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
+                self.printDebug(f"guessCharge: {cmd}")
                 out = _getoutput(cmd)
                 self.printDebug(out)
-                mol2FileForGuessCharge = os.path.abspath(self.baseName + ".mol2")
+                mol2FileForGuessCharge = os.path.abspath(f"{self.baseName}.mol2")
                 in_mol = "mol2"
             else:
                 in_mol = self.ext[1:]
                 if in_mol == "mol":
                     in_mol = "mdl"
 
-            cmd = "%s -dr no -i %s -fi %s -o tmp -fo mol2 -c gas -pf y" % (self.acExe, mol2FileForGuessCharge, in_mol)
+            cmd = f"{self.acExe} -dr no -i {mol2FileForGuessCharge} -fi {in_mol} -o tmp -fo mol2 -c gas -pf y"
 
             if self.debug:
                 self.printMess("Debugging...")
@@ -1802,7 +1799,7 @@ class AbstractTopol:
             if not self.force:
                 sys.exit(7)
         self.chargeVal = str(charge2)
-        self.printMess("... charge set to %i" % charge2)
+        self.printMess(f"... charge set to {charge2}")
         os.chdir(localDir)
 
     def setResNameCheckCoords(self):
