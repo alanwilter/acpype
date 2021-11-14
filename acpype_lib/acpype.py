@@ -70,7 +70,6 @@ from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
 
-is_smiles = False
 
 MAXTIME = 3 * 3600
 # For pip package
@@ -1697,6 +1696,7 @@ class AbstractTopol:
         self.CnsInpFileName = None
         self.CnsParFileName = None
         self.CnsPdbFileName = None
+        self.is_smiles = None
         self.smiles = None
         self.amb2gmx = None
 
@@ -1814,7 +1814,7 @@ class AbstractTopol:
         if not os.path.exists(self.tmpDir):
             os.mkdir(self.tmpDir)
         # if not os.path.exists(os.path.join(tmpDir, self.inputFile)):
-        if is_smiles:
+        if self.is_smiles:
             self.convertSmilesToMol2()
 
         copy2(self.absInputFile, self.tmpDir)
@@ -2320,8 +2320,6 @@ class AbstractTopol:
             if self.convertPdbToMol2():
                 self.printError("convertPdbToMol2 failed")
 
-        # print self.chargeVal
-
         if self.execAntechamber():
             self.printError("Antechamber failed")
             fail = True
@@ -2451,7 +2449,6 @@ class AbstractTopol:
             import pybel
 
         """Convert Smiles to MOL2 by using babel"""
-
         if not self.baseName:
             self.baseName = "smiles_molecule"
 
@@ -4607,12 +4604,11 @@ class ACTopol(AbstractTopol):
         self.absInputFile = os.path.abspath(inputFile)
         if not os.path.exists(self.absInputFile):
             if checkSmiles(inputFile):
-                is_smiles = True
+                self.is_smiles = True
             else:
-                is_smiles = False
-            if is_smiles:
+                self.is_smiles = False
+            if self.is_smiles:
                 self.smiles = inputFile
-                self.convertSmilesToMol2()
         else:
             if not os.path.exists(self.absInputFile):
                 self.printWarn("input file doesn't exist")
@@ -5169,10 +5165,9 @@ def init_main():
         pass
 
     if checkSmiles(args.input):
-        try:
-            os.remove("smiles_molecule.mol2")
-        except Exception:
-            pass
+        afile = "smiles_molecule.mol2"
+        if os.path.exists(afile):
+            os.remove(afile)
 
 
 if __name__ == "__main__":
