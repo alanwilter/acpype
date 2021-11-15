@@ -1,0 +1,169 @@
+#!/home/conda/feedstock_root/build_artifacts/ambertools_1635195478443/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/bin/python
+
+import os, sys, math, subprocess, random, argparse, shutil, atexit, signal, logging, shutil
+from packmol_memgen.main import *
+from argparse import RawDescriptionHelpFormatter
+
+head = """
+
+ _____           _                    _
+|  __ \         | |                  | |
+| |__) |_ _  ___| | ___ __ ___   ___ | |
+|  ___/ _` |/ __| |/ / '_ ` _ \ / _ \| |
+| |  | (_| | (__|   <| | | | | | (_) | |
+|_|   \__,_|\___|_|\_\_| |_| |_|\___/|_|
+                                         ___
+                  /\/\   ___ _ __ ___   / _ \___ _ __
+                 /    \ / _ \ '_ ` _ \ / /_\/ _ \ '_ \ 
+                / /\/\ \  __/ | | | | / /_ \  __/ | | |
+                \/    \/\___|_| |_| |_\____/\___|_| |_|
+
+
+###############################################################
+Stephan Schott-Verdugo 2016-11-07 UPDATED: 2021-07-16   v1.2.1
+Generated at CPCLab at Heinrich Heine University Duesseldorf
+      &      CBCLab at Forschungszentrum Juelich
+###############################################################\n"""
+#CHECK CHANGELOG IN README.rst
+
+try:
+    os.environ['COLUMNS'] = str(shutil.get_terminal_size()[0])
+except:
+    try:
+        from backports.shutil_get_terminal_size import get_terminal_size
+        os.environ['COLUMNS'] = str(get_terminal_size()[0])
+    except:
+        os.environ['COLUMNS'] = "80"
+
+
+explanation = """The script creates an input file for PACKMOL for creating a bilayer system with a protein inserted in it. The input pdb file will be protonated and oriented by default by using reduce and MEMEMBED; the user is encouraged to check the input and output files carefully!  If the protein is preoriented, for example by using PPM webserver from OPM (http://opm.phar.umich.edu/server.php), be sure to set the corresponding flag (--preoriented).  In some cases the packed system might crash during the first MD step, specially when the system is minimized by using pmemd GPU code (cudaFree Memory allocation error). It's highly recommended that the minimization steps are performed on cpus (--minimize), but also changes in the box boundaries or repacking with --random as an argument might help.
+
+ If you use this script, please cite:
+
+    **Schott-Verdugo, S and Gohlke, H, PACKMOL-Memgen: A Simple-To-Use, Generalized Workflow for Membrane-Protein-Lipid-Bilayer System Building, Journal of Chemical Information and Modeling,  59, 6, 2522-2528., 2019
+
+    you should also cite and/or acknowledge:
+
+    **Leandro Martinez (L. Martinez, R. Andrade, E. G. Birgin, J. M. Martinez. Packmol: A package for building initial configurations for molecular dynamics simulations. Journal of Computational Chemistry, 30(13):2157-2164, 2009.)
+    **Tim Nugent (Nugent T, Jones DT. Membrane protein orientation and refinement using a knowledge-based statistical potential. BMC Bioinformatics. 2013 Sep 18;14:276.)
+    **Bosco K. Ho (http://boscoh.com/ ; https://github.com/boscoh/pdbremix)
+    **Benjamin D. Madej (charmmlipid2amber.py)
+
+"""
+
+explanation = explanation+"-"*int(os.environ['COLUMNS'])
+
+short_help = "-h" in sys.argv
+
+parser = argparse.ArgumentParser(prog="packmol-memgen", description = explanation, add_help=False, formatter_class=RawDescriptionHelpFormatter)
+parser.add_argument("-h",     action="help", help="prints this help message and exits" if short_help else "prints a short help message and exits")
+parser.add_argument("--help", action="help", help="prints an extended help message and exits" if short_help else "prints this help message and exits")
+parser.add_argument("--available_lipids",action="store_true",     help="list of available lipids and corresponding charges")
+parser.add_argument("--available_lipids_all",action="store_true", help="list all lipids including experimental. Huge output (>4000 lines)! Think about grepping the lipid you want (packmol-memgen --available_lipids_all | grep YOUR_LIPID_PATTERN)")
+parser.add_argument("--available_solvents",action="store_true",     help="list of available solvents and corresponding charges")
+parser.add_argument("-l","--lipids",action="append",metavar="LIP1:LIP2//LIP3",help="Lipid(s) to be used for embeding the protein. It should be a single string separated by ':' . If different composition is used in leaflets, add '//' as a separator.[ex. CHL1:DOPC//DOPE for a lower leaflet with CHL1+DOPC and an upper leaflet with DOPE]. Can be defined multiple times for multi-bilayer systems (stacks 'up' or 'outside')")
+parser.add_argument("-r","--ratio",action="append",metavar="R1:R2//R3", help="mixture ratio (set to 1 if only one lipid required). Must be in the same order and syntax as in lipids, and defined once per bilayer [ex. 1:2//1] ")
+parser.add_argument("--solvents",type=str,    metavar="SOL1:SOL2",help="Solvent(s) to be used for the packing. As lipids, it should be a single string separated by ':'. Water by default.")
+parser.add_argument("--solvent_ratio",type=str,metavar="SR1:SR2", help="mixture ratio (set to 1 if only one solvent required). Must be in the same order and syntax as in solvents")
+parser.add_argument("--dist",         type=float, default=15.0,   help=argparse.SUPPRESS if short_help else "specify the minimum distance between the maxmin values for x y and z to the box boundaries. Default = 15 A. Worst case scenario is considered, so real distance could be larger")
+parser.add_argument("--dist_wat", type=float, default=17.5,       help=argparse.SUPPRESS if short_help else "specify the width of the water layer over the membrane or protein in the z axis. Default = 17.5")
+parser.add_argument("--distxy_fix",   type=float,                 help="specify the membrane patch side length in the x and y axis. Useful when only lipids are packed! By default is calculated flexibly depending on the protein")
+parser.add_argument("--noxy_cen",     action="store_false",       help=argparse.SUPPRESS if short_help else "disable default centering in the xy plane that ensures symmetric membrane building. Not recommended!")
+parser.add_argument("--self_assembly",      action="store_true",  help=argparse.SUPPRESS if short_help else "places lipids all over the packed box, and not in a bilayer.")
+parser.add_argument("--xygauss",nargs=3,metavar=("C","D","H"),    help=argparse.SUPPRESS if short_help else "set parameters for a curved 2d gaussian in the xy plane. Parameters are uncertainty in x, uncertainty in y and gaussian height. By default, membranes are flat.")
+parser.add_argument("--curvature",    type=float, default=None,   help=argparse.SUPPRESS if short_help else "set the curvature of the membrane patch. By default, membranes are flat.")
+parser.add_argument("--curv_radius",  type=float, default=None,   help=argparse.SUPPRESS if short_help else "inverse of curvature. Set the curvature as if on a vesicle with the provided radius.")
+parser.add_argument("--dims", nargs=3,metavar=("X","Y","Z"),      type=float,default=[0,0,0], help=argparse.SUPPRESS if short_help else "box dimensions vector for the  x y z  axes. Be sure to use dimensions that cover the complete protein to be packed!!")
+parser.add_argument("--solvate",      action="store_true",        help=argparse.SUPPRESS if short_help else "solvate the system without adding lipids. Disables the flag --dist_wat, using only --dist to set the box size. Under development!")
+parser.add_argument("--cubic",        action="store_true",        help=argparse.SUPPRESS if short_help else "cube shaped box. Only works with --solvate")
+parser.add_argument("--vol",          action="store_true",        help=argparse.SUPPRESS if short_help else "do the lipid number estimation based on the volume occupied by the leaflet instead of APL. This might cause a great overestimation of the number of lipid molecules!")
+parser.add_argument("--leaflet",      type=float, default=23.0,   help=argparse.SUPPRESS if short_help else "set desired leaflet width. 23 by default.")
+parser.add_argument("--lip_offset",   type=float, default=1.0,    help=argparse.SUPPRESS if short_help else "factor that multiplies the x/y sizes for the lipid membrane segment. Might improve packing and handling by AMBER")
+parser.add_argument("--apl_offset",   action="append",            help=argparse.SUPPRESS if short_help else "factor that multiplies the default APL values. Helpful if packing stretched membranes.")
+parser.add_argument("--tailplane",    type=float,                 help=argparse.SUPPRESS if short_help else "sets the position BELOW which the CH3 carbon atoms in the tail should be. By default defined in parameter file")
+parser.add_argument("--headplane",    type=float,                 help=argparse.SUPPRESS if short_help else "sets the position ABOVE which the PO4 phosphorus and N atoms in the polar head group should be.By default defined in parameter file")
+parser.add_argument("--plot",         action="store_true",        help=argparse.SUPPRESS if short_help else "makes a simple plot of loop number vs GENCAN optimization function value, and outputs the values to GENCAN.dat")
+parser.add_argument("--traj",         action="store_true",        help=argparse.SUPPRESS if short_help else "saves all intermediate steps into separate pdb files")
+parser.add_argument("--notgridvol",   action="store_false",       help=argparse.SUPPRESS if short_help else "skips grid building for volume estimation, and the calculation is done just by estimating density")
+parser.add_argument("--notprotonate", action="store_false",       help=argparse.SUPPRESS if short_help else "skips protonation by reduce")
+parser.add_argument("--reducebuild",  action="store_true",        help=argparse.SUPPRESS if short_help else "build step by reduce (protonation of His and side-chain flips). Use with care if parametrizing with the script!")
+parser.add_argument("--keep",         action="store_false",       help=argparse.SUPPRESS if short_help else "skips deleting temporary files")
+parser.add_argument("--noprogress",   action="store_true",        help=argparse.SUPPRESS if short_help else "avoids the printing of progress bar with time estimation in the final stage. Recommended if the job is piped into a file")
+parser.add_argument("--apl_exp",      action="store_true",        help=argparse.SUPPRESS if short_help else "use experimental APL where available, like AmberTools18 release. Kept for consistency with older versions. By default, terms estimated with Lipid17 are used")
+parser.add_argument("--memgen_parm", type=str,                    help=argparse.SUPPRESS if short_help else "load custom memgen.parm file with APL and VOL values. Extends and overwrites default values")
+parser.add_argument("--solvent_parm", type=str,                   help=argparse.SUPPRESS if short_help else "load custom solvent.parm file with densities and molecular weights. Extends and overwrites default values")
+parser.add_argument("--overwrite",    action="store_true",        help=argparse.SUPPRESS if short_help else "overwrite, even if files are present")
+parser.add_argument("--nottrim",      action="store_false",       help=argparse.SUPPRESS if short_help else "doesn't trim preexisting hydrogens in the structure")
+parser.add_argument("--log",type=str,default="packmol-memgen.log",help=argparse.SUPPRESS if short_help else "log file name where detailed information is to be written")
+parser.add_argument("-o","--output",type=str,                     help=argparse.SUPPRESS if short_help else "name of the PACKMOL generated PDB file")
+parser.add_argument("--charmm",     action="store_true",          help=argparse.SUPPRESS if short_help else "the output will be in CHARMM format instead of AMBER. Works only for small subset of lipids (see --available_lipids)")
+parser.add_argument("--translate", nargs=3, type=float, default=[0,0,0], help=argparse.SUPPRESS if short_help else "pass a vector as  x y z  to translate the oriented pdb. Ex. ' 0 0 4 '")
+parser.add_argument("--sirah", action="store_true",               help=argparse.SUPPRESS if short_help else "use SIRAH lipids, and corase-grain protein input. Will adapt tolerance accordingly. Only small subset of lipids available!")
+parser.add_argument("--verbose",    action="store_true",          help=argparse.SUPPRESS if short_help else "verbose mode")
+
+inputs = parser.add_argument_group('Inputs')
+inputs.add_argument("-p","--pdb",           action="append",       help="PDB file(s) to embed. If many bilayers, it has to be specified once for each bilayer. 'None' can be specified and a bilayer without protein will be generated [ex. --pdb PDB1.pdb --pdb None --pdb PDB2.pdb (3 bilayers without protein in the middle)]. If no PDB is provided, the bilayer(s) will be membrane only (--distxy_fix has to be defined).")
+inputs.add_argument("--solute",        action="append",            help=argparse.SUPPRESS if short_help else "adds pdb as solute into the water. Concentration has to be specified")
+inputs.add_argument("--solute_con",    action="append",            help=argparse.SUPPRESS if short_help else "number of molecules/concentration to be used. Concentrations are specified in Molar by adding an 'M' as a suffix (Ex. 0.15M). If not added, a number of molecules is assumed.")
+inputs.add_argument("--solute_charge", action="append",            help=argparse.SUPPRESS if short_help else "absolute charge of the included solute (Ex. -2). To be considered in the system neutralization")
+inputs.add_argument("--solute_inmem",  action="store_true",        help=argparse.SUPPRESS if short_help else "solute should be added to membrane fraction")
+inputs.add_argument("--solute_prot_dist",  type=float,             help=argparse.SUPPRESS if short_help else "establishes a cylindrical restraint using the protein xy radius and z height + the input value. A value of 0 will use the protein radius. By default, no restraint is imposed.")
+
+embedopt = parser.add_argument_group('MEMEMBED options')
+embedopt.add_argument("--preoriented",  action="store_true",          help="use this flag if the protein has been previosuly oriented and you want to avoid running MEMEMBED (i.e. from OPM)")
+embedopt.add_argument("--double_span",  action="store_true",          help=argparse.SUPPRESS) #"orient protein twice, assuming it spans two membrane bilayer")
+embedopt.add_argument("--n_ter",        action="append",              help=argparse.SUPPRESS if short_help else "'in' or 'out'. By default proteins are oriented with the n_ter oriented 'in' (or 'down'). relevant for multi layer system. If defined for one protein, it has to be defined for all of them, following previous order")
+embedopt.add_argument("--barrel",       action="store_true",          help=argparse.SUPPRESS if short_help else "use MEMEMBED in beta barrel mode")
+embedopt.add_argument("--keepligs",     action="store_true",          help=argparse.SUPPRESS if short_help else "MEMEMBED by default cleans the PDB. Use this flag to keep the ligands on the original PDB")
+embedopt.add_argument("--mem_opt",type=str,default="3",choices=["0","1","2","3"],help=argparse.SUPPRESS if short_help else "MEMEMBED optimization algorithm. 0 = Genetic algorithm, 1 = Grid, 2 = Direct, 3 = GA five times")
+embedopt.add_argument("--memembed",type=str,                         help=argparse.SUPPRESS)
+
+packmolopt = parser.add_argument_group('PACKMOL options')
+packmolopt.add_argument("--nloop",       type=int,default=20,         help=argparse.SUPPRESS if short_help else "number of nloops for GENCAN routine in PACKMOL. PACKMOL MEMGEN uses 20 by default; you might consider increasing the number to improve packing. Increasing the number of components requires more GENCAN loops.")
+packmolopt.add_argument("--nloop_all",   type=int,default=100,        help=argparse.SUPPRESS if short_help else "number of nloops for all-together packing. PACKMOL MEMGEN uses 100 by default.")
+packmolopt.add_argument("--tolerance",   type=float,default=2.0,      help=argparse.SUPPRESS if short_help else "tolerance for detecting clashes between molecules in PACKMOL (defined as radius1+radius2). PACKMOL uses 2.0 by default.")
+packmolopt.add_argument("--prot_rad",   type=float,default=1.5,       help=argparse.SUPPRESS if short_help else "radius considered for protein atoms to establish the tolerance for detecting clashes. PACKMOL MEMGEN uses 1.5 by default.")
+packmolopt.add_argument("--writeout",                                 help=argparse.SUPPRESS if short_help else "frequency for writing intermediate results. PACKMOL uses 10 by default.")
+packmolopt.add_argument("--notrun",       action="store_false",       help=argparse.SUPPRESS if short_help else "will not run PACKMOL, even if it's available")
+packmolopt.add_argument("--random",       action="store_true",        help=argparse.SUPPRESS if short_help else "turns PACKMOL random seed generator on. If a previous packing failed in the minimization problem, repacking with this feature on might solve the problem.")
+packmolopt.add_argument("--packall",  action="store_true",            help=argparse.SUPPRESS if short_help else "skips initial individual packing steps")
+packmolopt.add_argument("--movebadrandom", action="store_true",       help=argparse.SUPPRESS if short_help else "randomizes positions of badly placed molecules in initial guess")
+packmolopt.add_argument("--packlog",type=str,default="packmol",       help=argparse.SUPPRESS if short_help else "prefix for generated PACKMOL input and log files")
+packmolopt.add_argument("--packmol",type=str,                         help=argparse.SUPPRESS)
+
+saltopt = parser.add_argument_group('Salts and charges')
+saltopt.add_argument("--salt",        action="store_true",         help=argparse.SUPPRESS if short_help else "adds salt at a concentration of 0.15M by default. Salt is always added considering estimated charges for the system.")
+saltopt.add_argument("--salt_c",default="K+",choices=["K+","Na+","Ca2+","Mg2+"], help=argparse.SUPPRESS if short_help else "cation to add. (K+ by default)")
+saltopt.add_argument("--saltcon", type=float, default=0.15,        help=argparse.SUPPRESS if short_help else "modifies the default concentration for KCl. [M]")
+saltopt.add_argument("--salt_override",action="store_true",        help=argparse.SUPPRESS if short_help else "if the concentration of salt specified is less than the required to neutralize, will try to continue omitting the warning")
+saltopt.add_argument("--nocounter",action="store_true",            help=argparse.SUPPRESS if short_help else "no counterions are added. Will depend on pmemd 'plasma' neutralization")
+
+amberopt = parser.add_argument_group('AMBER options')
+amberopt.add_argument("--minimize",     action="store_true",        help="performs minimization by using pmemd.")
+amberopt.add_argument("--ligand_param",default=None,action="append",help=argparse.SUPPRESS if short_help else "in case of parametrizing or minimizing the system with non-canonical molecules. Give frcmod and lib filenames separated by ':' [ex. --ligand_param FRCMOD:LIB].")
+amberopt.add_argument("--gaff2",     action="store_true",           help=argparse.SUPPRESS if short_help else "if ligand parameters are included, use GAFF2 during parametrization (GAFF is used by default)")
+amberopt.add_argument("--leapline",default=None,action="append",    help=argparse.SUPPRESS if short_help else "extra lines added to the leap parametrization process. Delimit the line with quotes. The system is called SYS into leap [ex. --leapline 'bond SYS.4.SG SYS.122.SG' to form SS bond between SG atoms of residues 4 and 122]")
+amberopt.add_argument("--sander",        action="store_true",       help=argparse.SUPPRESS if short_help else "use sander instead of pmemd.")
+amberopt.add_argument("--parametrize",   action="store_true",       help="parametrizes the system by using tleap. Uses LIPID17, ff14SB and TIP3P by default (check --ffwat and --ffprot)")
+amberopt.add_argument("--ffwat",default=None,choices=["tip3p","tip4pd","tip4pew","opc", "spce", "spceb", "fb3"], help=argparse.SUPPRESS if short_help else "water model to be used during parametrization.If not set explicitly, will change depending on the protein ff (--ffprot)")
+amberopt.add_argument("--ffprot",default="ff14SB",choices=["ff14SB","ff15ipq","ff19SB"], help=argparse.SUPPRESS if short_help else "protein ff to be used during parametrization.")
+amberopt.add_argument("--fflip",default="lipid21",choices=["lipid21","lipid17"], help=argparse.SUPPRESS if short_help else "lipid ff to be used during parametrization.If Lipid21 is available, will be selected by default.")
+amberopt.add_argument("--tight_box",     action="store_true",       help=argparse.SUPPRESS if short_help else "sets box dimension according to restraints used during the packing. The default uses a vdW distance to the boundary")
+
+compel = parser.add_argument_group('Computational electophysiology')
+compel.add_argument("--double",       action="store_true",        help=argparse.SUPPRESS if short_help else "asumes a stacked double bilayer system for CompEL. The composition in --lipids will be used for both bilayers flipping the leaflets")
+compel.add_argument("--charge_imbalance", type=int, default=0,    help=argparse.SUPPRESS if short_help else "sets a charge imbalance between compartments (in electron charge units). A positive imbalance implies an increase (decrease) in cations (anions) in the central compartment.")
+compel.add_argument("--imbalance_ion", type=str, default="cat", choices=["cat","an"], help=argparse.SUPPRESS if short_help else "sets if cations or anions are used to imbalance the system charges. ('cat' by default)")
+
+logger = logging.getLogger("pmmg_log")
+logger.setLevel(logging.DEBUG)
+
+streamer = logging.StreamHandler()
+streamer.setLevel(logging.INFO)
+logger.addHandler(streamer)
+
+logger.info(head)
+
+args = parser.parse_args()
+
+main(args)
