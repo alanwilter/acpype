@@ -156,5 +156,5 @@ def test_time_limit():
     molecule = ACTopol("KKK.pdb", chargeType="bcc", debug=True, timeTol=2)
     with pytest.raises(Exception) as e_info:
         molecule.createACTopol()
-    assert e_info.value.args[0] == 'Semi-QM taking too long to finish... aborting!'
+    assert e_info.value.args[0] == "Semi-QM taking too long to finish... aborting!"
     shutil.rmtree(molecule.absHomeDir)
