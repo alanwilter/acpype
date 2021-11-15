@@ -30,13 +30,53 @@ def test_mol2():
 
 def test_pdb():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True)
+    molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == 185
     assert len(molecule.molTopol.improperDihedrals) == 23
+    assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=n4>>"
+    # check gaff2 and force
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True)
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert len(molecule.molTopol.atoms) == 63
+    assert len(molecule.molTopol.properDihedrals) == 188
+    assert len(molecule.molTopol.improperDihedrals) == 23
+    assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
+    # check for already present
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True)
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    shutil.rmtree(molecule.absHomeDir)
+
+
+def test_amber():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType="amber")
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert len(molecule.molTopol.atoms) == 63
+    assert len(molecule.molTopol.properDihedrals) == 189
+    assert len(molecule.molTopol.improperDihedrals) == 23
+    assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=N3>>"
+    # check amber2
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType="amber2", force=True)
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert len(molecule.molTopol.atoms) == 63
+    assert len(molecule.molTopol.properDihedrals) == 187
+    assert len(molecule.molTopol.improperDihedrals) == 23
+    assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=N3>>"
     shutil.rmtree(molecule.absHomeDir)
 
 
