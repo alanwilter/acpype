@@ -12,6 +12,7 @@ pytest -s --html=report.html
 """
 import os
 import shutil
+import pytest
 from acpype_lib.acpype import ACTopol, MolTopol
 
 
@@ -147,4 +148,13 @@ def test_sqm_tleap():
     assert len(molecule.molTopol.atoms) == 12
     assert len(molecule.molTopol.properDihedrals) == 24
     assert len(molecule.molTopol.improperDihedrals) == 6
+    shutil.rmtree(molecule.absHomeDir)
+
+
+def test_time_limit():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("KKK.pdb", chargeType="bcc", debug=True, timeTol=2)
+    with pytest.raises(Exception) as e_info:
+        molecule.createACTopol()
+    assert e_info.value.args[0] == 'Semi-QM taking too long to finish... aborting!'
     shutil.rmtree(molecule.absHomeDir)
