@@ -125,6 +125,19 @@ def test_glycam():
     shutil.rmtree(molecule.absHomeDir)
 
 
+def test_amb2gmx():
+    # oct box with water and ions
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = MolTopol(acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True)
+    molecule.writeGromacsTopolFiles()
+    assert molecule
+    assert not molecule.topo14Data.hasNondefault14()
+    assert molecule.atoms[1300].__repr__() == "<Atom id=1301, name=NA+, <AtomType=Na+>>"
+    assert molecule.atoms[1310].__repr__() == "<Atom id=1311, name=CL-, <AtomType=Cl->>"
+    assert len(molecule.atoms) == 18618
+    shutil.rmtree(molecule.absHomeDir)
+
+
 # /home/runner/work/acpype/acpype/amber19-0_linux/bin/sqm: error while loading shared libraries: libgfortran.so.3
 # def test_sqm_tleap():
 #     os.chdir(os.path.dirname(os.path.abspath(__file__)))

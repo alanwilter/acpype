@@ -1720,6 +1720,16 @@ class AbstractTopol:
             print(while_replace(text))
             print(10 * "+" + "end_quote" + 61 * "+")
 
+    def search(self, name=None, alist=False):
+        """
+        returns a list with all atomName matching 'name'
+        or just the first case
+        """
+        ll = [x for x in self.atoms if x.atomName == name.upper()]
+        if ll and not alist:
+            ll = ll[0]
+        return ll
+
     def guessCharge(self):
         """
         Guess the charge of a system based on antechamber
@@ -4751,8 +4761,6 @@ class MolTopol(AbstractTopol):
         self.topo14Data.read_amber_topology("".join(self.topFileData))
         self.printDebug("prmtop and inpcrd files loaded")
 
-        #        self.pointers = self.getFlagData('POINTERS')
-
         self.getResidueLabel()
         if len(self.residueLabel) > 1:
             self.baseName = basename or os.path.splitext(os.path.basename(acFileTop))[0]  # 'solute'
@@ -4781,16 +4789,6 @@ class MolTopol(AbstractTopol):
         if self.sorted:
             self.printMess("Sorting atoms for gromacs ordering.\n")
             self.sortAtomsForGromacs()
-
-    def search(self, name=None, alist=False):
-        """
-        returns a list with all atomName matching 'name'
-        or just the first case
-        """
-        ll = [x for x in self.atoms if x.atomName == name.upper()]
-        if ll and not alist:
-            ll = ll[0]
-        return ll
 
 
 class Atom:
