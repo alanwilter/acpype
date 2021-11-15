@@ -76,24 +76,12 @@ MAXTIME = 3 * 3600
 if which("antechamber") is None:
     LOCAL_PATH = sysconfig.get_paths()["purelib"]
     if sys.platform == "linux":
-        os.environ["PATH"] += (
-            os.pathsep
-            + LOCAL_PATH
-            + "/amber21-11_linux/bin:"
-            + LOCAL_PATH
-            + "/amber21-11_linux/dat/"
-        )
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_linux/bin:" + LOCAL_PATH + "/amber21-11_linux/dat/"
         os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
         os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_linux/bin/"
         os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_linux/lib/"
     elif sys.platform == "darwin":
-        os.environ["PATH"] += (
-            os.pathsep
-            + LOCAL_PATH
-            + "/amber21-11_os/bin:"
-            + LOCAL_PATH
-            + "/amber21-11_os/dat/"
-        )
+        os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_os/bin:" + LOCAL_PATH + "/amber21-11_os/dat/"
         os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
         os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_os/bin/"
         os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
