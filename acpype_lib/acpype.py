@@ -1133,18 +1133,6 @@ epilog = """
     root_CHARMM.prm   :  parameter file for CHARMM
     root_CHARMM.inp   :  run parameters file for CHARMM"""
 
-SLEAP_TEMPLATE = """
-source %(leapAmberFile)s
-source %(leapGaffFile)s
-set default fastbld on
-#set default disulfide auto
-%(res)s = loadpdb %(baseOrg)s.pdb
-#check %(res)s
-saveamberparm %(res)s %(acBase)s.prmtop %(acBase)s.inpcrd
-saveoff %(res)s %(acBase)s.lib
-quit
-"""
-
 TLEAP_TEMPLATE = """
 verbosity 1
 source %(leapAmberFile)s
@@ -1621,7 +1609,6 @@ class AbstractTopol:
         self.timeTol = None
         self.acXyzFileName = None
         self.acTopFileName = None
-        self.sleapExe = None
         self.acParDict = None
         self.tleapExe = None
         self.parmchkExe = None
@@ -1630,7 +1617,6 @@ class AbstractTopol:
         self.homeDir = None
         self.rootDir = None
         self.extOld = None
-        self.engine = None
         self.direct = None
         self.disam = None
         self.gmx4 = None
@@ -1649,7 +1635,6 @@ class AbstractTopol:
         self.properDihedralsCoefRB = None
         self.resName = None
         self.acLog = None
-        self.sleapLog = None
         self.tleapLog = None
         self.parmchkLog = None
         self.inputFile = None
@@ -2220,7 +2205,6 @@ class AbstractTopol:
         delFiles = [
             "mopac.in",
             "tleap.in",
-            "sleap.in",
             "fixbo.log",
             "addhs.log",
             "ac_tmp_ot.mol2",
@@ -2245,59 +2229,6 @@ class AbstractTopol:
             # self.acXyz = fileXyz
             # self.acTop = fileTop
             return True
-        return False
-
-    def execSleap(self):
-        """Execute sleap"""
-        global pid
-        self.makeDir()
-
-        if self.ext == ".mol2":
-            self.printWarn("Sleap doesn't work with mol2 files yet...")
-            return True
-
-        if self.chargeType != "bcc":
-            self.printWarn("Sleap works only with bcc charge method")
-            return True
-
-        if self.atomType != "gaff":
-            self.printWarn("Sleap works only with gaff atom type")
-            return True
-
-        sleapScpt = SLEAP_TEMPLATE % self.acParDict
-
-        fp = open("sleap.in", "w")
-        fp.write(sleapScpt)
-        fp.close()
-
-        cmd = "%s -f sleap.in" % self.sleapExe
-
-        if self.checkXyzAndTopFiles() and not self.force:
-            self.printMess("Topologies files already present... doing nothing")
-        else:
-            try:
-                os.remove(self.acTopFileName)
-                os.remove(self.acXyzFileName)
-            except Exception:
-                pass
-            self.printMess("Executing Sleap...")
-            self.printDebug(cmd)
-
-            p = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE)
-            pid = p.pid
-            signal.signal(signal.SIGALRM, self.signal_handler)
-            signal.alarm(self.timeTol)
-
-            out = str(p.communicate()[0].decode())  # p.stdout.read()
-
-            self.sleapLog = out
-            self.checkLeapLog(self.sleapLog)
-
-            if self.checkXyzAndTopFiles():
-                self.printMess(" * Sleap OK *")
-            else:
-                self.printQuoted(self.sleapLog)
-                return True
         return False
 
     def execTleap(self):
@@ -2488,22 +2419,8 @@ class AbstractTopol:
         """
         If successful, Amber Top and Xyz files will be generated
         """
-        # sleap = False
-        if self.engine == "sleap":
-            if self.execSleap():
-                self.printError("Sleap failed")
-                self.printMess("... trying Tleap")
-                if self.execTleap():
-                    self.printError("Tleap failed")
-        if self.engine == "tleap":
-            if self.execTleap():
-                self.printError("Tleap failed")
-                if self.extOld == ".pdb":
-                    self.printMess("... trying Sleap")
-                    self.ext = self.extOld
-                    self.inputFile = self.baseName + self.ext
-                    if self.execSleap():
-                        self.printError("Sleap failed")
+        if self.execTleap():
+            self.printError("Tleap failed")
         if not self.debug:
             self.delOutputFiles()
 
@@ -4568,7 +4485,6 @@ class ACTopol(AbstractTopol):
         basename=None,
         debug=False,
         outTopol="all",
-        engine="tleap",
         allhdg=False,
         timeTol=MAXTIME,
         qprog="sqm",
@@ -4628,7 +4544,6 @@ class ACTopol(AbstractTopol):
             leapGaffFile = "leaprc.gaff2"
             self.gaffDatfile = "gaff2.dat"
         self.force = force
-        self.engine = engine
         self.allhdg = allhdg
         self.acExe = ""
         dirAmber = os.getenv("AMBERHOME", os.getenv("ACHOME"))
@@ -4652,7 +4567,6 @@ class ACTopol(AbstractTopol):
             self.printMess(hint2)
             sys.exit(17)
         self.tleapExe = which("tleap") or ""
-        self.sleapExe = which("sleap") or ""
         self.parmchkExe = which("parmchk2") or ""
         self.babelExe = which("obabel") or which("babel") or ""
         if not os.path.exists(self.babelExe):
@@ -4993,15 +4907,6 @@ def init_main():
         help="write CNS topology with allhdg-like parameters (experimental)",
     )
     parser.add_argument(
-        "-e",
-        "--engine",
-        choices=["tleap", "sleap"],
-        action="store",
-        default="tleap",
-        dest="engine",
-        help="engine: tleap (default) or sleap (not fully matured)",
-    )
-    parser.add_argument(
         "-s",
         "--max_time",
         type=int,
@@ -5094,7 +4999,6 @@ def init_main():
                 atomType=args.atom_type,
                 force=args.force,
                 outTopol=args.outtop,
-                engine=args.engine,
                 allhdg=args.cnstop,
                 basename=args.basename,
                 timeTol=args.max_time,

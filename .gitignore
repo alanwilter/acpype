@@ -65,3 +65,18 @@ test*/*.top
 /.pytest_cache/
 
 *.bak
+
+tmp/
+
+# PyBuilder
+target/
+
+#Ipython Notebook
+.ipynb_checkpoints
+
+private.env
+
+# pycharm
+.idea
+
+.vscode/
