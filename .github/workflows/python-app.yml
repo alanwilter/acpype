@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: |
             sudo apt-get update
-            sudo apt-get install -y --no-install-recommends tzdata
+            sudo apt-get install -y --no-install-recommends tzdata libgfortran5 libarpack++2-dev
 
       - name: Install OpenBabel
         run: |
