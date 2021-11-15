@@ -1,0 +1,446 @@
+#!/usr/bin/env perl
+
+#
+#   Script to parse sander output restraint analyses, and print a nice
+#   summary
+#
+#   Usage1:  sviol [-old] [-h]  sander-output-file-name(s) > sviol-output
+#
+#     e.g.   sviol min_???.o > sviol.out
+#
+# Original script by:
+# Randal R. Ketchem, Ph.D.                619.784.8754 (voice1)
+# Department of Molecular Biology, MB-9   619.784.9879 (voice2)
+# The Scripps Research Institute          619.784.9985 (FAX)
+# 10550 N. Torrey Pines Road              ketchemr@scripps.edu (email)
+# La Jolla, CA 92037-1027                 http://www.scripps.edu/~ketchemr
+#
+# Updates by Christopher Cilley (cdcilley@scripps.edu) :
+#    7/1/99    Changed the output of distance violations to use a graphical representation
+#    9/22/99   The latest sander adds a "|" to the front of the 'ideal angle' and 'ideal bond'
+#              lines so the split array indexes had to be adjusted by +1.  Use -old to use old format.
+#              Added help info.
+#
+# Updates by Roberto De Guzman to work for amber8
+#    5/13/03   modified size of columns so output will fit in one computer screen
+#              modified to get RESTRAINT energy, because amber8 uses the word RESTRAINT instead of CONSTRAINT 
+#                   older sviol script looks for the keyword CONSTRAINT
+#              modified so Distance and Torsion energies will be recognized, because amber8 output changed:
+#                   amber8:       NMR restraints: Bond =   66.254   Angle =     0.000   Torsion =     0.197 
+#                   amber6:       Energy (this step): Bond =   64.735   Angle =     0.000   Torsion =     1.091
+#
+# Updated by Brendan M. Duggan
+#   6/23/14    Changed energy parsing to account for cases where restraint energy is zero,
+#                allow extraction of more energy terms, 
+#                and make modification easier if format changes.
+#              Changed violation parsing and reporting to account for cases without violations.
+
+
+use Getopt::Long;
+
+$opt_h = 0;
+$opt_help = 0;
+
+&GetOptions("h", "help", "old", "v");
+
+# Parse command line options
+if ($opt_h == 1 || $opt_help == 1 || $#ARGV < 0) {
+    print "\nUsage: sviol [-old] [-h] [-v] sander_output_filename(s) > sviol_output \n";
+    print "\n           e.g. sviol min_???.o > sviol.out \n";
+    print<<'END';
+
+Options:
+  -h    This message.
+  -old  Use the old AMBER formatting (pre-Amber6).
+        The 'ideal bonds' and 'ideal angles' lines have different fields
+        pre-AMBER6 and AMBER6.
+  -v    Print out distance violations in "verbose" mode showing
+        actual values instead of a 'graphical' display.
+
+Description:  Process all the ".out" files from Sander getting violation
+  information.
+
+Note:  You can fit all the info on a page in landscape by using enscript.
+  enscript -r -fCourier7 -o phiN.sviol.ps phiN.sviol
+  lp phiN.sviol.ps
+
+v1.0  9/22/99  Christopher Cilley (cdcilley@scripps.edu)
+Modified from the original sviol by Randal Ketchem (ketchemr@scripps.edu)
+Modified to work for amber8, Roberto De Guzman, 5/13/03
+
+END
+    exit (0);
+}
+
+print STDOUT "Summary of Amber energies and NMR restraints\n\n";
+ 
+print STDOUT "                                                0.1-  0.2-  0.3-\n";
+print STDOUT "  #           Filename      nvio   max   <0.1   0.2   0.3   0.4  >0.4 Amber energy   Constraint    b-dev    a-dev      align   Distance  Torsion    Noesy\n";
+print STDOUT "-----------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+
+
+$eamber_av = $econs_av = $ebdev_av = $eadev_av = $ebond_av = $eang_av = $edih_av = $evdw_av = $eel_av = $ehb_av = $egb_ave = $e14nb_av = $e14e_av = $e14v_av = $edist_av = $etors_av = $enoesy_av = $ealign_av = 0.0; 
+$ealign = $een2[4] = 0.0;
+$envio = "\n\n";
+$envio .= sprintf  "  ENERGY TERMS:\n";
+$envio .= sprintf  " #              Filename       Bond   Angle   Dihed    VDW     EEL    HBOND     EGB     1-4 NB   1-4 EEL\n";
+$envio .= sprintf  "---------------------------------------------------------------------------------------------------------------\n";
+$angvio = "\n\n";
+$angvio .= sprintf "  ANGLES:                                         5-   10-   15-\n";
+$angvio .= sprintf " #              Filename     nvio   max    <5    10    20    20   >20\n";
+$angvio .= sprintf "---------------------------------------------------------------------------------------------------------------\n";
+$omevio = "\n\n";
+$omevio .= sprintf "  OMEGAS:                                         5-   10-   15-\n";
+$omevio .= sprintf " #              Filename     nvio   max    <5    10    20    20   >20\n";
+$omevio .= sprintf "---------------------------------------------------------------------------------------------------------------\n";
+
+$alignvio = "\n\n";
+$alignvio .= sprintf "  ALIGNMENT:\n";
+$alignvio .= sprintf " #       Filename             Pearson    rms err.\n";
+$alignvio .= sprintf "---------------------------------------------------------------------------------------------------------------\n";
+
+$fileno_al = 100;
+foreach $file (@ARGV) {
+
+	$ifinal = $iaver = $beg = $end = $vcount= $vmax = 0.0;
+	$v1 = $v2 = $v3 = $v4 = $v5 = 0;
+	$vamax = 0.0; $vacount = $va1 = $va2 = $va3 = $va4 = $va5 = 0;
+	$vomax = 0.0; $vocount = $vo1 = $vo2 = $vo3 = $vo4 = $vo5 = 0;
+	$hasalign = 0; $beginalign = 0; $endalign = 0; $hasnoe = 0;
+
+	open(IN, $file) || die "can't open file $file\n"; $fileno++; $fileno_al++;
+
+	while (<IN>) {
+
+		$end = 1 if /Total distance penalty:/;
+		$beg = 1 if /First atom/;
+		$iaver = 1 if /A V E R A G E S/;
+		$ifinal = 1 if /FINAL RESULTS/;
+        $beginalign = 1 if /First atom/ && ($end == 1);
+		$endalign = 1 if /Total align/;
+
+#
+#    get amber and constraint energies:
+#
+                if ($iaver == 0) {
+		   if ($_ =~ /EPtot\s+=\s+([-\d\.]+)/) { $eptot = $1; }
+                   if ($_ =~ /BOND\s+=\s+([-\d\.]+)/) { $bond = $1; }
+                   if ($_ =~ /ANGLE\s+=\s+([-\d\.]+)/) {$angle = $1; }
+                   if ($_ =~ /DIHED\s+=\s+([-\d\.]+)/) { $dihed = $1; }
+		   if ($_ =~ /1-4 NB\s+=\s+([-\d\.]+)/) { $nb14 = $1; }
+		   if ($_ =~ /1-4 EEL\s+=\s+([-\d\.]+)/) { $eel14 = $1; }
+		   if ($_ =~ /1-4 VDW\s+=\s+([-\d\.]+)/) { $vdw14 = $1; }
+		   if ($_ =~ /VDWAALS\s+=\s+([-\d\.]+)/) { $vdw = $1; }
+#  at present value for EEL is not reported
+#  if EEL (found in imin=1 output) is the same quantity as EELEC (found in imin=0 output)?
+#  then could combine values by uncommenting following line
+#		   if ($_ =~ /EEL\s+=\s+([-\d\.]+)/) { $eelec = $1; }
+		   if ($_ =~ /EELEC\s+=\s+([-\d\.]+)/) { $eelec = $1; }
+		   if ($_ =~ /EHBOND\s+=\s+([-\d\.]+)/) { $hbond = $1; }
+		   if ($_ =~ /EGB\s+=\s+([-\d\.]+)/) { $egb = $1; }
+		   if ($_ =~ /RESTRAINT\s+=\s+([-\d\.]+)/) { $restraint = $1; }
+		   if ($_ =~ /NMR restraints: Bond =\s+([-\d\.]+).+Torsion =\s+([-\d\.]+)/) { ($restraintBond,$restraintTorsion)=($1,$2); }
+                }
+
+		if ($_ =~ /Energy .this step.: Noesy/) { @een2 = split(' '); }
+		if ($_ =~ /deviation from ideal bonds :\s+([-\d\.]+)/ ) { $deviationBonds=$1; }
+		if ($_ =~ /deviation from ideal angles:\s+([-\d\.]+)/ ) { $deviationAngles=$1; }
+		#if ($_ =~ /ideal angles/ ) { @eadev = split(' '); }
+		if ($_ =~ /Total align\s+constraint:\s+([-\d\.]+)/ ) { $ealign = $1;}
+		if ($_ =~ /Align correlation:/ ){ $hasalign=1; @alignp = split(' '); }
+		if ($_ =~ /TIMINGS/) { last; }
+#
+#    first, get the NOE constraints
+#
+		if (/noe:/)  {
+			$hasnoe = 1;
+			$noe_label = substr($_,0,43); $noe_found{$noe_label} = 1;
+			@noe_fields = split(' '); $noe_en = $noe_fields[11];
+			$$fileno{$noe_label} = $noe_en;
+		}
+#
+#    process alignment violations:
+#
+		if( $beginalign == 1 && $endalign == 0 ){
+
+			next if /--------/ || /First atom/;
+			$label_al = substr($_,0,33);  $found_al{$label_al} = 1;
+			@fields = split(' '); $dev_al = $fields[9];
+			$$fileno_al{$label_al} = $dev_al;
+			$target_al{$label_al} = $fields[8];
+
+		}
+#
+#    split off constraint reporting, and process:
+#
+		next if $beg == 0 || $end == 1 || /--------/ || /First atom/;
+		next if /Rcurr/;
+
+                if ($_ =~ /(.{34})\s+[\-?\d+.\d+]+\s+(\-?\d+.\d+)\s+(\-?\d+.\d+)\s+[\d\.]+ (\w)\s+/) {
+                   $label = $1;
+                   $target{$label} = $2;
+                   $dev = $3;
+                   $type = $4;
+                   $$fileno{$label} = $dev;
+                   $found{$label} = 1;
+	   	   if( $type eq "d" ){   #distances
+			$vcount++;
+			$v1++ if $dev > 0 && $dev < 0.1;
+			$v2++ if $dev >= 0.1 && $dev < 0.2;
+			$v3++ if $dev >= 0.2 && $dev < 0.3;
+			$v4++ if $dev >= 0.3 && $dev < 0.4;
+			$v5++ if $dev > 0.4;
+			if ( $dev > $vmax ) { $vmax = $dev; }
+		   } else {
+		   	if( substr($label,2,2) eq "N " && substr($label,20,2) eq "C " ){
+											# omega angles
+		   		$vocount++;
+		   		$vo1++ if $dev > 0 && $dev < 5;
+		   		$vo2++ if $dev >= 5 && $dev < 10;
+		   		$vo3++ if $dev >= 10 && $dev < 15;
+		   		$vo4++ if $dev >= 15 && $dev < 20;
+		   		$vo5++ if $dev > 20;
+		   		if ( $dev > $vomax ) { $vomax = $dev; }
+		   	} else {  
+		   		if( $type eq "t" ){  #torsions
+		   			$vacount++;
+		   			$va1++ if $dev > 0 && $dev < 5;
+		   			$va2++ if $dev >= 5 && $dev < 10;
+		   			$va3++ if $dev >= 10 && $dev < 15;
+		   			$va4++ if $dev >= 15 && $dev < 20;
+		   			$va5++ if $dev > 20;
+		   			if ( $dev > $vamax ) { $vamax = $dev; }
+		   		}
+		   	}
+		   }
+                }
+
+	}
+
+	if( $iaver==1 ){
+		if( !defined( $elign )) { $elign = 0.0 }
+		printf STDOUT
+		    "%3d  %20s  %4d  %5.2f  %4d  %4d  %4d  %4d  %4d  %10.2f   %10.2f   %8.4f  %8.2f  %8.2f  %8.3f  %8.3f  %8.3f\n", 
+		    $fileno,$file,$vcount,$vmax,$v1,$v2,$v3,$v4,$v5,
+		    $eptot-$restraint,$restraint,$deviationBonds,$deviationAngles,$ealign,$restraintBond,$restraintTorsion,$een2[4];
+# have to calculate EAMBER as EPtot-RESTRAINT because EAMBER is not printed if RESTRAINT=0
+		$envio .= sprintf
+		"%3d   %20s  %7.1f %7.1f %7.1f %7.1f %7.1f %7.1f  %7.1f  %7.1f  %7.1f\n", $fileno,$file,$bond,$angle,$dihed,$vdw,$eelec,$hbond,$egb,$nb14,$eel14;
+		$angvio .= sprintf 
+		"%3d   %20s  %4d  %5.2f  %4d  %4d  %4d  %4d  %4d\n", 
+		$fileno,$file,$vacount,$vamax,$va1,$va2,$va3,$va4,$va5;
+
+		$omevio .= sprintf 
+		"%3d   %20s  %4d  %5.2f  %4d  %4d  %4d  %4d  %4d\n", 
+		$fileno,$file,$vocount,$vomax,$vo1,$vo2,$vo3,$vo4,$vo5;
+
+		if( $hasalign ) {$alignvio .= sprintf "%3d   %20s  %10.5f  %10.5f\n", 
+		$fileno,$file,$alignp[3],$alignp[5];}
+
+		$eamber_av += $eptot-$restraint; $econs_av += $restraint; $nstruct++;
+		$ebond_av += $bond; $eang_av += $angle; $edih_av += $dihed;
+		$evdw_av += $vdw; $eelec_av += $eelec; $ehb_av += $hbond; $egb_av += $egb;
+		$e14nb_av += $nb14; $e14e_av += $eel14; $e14v_av += $vdw14;
+		$ebdev_av += $deviationBonds; $eadev_av += $deviationAngles;
+		$edist_av += $restraintBond; $etors_av += $restraintTorsion; $enoesy_av += $een2[4];
+		$ealign_av += $ealign;
+	}
+
+        #
+        # RD modified this part to fit my screen size dec 31, 2001
+        #
+	if( $ifinal==1 ){
+		printf STDOUT 
+		"%-3d %-15s %4d %5.2f %4d %4d %4d %4d %4d %10.2f %10.2f %8.4f %8.2f %8.2f %8.3f %8.3f %8.3f\n", 
+			$fileno,$file,$vcount,$vmax,$v1,$v2,$v3,$v4,$v5,
+			$eptot-$restraint,$restraint,$bond,$angle,$ealign,$restraintBond,$restraintTorsion,$een2[4];
+		$envio .= sprintf
+		"%3d   %20s  %7.1f %7.1f %7.1f %7.1f %7.1f %7.1f %7.1f  %7.1f  %7.1f\n",
+			$fileno,$file,$bond,$angle,$dihed,$vdw,$eelec,$hbond,$egb,$nb14,$eel14;
+		$angvio .= sprintf 
+		"%3d   %20s  %4d  %5.2f  %4d  %4d  %4d  %4d  %4d\n", 
+		$fileno,$file,$vacount,$vamax,$va1,$va2,$va3,$va4,$va5;
+
+		$omevio .= sprintf 
+		"%3d   %20s  %4d  %5.2f  %4d  %4d  %4d  %4d  %4d\n", 
+		$fileno,$file,$vocount,$vomax,$vo1,$vo2,$vo3,$vo4,$vo5;
+
+		if( $hasalign ) {$alignvio .= sprintf "%3d   %20s  %10.5f  %10.5f\n", 
+		$fileno,$file,$alignp[3],$alignp[5];}
+
+		$eamber_av += $eptot-$restraint; $econs_av += $restraint; $nstruct++;
+		$ebond_av += $bond; $eang_av += $angle; $edih_av += $dihed;
+		$evdw_av += $vdw; $eelec_av += $eelec; $ehb_av += $hbond; $egb_av += $egb;
+		$e14nb_av += $nb14; $e14e_av += $eel14; $e14v_av += $vdw14;
+		$ebdev_av += $deviationBonds; $eadev_av += $deviationAngles;
+		$edist_av += $restraintBond; $etors_av += $restraintTorsion; $enoesy_av += $een2[4];
+	}
+close(IN);
+}
+print STDOUT "------------------------------------------------------------------------------------------------------------------------------------\n";
+$eamber_av /= $nstruct; $econs_av /= $nstruct;
+$ebond_av /= $nstruct; $eang_av /= $nstruct; $edih_av /= $nstruct;
+$evdw_av /= $nstruct; $eelec_av /= $nstruct; $ehb_av /= $nstruct; $egb_av /= $nstruct;
+$e14v_av /= $nstruct; $e14e_av /= $nstruct; $e14v_av /= $nstruct; $e14nb_av /= $nstruct;
+$ebdev_av /= $nstruct; $eadev_av /= $nstruct;
+$edist_av /= $nstruct; $etors_av /= $nstruct; $enoesy_av /= $nstruct;
+$ealign_av /= $nstruct;
+
+printf STDOUT "%-70s%10.2f   %10.2f   %8.4f  %8.2f  %8.2f  %8.3f  %8.3f  %8.3f\n", "Averages:",
+	$eamber_av, $econs_av, $ebdev_av, $eadev_av, $ealign_av, $edist_av, $etors_av, $enoesy_av;
+printf STDOUT $envio; 
+print STDOUT "------------------------------------------------------------------------------------------------------------------------------------\n";
+printf STDOUT "%-25s   %7.1f %7.1f %7.1f %7.1f %7.1f %7.1f  %7.1f  %7.1f  %7.1f\n",
+		'Averages:',$ebond_av,$eang_av,$edih_av,$evdw_av,$eelec_av,$ehb_av,$egb_av,$e14nb_av,$e14e_av;
+print STDOUT $angvio;
+print STDOUT $omevio;
+if( $hasalign) {print STDOUT $alignvio;}
+print STDOUT "---------------------------------------------------------------------------------------------------------------\n";
+print STDOUT "\nDistance and angle violations:\n\n";
+print STDOUT " First atom     Last atom    target   Key: . = 0.0  - <= 0.1  + <= 0.2  * <= 0.5  0 <= 1.0  8 <= 2.0  @ > 2.0  Stats: Ave <std> min/max/#\n";
+
+foreach $label ( sort byresidue keys %found ) {
+    printf STDOUT "%33s : %7.2f : ", $label,$target{$label};
+    $numViol = 0;
+    $sumViol = 0.0;
+    $maxViol = 0.0;
+    $minViol = 10000.0;
+    undef @sumArray;
+    for $i (1..$fileno) {
+	if (defined $$i{$label}) {
+	    $dev = $$i{$label};
+	    $sumViol += $dev;
+	    $numViol += 1;
+	    push @sumArray, $dev;
+	    if ($dev > $maxViol) { $maxViol = $dev; }
+	    if ($dev < $minViol) { $minViol = $dev; }
+	    if ($opt_v) {
+		$dev = sprintf("%5.2f",$dev);
+		$dev = "  " . substr($dev,2,3) if $dev < 1.0;
+		$dev = sprintf("%5.1f",$dev) if $dev >= 10.;
+		$dev = "*****" if $dev > 99.99;
+	    } else {
+		if ($dev <= 0.1) {
+		    $dev = "-";
+		} elsif ($dev <= 0.2) {
+		    $dev = "+";
+		} elsif ($dev <= 0.5) {
+		    $dev = "*";
+		} elsif ($dev <= 1.0) {
+		    $dev = "0";
+		} elsif ($dev <= 2.0) {
+		    $dev = "8";
+		} else {
+		    $dev = "@";
+		}
+	    }
+	} else {
+	    if ($opt_v) {
+		$dev = "   - ";
+	    } else {
+		$dev = ".";
+	    }
+	}
+	print STDOUT $dev;
+    }
+
+    $aveViol = 0.0;
+    $numViol = scalar(@sumArray);
+
+# modified by BMD 2014-05-14
+# added if-then-else block checking numViol>1
+    if ($numViol > 0) {
+        for ($j = 0 ; $j < $numViol ; $j++) {
+	    $aveViol += $sumArray[$j];
+        }
+        $aveViol = $aveViol / $numViol;
+        $varSum = 0.0;
+        for ($j = 0 ; $j < $numViol ; $j++) {
+            $varSum += ($sumArray[$j] - $aveViol)**2;
+        }
+        $num_1 = $numViol - 1;
+        if ($num_1 < 1) {
+            $stdViol = 0.0;
+        } else {
+            $stdViol = sqrt ((1/($num_1))*$varSum);
+        }
+    } else {
+        $stdViol = 0.0;
+        $minViol = 0.0;
+        $maxViol = 0.0;
+    }
+
+    #RD modified this line dec 21, 2001
+    printf STDOUT " %6.2f  <%6.2f> %6.2f / %6.2f %3d\n", $aveViol, $stdViol, $minViol, $maxViol, $numViol;
+}
+
+if ($hasnoe) {
+	print STDOUT "\n NOE Restraint Violation Energies\n";
+	for $i (1..$fileno) {
+        printf STDOUT "  %3d", $i;
+	}
+	print STDOUT "\n\n";
+	foreach $noe_label (sort keys %noe_found) {
+		printf STDOUT "%43s :", $noe_label;
+		for $i (1..$fileno) {
+			if (defined $$i{$noe_label}) {
+				$noe_en = $$i{$noe_label};
+				$noe_en = sprintf("%5.3f ",$noe_en);
+			} else {
+				$noe_en = " -- ";
+			}
+			printf STDOUT "%7s", $noe_en;
+		}
+		print STDOUT "\n";
+	}
+}
+
+if ($hasalign == 0) {
+    exit (0);
+}
+
+print STDOUT "---------------------------------------------------------------------------------------------------------------\n";
+print STDOUT "\n\nResidual dipolar violations:\n\n";
+print STDOUT "     First atom        Last atom    target";
+for $i (1..$fileno) {
+	printf STDOUT "  %3d", $i;
+}
+print STDOUT "\n\n";
+
+foreach $label ( sort byresidue keys %found_al ) {
+
+	printf STDOUT "%33s :%7.2f :", $label,$target_al{$label};
+	for $i (101..$fileno_al) {
+		if (defined $$i{$label}) {
+			$dev = $$i{$label};
+			$dev = sprintf("%5.1f",$dev);
+#			$dev = "   " . substr($dev,2,2) if $dev < 1.0;
+#			$dev = sprintf("%5.1f",$dev) if $dev >= 10.;
+			$dev = "*****" if $dev > 99.99;
+			$dev = "   - " if $dev < 2.0 && $dev > -2.0;  # hard-wired align cutoff
+		} else {
+			$dev = "   - ";
+		}
+		printf STDOUT "%5s", $dev;
+	}
+	print STDOUT "\n";
+
+}
+	
+sub byresidue {
+	($aclean = $a ) =~ tr/*//d;
+	($bclean = $b ) =~ tr/*//d;
+	@fieldsa = split(' ',$aclean); @fieldsb = split(' ',$bclean);
+	$return = substr($fieldsa[0],0,1) cmp substr($fieldsb[0],0,1);
+	if ($return == 0) {
+		$return = substr($fieldsa[4],0,1) cmp substr($fieldsb[4],0,1);
+		if ($return == 0) {
+			$return = $fieldsa[2] <=> $fieldsb[2];
+			if ($return == 0) {
+				$return = $fieldsa[6] <=> $fieldsb[6];
+			}
+		}
+	}
+	return $return;	
+}
+
