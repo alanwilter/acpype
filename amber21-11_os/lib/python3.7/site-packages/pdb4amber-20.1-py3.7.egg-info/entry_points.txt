@@ -1,0 +1,3 @@
+[console_scripts]
+pdb4amber = pdb4amber.pdb4amber:main
+
