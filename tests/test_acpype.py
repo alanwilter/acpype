@@ -25,6 +25,14 @@ def test_mol2():
     assert len(molecule.molTopol.properDihedrals) == 95
     assert len(molecule.molTopol.improperDihedrals) == 5
     assert molecule.molTopol.totalCharge == 0
+    assert molecule.molTopol.atoms[-1].__repr__() == "<Atom id=33, name=H8, <AtomType=hc>>"
+    # check sorted
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("AAA.mol2", chargeType="gas", debug=True, force=True, is_sorted=True)
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert molecule.molTopol.atoms[-1].__repr__() == "<Atom id=33, name=OXT, <AtomType=o>>"
     shutil.rmtree(molecule.absHomeDir)
 
 

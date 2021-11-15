@@ -2163,7 +2163,7 @@ class AbstractTopol:
         if ct == "user":
             ct = ""
         else:
-            ct = "-c %s" % ct
+            ct = f"-c {ct}"
 
         exten = self.ext[1:]
         if exten == "mol":
@@ -2387,7 +2387,7 @@ class AbstractTopol:
     def execParmchk(self):
         """Execute parmchk"""
         self.makeDir()
-        cmd = "%s -i %s -f mol2 -o %s" % (self.parmchkExe, self.acMol2FileName, self.acFrcmodFileName)
+        cmd = f"{self.parmchkExe} -i {self.acMol2FileName} -f mol2 -o {self.acFrcmodFileName}"
 
         if "amber" in self.atomType:
             gaffFile = self.locateDat(self.gaffDatfile)
@@ -2399,7 +2399,7 @@ class AbstractTopol:
             # parm99gaffff99SBparmbsc0File = parmMerge(parm99gaffff99SBFile, frcmodparmbsc0, frcmod = True)
             # parm10file = self.locateDat('parm10.dat') # PARM99 + frcmod.ff99SB + frcmod.parmbsc0 in AmberTools 1.4
 
-            cmd += " -p %s" % parmGaffffxxSBFile  # Ignoring BSC0
+            cmd += f" -p {parmGaffffxxSBFile}"  # Ignoring BSC0
         elif "gaff2" in self.atomType:
             cmd += " -s 2"
 
@@ -2466,7 +2466,7 @@ class AbstractTopol:
         """Execute babel"""
         self.makeDir()
 
-        cmd = "%s -ipdb %s -omol2 -O %s.mol2" % (self.babelExe, self.inputFile, self.baseName)
+        cmd = f"{self.babelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
         self.printDebug(cmd)
         self.babelLog = _getoutput(cmd)
         self.ext = ".mol2"
