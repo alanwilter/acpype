@@ -1,0 +1,85 @@
+REMARK 999 N6-glycinylcarbamoyladenosin                                         
+HETATM    1  P   6GA     1      -4.432  -2.053   5.229  1.00  0.00           P  
+HETATM    2  O1P 6GA     1      -3.253  -1.237   5.579  1.00  0.00           O  
+HETATM    3  O2P 6GA     1      -4.844  -3.177   6.124  1.00  0.00           O  
+HETATM    4  O5' 6GA     1      -4.197  -2.598   3.745  1.00  0.00           O  
+HETATM    5  C5' 6GA     1      -5.217  -3.372   3.073  1.00  0.00           C  
+HETATM    6  C4' 6GA     1      -4.824  -3.623   1.639  1.00  0.00           C  
+HETATM    7  O4' 6GA     1      -4.641  -2.357   0.949  1.00  0.00           O  
+HETATM    8  C3' 6GA     1      -3.487  -4.314   1.448  1.00  0.00           C  
+HETATM    9  O3' 6GA     1      -3.623  -5.714   1.679  1.00  0.00           O  
+HETATM   10  C2' 6GA     1      -3.204  -3.981  -0.009  1.00  0.00           C  
+HETATM   11  O2' 6GA     1      -4.037  -4.695  -0.906  1.00  0.00           O  
+HETATM   12  C1' 6GA     1      -3.634  -2.510  -0.048  1.00  0.00           C  
+HETATM   13  N9  6GA     1      -2.520  -1.594   0.238  1.00  0.00           N  
+HETATM   14  C8  6GA     1      -2.183  -1.026   1.443  1.00  0.00           C  
+HETATM   15  N7  6GA     1      -1.144  -0.288   1.397  1.00  0.00           N  
+HETATM   16  C5  6GA     1      -0.712  -0.373   0.091  1.00  0.00           C  
+HETATM   17  C6  6GA     1       0.375   0.161  -0.606  1.00  0.00           C  
+HETATM   18  N6  6GA     1       1.368   0.947  -0.104  1.00  0.00           N  
+HETATM   19  N1  6GA     1       0.435  -0.061  -1.921  1.00  0.00           N  
+HETATM   20  C2  6GA     1      -0.484  -0.815  -2.497  1.00  0.00           C  
+HETATM   21  N3  6GA     1      -1.508  -1.426  -1.942  1.00  0.00           N  
+HETATM   22  C4  6GA     1      -1.576  -1.170  -0.644  1.00  0.00           C  
+HETATM   23 1H5' 6GA     1      -5.243  -4.327   3.555  1.00  0.00           H  
+HETATM   24 2H5' 6GA     1      -6.096  -2.762   3.047  1.00  0.00           H  
+HETATM   25  H4' 6GA     1      -5.615  -4.239   1.267  1.00  0.00           H  
+HETATM   26  H3' 6GA     1      -2.704  -4.010   2.111  1.00  0.00           H  
+HETATM   27  H2' 6GA     1      -2.198  -4.207  -0.295  1.00  0.00           H  
+HETATM   28 2HO' 6GA     1      -4.591  -5.304  -0.412  1.00  0.00           H  
+HETATM   29  H1' 6GA     1      -3.987  -2.266  -1.028  1.00  0.00           H  
+HETATM   30  H8  6GA     1      -2.763  -1.209   2.324  1.00  0.00           H  
+HETATM   31 1H6  6GA     1       1.932   1.345  -0.823  1.00  0.00           H  
+HETATM   32  H2  6GA     1      -0.368  -0.951  -3.558  1.00  0.00           H  
+HETATM   33  C10 6GA     1       2.102   0.964   1.114  1.00  0.00           C  
+HETATM   34  N40 6GA     1       1.706   0.206   2.118  1.00  0.00           N  
+HETATM   35  H20 6GA     1       0.858  -0.323   2.126  1.00  0.00           H  
+HETATM   36  C11 6GA     1       2.440   0.108   3.369  1.00  0.00           C  
+HETATM   37  H21 6GA     1       3.477  -0.137   3.176  1.00  0.00           H  
+HETATM   38  H22 6GA     1       2.429   1.055   3.897  1.00  0.00           H  
+HETATM   39  C12 6GA     1       1.814  -0.987   4.278  1.00  0.00           C  
+HETATM   40  O30 6GA     1       0.831  -1.574   3.814  1.00  0.00           O  
+HETATM   41  O31 6GA     1       3.084   1.671   1.105  1.00  0.00           O  
+HETATM   42  O32 6GA     1       2.389  -1.125   5.354  1.00  0.00           O  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   23   24
+CONECT    6    7    8    5   25
+CONECT    7   12    6
+CONECT    8   10    6    9   26
+CONECT    9    8
+CONECT   10   12    8   11   27
+CONECT   11   10   28
+CONECT   12   13    7   10   29
+CONECT   13   14   22   12
+CONECT   14   13   30   15
+CONECT   15   14   16
+CONECT   16   15   17   22
+CONECT   17   16   18   19
+CONECT   18   17   31   33
+CONECT   19   17   20
+CONECT   20   19   32   21
+CONECT   21   20   22
+CONECT   22   13   16   21
+CONECT   23    5
+CONECT   24    5
+CONECT   25    6
+CONECT   26    8
+CONECT   27   10
+CONECT   28   11
+CONECT   29   12
+CONECT   30   14
+CONECT   31   18
+CONECT   32   20
+CONECT   33   18   34   41
+CONECT   34   33   35   36
+CONECT   35   34
+CONECT   36   34   37   38   39
+CONECT   37   36
+CONECT   38   36
+CONECT   39   36   40   42
+CONECT   40   39
+CONECT   41   33
+CONECT   42   39

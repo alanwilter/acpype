@@ -1,0 +1,89 @@
+Membrane protein orientation using a knowledge-based statistical potential
+(c) Tim Nugent 2013
+
+Paper
+-----
+
+For full details, see http://www.biomedcentral.com/1471-2105/14/276/
+
+Compiling
+---------
+
+Tested under Ubuntu 13.04 and CentOS 5.4.
+
+Requires Boost headers and libraries - specifically boost_thread and boost_system. On recent Debian/Ubuntu distributions, install these packages:
+
+libboost-thread1.49-dev
+libboost-thread1.49.0
+libboost-system1.49-dev
+libboost-system1.49.0
+
+or just install them all:
+
+libboost-all-dev
+
+Then to compile, just run make (then optionally, make test).
+
+Examples
+--------
+
+For a full list of command line paramaters run with a -h flag.
+
+Orientate alpha-helical target using a genetic algorithm:
+
+bin/memembed examples/3o7qA.pdb
+
+Orientate alpha-helical target using a grid search and 8 threads:
+
+bin/memembed -s 1 -a 8 examples/3o7qA.pdb
+
+Orientate alpha-helical target using a direct search:
+
+bin/memembed -s 2 examples/3o7qA.pdb
+
+Orientate beta-barrel target using a genetic algorithm and 8 threads:
+
+bin/memembed -b -a 8 examples/2iahA.pdb
+
+Orientate alpha-helical target with external N-terminal target using
+a genetic algorithm, repeating 5 times and retaining the lowest 
+energy orientation, and printing standard error statistics:
+
+bin/memembed -s 3 -n out examples/2x2v.pdb
+
+Orientate, pre-positioning using topology, and calculate hydrophobic thickness:
+
+bin/memembed -t 4-26,46,68 -n out -q 1 examples/2x2v.pdb
+
+Calculate helix tilt angles:
+
+bin/memembed -z -t 4,26,46,68 -n out examples/2x2v_EMBED.pdb
+
+Orientate target using a specific potential file (see supplementary
+data for cross-validated potential files):
+
+bin/memembed -m examples/2iahA.pot examples/2iahA.pdb
+
+Scripts
+-------
+
+Both require Pymol to be installed.
+
+Random rotation and translation:
+
+scripts/pymol_rotate.py examples/3o7qA.pdb examples/3o7qA_rotated.pdb
+
+Generate image:
+
+scripts/pymol_membrane_image.py examples/3o7qA_EMBED.pdb examples/3o7qA_EMBED.png
+
+You can add some Pymol api commands around line 26. Defaults to 2 threads (line 12)
+
+Help
+----
+
+Please report bugs and suggestions to:
+
+t.nugent@cs.ucl.ac.uk
+
+

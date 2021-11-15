@@ -1,0 +1,81 @@
+REMARK 999 7-aminomethyl-7-deazaguanoine                                        
+HETATM    1  P   ADG     1      -3.128   3.055   4.419  1.00  0.00           P  
+HETATM    2  O1P ADG     1      -3.549   1.641   4.373  1.00  0.00           O  
+HETATM    3  O2P ADG     1      -4.115   4.105   4.818  1.00  0.00           O  
+HETATM    4  O5' ADG     1      -2.510   3.405   2.988  1.00  0.00           O  
+HETATM    5  C5' ADG     1      -1.928   4.704   2.733  1.00  0.00           C  
+HETATM    6  C4' ADG     1      -1.273   4.726   1.375  1.00  0.00           C  
+HETATM    7  O4' ADG     1      -0.238   3.709   1.311  1.00  0.00           O  
+HETATM    8  C3' ADG     1      -2.182   4.367   0.214  1.00  0.00           C  
+HETATM    9  O3' ADG     1      -2.995   5.484  -0.135  1.00  0.00           O  
+HETATM   10  C2' ADG     1      -1.153   4.029  -0.854  1.00  0.00           C  
+HETATM   11  O2' ADG     1      -0.480   5.174  -1.348  1.00  0.00           O  
+HETATM   12  C1' ADG     1      -0.146   3.221  -0.026  1.00  0.00           C  
+HETATM   13  N9  ADG     1      -0.437   1.780  -0.042  1.00  0.00           N  
+HETATM   14  C8  ADG     1      -1.709   1.220  -0.080  1.00  0.00           C  
+HETATM   15  C7  ADG     1      -1.619  -0.126  -0.079  1.00  0.00           C  
+HETATM   16  C5  ADG     1      -0.212  -0.420  -0.038  1.00  0.00           C  
+HETATM   17  C6  ADG     1       0.549  -1.629  -0.028  1.00  0.00           C  
+HETATM   18  O6  ADG     1       0.181  -2.772  -0.055  1.00  0.00           O  
+HETATM   19  N1  ADG     1       1.931  -1.357   0.015  1.00  0.00           N  
+HETATM   20  C2  ADG     1       2.488  -0.117   0.035  1.00  0.00           C  
+HETATM   21  N2  ADG     1       3.854  -0.075   0.022  1.00  0.00           N  
+HETATM   22  N3  ADG     1       1.811   0.973   0.032  1.00  0.00           N  
+HETATM   23  C4  ADG     1       0.462   0.785  -0.018  1.00  0.00           C  
+HETATM   24 1H5' ADG     1      -2.740   5.400   2.693  1.00  0.00           H  
+HETATM   25 2H5' ADG     1      -1.147   4.835   3.452  1.00  0.00           H  
+HETATM   26  H4' ADG     1      -0.933   5.736   1.279  1.00  0.00           H  
+HETATM   27  H3' ADG     1      -2.880   3.576   0.395  1.00  0.00           H  
+HETATM   28  H2' ADG     1      -1.586   3.548  -1.706  1.00  0.00           H  
+HETATM   29 2HO' ADG     1      -0.852   5.962  -0.945  1.00  0.00           H  
+HETATM   30  H1' ADG     1       0.834   3.340  -0.439  1.00  0.00           H  
+HETATM   31  H8  ADG     1      -2.575   1.845  -0.113  1.00  0.00           H  
+HETATM   32  H1  ADG     1       2.515  -2.163  -0.057  1.00  0.00           H  
+HETATM   33 1H2  ADG     1       4.339  -0.805   0.496  1.00  0.00           H  
+HETATM   34 2H2  ADG     1       4.221   0.834   0.198  1.00  0.00           H  
+HETATM   35  C10 ADG     1      -2.745  -1.118  -0.130  1.00  0.00           C  
+HETATM   36  N40 ADG     1      -4.013  -0.480   0.199  1.00  0.00           N  
+HETATM   37  H20 ADG     1      -2.502  -1.962   0.513  1.00  0.00           H  
+HETATM   38  H21 ADG     1      -2.824  -1.518  -1.136  1.00  0.00           H  
+HETATM   39  H22 ADG     1      -4.772  -1.110   0.030  1.00  0.00           H  
+HETATM   40  H23 ADG     1      -4.038  -0.246   1.173  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   24   25
+CONECT    6    7    8    5   26
+CONECT    7   12    6
+CONECT    8   10    6    9   27
+CONECT    9    8
+CONECT   10   12    8   11   28
+CONECT   11   10   29
+CONECT   12   13    7   10   30
+CONECT   13   23   14   12
+CONECT   14   15   13   31
+CONECT   15   16   35   14
+CONECT   16   23   17   15
+CONECT   17   19   16   18
+CONECT   18   17
+CONECT   19   20   17   32
+CONECT   20   19   22   21
+CONECT   21   20   33   34
+CONECT   22   20   23
+CONECT   23   22   16   13
+CONECT   24    5
+CONECT   25    5
+CONECT   26    6
+CONECT   27    8
+CONECT   28   10
+CONECT   29   11
+CONECT   30   12
+CONECT   31   14
+CONECT   32   19
+CONECT   33   21
+CONECT   34   21
+CONECT   35   15   36   37   38
+CONECT   36   35   39   40
+CONECT   37   35
+CONECT   38   35
+CONECT   39   36
+CONECT   40   36

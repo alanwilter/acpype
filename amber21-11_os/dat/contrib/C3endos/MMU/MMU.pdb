@@ -1,0 +1,73 @@
+REMARK 999 2'-O-methyl 5-Methyluridine                                          
+HETATM    1  P   MMU     1      -1.425   1.697  -5.249  1.00  0.00           P  
+HETATM    2  O1P MMU     1      -0.088   1.075  -5.275  1.00  0.00           O  
+HETATM    3  O2P MMU     1      -1.694   2.904  -6.090  1.00  0.00           O  
+HETATM    4  O5' MMU     1      -1.763   2.013  -3.720  1.00  0.00           O  
+HETATM    5  C5' MMU     1      -3.050   2.557  -3.346  1.00  0.00           C  
+HETATM    6  C4' MMU     1      -3.180   2.609  -1.844  1.00  0.00           C  
+HETATM    7  O4' MMU     1      -3.038   1.273  -1.291  1.00  0.00           O  
+HETATM    8  C3' MMU     1      -2.095   3.394  -1.130  1.00  0.00           C  
+HETATM    9  O3' MMU     1      -2.360   4.791  -1.223  1.00  0.00           O  
+HETATM   10  C2' MMU     1      -2.246   2.857   0.286  1.00  0.00           C  
+HETATM   11  O2' MMU     1      -3.421   3.325   0.926  1.00  0.00           O  
+HETATM   12  C1' MMU     1      -2.438   1.363  -0.000  1.00  0.00           C  
+HETATM   13  N1  MMU     1      -1.166   0.626  -0.000  1.00  0.00           N  
+HETATM   14  C2  MMU     1      -0.618   0.329   1.220  1.00  0.00           C  
+HETATM   15  O2  MMU     1      -1.130   0.644   2.256  1.00  0.00           O  
+HETATM   16  N3  MMU     1       0.566  -0.358   1.162  1.00  0.00           N  
+HETATM   17  C4  MMU     1       1.254  -0.776   0.035  1.00  0.00           C  
+HETATM   18  O4  MMU     1       2.285  -1.373   0.135  1.00  0.00           O  
+HETATM   19  C5  MMU     1       0.605  -0.422  -1.231  1.00  0.00           C  
+HETATM   20  C6  MMU     1      -0.545   0.246  -1.172  1.00  0.00           C  
+HETATM   21 1H5' MMU     1      -3.064   3.571  -3.689  1.00  0.00           H  
+HETATM   22 2H5' MMU     1      -3.788   1.864  -3.693  1.00  0.00           H  
+HETATM   23  H4' MMU     1      -4.132   3.072  -1.691  1.00  0.00           H  
+HETATM   24  H3' MMU     1      -1.105   3.284  -1.520  1.00  0.00           H  
+HETATM   25  H2' MMU     1      -1.431   3.135   0.921  1.00  0.00           H  
+HETATM   26  H1' MMU     1      -3.045   0.927   0.765  1.00  0.00           H  
+HETATM   27  H3  MMU     1       0.976  -0.581   2.045  1.00  0.00           H  
+HETATM   28  H6  MMU     1      -1.068   0.534  -2.064  1.00  0.00           H  
+HETATM   29  C10 MMU     1       1.279  -0.834  -2.510  1.00  0.00           C  
+HETATM   30  H20 MMU     1       0.702  -0.515  -3.371  1.00  0.00           H  
+HETATM   31  H21 MMU     1       1.396  -1.911  -2.554  1.00  0.00           H  
+HETATM   32  H22 MMU     1       2.270  -0.401  -2.580  1.00  0.00           H  
+HETATM   33  CM2 MMU     1      -3.092   4.419   1.786  1.00  0.00           C  
+HETATM   34 1HM' MMU     1      -3.991   4.844   2.183  1.00  0.00           H  
+HETATM   35 2HM' MMU     1      -2.478   4.069   2.589  1.00  0.00           H  
+HETATM   36 3HM' MMU     1      -2.561   5.163   1.229  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   21   22
+CONECT    6    7    8    5   23
+CONECT    7   12    6
+CONECT    8   10    6    9   24
+CONECT    9    8
+CONECT   10   12    8   11   25
+CONECT   11   10   33
+CONECT   12   13    7   10   26
+CONECT   13   14   20   12
+CONECT   14   13   16   15
+CONECT   15   14
+CONECT   16   14   17   27
+CONECT   17   16   19   18
+CONECT   18   17
+CONECT   19   17   29   20
+CONECT   20   13   19   28
+CONECT   21    5
+CONECT   22    5
+CONECT   23    6
+CONECT   24    8
+CONECT   25   10
+CONECT   26   12
+CONECT   27   16
+CONECT   28   20
+CONECT   29   19   30   31   32
+CONECT   30   29
+CONECT   31   29
+CONECT   32   29
+CONECT   33   11   34   35   36
+CONECT   34   33
+CONECT   35   33
+CONECT   36   33

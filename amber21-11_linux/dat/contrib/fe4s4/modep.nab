@@ -1,0 +1,56 @@
+// Try some molecular mechanics.
+
+#include "xmin_opt.h"
+struct xmin_opt xo;
+
+molecule m;
+int ier;
+float m_xyz[dynamic], grad[dynamic];
+float dgrad, fret, grms;
+point dummy;
+
+m = getpdb("minp.pdb");
+allocate m_xyz[3*m.natoms];
+allocate grad[3*m.natoms];
+
+readparm(m, "prmtopp");
+setxyz_from_mol( m, NULL, m_xyz );
+
+// Do some xmin minimization
+xmin_opt_init( xo );
+xo.maxiter = 1000;
+xo.grms_tol = 0.000001;
+xo.ls_maxatmov = 0.15;
+xo.print_level = 1;
+xo.method = 3;
+
+mm_options("rgbmax=100., cut=100.0, ntpr=50, nsnb=999, gb=1, diel=C");
+mme_init(m, NULL, "::ZZZZ", m_xyz, NULL);
+//
+//load in coordinates
+//
+getxv( "min1p.xyz", m.natoms, dummy, m_xyz, grad );
+//getxyz( "min1p.xyz", m.natoms, m_xyz);
+
+// ier = conjgrad(m_xyz, 3*m.natoms, fret, mme, dgrad, 1.0, 500);
+fret = mme( m_xyz, grad, 0 );
+fret = xmin( mme, m.natoms, m_xyz, grad, fret, grms, xo );
+
+// Do some Newton-Raphson.
+mm_options("ntpr=1");
+dgrad = 2.5e-12;
+ier = newton(m_xyz, 3*m.natoms, fret, mme,mme2, dgrad, 0.0, 100);
+// save results
+//setmol_from_xyz( m, NULL, m_xyz );
+putxv( "min2p.xyz", "second minimization", m.natoms, 0.0, m_xyz, grad);
+
+
+// get the normal modes:
+ier = nmode( m_xyz, 3*m.natoms,mme2, 3*m.natoms,1,0.0,0.0,0);
+
+if(mytaskid==0)
+  printf("nmode returns %d\n", ier );
+
+setmol_from_xyz( m, NULL, m_xyz );
+putpdb("min2p.pdb",m);
+

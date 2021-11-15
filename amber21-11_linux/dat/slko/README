@@ -1,0 +1,12 @@
+This directory contains subdirectories with the files that are needed
+for DFTB2 and DFTB3 calculations.
+
+They are distributed here under the terms of the  Creative Commons
+Attribution-ShareAlike License,
+http://creativecommons.org/licenses/by-sa/4.0/
+
+The parameters were obtained from www.dftb.org on Februay 22, 2017. 
+Please check www.dftb.org for any updates to these parameters or
+additional parameter sets that may be more appropriate e.g. for
+materials simulations.
+

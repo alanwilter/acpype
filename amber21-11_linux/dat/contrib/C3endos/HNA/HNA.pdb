@@ -1,0 +1,105 @@
+REMARK 999 N6-hydroxynorvalylcarbamoyladenosine                                 
+HETATM    1  P   HNA     1      -4.940  -0.291   5.638  1.00  0.00           P  
+HETATM    2  O1P HNA     1      -3.695   0.501   5.664  1.00  0.00           O  
+HETATM    3  O2P HNA     1      -5.351  -1.060   6.853  1.00  0.00           O  
+HETATM    4  O5' HNA     1      -4.842  -1.272   4.380  1.00  0.00           O  
+HETATM    5  C5' HNA     1      -5.950  -2.132   4.028  1.00  0.00           C  
+HETATM    6  C4' HNA     1      -5.675  -2.830   2.720  1.00  0.00           C  
+HETATM    7  O4' HNA     1      -5.469  -1.847   1.670  1.00  0.00           O  
+HETATM    8  C3' HNA     1      -4.396  -3.647   2.682  1.00  0.00           C  
+HETATM    9  O3' HNA     1      -4.595  -4.899   3.334  1.00  0.00           O  
+HETATM   10  C2' HNA     1      -4.198  -3.788   1.180  1.00  0.00           C  
+HETATM   11  O2' HNA     1      -5.133  -4.673   0.585  1.00  0.00           O  
+HETATM   12  C1' HNA     1      -4.545  -2.368   0.717  1.00  0.00           C  
+HETATM   13  N9  HNA     1      -3.364  -1.496   0.655  1.00  0.00           N  
+HETATM   14  C8  HNA     1      -2.987  -0.520   1.542  1.00  0.00           C  
+HETATM   15  N7  HNA     1      -1.890   0.059   1.247  1.00  0.00           N  
+HETATM   16  C5  HNA     1      -1.460  -0.570   0.095  1.00  0.00           C  
+HETATM   17  C6  HNA     1      -0.339  -0.441  -0.733  1.00  0.00           C  
+HETATM   18  N6  HNA     1       0.721   0.405  -0.597  1.00  0.00           N  
+HETATM   19  N1  HNA     1      -0.299  -1.189  -1.838  1.00  0.00           N  
+HETATM   20  C2  HNA     1      -1.270  -2.047  -2.086  1.00  0.00           C  
+HETATM   21  N3  HNA     1      -2.340  -2.299  -1.366  1.00  0.00           N  
+HETATM   22  C4  HNA     1      -2.385  -1.531  -0.287  1.00  0.00           C  
+HETATM   23 1H5' HNA     1      -5.996  -2.894   4.778  1.00  0.00           H  
+HETATM   24 2H5' HNA     1      -6.792  -1.493   3.862  1.00  0.00           H  
+HETATM   25  H4' HNA     1      -6.524  -3.468   2.594  1.00  0.00           H  
+HETATM   26  H3' HNA     1      -3.552  -3.218   3.181  1.00  0.00           H  
+HETATM   27  H2' HNA     1      -3.229  -4.165   0.926  1.00  0.00           H  
+HETATM   28 2HO' HNA     1      -5.684  -5.062   1.268  1.00  0.00           H  
+HETATM   29  H1' HNA     1      -4.953  -2.403  -0.272  1.00  0.00           H  
+HETATM   30  H8  HNA     1      -3.589  -0.290   2.398  1.00  0.00           H  
+HETATM   31 1H6  HNA     1       1.309   0.394  -1.401  1.00  0.00           H  
+HETATM   32  H2  HNA     1      -1.163  -2.615  -2.994  1.00  0.00           H  
+HETATM   33  C10 HNA     1       1.426   0.993   0.482  1.00  0.00           C  
+HETATM   34  N40 HNA     1       2.138   2.087   0.256  1.00  0.00           N  
+HETATM   35  H20 HNA     1       2.038   2.589  -0.601  1.00  0.00           H  
+HETATM   36  C11 HNA     1       2.671   2.928   1.318  1.00  0.00           C  
+HETATM   37  H21 HNA     1       2.143   2.709   2.237  1.00  0.00           H  
+HETATM   38  C12 HNA     1       4.177   2.709   1.593  1.00  0.00           C  
+HETATM   39  H22 HNA     1       4.734   3.092   0.733  1.00  0.00           H  
+HETATM   40  C13 HNA     1       4.594   1.252   1.828  1.00  0.00           C  
+HETATM   41  H23 HNA     1       3.796   0.718   2.331  1.00  0.00           H  
+HETATM   42  H24 HNA     1       5.434   1.287   2.516  1.00  0.00           H  
+HETATM   43  C14 HNA     1       5.026   0.494   0.570  1.00  0.00           C  
+HETATM   44  H25 HNA     1       5.315  -0.525   0.816  1.00  0.00           H  
+HETATM   45  H26 HNA     1       4.238   0.448  -0.171  1.00  0.00           H  
+HETATM   46  H27 HNA     1       5.884   0.976   0.106  1.00  0.00           H  
+HETATM   47  C15 HNA     1       2.419   4.421   0.933  1.00  0.00           C  
+HETATM   48  O30 HNA     1       1.882   4.629  -0.152  1.00  0.00           O  
+HETATM   49  O31 HNA     1       1.306   0.423   1.540  1.00  0.00           O  
+HETATM   50  O32 HNA     1       2.821   5.238   1.774  1.00  0.00           O  
+HETATM   51  O33 HNA     1       4.529   3.429   2.742  1.00  0.00           O  
+HETATM   52  H28 HNA     1       4.868   4.272   2.427  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   23   24
+CONECT    6    7    8    5   25
+CONECT    7   12    6
+CONECT    8   10    6    9   26
+CONECT    9    8
+CONECT   10   12    8   11   27
+CONECT   11   10   28
+CONECT   12   13    7   10   29
+CONECT   13   14   22   12
+CONECT   14   13   30   15
+CONECT   15   14   16
+CONECT   16   15   17   22
+CONECT   17   16   18   19
+CONECT   18   17   31   33
+CONECT   19   17   20
+CONECT   20   19   32   21
+CONECT   21   20   22
+CONECT   22   13   16   21
+CONECT   23    5
+CONECT   24    5
+CONECT   25    6
+CONECT   26    8
+CONECT   27   10
+CONECT   28   11
+CONECT   29   12
+CONECT   30   14
+CONECT   31   18
+CONECT   32   20
+CONECT   33   18   34   49
+CONECT   34   33   35   36
+CONECT   35   34
+CONECT   36   34   37   38   47
+CONECT   37   36
+CONECT   38   36   39   40   51
+CONECT   39   38
+CONECT   40   38   41   42   43
+CONECT   41   40
+CONECT   42   40
+CONECT   43   40   44   45   46
+CONECT   44   43
+CONECT   45   43
+CONECT   46   43
+CONECT   47   36   48   50
+CONECT   48   47
+CONECT   49   33
+CONECT   50   47
+CONECT   51   38   52
+CONECT   52   51

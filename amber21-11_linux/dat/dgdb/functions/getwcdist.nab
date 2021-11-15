@@ -1,0 +1,146 @@
+#define		MAXSTRANDS	500
+#define		MAXRES		1000
+
+molecule	m;
+residue		r, rw, rc;
+int		ac, rn;
+
+string		str;
+int		nstr;
+int		nres[ MAXSTRANDS ];
+residue		res[ MAXSTRANDS, MAXRES ];
+
+int	getcanonicalwcdist( file f, residue rw, residue rc )
+{
+	atom	aw, ac;
+	float	d;
+	int	res_rw, res_rc, wc_pair;
+	point	wN1,wN2,wN3,wN4,wN6,wO2,wO4,wO6;
+	point	cN1,cN2,cN3,cN4,cN6,cO2,cO4,cO6;
+
+	wN1.x = 0.0; wN1.y = 0.0; wN1.z = 0.0;	
+	wN2.x = 0.0; wN2.y = 0.0; wN2.z = 0.0;	
+	wN3.x = 0.0; wN3.y = 0.0; wN3.z = 0.0;	
+	wN4.x = 0.0; wN4.y = 0.0; wN4.z = 0.0;	
+	wN6.x = 0.0; wN6.y = 0.0; wN6.z = 0.0;	
+	wO2.x = 0.0; wO2.y = 0.0; wO2.z = 0.0;	
+	wO4.x = 0.0; wO4.y = 0.0; wO4.z = 0.0;	
+	wO6.x = 0.0; wO6.y = 0.0; wO6.z = 0.0;	
+	cN1.x = 0.0; cN1.y = 0.0; cN1.z = 0.0;	
+	cN2.x = 0.0; cN2.y = 0.0; cN2.z = 0.0;	
+	cN3.x = 0.0; cN3.y = 0.0; cN3.z = 0.0;	
+	cN4.x = 0.0; cN4.y = 0.0; cN4.z = 0.0;	
+	cN6.x = 0.0; cN6.y = 0.0; cN6.z = 0.0;	
+	cO2.x = 0.0; cO2.y = 0.0; cO2.z = 0.0;	
+	cO4.x = 0.0; cO4.y = 0.0; cO4.z = 0.0;	
+	cO6.x = 0.0; cO6.y = 0.0; cO6.z = 0.0;	
+
+	for( aw in rw ){
+		if ( aw.atomname == "N1")
+			wN1 = aw.pos;
+		if ( aw.atomname == "N2")
+			wN2 = aw.pos;
+		if ( aw.atomname == "N3")
+			wN3 = aw.pos;
+		if ( aw.atomname == "N4")
+			wN4 = aw.pos;
+		if ( aw.atomname == "N6")
+			wN6 = aw.pos;
+		if ( aw.atomname == "O2")
+			wO2 = aw.pos;
+		if ( aw.atomname == "O4")
+			wO4 = aw.pos;
+		if ( aw.atomname == "O6")
+			wO6 = aw.pos;
+	}
+
+	for( ac in rc ){
+		if ( ac.atomname == "N1")
+			cN1 = ac.pos;
+		if ( ac.atomname == "N2")
+			cN2 = ac.pos;
+		if ( ac.atomname == "N3")
+			cN3 = ac.pos;
+		if ( ac.atomname == "N4")
+			cN4 = ac.pos;
+		if ( ac.atomname == "N6")
+			cN6 = ac.pos;
+		if ( ac.atomname == "O2")
+			cO2 = ac.pos;
+		if ( ac.atomname == "O4")
+			cO4 = ac.pos;
+		if ( ac.atomname == "O6")
+			cO6 = ac.pos;
+	}
+
+	wc_pair = 0;	
+
+	if ( ( 2.3 <= distp(wN1,cN3)) && (distp(wN1,cN3) <= 3.2 ) ) { 
+		if ( ( 2.3 <= distp(wN6,cO4)) && (distp(wN6,cO4) <= 3.2 ) ) {
+			wc_pair = 1;	
+		}
+		else {
+			if ( ( 2.3 <= distp(wO6,cN4)) && (distp(wO6,cN4) <= 3.3 ) ) {
+				if ( ( 2.3 <= distp(wN2,cO2)) && (distp(wN2,cO2) <= 3.2 ) ){
+					wc_pair = 1;
+				}
+			}	
+		}
+	}
+	else {
+		if ( ( 2.3 <= distp(wN3,cN1)) && (distp(wN3,cN1) <= 3.2 ) ) {
+			if ( ( 2.3 <= distp(wO4,cN6)) && (distp(wO4,cN6) <= 3.3 ) ) {
+				wc_pair = 1;
+			}
+			else {
+				if ( ( 2.3 <= distp(wN4,cO6)) && (distp(wN4,cO6) <= 3.3 ) ) {
+					if ( ( 2.3 <= distp(wO2,cN2)) && (distp(wO2,cN2) <= 3.2 ) ) {
+						wc_pair = 1;
+					}
+				}	
+			}
+		}
+	}
+
+	if (wc_pair) {
+		for( aw in rw ){
+			for( ac in rc ){
+				d = distp( aw.pos, ac.pos );
+				fprintf( f, "%s:%s-%s:%s %8.3f\n",
+					rw.resname, aw.atomname,
+					rc.resname, ac.atomname, d );
+				fprintf( f, "%s:%s-%s:%s %8.3f\n",
+					rc.resname, ac.atomname,
+					rw.resname, aw.atomname, d );
+			}
+		}
+	}
+};
+
+for( ac = 2; ac <= argc; ac = ac + 1 ){
+
+	m = getpdb( argv[ ac ] );
+
+	nstr = 0;
+	str = "";
+	for( r in m ){
+		if( str != r.strandname  ){
+			nstr = nstr + 1;
+			nres[ nstr ] = 0;
+		}
+		nres[ nstr ] = nres[ nstr ] + 1;
+		res[ nstr, nres[ nstr ] ] = r;
+		str = r.strandname;
+	}
+
+	if( nstr > 2 ){
+		fprintf( stderr, "skipped %s, %d strands\n",
+			argv[ ac ], nstr-2 );
+	}
+
+	for( rn = 1; rn <= nres[ 1 ]; rn = rn + 1 ){
+		rw = res[ 1, rn ];
+		rc = res[ 2, nres[ 1 ] - rn + 1 ];
+			getcanonicalwcdist( stdout, rw, rc );
+	}
+}

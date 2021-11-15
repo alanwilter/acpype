@@ -1,0 +1,37 @@
+These are Amber force field files for iron-sulfur cubane systems in the -1
+(HIPIP), -2 (Fdox), and -3 (Fdred) oxidation states.  The intent is that
+the cubane be coordinated by four CYF residues (deprotoned CYS residues).
+
+There are two sets of cubane off files: in the (old) version 2 of the
+PDB, this component was called FS4; in more recent (version 3) files, it
+is called SF4.  The only difference between the FS4*.off and the
+SF4*.off files is in this naming convention:  use the files that match
+the PDB input you have.  CYF files are also provided for each of the three
+oxidation states; use SF4pm1.off with CYFpm1.off, etc.
+
+The force field fits were based on quantum calculations reported here:
+
+Y. Xiao, M. Koutmos, D.A. Case, D. Coucouvanis, H. Wang and
+S.P. Cramer. Dynamics of an [Fe_{4}S_{4}(SPh)_{4}]^{2-} cluster
+via IR, Raman, and nuclear resonant vibrational spectroscopy
+(NRVS). Analysis using ^{36}S substitution, DFT and empirical force
+fields. J. Chem. Soc. Dalton, 2192-2201 (2006)
+
+The charges were derived from the electrostatic potentials; bonded
+parameters by requiring that the normal modes arising from the force
+field match those from the quantum calculations.
+
+There are sample tleap inputs to show how these could be used to set up
+Amber simulations.  Note that there is certainly no guarantee that
+precise differences between cubanes in different oxidation states will
+be reproduced by the force fields described here.
+
+Force fields were created in 2012 by Steve Sontum and David Case.  In
+the way of the world, they were never published....
+
+A similar approach, with a different method for getting bonded
+parameters is reported here:
+
+A.T.P. Carvalho and M. Swart.  Electronic Structure Investigation and
+Parametrization of Biologically Relevant Iron-Sulfur Clusters.  J. Chem.
+Inf. Model.  54: 613-620 (2014).

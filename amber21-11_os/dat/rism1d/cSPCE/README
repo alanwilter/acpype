@@ -1,0 +1,5 @@
+This model was taken from $AMBERHOME/dat/rism1d/model/SPC.mdl and 
+represents the cSPC/E model.
+
+The NaCl model is a place-holder here, until we figure out a useful way
+to distribute rism1d .xvv files for salt-water environments.

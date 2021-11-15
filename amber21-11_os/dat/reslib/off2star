@@ -1,0 +1,56 @@
+#!/usr/bin/perl -w
+
+#  convert a LEaP "off" file to star format; works as a filter
+
+$index = $n = $m = 0; $blockId = "";
+
+while (<>) {
+
+	if (/^!/ ){      #  process the index and entry lines
+
+		if (/^!!index/){
+			$index = 1;
+		} else {
+			@fields = split(' ',$_); @names = split('\.',$fields[0]);
+
+			$index = 0;
+			if( $names[1] ne $blockId ){    #new data block
+				$blockId = $blockId[ ++$n ];
+				printf "\n\ndata_%s\n\n", $blockId;
+			}
+
+			if( $fields[1] eq "single" ){
+				printf "\n_%s.%s  ", $names[2], $names[3]; next;
+			}
+
+			if ( $fields[1] eq "array" ){
+				printf "\nloop_\n_%s.%s\n", $names[2], $names[3]; next;
+			}
+
+			if ( $fields[1] eq "table" ){
+				printf "\nloop_\n";
+				foreach $i (2 .. ($#fields+1)/2) {
+					printf "_%s_%s.%s\n", $names[2],$names[3],$fields[2*$i-1];
+				}
+				next;
+			}
+
+			die "bad control line: $_\n";
+
+		}
+
+	} else {        #  process all of the data lines
+
+		if ($index) {
+			@fields = split(' ',$_);
+			$fields[0] =~ s/"//g;
+			$blockId[ ++$m ] = $fields[0];
+
+		} else {
+			print $_;
+
+		}
+
+	}
+
+}

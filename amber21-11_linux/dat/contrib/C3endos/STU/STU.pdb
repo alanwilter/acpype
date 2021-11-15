@@ -1,0 +1,89 @@
+REMARK 999 5-taurinomethyl-2-thiouridine                                        
+HETATM    1  P   TSU     1       4.691  -1.607   5.100  1.00  0.00           P  
+HETATM    2  O1P TSU     1       4.648  -0.132   5.097  1.00  0.00           O  
+HETATM    3  O2P TSU     1       5.809  -2.311   5.801  1.00  0.00           O  
+HETATM    4  O5' TSU     1       4.624  -2.078   3.574  1.00  0.00           O  
+HETATM    5  C5' TSU     1       4.566  -3.483   3.238  1.00  0.00           C  
+HETATM    6  C4' TSU     1       4.344  -3.657   1.757  1.00  0.00           C  
+HETATM    7  O4' TSU     1       3.102  -3.012   1.366  1.00  0.00           O  
+HETATM    8  C3' TSU     1       5.375  -2.988   0.866  1.00  0.00           C  
+HETATM    9  O3' TSU     1       6.557  -3.782   0.805  1.00  0.00           O  
+HETATM   10  C2' TSU     1       4.621  -2.948  -0.455  1.00  0.00           C  
+HETATM   11  O2' TSU     1       4.498  -4.227  -1.054  1.00  0.00           O  
+HETATM   12  C1' TSU     1       3.229  -2.528   0.030  1.00  0.00           C  
+HETATM   13  N1  TSU     1       3.051  -1.068   0.022  1.00  0.00           N  
+HETATM   14  C2  TSU     1       2.751  -0.431  -1.125  1.00  0.00           C  
+HETATM   15  S2  TSU     1       2.548  -1.193  -2.610  1.00  0.00           S  
+HETATM   16  N3  TSU     1       2.612   0.909  -1.019  1.00  0.00           N  
+HETATM   17  C4  TSU     1       2.742   1.705   0.116  1.00  0.00           C  
+HETATM   18  O4  TSU     1       2.594   2.889   0.033  1.00  0.00           O  
+HETATM   19  C5  TSU     1       3.058   0.953   1.325  1.00  0.00           C  
+HETATM   20  C6  TSU     1       3.198  -0.365   1.210  1.00  0.00           C  
+HETATM   21 1H5' TSU     1       5.533  -3.889   3.452  1.00  0.00           H  
+HETATM   22 2H5' TSU     1       3.700  -3.879   3.726  1.00  0.00           H  
+HETATM   23  H4' TSU     1       4.373  -4.719   1.623  1.00  0.00           H  
+HETATM   24  H3' TSU     1       5.716  -2.027   1.188  1.00  0.00           H  
+HETATM   25  H2' TSU     1       5.098  -2.325  -1.182  1.00  0.00           H  
+HETATM   26 2HO' TSU     1       4.972  -4.874  -0.526  1.00  0.00           H  
+HETATM   27  H1' TSU     1       2.485  -2.931  -0.624  1.00  0.00           H  
+HETATM   28  H3  TSU     1       2.393   1.393  -1.864  1.00  0.00           H  
+HETATM   29  H6  TSU     1       3.440  -0.954   2.071  1.00  0.00           H  
+HETATM   30  C10 TSU     1       3.244   1.688   2.634  1.00  0.00           C  
+HETATM   31  H20 TSU     1       4.240   2.129   2.649  1.00  0.00           H  
+HETATM   32  H21 TSU     1       3.225   0.965   3.443  1.00  0.00           H  
+HETATM   33  C11 TSU     1       2.052   3.103   4.232  1.00  0.00           C  
+HETATM   34  C12 TSU     1       0.946   4.139   4.340  1.00  0.00           C  
+HETATM   35  H22 TSU     1       1.799   2.251   4.850  1.00  0.00           H  
+HETATM   36  H23 TSU     1       2.981   3.523   4.612  1.00  0.00           H  
+HETATM   37  H24 TSU     1       1.169   5.011   3.732  1.00  0.00           H  
+HETATM   38  H25 TSU     1       0.004   3.721   4.005  1.00  0.00           H  
+HETATM   39  N40 TSU     1       2.179   2.644   2.847  1.00  0.00           N  
+HETATM   40  H26 TSU     1       2.335   3.440   2.257  1.00  0.00           H  
+HETATM   41  S26 TSU     1       0.707   4.729   6.018  1.00  0.00           S  
+HETATM   42  O30 TSU     1      -0.390   5.674   5.903  1.00  0.00           O  
+HETATM   43  O31 TSU     1       0.388   3.531   6.779  1.00  0.00           O  
+HETATM   44  O32 TSU     1       1.982   5.333   6.373  1.00  0.00           O  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   21   22
+CONECT    6    7    8    5   23
+CONECT    7   12    6
+CONECT    8   10    6    9   24
+CONECT    9    8
+CONECT   10   12    8   11   25
+CONECT   11   10   26
+CONECT   12   13    7   10   27
+CONECT   13   20   14   12
+CONECT   14   13   16   15
+CONECT   15   14
+CONECT   16   17   28   14
+CONECT   17   19   18   16
+CONECT   18   17
+CONECT   19   20   17   30
+CONECT   20   13   29   19
+CONECT   21    5
+CONECT   22    5
+CONECT   23    6
+CONECT   24    8
+CONECT   25   10
+CONECT   26   11
+CONECT   27   12
+CONECT   28   16
+CONECT   29   20
+CONECT   30   19   31   32   39
+CONECT   31   30
+CONECT   32   30
+CONECT   33   34   35   36   39
+CONECT   34   33   37   38   41
+CONECT   35   33
+CONECT   36   33
+CONECT   37   34
+CONECT   38   34
+CONECT   39   30   33   40
+CONECT   40   39
+CONECT   41   34   42   43   44
+CONECT   42   41
+CONECT   43   41
+CONECT   44   41

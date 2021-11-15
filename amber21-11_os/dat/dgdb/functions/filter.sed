@@ -1,0 +1,9 @@
+     s/\*/'/g
+     s/+//g
+     s/T:C5M/T:C7/g
+     s/T:M5/T:C7/g
+     s/ADE/A/g
+     s/CYT/C/g
+     s/GUA/G/g
+     s/THY/T/g
+     s/URA/U/g

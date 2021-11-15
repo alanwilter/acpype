@@ -1,0 +1,4 @@
+# non-standard amino acid PHD
+source leaprc.gaff
+loadAmberPrep %(data_dir)s/phd.prepin
+loadAmberParams %(data_dir)s/phd.frcmod

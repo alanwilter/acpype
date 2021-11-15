@@ -79,28 +79,24 @@ if which("antechamber") is None:
         os.environ["PATH"] += (
             os.pathsep
             + LOCAL_PATH
-            + "amber19-0_linux/bin/to_be_dispatched:"
+            + "/amber21-11_linux/bin:"
             + LOCAL_PATH
-            + "/amber19-0_linux/bin:"
-            + LOCAL_PATH
-            + "/amber19-0_linux/dat/"
+            + "/amber21-11_linux/dat/"
         )
-        os.environ["AMBERHOME"] = LOCAL_PATH + "/amber19-0_linux/"
-        os.environ["ACHOME"] = LOCAL_PATH + "/amber19-0_linux/bin/"
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber19-0_linux/lib/"
+        os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
+        os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_linux/bin/"
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_linux/lib/"
     elif sys.platform == "darwin":
         os.environ["PATH"] += (
             os.pathsep
             + LOCAL_PATH
-            + "amber19-0_os/bin/to_be_dispatched:"
+            + "/amber21-11_os/bin:"
             + LOCAL_PATH
-            + "/amber19-0_os/bin:"
-            + LOCAL_PATH
-            + "/amber19-0_os/dat/"
+            + "/amber21-11_os/dat/"
         )
-        os.environ["AMBERHOME"] = LOCAL_PATH + "/amber19-0_os/"
-        os.environ["ACHOME"] = LOCAL_PATH + "/amber19-0_os/bin/"
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber19-0_os/lib/"
+        os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
+        os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_os/bin/"
+        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
 
 if sys.version_info < (3, 6):
     print("ERROR: Sorry, you need python 3.6 or higher")

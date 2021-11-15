@@ -1,0 +1,12 @@
+# Specification of ligand molecule charge for those ligands that have a total charge
+# that is not equal to zero.
+# First column: Name of structure in <i_path> folder. Either self chosen
+#               name or name automatically set by the system. In the latter case the 
+#               name is equal to "Lig_<name in multi mol2 or sdf file>.mol2" or if
+#               no name is present in the multiple mol2 file: 
+#               "Lig_<number of structure in the multi mol2 file>.mol2"
+# Second column: Total charge of the ligand molecule
+# Third column: Multiplicity of the ligand molecule
+# 
+Lig_10.mol2	1	1
+Lig_14.mol2	1	1

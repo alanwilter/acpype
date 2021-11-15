@@ -1,0 +1,35 @@
+    heme_all.in         Heme-his prep file, all atom
+    frcmod.hemall	Additional ff params, all atom
+    heme_uni.in         Heme-his prep file, united atom
+    frcmod.hemuni	Additional ff params, united atom
+
+Use these carefully, since they are not part of the "standard"
+AMBER distribution.  Contact David Case (case@scripps.edu) if
+you have questions about how these were generated.  The heavy
+atom names for the heme ring follow Brookhaven ideas, but the
+protons are named according to a local, nmr-based convention.
+For historical reasons, the united atom parameters are set up for
+a deoxy heme, whereas the all-atom frcmod file is set up for a
+ligated heme; you will want to carefully study these before
+using them.
+
+Chris Bayly of Merck added corrections to heme_all.in, changing
+some atom names, also to frcmod.hemall, deleting the flexible 
+water and Cl parameters, which are as follows:
+
+BOND
+OW-HW  529.6       0.9572      Pettitt force constant, TIP3 geom.
+HW-HW   38.25      1.5136      Pettitt force constant, TIP3 geom.
+
+ANGLE
+HW-OW-HW    34.05     104.52           Pettitt force constant
+OW-HW-HW    0.0        90.0
+
+HBOND
+  HW  OW   225.     0000.                                4.
+
+NONBON
+  HW       1.00       .020
+  CL       2.223     0.107     0.0
+
+--

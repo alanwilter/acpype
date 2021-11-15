@@ -1,0 +1,100 @@
+Force field modifcations for united atom heme, plus flexible water
+
+N.B.: the parameters around the iron are appropriate for a
+   five-coordinate (deoxy) heme.
+
+Force field parameters were adapted from D.A. Giammona, Ph.D. thesis,
+   University of California, Davis (1984).
+
+
+BOND
+CB-C3  300.000     1.51000      HEME
+FE-W    70.000     1.80000       HEME-dac change 5/4/85
+CC-NO  180.000     1.38000       HEME
+CC-NP  180.000     1.38000       HEME
+FE-NO   70.000     2.06000       HEME-dac change 5/4/85
+FE-NP   70.000     2.06000       HEME-dac chagne 5/4/85
+NB-FE   70.000     2.12000       HEME-dac change 5/4/85
+CB-C2  450.000     1.51000       HEME
+CB-CC  460.000     1.44000       HEME
+CC-CD  250.000     1.40000       HEME
+CB-CY  450.000     1.51000       HEME
+CY-CX  450.000     1.35000       HEME
+LO-LO  848.000     1.25000       unbound O2 ligand
+OW-HW 529.6      0.9572      Pettitt force constant, TIP3 geom.
+HW-HW 38.25      1.5136      Pettitt force constant, TIP3 geom.
+
+ANGLE
+CP-NB-FE   130.000   124.800       HEME
+NB-FE-W     30.000   180.000       HEME
+NP-FE-W     30.000    90.000       HEME
+NO-FE-W     30.000    90.000       HEME
+CF-NB-FE   130.000   124.800       HEME
+NB-FE-NP    55.000   101.000       HEME-for deoxy 5/4/85
+NB-FE-NO    55.000   101.000       HEME-for deoxy 5/4/85
+FE-NP-CC    50.000   127.300       HEME
+FE-NO-CC    50.000   127.300       HEME
+NP-CC-CD    70.000   125.500       HEME
+NO-CC-CD    70.000   125.500       HEME
+NP-CC-CB    70.000   110.300       HEME
+NO-CC-CB    70.000   110.300       HEME
+NP-FE-NO    25.000    90.000       HEME-deoxy 5/4/85
+NP-FE-NP     0.000   180.000       HEME
+NB-FE-NB     0.000   180.000       HEME
+NO-FE-NO     0.000   180.000       HEME
+CC-CB-C2    70.000   126.500       HEME
+CC-CB-CB    80.000   107.000       HEME
+CC-NP-CC    50.000   105.400       HEME
+CC-NO-CC    50.000   105.400       HEME
+CC-CD-CC    70.000   124.400       HEME
+CB-C2-C2    46.500   112.000       HEME
+CB-CB-C3    70.000   126.500       HEME
+CB-CC-CD    70.000   124.200       HEME
+C3-CB-CC    70.000   126.500       HEME
+CB-CB-CY    70.000   120.000       HEME
+C2-CB-CB    70.000   126.500       HEME
+CB-CY-CX    50.000   120.000       HEME
+CY-CB-CC    70.000   120.000    END OF HEME ANGLES
+HW-OW-HW    34.05     104.52           Pettitt force constant
+OW-HW-HW    0.0        90.0
+
+DIHEDRAL
+X -C3-CH-X    1       0.0         0.0         2.0
+X -FE-NB-X    1       0.000       0.000       2.000
+X -FE-NP-X    1       0.000       0.000       2.000
+X -FE-NO-X    1       0.000       0.000       2.000
+X -NP-CC-X    4       6.000     180.000       2.000
+X -NO-CC-X    4       6.000     180.000       2.000
+X -CB-CC-X    4      20.000     180.000       2.000
+X -CC-CD-X    2      10.000     180.000       2.000
+X -CB-C2-X    2       1.500       0.000       3.000
+X -NP-CC-X    4       6.000     180.000       2.000
+X -CB-CY-X    2       5.000     180.000       2.000
+X -C -CB-X    4       4.400     180.000       2.000
+X -C -CD-X    2       5.300     180.000       2.000
+X -C -CH-X    4       0.000       0.000       2.000
+X -C -CJ-X    2       3.100     180.000       2.000
+X -C -CM-X    4       3.100     180.000       2.000
+X -C -CT-X    6       0.000       0.000       2.000
+
+IMPROPER
+X -C2-CH-X    0      14.000     180.000       3.000
+X -CH-CH-X    0      14.000     180.000       3.000
+X -CC-CC-X    0       0.000     180.000       2.000
+X -CB-NO-X    0       0.000     180.000       2.000
+X -CB-NP-X    0       0.000     180.000       2.000
+X -CB-CC-X    0       0.000     180.000       2.000
+X -CH-NT-C    0      14.000     180.000       3.000
+X -CH-N3-C    0      14.000     180.000       3.000
+CH-CH-C -N3   0       7.000     180.000       3.000
+C2-CH-C -N3   0       7.000     180.000       3.000
+C3-CH-CA-C3   0       7.000     180.000       3.000
+
+HBOND
+  HW  OW   225.     0000.                                4.
+
+NONBON
+  HW       1.00       .020
+  CL         2.223     0.107     0.0
+  FE         1.20000   0.05000   0.00000
+

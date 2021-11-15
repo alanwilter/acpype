@@ -1,0 +1,69 @@
+!!index array str
+ "ZNB"
+!entry.ZNB.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "Zn" "Zn" 0 1 131075 1 30 0.0
+ "D1" "DZ" 0 1 131075 2 -1 0.500000
+ "D2" "DZ" 0 1 131075 3 -1 0.500000
+ "D3" "DZ" 0 1 131075 4 -1 0.500000
+ "D4" "DZ" 0 1 131075 5 -1 0.500000
+!entry.ZNB.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "Zn" "Zn" 0 -1 0.0
+ "D1" "DZ" 0 -1 0.0
+ "D2" "DZ" 0 -1 0.0
+ "D3" "DZ" 0 -1 0.0
+ "D4" "DZ" 0 -1 0.0
+!entry.ZNB.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.ZNB.unit.childsequence single int
+ 2
+!entry.ZNB.unit.connect array int
+ 0
+ 0
+!entry.ZNB.unit.connectivity table  int atom1x  int atom2x  int flags
+ 1 3 1
+ 1 2 1
+ 1 4 1
+ 1 5 1
+ 2 3 1
+ 2 4 1
+ 2 5 1
+ 3 5 1
+ 3 4 1
+ 4 5 1
+!entry.ZNB.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R" 1
+ "R" 1 "A" 1
+ "R" 1 "A" 2
+ "R" 1 "A" 3
+ "R" 1 "A" 4
+ "R" 1 "A" 5
+!entry.ZNB.unit.name single str
+ ""
+!entry.ZNB.unit.positions table  dbl x  dbl y  dbl z
+ 71.249000 22.930000 -75.890000
+ 71.757000 23.648000 -75.697000
+ 71.772000 22.267000 -76.201000
+ 70.641000 23.152000 -76.516000
+ 70.826000 22.654000 -75.145000
+!entry.ZNB.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 0 0 0 0 0 0
+!entry.ZNB.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "ZNB" 1 6 1 "?" 0
+!entry.ZNB.unit.residuesPdbSequenceNumber array int
+ 1
+!entry.ZNB.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.ZNB.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0

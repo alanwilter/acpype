@@ -34,14 +34,14 @@ jobs:
       - name: Set Env
         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
-            echo "AMBERHOME=$PWD/amber19-0_linux" >> $GITHUB_ENV
-            echo "$PWD/amber19-0_linux/bin" >> $GITHUB_PATH
+            echo "AMBERHOME=$PWD/amber21-11_linux" >> $GITHUB_ENV
+            echo "$PWD/amber21-11_linux/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
         run: |
             sudo apt-get update
             sudo apt-get install -y --no-install-recommends tzdata
-            
+
       - name: Install OpenBabel
         run: |
             sudo apt-get install --no-install-recommends -y openbabel

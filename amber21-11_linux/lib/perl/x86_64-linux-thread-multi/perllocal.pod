@@ -1,0 +1,22 @@
+=head2 Mon Oct 25 21:04:51 2021: C<Module> L<PerlMol|PerlMol>
+
+=over 4
+
+=item *
+
+C<installed into: /home/conda/feedstock_root/build_artifacts/ambertools_1635195478443/work/build/AmberTools/src/PerlMol-0.3500/install/lib/perl>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.3500>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

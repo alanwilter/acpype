@@ -1,0 +1,67 @@
+REMARK 999 2'-O-methyl Pseudouridine                                            
+HETATM    1  P   MRP     1       1.536  -3.658  -4.320  1.00  0.00           P  
+HETATM    2  O1P MRP     1       0.063  -3.579  -4.283  1.00  0.00           O  
+HETATM    3  O2P MRP     1       2.198  -4.956  -4.658  1.00  0.00           O  
+HETATM    4  O5' MRP     1       2.067  -3.127  -2.909  1.00  0.00           O  
+HETATM    5  C5' MRP     1       3.485  -3.002  -2.654  1.00  0.00           C  
+HETATM    6  C4' MRP     1       3.720  -2.331  -1.325  1.00  0.00           C  
+HETATM    7  O4' MRP     1       3.107  -1.013  -1.323  1.00  0.00           O  
+HETATM    8  C3' MRP     1       3.073  -3.013  -0.134  1.00  0.00           C  
+HETATM    9  O3' MRP     1       3.852  -4.136   0.270  1.00  0.00           O  
+HETATM   10  C2' MRP     1       3.094  -1.883   0.884  1.00  0.00           C  
+HETATM   11  O2' MRP     1       4.397  -1.610   1.371  1.00  0.00           O  
+HETATM   12  C1' MRP     1       2.673  -0.703   0.000  1.00  0.00           C  
+HETATM   13  C5  MRP     1       1.149  -0.485   0.000  1.00  0.00           C  
+HETATM   14  C4  MRP     1       0.651   0.899  -0.000  1.00  0.00           C  
+HETATM   15  O4  MRP     1       1.346   1.871  -0.000  1.00  0.00           O  
+HETATM   16  N3  MRP     1      -0.732   1.022   0.000  1.00  0.00           N  
+HETATM   17  C2  MRP     1      -1.664   0.017  -0.000  1.00  0.00           C  
+HETATM   18  O2  MRP     1      -2.842   0.210   0.000  1.00  0.00           O  
+HETATM   19  N1  MRP     1      -1.110  -1.234  -0.000  1.00  0.00           N  
+HETATM   20  C6  MRP     1       0.249  -1.464   0.000  1.00  0.00           C  
+HETATM   21 1H5' MRP     1       3.869  -3.997  -2.567  1.00  0.00           H  
+HETATM   22 2H5' MRP     1       3.873  -2.343  -3.403  1.00  0.00           H  
+HETATM   23  H4' MRP     1       4.785  -2.343  -1.223  1.00  0.00           H  
+HETATM   24  H3' MRP     1       2.095  -3.414  -0.300  1.00  0.00           H  
+HETATM   25  H2' MRP     1       2.493  -2.092   1.744  1.00  0.00           H  
+HETATM   26  H1' MRP     1       3.112   0.199   0.374  1.00  0.00           H  
+HETATM   27  HN3 MRP     1      -1.095   1.952   0.001  1.00  0.00           H  
+HETATM   28  HN1 MRP     1      -1.756  -1.991  -0.000  1.00  0.00           H  
+HETATM   29  H6  MRP     1       0.528  -2.500   0.000  1.00  0.00           H  
+HETATM   30  CM2 MRP     1       4.547  -2.178   2.675  1.00  0.00           C  
+HETATM   31 1HM' MRP     1       5.561  -2.068   2.998  1.00  0.00           H  
+HETATM   32 2HM' MRP     1       3.898  -1.674   3.361  1.00  0.00           H  
+HETATM   33 3HM' MRP     1       4.293  -3.217   2.643  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   21   22
+CONECT    6    7    8    5   23
+CONECT    7   12    6
+CONECT    8   10    6    9   24
+CONECT    9    8
+CONECT   10   12    8   11   25
+CONECT   11   10   30
+CONECT   12   13    7   10   26
+CONECT   13   14   20   12
+CONECT   14   16   13   15
+CONECT   15   14
+CONECT   16   17   14   27
+CONECT   17   19   16   18
+CONECT   18   17
+CONECT   19   17   20   28
+CONECT   20   19   13   29
+CONECT   21    5
+CONECT   22    5
+CONECT   23    6
+CONECT   24    8
+CONECT   25   10
+CONECT   26   12
+CONECT   27   16
+CONECT   28   19
+CONECT   29   20
+CONECT   30   11   31   32   33
+CONECT   31   30
+CONECT   32   30
+CONECT   33   30

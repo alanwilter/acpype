@@ -1,0 +1,24 @@
+Amber Force Field Parameters for the Tetrahedron-Shaped Zinc Divalent Cation
+MASS
+DZ  3.0     
+Zn 53.380  
+  
+BOND
+DZ-Zn  640.0    0.90    
+DZ-DZ  640.0    1.47   
+
+ANGLE
+DZ-Zn-DZ    55.0      109.50  
+DZ-DZ-DZ    55.0       60.0  
+DZ-DZ-Zn    55.0       35.25  
+
+DIHE
+Zn-DZ-DZ-DZ   1    0.0          35.3             2.00       
+DZ-Zn-DZ-DZ   1    0.0         120.0             2.00      
+DZ-DZ-DZ-DZ   1    0.0          70.5             2.00     
+
+IMPROPER
+
+NONB
+  DZ          0.000   0.00
+  Zn          3.100   1.0E-6 

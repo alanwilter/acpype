@@ -1,0 +1,130 @@
+!!index array str
+ "HIN"
+!entry.HIN.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "N" "N" 0 1 131075 1 7 -0.564100
+ "H" "H" 0 1 131075 2 1 0.246900
+ "CA" "CT" 0 1 131075 3 6 0.317100
+ "HA" "H1" 0 1 131075 4 1 0.009600
+ "CB" "CT" 0 1 131075 5 6 -0.134700
+ "HB2" "HC" 0 1 131075 6 1 0.008300
+ "HB3" "HC" 0 1 131075 7 1 0.038100
+ "CG" "CC" 0 1 131075 8 6 0.150400
+ "ND1" "NA" 0 1 131075 9 7 -0.762600
+ "CE1" "CR" 0 1 131075 10 6 0.499400
+ "HE1" "H5" 0 1 131075 11 1 -0.029500
+ "NE2" "NB" 0 1 131075 12 7 -0.765600
+ "CD2" "CV" 0 1 131075 13 6 0.040500
+ "HD2" "H4" 0 1 131075 14 1 0.052500
+ "C" "C" 0 1 131075 15 6 0.458800
+ "O" "O" 0 1 131075 16 8 -0.565300
+!entry.HIN.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "N" "N" 0 -1 0.0
+ "H" "H" 0 -1 0.0
+ "CA" "CT" 0 -1 0.0
+ "HA" "H1" 0 -1 0.0
+ "CB" "CT" 0 -1 0.0
+ "HB2" "HC" 0 -1 0.0
+ "HB3" "HC" 0 -1 0.0
+ "CG" "CC" 0 -1 0.0
+ "ND1" "NA" 0 -1 0.0
+ "CE1" "CR" 0 -1 0.0
+ "HE1" "H5" 0 -1 0.0
+ "NE2" "NB" 0 -1 0.0
+ "CD2" "CV" 0 -1 0.0
+ "HD2" "H4" 0 -1 0.0
+ "C" "C" 0 -1 0.0
+ "O" "O" 0 -1 0.0
+!entry.HIN.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.HIN.unit.childsequence single int
+ 2
+!entry.HIN.unit.connect array int
+ 1
+ 15
+!entry.HIN.unit.connectivity table  int atom1x  int atom2x  int flags
+ 2 1 1
+ 3 1 1
+ 4 3 1
+ 5 3 1
+ 6 5 1
+ 7 5 1
+ 8 5 1
+ 9 8 1
+ 10 9 1
+ 11 10 1
+ 12 10 1
+ 13 12 1
+ 13 8 1
+ 14 13 1
+ 15 3 1
+ 16 15 1
+!entry.HIN.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R" 1
+ "R" 1 "A" 1
+ "R" 1 "A" 2
+ "R" 1 "A" 3
+ "R" 1 "A" 4
+ "R" 1 "A" 5
+ "R" 1 "A" 6
+ "R" 1 "A" 7
+ "R" 1 "A" 8
+ "R" 1 "A" 9
+ "R" 1 "A" 10
+ "R" 1 "A" 11
+ "R" 1 "A" 12
+ "R" 1 "A" 13
+ "R" 1 "A" 14
+ "R" 1 "A" 15
+ "R" 1 "A" 16
+!entry.HIN.unit.name single str
+ ""
+!entry.HIN.unit.positions table  dbl x  dbl y  dbl z
+ 78.631000 40.570000 45.601000
+ 78.239000 40.145000 44.771000
+ 79.741000 41.496000 45.426000
+ 80.576000 41.170000 46.048000
+ 80.188000 41.517000 43.971000
+ 79.313000 41.413000 43.328000
+ 80.665000 42.457000 43.744000
+ 81.161000 40.439000 43.620000
+ 82.408000 40.346000 44.204000
+ 83.069000 39.339000 43.665000
+ 84.076000 39.041000 43.909000
+ 82.297000 38.772000 42.754000
+ 81.098000 39.439000 42.710000
+ 80.259000 39.219000 42.065000
+ 79.319000 42.902000 45.843000
+ 80.131000 43.678000 46.351000
+!entry.HIN.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 0 0 0 0 0 0
+!entry.HIN.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "HIN" 1 18 1 "?" 0
+!entry.HIN.unit.residuesPdbSequenceNumber array int
+ 1
+!entry.HIN.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.HIN.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0

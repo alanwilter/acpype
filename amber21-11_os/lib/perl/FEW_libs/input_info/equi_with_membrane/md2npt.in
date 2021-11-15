@@ -1,0 +1,35 @@
+npt run
+&cntrl
+ ntpr     = 500,
+ ntwx     = 500,
+ ntwr     = 1000,
+ ntx      = 7,
+ irest    = 1,
+ ntxo     = 1,
+ ioutfm   = 0,
+
+
+ imin     = 0,
+ nstlim   = 50000,
+ dt       = 0.002,
+ ntb      = 2,
+
+ ntp      = 2,
+ pres0    = 1.0,
+ taup     = 0.5,
+
+ ntt      = 3,
+ gamma_ln = 1.0,
+ tempi    = 100,
+ temp0    = 303,
+
+ ntr      = 1,
+ ntc      = 2,
+ ntf      = 2,
+ cut      = 10,
+&end
+Keep solute fixed with weak restraints
+10.0
+RES 1 100
+END
+END

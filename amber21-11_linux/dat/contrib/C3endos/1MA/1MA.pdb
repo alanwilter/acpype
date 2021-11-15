@@ -1,0 +1,75 @@
+REMARK 999 1-methyladenosine                                                    
+HETATM    1  P   1MA     1       5.598   3.062   2.616  1.00  0.00           P  
+HETATM    2  O1P 1MA     1       4.507   4.053   2.527  1.00  0.00           O  
+HETATM    3  O2P 1MA     1       7.013   3.503   2.420  1.00  0.00           O  
+HETATM    4  O5' 1MA     1       5.246   1.889   1.590  1.00  0.00           O  
+HETATM    5  C5' 1MA     1       6.086   0.715   1.496  1.00  0.00           C  
+HETATM    6  C4' 1MA     1       5.455  -0.307   0.585  1.00  0.00           C  
+HETATM    7  O4' 1MA     1       4.148  -0.684   1.096  1.00  0.00           O  
+HETATM    8  C3' 1MA     1       5.148   0.182  -0.819  1.00  0.00           C  
+HETATM    9  O3' 1MA     1       6.335   0.185  -1.607  1.00  0.00           O  
+HETATM   10  C2' 1MA     1       4.143  -0.868  -1.269  1.00  0.00           C  
+HETATM   11  O2' 1MA     1       4.743  -2.128  -1.519  1.00  0.00           O  
+HETATM   12  C1' 1MA     1       3.293  -1.004   0.000  1.00  0.00           C  
+HETATM   13  N9  1MA     1       2.139  -0.093  -0.000  1.00  0.00           N  
+HETATM   14  C8  1MA     1       2.157   1.280  -0.000  1.00  0.00           C  
+HETATM   15  N7  1MA     1       0.991   1.819  -0.000  1.00  0.00           N  
+HETATM   16  C5  1MA     1       0.140   0.748   0.000  1.00  0.00           C  
+HETATM   17  C6  1MA     1      -1.253   0.695   0.000  1.00  0.00           C  
+HETATM   18  N6  1MA     1      -2.006   1.779   0.000  1.00  0.00           N  
+HETATM   19  N1  1MA     1      -1.788  -0.554  -0.000  1.00  0.00           N  
+HETATM   20  C2  1MA     1      -0.979  -1.667  -0.000  1.00  0.00           C  
+HETATM   21  N3  1MA     1       0.296  -1.666  -0.000  1.00  0.00           N  
+HETATM   22  C4  1MA     1       0.840  -0.435  -0.000  1.00  0.00           C  
+HETATM   23 1H5' 1MA     1       6.995   1.026   1.024  1.00  0.00           H  
+HETATM   24 2H5' 1MA     1       6.112   0.279   2.473  1.00  0.00           H  
+HETATM   25  H4' 1MA     1       6.180  -1.093   0.551  1.00  0.00           H  
+HETATM   26  H3' 1MA     1       4.776   1.183  -0.894  1.00  0.00           H  
+HETATM   27  H2' 1MA     1       3.638  -0.595  -2.172  1.00  0.00           H  
+HETATM   28 2HO' 1MA     1       5.694  -2.057  -1.408  1.00  0.00           H  
+HETATM   29  H1' 1MA     1       2.900  -1.997   0.064  1.00  0.00           H  
+HETATM   30  H8  1MA     1       3.083   1.818  -0.000  1.00  0.00           H  
+HETATM   31 1H6  1MA     1      -3.000   1.770   0.000  1.00  0.00           H  
+HETATM   32 2H6  1MA     1      -1.549   2.667  -0.000  1.00  0.00           H  
+HETATM   33  H2  1MA     1      -1.502  -2.602  -0.000  1.00  0.00           H  
+HETATM   34  C10 1MA     1      -3.249  -0.731   0.000  1.00  0.00           C  
+HETATM   35  H20 1MA     1      -3.676  -0.288  -0.889  1.00  0.00           H  
+HETATM   36  H21 1MA     1      -3.472  -1.785   0.000  1.00  0.00           H  
+HETATM   37  H22 1MA     1      -3.676  -0.288   0.889  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   23   24
+CONECT    6    7    8    5   25
+CONECT    7   12    6
+CONECT    8   10    6    9   26
+CONECT    9    8
+CONECT   10   12    8   11   27
+CONECT   11   10   28
+CONECT   12   13    7   10   29
+CONECT   13   14   22   12
+CONECT   14   13   15   30
+CONECT   15   14   16
+CONECT   16   15   17   22
+CONECT   17   16   18   19
+CONECT   18   17   31   32
+CONECT   19   17   34   20
+CONECT   20   19   21   33
+CONECT   21   20   22
+CONECT   22   13   16   21
+CONECT   23    5
+CONECT   24    5
+CONECT   25    6
+CONECT   26    8
+CONECT   27   10
+CONECT   28   11
+CONECT   29   12
+CONECT   30   14
+CONECT   31   18
+CONECT   32   18
+CONECT   33   20
+CONECT   34   19   35   36   37
+CONECT   35   34
+CONECT   36   34
+CONECT   37   34

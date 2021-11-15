@@ -1,0 +1,72 @@
+@WAMM
+################################################################################
+# Location and features of input and output directories / file(s)
+#
+# lig_struct_path: Folder containing the ligand input file(s)
+# multi_structure_lig_file: Basename of ligand file, if multi-structure
+#                           file is provided
+# output_path: Basis directory in which all setup and analysis
+#              folders will be generated
+# rec_structure: Receptor structure in PDB format
+# bound_rec_structure: Optional, alternative receptor structure in bound
+#                      conformation to be used for 3-trajectory approach
+lig_struct_path              /home/user/work_dir/structs
+multi_structure_lig_file      
+output_path                  /home/user/work_dir
+rec_structure                /home/user/work_dir/input_info/receptor_apo.pdb
+bound_rec_structure          /home/user/work_dir/input_info/receptor_bound.pdb
+
+# Specification of ligand input format
+lig_format_sdf               0
+lig_format_mol2              1
+
+# Receptor features
+# water_in_rec: Water present in receptor PDB structure
+water_in_rec                 1
+
+################################################################################
+# Setup of molecular dynamics simulations 
+#
+# setup_MDsimulations: Perform setup of simulation input
+# traj_setup_method: 1 = One trajectory approach 
+#                    3 = Three trajectory approach
+# MD_am1: Prepare simulations with AM1-BCC charges
+# MD_resp: Prepare simulations with RESP charges
+# SSbond_file: File with disulfide bridge definitions
+# additional_library: If an additional library file is required, e.g. for
+#                     non-standard residues present in the receptor structure,
+#                     this file must be specified here.
+# additional_frcmod: If additional parameters are needed, e.g. for describing
+#                    non-standard residues present in the receptor structure,
+#                    a parameter file should be provided here.
+# MD_batch_path: Path to basis directory in which the simulations shall
+#                be performed in case this differs from <output_path>.
+#                If no path is given, it is assumed that the path is
+#                equal to <output_path>
+# MDequil_template_folder: Path to directory with equilibration template files
+# total_MDequil_time: Total equilibration time in ps
+# MDequil_batch_template: Batch template file for equilibration
+# MDprod_template: Template file for production phase of MD simulation
+# total_MDprod_time: Number of ns to simulate
+# MDprod_batch_template: Batch template file for MD production
+# no_of_rec_residues: Number of residues in receptor structure
+# restart_file_for_MDprod: Base name of restart-file from equilibration that
+#                          shall be used for production input
+# water_model: Currently TIP3P or OPC can be selected as water models.
+setup_MDsimulations         1
+traj_setup_method           3
+MD_am1                      1
+MD_resp                     0
+SSbond_file                 /home/src/FEW/examples/input_info/SSbridges.txt
+additional_library          /home/user/work_dir/input_info/CA.lib
+additional_frcmod            
+MD_batch_path               /home/user/cluster_work_dir
+MDequil_template_folder     /home/src/FEW/examples/input_info/equi
+total_MDequil_time          400
+MDequil_batch_template      /home/src/FEW/examples/input_info/equi.pbs
+MDprod_template             /home/src/FEW/examples/input_info/MD_prod.in
+total_MDprod_time           30
+MDprod_batch_template       /home/src/FEW/examples/input_info/prod.pbs
+no_of_rec_residues          287
+restart_file_for_MDprod     md_nvt_red_06
+water_model                 TIP3P

@@ -1,0 +1,37 @@
+C   H   -0.033503
+N   C   -0.055983
+N   H   -0.110827
+O   C    0.014436   -0.022938
+O   H    0.005156
+O   N    0.075514
+P   C   -0.062823
+P   H   -0.024009
+P   N    0.040520
+P   O    0.046028
+S   C    0.001348
+S   H    0.009619
+S   N    0.144536
+S   O    0.069200
+S   P    0.091627  -0.053199
+
+
+# Parameters for CM3 charges woth DFTB
+# see: Kalinowski et al., JPC-A, vol.108, pp 2545--2549 (2004)
+# Note that the S-P parameter here is different from the paper.
+# The reason is that the published parameter was taken mistakenly
+# from a different version of the parametrization. Thanks to Dr.
+# Jaroslaw Kalinowski for the correct parameter.
+#
+# Paramters are ordered as: 
+# At1 At2   D       C
+# 
+# Those parameters were actually obtained by 
+# personal communication with the authors:
+#
+# Profs. Christopher J. Cramer and Don Truhlar, Minnesota
+# Dr. Jingzhi Pu, Harvard
+#
+# Dr. Bogdan Lesyng and Jaroslaw Kalinowski from Poland 
+# for the correct parameters.
+# 
+

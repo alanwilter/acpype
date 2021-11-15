@@ -1,0 +1,46 @@
+#!/bin/csh -f
+#    make a bounds database for a nucleic acid type
+#
+#    Assumes all files of a given sequence type in the coords directory
+#    have the prefix type shown below (i.e., all bdna pdb files start
+#    with "bd" ).  
+#
+#    To make a bounds database for a particular nucleic acid type
+#    include the type as a command line argument (i.e., "mkdb bdna").
+#    These files result:
+#
+#	bdna.nucleotide.db - 	distance information between atoms in a 
+#				single residue participating in helical
+#				stacking and basepairing.
+#	watsoncrick.basepair.db-distance information between atoms forming
+#				a hydrogen-bonded basepair from a helix,
+#				assuming a standard W-C basepair
+#	bdna.stack.db - 	distance information between atoms in
+#				a stacked geometry exhibited by successive
+#				residues in a strand of helical bDNA,
+#				assuming standard W-C pairing in each plane.
+#	
+setenv NABHOME "${AMBERHOME}/dat"
+foreach i ( `ls $NABHOME/coords/*.pdbs` )
+	set $newname = `echo $i | sed 's/.pdbs//'`
+	echo $newname
+	mv ${i}.pdbs ${newname}s.pdb
+end 
+foreach i (`grep -l HOH $NABHOME/coords/?d*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+        mv $$.TEMP $i
+end 
+if ( (!( -e $NABHOME/dgdb/functions/getwcdist )) || (!( -e $NABHOME/dgdb/functions/getbackbonedist )) || (!( -e $NABHOME/dgdb/functions/getstackdist )) ) $NABHOME/dgdb/functions/install
+foreach natype ( $argv[*] )
+	echo making $natype databases...
+	if ( $natype == "bdna" ) set prefix = "bd"
+	if ( $natype == "adna" ) set prefix = "ad"
+	if ( $natype == "zdna" ) set prefix = "zd"
+	if ( $natype == "arna" ) set prefix = "ar"
+	if ( $natype == "trna" ) set prefix = "tr"
+	( $NABHOME/dgdb/functions/getbackbonedist $NABHOME/coords/${prefix}*.pdb | sed -f $NABHOME/dgdb/functions/filter.sed | sort | $NABHOME/dgdb/functions/stats.awk ) >! $NABHOME/dgdb/${natype}.nucleotide.db
+	echo made $NABHOME/dgdb/${natype}.nucleotide.db
+	( $NABHOME/dgdb/functions/getstackdist $NABHOME/coords/${prefix}*.pdb | sed -f $NABHOME/dgdb/functions/filter.sed | sort | $NABHOME/dgdb/functions/stats.awk ) >! $NABHOME/dgdb/${natype}.stack.db
+	echo made $NABHOME/dgdb/${natype}.stack.db
+	( $NABHOME/dgdb/functions/getwcdist $NABHOME/coords/${prefix}*.pdb | sed -f $NABHOME/dgdb/functions/filter.sed | sort | $NABHOME/dgdb/functions/stats.awk ) >! $NABHOME/dgdb/${natype}.basepair.db
+	echo made $NABHOME/dgdb/${natype}.basepair.db

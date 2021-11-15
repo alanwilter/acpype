@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name="acpype",
-    version="2020.10.24.12.16",
+    version="2021.11.14.23.21.21",
     description="ACPYPE - AnteChamber PYthon Parser interfacE",
     classifiers=[
         "Intended Audience :: Science/Research",

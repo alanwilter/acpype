@@ -1,0 +1,43 @@
+logFile leap.log
+#
+# ----- leaprc for loading the modified amino acids AZF,CYF,ALY,CNX,MSE forcefield
+# ------ Use with leaprc.protein.ff14SB
+# ----- NOTE: this is designed for PDB format 3!
+#
+#	load atom type hybridizations
+#
+addAtomTypes {
+        { "MC"  "C" "sp2" }  # CNX
+        { "YC"  "C" "sp3" }  #  ^ 
+        { "NR"  "N" "sp2" }  #  |
+        { "RO"  "O" "sp2" }  #  |
+        { "SX"  "S" "sp3" }  #  |
+	{ "8C"  "C" "sp3" }  # ALY
+	{ "AC"  "C" "sp2" }  # AZF
+        { "NG"  "N" "sp2" }  # AZF
+        { "NF"  "N" "sp"  }  # AZF
+	{ "GC"  "C" "sp2" }  # CYF
+	{ "CY"  "C" "sp"  }  # CYF
+        { "NY"  "N" "sp"  }  # CYF
+	{ "SC"  "C" "sp3" }  # MSE
+	{ "SE" "Se" "sp2" }  # MSE
+}
+
+#	Load the main parameter set.
+#
+frcmod14SBmodAA = loadamberparams frcmod.ff14SBmodAA
+#
+#	Load main chain and terminating amino acid libraries
+#
+loadOff mod_amino.lib
+
+#
+#	Define the PDB name map for the amino acids
+#
+addPdbResMap {
+  { 0 "ALY" "NALY" } { 1 "ALY" "CALY" }
+  { 0 "AZF" "NAZF" } { 1 "AZF" "CAZF" }
+  { 0 "CYF" "NCYF" } { 1 "CYF" "CCYF" }
+  { 0 "CNX" "NCNX" } { 1 "CNX" "CCNX" }
+  { 0 "MSE" "NMSE" } { 1 "MSE" "CMSE" }
+}

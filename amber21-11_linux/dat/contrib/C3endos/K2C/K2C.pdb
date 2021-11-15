@@ -1,0 +1,111 @@
+REMARK 999 Lysidine                                                             
+HETATM    1  P   K2C     1       4.550  -3.799   4.361  1.00  0.00           P  
+HETATM    2  O1P K2C     1       5.716  -3.013   3.913  1.00  0.00           O  
+HETATM    3  O2P K2C     1       4.738  -5.217   4.795  1.00  0.00           O  
+HETATM    4  O5' K2C     1       3.464  -3.728   3.191  1.00  0.00           O  
+HETATM    5  C5' K2C     1       2.162  -4.336   3.355  1.00  0.00           C  
+HETATM    6  C4' K2C     1       1.272  -3.990   2.187  1.00  0.00           C  
+HETATM    7  O4' K2C     1       1.126  -2.548   2.089  1.00  0.00           O  
+HETATM    8  C3' K2C     1       1.818  -4.374   0.824  1.00  0.00           C  
+HETATM    9  O3' K2C     1       1.620  -5.766   0.592  1.00  0.00           O  
+HETATM   10  C2' K2C     1       0.963  -3.497  -0.078  1.00  0.00           C  
+HETATM   11  O2' K2C     1      -0.380  -3.942  -0.161  1.00  0.00           O  
+HETATM   12  C1' K2C     1       0.969  -2.187   0.718  1.00  0.00           C  
+HETATM   13  N1  K2C     1       2.067  -1.295   0.319  1.00  0.00           N  
+HETATM   14  C2  K2C     1       1.898   0.064   0.245  1.00  0.00           C  
+HETATM   15  N3  K2C     1       2.911   0.862  -0.103  1.00  0.00           N  
+HETATM   16  C4  K2C     1       4.077   0.351  -0.406  1.00  0.00           C  
+HETATM   17  N4  K2C     1       5.051   1.197  -0.747  1.00  0.00           N  
+HETATM   18  C5  K2C     1       4.318  -1.055  -0.373  1.00  0.00           C  
+HETATM   19  C6  K2C     1       3.274  -1.812  -0.001  1.00  0.00           C  
+HETATM   20 1H5' K2C     1       2.313  -5.395   3.321  1.00  0.00           H  
+HETATM   21 2H5' K2C     1       1.721  -3.886   4.219  1.00  0.00           H  
+HETATM   22  H4' K2C     1       0.372  -4.531   2.390  1.00  0.00           H  
+HETATM   23  H3' K2C     1       2.869  -4.228   0.684  1.00  0.00           H  
+HETATM   24  H2' K2C     1       1.327  -3.463  -1.084  1.00  0.00           H  
+HETATM   25 2HO' K2C     1      -0.478  -4.759   0.334  1.00  0.00           H  
+HETATM   26  H1' K2C     1       0.059  -1.653   0.537  1.00  0.00           H  
+HETATM   27 1H4  K2C     1       4.851   2.171  -0.786  1.00  0.00           H  
+HETATM   28 2H4  K2C     1       5.952   0.879  -1.020  1.00  0.00           H  
+HETATM   29  H5  K2C     1       5.267  -1.484  -0.623  1.00  0.00           H  
+HETATM   30  H6  K2C     1       3.346  -2.880   0.061  1.00  0.00           H  
+HETATM   31  N40 K2C     1       0.742   0.594   0.529  1.00  0.00           N  
+HETATM   32  H20 K2C     1      -0.078   0.020   0.768  1.00  0.00           H  
+HETATM   33  C10 K2C     1       0.529   2.047   0.476  1.00  0.00           C  
+HETATM   34  H21 K2C     1       0.870   2.417  -0.483  1.00  0.00           H  
+HETATM   35  H22 K2C     1       1.143   2.514   1.237  1.00  0.00           H  
+HETATM   36  C11 K2C     1      -0.944   2.379   0.697  1.00  0.00           C  
+HETATM   37  H23 K2C     1      -1.016   3.448   0.881  1.00  0.00           H  
+HETATM   38  H24 K2C     1      -1.282   1.877   1.594  1.00  0.00           H  
+HETATM   39  C12 K2C     1      -1.841   1.985  -0.485  1.00  0.00           C  
+HETATM   40  H25 K2C     1      -1.479   1.063  -0.918  1.00  0.00           H  
+HETATM   41  H26 K2C     1      -1.740   2.733  -1.270  1.00  0.00           H  
+HETATM   42  C13 K2C     1      -3.332   1.828  -0.109  1.00  0.00           C  
+HETATM   43  H27 K2C     1      -3.880   2.705  -0.442  1.00  0.00           H  
+HETATM   44  H28 K2C     1      -3.437   1.801   0.971  1.00  0.00           H  
+HETATM   45  C14 K2C     1      -4.001   0.572  -0.694  1.00  0.00           C  
+HETATM   46  H29 K2C     1      -3.692   0.434  -1.728  1.00  0.00           H  
+HETATM   47  H30 K2C     1      -5.079   0.727  -0.712  1.00  0.00           H  
+HETATM   48  C15 K2C     1      -3.744  -0.741   0.079  1.00  0.00           C  
+HETATM   49  H31 K2C     1      -4.106  -0.614   1.093  1.00  0.00           H  
+HETATM   50  N41 K2C     1      -4.409  -1.888  -0.520  1.00  0.00           N  
+HETATM   51  H32 K2C     1      -5.319  -1.640  -0.859  1.00  0.00           H  
+HETATM   52  H33 K2C     1      -3.859  -2.200  -1.297  1.00  0.00           H  
+HETATM   53  C16 K2C     1      -2.238  -1.024   0.158  1.00  0.00           C  
+HETATM   54  O30 K2C     1      -1.717  -1.575  -0.814  1.00  0.00           O  
+HETATM   55  O31 K2C     1      -1.641  -0.604   1.173  1.00  0.00           O  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   20   21
+CONECT    6    7    8    5   22
+CONECT    7   12    6
+CONECT    8   10    6    9   23
+CONECT    9    8
+CONECT   10   12    8   11   24
+CONECT   11   10   25
+CONECT   12   13    7   10   26
+CONECT   13   19   14   12
+CONECT   14   13   15   31
+CONECT   15   16   14
+CONECT   16   18   17   15
+CONECT   17   16   27   28
+CONECT   18   19   29   16
+CONECT   19   13   30   18
+CONECT   20    5
+CONECT   21    5
+CONECT   22    6
+CONECT   23    8
+CONECT   24   10
+CONECT   25   11
+CONECT   26   12
+CONECT   27   17
+CONECT   28   17
+CONECT   29   18
+CONECT   30   19
+CONECT   31   14   32   33
+CONECT   32   31
+CONECT   33   31   34   35   36
+CONECT   34   33
+CONECT   35   33
+CONECT   36   33   37   38   39
+CONECT   37   36
+CONECT   38   36
+CONECT   39   36   40   41   42
+CONECT   40   39
+CONECT   41   39
+CONECT   42   39   43   44   45
+CONECT   43   42
+CONECT   44   42
+CONECT   45   42   46   47   48
+CONECT   46   45
+CONECT   47   45
+CONECT   48   45   49   50   53
+CONECT   49   48
+CONECT   50   48   51   52
+CONECT   51   50
+CONECT   52   50
+CONECT   53   48   54   55
+CONECT   54   53
+CONECT   55   53

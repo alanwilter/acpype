@@ -1,0 +1,222 @@
+#!/bin/tcsh -x
+#SBATCH --job-name=
+#SBATCH --nodes=1
+#SBATCH --output=/l/home/homeyer/test.out
+#SBATCH --error=/l/home/homeyer/test.err
+#SBATCH --time=02:00:00
+#SBATCH --partition=gpu-ser
+#SBATCH --gres=gpu:1
+
+#################################
+# --- DEFINE YOUR VARIABLES --- # 
+#################################
+#
+source /usr/lib/Modules/init/tcsh
+module load AMBER/18.11
+
+set EXE=pmemd.cuda
+set DO_PARALLEL="srun -n 1 "
+
+################################################################################
+#      Do not modify this part of the script
+#
+#
+# --- Fix variables
+#
+set WORKDIR=
+set SCRIPT=${WORKDIR}/run_prod.pbs.lX
+set CALC_STDERR=
+
+#
+# --- Check existence of file for statistical analysis
+#
+if !(-e $CALC_STDERR) then
+      echo "Perl-script for statistical analysis not found at the expected location ${CALC_STDERR}"
+      exit
+endif
+
+#
+# --- Variables to be modified before new queueing
+#
+@ START=1
+@ END=
+@ TIME=0
+@ DELTATIME=
+
+#
+# --- TI-MDrun
+#
+cd $WORKDIR
+#
+# --- Init for loop
+#
+@ COUNT=$START
+if($COUNT < 10) then
+  set COUNTEXP = '0'$COUNT
+else
+  set COUNTEXP = $COUNT
+endif
+
+#
+# --- Save copy of this script
+#
+cp $SCRIPT ${SCRIPT}_${COUNTEXP}
+
+#
+# --- Loop
+#
+if($COUNT < $END) then
+
+  echo
+  echo "=>> Processing " $COUNT
+  echo $HOSTNAME
+
+#
+# --- Run MD 
+#
+set RESTART=
+PRODUCTION
+
+
+if($status != 0) then
+  echo "Error in "${COUNTEXP}". run"
+  exit
+endif
+
+/bin/sleep 5
+
+#
+# --- Imaging
+#
+# Define variables
+set CPPTRAJ_TEMPL=
+set LAMBDA=
+set TAG=
+set VV=
+
+# Prepare CPPTRAJ script
+echo Preparing CPPTRAJ script 
+set PROD="s/prodN/prod${COUNTEXP}/"
+set L="s/_lX/_l${LAMBDA}/"
+
+set CPPTRAJ=cpptraj_${LAMBDA}.ptrj
+set PRE0="s/PREFIX/md/"
+cat ${CPPTRAJ_TEMPL} | sed -e "$PROD" | sed -e "$PRE0" | sed -e "$L" > tmp
+mv -f tmp $CPPTRAJ
+
+# Carry out imaging
+#
+$AMBERHOME/bin/cpptraj -p ${WORKDIR}/${VV}_${TAG}_TIin.top -i ${WORKDIR}/${CPPTRAJ} >! ${WORKDIR}/cpptraj_${LAMBDA}.log
+
+# Copy velocities
+#
+# Replace simulation time information.
+set ATOM_NUMBER=`sed -n '2p' ./md_prod${COUNTEXP}_l${LAMBDA}.rst | sed 's/\([0-9]*\)  \([0-9]*\.[0-9]*E+[0-9]*\)/\1/'`
+if($ATOM_NUMBER < 10000) then
+  set TIME_INFO_ORG=`sed -n '2p' ./md_prod${COUNTEXP}_l${LAMBDA}.rst | sed 's/\(^ [0-9]*\)  \([0-9]*\.[0-9]*E+[0-9]*\)/\2/'`
+  set TIME_INFO_IMG=`sed -n '2p' ./md_prod${COUNTEXP}_l${LAMBDA}_img.rst | sed 's/\(^ [0-9]*\)  \([0-9]*\.[0-9]*E+[0-9]*\)/\2/'`
+else
+  set TIME_INFO_ORG=`sed -n '2p' ./md_prod${COUNTEXP}_l${LAMBDA}.rst | sed 's/\(^[0-9]*\)  \([0-9]*\.[0-9]*E+[0-9]*\)/\2/'`
+  set TIME_INFO_IMG=`sed -n '2p' ./md_prod${COUNTEXP}_l${LAMBDA}_img.rst | sed 's/\(^[0-9]*\)  \([0-9]*\.[0-9]*E+[0-9]*\)/\2/'`
+endif
+sed "2 s/${TIME_INFO_IMG}/${TIME_INFO_ORG}/" < md_prod${COUNTEXP}_l${LAMBDA}_img.rst > tmp_rst_lX
+
+mv -f tmp_rst_lX md_prod${COUNTEXP}_l${LAMBDA}_img.rst
+mv -f md_prod${COUNTEXP}_l${LAMBDA}.rst md_prod${COUNTEXP}_l${LAMBDA}_noImg.rst
+mv -f md_prod${COUNTEXP}_l${LAMBDA}_img.rst md_prod${COUNTEXP}_l${LAMBDA}.rst
+
+#
+# --- gzip
+#
+gzip *lX*mdcrd
+
+/bin/sleep 5
+
+#
+# --- Check if convergence criterion is reached
+#
+# Variables
+set ERROR_LIMIT=
+set CONV_METH=
+set STDERR_FILE='stderr_'${LAMBDA}
+set PREFIX='md'
+
+# Call program calculating the standard error
+perl ${CALC_STDERR} ${WORKDIR} ${PREFIX} ${LAMBDA} ${COUNT} ${CONV_METH} ${ERROR_LIMIT}
+set STDERR_STATUS=`sed -n '1p' ./${STDERR_FILE}`
+
+if($STDERR_STATUS == "RATIO_TOO_SMALL") then
+  echo "ERROR: Number of dV/dL values written to Sander output file is too small for calculation of autocorrelation time. Please ensure that more than 10x <autocorrelation time steps> dV/dL values are written to output file during each simulation cycle."
+  exit
+endif
+
+if($STDERR_STATUS == "STOP") then
+  echo "Convergence reached in "${COUNTEXP}". run"
+  exit
+endif
+
+if($STDERR_STATUS == "CAUTION") then
+  echo "WARNING: Standard error increased significantly in "${COUNTEXP}". run"
+endif
+
+#
+# --- Prepare for new run
+#
+# Set old count for replacing old restart-file number
+@ OLD_COUNT = $COUNT - 1
+if($OLD_COUNT < 10) then
+  set OLD_COUNTEXP = '0'$OLD_COUNT
+else
+  set OLD_COUNTEXP = $OLD_COUNT
+endif
+
+# Save last count expression
+set LAST_COUNTEXP = $COUNTEXP
+
+# Increase count for new run
+@ COUNT++
+if($COUNT < 10) then
+  set COUNTEXP = '0'$COUNT
+else
+  set COUNTEXP = $COUNT
+endif
+
+
+#
+# --- Setup new production file
+#
+ @ TIME=$TIME + $DELTATIME
+set PROD1="s/ t *= [0-9]*\.*[0-9]*/ t       = "${TIME}"/"
+
+cat md_prod${LAST_COUNTEXP}_l${LAMBDA}.in | sed -e "${PROD1}" > tmp
+mv -f tmp md_prod${COUNTEXP}_l${LAMBDA}.in
+
+#
+# --- Modify this script
+#
+echo Modifying $SCRIPT
+set COM1="s/^@ START=[0-9]*/@ START="${COUNT}"/"
+set COM2="s/prod${LAST_COUNTEXP}/prod${COUNTEXP}/g"
+if($COUNT == 2) then
+  set COM3="s/equi_l${LAMBDA}.rst/md_prod${LAST_COUNTEXP}_l${LAMBDA}.rst/"
+else
+  set COM3="s/${OLD_COUNTEXP}_l${LAMBDA}.rst/${LAST_COUNTEXP}_l${LAMBDA}.rst/"
+endif
+set COM4="s/^@ TIME=[0-9]*/@ TIME="${TIME}"/"
+cat $SCRIPT | sed -e "$COM1" | sed -e "$COM2" | sed -e "$COM3" | sed -e "$COM4"  > tmp
+mv -f tmp $SCRIPT
+
+#
+#      End of part of the script that should not be modified.
+#
+###############################################################################
+#
+# --- Re-queue
+#
+sbatch $SCRIPT
+
+endif
+#
+# --- Exit this script
+#
+exit

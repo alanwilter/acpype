@@ -1,0 +1,306 @@
+#
+# Input parameters for mm_pbsa.pl
+#
+# Holger Gohlke
+# 15.02.2012
+#
+################################################################################
+@GENERAL
+#
+# General parameters
+#   0: means NO; >0: means YES
+#
+#   mm_pbsa allows to calculate (absolute) free energies for one molecular
+#     species or a free energy difference according to:
+#
+#     Receptor + Ligand = Complex,
+#     DeltaG = G(Complex) - G(Receptor) - G(Ligand).
+#
+#   VERBOSE - If set to 1, input and output files are not removed. This is
+#             useful for debugging purposes.
+#   PARALLEL - If set to values > 1, energy calculations for snapshots are
+#              done in parallel, using PARALLEL number of threads. 
+#
+#   PREFIX - To the prefix, "{_com, _rec, _lig}.crd.Number" is added during
+#            generation of snapshots as well as during mm_pbsa calculations.
+#   PATH - Specifies the location where to store or get snapshots.
+#   START - Specifies the first snapshot to be used in energy calculations
+#           (optional, defaults to 1).
+#   STOP - Specifies the last snapshot to be used in energy calculations 
+#          (optional, defaults to 10e10).
+#   OFFSET - Specifies the offset between snapshots in energy calculations 
+#            (optional, defaults to 1).
+#
+#   COMPLEX - Set to 1 if free energy difference is calculated.
+#   RECEPTOR - Set to 1 if either (absolute) free energy or free energy
+#              difference are calculated.
+#   LIGAND - Set to 1 if free energy difference is calculated.
+#
+#   COMPT - parmtop file for the complex (not necessary for option GC).
+#   RECPT - parmtop file for the receptor (not necessary for option GC).
+#   LIGPT - parmtop file for the ligand (not necessary for option GC).
+#
+#   GC - Snapshots are generated from trajectories (see below).
+#   AS - Residues are mutated to Ala during generation of snapshots from
+#        trajectories.
+#   DC - Decompose the free energies into individual contributions.
+#        (When using DC, MM and GB must be set to 1, even if a PB decomposition
+#         is also requested.)
+#
+#   MM - Calculation of gas phase energies using sander.
+#   GB - Calculation of desolvation free energies using the GB models in sander
+#        (see below).
+#   PB - Calculation of desolvation free energies using the PB method and
+#        computation of nonpolar solvation free energies according to
+#        the INP option in pbsa (see below).
+#   MS - Calculation of nonpolar contributions to desolvation using molsurf
+#        (see below).
+#        If MS == 0 and GB == 1, nonpolar contributions are calculated either
+#        with the LCPO (GBSA == 1) or the ICOSA (GBSA == 2) method in sander 
+#        (see below).
+#        If MS == 0 and PB == 1, nonpolar contributions are calculated according
+#        the INP option in pbsa (see below).
+#   NM - Calculation of entropies with nmode.
+#
+VERBOSE               0
+PARALLEL              0
+#
+PREFIX                Structure
+PATH                  /path/to/snapshot/dir
+START                 1
+STOP                  1
+OFFSET                1
+#
+COMPLEX               0
+RECEPTOR              0
+LIGAND                0
+#
+COMPT                 Complex.top
+RECPT                 Receptor.top
+LIGPT                 Ligand.top
+#
+GC                    0
+AS                    0
+DC                    0
+#
+MM                    1
+GB                    1
+PB                    1
+MS                    1
+#
+NM                    0
+#
+################################################################################
+@DECOMP
+#
+# Energy decomposition parameters
+# (this section is only relevant if DC = 1 above)
+#
+#   Energy decomposition is performed for gasphase energies, desolvation free
+#     energies calculated with GB or PB, and nonpolar contributions to
+#     desolvation using the ICOSA method.
+#   For amino acids, decomposition is also performed with respect to backbone
+#     and sidechain atoms.
+#
+#   DCTYPE - Values of 1 or 2 yield a decomposition on a per-residue basis,
+#            values of 3 or 4 yield a decomposition on a pairwise per-residue
+#              basis. For the latter, so far the number of pairs must not
+#              exceed the number of residues in the molecule considered.
+#            Values 1 or 3 add 1-4 interactions to bond contributions.
+#            Values 2 or 4 add 1-4 interactions to either electrostatic or vdW
+#              contributions.
+#
+#   COMREC - Residues belonging to the receptor molecule IN THE COMPLEX.
+#   COMLIG - Residues belonging to the ligand molecule IN THE COMPLEX.
+#   RECRES - Residues in the receptor molecule.
+#   LIGRES - Residues in the ligand molecule.
+#   {COM,REC,LIG}PRI - Residues considered for output.
+#   {REC,LIG}MAP - Residues in the complex which are equivalent to the residues
+#                  in the receptor molecule or the ligand molecule.
+#
+DCTYPE                0
+#
+COMREC                0
+COMLIG                0
+COMPRI                0
+RECRES                0
+RECPRI                0
+RECMAP                0
+LIGRES                1-1
+LIGPRI                1-1
+LIGMAP                0
+################################################################################
+@PB
+#
+# PB parameters (this section is only relevant if PB = 1 above)
+#
+#   The following parameters are passed to the PB solver.
+#   Additional input parameters may also be added here. See the sander PB
+#   documentation for more options.
+#
+#   PROC -  Determines which program is used for solving the PB equation:
+#           Delphi (PROC == 1), PBSA (PROC == 2), or APBS (PROC == 3).
+#           By default, PROC == 2, the pbsa program of the AMBER suite is used.
+#   REFE -  Determines which reference state is taken for PB calc:
+#           By default, REFE == 0, reaction field energy is calculated with
+#           EXDI/INDI. Here, INDI must agree with DIELC from MM part.
+#   INDI -  Dielectric constant for the solute.
+#   EXDI -  Dielectric constant for the surrounding solvent.
+#   ISTRNG - Ionic strength (in mM) for the Poisson-Boltzmann solvent.
+#   SCALE - Lattice spacing in no. of grids per Angstrom.
+#   LINIT - No. of iterations with linear PB equation.
+#   RADIOPT - Option to set up radii for PB calc:
+#             0: uses the radii from the prmtop file. Default.
+#             1: uses the radii optimized by Tan and Luo with respect to the
+#                reaction field energies computed in the TIP3P explicit solvents
+#                (Tan & Luo, J. Phys. Chem. B, 2006, 110, 18680-18687). 
+#                Note that optimized radii are based on AMBER atom types
+#                (upper case) and charges. Radii from the prmtop files are used
+#                if the atom types are defined by antechamber (lower case).
+#   ARCRES - Resolution (in the unit of Angstrom) of solvent accessible arcs
+#   IVCAP - If set to 1, a solvent sphere (specified by CUTCAP,XCAP,YCAP,
+#           and ZCAP) is excised from a box of water. If set to 5, a solvent
+#           shell is excised, specified by CUTCAP (the thickness of the shell 
+#           in A). The electrostatic part of the solvation free energy is 
+#           estimated from a linear response approximation using the explicit 
+#           solvent plus a reaction field contribution from outside the sphere 
+#           (i.e., a hybrid solvation approach is pursued). 
+#           In addition, the nonpolar contribution is estimated from a sum of 
+#           (attractive) dispersion interactions calc. between the solute and 
+#           the solvent molecules plus a (repulsive) cavity contribution 
+#           (Gohlke & Case, J. comput. Chem. 2004, 25, 238-250). 
+#           For the latter, the surface calculation must be done with MS = 1 and
+#           the PROBE should be set to 1.4 to get the solvent excluded surface.
+#           In this case bondi radii are used as cavity radii set.
+#   CUTCAP - Radius of the water sphere or thickness of the water shell.
+#            Note that the sphere must enclose the whole solute.
+#   XCAP  - Location of the center of the water sphere.
+#   YCAP
+#   ZCAP
+#
+# NP Parameters for nonpolar solvation energies if MS = 0
+#
+#   INP   - Option for modeling nonpolar solvation free energy.
+#           See sander PB documentation for more information on the
+#           implementations by Tan and Luo.
+#           1: uses the solvent-accessible-surface area to correlate total
+#              nonpolar solvation free energy:
+#              Gnp = SURFTEN * SASA + SURFOFF. Default.
+#           2: uses the solvent-accessible-surface area to correlate the
+#              repulsive (cavity) term only, and uses a surface-integration
+#              approach to compute the attractive (dispersion) term:
+#              Gnp = Gdisp + Gcavity
+#                  = Gdisp + SURFTEN * SASA + SURFOFF.
+#           When this option is used, RADIOPT has to be set to 1,
+#           i.e. the radii set optimized by Tan and Luo.
+#   SURFTEN/SURFOFF - Values used to compute the nonpolar
+#           solvation free energy Gnp acccording to INP.
+#           If INP = 1 and RADIOPT = 0 (default, see above),
+#           use SURFTEN/SURFOFF parameters that fit with the radii from the
+#           prmtop file, e.g., 
+#           use SURFTEN: 0.00542 and SURFOFF: 0.92 for PARSE radii.
+#           If INP = 2 and RADIOPT = 1, please set these to the following: 
+#           SURFTEN: 0.0378; OFFSET: -0.5692
+#
+# NP Parameters for nonpolar solvation energies if MS = 1
+#
+#   SURFTEN/SURFOFF - Values used to compute the nonpolar contribution Gnp to
+#           the desolvation according to:
+#      (I)  Gnp = SURFTEN * SASA + SURFOFF (if IVCAP == 0)
+#           Use parameters that fit with the radii from the reaction field
+#           calculation. E.g., use SURFTEN: 0.00542, SURFOFF: 0.92 for
+#           PARSE radii 
+#      (II) Gnp = Gdisp + Gcavity = Gdisp + SURFTEN * SESA + SURFOFF (IVCAP > 0)
+#           Nonpolar solvation free energy calculated as discribed for IVCAP > 0
+#           above. In this case use SURFTEN: 0.069; SURFOFF: 0.00 for
+#           calculating the Gcavity contribution.
+#
+PROC                  2
+REFE                  0
+INDI                  1.0
+EXDI                  80.0
+SCALE                 2
+LINIT                 1000
+ISTRNG                0.0
+RADIOPT               0
+ARCRES                0.0625
+INP                   0
+#
+SURFTEN               1.0
+SURFOFF               0.0
+#
+IVCAP                 0
+CUTCAP                -1.0
+XCAP                  0.0
+YCAP                  0.0
+ZCAP                  0.0
+#
+################################################################################
+@MM
+#
+# MM parameters (this section is only relevant if MM = 1 above)
+#
+#   The following parameters are passed to sander.
+#   For further details see the sander documentation.
+#
+#   DIELC - Dielectricity constant for electrostatic interactions.
+#           Note: This is not related to GB calculations.
+#
+DIELC                 1.0
+#
+################################################################################
+@GB
+#
+# GB parameters (this section is only relevant if GB = 1 above)
+#
+#   The first group of the following parameters are passed to sander.
+#   For further details see the sander documentation.
+#
+#   IGB - Switches between Tsui's GB (1) and Onufriev's GB (2, 5).
+#   GBSA - Switches between LCPO (1) and ICOSA (2) method for SASA calc.
+#          Decomposition only works with ICOSA.
+#   SALTCON - Concentration (in M) of 1-1 mobile counterions in solution.
+#   EXTDIEL - Dielectricity constant for the solvent.
+#   INTDIEL - Dielectricity constant for the solute.
+#
+#   SURFTEN / SURFOFF - Values used to compute the nonpolar contribution Gnp to
+#    the desolvation according to Gnp = SURFTEN * SASA + SURFOFF.
+#    Choose SURFTEN and SURFOFF values according to the selected
+#    GB model, e.g.:
+#    IGB=1 : SURFTEN=0.0072, SURFOFF=0.0, mbondi radii
+#            (Tsui & Case, Biopolymers 2000, 56, 275-291)
+#    IGB=2 : SURFTEN=0.005, SURFOFF=0.0, mbondi2 radii
+#            (Onufriev et al, Proteins 2004, 55, 383-394)
+#    IGB=5 : SURFTEN=0.005, SURFOFF=0.0, mbondi2 radii
+#            (Onufriev et al, Proteins 2004, 55, 383-394)
+#
+IGB                   1
+GBSA                  1
+SALTCON               0.00
+EXTDIEL               80.0
+INTDIEL               1.0
+#
+SURFTEN               0.0072
+SURFOFF               0.00
+#
+################################################################################
+@MS
+#
+# Molsurf parameters (this section is only relevant if MS = 1 above)
+#
+#   PROBE - Radius of the probe sphere used to calculate the SAS.
+#           In general, since Bondi radii are already augmented by 1.4A,
+#           PROBE should be 0.0
+#           In IVCAP = 1 or 5, the solvent excluded surface is required for
+#           calculating the cavity contribution. Bondi radii are not
+#           augmented in this case and PROBE should be 1.4.
+#
+PROBE                 0.0
+#
+################################################################################
+@PROGRAMS
+#
+# Additional program executables can be defined here
+#
+#
+################################################################################

@@ -1,0 +1,66 @@
+#!/bin/csh
+#PBS -N
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=48:00:00
+#PBS -l cput=192:00:00
+#PBS -l mem=2gb
+#PBS -q wrkst
+#PBS -o
+#PBS -e
+#PBS -V
+
+setenv AMBERHOME /home/src/amber16
+
+################################################################################
+#      Do not modify the script from here onward
+#
+#
+# --- Prepare calculation
+#
+limit stacksize unlimited
+set SCRIPT=
+set SY=
+set CALC=
+set PARAMS=
+set TOPO=
+set SNAPS=
+
+#
+# --- Inform about HOST
+#
+echo $HOSTNAME
+
+#
+# --- Go to working directory 
+#
+set PATH=
+cd $PATH
+
+#
+# --- Create tmp directory
+#
+cd /tmp
+mkdir $CALC
+cd $CALC
+cp $PATH/* .
+ln -s $TOPO topo
+ln -s $SNAPS snapshots
+
+#
+# --- Execute
+#
+set MMPBSA=
+perl $MMPBSA $PARAMS
+
+#
+# --- Zipping output
+#
+gzip -9 ${SY}*
+cp * $PATH
+rm -r /tmp/$CALC
+gunzip $PATH/${SY}_statistics.out
+
+#
+# --- Exit this script
+#
+exit

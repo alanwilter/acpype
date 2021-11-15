@@ -1,0 +1,6 @@
+REMARK    water
+ATOM      1  OW  WAT     1      10.203   7.604  12.673
+ATOM      2  HW1 WAT     1       9.626   6.787  12.673
+ATOM      3  HW2 WAT     1       9.626   8.420  12.673
+TER
+END

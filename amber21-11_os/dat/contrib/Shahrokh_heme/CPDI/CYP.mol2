@@ -1,0 +1,34 @@
+# Shahrokh,K; Orendt,A; Yost, G.S; and Cheatham III, T.E. Jour Comp Chem (2011)
+# Compound I cysteine coordinates and atomic charges
+@<TRIPOS>MOLECULE
+CYP-CPDI
+10 9 1 0 0
+SMALL
+USER_CHARGES
+
+
+@<TRIPOS>ATOM
+   1  N         -2.6330   -1.3520    2.7840 N       1 CYP     -0.4157
+   2  H         -2.8330   -2.0920    3.4500 H       1 CYP      0.2719
+   3  CA        -1.2870   -1.4470    2.2240 CT      1 CYP      0.0725
+   4  HA        -1.3570   -1.6240    1.1450 H1      1 CYP     -0.0095
+   5  CB        -0.4780   -0.1320    2.4210 CT      1 CYP      0.0020
+   6  HB2       -0.4010    0.0680    3.4970 H1      1 CYP      0.0508
+   7  HB3       -1.0820    0.6620    1.9770 H1      1 CYP      0.0508
+   8  SG         1.2250   -0.0810    1.7090 SH      1 CYP     -0.4381
+   9  C         -0.6660   -2.7000    2.8810 C       1 CYP      0.5973
+  10  O         -1.2840   -3.3630    3.7280 O       1 CYP     -0.5679
+
+@<TRIPOS>BOND
+   1     1    3 1
+   2     1    2 1
+   3     3    4 1
+   4     3    5 1
+   5     3    9 1
+   6     5    6 1
+   7     5    7 1
+   8     5    8 1
+   9     9   10 2
+
+@<TRIPOS>SUBSTRUCTURE
+1 CYP        1 RESIDUE           4 A     CYP     0 ROOT

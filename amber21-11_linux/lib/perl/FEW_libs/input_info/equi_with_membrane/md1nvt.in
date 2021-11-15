@@ -1,0 +1,31 @@
+Equilibration nvt run
+&cntrl
+  ntpr     = 100,
+  ntwx     = 100,
+  ntwr     = 1000,
+  ntx      = 1,
+  irest    = 0,
+  ntxo     = 1,
+  ioutfm   = 0,
+
+  imin     = 0,
+  nstlim   = 10000,
+  dt       = 0.002,
+  ntb      = 1,
+
+  ntt      = 3,
+  ig       = -1,
+  gamma_ln = 1.0,
+  tempi    = 0.0,
+  temp0    = 100,
+
+  ntc      = 2,
+  ntf      = 2,
+  cut      = 10,
+  ntr      = 1,
+&end
+Keep solute fixed with weak restraints
+10.0
+RES 1 100
+END
+END

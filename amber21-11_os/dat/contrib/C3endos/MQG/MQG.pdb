@@ -1,0 +1,149 @@
+REMARK 999 Mannosylqueuosine                                                    
+HETATM    1  P   MQG     1      -0.105   4.085   1.678  1.00  0.00           P  
+HETATM    2  O1P MQG     1       0.304   2.678   1.849  1.00  0.00           O  
+HETATM    3  O2P MQG     1       0.308   5.103   2.693  1.00  0.00           O  
+HETATM    4  O5' MQG     1      -1.695   4.092   1.518  1.00  0.00           O  
+HETATM    5  C5' MQG     1      -2.405   5.324   1.251  1.00  0.00           C  
+HETATM    6  C4' MQG     1      -3.861   5.040   0.981  1.00  0.00           C  
+HETATM    7  O4' MQG     1      -3.986   4.150  -0.161  1.00  0.00           O  
+HETATM    8  C3' MQG     1      -4.588   4.291   2.083  1.00  0.00           C  
+HETATM    9  O3' MQG     1      -4.935   5.186   3.136  1.00  0.00           O  
+HETATM   10  C2' MQG     1      -5.801   3.778   1.321  1.00  0.00           C  
+HETATM   11  O2' MQG     1      -6.723   4.807   1.003  1.00  0.00           O  
+HETATM   12  C1' MQG     1      -5.140   3.329   0.012  1.00  0.00           C  
+HETATM   13  N9  MQG     1      -4.732   1.917   0.048  1.00  0.00           N  
+HETATM   14  C8  MQG     1      -3.467   1.455   0.394  1.00  0.00           C  
+HETATM   15  C7  MQG     1      -3.430   0.109   0.308  1.00  0.00           C  
+HETATM   16  C5  MQG     1      -4.745  -0.289  -0.111  1.00  0.00           C  
+HETATM   17  C6  MQG     1      -5.357  -1.549  -0.397  1.00  0.00           C  
+HETATM   18  O6  MQG     1      -4.896  -2.657  -0.350  1.00  0.00           O  
+HETATM   19  N1  MQG     1      -6.699  -1.383  -0.790  1.00  0.00           N  
+HETATM   20  C2  MQG     1      -7.344  -0.191  -0.898  1.00  0.00           C  
+HETATM   21  N2  MQG     1      -8.633  -0.248  -1.349  1.00  0.00           N  
+HETATM   22  N3  MQG     1      -6.804   0.944  -0.637  1.00  0.00           N  
+HETATM   23  C4  MQG     1      -5.499   0.859  -0.257  1.00  0.00           C  
+HETATM   24 1H5' MQG     1      -2.368   5.899   2.152  1.00  0.00           H  
+HETATM   25 2H5' MQG     1      -1.997   5.721   0.345  1.00  0.00           H  
+HETATM   26  H4' MQG     1      -4.286   6.014   0.854  1.00  0.00           H  
+HETATM   27  H3' MQG     1      -4.032   3.515   2.565  1.00  0.00           H  
+HETATM   28  H2' MQG     1      -6.352   3.044   1.871  1.00  0.00           H  
+HETATM   29 2HO' MQG     1      -6.424   5.634   1.387  1.00  0.00           H  
+HETATM   30  H1' MQG     1      -5.837   3.426  -0.793  1.00  0.00           H  
+HETATM   31  H8  MQG     1      -2.703   2.144   0.684  1.00  0.00           H  
+HETATM   32  H1  MQG     1      -7.155  -2.223  -1.078  1.00  0.00           H  
+HETATM   33 1H2  MQG     1      -9.174  -1.045  -1.096  1.00  0.00           H  
+HETATM   34 2H2  MQG     1      -9.120   0.617  -1.262  1.00  0.00           H  
+HETATM   35  C10 MQG     1      -2.272  -0.801   0.606  1.00  0.00           C  
+HETATM   36  N40 MQG     1      -1.019  -0.063   0.607  1.00  0.00           N  
+HETATM   37  C11 MQG     1       0.168  -0.871   0.863  1.00  0.00           C  
+HETATM   38  C12 MQG     1       0.587  -1.592  -0.436  1.00  0.00           C  
+HETATM   39  O30 MQG     1       1.281  -2.771  -0.125  1.00  0.00           O  
+HETATM   40  C13 MQG     1       1.559  -0.607  -1.105  1.00  0.00           C  
+HETATM   41  O31 MQG     1       2.472  -1.274  -1.931  1.00  0.00           O  
+HETATM   42  C14 MQG     1       2.153   0.110   0.085  1.00  0.00           C  
+HETATM   43  C15 MQG     1       1.390  -0.019   1.150  1.00  0.00           C  
+HETATM   44  H20 MQG     1      -2.273  -1.626  -0.106  1.00  0.00           H  
+HETATM   45  H21 MQG     1      -2.414  -1.243   1.585  1.00  0.00           H  
+HETATM   46  H22 MQG     1      -0.916   0.375  -0.289  1.00  0.00           H  
+HETATM   47  H23 MQG     1      -0.001  -1.597   1.659  1.00  0.00           H  
+HETATM   48  H24 MQG     1      -0.257  -1.819  -1.076  1.00  0.00           H  
+HETATM   49  H25 MQG     1       0.979   0.097  -1.699  1.00  0.00           H  
+HETATM   50  H26 MQG     1       2.952  -0.636  -2.440  1.00  0.00           H  
+HETATM   51  H27 MQG     1       3.064   0.680   0.027  1.00  0.00           H  
+HETATM   52  H28 MQG     1       1.582   0.421   2.112  1.00  0.00           H  
+HETATM   53  C16 MQG     1       0.536  -3.940  -0.120  1.00  0.00           C  
+HETATM   54  C17 MQG     1       1.406  -5.012   0.533  1.00  0.00           C  
+HETATM   55  H29 MQG     1      -0.375  -3.827   0.454  1.00  0.00           H  
+HETATM   56  C18 MQG     1       1.155  -4.609  -2.306  1.00  0.00           C  
+HETATM   57  C19 MQG     1       2.499  -5.481  -0.423  1.00  0.00           C  
+HETATM   58  C20 MQG     1       1.886  -5.833  -1.765  1.00  0.00           C  
+HETATM   59  H30 MQG     1       1.839  -3.773  -2.378  1.00  0.00           H  
+HETATM   60  H31 MQG     1       3.224  -4.684  -0.561  1.00  0.00           H  
+HETATM   61  O32 MQG     1       0.117  -4.289  -1.400  1.00  0.00           O  
+HETATM   62  O33 MQG     1       3.112  -6.600   0.164  1.00  0.00           O  
+HETATM   63  H32 MQG     1       3.669  -7.004  -0.491  1.00  0.00           H  
+HETATM   64  C21 MQG     1       0.552  -4.830  -3.681  1.00  0.00           C  
+HETATM   65  H33 MQG     1       1.323  -4.667  -4.429  1.00  0.00           H  
+HETATM   66  H34 MQG     1      -0.230  -4.095  -3.832  1.00  0.00           H  
+HETATM   67  O34 MQG     1       0.049  -6.140  -3.787  1.00  0.00           O  
+HETATM   68  H35 MQG     1      -0.506  -6.209  -4.551  1.00  0.00           H  
+HETATM   69  H36 MQG     1       1.861  -4.585   1.420  1.00  0.00           H  
+HETATM   70  H37 MQG     1       1.170  -6.630  -1.624  1.00  0.00           H  
+HETATM   71  O35 MQG     1       2.926  -6.254  -2.617  1.00  0.00           O  
+HETATM   72  H38 MQG     1       2.546  -6.763  -3.320  1.00  0.00           H  
+HETATM   73  O36 MQG     1       0.563  -6.074   0.878  1.00  0.00           O  
+HETATM   74  H39 MQG     1       1.112  -6.820   1.086  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   24   25
+CONECT    6    7    8    5   26
+CONECT    7   12    6
+CONECT    8   10    6    9   27
+CONECT    9    8
+CONECT   10   12    8   11   28
+CONECT   11   10   29
+CONECT   12   13    7   10   30
+CONECT   13   23   14   12
+CONECT   14   13   15   31
+CONECT   15   16   14   35
+CONECT   16   23   17   15
+CONECT   17   19   18   16
+CONECT   18   17
+CONECT   19   20   17   32
+CONECT   20   22   21   19
+CONECT   21   20   33   34
+CONECT   22   23   20
+CONECT   23   13   22   16
+CONECT   24    5
+CONECT   25    5
+CONECT   26    6
+CONECT   27    8
+CONECT   28   10
+CONECT   29   11
+CONECT   30   12
+CONECT   31   14
+CONECT   32   19
+CONECT   33   21
+CONECT   34   21
+CONECT   35   15   36   44   45
+CONECT   36   35   37   46
+CONECT   37   36   38   43   47
+CONECT   38   37   39   40   48
+CONECT   39   38   53
+CONECT   40   38   41   42   49
+CONECT   41   40   50
+CONECT   42   40   43   51
+CONECT   43   37   42   52
+CONECT   44   35
+CONECT   45   35
+CONECT   46   36
+CONECT   47   37
+CONECT   48   38
+CONECT   49   40
+CONECT   50   41
+CONECT   51   42
+CONECT   52   43
+CONECT   53   39   54   55   61
+CONECT   54   53   57   69   73
+CONECT   55   53
+CONECT   56   58   59   61   64
+CONECT   57   54   58   60   62
+CONECT   58   56   57   70   71
+CONECT   59   56
+CONECT   60   57
+CONECT   61   53   56
+CONECT   62   57   63
+CONECT   63   62
+CONECT   64   56   65   66   67
+CONECT   65   64
+CONECT   66   64
+CONECT   67   64   68
+CONECT   68   67
+CONECT   69   54
+CONECT   70   58
+CONECT   71   58   72
+CONECT   72   71
+CONECT   73   54   74
+CONECT   74   73

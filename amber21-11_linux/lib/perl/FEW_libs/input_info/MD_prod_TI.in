@@ -1,0 +1,40 @@
+NVT MD w/No position restraints and PME (sander)
+ &cntrl
+  ntx     = 7,
+  irest   = 1,
+  ntpr    = 500,
+  ntwx    = 10000,
+  ntwr    = 0,
+  iwrap   = 0,
+  ntxo    = 1,
+  ioutfm  = 0,
+
+  ntf     = 1,
+  ntb     = 1,
+  cut     = 9.0,
+
+  nstlim  = 250000,
+  nscm    = 1000,
+  t       = 0.0,
+  dt      = 0.002,
+
+  temp0   = 300.0,
+  tempi   = 300.0,
+  ntt     = 1,
+  tautp   = 2.0,
+
+  ntc     = 2,
+  tol     = 0.000001,
+  
+  icfe    = 1,
+  clambda = 
+  ifsc    = 1,
+  idecomp = 1,
+
+  scmask  =
+ &end
+RES 1
+END
+LRES 1
+END
+END

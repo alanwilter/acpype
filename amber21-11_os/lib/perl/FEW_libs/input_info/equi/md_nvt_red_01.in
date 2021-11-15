@@ -1,0 +1,35 @@
+NVT MD w/ position restraints (5 kcal/molA) and PME (sander)
+ &cntrl
+  ntx    = 7,
+  irest  = 1, 
+  ntpr   = 100,
+  ntwx   = 2500,
+  ntwr   = 0,
+  ntxo   = 1,
+  ioutfm = 0,
+
+  ntf    = 2,
+  ntb    = 1,
+  cut    = 9.0,
+  nsnb   = 10,
+
+  ntr    = 1, 
+
+  nstlim = 25000,
+  nscm   = 0,
+  t      = 100.0,
+  dt     = 0.002,
+
+  temp0  = 300.0,
+  tempi  = 300.0,
+  ntt    = 1,
+  tautp  = 0.5,
+
+  ntc    = 2,
+  tol    = 0.000001,
+ &end
+Hold the solutes fixed
+5.0
+RES 1 285
+END
+END

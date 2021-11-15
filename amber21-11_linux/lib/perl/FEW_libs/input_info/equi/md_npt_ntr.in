@@ -1,0 +1,38 @@
+NPT MD w/ position restraints (5 kcal/molA) and PME (sander)
+ &cntrl
+  ntx    = 5,
+  irest  = 1,
+  ntpr   = 50,
+  ntwx   = 50,
+  ntxo   = 1,
+  ioutfm = 0,
+
+  ntf    = 2,
+  ntb    = 2,
+  cut    = 8.0,
+  nsnb   = 10,
+
+  ntr    = 1,
+
+  nstlim = 25000,
+  nscm   = 0,
+  t      = 50.0,
+  dt     = 0.002,
+
+  temp0  = 300.0,
+  tempi  = 300.0,   
+  ntt    = 1,
+  tautp  = 0.5,
+
+  ntp    = 1,
+  pres0  = 1.0,
+  taup   = 0.5,
+
+  ntc    = 2,
+  tol    = 0.000001,
+ &end
+Hold the Protein fixed
+5.0
+RES 1 285 
+END
+END

@@ -1,0 +1,88 @@
+!!index array str
+ "HO-"
+!entry.HO-.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "H1" "HO" 0 1 131075 1 1 0.204900
+ "O" "OH" 0 1 131075 2 8 -1.204900
+!entry.HO-.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "H1" "HO" 0 -1 0.0
+ "O" "OH" 0 -1 0.0
+!entry.HO-.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.HO-.unit.childsequence single int
+ 427
+!entry.HO-.unit.connect array int
+ 0
+ 0
+!entry.HO-.unit.connectivity table  int atom1x  int atom2x  int flags
+ 1 2 1
+!entry.HO-.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R" 1
+ "R" 1 "A" 1
+ "R" 1 "A" 2
+!entry.HO-.unit.name single str
+ ""
+!entry.HO-.unit.positions table  dbl x  dbl y  dbl z
+ 72.492000 20.788000 -76.929000
+ 72.210000 21.650000 -76.576000
+!entry.HO-.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 0 0 0 0 0 0
+!entry.HO-.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "HO-" 426 3 1 "?" 0
+!entry.HO-.unit.residuesPdbSequenceNumber array int
+ 1
+!entry.HO-.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.HO-.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+!entry.HO.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "H1" "HO" 0 1 131075 1 1 0.204900
+ "O" "OH" 0 1 131075 2 8 -1.204900
+!entry.HO.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "H1" "HO" 0 -1 0.0
+ "O" "OH" 0 -1 0.0
+!entry.HO.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.HO.unit.childsequence single int
+ 427
+!entry.HO.unit.connect array int
+ 0
+ 0
+!entry.HO.unit.connectivity table  int atom1x  int atom2x  int flags
+ 1 2 1
+!entry.HO.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R" 1
+ "R" 1 "A" 1
+ "R" 1 "A" 2
+!entry.HO.unit.name single str
+ ""
+!entry.HO.unit.positions table  dbl x  dbl y  dbl z
+ 72.492000 20.788000 -76.929000
+ 72.210000 21.650000 -76.576000
+!entry.HO.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 0 0 0 0 0 0
+!entry.HO.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "HO-" 426 3 1 "?" 0
+!entry.HO.unit.residuesPdbSequenceNumber array int
+ 1
+!entry.HO.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.HO.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0

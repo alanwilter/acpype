@@ -1,0 +1,113 @@
+REMARK 999 Undermodified hydroxywybutosine                                      
+HETATM    1  P   UBG     1      -6.297  -5.720   2.355  1.00  0.00           P  
+HETATM    2  O1P UBG     1      -4.998  -6.269   1.919  1.00  0.00           O  
+HETATM    3  O2P UBG     1      -7.540  -6.531   2.170  1.00  0.00           O  
+HETATM    4  O5' UBG     1      -6.465  -4.299   1.644  1.00  0.00           O  
+HETATM    5  C5' UBG     1      -7.608  -3.461   1.931  1.00  0.00           C  
+HETATM    6  C4' UBG     1      -7.450  -2.116   1.269  1.00  0.00           C  
+HETATM    7  O4' UBG     1      -6.241  -1.469   1.748  1.00  0.00           O  
+HETATM    8  C3' UBG     1      -7.245  -2.157  -0.235  1.00  0.00           C  
+HETATM    9  O3' UBG     1      -8.493  -2.361  -0.893  1.00  0.00           O  
+HETATM   10  C2' UBG     1      -6.668  -0.771  -0.478  1.00  0.00           C  
+HETATM   11  O2' UBG     1      -7.634   0.257  -0.339  1.00  0.00           O  
+HETATM   12  C1' UBG     1      -5.700  -0.659   0.706  1.00  0.00           C  
+HETATM   13  N9  UBG     1      -4.350  -1.134   0.371  1.00  0.00           N  
+HETATM   14  C8  UBG     1      -4.032  -2.460   0.152  1.00  0.00           C  
+HETATM   15  N7  UBG     1      -2.821  -2.644  -0.191  1.00  0.00           N  
+HETATM   16  C5  UBG     1      -2.263  -1.387  -0.215  1.00  0.00           C  
+HETATM   17  C6  UBG     1      -0.894  -1.038  -0.554  1.00  0.00           C  
+HETATM   18  O6  UBG     1      -0.033  -1.799  -0.864  1.00  0.00           O  
+HETATM   19  N1  UBG     1      -0.699   0.352  -0.477  1.00  0.00           N  
+HETATM   20  C2  UBG     1      -1.656   1.272  -0.129  1.00  0.00           C  
+HETATM   21  N2  UBG     1      -1.228   2.472  -0.117  1.00  0.00           N  
+HETATM   22  N3  UBG     1      -2.957   0.890   0.171  1.00  0.00           N  
+HETATM   23  C4  UBG     1      -3.195  -0.452   0.127  1.00  0.00           C  
+HETATM   24 1H5' UBG     1      -8.454  -3.930   1.473  1.00  0.00           H  
+HETATM   25 2H5' UBG     1      -7.601  -3.285   2.987  1.00  0.00           H  
+HETATM   26  H4' UBG     1      -8.365  -1.613   1.503  1.00  0.00           H  
+HETATM   27  H3' UBG     1      -6.620  -2.946  -0.599  1.00  0.00           H  
+HETATM   28  H2' UBG     1      -6.258  -0.662  -1.460  1.00  0.00           H  
+HETATM   29 2HO' UBG     1      -8.495  -0.134  -0.170  1.00  0.00           H  
+HETATM   30  H1' UBG     1      -5.602   0.367   0.993  1.00  0.00           H  
+HETATM   31  H8  UBG     1      -4.774  -3.222   0.279  1.00  0.00           H  
+HETATM   32  C10 UBG     1      -3.853   1.885   0.733  1.00  0.00           C  
+HETATM   33  C11 UBG     1       0.945   3.624  -0.525  1.00  0.00           C  
+HETATM   34  C12 UBG     1       0.115   2.382  -0.472  1.00  0.00           C  
+HETATM   35  C13 UBG     1       0.478   1.111  -0.707  1.00  0.00           C  
+HETATM   36  C14 UBG     1       1.809   0.534  -1.102  1.00  0.00           C  
+HETATM   37  C15 UBG     1       2.676   0.112   0.090  1.00  0.00           C  
+HETATM   38  C16 UBG     1       4.019  -0.481  -0.364  1.00  0.00           C  
+HETATM   39  C17 UBG     1       4.929  -0.888   0.839  1.00  0.00           C  
+HETATM   40  O30 UBG     1       5.605  -1.901   0.685  1.00  0.00           O  
+HETATM   41  O31 UBG     1       4.908  -0.117   1.818  1.00  0.00           O  
+HETATM   42  N40 UBG     1       3.813  -1.568  -1.318  1.00  0.00           N  
+HETATM   43  H20 UBG     1      -3.366   2.840   0.643  1.00  0.00           H  
+HETATM   44  H21 UBG     1      -4.787   1.915   0.188  1.00  0.00           H  
+HETATM   45  H22 UBG     1      -4.050   1.688   1.781  1.00  0.00           H  
+HETATM   46  H23 UBG     1       0.823   4.185   0.396  1.00  0.00           H  
+HETATM   47  H24 UBG     1       0.636   4.267  -1.346  1.00  0.00           H  
+HETATM   48  H25 UBG     1       1.993   3.386  -0.628  1.00  0.00           H  
+HETATM   49  H26 UBG     1       2.347   1.305  -1.641  1.00  0.00           H  
+HETATM   50  H27 UBG     1       1.677  -0.295  -1.777  1.00  0.00           H  
+HETATM   51  H28 UBG     1       2.139  -0.653   0.655  1.00  0.00           H  
+HETATM   52  H29 UBG     1       4.552   0.320  -0.877  1.00  0.00           H  
+HETATM   53  H30 UBG     1       3.085  -2.166  -0.967  1.00  0.00           H  
+HETATM   54  O32 UBG     1       2.876   1.243   0.887  1.00  0.00           O  
+HETATM   55  H31 UBG     1       3.614   1.003   1.463  1.00  0.00           H  
+HETATM   56  H32 UBG     1       4.645  -2.128  -1.258  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   24   25
+CONECT    6    7    8    5   26
+CONECT    7   12    6
+CONECT    8   10    6    9   27
+CONECT    9    8
+CONECT   10   12    8   11   28
+CONECT   11   10   29
+CONECT   12   13    7   10   30
+CONECT   13   23   14   12
+CONECT   14   15   13   31
+CONECT   15   16   14
+CONECT   16   23   17   15
+CONECT   17   19   16   18
+CONECT   18   17
+CONECT   19   20   17   35
+CONECT   20   19   21   22
+CONECT   21   20   34
+CONECT   22   20   32   23
+CONECT   23   22   16   13
+CONECT   24    5
+CONECT   25    5
+CONECT   26    6
+CONECT   27    8
+CONECT   28   10
+CONECT   29   11
+CONECT   30   12
+CONECT   31   14
+CONECT   32   22   43   44   45
+CONECT   33   34   46   47   48
+CONECT   34   21   33   35
+CONECT   35   19   34   36
+CONECT   36   35   37   49   50
+CONECT   37   36   38   51   54
+CONECT   38   37   39   42   52
+CONECT   39   38   40   41
+CONECT   40   39
+CONECT   41   39
+CONECT   42   38   53   56
+CONECT   43   32
+CONECT   44   32
+CONECT   45   32
+CONECT   46   33
+CONECT   47   33
+CONECT   48   33
+CONECT   49   36
+CONECT   50   36
+CONECT   51   37
+CONECT   52   38
+CONECT   53   42
+CONECT   54   37   55
+CONECT   55   54
+CONECT   56   42

@@ -1,0 +1,33 @@
+# Shahrokh,K; Orendt,A; Yost, G.S; and Cheatham III, T.E. Jour Comp Chem (2011)
+# Dioxygen bound cysteine coordinates and atomic charges
+@<TRIPOS>MOLECULE
+CYP-O2
+10 9 1 0 0
+SMALL
+USER_CHARGES
+
+
+@<TRIPOS>ATOM
+   1  N          -0.715000   -4.306000   -4.565000 N         1 CYP   -0.4157 ****
+   2  H          -0.080000   -5.093000   -4.650000 H         1 CYP    0.2719 ****
+   3  CA         -0.518000   -3.547000   -3.334000 CT        1 CYP   -0.1244 ****
+   4  HA         -0.114000   -2.557000   -3.573000 H1        1 CYP    0.1002 ****
+   5  CB         -1.863000   -3.326000   -2.582000 CT        1 CYP   -0.3137 ****
+   6  HB2        -2.295000   -4.309000   -2.353000 H1        1 CYP    0.0723 ****
+   7  HB3        -2.524000   -2.833000   -3.296000 H1        1 CYP    0.0723 ****
+   8  SG         -1.845000   -2.365000   -1.002000 SH        1 CYP   -0.1587 ****
+   9  C           0.557000   -4.316000   -2.537000 C         1 CYP    0.5973 ****
+  10  O           1.068000   -5.365000   -2.959000 O         1 CYP   -0.5679 ****
+@<TRIPOS>BOND
+   1     1    3 1
+   2     1    2 1
+   3     3    4 1
+   4     3    5 1
+   5     3    9 1
+   6     5    6 1
+   7     5    7 1
+   8     5    8 1
+   9     9   10 2
+
+@<TRIPOS>SUBSTRUCTURE
+1 CYP        1 RESIDUE           4 A     CYP     0 ROOT

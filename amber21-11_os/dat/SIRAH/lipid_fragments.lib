@@ -1,0 +1,379 @@
+!!index array str
+ "xPC"
+ "xPE"
+ "xPS"
+ "xMY"
+ "xPA"
+ "xOL"
+!entry.xPC.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "BCO"  "X7" 0 1 131072  1 -1  0.6
+ "BFO"  "PL" 0 1 131072  2 -1 -0.6
+ "BGL"  "GL" 0 1 131072  3 -1  0.4
+ "BE1"  "E1" 0 1 131072  4 -1 -0.2
+ "BE2"  "E2" 0 1 131072  5 -1 -0.2
+!entry.xPC.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "BCO"  "X7" 0 -1 0.0
+ "BFO"  "PL" 0 -1 0.0
+ "BGL"  "GL" 0 -1 0.0
+ "BE1"  "E1" 0 -1 0.0
+ "BE2"  "E2" 0 -1 0.0
+!entry.xPC.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPC.unit.childsequence single int
+ 2
+!entry.xPC.unit.connect array int
+ 4
+ 5
+!entry.xPC.unit.connectivity table  int atom1x  int atom2x  int flags
+  1  2  1
+  2  3  1
+  3  4  1
+  3  5  1
+!entry.xPC.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R"  1
+ "R" 1 "A"  1
+ "R" 1 "A"  2
+ "R" 1 "A"  3
+ "R" 1 "A"  4
+ "R" 1 "A"  5
+!entry.xPC.unit.name single str
+ "xPC"
+!entry.xPC.unit.positions table  dbl x  dbl y  dbl z
+ 48.260  31.519  11.376
+ 51.875  27.864  11.059
+ 54.309  27.750  14.033
+ 52.565  26.227  16.854
+ 56.128  29.194  14.465
+!entry.xPC.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 4 5 0 0 0 0
+!entry.xPC.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "xPC" 1 6 1 "?" 0
+!entry.xPC.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.xPC.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPC.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+!entry.xPE.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "BPE"  "ET" 0 1 131072  1 -1  0.6
+ "BFO"  "PL" 0 1 131072  2 -1 -0.6
+ "BGL"  "GL" 0 1 131072  3 -1  0.4
+ "BE1"  "E1" 0 1 131072  4 -1 -0.2
+ "BE2"  "E2" 0 1 131072  5 -1 -0.2
+!entry.xPE.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "BPE"  "ET" 0 -1 0.0
+ "BFO"  "PL" 0 -1 0.0
+ "BGL"  "GL" 0 -1 0.0
+ "BE1"  "E1" 0 -1 0.0
+ "BE2"  "E2" 0 -1 0.0
+!entry.xPE.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPE.unit.childsequence single int
+ 2
+!entry.xPE.unit.connect array int
+ 4
+ 5
+!entry.xPE.unit.connectivity table  int atom1x  int atom2x  int flags
+  1  2  1
+  2  3  1
+  3  4  1
+  3  5  1
+!entry.xPE.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R"  1
+ "R" 1 "A"  1
+ "R" 1 "A"  2
+ "R" 1 "A"  3
+ "R" 1 "A"  4
+ "R" 1 "A"  5
+!entry.xPE.unit.name single str
+ "xPE"
+!entry.xPE.unit.positions table  dbl x  dbl y  dbl z
+ 79.310  14.700  61.490
+ 81.110  17.300  59.440
+ 81.190  16.850  55.650
+ 79.290  17.770  53.240
+ 82.790  16.000  54.170
+!entry.xPE.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 4 5 0 0 0 0
+!entry.xPE.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "xPE" 1 6 1 "?" 0
+!entry.xPE.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.xPE.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPE.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+!entry.xPS.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "BPSO" "PS" 0 1 131072  1 -1 -0.6
+ "BPSN" "WX" 0 1 131072  2 -1  0.2
+ "BFO"  "PL" 0 1 131072  3 -1 -0.6
+ "BGL"  "GL" 0 1 131072  4 -1  0.4
+ "BE1"  "E1" 0 1 131072  5 -1 -0.2
+ "BE2"  "E2" 0 1 131072  6 -1 -0.2
+!entry.xPS.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "BPSO" "PS" 0 -1 0.0
+ "BPSN" "WX" 0 -1 0.0
+ "BFO"  "PL" 0 -1 0.0
+ "BGL"  "GL" 0 -1 0.0
+ "BE1"  "E1" 0 -1 0.0
+ "BE2"  "E2" 0 -1 0.0
+!entry.xPS.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPS.unit.childsequence single int
+ 2
+!entry.xPS.unit.connect array int
+ 5
+ 6
+!entry.xPS.unit.connectivity table  int atom1x  int atom2x  int flags
+  1  2  1
+  2  3  1
+  3  4  1
+  4  5  1
+  4  6  1
+!entry.xPS.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R"  1
+ "R" 1 "A"  1
+ "R" 1 "A"  2
+ "R" 1 "A"  3
+ "R" 1 "A"  4
+ "R" 1 "A"  5
+ "R" 1 "A"  6
+!entry.xPS.unit.name single str
+ "xPS"
+!entry.xPS.unit.positions table  dbl x  dbl y  dbl z
+ 37.360  19.960  67.690
+ 35.860  21.040  66.400
+ 37.720  23.440  64.230
+ 36.080  21.480  61.150
+ 33.810  24.030  59.560
+ 36.820  20.770  59.010
+!entry.xPS.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 5 6 0 0 0 0
+!entry.xPS.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "xPS" 1 7 1 "?" 0
+!entry.xPS.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.xPS.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPS.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+!entry.xMY.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "BC11" "Y2" 0 1 131072  1 -1  0.0
+ "BC12" "Y2" 0 1 131072  2 -1  0.0
+ "BC13" "Y2" 0 1 131072  3 -1  0.0
+ "BCT1" "YT" 0 1 131072  4 -1  0.0
+!entry.xMY.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "BC11" "Y2" 0 -1 0.0
+ "BC12" "Y2" 0 -1 0.0
+ "BC13" "Y2" 0 -1 0.0
+ "BCT1" "YT" 0 -1 0.0
+!entry.xMY.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xMY.unit.childsequence single int
+ 2
+!entry.xMY.unit.connect array int
+ 1
+ 1
+!entry.xMY.unit.connectivity table  int atom1x  int atom2x  int flags
+  1  2  1
+  2  3  1
+  3  4  1
+!entry.xMY.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R"  1
+ "R" 1 "A"  1
+ "R" 1 "A"  2
+ "R" 1 "A"  3
+ "R" 1 "A"  4
+!entry.xMY.unit.name single str
+ "xMY"
+!entry.xMY.unit.positions table  dbl x  dbl y  dbl z
+  7.457  15.055  46.413
+  6.307  15.212  42.754
+  6.351  16.193  39.012
+  5.131  15.267  35.421
+!entry.xMY.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 1 1 0 0 0 0
+!entry.xMY.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "xMY" 1 5 1 "?" 0
+!entry.xMY.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.xMY.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xMY.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+!entry.xPA.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "BC11" "Y2" 0 1 131072  1 -1  0.0
+ "BC12" "Y2" 0 1 131072  2 -1  0.0
+ "BC13" "Y2" 0 1 131072  3 -1  0.0
+ "BC14" "Y2" 0 1 131072  4 -1  0.0
+ "BCT1" "YT" 0 1 131072  5 -1  0.0
+!entry.xPA.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "BC11" "Y2" 0 -1 0.0
+ "BC12" "Y2" 0 -1 0.0
+ "BC13" "Y2" 0 -1 0.0
+ "BC14" "Y2" 0 -1 0.0
+ "BCT1" "YT" 0 -1 0.0
+!entry.xPA.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPA.unit.childsequence single int
+ 2
+!entry.xPA.unit.connect array int
+ 1
+ 1
+!entry.xPA.unit.connectivity table  int atom1x  int atom2x  int flags
+  1  2  1
+  2  3  1
+  3  4  1
+  4  5  1
+!entry.xPA.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R"  1
+ "R" 1 "A"  1
+ "R" 1 "A"  2
+ "R" 1 "A"  3
+ "R" 1 "A"  4
+ "R" 1 "A"  5
+!entry.xPA.unit.name single str
+ "xPA"
+!entry.xPA.unit.positions table  dbl x  dbl y  dbl z
+ 17.396  57.481  19.541
+ 15.247  58.258  22.678
+ 15.354  55.818  25.560
+ 15.542  56.612  28.548
+ 14.638  59.966  30.301
+!entry.xPA.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 1 1 0 0 0 0
+!entry.xPA.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "xPA" 1 6 1 "?" 0
+!entry.xPA.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.xPA.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xPA.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+!entry.xOL.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "BC11" "Y2" 0 1 131072  1 -1  0.0
+ "BC12" "Y2" 0 1 131072  2 -1  0.0
+ "BC13" "W1" 0 1 131072  3 -1  0.0
+ "BC14" "Y2" 0 1 131072  4 -1  0.0
+ "BC15" "Y2" 0 1 131072  5 -1  0.0
+ "BCT1" "YF" 0 1 131072  6 -1  0.0
+!entry.xOL.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "BC11" "Y2" 0 -1 0.0
+ "BC12" "Y2" 0 -1 0.0
+ "BC13" "W1" 0 -1 0.0
+ "BC14" "Y2" 0 -1 0.0
+ "BC15" "Y2" 0 -1 0.0
+ "BCT1" "YF" 0 -1 0.0
+!entry.xOL.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xOL.unit.childsequence single int
+ 2
+!entry.xOL.unit.connect array int
+ 1
+ 1
+!entry.xOL.unit.connectivity table  int atom1x  int atom2x  int flags
+  1  2  1
+  2  3  1
+  3  4  1
+  4  5  1
+  5  6  1
+!entry.xOL.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R"  1
+ "R" 1 "A"  1
+ "R" 1 "A"  2
+ "R" 1 "A"  3
+ "R" 1 "A"  4
+ "R" 1 "A"  5
+ "R" 1 "A"  6
+!entry.xOL.unit.name single str
+ "xOL"
+!entry.xOL.unit.positions table  dbl x  dbl y  dbl z
+ 57.518  28.115  17.176
+ 56.675  25.713  20.172
+ 55.241  24.290  23.567
+ 55.477  26.043  27.041
+ 54.694  27.140  30.038
+ 54.065  28.992  31.648
+!entry.xOL.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 1 1 0 0 0 0
+!entry.xOL.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "xOL" 1 7 1 "?" 0
+!entry.xOL.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.xOL.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.xOL.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0

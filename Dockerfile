@@ -1,5 +1,5 @@
 #To build:
-#docker build /path/to/acpype/ --tag acpype:2020.07.25.08.41
+#docker build /path/to/acpype/ --tag acpype:2021.11.14.23:21.21
 
 FROM ubuntu:18.04
 
@@ -16,29 +16,29 @@ RUN apt-get update && apt-get install -y \
     gcc \
     libgfortran3
 
-COPY amber19-0_linux /home/amber19
+COPY amber21-11_linux /home/amber21
 
-COPY amber19-0_linux/dat /usr/local/dat
+COPY amber21-11_linux/dat /usr/local/dat
 
 COPY acpype_lib/acpype.py /home/
 
 RUN touch /root/.bashrc \
- && echo "export AMBERHOME='/home/amber19'\nexport ACHOME='/home/amber19/bin'\nexport LD_LIBRARY_PATH='/home/amber19/lib'\n" >> /root/.bashrc
+ && echo "export AMBERHOME='/home/amber21'\nexport ACHOME='/home/amber21/bin'\nexport LD_LIBRARY_PATH='/home/amber21/lib'\n" >> /root/.bashrc
 
 RUN cd /home/ && ln -s $PWD/acpype.py /usr/local/bin/acpype
 
-RUN cd /home/amber19/bin/to_be_dispatched && ln -s $PWD/antechamber /usr/local/bin/antechamber
+RUN cd /home/amber21/bin/to_be_dispatched && ln -s $PWD/antechamber /usr/local/bin/antechamber
 
-RUN cd /home/amber19/bin/to_be_dispatched && ln -s $PWD/charmmgen /usr/local/bin/charmmgen
+RUN cd /home/amber21/bin/to_be_dispatched && ln -s $PWD/charmmgen /usr/local/bin/charmmgen
 
-RUN cd /home/amber19/bin/ && ln -s $PWD/tleap /usr/local/bin/tleap
+RUN cd /home/amber21/bin/ && ln -s $PWD/tleap /usr/local/bin/tleap
 
-RUN cd /home/amber19/bin/ && ln -s $PWD/teLeap /usr/local/bin/teLeap
+RUN cd /home/amber21/bin/ && ln -s $PWD/teLeap /usr/local/bin/teLeap
 
-RUN cd /home/amber19/bin/to_be_dispatched && ln -s $PWD/parmchk2 /usr/local/bin/parmchk2
+RUN cd /home/amber21/bin/to_be_dispatched && ln -s $PWD/parmchk2 /usr/local/bin/parmchk2
 
-ENV ACHOME="/home/amber19/bin"
+ENV ACHOME="/home/amber21/bin"
 
-ENV LD_LIBRARY_PATH="/home/amber19/lib"
+ENV LD_LIBRARY_PATH="/home/amber21/lib"
 
-ENV AMBERHOME="/home/amber19"
+ENV AMBERHOME="/home/amber21"
