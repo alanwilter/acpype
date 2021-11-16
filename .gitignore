@@ -58,6 +58,7 @@ docs/_build/
 
 pip-selfcheck.json
 *.acpype
+*.amb2gmx
 test*/*acpype
 test*/.acpype*
 test*/*.gro

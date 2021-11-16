@@ -3030,9 +3030,6 @@ class AbstractTopol:
             if phase in [0, 180]:
                 properDihedralsCoefRB.append([item[0].atoms, C])
 
-        # print properDihedralsCoefRB
-        # print properDihedralsAlphaGamma
-
         self.printDebug("setProperDihedralsCoef done")
 
         self.properDihedralsCoefRB = properDihedralsCoefRB
@@ -4051,6 +4048,7 @@ class AbstractTopol:
         topFileName = os.path.join(gmxDir, top)
         topFile = open(topFileName, "w")
         topFile.writelines(topText)
+        self.topText = topText
 
         if not self.amb2gmx:
             itpFileName = os.path.join(gmxDir, itp)

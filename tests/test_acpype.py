@@ -128,14 +128,41 @@ def test_glycam():
 
 def test_amb2gmx():
     # oct box with water and ions
+    # modified from https://ambermd.org/tutorials/basic/tutorial7/index.php
+    # using addIonsRand separated for each ion and TIP3PBOX
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     molecule = MolTopol(acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True)
     molecule.writeGromacsTopolFiles()
     assert molecule
+    assert len(molecule.topText) == 14193
     assert not molecule.topo14Data.hasNondefault14()
     assert molecule.atoms[1300].__repr__() == "<Atom id=1301, name=NA+, <AtomType=Na+>>"
     assert molecule.atoms[1310].__repr__() == "<Atom id=1311, name=CL-, <AtomType=Cl->>"
     assert len(molecule.atoms) == 18618
+    shutil.rmtree(molecule.absHomeDir)
+
+
+def test_amb2gmx_direct():
+    # oct box with water and ions
+    # modified from https://ambermd.org/tutorials/basic/tutorial7/index.php
+    # using addIonsRand separated for each ion and TIP3PBOX
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = MolTopol(
+        acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True, direct=True
+    )
+    molecule.writeGromacsTopolFiles()
+    assert len(molecule.topText) == 31516
+    shutil.rmtree(molecule.absHomeDir)
+
+
+def test_amb2gmx_gmx4():
+    # oct box with water and ions
+    # modified from https://ambermd.org/tutorials/basic/tutorial7/index.php
+    # using addIonsRand separated for each ion and TIP3PBOX
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = MolTopol(acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True, gmx4=True)
+    molecule.writeGromacsTopolFiles()
+    assert len(molecule.topText) == 12124
     shutil.rmtree(molecule.absHomeDir)
 
 
