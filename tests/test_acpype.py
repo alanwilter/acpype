@@ -175,6 +175,15 @@ def test_sqm_tleap():
     assert len(molecule.molTopol.atoms) == 12
     assert len(molecule.molTopol.properDihedrals) == 24
     assert len(molecule.molTopol.improperDihedrals) == 6
+    # check chargeType user with PDB -> use bcc
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("benzene.pdb", chargeType="user", debug=True)
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert len(molecule.molTopol.atoms) == 12
+    assert len(molecule.molTopol.properDihedrals) == 24
+    assert len(molecule.molTopol.improperDihedrals) == 6
     shutil.rmtree(molecule.absHomeDir)
 
 
@@ -184,4 +193,18 @@ def test_time_limit():
     with pytest.raises(Exception) as e_info:
         molecule.createACTopol()
     assert e_info.value.args[0] == "Semi-QM taking too long to finish... aborting!"
+    shutil.rmtree(molecule.absHomeDir)
+
+
+def test_charge_user():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = ACTopol("ADPMg.mol2", chargeType="user", debug=True)
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert len(molecule.molTopol.atoms) == 39
+    assert len(molecule.molTopol.properDihedrals) == 126
+    assert len(molecule.molTopol.improperDihedrals) == 7
+    assert molecule.molTopol.atoms[0].charge == 0.1667
+    assert molecule.molTopol.atoms[15].charge == -0.517
     shutil.rmtree(molecule.absHomeDir)
