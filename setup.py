@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2021-11-14T23:21:21CET"
+__updated__ = "2021-11-17T20:12:09CET"
 version = __updated__[:19].replace("-", "").replace("T", "").replace(":", "")
 
 setuptools.setup(
@@ -22,7 +22,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/alanwilter/acpype",
-    packages=["acpype_lib", "amber19-0_linux", "amber19-0_os"],
+    packages=["acpype_lib", "amber21-11_linux", "amber21-11_os"],
     package_dir={"acpype": "acpype"},
     include_package_data=True,
     keywords="acpype",

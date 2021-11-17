@@ -90,7 +90,7 @@ if sys.version_info < (3, 6):
     raise Exception("ERROR: Sorry, you need python 3.6 or higher")
 
 year = datetime.today().year
-__updated__ = "2021-11-14T23:21:21CET"
+__updated__ = "2021-11-17T20:12:45CET"
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
