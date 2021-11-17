@@ -87,8 +87,7 @@ if which("antechamber") is None:
         os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
 
 if sys.version_info < (3, 6):
-    print("ERROR: Sorry, you need python 3.6 or higher")
-    sys.exit(5)
+    raise Exception("ERROR: Sorry, you need python 3.6 or higher")
 
 year = datetime.today().year
 __updated__ = "2021-11-14T23:21:21CET"
@@ -1770,7 +1769,7 @@ class AbstractTopol:
         if drift > diffTol:
             self.printError("Net charge drift '%3.5f' bigger than tolerance '%3.5f'" % (drift, diffTol))
             if not self.force:
-                sys.exit(7)
+                raise Exception("Error with calculated charge")
         self.chargeVal = str(charge2)
         self.printMess(f"... charge set to {charge2}")
         os.chdir(localDir)
@@ -1822,9 +1821,9 @@ class AbstractTopol:
         # self.printDebug(coords)
 
         if len(residues) > 1:
-            self.printError("more than one residue detected '%s'" % str(residues))
-            self.printError("verify your input file '%s'. Aborting ..." % self.inputFile)
-            sys.exit(9)
+            self.printError(f"more than one residue detected '{str(residues)}'")
+            self.printError(f"verify your input file '{self.inputFile}'. Aborting ...")
+            raise Exception("ERROR: Only ONE Residue is allowed for ACPYPE to work")
 
         dups = ""
         shortd = ""
@@ -1873,7 +1872,7 @@ class AbstractTopol:
             else:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 rmtree(self.tmpDir)
-                sys.exit(11)
+                raise Exception("ERROR: coordinates issues with your system")
         try:  # scape resname list index out of range
             resname = list(residues)[0].strip()
             newresname = resname
@@ -2743,6 +2742,7 @@ class AbstractTopol:
     def getChirals(self):
         """
         Get chiral atoms, its 4 neighbours and improper dihedral angle
+        to store non-planar improper dihedrals for CNS (and CNS only!)
         """
         self.chiralGroups = []
 
@@ -2756,23 +2756,16 @@ class AbstractTopol:
 
         self.printMess("Using OpenBabel v." + ob.OBReleaseVersion() + "\n")
 
-        # call checkOpenBabelVersion and print message
-
-        # if self.obchiralExe:
-        # print (self.obchiralExe, os.getcwd())
-        # cmd = "%s %s" % (self.obchiralExe, self.inputFile)
-        # print(cmd)
-        # out = map(int, re.findall(r"Atom (\d+) Is", _getoutput(cmd)))
-        # print("*%s*" % out)
         " obchiral script - replace the obchiral executable"
         out = []
-        filename, file_extension = os.path.splitext(self.inputFile)
+        _filename, file_extension = os.path.splitext(self.inputFile)
         mol = pybel.readfile(file_extension.replace(".", ""), self.inputFile)
         for ml in mol:
             for at in ml:
                 if ob.OBStereoFacade(ml.OBMol).HasTetrahedralStereo(at.idx):
                     out.append(at.idx)
         " end of obchiral script "
+
         chiralGroups = []
         for id_ in out:
             atChi = self.atoms[id_]
@@ -2861,7 +2854,6 @@ class AbstractTopol:
         maximum decimals.
         """
         limIds = []
-        # self.printDebug(chargeList)
         total = sum(chargeList)
         totalConverted = total / qConv
         self.printDebug("charge to be balanced: total %13.10f" % (totalConverted))
@@ -2938,8 +2930,7 @@ class AbstractTopol:
                 phaseRaw = dih.phase * radPi  # in degree
                 phase = int(phaseRaw)  # in degree
                 if period > 4 and self.gmx4:
-                    self.printError("Likely trying to convert ILDN to RB, DO NOT use option '-z'")
-                    sys.exit(13)
+                    raise Exception("Likely trying to convert ILDN to RB, DO NOT use option '-z'")
                 if phase in [0, 180]:
                     properDihedralsGmx45.append([item[0].atoms, phaseRaw, kPhi, period])
                     if self.gmx4:
@@ -3433,7 +3424,7 @@ class AbstractTopol:
 #endif
 """
         if self.direct and self.amb2gmx:
-            self.printMess("Converting directly from AMBER to GROMACS.\n")
+            self.printMess("Converting directly from AMBER to GROMACS (EXPERIMENTAL).\n")
 
         # Dict of ions dealt by acpype emulating amb2gmx
         ionsDict = {"Na+": headNa, "Cl-": headCl, "K+": headK}
@@ -4081,22 +4072,20 @@ class AbstractTopol:
 
     def writeMdpFiles(self):
         """Write MDP for test with GROMACS"""
-        emMdp = """; to test
-; gmx grompp -f em.mdp -c {base}_GMX.gro -p {base}_GMX.top -o em.tpr -v
+        emMdp = f"""; to test
+; gmx grompp -f em.mdp -c {self.baseName}_GMX.gro -p {self.baseName}_GMX.top -o em.tpr -v
 ; gmx mdrun -ntmpi 1 -v -deffnm em
 integrator               = steep
 nsteps                   = 500
-""".format(
-            base=self.baseName
-        )
-        mdMdp = """; to test
-; gmx grompp -f md.mdp -c em.gro -p {base}_GMX.top -o md.tpr
+"""
+        mdMdp = f"""; to test
+; gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr
 ; gmx mdrun -ntmpi 1 -v -deffnm md
 integrator               = md
 nsteps                   = 10000
-""".format(
-            base=self.baseName
-        )
+nstxout                  = 10
+; vmd md.gro md.trr
+"""
         emMdpFile = open("em.mdp", "w")
         mdMdpFile = open("md.mdp", "w")
         emMdpFile.write(emMdp)
@@ -4225,7 +4214,6 @@ eriod phase }\n"
             ph = idh.phase * radPi
             line = "IMPRoper %5s %5s %5s %5s %13.1f %4i %8.2f\n" % (a1, a2, a3, a4, kp, p, ph)
             lineSet.add(line)
-
         if self.chiral:
             for idhc in self.chiralGroups:
                 _atc, neig, angle = idhc
@@ -4333,7 +4321,6 @@ eriod phase }\n"
 
         topFile.write("\nset echo=true end\n")
 
-        # print "Writing CNS INP file\n"
         inpFile.write("Remarks " + head % (inp, date))
         inpData = """
 topology
@@ -4406,13 +4393,7 @@ stop
         dictInp["CNS_ran"] = self.baseName + "_rand.pdb"
         line = inpData % dictInp
         inpFile.write(line)
-        # if os.path.exists(self.obchiralExe):
         self.printDebug("chiralGroups %i" % len(self.chiralGroups))
-        # else:
-        # self.printDebug("no 'obchiral' executable, it won't work to store non-planar improper dihedrals!")
-        # self.printDebug(
-        # "'obchiral' is deprecated in OpenBabel 3.x. Consider installing version 2.4, see http://openbabel.org"
-        # )
 
 
 class ACTopol(AbstractTopol):
@@ -4501,7 +4482,7 @@ class ACTopol(AbstractTopol):
                     self.acExe = ac_path
                     break
         if not self.acExe:
-            self.acExe = which("antechamber") or ""  # '/Users/alan/Programmes/antechamber-1.27/exe/antechamber'
+            self.acExe = which("antechamber") or ""
         if not os.path.exists(self.acExe):
             self.printError("no 'antechamber' executable... aborting ! ")
             hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
@@ -4512,15 +4493,15 @@ class ACTopol(AbstractTopol):
             )
             self.printMess(hint1)
             self.printMess(hint2)
-            sys.exit(17)
+            raise Exception("Missing ANTECHAMBER")
         self.tleapExe = which("tleap") or ""
         self.parmchkExe = which("parmchk2") or ""
         self.babelExe = which("obabel") or which("babel") or ""
         if not os.path.exists(self.babelExe):
-            if self.ext != ".mol2" and self.ext != ".mdl":  # and self.ext != '.mol':
+            if self.ext != ".mol2" and self.ext != ".mdl":
                 self.printError("no 'babel' executable; you need it if input is PDB")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
-                sys.exit(15)
+                raise Exception("Missing BABEL")
             else:
                 self.printWarn("no 'babel' executable, no PDB file as input can be used!")
         acBase = base + "_AC"
@@ -4581,7 +4562,6 @@ class MolTopol(AbstractTopol):
         super().__init__()
         self.amb2gmx = amb2gmx
         self.chiral = chiral
-        # self.obchiralExe = which("obchiral") or ""
         self.allhdg = False
         self.debug = debug
         self.gmx4 = gmx4
@@ -4880,7 +4860,8 @@ def init_main():
         "--direct",
         action="store_true",
         dest="direct",
-        help="for 'amb2gmx' mode, does a direct conversion, for any solvent",
+        help="for 'amb2gmx' mode, does a direct conversion, for any solvent (EXPERIMENTAL)",
+        # NOTE: when solvent is present, gmx mdrun is not working, lack solvent topology
     )
     parser.add_argument(
         "-l", "--sorted", action="store_true", dest="sorted", help="sort atoms for GMX ordering",
@@ -4899,9 +4880,6 @@ def init_main():
     print(header)
 
     amb2gmxF = False
-
-    #     if args.chiral:
-    #         args.cnstop = True
 
     if not args.input:
         amb2gmxF = True
