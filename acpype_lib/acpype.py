@@ -1101,7 +1101,7 @@ a2oD = {
     "amber99_48": ["opls_200"],
 }
 
-pid = 0
+# pid = 0 # not sure if I still need it.
 
 head = "%s created by acpype (v: " + tag + ") on %s\n"
 
@@ -1408,11 +1408,7 @@ def job_pids_family(jpid):
 def _getoutput(cmd):
     """to simulate commands.getoutput in order to work with python 2.6 up to 3.x"""
     out = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE).communicate()[0][:-1]
-    try:
-        o = str(out.decode())
-    except Exception:
-        o = str(out)
-    return o
+    return out.decode()
 
 
 def while_replace(string):
@@ -1625,7 +1621,6 @@ class AbstractTopol:
         self.outTopols = None
         self.ext = None
         self.xyzFileData = None
-        # self.obchiralExe = None
         self.charmmBase = None
         self.allhdg = None
         self.topo14Data = None
@@ -1724,9 +1719,9 @@ class AbstractTopol:
                 charge = self.readMol2TotalCharge(self.inputFile)
                 done = True
             else:
+                self.chargeType = "bcc"
                 self.printWarn("cannot read charges from a PDB file")
                 self.printWarn("using now 'bcc' method for charge")
-
         if self.chargeVal is None and not done:
             self.printWarn("no charge value given, trying to guess one...")
             mol2FileForGuessCharge = self.inputFile
@@ -1768,7 +1763,6 @@ class AbstractTopol:
                 os.chdir(localDir)
                 self.printQuoted(log)
                 self.printMess("Trying with net charge = 0 ...")
-        #                self.chargeVal = 0
         charge = float(charge)
         charge2 = int(round(charge))
         drift = abs(charge2 - charge)
@@ -1802,7 +1796,7 @@ class AbstractTopol:
         else:
             if exten == "mol":
                 exten = "mdl"
-            cmd = "%s -dr no -i %s -fi %s -o tmp -fo ac -pf y" % (self.acExe, self.inputFile, exten)
+            cmd = f"{self.acExe} -dr no -i {self.inputFile} -fi {exten} -o tmp -fo ac -pf y"
             self.printDebug(cmd)
             out = _getoutput(cmd)
             if not out.isspace():
@@ -1843,11 +1837,7 @@ class AbstractTopol:
             id_ += 1
             if len(item[1]) > 1:  # if True means atoms with same coordinates
                 for i in item[1]:
-                    dups += "%s %s\n" % (i, item[0])
-
-            #        for i in xrange(0,len(data),f):
-            #            fdata += (data[i:i+f])+' '
-
+                    dups += f"{i} {item[0]}\n"
             for id2 in range(id_, ll):
                 item2 = items[id2]
                 c1 = list(map(float, [item[0][i : i + 8] for i in range(0, 24, 8)]))
@@ -1855,25 +1845,25 @@ class AbstractTopol:
                 dist2 = distanceAA(c1, c2)
                 if dist2 < minDist2:
                     dist = math.sqrt(dist2)
-                    shortd += "%8.5f       %s %s\n" % (dist, item[1], item2[1])
+                    shortd += f"{dist:8.5f}       {item[1]} {item2[1]}\n"
                 if dist2 < maxDist2:  # and not longOK:
                     longSet.add(str(item[1]))
                     longSet.add(str(item2[1]))
             if str(item[1]) not in longSet and ll > 1:
-                longd += "%s\n" % item[1]
+                longd += f"{item[1]}\n"
 
         if dups:
-            self.printError("Atoms with same coordinates in '%s'!" % self.inputFile)
+            self.printError(f"Atoms with same coordinates in '{self.inputFile}'!")
             self.printQuoted(dups[:-1])
             exit_ = True
 
         if shortd:
-            self.printError("Atoms TOO close (< %s Ang.)" % minDist)
-            self.printQuoted("Dist (Ang.)    Atoms\n" + shortd[:-1])
+            self.printError(f"Atoms TOO close (< {minDist} Ang.)")
+            self.printQuoted(f"Dist (Ang.)    Atoms\n{shortd[:-1]}")
             exit_ = True
 
         if longd:
-            self.printError("Atoms TOO alone (> %s Ang.)" % maxDist)
+            self.printError(f"Atoms TOO alone (> {maxDist} Ang.)")
             self.printQuoted(longd[:-1])
             exit_ = True
 
@@ -1980,11 +1970,11 @@ class AbstractTopol:
         isLeapWord = False
         for word in leapWords:
             if resname.upper().startswith(word.upper()):
-                self.printDebug("Residue name is a reserved word: '%s'" % word.upper())
+                self.printDebug(f"Residue name is a reserved word: '{word.upper()}'")
                 isLeapWord = True
         try:
             float(resname)
-            self.printDebug("Residue name is a 'number': '%s'" % resname)
+            self.printDebug(f"Residue name is a 'number': '{resname}'")
             isNumber = True
         except ValueError:
             isNumber = False
@@ -1995,8 +1985,7 @@ class AbstractTopol:
             newresname = "MOL"
         if newresname != resname:
             self.printWarn(
-                "In %s.lib, residue name will be '%s' instead of '%s' elsewhere"
-                % (self.acBaseName, newresname, resname)
+                f"In {self.acBaseName}.lib, residue name will be '{newresname}' instead of '{resname}' elsewhere"
             )
 
         self.resName = newresname
@@ -2008,7 +1997,7 @@ class AbstractTopol:
         """Reads the charges in given mol2 file and returns the total"""
         charge = 0.0
         ll = []
-        cmd = "%s -dr no -i %s -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf y" % (self.acExe, mol2File)
+        cmd = f"{self.acExe} -dr no -i {mol2File} -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf y"
         if self.debug:
             self.printMess("Debugging...")
             cmd = cmd.replace("-pf y", "-pf n")
@@ -2622,14 +2611,13 @@ class AbstractTopol:
 
         for id_ in balanceIds:
             atoms[id_].charge = balanceValue / qConv
-        # self.printDebug("atom ids and balanced charges: %s, %3f10" % (balanceIds, balanceValue/qConv))
 
         if atomTypeName[0].islower():
             self.atomTypeSystem = "gaff"
         else:
             self.atomTypeSystem = "amber"
-
         self.printDebug("Balanced TotalCharge %13.10f" % float(sum(balanceChargeList) / qConv))
+
         self.totalCharge = int(round(totalCharge / qConv))
 
         self.atoms = atoms
@@ -2863,45 +2851,6 @@ class AbstractTopol:
         # Renumber atoms in sorted list, starting from 1.
         for (index, atom) in enumerate(self.atoms):
             atom.id = index + 1
-
-    def setAtomPairs(self):
-        """
-        Set a list of pair of atoms pertinent to interaction 1-4 for vdw.
-        WRONG: Deprecated
-        """
-        atomPairs = []
-        for item in self.condensedProperDihedrals:
-            dih = item[0]
-            atom1 = dih.atoms[0]
-            atom2 = dih.atoms[3]
-            pair = [atom1, atom2]
-            if atomPairs.count(pair) == 0:
-                atomPairs.append(pair)
-        self.atomPairs = atomPairs  # [[atom1, atom2], ...]
-        self.printDebug("atomPairs done")
-
-    def getExcludedAtoms(self):
-        """
-        Returns a list of atoms with a list of its excluded atoms up to 3rd
-        neighbour.
-        It's implicitly indexed, i.e., a sequence of atoms in position n in
-        the excludedAtomsList corresponds to atom n (self.atoms) and so on.
-        NOT USED
-        """
-        excludedAtomsIdList = self.getFlagData("EXCLUDED_ATOMS_LIST")
-        numberExcludedAtoms = self.getFlagData("NUMBER_EXCLUDED_ATOMS")
-        atoms = self.atoms
-        interval = 0
-        excludedAtomsList = []
-        for number in numberExcludedAtoms:
-            temp = excludedAtomsIdList[interval : interval + number]
-            if temp == [0]:
-                excludedAtomsList.append([])
-            else:
-                excludedAtomsList.append([atoms[a - 1] for a in temp])
-            interval += number
-        self.excludedAtoms = excludedAtomsList
-        self.printDebug("getExcludedAtoms")
 
     def balanceCharges(self, chargeList, FirstNonSoluteId=None):
         """

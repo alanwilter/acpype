@@ -69,6 +69,7 @@ test*/*.top
 *.bak
 
 tmp/
+temp/
 
 # PyBuilder
 target/
