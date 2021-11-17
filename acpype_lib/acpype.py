@@ -87,7 +87,7 @@ if which("antechamber") is None:
         os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
 
 if sys.version_info < (3, 6):
-    raise Exception("ERROR: Sorry, you need python 3.6 or higher")
+    raise Exception("Sorry, you need python 3.6 or higher")
 
 year = datetime.today().year
 __updated__ = "2021-11-17T20:12:45CET"
@@ -1309,7 +1309,6 @@ def parmMerge(fdat1, fdat2, frcmod=False):
     mdatFile = open(mname, "w")
     mdat = [f"merged {name1} {name2}"]
 
-    # if os.path.exists(mname): return mname
     dat1 = splitBlock(open(fdat1).readlines())
 
     if frcmod:
@@ -1782,9 +1781,6 @@ class AbstractTopol:
         localDir = os.path.abspath(".")
         if not os.path.exists(self.tmpDir):
             os.mkdir(self.tmpDir)
-        # if not os.path.exists(os.path.join(tmpDir, self.inputFile)):
-        if self.is_smiles:
-            self.convertSmilesToMol2()
 
         copy2(self.absInputFile, self.tmpDir)
         os.chdir(self.tmpDir)
@@ -1823,7 +1819,7 @@ class AbstractTopol:
         if len(residues) > 1:
             self.printError(f"more than one residue detected '{str(residues)}'")
             self.printError(f"verify your input file '{self.inputFile}'. Aborting ...")
-            raise Exception("ERROR: Only ONE Residue is allowed for ACPYPE to work")
+            raise Exception("Only ONE Residue is allowed for ACPYPE to work")
 
         dups = ""
         shortd = ""
@@ -1872,7 +1868,7 @@ class AbstractTopol:
             else:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 rmtree(self.tmpDir)
-                raise Exception("ERROR: coordinates issues with your system")
+                raise Exception("Coordinates issues with your system")
         try:  # scape resname list index out of range
             resname = list(residues)[0].strip()
             newresname = resname
@@ -2214,8 +2210,6 @@ class AbstractTopol:
         fileXyz = self.acXyzFileName
         fileTop = self.acTopFileName
         if os.path.exists(fileXyz) and os.path.exists(fileTop):
-            # self.acXyz = fileXyz
-            # self.acTop = fileTop
             return True
         return False
 
@@ -2350,22 +2344,15 @@ class AbstractTopol:
         return False
 
     def convertSmilesToMol2(self):
+        if not self.babelExe:
+            raise Exception("SMILES needs openbabel python module")
         if checkOpenBabelVersion() >= 300:
-            # from openbabel import openbabel as ob
             from openbabel import pybel
 
         elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-            # import openbabel as ob
             import pybel
 
         """Convert Smiles to MOL2 by using babel"""
-        if not self.baseName:
-            self.baseName = "smiles_molecule"
-
-        self.ext = ".mol2"
-        self.inputFile = self.baseName + self.ext
-        self.absInputFile = os.path.abspath(self.inputFile)
-
         try:
             mymol = pybel.readstring("smi", str(self.smiles))
             mymol.addh()
@@ -2745,6 +2732,8 @@ class AbstractTopol:
         to store non-planar improper dihedrals for CNS (and CNS only!)
         """
         self.chiralGroups = []
+        if not self.babelExe:
+            self.printWarn("No Openbabel python module, no chiral groups")
 
         if checkOpenBabelVersion() >= 300:
             from openbabel import openbabel as ob
@@ -4434,28 +4423,36 @@ class ACTopol(AbstractTopol):
         self.direct = direct
         self.sorted = is_sorted
         self.chiral = chiral
+        self.babelExe = which("obabel") or which("babel") or ""
+        if not os.path.exists(self.babelExe):
+            if self.ext != ".mol2" and self.ext != ".mdl":
+                self.printError("no 'babel' executable; you need it if input is PDB or SMILES")
+                self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
+                raise Exception("Missing BABEL")
+            else:
+                self.printWarn("no 'babel' executable, no PDB file as input can be used!")
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
-        if not os.path.exists(self.absInputFile):
-            if checkSmiles(inputFile):
-                self.is_smiles = True
+        if not os.path.exists(self.absInputFile) and checkSmiles(inputFile):
+            self.is_smiles = True
+            self.smiles = inputFile
+            if not basename:
+                self.inputFile = "smiles_molecule.mol2"
             else:
-                self.is_smiles = False
-            if self.is_smiles:
-                self.smiles = inputFile
-        else:
-            if not os.path.exists(self.absInputFile):
-                self.printWarn("input file doesn't exist")
-        self.smiles = inputFile
-
+                self.inputFile = f"{basename}.mol2"
+            self.absInputFile = os.path.abspath(self.inputFile)
+        elif not os.path.exists(self.absInputFile):
+            raise Exception(f"Input file {inputFile} DOES NOT EXIST")
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
         self.baseOriginal = baseOriginal
+        self.ext = ext
         self.baseName = base  # name of the input file without ext.
+        if self.is_smiles:
+            self.convertSmilesToMol2()
         self.timeTol = timeTol
         self.printDebug("Max execution time tolerance is %s" % elapsedTime(self.timeTol))
-        self.ext = ext
         if ekFlag == '"None"' or ekFlag is None:
             self.ekFlag = ""
         else:
@@ -4496,14 +4493,6 @@ class ACTopol(AbstractTopol):
             raise Exception("Missing ANTECHAMBER")
         self.tleapExe = which("tleap") or ""
         self.parmchkExe = which("parmchk2") or ""
-        self.babelExe = which("obabel") or which("babel") or ""
-        if not os.path.exists(self.babelExe):
-            if self.ext != ".mol2" and self.ext != ".mdl":
-                self.printError("no 'babel' executable; you need it if input is PDB")
-                self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
-                raise Exception("Missing BABEL")
-            else:
-                self.printWarn("no 'babel' executable, no PDB file as input can be used!")
         acBase = base + "_AC"
         self.acBaseName = acBase
         self.acXyzFileName = acBase + ".inpcrd"
