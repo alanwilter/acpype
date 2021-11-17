@@ -13,12 +13,20 @@ pytest -s --html=report.html
 import os
 import shutil
 import pytest
-from acpype_lib.acpype import ACTopol, MolTopol
+from pytest import approx
+from acpype_lib.acpype import ACTopol, MolTopol, _getoutput
 
 
-def test_mol2():
+@pytest.mark.parametrize(
+    ("issorted", "charge", "msg"),
+    [
+        (False, 0.240324, "<Atom id=33, name=H8, <AtomType=hc>>"),
+        (True, 0.240324, "<Atom id=33, name=OXT, <AtomType=o>>"),
+    ],
+)
+def test_mol2_sorted(issorted, charge, msg):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("AAA.mol2", chargeType="gas", debug=True)
+    molecule = ACTopol("AAA.mol2", chargeType="gas", debug=True, is_sorted=issorted)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule
@@ -26,23 +34,16 @@ def test_mol2():
     assert len(molecule.molTopol.properDihedrals) == 95
     assert len(molecule.molTopol.improperDihedrals) == 5
     assert molecule.molTopol.totalCharge == 0
-    assert molecule.molTopol.atoms[-1].__repr__() == "<Atom id=33, name=H8, <AtomType=hc>>"
-    # check sorted
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("AAA.mol2", chargeType="gas", debug=True, force=True, is_sorted=True)
-    molecule.createACTopol()
-    molecule.createMolTopol()
-    assert molecule
-    assert molecule.molTopol.atoms[-1].__repr__() == "<Atom id=33, name=OXT, <AtomType=o>>"
+    assert molecule.molTopol.atoms[0].charge == approx(charge)
+    assert molecule.molTopol.atoms[-1].__repr__() == msg
     shutil.rmtree(molecule.absHomeDir)
 
 
-def test_pdb():
+def test_pdb(capsys):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == 185
     assert len(molecule.molTopol.improperDihedrals) == 23
@@ -52,38 +53,34 @@ def test_pdb():
     molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    captured = capsys.readouterr()
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == 188
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
+    assert "==> Overwriting pickle file FFF.pkl" in captured.out
     # check for already present
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    captured = capsys.readouterr()
     assert molecule
+    assert "==> Pickle file FFF.pkl already present... doing nothing" in captured.out
     shutil.rmtree(molecule.absHomeDir)
 
 
-def test_amber():
+@pytest.mark.parametrize(
+    ("force", "at", "ndih"), [(False, "amber", 189), (True, "amber2", 187)],
+)
+def test_amber(force, at, ndih):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType="amber")
+    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule
     assert len(molecule.molTopol.atoms) == 63
-    assert len(molecule.molTopol.properDihedrals) == 189
-    assert len(molecule.molTopol.improperDihedrals) == 23
-    assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=N3>>"
-    # check amber2
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType="amber2", force=True)
-    molecule.createACTopol()
-    molecule.createMolTopol()
-    assert molecule
-    assert len(molecule.molTopol.atoms) == 63
-    assert len(molecule.molTopol.properDihedrals) == 187
+    assert len(molecule.molTopol.properDihedrals) == ndih
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=N3>>"
     shutil.rmtree(molecule.absHomeDir)
@@ -126,15 +123,20 @@ def test_glycam():
     shutil.rmtree(molecule.absHomeDir)
 
 
-def test_amb2gmx():
+@pytest.mark.parametrize(
+    ("dd", "g4", "ntext"), [(False, False, 14193), (True, False, 31516), (False, True, 12124), (True, True, 29447)],
+)
+def test_amb2gmx(dd, g4, ntext):
     # oct box with water and ions
     # modified from https://ambermd.org/tutorials/basic/tutorial7/index.php
     # using addIonsRand separated for each ion and TIP3PBOX
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = MolTopol(acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True)
+    molecule = MolTopol(
+        acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True, direct=dd, gmx4=g4
+    )
     molecule.writeGromacsTopolFiles()
     assert molecule
-    assert len(molecule.topText) == 14193
+    assert len(molecule.topText) == ntext
     assert not molecule.topo14Data.hasNondefault14()
     assert molecule.atoms[1300].__repr__() == "<Atom id=1301, name=NA+, <AtomType=Na+>>"
     assert molecule.atoms[1310].__repr__() == "<Atom id=1311, name=CL-, <AtomType=Cl->>"
@@ -142,48 +144,30 @@ def test_amb2gmx():
     shutil.rmtree(molecule.absHomeDir)
 
 
-def test_amb2gmx_direct():
-    # oct box with water and ions
-    # modified from https://ambermd.org/tutorials/basic/tutorial7/index.php
-    # using addIonsRand separated for each ion and TIP3PBOX
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = MolTopol(
-        acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True, direct=True
-    )
-    molecule.writeGromacsTopolFiles()
-    assert len(molecule.topText) == 31516
-    shutil.rmtree(molecule.absHomeDir)
-
-
-def test_amb2gmx_gmx4():
-    # oct box with water and ions
-    # modified from https://ambermd.org/tutorials/basic/tutorial7/index.php
-    # using addIonsRand separated for each ion and TIP3PBOX
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = MolTopol(acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, amb2gmx=True, gmx4=True)
-    molecule.writeGromacsTopolFiles()
-    assert len(molecule.topText) == 12124
-    shutil.rmtree(molecule.absHomeDir)
-
-
-def test_sqm_tleap():
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("benzene.pdb", chargeType="bcc", debug=True)
-    molecule.createACTopol()
-    molecule.createMolTopol()
-    assert molecule
-    assert len(molecule.molTopol.atoms) == 12
-    assert len(molecule.molTopol.properDihedrals) == 24
-    assert len(molecule.molTopol.improperDihedrals) == 6
+@pytest.mark.parametrize(
+    ("ct", "msg"),
+    [
+        (
+            "bcc",
+            "-dr no -i benzene.mol2 -fi mol2 -o benzene_bcc_gaff.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff",
+        ),
+        ("user", "cannot read charges from a PDB file"),
+    ],
+)
+def test_sqm_tleap(capsys, ct, msg):
     # check chargeType user with PDB -> use bcc
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("benzene.pdb", chargeType="user", debug=True)
+    molecule = ACTopol("benzene.pdb", chargeType=ct, debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    captured = capsys.readouterr()
     assert molecule
     assert len(molecule.molTopol.atoms) == 12
     assert len(molecule.molTopol.properDihedrals) == 24
     assert len(molecule.molTopol.improperDihedrals) == 6
+    assert molecule.molTopol.atoms[0].charge == approx(-0.13)
+    assert molecule.molTopol.atoms[-1].charge == approx(0.13)
+    assert msg in captured.out
     shutil.rmtree(molecule.absHomeDir)
 
 
@@ -194,6 +178,16 @@ def test_time_limit():
         molecule.createACTopol()
     assert e_info.value.args[0] == "Semi-QM taking too long to finish... aborting!"
     shutil.rmtree(molecule.absHomeDir)
+
+
+def test_wrong_element(capsys):
+    # Only elements are allowed: C, N, O, S, P, H, F, Cl, Br and I
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    with pytest.raises(Exception) as e_info:
+        ACTopol("HEM.mol2", chargeType="user", debug=True)
+    captured = capsys.readouterr()
+    assert e_info.typename == "FileNotFoundError"
+    assert "Unrecognized case-sensitive atomic symbol ( FE)." in captured.out
 
 
 def test_charge_user():
@@ -208,3 +202,10 @@ def test_charge_user():
     assert molecule.molTopol.atoms[0].charge == 0.1667
     assert molecule.molTopol.atoms[15].charge == -0.517
     shutil.rmtree(molecule.absHomeDir)
+
+
+def test_cmd_acpype():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    afile = "_d0es_NoT_ExisT"
+    out = _getoutput(f"../acpype_lib/acpype.py -di {afile}")
+    assert afile in out
