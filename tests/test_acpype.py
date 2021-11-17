@@ -86,9 +86,9 @@ def test_amber(force, at, ndih):
     shutil.rmtree(molecule.absHomeDir)
 
 
-def test_charges():
+def test_charges_chiral():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    molecule = ACTopol("KKK.mol2", chargeType="gas", debug=True)
+    molecule = ACTopol("KKK.mol2", chargeType="gas", debug=True, chiral=True)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule
@@ -98,6 +98,34 @@ def test_charges():
     assert len(molecule.molTopol.chiralGroups) == 3
     assert molecule.chargeVal == "3"
     assert molecule.molTopol.totalCharge == 3
+    assert molecule.molTopol.chiralGroups[-1][-1] == approx(66.713290)
+    shutil.rmtree(molecule.absHomeDir)
+
+
+@pytest.mark.parametrize(
+    ("mol", "n1", "n2", "n3", "n4", "n5", "msg"),
+    [("ILDN", 24931, 12230, 577, 0, 47, "<AtomType=C6>"), ("Base", 24931, 12044, 577, 0, 43, "<AtomType=HS>")],
+)
+def test_ildn(mol, n1, n2, n3, n4, n5, msg):
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = MolTopol(acFileTop=f"{mol}.prmtop", acFileXyz=f"{mol}.inpcrd", debug=True, amb2gmx=True)
+    molecule.writeGromacsTopolFiles()
+    assert molecule
+    assert len(molecule.atoms) == n1
+    assert len(molecule.properDihedrals) == n2
+    assert len(molecule.improperDihedrals) == n3
+    assert molecule.totalCharge == n4
+    assert len(molecule.atomTypes) == n5
+    assert molecule.atomTypes[23].__repr__() == msg
+    shutil.rmtree(molecule.absHomeDir)
+
+
+def test_ildn_gmx4_fail():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = MolTopol(acFileTop="ILDN.prmtop", acFileXyz="ILDN.inpcrd", debug=True, amb2gmx=True, gmx4=True)
+    with pytest.raises(Exception) as e_info:
+        molecule.writeGromacsTopolFiles()
+    assert e_info.value.args[0] == "Likely trying to convert ILDN to RB, DO NOT use option '-z'"
     shutil.rmtree(molecule.absHomeDir)
 
 
