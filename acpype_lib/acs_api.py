@@ -1,4 +1,6 @@
 import sys
+import os
+import shutil
 import time
 import json
 from acpype_lib.acpype import ACTopol, MAXTIME, while_replace, header, elapsedTime, traceback
@@ -9,7 +11,7 @@ AC_frcmod = io.StringIO()
 AC_inpcrd = io.StringIO()
 AC_lib = io.StringIO()
 AC_prmtop = io.StringIO()
-bcc_gaff_mol2 = io.StringIO()
+mol2 = io.StringIO()
 CHARMM_inp = io.StringIO()
 CHARMM_prm = io.StringIO()
 CHARMM_rtf = io.StringIO()
@@ -23,8 +25,6 @@ GMX_itp = io.StringIO()
 GMX_top = io.StringIO()
 NEW_pdb = io.StringIO()
 md_mdp = io.StringIO()
-sqm_in = io.StringIO()
-sqm_out = io.StringIO()
 
 filesInMemory = [
     (em_mdp, "em.mdp"),
@@ -32,7 +32,7 @@ filesInMemory = [
     (AC_inpcrd, "_AC.inpcrd"),
     (AC_lib, "_AC.lib"),
     (AC_prmtop, "_AC.prmtop"),
-    (bcc_gaff_mol2, "_bcc_gaff.mol2"),
+    (mol2, ".mol2"),
     (CHARMM_inp, "_CHARMM.inp"),
     (CHARMM_prm, "_CHARMM.prm"),
     (CHARMM_rtf, "_CHARMM.rtf"),
@@ -46,8 +46,6 @@ filesInMemory = [
     (GMX_top, "_GMX.top"),
     (NEW_pdb, "_NEW.pdb"),
     (md_mdp, "md.mdp"),
-    (sqm_in, "sqm.in"),
-    (sqm_out, "sqm.out"),
 ]
 
 
@@ -57,10 +55,12 @@ def clearFileInMemory():
         files[0].truncate(0)
 
 
-def readFiles(basename):
+def readFiles(basename, chargeType, atomType):
     for files in filesInMemory:
-        if files[1] == "em.mdp" or files[1] == "md.mdp" or files[1] == "sqm.in" or files[1] == "sqm.out":
+        if files[1] == "em.mdp" or files[1] == "md.mdp":
             filename = files[1]
+        elif files[1] == ".mol2":
+            filename = basename + "_" + chargeType + "_" + atomType + files[1]
         else:
             filename = basename + files[1]
         readfile = tuple(open(filename, "r"))
@@ -108,7 +108,6 @@ def acpype_api(
             atomType=atomType,
             force=force,
             outTopol=outTopol,
-            engine=engine,
             allhdg=allhdg,
             basename=basename,
             timeTol=timeTol,
@@ -121,6 +120,7 @@ def acpype_api(
             is_sorted=is_sorted,
             chiral=chiral,
         )
+
         molecule.createACTopol()
         molecule.createMolTopol()
         if not basename:
@@ -129,15 +129,16 @@ def acpype_api(
             file_name = basename
 
         "Output in JSON format"
-        readFiles(file_name)
+        os.chdir(molecule.absHomeDir)
+        readFiles(file_name, chargeType, atomType)
         output = {
-            "file_name": file_name,
+            "file_name": "AAA",
             "em_mdp": em_mdp.getvalue(),
             "AC_frcmod": AC_frcmod.getvalue(),
             "AC_inpcrd": AC_inpcrd.getvalue(),
             "AC_lib": AC_lib.getvalue(),
             "AC_prmtop": AC_prmtop.getvalue(),
-            "bcc_gaff_mol2": bcc_gaff_mol2.getvalue(),
+            "mol2": mol2.getvalue(),
             "CHARMM_inp": CHARMM_inp.getvalue(),
             "CHARMM_prm": CHARMM_prm.getvalue(),
             "CHARMM_rtf": CHARMM_rtf.getvalue(),
@@ -151,8 +152,6 @@ def acpype_api(
             "GMX_top": GMX_top.getvalue(),
             "NEW_pdb": NEW_pdb.getvalue(),
             "md_mdp": md_mdp.getvalue(),
-            "sqm_in": sqm_in.getvalue(),
-            "sqm_out": sqm_out.getvalue(),
         }
 
     except Exception:
@@ -169,4 +168,5 @@ def acpype_api(
         amsg = elapsedTime(execTime)
     print("Total time of execution: %s" % amsg)
     clearFileInMemory()
+    shutil.rmtree(molecule.absHomeDir)
     return json.dumps(output)
