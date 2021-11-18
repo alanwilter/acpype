@@ -11,7 +11,6 @@ pytest -s --html=report.html
 
 """
 import os
-import pytest
 import json
 from acpype_lib.acs_api import acpype_api
 
