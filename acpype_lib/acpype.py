@@ -69,7 +69,7 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
-from _version import version
+from acpype_lib._version import version
 
 
 MAXTIME = 3 * 3600
