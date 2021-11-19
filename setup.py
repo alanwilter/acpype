@@ -4,7 +4,7 @@
 File needed for PyPI
 """
 import setuptools
-from acpype_lib._version import __version__
+from acpype_lib._version import version
 
 with open("README.md", "r") as fh:
 
@@ -15,7 +15,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="acpype",
-    version=__version__,
+    version=version,
     scripts=["acpype_lib/acpype.py"],
     author="Alan Wilter Sousa da Silva",
     author_email="alanwilter@gmail.com",

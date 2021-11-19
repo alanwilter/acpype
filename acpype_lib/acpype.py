@@ -69,7 +69,7 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
-from _version import __version__
+from _version import version
 
 
 MAXTIME = 3 * 3600
@@ -91,7 +91,7 @@ if sys.version_info < (3, 6):
     raise Exception("Sorry, you need python 3.6 or higher")
 
 year = datetime.today().year
-__updated__ = __version__
+__updated__ = version
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
@@ -4874,11 +4874,7 @@ def get_option_parser():
         help="create improper dihedral parameters for chiral atoms in CNS",
     )
     parser.add_argument(
-        "-v",
-        "--version",
-        action="store_true",
-        dest="version",
-        help="Show the Acpype version and exit",
+        "-v", "--version", action="store_true", dest="version", help="Show the Acpype version and exit",
     )
     return parser
 
