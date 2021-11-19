@@ -4,17 +4,18 @@
 File needed for PyPI
 """
 import setuptools
+from acpype_lib._version import __version__
 
 with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2021-11-17T20:12:09CET"
-version = __updated__[:19].replace("-", "").replace("T", "").replace(":", "")
+# updated__ = "2021.11.14"
+# version = updated__[:19].replace("-", "").replace("T", "").replace(":", "")
 
 setuptools.setup(
     name="acpype",
-    version=version,
+    version=__version__,
     scripts=["acpype_lib/acpype.py"],
     author="Alan Wilter Sousa da Silva",
     author_email="alanwilter@gmail.com",

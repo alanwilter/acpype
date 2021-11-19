@@ -2,3 +2,4 @@
 pytest-cov>=2.10,<2.11
 black==19.10b0
 flake8>=3.8,<3.9
+pbr>=5.7.0

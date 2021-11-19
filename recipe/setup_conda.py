@@ -6,10 +6,11 @@ and to interface with others python applications like CCPN or ARIA.
 """
 
 from setuptools import setup
+from acpype_lib._version import __version__
 
 setup(
     name="acpype",
-    version="2021.11.14.23.21.21",
+    version=__version__,
     description="ACPYPE - AnteChamber PYthon Parser interfacE",
     classifiers=[
         "Intended Audience :: Science/Research",

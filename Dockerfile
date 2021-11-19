@@ -1,5 +1,5 @@
 #To build:
-#docker build /path/to/acpype/ --tag acpype:2021.11.14.23:21.21
+#docker build /path/to/acpype/ --tag acpype:2021.11.14
 
 FROM ubuntu:18.04
 

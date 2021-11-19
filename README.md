@@ -93,12 +93,6 @@ There several ways of obtaining `acpype`:
   conda install -c conda-forge acpype
 ```
 
-  or, if you want to be sure to get the latest (sometimes `conda-forge` channel is still lagging behind)
-
-```bash
-  conda install -c acpype acpype
-```
-
 2) Via **[PyPI](https://pypi.org/project/acpype/)**:
 
 ```bash
@@ -110,8 +104,11 @@ There several ways of obtaining `acpype`:
 3) By downloading it via `git`:
 
 ```bash
+  conda create -n acpype --channel conda-forge ambertools openbabel
   git clone https://github.com/alanwilter/acpype.git
 ```
+**NB:** Using this mode, CHARMM topology files will not be generated.
+
 4) Via **[Docker](https://hub.docker.com/repository/docker/lpkagami/acpype/)**:
 
 If you have Docker installed, you can run Acpype with the following shell command:
@@ -129,17 +126,14 @@ Using PowerShell:
 ```bash
 docker run --rm -v ${PWD}:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
 ```
-**NB:** Installing via `conda` gives you `AmberTools17` and `OpenBabel2.4`, while
-via `pip/git` you get `AmberTools19` and `OpenBabel3` (which lacks `obchiral`,
-but this is not critical). Our `AmberTools19` comes with binary `charmmgen` from
-`AmberTools17` in order to generate CHARMM topologies.
+**NB:** Installing via `conda` or via `pip/git` you get `AmberTools v.21.11` and `OpenBabel v3.11`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
 
 ##### To Test, if doing via `git`
 
-At folder `acpype/test`, type:
+At folder `acpype/tests`, type:
 
 ```bash
-../acpype_lib/acpype.py -i FFF.pdb
+python acpype_lib/acpype.py -i FFF.pdb
 ```
 
 It'll create a folder called *FFF.acpype*, and inside it one may find topology
@@ -148,12 +142,12 @@ files for GROMACS and CNS/XPLOR.
 To get help and more information, type:
 
 ```bash
-../acpype.py -h
+python acpype.py -h
 ```
 
 ##### To Install
 
-At folder acpype, type:
+At folder `acpype/acpype_lib`, type:
 
 ```bash
   ln -s $PWD/acpype.py /usr/local/bin/acpype
