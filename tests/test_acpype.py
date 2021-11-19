@@ -236,4 +236,4 @@ def test_cmd_acpype():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     afile = "_d0es_NoT_ExisT"
     out = _getoutput(f"../acpype_lib/acpype.py -di {afile}")
-    assert afile in out
+    assert f"ACPYPE FAILED: Input file {afile} DOES NOT EXIST" in out

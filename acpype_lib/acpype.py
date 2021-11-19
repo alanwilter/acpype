@@ -1107,8 +1107,8 @@ head = "%s created by acpype (v: " + tag + ") on %s\n"
 date = datetime.now().ctime()
 
 usage = """
-    acpype -i _file_ [-c _string_] [-n _int_] [-m _int_] [-a _string_] [-f] etc. or
-    acpype -p _prmtop_ -x _inpcrd_ [-d]"""
+    acpype -i _file_ | _SMILES_string_ [-c _string_] [-n _int_] [-m _int_] [-a _string_] [-f] etc. or
+    acpype -p _prmtop_ -x _inpcrd_ [-d | -w]"""
 
 epilog = """
 
@@ -4075,10 +4075,19 @@ nsteps                   = 10000
 nstxout                  = 10
 ; vmd md.gro md.trr
 """
+        rungmx = f"""
+gmx grompp -f em.mdp -c {self.baseName}_GMX.gro -p {self.baseName}_GMX.top -o em.tpr -v
+gmx mdrun -ntmpi 1 -v -deffnm em
+gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr
+gmx mdrun -ntmpi 1 -v -deffnm md
+"""
         emMdpFile = open("em.mdp", "w")
         mdMdpFile = open("md.mdp", "w")
+        runGmxFile = open("rungmx.sh", "w")
         emMdpFile.write(emMdp)
         mdMdpFile.write(mdMdp)
+        runGmxFile.write(rungmx)
+        os.chmod("rungmx.sh", 0o744)
 
     def writeCnsTopolFiles(self):
         """Write CNS topology files"""
@@ -4718,19 +4727,15 @@ class Dihedral:
         return "<%s, ang=%.2f>" % (self.atoms, self.phase * 180 / Pi)
 
 
-def init_main():
-
-    """
-    Main funcition, to satisfy Conda
-    """
-
+def get_option_parser():
     parser = argparse.ArgumentParser(usage=usage + epilog)
+    group = parser.add_mutually_exclusive_group()
     parser.add_argument(
         "-i",
         "--input",
         action="store",
         dest="input",
-        help="input file name with either extension '.pdb', '.mdl' or '.mol2' (mandatory if -p and -x not set)",
+        help="input file type like '.pdb', '.mdl', '.mol2' or SMILES string (mandatory if -p and -x not set)",
     )
     parser.add_argument(
         "-b",
@@ -4796,12 +4801,12 @@ def init_main():
     parser.add_argument(
         "-f", "--force", action="store_true", dest="force", help="force topologies recalculation anew",
     )
-    parser.add_argument(
+    group.add_argument(
         "-d",
         "--debug",
         action="store_true",
         dest="debug",
-        help="for debugging purposes, keep any temporary file created",
+        help="for debugging purposes, keep any temporary file created (not allowed with arg -w)",
     )
     parser.add_argument(
         "-o",
@@ -4834,8 +4839,13 @@ def init_main():
     parser.add_argument(
         "-y", "--ipython", action="store_true", dest="ipython", help="start iPython interpreter",
     )
-    parser.add_argument(
-        "-w", "--verboseless", action="store_false", default=True, dest="verboseless", help="print nothing",
+    group.add_argument(
+        "-w",
+        "--verboseless",
+        action="store_false",
+        default=True,
+        dest="verboseless",
+        help="print nothing (not allowed with arg -d)",
     )
     parser.add_argument(
         "-g",
@@ -4862,8 +4872,16 @@ def init_main():
         dest="chiral",
         help="create improper dihedral parameters for chiral atoms in CNS",
     )
+    return parser
 
-    args = parser.parse_args()
+
+def init_main():
+
+    """
+    Main funcition, to satisfy Conda
+    """
+    parser = get_option_parser()
+    args = parser.parse_args(sys.argv[1:])
 
     at0 = time.time()
     print(header)
@@ -4882,7 +4900,7 @@ def init_main():
         print("DEBUG: %s" % while_replace(texta))
 
     if args.direct and not amb2gmxF:
-        parser.error("option -u is only meaningful in 'amb2gmx' mode")
+        parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
     try:
         if amb2gmxF:
