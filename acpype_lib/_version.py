@@ -7,4 +7,4 @@ try:
         .decode()[0:10]
     )
 except Exception:
-    version = VersionInfo("acpype").version_string()
+    version = ""
