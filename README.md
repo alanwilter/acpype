@@ -148,7 +148,7 @@ files for GROMACS and CNS/XPLOR.
 or:
 
 ```bash
-./acpype.sh -i CCCC # smiles for C4H6 molecule
+./acpype.sh -i CCCC # smiles for C4H6 1,3-Butadiene compound
 ```
 
 It'll create a folder called *smiles_molecule.acpype*.
