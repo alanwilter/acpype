@@ -8,7 +8,7 @@ try:
     except Exception:
         import pkg_resources
 
-        version = str(pkg_resources.get_distribution("construct").version)
+        version = str(pkg_resources.get_distribution("acpype").version)
 except Exception:
     version = (
         Popen("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
