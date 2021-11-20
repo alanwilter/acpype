@@ -45,5 +45,3 @@ def test_json():
     )
     for ft in file_types:
         assert len(json.loads(json_output)[ft[0]]) == ft[1]
-
-test_json()
