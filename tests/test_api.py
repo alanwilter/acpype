@@ -27,7 +27,7 @@ file_types = [
     ("CHARMM_rtf", 9247),
     ("CNS_inp", 1426),
     ("CNS_par", 5034),
-    ("CNS_top", 6579),
+    ("CNS_top", 6578),
     ("GMX_OPLS_itp", 24577),
     ("GMX_OPLS_top", 269),
     ("GMX_gro", 1594),
@@ -44,4 +44,4 @@ def test_json():
         inputFile="AAA.mol2", chargeType="gas", atomType="gaff2", debug=True, basename="AAA", chiral=False
     )
     for ft in file_types:
-        print(len(json.loads(json_output)[ft[0]]))
+        assert len(json.loads(json_output)[ft[0]]) == ft[1]
