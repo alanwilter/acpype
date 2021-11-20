@@ -14,7 +14,7 @@ import os
 import shutil
 import pytest
 from pytest import approx
-from acpype_lib.acpype import ACTopol, MolTopol, _getoutput
+from acpype_lib.acpype import ACTopol, MolTopol, _getoutput, init_main
 
 
 @pytest.mark.parametrize(
@@ -232,8 +232,33 @@ def test_charge_user():
     shutil.rmtree(molecule.absHomeDir)
 
 
-def test_cmd_acpype():
+@pytest.mark.parametrize(
+    ("argv"), [["-di", "cccc"], ["-x", "Base.inpcrd", "-p", "Base.prmtop"]],
+)
+def test_inputs(capsys, argv):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    afile = "_d0es_NoT_ExisT"
-    out = _getoutput(f"../acpype_lib/acpype.py -di {afile}")
-    assert f"ACPYPE FAILED: Input file {afile} DOES NOT EXIST" in out
+    temp_base = "vir_temp"
+    init_main(argv + ["-b", temp_base])
+    captured = capsys.readouterr()
+    assert "Total time of execution:" in captured.out
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    _getoutput(f"rm -fr {temp_base}*")
+
+
+@pytest.mark.parametrize(
+    ("argv", "code", "msg"),
+    [
+        (None, 2, "error: argument "),  # NOTE: None -> sys.argv from pystest
+        ([], 2, "error: missing input files"),
+        (["-di", " 123"], 19, "ACPYPE FAILED: Input file  123 DOES NOT EXIST"),
+        (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
+        (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
+    ],
+)
+def test_args_wrong_inputs(capsys, argv, code, msg):
+    with pytest.raises(SystemExit) as e_info:
+        init_main(argv)
+    captured = capsys.readouterr()
+    assert msg in captured.err + captured.out
+    assert e_info.typename == "SystemExit"
+    assert e_info.value.code == code

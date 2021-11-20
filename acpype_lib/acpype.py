@@ -4878,13 +4878,16 @@ def get_option_parser():
     return parser
 
 
-def init_main():
+def init_main(argv=None):
 
     """
-    Main funcition, to satisfy Conda
+    Main function, to satisfy Conda
     """
+    if argv is None:
+        argv = sys.argv[1:]
+
     parser = get_option_parser()
-    args = parser.parse_args(sys.argv[1:])
+    args = parser.parse_args(argv)
 
     at0 = time.time()
 
