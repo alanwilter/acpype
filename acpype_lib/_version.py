@@ -4,7 +4,9 @@ try:
     version = (
         Popen("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
         .communicate()[0][:-1]
-        .decode()[0:10]
+        .decode()
     )
 except Exception:
     version = "2021.11.17"
+
+print(version)
