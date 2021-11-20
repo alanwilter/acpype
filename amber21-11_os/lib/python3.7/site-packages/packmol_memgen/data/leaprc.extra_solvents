@@ -1,0 +1,42 @@
+#
+# Set log file
+#
+logFile leap.log
+#
+# leaprc for loading extra solvents
+# Parameters from:
+#   STRADER 10.1021/jp013658n
+#   NIKITIN 10.1002/jcc.20721
+#   VYMETAL 10.1021/jp505861b
+#   
+# Load atom type hybridizations
+#
+addAtomTypes {
+    { "SD"  "S" "sp3" }
+    { "SK"  "C" "sp3" }
+    { "SI"  "H" "sp3" }
+    { "S0"  "O" "sp3" }
+    { "YK"  "C" "sp" }
+    { "YN"  "N" "sp" }
+    { "TF"  "F" "sp3" }
+    { "TO"  "O" "sp3" }
+    { "TC"  "C" "sp3" }
+    { "PC"  "C" "sp3" }
+    { "PK"  "C" "sp2" }
+    { "PH"  "H" "sp3" }
+    { "PA"  "C" "sp2" }
+    { "PI"  "H" "sp3" }
+    { "PB"  "C" "sp2" }
+    { "PO"  "O" "sp3" }
+    { "PJ"  "H" "sp3" }
+    { "MO"  "O" "sp2" }
+}
+#
+# Load the Lipid17 parameter set.
+#
+extra_solvents = loadamberparams frcmod.solvents
+chloroform     = loadamberparams frcmod.chcl3
+#
+# Load the Lipid17 master lib file.
+#
+loadoff extra_solvents.lib

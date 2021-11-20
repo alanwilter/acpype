@@ -1,0 +1,153 @@
+#
+# Input parameters for mm_pbsa.pl
+#
+# Holger Gohlke
+# 15.02.2012
+#
+################################################################################
+@GENERAL
+#
+# General parameters
+#   0: means NO; >0: means YES
+#
+#   mm_pbsa allows to calculate (absolute) free energies for one molecular
+#     species or a free energy difference according to:
+#
+#     Receptor + Ligand = Complex,
+#     DeltaG = G(Complex) - G(Receptor) - G(Ligand).
+#
+#   VERBOSE - If set to 1, input and output files are not removed. This is
+#             useful for debugging purposes.
+#   PARALLEL - If set to values > 1, energy calculations for snapshots are
+#              done in parallel, using PARALLEL number of threads. 
+#
+#   PREFIX - To the prefix, "{_com, _rec, _lig}.crd.Number" is added during
+#            generation of snapshots as well as during mm_pbsa calculations.
+#   PATH - Specifies the location where to store or get snapshots.
+#   START - Specifies the first snapshot to be used in energy calculations
+#           (optional, defaults to 1).
+#   STOP - Specifies the last snapshot to be used in energy calculations 
+#          (optional, defaults to 10e10).
+#   OFFSET - Specifies the offset between snapshots in energy calculations 
+#            (optional, defaults to 1).
+#
+#   COMPLEX - Set to 1 if free energy difference is calculated.
+#   RECEPTOR - Set to 1 if either (absolute) free energy or free energy
+#              difference are calculated.
+#   LIGAND - Set to 1 if free energy difference is calculated.
+#
+#   COMPT - parmtop file for the complex (not necessary for option GC).
+#   RECPT - parmtop file for the receptor (not necessary for option GC).
+#   LIGPT - parmtop file for the ligand (not necessary for option GC).
+#
+#   GC - Snapshots are generated from trajectories (see below).
+#   AS - Residues are mutated to Ala during generation of snapshots from
+#        trajectories.
+#   DC - Decompose the free energies into individual contributions.
+#        (When using DC, MM and GB must be set to 1, even if a PB decomposition
+#         is also requested.)
+#
+#   MM - Calculation of gas phase energies using sander.
+#   GB - Calculation of desolvation free energies using the GB models in sander
+#        (see below).
+#   PB - Calculation of desolvation free energies using the PB method and
+#        computation of nonpolar solvation free energies according to
+#        the INP option in pbsa (see below).
+#   MS - Calculation of nonpolar contributions to desolvation using molsurf
+#        (see below).
+#        If MS == 0 and GB == 1, nonpolar contributions are calculated either
+#        with the LCPO (GBSA == 1) or the ICOSA (GBSA == 2) method in sander 
+#        (see below).
+#        If MS == 0 and PB == 1, nonpolar contributions are calculated according
+#        the INP option in pbsa (see below).
+#   NM - Calculation of entropies with nmode.
+#
+VERBOSE               0
+PARALLEL              0
+#
+PREFIX                Structure
+PATH                  /Path/to/snapshot/dir
+START                 1
+STOP                  1
+OFFSET                1
+#
+COMPLEX               0
+RECEPTOR              0
+LIGAND                0
+#
+COMPT                 Complex.top
+RECPT                 Receptor.top
+LIGPT                 Ligand.top
+#
+GC                    1
+AS                    0
+DC                    0
+#
+MM                    0
+GB                    0
+PB                    0
+MS                    0
+#
+NM                    0
+#
+################################################################################
+@MAKECRD
+#
+# The following parameters are passed to make_crd_hg, which extracts snapshots
+#   from trajectory files. (This section is only relevant if GC = 1 OR 
+#   AS = 1 above.)
+#
+#   BOX - "YES" means that periodic boundary conditions were used during MD
+#         simulation and that box information has been printed in the
+#         trajectory files; "NO" means opposite.
+#   NTOTAL - Total number of atoms per snapshot printed in the trajectory file
+#            (including water, ions, ...).
+#   NSTART - Start structure extraction from NSTART snapshot.
+#   NSTOP - Stop structure extraction at NSTOP snapshot.
+#   NFREQ - Every NFREQ structure will be extracted from the trajectory.
+#
+#   NUMBER_LIG_GROUPS - Number of subsequent LSTART/LSTOP combinations to
+#                       extract atoms belonging to the ligand.
+#   LSTART - Number of first ligand atom in the trajectory entry.
+#   LSTOP - Number of last ligand atom in the trajectory entry.
+#   NUMBER_REC_GROUPS - Number of subsequent RSTART/RSTOP combinations to
+#                       extract atoms belonging to the receptor.
+#   RSTART - Number of first receptor atom in the trajectory entry.
+#   RSTOP - Number of last receptor atom in the trajectory entry.
+#   Note: If only one molecular species is extracted, use only the receptor
+#         parameters (NUMBER_REC_GROUPS, RSTART, RSTOP).
+#
+BOX                   YES
+NTOTAL                0
+NSTART                0
+NSTOP                 0
+NFREQ                 1
+#
+NUMBER_REC_GROUPS     1
+RSTART                0
+RSTOP                 0
+NUMBER_LIG_GROUPS     1
+LSTART                0
+LSTOP                 0
+#
+################################################################################
+@TRAJECTORY
+#
+# Trajectory names
+#
+#   The following trajectories are used to extract snapshots with "make_crd_hg":
+#   Each trajectory name must be preceeded by the TRAJECTORY card.
+#   Subsequent trajectories are considered together; trajectories may be
+#     in ascii as well as in .gz format.
+#   To be able to identify the title line, it must be identical in all files.
+#
+
+
+#
+################################################################################
+@PROGRAMS
+#
+# Additional program executables can be defined here
+#
+#
+################################################################################

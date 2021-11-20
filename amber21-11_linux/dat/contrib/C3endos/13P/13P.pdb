@@ -1,0 +1,99 @@
+REMARK 999 1-methyl-3-(3-amino-3-carboxypropyl) pseudouridine                   
+HETATM    1  P   ACP     1      -8.317  -0.547   1.234  1.00  0.00           P  
+HETATM    2  O1P ACP     1      -7.715  -1.868   0.969  1.00  0.00           O  
+HETATM    3  O2P ACP     1      -9.704  -0.258   0.754  1.00  0.00           O  
+HETATM    4  O5' ACP     1      -7.305   0.550   0.662  1.00  0.00           O  
+HETATM    5  C5' ACP     1      -7.569   1.961   0.838  1.00  0.00           C  
+HETATM    6  C4' ACP     1      -6.394   2.776   0.360  1.00  0.00           C  
+HETATM    7  O4' ACP     1      -5.203   2.408   1.106  1.00  0.00           O  
+HETATM    8  C3' ACP     1      -5.986   2.536  -1.081  1.00  0.00           C  
+HETATM    9  O3' ACP     1      -6.860   3.239  -1.961  1.00  0.00           O  
+HETATM   10  C2' ACP     1      -4.575   3.105  -1.072  1.00  0.00           C  
+HETATM   11  O2' ACP     1      -4.556   4.520  -0.991  1.00  0.00           O  
+HETATM   12  C1' ACP     1      -4.061   2.557   0.264  1.00  0.00           C  
+HETATM   13  C5  ACP     1      -3.360   1.195   0.108  1.00  0.00           C  
+HETATM   14  C4  ACP     1      -2.005   1.186  -0.461  1.00  0.00           C  
+HETATM   15  O4  ACP     1      -1.457   2.193  -0.812  1.00  0.00           O  
+HETATM   16  N3  ACP     1      -1.396  -0.056  -0.577  1.00  0.00           N  
+HETATM   17  C2  ACP     1      -1.979  -1.244  -0.210  1.00  0.00           C  
+HETATM   18  O2  ACP     1      -1.440  -2.309  -0.331  1.00  0.00           O  
+HETATM   19  N1  ACP     1      -3.252  -1.169   0.311  1.00  0.00           N  
+HETATM   20  C6  ACP     1      -3.897   0.034   0.460  1.00  0.00           C  
+HETATM   21 1H5' ACP     1      -8.390   2.201   0.195  1.00  0.00           H  
+HETATM   22 2H5' ACP     1      -7.649   2.128   1.892  1.00  0.00           H  
+HETATM   23  H4' ACP     1      -6.723   3.787   0.487  1.00  0.00           H  
+HETATM   24  H3' ACP     1      -6.030   1.521  -1.417  1.00  0.00           H  
+HETATM   25  H2' ACP     1      -4.023   2.851  -1.953  1.00  0.00           H  
+HETATM   26 2HO' ACP     1      -5.456   4.854  -1.014  1.00  0.00           H  
+HETATM   27  H1' ACP     1      -3.336   3.230   0.672  1.00  0.00           H  
+HETATM   28  H6  ACP     1      -4.881  -0.029   0.886  1.00  0.00           H  
+HETATM   29  C10 ACP     1      -3.870  -2.423   0.713  1.00  0.00           C  
+HETATM   30  H20 ACP     1      -3.962  -3.089  -0.134  1.00  0.00           H  
+HETATM   31  H21 ACP     1      -3.275  -2.913   1.470  1.00  0.00           H  
+HETATM   32  H22 ACP     1      -4.853  -2.210   1.111  1.00  0.00           H  
+HETATM   33  C11 ACP     1       0.002  -0.110  -1.070  1.00  0.00           C  
+HETATM   34  H23 ACP     1       0.102  -1.023  -1.633  1.00  0.00           H  
+HETATM   35  H24 ACP     1       0.121   0.728  -1.737  1.00  0.00           H  
+HETATM   36  C12 ACP     1       1.023  -0.051   0.063  1.00  0.00           C  
+HETATM   37  H25 ACP     1       0.869   0.847   0.649  1.00  0.00           H  
+HETATM   38  H26 ACP     1       0.866  -0.903   0.721  1.00  0.00           H  
+HETATM   39  C13 ACP     1       2.458  -0.073  -0.467  1.00  0.00           C  
+HETATM   40  H27 ACP     1       2.625  -0.955  -1.076  1.00  0.00           H  
+HETATM   41  H28 ACP     1       2.615   0.793  -1.111  1.00  0.00           H  
+HETATM   42  C14 ACP     1       3.524  -0.062   0.634  1.00  0.00           C  
+HETATM   43  H29 ACP     1       3.349  -0.927   1.270  1.00  0.00           H  
+HETATM   44  N40 ACP     1       3.394   1.146   1.454  1.00  0.00           N  
+HETATM   45  H30 ACP     1       3.913   0.990   2.299  1.00  0.00           H  
+HETATM   46  H31 ACP     1       3.949   1.837   0.977  1.00  0.00           H  
+HETATM   47  C15 ACP     1       4.933  -0.237  -0.012  1.00  0.00           C  
+HETATM   48  O30 ACP     1       5.676   0.749   0.047  1.00  0.00           O  
+HETATM   49  O31 ACP     1       5.129  -1.338  -0.530  1.00  0.00           O  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   21   22
+CONECT    6    7    8    5   23
+CONECT    7   12    6
+CONECT    8   10    6    9   24
+CONECT    9    8
+CONECT   10   12    8   11   25
+CONECT   11   10   26
+CONECT   12   13    7   10   27
+CONECT   13   14   20   12
+CONECT   14   16   13   15
+CONECT   15   14
+CONECT   16   17   14   33
+CONECT   17   19   16   18
+CONECT   18   17
+CONECT   19   17   20   29
+CONECT   20   19   13   28
+CONECT   21    5
+CONECT   22    5
+CONECT   23    6
+CONECT   24    8
+CONECT   25   10
+CONECT   26   11
+CONECT   27   12
+CONECT   28   20
+CONECT   29   19   30   31   32
+CONECT   30   29
+CONECT   31   29
+CONECT   32   29
+CONECT   33   16   34   35   36
+CONECT   34   33
+CONECT   35   33
+CONECT   36   33   37   38   39
+CONECT   37   36
+CONECT   38   36
+CONECT   39   36   40   41   42
+CONECT   40   39
+CONECT   41   39
+CONECT   42   39   43   44   47
+CONECT   43   42
+CONECT   44   42   45   46
+CONECT   45   44
+CONECT   46   44
+CONECT   47   42   48   49
+CONECT   48   47
+CONECT   49   47

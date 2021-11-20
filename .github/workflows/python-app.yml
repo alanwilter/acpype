@@ -1,0 +1,88 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+name: check_acpype_api
+on:
+   push:
+      branches:
+      - master
+   pull_request:
+      branches:
+      - master
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+
+      -  uses: actions/checkout@v2
+
+      -  name: Set up Python 3.8
+         uses: actions/setup-python@v2
+         with:
+            python-version: 3.8
+
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+            # This path is specific to Ubuntu
+            path: ~/.cache/pip
+            # Look to see if there is a cache hit for the corresponding requirements file
+            key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+            restore-keys: |
+               ${{ runner.os }}-pip-
+               ${{ runner.os }}-
+
+      - name: Set Env
+        run: |
+            echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
+            echo "AMBERHOME=$PWD/amber21-11_linux" >> $GITHUB_ENV
+            echo "$PWD/amber21-11_linux/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
+
+      - name: Install OpenBabel
+        run: |
+            sudo apt-get install --no-install-recommends -y openbabel
+
+      - name: Install OpenBabel Python Module and Hack it
+        run: |
+            sudo apt-get install --no-install-recommends -y python3-openbabel
+            ln -s /usr/lib/python3/dist-packages/openbabel /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/
+
+      - name: Install Pip
+        run: |
+            sudo apt-get install --no-install-recommends -y python3-pip
+            python3 -m pip install --upgrade pip
+            if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
+            chmod +x acpype_lib/acpype.py
+            ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
+
+      -  name: Lint with flake8
+         run: flake8 -v --count
+
+      -  name: Check format with black
+         run: black --diff --check .
+
+      -  name: Test with PyTest
+         run: |
+            # cd $PWD/test
+            # acpype -di AAA.pdb -c gas
+            pytest --color=yes
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
+
+      - name: Create Release
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.date.outputs.date }}
+          release_name: Release ${{ steps.date.outputs.date }}
+          draft: false
+          prerelease: false

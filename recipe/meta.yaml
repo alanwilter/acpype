@@ -1,6 +1,9 @@
+{% set data = load_setup_py_data() %}
+{% set version = data.get('version')  %}
+
 package:
   name: acpype
-  version: "2020.10.24.12.16"
+  version: {{ version }}
 
 source:
   git_rev: "recipe"

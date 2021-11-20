@@ -1,0 +1,4 @@
+# Read in trajectory file
+trajin ./DMPC64_cg_md.nc
+
+areapermol CMM_area :CMM nlayers 2 out ./apl_DMPC64_310K.dat

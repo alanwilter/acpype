@@ -1,0 +1,12 @@
+Duocarmycin SA: P.S. Eis, J.A. Simth, J.M. Rydzewski, D.A. Case, D.L. Boger & W.J. Chazin, JMB 272:237-252 (1997)
+
+BOND
+CA-HC 340.       1.08
+
+ANGLE
+CB-CA-HC     35.       120.0
+HC-C*-CB    35.        126.8
+C -CA-HC     35.       120.0
+HC-CT-OS    35.0       109.5
+HC-CT-N*     35.       109.5
+

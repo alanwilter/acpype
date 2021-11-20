@@ -1,0 +1,85 @@
+REMARK 999 2'-O-methyl N6,N6-dimethyladenosine                                  
+HETATM    1  P   TMA     1       4.353  -4.566  -2.690  1.00  0.00           P  
+HETATM    2  O1P TMA     1       2.973  -5.081  -2.606  1.00  0.00           O  
+HETATM    3  O2P TMA     1       5.503  -5.506  -2.511  1.00  0.00           O  
+HETATM    4  O5' TMA     1       4.466  -3.363  -1.644  1.00  0.00           O  
+HETATM    5  C5' TMA     1       5.683  -2.588  -1.540  1.00  0.00           C  
+HETATM    6  C4' TMA     1       5.480  -1.419  -0.610  1.00  0.00           C  
+HETATM    7  O4' TMA     1       4.406  -0.575  -1.105  1.00  0.00           O  
+HETATM    8  C3' TMA     1       5.016  -1.781   0.789  1.00  0.00           C  
+HETATM    9  O3' TMA     1       6.118  -2.239   1.568  1.00  0.00           O  
+HETATM   10  C2' TMA     1       4.475  -0.440   1.262  1.00  0.00           C  
+HETATM   11  O2' TMA     1       5.501   0.502   1.525  1.00  0.00           O  
+HETATM   12  C1' TMA     1       3.734   0.023   0.002  1.00  0.00           C  
+HETATM   13  N9  TMA     1       2.324  -0.393  -0.001  1.00  0.00           N  
+HETATM   14  C8  TMA     1       1.818  -1.664  -0.001  1.00  0.00           C  
+HETATM   15  N7  TMA     1       0.540  -1.720  -0.000  1.00  0.00           N  
+HETATM   16  C5  TMA     1       0.135  -0.395  -0.000  1.00  0.00           C  
+HETATM   17  C6  TMA     1      -1.118   0.258  -0.000  1.00  0.00           C  
+HETATM   18  N6  TMA     1      -2.312  -0.359   0.000  1.00  0.00           N  
+HETATM   19  N1  TMA     1      -1.114   1.592  -0.000  1.00  0.00           N  
+HETATM   20  C2  TMA     1       0.037   2.247  -0.000  1.00  0.00           C  
+HETATM   21  N3  TMA     1       1.254   1.761  -0.000  1.00  0.00           N  
+HETATM   22  C4  TMA     1       1.243   0.432  -0.001  1.00  0.00           C  
+HETATM   23 1H5' TMA     1       6.412  -3.222  -1.081  1.00  0.00           H  
+HETATM   24 2H5' TMA     1       5.867  -2.177  -2.511  1.00  0.00           H  
+HETATM   25  H4' TMA     1       6.446  -0.960  -0.571  1.00  0.00           H  
+HETATM   26  H3' TMA     1       4.298  -2.572   0.853  1.00  0.00           H  
+HETATM   27  H2' TMA     1       3.907  -0.520   2.165  1.00  0.00           H  
+HETATM   28  H1' TMA     1       3.738   1.092  -0.044  1.00  0.00           H  
+HETATM   29  H8  TMA     1       2.470  -2.515  -0.001  1.00  0.00           H  
+HETATM   30  H2  TMA     1      -0.047   3.320  -0.000  1.00  0.00           H  
+HETATM   31  C10 TMA     1      -2.413  -1.810   0.000  1.00  0.00           C  
+HETATM   32  H20 TMA     1      -1.943  -2.240  -0.874  1.00  0.00           H  
+HETATM   33  H21 TMA     1      -1.944  -2.240   0.875  1.00  0.00           H  
+HETATM   34  H22 TMA     1      -3.458  -2.080  -0.000  1.00  0.00           H  
+HETATM   35  C11 TMA     1      -3.517   0.457   0.001  1.00  0.00           C  
+HETATM   36  H23 TMA     1      -3.559   1.093   0.876  1.00  0.00           H  
+HETATM   37  H24 TMA     1      -3.560   1.093  -0.874  1.00  0.00           H  
+HETATM   38  H25 TMA     1      -4.375  -0.198   0.001  1.00  0.00           H  
+HETATM   39  CM2 TMA     1       5.761   0.544   2.930  1.00  0.00           C  
+HETATM   40 1HM' TMA     1       6.606   1.173   3.119  1.00  0.00           H  
+HETATM   41 2HM' TMA     1       4.905   0.934   3.440  1.00  0.00           H  
+HETATM   42 3HM' TMA     1       5.967  -0.444   3.285  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   23   24
+CONECT    6    7    8    5   25
+CONECT    7   12    6
+CONECT    8   10    6    9   26
+CONECT    9    8
+CONECT   10   12    8   11   27
+CONECT   11   10   39
+CONECT   12   13    7   10   28
+CONECT   13   14   22   12
+CONECT   14   13   29   15
+CONECT   15   14   16
+CONECT   16   15   17   22
+CONECT   17   16   18   19
+CONECT   18   17   31   35
+CONECT   19   17   20
+CONECT   20   19   30   21
+CONECT   21   20   22
+CONECT   22   13   16   21
+CONECT   23    5
+CONECT   24    5
+CONECT   25    6
+CONECT   26    8
+CONECT   27   10
+CONECT   28   12
+CONECT   29   14
+CONECT   30   20
+CONECT   31   18   32   33   34
+CONECT   32   31
+CONECT   33   31
+CONECT   34   31
+CONECT   35   18   36   37   38
+CONECT   36   35
+CONECT   37   35
+CONECT   38   35
+CONECT   39   11   40   41   42
+CONECT   40   39
+CONECT   41   39
+CONECT   42   39

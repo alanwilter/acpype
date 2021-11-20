@@ -1,0 +1,84 @@
+@WAMM
+################################################################################
+# Location and features of input and output directories / file(s)
+#
+# lig_struct_path: Folder containing the ligand input file(s)
+# multi_structure_lig_file: Basename of ligand file, if multi-structure
+#                           file is provided
+# output_path: Basis directory in which all setup and analysis
+#              folders will be generated
+# rec_structure: Receptor structure in PDB format
+# bound_rec_structure: Optional, alternative receptor structure in bound
+#                      conformation to be used for 3-trajectory approach
+# membrane_file: Optional: In case an explicit membrane simulation shall be
+#                performed a PDB file with membrane lipids, ions, and
+#                water molecules needs to be provided here.
+lig_struct_path              /home/user/work_dir/structs
+multi_structure_lig_file      
+output_path                  /home/user/work_dir
+rec_structure                /home/user/work_dir/input_info/receptor_bound.pdb
+bound_rec_structure          
+membrane_file                /home/user/work_dir/input_info/membrane_ions_water.pdb
+
+# Specification of ligand input format
+lig_format_sdf               0
+lig_format_mol2              1
+
+# Receptor features
+# water_in_rec: Water present in receptor PDB structure
+water_in_rec                 1
+
+# Request structure separation
+# structure_separation: Separate ligands specified in one multi-structure
+#                       input file and generate one structure file per ligand.
+structure_separation         0
+
+################################################################################
+# Creation of LEaP input files
+#
+# prepare_leap_input: Generate files for LEaP input
+# non_neutral_ligands: Total charge of at least one molecule is not zero.
+#                      In this case the total charge of each non-neutral
+#                      molecule must be defined in lig_charge_file.
+# lig_charge_file: File with information about total charges of ligands.
+# am1_lig_charges: Calculate AM1-BCC charges.
+# resp_lig_charges: Calculate RESP charges. In this case charges must be
+#                   computed with the program Gaussian in an intermediate step.
+#                   Batch scripts for Gaussian calculations will be prepared
+#                   automatically, if requested (see prepare_gauss_batch_file
+#                   and gauss_batch_template below).
+# calc_charges: Calculate charges according to requested procedure.
+#               If this flag is set to zero, no atomic charges are calculated.
+# resp_setup_step1: Step 1 of RESP charge calculation: Preparation of
+#                   Gaussian input.
+# resp_setup_step2: Step 2 of RESP charge calculation: Generation of LEaP input
+#                   from Gaussian output.
+# prepare_gauss_batch_file: Generate batch script for Gaussian input if RESP
+#                           charge calculation is performed. A batch template
+#                           file (gauss_batch_template) is required.
+# gauss_batch_template: Batch template file
+#                       Prerequisite: resp_lig_charges=1, resp_setup_step1=1
+#                       and prepare_gauss_batch_file=1
+# gauss_batch_path: Basic working directory for Gaussian jobs
+# average_charges: If the charges of two steroisomers shall be averaged, so that
+#                  both ligands obtain the same atomic charges, a file in which
+#                  the stereoisomer pairs are specified must be given here.
+# prepare_membrane: Setup files for explicit membrane simulation.
+# ligand_water_cutoff: Only relevant if 'prepare_membrane == 1'
+#                      If an explicit membrane simulation is prepared, all
+#                      water molecules that are within the 'ligand_water_cutoff'
+#                      distance (in Angstroem) of the ligand are removed.
+prepare_leap_input           1
+non_neutral_ligands          1
+lig_charge_file              /home/src/FEW/examples/input_info/charge.txt
+am1_lig_charges              0
+resp_lig_charges             1
+calc_charges                 1
+resp_setup_step1             0
+resp_setup_step2             1
+prepare_gauss_batch_file     0
+gauss_batch_template          
+gauss_batch_path              
+average_charges              
+prepare_membrane             1
+ligand_water_cutoff          1.5

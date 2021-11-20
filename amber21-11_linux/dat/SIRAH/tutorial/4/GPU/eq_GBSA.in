@@ -1,0 +1,35 @@
+Coarse-grained model of DNA: 500ps temperature rise + 1ns equilibration
+ &cntrl
+  imin = 0, ntx = 1, irest = 0, nmropt = 1,
+
+  nstlim = 75000, dt = 0.020,
+  ntpr = 5000, ntwx = 5000, ntwr = 5000, ioutfm=1, ntxo=2,
+
+  ntb = 0, ntp = 0,
+
+  ntt = 3, gamma_ln = 50.0, ig = -1,
+  temp0 = 298.0, tempi = 0.0,
+
+  ntc = 1, ntf = 1,
+
+  cut = 999,
+  igb = 1, saltcon = 0.15, rgbmax = 10.0, rbornstat = 0,
+
+  ntr = 0,
+ &end
+ /
+ &wt type ='TEMP0',
+  istep1 = 0, istep2 = 12500,
+  value1 = 0.0, value2 = 100.0,
+ /
+ &wt type ='TEMP0',
+  istep1 = 12500, istep2 = 25000,
+  value1 = 100.0, value2 = 298.0,
+ /
+ &wt type ='TEMP0',
+  istep1 = 25000, istep2 = 0,
+  value1 = 298.0, value2 = 298.0,
+ /
+ &wt type='END'
+ /
+ &end

@@ -1,0 +1,132 @@
+#!/bin/tcsh -x
+#SBATCH --job-name=TEST
+#SBATCH --nodes=1
+#SBATCH --output=/l/home/homeyer/test.out
+#SBATCH --error=/l/home/homeyer/test.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=gpu-ser
+#SBATCH --gres=gpu:1
+
+#################################
+# --- DEFINE YOUR VARIABLES --- # 
+#################################
+#
+source /usr/lib/Modules/init/tcsh
+module load AMBER/18.12
+
+set EXE=pmemd.cuda
+set DO_PARALLEL="srun -n 1 "
+
+################################################################################
+#      Do not modify this part of the script
+#
+#
+# --- Fix variables
+#
+set SCRIPT=
+set WORKDIR=
+set DIFF=
+#
+# --- Variables to be modified before new queueing
+#
+@ START=
+@ END=
+#
+# --- Goto work dir
+#
+echo Goto $WORKDIR
+cd $WORKDIR
+#
+# --- Init for loop
+#
+@ COUNT=$START
+if($COUNT < 10) then
+  set COUNTEXP = '0'$COUNT
+else if($COUNT < 100) then
+  set COUNTEXP = $COUNT
+else
+  set COUNTEXP = $COUNT
+endif
+#
+# --- Save copy of this script
+#
+cp $SCRIPT ${SCRIPT}_${COUNTEXP}
+#
+# --- Loop
+#
+if($COUNT < $END) then
+
+echo "=>> Processing " $COUNT
+echo $HOSTNAME
+
+# Execute
+#
+# Set variables
+set first_run=0
+if($first_run == 1) then
+  ./replace_equi.sh ${COUNT}
+  set R1="s/^set first_run=[0-99]*/set first_run=0/"
+  cat $SCRIPT | sed -e "$R1" > tmp  
+  mv -f tmp $SCRIPT
+  sbatch $SCRIPT
+endif
+
+# Input coordinate file
+set INPCRD=
+
+# Equilibration
+EQUILIBRATION 
+
+# Production
+PRODUCTION
+
+# Prepare for new run
+if($status != 0) then
+  echo Error in ${COUNTEXP}\. run
+  exit
+else
+  @ LAMBDA_OLD = $COUNT
+  @ COUNT = $COUNT + $DIFF
+  if($COUNT < 10) then
+    set COUNTEXP = '0'$COUNT
+  else if($COUNT < 100) then
+    set COUNTEXP = $COUNT
+  else
+    set COUNTEXP = $COUNT
+  endif
+endif
+
+#
+# --- Save results
+#
+echo Zipping
+gzip -9 *.mdcrd
+
+#
+# --- Modify this script
+#
+echo Modifying $SCRIPT
+set C1="s/^@ START="${LAMBDA_OLD}"/@ START="${COUNT}"/"
+set C2="s/md_equi01_l"${LAMBDA_OLD}"/md_equi01_l"${COUNT}"/g"
+set C3=PRODUCTION
+cat $SCRIPT | sed -e "$C1" | sed -e "$C2" 
+mv -f tmp $SCRIPT
+
+./replace_equi.sh ${COUNT}
+#
+#      End of part of the script that should not be modified.
+#
+###############################################################################
+
+#
+# --- Re-queue
+#
+if ( -f md_prod04_l1.rst ) then 
+  sbatch $SCRIPT
+endif
+
+endif
+#
+# --- Exit this script
+#
+exit

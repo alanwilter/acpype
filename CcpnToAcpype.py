@@ -2,7 +2,7 @@ from __future__ import print_function
 from builtins import range
 from builtins import object
 from shutil import rmtree
-from acpype import elapsedTime, header, ACTopol
+from acpype_lib.acpype import elapsedTime, header, ACTopol
 import time
 import traceback
 import sys
@@ -13,10 +13,7 @@ import random
 from ccpnmr.format.converters import PdbFormat  # @UnresolvedImport
 from ccpnmr.format.converters import Mol2Format  # @UnresolvedImport
 
-try:
-    letters = string.letters  # @UndefinedVariable
-except:
-    letters = string.ascii_letters
+letters = string.ascii_letters
 
 
 def dirWalk(adir):
@@ -32,8 +29,8 @@ def dirWalk(adir):
 
 def addMolPep(cnsPepPath, molName):
     """
-        Add info about MOL in CNS topol*.pep file
-        input: cns pep file path to be modified and MOL name
+    Add info about MOL in CNS topol*.pep file
+    input: cns pep file path to be modified and MOL name
     """
     txt = "first IONS tail + %s end\nlast IONS head - %s end\n\n" % (molName, molName)
     pepFile = open(cnsPepPath).read()
@@ -58,8 +55,8 @@ def addMolPep(cnsPepPath, molName):
 
 def addMolPar(cnsParPath, molParPath):
     """
-        Add parameters of MOL.par in CNS paralldhg*.pro file
-        input: cns par file path to be modified and MOL.par file
+    Add parameters of MOL.par in CNS paralldhg*.pro file
+    input: cns par file path to be modified and MOL.par file
     """
 
     def formatLine(line, n):
@@ -141,8 +138,8 @@ def reverseParLine(txt):
 
 def addMolTop(cnsTopPath, molTopPath):
     """
-        Add topol of MOL.top in CNS topalldhg*.pro file
-        input: cns top file path to be modified and MOL.top file
+    Add topol of MOL.top in CNS topalldhg*.pro file
+    input: cns top file path to be modified and MOL.top file
     """
     keys = ["RESIdue", "GROUP", "ATOM", "BOND", "ANGLe", "DIHEdral", "IMPRoper"]
     molName = os.path.basename(molTopPath).split("_")[0]
@@ -197,15 +194,15 @@ def addMolTop(cnsTopPath, molTopPath):
 
 class AcpypeForCcpnProject(object):
     """
-        Class to take a Ccpn project, check if it has an
-        unusual chem comp and call ACPYPE API to generate
-        a folder with acpype results
-        usage:
-        acpypeProject = AcpypeForCcpnProject(ccpnProject)
-        acpypeProject.run(kw**)
-        acpypeDictFilesList = acpypeProject.acpypeDictFiles
-        returns a dict with list of the files inside chem chomp acpype folder
-        or None
+    Class to take a Ccpn project, check if it has an
+    unusual chem comp and call ACPYPE API to generate
+    a folder with acpype results
+    usage:
+    acpypeProject = AcpypeForCcpnProject(ccpnProject)
+    acpypeProject.run(kw**)
+    acpypeDictFilesList = acpypeProject.acpypeDictFiles
+    returns a dict with list of the files inside chem chomp acpype folder
+    or None
     """
 
     def __init__(self, project):
@@ -352,7 +349,7 @@ class AcpypeForCcpnProject(object):
                 molecule.createACTopol()
                 molecule.createMolTopol()
                 acpypeFailed = False
-            except:
+            except Exception:
                 raise
                 _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
                 print("ACPYPE FAILED: %s" % exceptionValue)
@@ -368,7 +365,7 @@ class AcpypeForCcpnProject(object):
                 msg = elapsedTime(execTime)
             try:
                 rmtree(molecule.tmpDir)
-            except:
+            except Exception:
                 raise
             print("Total time of execution: %s" % msg)
             if not acpypeFailed:

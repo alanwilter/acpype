@@ -1,0 +1,97 @@
+AMBER Lipid Force Field Extension BETA / Inclusion of PI and LysoPL S. Schott-Verdugo, H. Gohlke
+MASS
+cE 12.01      GAFF2 ce
+
+BOND
+cE-cE  306.1    1.4570      ce-ce GAFF2
+cB-cE  460.5    1.3460      cb-ce GAFF2
+cE-hB  391.4    1.0880      ce-ha GAFF2
+cA-Os  337.00   1.450       CT-Os GLYCAM06j
+Cp-Cp  310.00   1.520       Cg-Cg GLYCAM06j
+P -oH  230.00   1.610       oH-pA lipid17
+
+ANGLE
+cA-cB-cE    66.1      123.15    c3-c2-ce GAFF2
+cB-cE-hB    50.1      119.94    c2-ce-ha GAFF2
+cB-cE-cE    67.5      123.26    c2-ce-ce GAFF2
+cE-cE-hB    47.7      116.65    ce-ce-ha GAFF2
+cB-cD-cA    65.5      111.56    c2-c3-c3 GAFF2
+cA-cA-Os   67.78      108.42    lipid17 // Lipid11 v1.0  (GAFF c3-c3-os)
+cA-Os-P   100.00      120.50    lipid17 // Lipid17 v1.0  (parm99 CT-OS-P)
+hE-cA-Os   50.84      108.82    lipid17 // Lipid11 v1.0  (GAFF h1-c3-os)
+Cp-Cg-Cp   45.00      113.50    GLYCAM06j // Propane
+Cp-Cg-Oh   70.00      107.50    GLYCAM06j // Ethanol
+Cg-Cp-Cp   45.00      113.50    GLYCAM06j // Propane
+Cp-Cp-H1   45.00      111.00    GLYCAM06j // Propanol
+Cp-Cp-Cp   45.00      113.50    GLYCAM06j // Propane
+Cp-Cp-Os   70.00      107.50    GLYCAM06j // Ethanol
+Os-P -oH   90.0       108.23    O2-P -OH Modified DOI: 10.1021/ct300613v
+P -oH-hO   100.0      113.28    HO-OH-P  Modified DOI: 10.1021/ct300613v
+oH-P -O2   90.0       108.23    O2-P -OH Modified DOI: 10.1021/ct300613v
+
+DIHE
+X -cB-cE-X    4        26.600          180.000          2.000   X -c2-ce-X GAFF2
+cB-cE-cE-cB   1         0.500          180.000          2       c2-ce-ce-c2 GAFF2
+X -cE-cE-X    4         4.000          180.000          2.000   X -ce-ce-X GAFF2
+cB-cA-cA-cB   9         1.400            0.000          3.000   X -c3-c3-X GAFF2
+hA-cA-cD-cB   9         1.400            0.000          3.000   X -c3-c3-X GAFF2
+cA-cA-cD-cB   9         1.400            0.000          3.000   X -c3-c3-X GAFF2
+cE-cB-cA-hA   6         0.000            0.000          2.000   X -c2-c3-X GAFF2
+cE-cB-cA-cA   6         0.000            0.000          2.000   X -c2-c3-X GAFF2
+hB-cB-cD-cA   6         0.000            0.000          2.000   X -c2-c3-X GAFF2
+cB-cB-cD-cA   6         0.000            0.000          2.000   X -c2-c3-X GAFF2
+oH-cA-cA-oS   1         0.1440           0.00          -3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid11 v1.0  (GAFF oh-c3-c3-oh) for Lyso
+oH-cA-cA-oS   1         1.1750           0.00           2.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid11 v1.0  (GAFF oh-c3-c3-oh) for Lyso
+cA-cA-cA-Os   1         0.1556           0.00           3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid11 v1.0  (GAFF X -c3-c3-X )
+cA-cA-Os-P    3         1.1500           0.00           3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid17 v1.0  (parm99 X -CT-OS-X )
+hE-cA-cA-Os   1         0.0000           0.00          -3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid11 v1.0  (GAFF h1-c3-c3-os)
+              1         0.2500           0.00           1.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid11 v1.0  (GAFF h1-c3-c3-os)
+cA-Os-P -Os   1         0.2500           0.00          -3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid17 v1.1  (parm99 OS-P -OS-CT)
+              1         1.2000           0.00           2.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid17 v1.1  (parm99 OS-P -OS-CT)
+cA-Os-P -O2   3         0.7500           0.00           3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid17 v1.0  (parm99 X -OS-P -X )
+hE-cA-Os-P    3         1.1500           0.00           3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid17 v1.0  (parm99 X -CT-OS-X )
+Os-cA-cA-oS   1         0.1440           0.00          -3.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid11 v1.0  (GAFF os-c3-c3-os)
+              1         1.1750           0.00           2.00    SCEE=1.2 SCNB=2.0     lipid17 // Lipid11 v1.0  (GAFF os-c3-c3-os)
+Os-Cp-Cg-Cp   1        -0.27             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Os-Cg-Cg-Cg 1-methoxypropane (Methylpropyl ether), 1-methoxy-2-methylpropane (Methyl 2-methylpropyl ether)
+Os-Cp-Cg-Oh   1         0.40             0.0            2.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Os-Cg-Cg-Os DiEthers
+H1-Cp-Cg-Cp   1         0.15             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-Cg 2,2-Dimethylbutanol
+H1-Cp-Cp-Cg   1         0.15             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-Cg 2,2-Dimethylbutanol
+H1-Cg-Cp-Cp   1         0.15             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-Cg 2,2-Dimethylbutanol
+H1-Cp-Cp-Cp   1         0.15             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-Cg 2,2-Dimethylbutanol
+Cp-Cg-Cp-Cp   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Cp-Cg-Cg-Cp   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Cg-Cp-Cp-Cg   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Cp-Cp-Cg-Cg   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Cg-Cp-Cg-Cp   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Cg-Cp-Cp-Cp   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Cp-Cg-Cp-Cg   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Cp-Cp-Cp-Cg   1         0.45             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Cg-Cg-Cg-Cg Butane
+Os-Cp-Cg-Cp   1        -0.27             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Os-Cg-Cg-Cg 1-methoxypropane (Methylpropyl ether), 1-methoxy-2-methylpropane (Methyl 2-methylpropyl ether)
+Ho-Oh-Cg-Cp   1         0.18             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Ho-Oh-Cg-Cp Ethanol, propan-2-ol (Isopropanol)
+Oh-Cg-Cp-H1   1         0.05             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Oh-Cg-Cg-H1 tert-butanol
+Os-Cp-Cp-Cg   1        -0.27             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Os-Cg-Cg-Cg 1-methoxypropane (Methylpropyl ether), 1-methoxy-2-methylpropane (Methyl 2-methylpropyl ether)
+Os-Cp-Cp-Cp   1        -0.27             0.0            1.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Os-Cg-Cg-Cg 1-methoxypropane (Methylpropyl ether), 1-methoxy-2-methylpropane (Methyl 2-methylpropyl ether)
+P -Os-Cp-Cp   1         0.10             0.0           -3       SCEE=1.0 SCNB=1.0     GLYCAM06j // P -Os-Cp-Cg Methyl ethyl phosphate
+              1         0.05             0.0           -2       SCEE=1.0 SCNB=1.0
+              1        -1.20             0.0            1       SCEE=1.0 SCNB=1.0
+oH-P -Os-Cp   1         0.10             0.0           -3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // O2-P -Os-Cp Dimethyl phosphate
+              1        -0.50             0.0           -2.      SCEE=1.0 SCNB=1.0
+              1         0.10             0.0            1       SCEE=1.0 SCNB=1.0
+H1-Cp-Cp-H1   1         0.17             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-H1 Ethanol
+H1-Cp-Cp-Os   1         0.05             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-Os Methoxyethane
+Oh-Cg-Cp-Cp   1         0.10             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Oh-Cg-Cg-Cg 2,3-Dimethylbutanol
+H1-Cg-Cp-Cp   1         0.15             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-Cg 2,2-Dimethylbutanol
+H1-Cp-Cp-Cg   1         0.15             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // H1-Cg-Cg-Cg 2,2-Dimethylbutanol
+Oh-Cg-Cp-Cg   1         0.10             0.0            3.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Oh-Cg-Cg-Cg 2,3-Dimethylbutanol
+Os-Cp-Cp-Os   1         0.40             0.0            2.      SCEE=1.0 SCNB=1.0     GLYCAM06j // Os-Cg-Cg-Os DiEthers
+hO-oH-P -Os   3         0.7500           0.00           3.00    SCEE=1.2 SCNB=2.0     lipid17 // hO-oH-pA-oT Lipid17 v1.1  (parm99 X -OH-P -X )
+hO-oH-P -O2   3         0.7500           0.00           3.00    SCEE=1.2 SCNB=2.0     lipid17 // hO-oH-pA-oT Lipid17 v1.1  (parm99 X -OH-P -X )
+
+
+
+IMPROPER
+
+NONB
+  cE          1.8606  0.0988
+
+END

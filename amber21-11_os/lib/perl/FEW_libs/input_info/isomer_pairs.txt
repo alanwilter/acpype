@@ -1,0 +1,8 @@
+# In this file isomers of ligands can be specified for which the
+# calculated RESP- or AM1-charges shall be averaged before they
+# are included in the ligand-library file
+# The names of the mol2-files listed must be equivalent to the
+# names of the corresponding mol2-files in the <i_path> folder.
+L26R.mol2	L26S.mol2
+L27R.mol2	L27S.mol2
+L28R.mol2	L28S.mol2

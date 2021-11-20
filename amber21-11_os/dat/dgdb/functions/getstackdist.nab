@@ -1,0 +1,134 @@
+#define		MAXSTRANDS	500
+#define		MAXRES		1000
+
+molecule	m;
+residue		r, r1, rholder;
+int		ac, sn, rn;
+
+string		str;
+string		strands[ MAXSTRANDS ];
+int		nstr;
+int		nres[ MAXSTRANDS ];
+residue		res[ MAXSTRANDS, MAXRES ];
+
+int	getcanonicalstackdist( file f, residue r, residue r1 )
+{
+	atom	a, a1;
+	float	d, theta, rvl, r1vl;
+	int	number_of_violations;
+	point	rN1,rC4,rC2,rN3,rmid,rxmid,rxdir,rydir,rzdir,rv,r1v;
+	point	r1N1,r1C4,r1C2,r1N3,r1mid,r1xmid,r1xdir,r1ydir,r1zdir;
+	point	rP,r1P,rO3,r1O3;
+
+	number_of_violations = 0;
+
+	for( a in r ){
+		if (a.atomname =~ "P" )
+			rP = a.pos;
+		if (a.atomname =~ "O3?" )	
+			rO3 = a.pos;
+	}
+	for( a1 in r1 ){
+		if (a1.atomname =~ "P" )
+			r1P = a.pos;
+		if (a1.atomname =~ "O3?" )	
+			r1O3 = a.pos;
+	}
+	if( distp( rP, r1O3) <= distp( r1P, rO3 ) ){
+		rholder = r1;
+		r1 = r;
+		r = rholder;
+	}
+	for( a in r ){
+		if (a.atomname =~ "[HP'*]" )
+			continue;
+		if ( a.atomname == "N1" )
+			rN1 = a.pos;
+		else if ( a.atomname == "C2" )
+			rC2 = a.pos;
+		else if ( a.atomname == "C4" )
+			rC4 = a.pos;
+		else if ( a.atomname == "N3" )
+			rN3 = a.pos;
+		for( a1 in r1 ){
+			if ( a1.atomname =~ "[HP'*]" )
+				continue;
+			if ( a1.atomname == "N1" )
+				r1N1 = a1.pos;
+			else if ( a1.atomname == "C2" )
+				r1C2 = a1.pos;
+			else if ( a1.atomname == "C4" )
+				r1C4 = a1.pos;
+			else if ( a1.atomname == "N3" )
+				r1N3 = a1.pos;
+			d = distp( a.pos, a1.pos );
+			if ((d > 9.0 ) || ( d < 2.0 )){
+				number_of_violations++;
+			}
+		}
+	}
+
+	rmid = ( rN1 + rC4 )/2.0;
+	rxmid = ( rC2 + rN3 )/2.0;
+	if ( (r.resname == "ADE" ) || (r.resname == "A") || 
+		(r.resname == "GUA" ) || (r.resname == "G") )
+		rxdir = rxmid - rmid;
+	else
+		rxdir = rmid - rxmid;
+	rydir = rC4 - rmid;
+	rzdir = rxdir ^ rydir;
+	rv = rzdir;
+	rvl = sqrt( rzdir.x*rzdir.x + rzdir.y*rzdir.y + rzdir.z*rzdir.z );
+
+	r1mid = ( r1N1 + r1C4 )/2.0;
+	r1xmid = ( r1C2 + r1N3 )/2.0;
+	if ( (r1.resname == "ADE" ) || (r1.resname == "A") || 
+		(r1.resname == "GUA" ) || (r1.resname == "G") )
+		r1xdir = r1xmid - r1mid;
+	else
+		r1xdir = r1mid - r1xmid;
+	r1ydir = r1C4 - r1mid;
+	r1zdir = r1xdir ^ r1ydir;
+	r1v = r1zdir;
+	r1vl = sqrt( r1zdir.x*r1zdir.x + r1zdir.y*r1zdir.y + r1zdir.z*r1zdir.z );
+
+	theta = acos ( ( rv @ r1v ) / ( rvl * r1vl ) );
+
+	if ((number_of_violations < 10 ) && (theta < 20.0)){
+		for( a in r ){
+			for( a1 in r1 ){
+				d = distp( a.pos, a1.pos );
+				fprintf( f, "%s:%s-%s:%s %8.3f\n",
+					r.resname, a.atomname,
+					r1.resname, a1.atomname, d );
+			}
+		}
+	}
+};
+
+for( ac = 2; ac <= argc; ac = ac + 1 ){
+
+	m = getpdb( argv[ ac ] );
+
+	str = "";
+	nstr = 0;
+	rn = 0;
+	for( r in m ){
+		if( str != r.strandname ){
+			nstr = nstr + 1;
+			strands[ nstr ] = r.strandname;
+			nres[ nstr ] = 0;
+		}
+		nres[ nstr ] = nres[ nstr ] + 1;
+		res[ nstr, nres[ nstr ] ] = r;
+		str = r.strandname;
+	}
+
+	for( sn = 1; sn <= nstr; sn = sn + 1 ){
+		for( rn = 1; rn < nres[ sn ]; rn = rn + 1 ){
+			r = res[ sn, rn ];
+			r1 = res[ sn, rn+1 ];
+			getcanonicalstackdist( stdout, r, r1 );
+		}
+	}
+}

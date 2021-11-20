@@ -57,7 +57,29 @@ coverage.xml
 docs/_build/
 
 pip-selfcheck.json
-test/*acpype
-test/*.gro
-test/*.top
+*.acpype
+*.amb2gmx
+test*/*acpype
+test*/.acpype*
+test*/*.gro
+test*/*.top
 /.mypy_cache/
+/.pytest_cache/
+
+*.bak
+
+tmp/
+temp/
+
+# PyBuilder
+target/
+
+#Ipython Notebook
+.ipynb_checkpoints
+
+private.env
+
+# pycharm
+.idea
+
+.vscode/

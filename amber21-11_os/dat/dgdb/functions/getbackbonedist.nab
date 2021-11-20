@@ -1,0 +1,59 @@
+#define		MAXSTRANDS	500
+#define		MAXRES		1000
+
+molecule	m;
+residue		r, r1;
+int		ac, sn, rn;
+
+string		str;
+string		strands[ MAXSTRANDS ];
+int		nstr;
+int		nres[ MAXSTRANDS ];
+residue		res[ MAXSTRANDS, MAXRES ];
+
+int	getsugardist( file f, residue r )
+{
+	atom	a, a1;
+	float	d;
+	
+	for( a in r ){
+	    if (a !~ "::*H*") {
+		for( a1 in r ){
+	    	    if (a1 !~ "::*H*") {
+			if (a1 == a)
+				continue;
+			d = distp( a.pos, a1.pos );
+			fprintf( f, "%s:%s-%s:%s %8.3f\n",
+				r.resname, a.atomname,
+				r.resname, a1.atomname, d );
+		    }
+		}
+	    }
+	}
+};
+
+for( ac = 2; ac <= argc; ac = ac + 1 ){
+
+	m = getpdb( argv[ ac ] );
+
+	str = "";
+	nstr = 0;
+	rn = 0;
+	for( r in m ){
+		if( str != r.strandname ){
+			nstr = nstr + 1;
+			strands[ nstr ] = r.strandname;
+			nres[ nstr ] = 0;
+		}
+		nres[ nstr ] = nres[ nstr ] + 1;
+		res[ nstr, nres[ nstr ] ] = r;
+		str = r.strandname;
+	}
+
+	for( sn = 1; sn <= nstr; sn = sn + 1 ){
+		for( rn = 1; rn < nres[ sn ]; rn = rn + 1 ){
+			r = res[ sn, rn ];
+			getsugardist( stdout, r );
+		}
+	}
+}

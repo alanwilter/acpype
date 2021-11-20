@@ -1,0 +1,48 @@
+#
+# Set log file
+#
+logFile leap.log
+#
+# leaprc for loading the Lipid17 extended force field
+#       
+# Load atom type hybridizations
+#
+addAtomTypes {
+    { "cE"  "C" "sp2" }
+    { "C"   "C" "sp2" }
+    { "Cg"  "C" "sp3" }
+    { "Cy"  "C" "sp3" }
+    { "Ck"  "C" "sp2" }
+    { "CT"  "C" "sp3" }
+    { "Cj"  "C" "sp2" }
+    { "Cp"  "C" "sp3" }
+    { "H"   "H" "sp3" }
+    { "H1"  "H" "sp3" }
+    { "H2"  "H" "sp3" }
+    { "Ha"  "H" "sp3" }
+    { "Hp"  "H" "sp3" }
+    { "Hc"  "H" "sp3" }
+    { "Ho"  "H" "sp3" }
+    { "HW"  "H" "sp3" }
+    { "Ng"  "N" "sp2" }
+    { "NT"  "N" "sp3" }
+    { "N3"  "N" "sp3" }
+    { "Oh"  "O" "sp3" }
+    { "Os"  "O" "sp3" }
+    { "O"   "O" "sp2" }
+    { "O2"  "O" "sp2" }
+    { "OW"  "O" "sp3" }
+    { "Oy"  "O" "sp3" }
+    { "S"   "S" "sp3" }
+    { "Sm"  "S" "sp3" }
+    { "P"   "P" "sp3" }
+}
+#
+# Load the Lipid17 parameter set.
+#
+glycam_06 = loadamberparams GLYCAM_06j.dat
+lipid_ext = loadamberparams frcmod.lipid_ext
+#
+# Load the Lipid17 master lib file.
+#
+loadoff lipid_ext.lib

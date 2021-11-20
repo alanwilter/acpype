@@ -1,0 +1,40 @@
+#!/bin/csh
+#
+#PBS -l walltime=23:59:00
+#PBS -l nodes=1:ppn=1
+#PBS -N
+
+#
+# --- Set GAUSS environment
+#
+source /software/bin/setgauss_env.csh --g03
+#
+# --- Prepare
+#
+limit stacksize unlimited
+
+#
+# --- Fix variables
+#
+set JOB=
+set WORK=
+#
+# --- Goto work dir
+#
+echo Goto $WORK
+cd $WORK
+#
+# --- Execute
+#
+echo Doing g03 for $JOB in $WORK
+g03 < ${JOB}.gcrt > ${JOB}.gout
+
+if($status != 0) then
+  echo Error
+else
+  echo Finished
+endif
+#
+# --- Exit this script
+#
+exit

@@ -1,0 +1,69 @@
+DIOXY.frcmod- Shahrokh,K; Orendt,A; Yost, G.S; and Cheatham III, T.E. Jour Comp Chem (2011)
+MASS
+fe  55.85
+oa  16.00
+ob  16.00
+
+BOND
+fe-nc       98.00       2.027 
+fe-nd       98.00       2.027
+fe-SH       80.00       2.527
+cg-ha      341.50       1.089 # same as ce-ha  341.5    1.089    SOURCE3
+fe-oa      194.00       1.918
+oa-ob      372.00       1.292
+
+ANGLE
+nc-fe-oa    67.000     89.587 # average angle
+nd-fe-oa    67.000     89.587 # average angle
+fe-oa-ob    58.000    118.384
+SH-fe-oa     0.000    173.611 
+nc-fe-nd    91.000     90.000 # average angle
+fe-nc-cc   142.000    126.884 # average angle
+fe-nd-cd   142.000    126.884 # average angle
+nc-fe-nc     0.000    178.663
+nd-fe-nd     0.000    179.232
+SH-fe-nc    68.00      90.400 # average angle
+SH-fe-nd    68.00      90.400 # average angle
+CT-SH-fe    39.00     105.885
+cc-cc-cg    65.6      124.539 # same as cc-cc-cf    65.6      123.92    SOURCE3
+cd-cd-cg    65.6      124.539 # same as cc-cc-cf    65.6      123.92    SOURCE3
+nc-cc-cg    68.5      125.044 # same as cf-cf-n2    68.5      123.00    SOURCE3
+nd-cd-cg    68.5      125.044 # same as cf-cf-n2    68.5      123.00    SOURCE3
+ha-cc-ha    38.0      117.65  # same as ha-c2-ha    38.0      117.65    SOURCE3
+ha-cd-ha    38.0      117.65  # same as ha-c2-ha    38.0      117.65    SOURCE3
+cc-cg-ha    46.6      116.969 # same as cd-cd-ha    46.6      123.74    SOURCE3
+cd-cg-ha    46.6      116.969 # same as cd-cd-ha    46.6      123.74    SOURCE3
+cd-cg-cc    63.8      126.057 # same as ce-ce-cf    63.8      130.92    SOURCE3
+
+DIHEDRAL
+cd-nd-fe-oa  1     0.000     180.000       2.000
+cc-nc-fe-oa  1     0.000     180.000       2.000
+SH-fe-oa-ob  1     0.000     180.000       2.000
+nc-fe-oa-ob  1     0.000     180.000       2.000
+nd-fe-oa-ob  1     0.000     180.000       2.000
+CT-SH-fe-nc  1     0.00      180.000       2.000 
+CT-SH-fe-nd  1     0.00      180.000       2.000 
+CT-SH-fe-oa  1     0.00      180.000       2.000
+cc-cc-c3-c3  3     0.000     180.000       2.000 
+cc-cc-c3-hc  3     0.000     180.000       2.000 
+cd-cd-c3-c3  3     0.000     180.000       2.000 
+cd-cd-c3-hc  3     0.000     180.000       2.000 
+X -cg-cd-X   4     16.00     180.000       2.000 
+X -cg-cc-X   4     16.00     180.000       2.000 
+cg-cc-nc-fe  1     0.000     180.000       2.000 
+cg-cd-nd-fe  1     0.000     180.000       2.000 
+cc-cc-nc-fe  1     0.000     180.000       2.000 
+cd-cd-nd-fe  1     0.000     180.000       2.000 
+nd-fe-nc-cc  1     0.000     180.000       2.000 
+nc-fe-nd-cd  1     0.000     180.000       2.000 
+cc-nc-fe-nc  1     0.000     180.000       2.000 
+cd-nd-fe-nd  1     0.000     180.000       2.000 
+cc-nc-fe-SH  1     0.000     180.000       2.000 
+cd-nd-fe-SH  1     0.000     180.000       2.000 
+
+IMPROPER
+
+NONBON
+fe 1.3    0.002
+oa 1.6612 0.21
+ob 1.6612 0.21

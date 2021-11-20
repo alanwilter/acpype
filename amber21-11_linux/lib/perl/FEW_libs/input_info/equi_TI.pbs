@@ -1,0 +1,115 @@
+#!/bin/csh
+#PBS -N
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=48:00:00
+#PBS -l cput=192:00:00
+#PBS -l mem=1gb
+#PBS -q wrkst
+#PBS -o
+#PBS -e
+#PBS -V
+
+#
+# --- Prepare calculation
+#
+limit stacksize unlimited
+set PROC=4
+set DO_PARALLEL="/home/src/amber16/bin/mpirun -np $PROC -machinefile $PBS_NODEFILE"
+set EXE="/home/src/amber16/bin/sander.MPI"
+
+################################################################################
+#      Do not modify this part of the script
+#
+#
+# --- Fix variables
+#
+set SCRIPT=
+set PATH=
+set DIFF=
+#
+# --- Variables to be modified before new queueing
+#
+@ START=
+@ END=
+#
+# --- Goto work dir
+#
+echo Goto $PATH
+cd $PATH
+#
+# --- Init for loop
+#
+@ COUNT=$START
+if($COUNT < 10) then
+  set COUNTEXP = '0'$COUNT
+else if($COUNT < 100) then
+  set COUNTEXP = $COUNT
+else
+  set COUNTEXP = $COUNT
+endif
+#
+# --- Save copy of this script
+#
+cp $SCRIPT ${SCRIPT}_${COUNTEXP}
+#
+# --- Loop
+#
+if($COUNT < $END) then
+
+echo "=>> Processing " $COUNT
+echo $HOSTNAME
+
+# Execute
+#
+# Equilibration
+set EQUI=group_equi01_lX
+echo EQUI $EQUI
+$DO_PARALLEL $EXE -O -ng 2 -groupfile $EQUI
+
+PRODUCTION
+
+# Prepare for new run
+if($status != 0) then
+  echo Error in ${COUNTEXP}\. run
+  exit
+else
+  @ COUNT = $COUNT + $DIFF
+  if($COUNT < 10) then
+    set COUNTEXP = '0'$COUNT
+  else if($COUNT < 100) then
+    set COUNTEXP = $COUNT
+  else
+    set COUNTEXP = $COUNT
+  endif
+endif
+
+#
+# --- Save results
+#
+echo Zipping
+gzip -9 *.mdcrd
+
+#
+# --- Modify this script
+#
+echo Modifying $SCRIPT
+set C1="s/^@ START=[0-9]*/@ START="${COUNT}"/"
+set C2="s/^set EQUI=.*/set EQUI=group_equi01_l"${COUNTEXP}"/"
+set C3=PRODUCTION
+cat $SCRIPT | sed -e "$C1" | sed -e "$C2" 
+mv tmp $SCRIPT
+
+#
+#      End of part of the script that should not be modified.
+#
+###############################################################################
+
+#
+# --- Re-queue
+#
+ssh cpcmaster qsub $SCRIPT
+endif
+#
+# --- Exit this script
+#
+exit

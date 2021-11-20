@@ -1,0 +1,33 @@
+# Shahrokh,K; Orendt,A; Yost, G.S; and Cheatham III, T.E. Jour Comp Chem (2011)
+# Ferric penta-coordinate high-spin (IC6) cysteine coordinates and atomic charges
+@<TRIPOS>MOLECULE
+CYP-IC6
+10 9 1 0 0
+SMALL
+USER_CHARGES
+
+
+@<TRIPOS>ATOM
+     1  N         -2.690000   -1.457000    2.883000 N        1 CYP   -0.4157 ****
+     2  H         -2.954000   -2.257000    3.451000 H        1 CYP    0.2719 ****
+     3  CA        -1.300000   -1.504000    2.444000 CT       1 CYP    0.0469 ****
+     4  HA        -1.264000   -1.538000    1.349000 H1       1 CYP    0.0304 ****
+     5  CB        -0.520000   -0.236000    2.893000 CT       1 CYP   -0.0381 ****
+     6  HB2       -0.514000   -0.197000    3.988000 H1       1 CYP    0.0665 ****
+     7  HB3       -1.096000    0.616000    2.527000 H1       1 CYP    0.0665 ****
+     8  SG         1.231000   -0.084000    2.308000 SH       1 CYP   -0.4602 ****
+     9  C         -0.739000   -2.831000    3.001000 C        1 CYP    0.5973 ****
+    10  O         -1.427000   -3.580000    3.709000 O        1 CYP   -0.5679 ****
+@<TRIPOS>BOND
+   1     1    3 1
+   2     1    2 1
+   3     3    4 1
+   4     3    5 1
+   5     3    9 1
+   6     5    6 1
+   7     5    7 1
+   8     5    8 1
+   9     9   10 2
+
+@<TRIPOS>SUBSTRUCTURE
+     1 CYP        1 RESIDUE           4 A     CYP     0 ROOT

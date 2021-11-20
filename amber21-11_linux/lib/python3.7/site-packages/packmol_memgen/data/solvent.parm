@@ -1,0 +1,14 @@
+#DEN TFE                                 sigmaaldrich
+#DEN ETOH MEOH DMSO ACT ACN BNZ TOL CLO  PubChem
+#Solvent        Density[g/cm3] MolecularWeight[g/mol]   Charge    Name                          ParamSource
+WAT             0.997                18                   0       Water                         "-"
+DMS             1.100                78                   0       Dimethylsulfoxide             "Strader_&_Feller_10.1021/jp013658n"
+TFE             1.38                100                   0       2,2,2-Trifluoroethanol        "Vymetal_&_Vondrasek_10.1021/jp505861b"
+ACN             0.79                 41                   0       Acetonitrile                  "Nikitin_&_Lyubartsev_10.1002/jcc.20721"
+MOH             0.79                 32                   0       Methanol                      "Cieplak_et._al_10.1002/jcc.1065"
+CL3             1.48                119                   0       Chloroform                    "Cieplak_et._al_10.1002/jcc.1065"
+NMA             0.94                 73                   0       N-Methylacetamide             "Cieplak_et._al_10.1002/jcc.1065"
+ACT             0.79                 58                   0       Acetone                       "OPLS-NB_+_AMBER_Lexa_et._al_10.1021/ci400741u"
+BNZ             0.88                 78                   0       Benzene                       "OPLS-NB_+_AMBER_Lexa_et._al_10.1021/ci400741u"
+IPH             1.04                 94                   0       Phenol                        "OPLS-NB_+_AMBER_Lexa_et._al_10.1021/ci400741u"
+siWT4           0.997               198                   0       Sirah_Water                   "-"

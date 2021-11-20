@@ -1,0 +1,20 @@
+source leaprc.ff99SB
+addAtomTypes {
+  {"FT" "Fe" "sp3"}
+  {"FB" "Fe" "sp3"}
+  {"ST" "S"  "sp3"}
+  {"SB" "S"  "sp3"}
+  {"SM" "S"  "sp3"}
+  {"cl" "Cl"  "sp3"}
+}
+loadoff CYFpm3.off
+loadoff SF4pm3.off
+loadamberparams potout.file
+x = loadPdb hpi3.pdb
+bond x.1.FE1 x.34.SG
+bond x.1.FE2 x.37.SG
+bond x.1.FE3 x.65.SG
+bond x.1.FE4 x.51.SG
+saveamberparm x prmtopp prmcrdp
+quit
+

@@ -1,0 +1,118 @@
+@TIW
+################################################################################
+# Command file for TI simulation setup
+################################################################################
+# Location of input and output directories / file(s)
+#
+# lig_struct_path: Folder containing the ligand input file(s)
+# output_path: Basis directory in which all setup and analysis folders will
+#              be generated. The directory must be identical with the
+#              'output_path' directory used for setup of the MD simulations.
+lig_struct_path              /home/user/work_dir/structs
+output_path                  /home/user/work_dir
+
+################################################################################
+# Parameters required for TI simulation setup: 
+# The following parameters have to be specified and need to be identical
+# in all subsequent runs for one system / TI-setup
+#
+# ti_simulation_setup: Request setup of TI simulation
+# charge_method: Charge method that shall be used, either "resp" or "am1"
+# lig_name_v0_struct: Name of start-ligand - Must be identical to the name of
+#                     the file in the "structs" folder used for generation of
+#                     parameter and library files with the common MD setup
+#                     functionality of FEW.
+# lig_name_v1_struct: Name of end-ligand - Must be identical to the name of
+#                     the file in the "structs" folder used for generation of
+#                     parameter and library files with the common MD setup
+#                     functionality of FEW.
+# lig_alias_v0: Alias that shall be used for the identification of the
+#               start-ligand. The alias must consist of 3 characters.
+# lig_alias_v1: Alias that shall be used for the identification of the
+#               end-ligand. The alias must consist of 3 characters.
+# softcore_mask_v0: Soft core atom mask for start-structure, specifying the
+#                   atoms of the start-structure (state V0) that shall be
+#                   regarded as soft core using the format
+#                   <lig_alias_v0>@<atom name list separated by comma>
+# softcore_mask_v1: Soft core atom mask for end-structure, specifying the
+#                   atoms of the end-structure (state V1) that shall be
+#                   regarded as soft core using the format
+#                   <lig_alias_v1>@<atom name list separated by comma>
+ti_simulation_setup         1
+charge_method               am1
+lig_name_v0_struct          Lig_5
+lig_name_v1_struct          Lig_17
+lig_alias_v0                L05
+lig_alias_v1                L17
+softcore_mask_v0            L05@Cl1
+softcore_mask_v1            L17@Br1
+#
+################################################################################
+# 1) Parameters for preparation of coordinate and topology files of solvated
+#    systems of start- and end-structures for TI simulations
+#
+# A) Generation of atom association list based on ligand mol2 files of
+#    start and end structures
+#
+# prepare_match_list: Request creation of matching list
+prepare_match_list          1
+#
+# B) Setup of coordinate and topology files
+#
+# It is required that RESTRT (coordinate) and topology files for the ligand and
+# complex of the start structure exist. These can be generated with the common
+# MD setup functionality of FEW.
+#
+# prepare_inpcrd_prmtop: Request setup of coordinate and topology files
+# lig_inpcrd_v0: Coordinate file (restart file) of ligand - start structure
+# com_inpcrd_v0: Coordinate file (restart file) of complex - start structure
+# lig_prmtop_v0: Topology of ligand - start structure
+# com_prmtop_v0: Topology of complex - start structure
+# chain_termini: Comma separated numbers of terminal residues of chains in
+#                receptor structure.
+# SSbond_file: File with disulfide bridge definitions
+#              
+prepare_inpcrd_prmtop      1
+lig_inpcrd_v0              /home/user/work_dir/MD_am1/Lig_5/lig/equi/md_nvt_red_06.restrt
+com_inpcrd_v0              /home/user/work_dir/MD_am1/Lig_5/com/equi/md_nvt_red_06.restrt
+lig_prmtop_v0              /home/user/work_dir/MD_am1/Lig_5/cryst/Lig_5_solv_lig.top
+com_prmtop_v0              /home/user/work_dir/MD_am1/Lig_5/cryst/Lig_5_solv_com.top
+chain_termini              234
+SSbond_file                /home/src/FEW/examples/input_info/SSbridges.txt
+
+# 2) Setup scripts for TI MD
+#
+# General parameters
+#
+# ti_batch_path: Root path to be used in setup of batch files
+ti_batch_path              /home/user/cluster_work_dir
+#
+# A) Setup of scripts for equilibration
+#
+# ti_equil: Request generation of scripts for TI equilibration input
+# ti_equil_batch_template: Batch template file for equilibration phase of
+#                          TI simulations.
+# ti_equil_lambda: Values of lambda that shall be used in the calculation
+#                  in ascending order. Please specify only the decimal digits,
+#                  e.g. 1 for lambda 0.1, 05 for lambda 0.05.
+ti_equil                   0
+ti_equil_batch_template    /home/src/FEW/examples/input_info/equi_TI.pbs
+ti_equil_lambda            2,4,6,8
+#
+# B) Setup scripts for production
+#
+#    ATTENTION: This setup step can only be conducted if the equilibration
+#               calculations have been completed.
+#
+# ti_production: Request generation of scripts for TI production input.
+#                This setup step requires that the equilibration output is
+#                present in the corresponding 'equi' folder.
+# ti_prod_lambda: Lambda steps for which the production shall be run;
+#                 separated by comma and in ascending order. Please specify
+#                 only the decimal digits, e.g. 1 for lambda 0.1.
+# total_ti_prod_time: Total production time requested (in ns)
+# ti_prod_batch_template: Batch template for TI production simulations
+ti_production              0
+ti_prod_lambda             2,4,6,8
+total_ti_prod_time         5,5,5,10
+ti_prod_batch_template     /home/src/FEW/examples/input_info/prod_TI.pbs

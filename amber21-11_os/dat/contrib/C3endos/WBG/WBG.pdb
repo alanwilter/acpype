@@ -1,0 +1,131 @@
+REMARK 999 wybutosine                                                           
+HETATM    1  P   WBG     1      -5.937  -6.485   2.457  1.00  0.00           P  
+HETATM    2  O1P WBG     1      -4.529  -6.748   2.101  1.00  0.00           O  
+HETATM    3  O2P WBG     1      -6.965  -7.549   2.238  1.00  0.00           O  
+HETATM    4  O5' WBG     1      -6.368  -5.148   1.695  1.00  0.00           O  
+HETATM    5  C5' WBG     1      -7.678  -4.572   1.900  1.00  0.00           C  
+HETATM    6  C4' WBG     1      -7.778  -3.238   1.204  1.00  0.00           C  
+HETATM    7  O4' WBG     1      -6.763  -2.335   1.720  1.00  0.00           O  
+HETATM    8  C3' WBG     1      -7.488  -3.264  -0.286  1.00  0.00           C  
+HETATM    9  O3' WBG     1      -8.626  -3.746  -0.997  1.00  0.00           O  
+HETATM   10  C2' WBG     1      -7.210  -1.791  -0.545  1.00  0.00           C  
+HETATM   11  O2' WBG     1      -8.381  -0.994  -0.485  1.00  0.00           O  
+HETATM   12  C1' WBG     1      -6.354  -1.449   0.680  1.00  0.00           C  
+HETATM   13  N9  WBG     1      -4.917  -1.627   0.425  1.00  0.00           N  
+HETATM   14  C8  WBG     1      -4.280  -2.854   0.456  1.00  0.00           C  
+HETATM   15  N7  WBG     1      -3.030  -2.786   0.231  1.00  0.00           N  
+HETATM   16  C5  WBG     1      -2.780  -1.449   0.033  1.00  0.00           C  
+HETATM   17  C6  WBG     1      -1.509  -0.830  -0.250  1.00  0.00           C  
+HETATM   18  O6  WBG     1      -0.449  -1.369  -0.359  1.00  0.00           O  
+HETATM   19  N1  WBG     1      -1.652   0.563  -0.389  1.00  0.00           N  
+HETATM   20  C2  WBG     1      -2.823   1.264  -0.277  1.00  0.00           C  
+HETATM   21  N2  WBG     1      -2.681   2.521  -0.469  1.00  0.00           N  
+HETATM   22  N3  WBG     1      -4.012   0.629   0.015  1.00  0.00           N  
+HETATM   23  C4  WBG     1      -3.936  -0.728   0.152  1.00  0.00           C  
+HETATM   24 1H5' WBG     1      -8.378  -5.222   1.417  1.00  0.00           H  
+HETATM   25 2H5' WBG     1      -7.766  -4.376   2.948  1.00  0.00           H  
+HETATM   26  H4' WBG     1      -8.791  -2.940   1.378  1.00  0.00           H  
+HETATM   27  H3' WBG     1      -6.690  -3.906  -0.595  1.00  0.00           H  
+HETATM   28  H2' WBG     1      -6.781  -1.616  -1.509  1.00  0.00           H  
+HETATM   29 2HO' WBG     1      -9.145  -1.558  -0.345  1.00  0.00           H  
+HETATM   30  H1' WBG     1      -6.494  -0.420   0.939  1.00  0.00           H  
+HETATM   31  H8  WBG     1      -4.836  -3.747   0.655  1.00  0.00           H  
+HETATM   32  C10 WBG     1      -5.232   1.422   0.086  1.00  0.00           C  
+HETATM   33  C11 WBG     1      -0.825   4.081  -1.003  1.00  0.00           C  
+HETATM   34  C12 WBG     1      -1.331   2.700  -0.730  1.00  0.00           C  
+HETATM   35  C13 WBG     1      -0.667   1.532  -0.693  1.00  0.00           C  
+HETATM   36  C14 WBG     1       0.781   1.205  -0.907  1.00  0.00           C  
+HETATM   37  C15 WBG     1       1.539   0.926   0.399  1.00  0.00           C  
+HETATM   38  C16 WBG     1       2.937   0.333   0.161  1.00  0.00           C  
+HETATM   39  C17 WBG     1       3.652   0.256   1.515  1.00  0.00           C  
+HETATM   40  O30 WBG     1       3.559  -0.688   2.220  1.00  0.00           O  
+HETATM   41  O31 WBG     1       4.321   1.330   1.941  1.00  0.00           O  
+HETATM   42  C18 WBG     1       4.728   2.378   1.093  1.00  0.00           C  
+HETATM   43  N40 WBG     1       2.813  -0.969  -0.443  1.00  0.00           N  
+HETATM   44  C19 WBG     1       3.871  -1.722  -0.821  1.00  0.00           C  
+HETATM   45  O32 WBG     1       3.811  -2.861  -1.170  1.00  0.00           O  
+HETATM   46  O33 WBG     1       5.005  -1.021  -0.787  1.00  0.00           O  
+HETATM   47  C20 WBG     1       6.183  -1.721  -1.144  1.00  0.00           C  
+HETATM   48  H20 WBG     1      -4.951   2.454  -0.027  1.00  0.00           H  
+HETATM   49  H21 WBG     1      -5.913   1.155  -0.711  1.00  0.00           H  
+HETATM   50  H22 WBG     1      -5.717   1.293   1.043  1.00  0.00           H  
+HETATM   51  H23 WBG     1      -1.338   4.508  -1.858  1.00  0.00           H  
+HETATM   52  H24 WBG     1       0.239   4.090  -1.204  1.00  0.00           H  
+HETATM   53  H25 WBG     1      -1.017   4.727  -0.152  1.00  0.00           H  
+HETATM   54  H26 WBG     1       1.238   2.051  -1.410  1.00  0.00           H  
+HETATM   55  H27 WBG     1       0.872   0.360  -1.572  1.00  0.00           H  
+HETATM   56  H28 WBG     1       1.633   1.849   0.965  1.00  0.00           H  
+HETATM   57  H29 WBG     1       0.984   0.234   1.019  1.00  0.00           H  
+HETATM   58  H30 WBG     1       3.487   0.968  -0.516  1.00  0.00           H  
+HETATM   59  H31 WBG     1       5.318   3.039   1.711  1.00  0.00           H  
+HETATM   60  H32 WBG     1       3.885   2.930   0.698  1.00  0.00           H  
+HETATM   61  H33 WBG     1       5.341   2.012   0.280  1.00  0.00           H  
+HETATM   62  H34 WBG     1       1.971  -1.484  -0.292  1.00  0.00           H  
+HETATM   63  H35 WBG     1       6.340  -2.558  -0.480  1.00  0.00           H  
+HETATM   64  H36 WBG     1       6.117  -2.077  -2.161  1.00  0.00           H  
+HETATM   65  H37 WBG     1       6.989  -1.009  -1.047  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   24   25
+CONECT    6    7    8    5   26
+CONECT    7   12    6
+CONECT    8   10    6    9   27
+CONECT    9    8
+CONECT   10   12    8   11   28
+CONECT   11   10   29
+CONECT   12   13    7   10   30
+CONECT   13   23   14   12
+CONECT   14   15   13   31
+CONECT   15   16   14
+CONECT   16   23   17   15
+CONECT   17   19   16   18
+CONECT   18   17
+CONECT   19   20   17   35
+CONECT   20   19   21   22
+CONECT   21   20   34
+CONECT   22   20   32   23
+CONECT   23   22   16   13
+CONECT   24    5
+CONECT   25    5
+CONECT   26    6
+CONECT   27    8
+CONECT   28   10
+CONECT   29   11
+CONECT   30   12
+CONECT   31   14
+CONECT   32   22   48   49   50
+CONECT   33   34   51   52   53
+CONECT   34   21   33   35
+CONECT   35   19   34   36
+CONECT   36   35   37   54   55
+CONECT   37   36   38   56   57
+CONECT   38   37   39   43   58
+CONECT   39   38   40   41
+CONECT   40   39
+CONECT   41   39   42
+CONECT   42   41   59   60   61
+CONECT   43   38   44   62
+CONECT   44   43   45   46
+CONECT   45   44
+CONECT   46   44   47
+CONECT   47   46   63   64   65
+CONECT   48   32
+CONECT   49   32
+CONECT   50   32
+CONECT   51   33
+CONECT   52   33
+CONECT   53   33
+CONECT   54   36
+CONECT   55   36
+CONECT   56   37
+CONECT   57   37
+CONECT   58   38
+CONECT   59   42
+CONECT   60   42
+CONECT   61   42
+CONECT   62   43
+CONECT   63   47
+CONECT   64   47
+CONECT   65   47

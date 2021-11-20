@@ -1,0 +1,15 @@
+second step of minimization
+&cntrl
+  imin   = 1,
+  ntxo   = 1,
+  maxcyc = 10000,
+  ncyc   = 2500,
+  ntb    = 1,
+  ntr    = 1,
+  cut    = 10,
+&end
+Hold the solute fixed
+10.0
+RES 1 100
+END
+END

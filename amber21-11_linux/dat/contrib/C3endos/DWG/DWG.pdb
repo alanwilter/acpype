@@ -1,0 +1,79 @@
+REMARK 999 4-demethylwyosine                                                    
+HETATM    1  P   DWG     1       7.262   0.691   2.412  1.00  0.00           P  
+HETATM    2  O1P DWG     1       6.707   2.055   2.321  1.00  0.00           O  
+HETATM    3  O2P DWG     1       8.719   0.468   2.161  1.00  0.00           O  
+HETATM    4  O5' DWG     1       6.395  -0.231   1.436  1.00  0.00           O  
+HETATM    5  C5' DWG     1       6.637  -1.655   1.358  1.00  0.00           C  
+HETATM    6  C4' DWG     1       5.588  -2.317   0.499  1.00  0.00           C  
+HETATM    7  O4' DWG     1       4.269  -2.078   1.059  1.00  0.00           O  
+HETATM    8  C3' DWG     1       5.468  -1.768  -0.911  1.00  0.00           C  
+HETATM    9  O3' DWG     1       6.507  -2.296  -1.732  1.00  0.00           O  
+HETATM   10  C2' DWG     1       4.090  -2.284  -1.297  1.00  0.00           C  
+HETATM   11  O2' DWG     1       4.073  -3.683  -1.521  1.00  0.00           O  
+HETATM   12  C1' DWG     1       3.317  -2.013  -0.001  1.00  0.00           C  
+HETATM   13  N9  DWG     1       2.674  -0.691   0.001  1.00  0.00           N  
+HETATM   14  C8  DWG     1       3.293   0.546   0.001  1.00  0.00           C  
+HETATM   15  N7  DWG     1       2.471   1.520   0.001  1.00  0.00           N  
+HETATM   16  C5  DWG     1       1.222   0.939   0.000  1.00  0.00           C  
+HETATM   17  C6  DWG     1      -0.082   1.572  -0.001  1.00  0.00           C  
+HETATM   18  O6  DWG     1      -0.353   2.730  -0.001  1.00  0.00           O  
+HETATM   19  N1  DWG     1      -1.098   0.590  -0.001  1.00  0.00           N  
+HETATM   20  C2  DWG     1      -0.947  -0.764  -0.001  1.00  0.00           C  
+HETATM   21  N2  DWG     1      -2.053  -1.407  -0.000  1.00  0.00           N  
+HETATM   22  N3  DWG     1       0.318  -1.299  -0.001  1.00  0.00           N  
+HETATM   23  C4  DWG     1       1.353  -0.419   0.000  1.00  0.00           C  
+HETATM   24 1H5' DWG     1       7.571  -1.779   0.850  1.00  0.00           H  
+HETATM   25 2H5' DWG     1       6.510  -2.041   2.347  1.00  0.00           H  
+HETATM   26  H4' DWG     1       5.898  -3.341   0.471  1.00  0.00           H  
+HETATM   27  H3' DWG     1       5.566  -0.707  -1.009  1.00  0.00           H  
+HETATM   28  H2' DWG     1       3.719  -1.834  -2.194  1.00  0.00           H  
+HETATM   29 2HO' DWG     1       4.963  -4.031  -1.440  1.00  0.00           H  
+HETATM   30  H1' DWG     1       2.534  -2.734   0.107  1.00  0.00           H  
+HETATM   31  H8  DWG     1       4.361   0.621   0.002  1.00  0.00           H  
+HETATM   32  C10 DWG     1      -4.487  -0.802   0.001  1.00  0.00           C  
+HETATM   33  C11 DWG     1      -3.035  -0.424   0.000  1.00  0.00           C  
+HETATM   34  C12 DWG     1      -2.477   0.798  -0.000  1.00  0.00           C  
+HETATM   35  H20 DWG     1      -4.578  -1.880  -0.002  1.00  0.00           H  
+HETATM   36  H21 DWG     1      -4.999  -0.415  -0.873  1.00  0.00           H  
+HETATM   37  H22 DWG     1      -4.996  -0.421   0.880  1.00  0.00           H  
+HETATM   38  H23 DWG     1      -2.879   1.786   0.000  1.00  0.00           H  
+HETATM   39  H24 DWG     1       0.416  -2.288   0.002  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   24   25
+CONECT    6    7    8    5   26
+CONECT    7   12    6
+CONECT    8   10    6    9   27
+CONECT    9    8
+CONECT   10   12    8   11   28
+CONECT   11   10   29
+CONECT   12   13    7   10   30
+CONECT   13   23   14   12
+CONECT   14   15   13   31
+CONECT   15   16   14
+CONECT   16   23   17   15
+CONECT   17   19   16   18
+CONECT   18   17
+CONECT   19   20   17   34
+CONECT   20   19   21   22
+CONECT   21   20   33
+CONECT   22   20   23   39
+CONECT   23   22   16   13
+CONECT   24    5
+CONECT   25    5
+CONECT   26    6
+CONECT   27    8
+CONECT   28   10
+CONECT   29   11
+CONECT   30   12
+CONECT   31   14
+CONECT   32   33   35   36   37
+CONECT   33   21   32   34
+CONECT   34   19   33   38
+CONECT   35   32
+CONECT   36   32
+CONECT   37   32
+CONECT   38   34
+CONECT   39   22

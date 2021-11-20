@@ -1,0 +1,43 @@
+Cobalt hexammine: T.E. Cheatham & P.A. Kollman, Structure 5:1297-1311, 1997
+
+MASS
+CO 58.9332                           cobalt
+NX 14.01
+NY 14.01
+NZ 14.01
+HX  1.008
+
+BOND
+CO-NX  300.0    2.0702      hexaamine cobalt
+CO-NY  300.0    2.0702      hexaamine cobalt
+CO-NZ  300.0    2.0702      hexaamine cobalt
+HX-NX  500.0    1.037       hexaamine cobalt
+HX-NY  500.0    1.037       hexaamine cobalt
+HX-NZ  500.0    1.037       hexaamine cobalt
+
+ANGLE
+NX-CO-NX    70.0      180.0     hexaamine cobalt
+NY-CO-NY    70.0      180.0     hexaamine cobalt
+NZ-CO-NZ    70.0      180.0     hexaamine cobalt
+NX-CO-NY    70.0       90.0     hexaamine cobalt
+NX-CO-NZ    70.0       90.0     hexaamine cobalt
+NY-CO-NZ    70.0       90.0     hexaamine cobalt
+HX-NX-HX    35.0      109.50    hexaamine cobalt, after lys
+HX-NY-HX    35.0      109.50    hexaamine cobalt, after lys
+HX-NZ-HX    35.0      109.50    hexaamine cobalt, after lys
+HX-NX-CO    35.0      109.50    hexaamine cobalt, after lys
+HX-NY-CO    35.0      109.50    hexaamine cobalt, after lys
+HX-NZ-CO    35.0      109.50    hexaamine cobalt, after lys
+
+DIHEDRAL
+X -CO-NX-X    1    0.00        180.0             2.         hexaamine cobalt
+X -CO-NY-X    1    0.00        180.0             2.         hexaamine cobalt
+X -CO-NZ-X    1    0.00        180.0             2.         hexaamine cobalt
+
+NONBON
+  CO          0.5     0.01               hexaamine cobalt
+  NX          1.8240  0.1700             hexaamine cobalt
+  NY          1.8240  0.1700             hexaamine cobalt
+  NZ          1.8240  0.1700             hexaamine cobalt
+  HX          0.6000  0.0157             hexaamine cobalt
+ 

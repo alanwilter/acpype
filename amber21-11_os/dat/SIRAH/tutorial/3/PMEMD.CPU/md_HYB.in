@@ -1,0 +1,31 @@
+Multiscale model of DNA: 10ns production
+ &cntrl
+  imin = 0, ntx = 5, irest = 1, nmropt = 1,
+
+  nstlim = 5000000, dt = 0.002,
+  ntpr = 2500, ntwx = 2500, ntwr = 2500, ioutfm=1, ntxo=2,
+
+  ntb = 0, ntp = 0,
+
+  ntt = 3, gamma_ln = 50.0, ig = -1,
+  temp0 = 298.0, tempi = 298.0,
+
+  ntc = 2, ntf = 2,
+
+  cut = 18,
+  igb = 1, saltcon = 0.15, rgbmax = 10.0, rbornstat = 0,
+
+  ntr = 0,
+ &end
+ /
+ &wt type='END'
+ /
+ &rst iat=3,1540,  ifvari=0, ialtd=0, r1=2.2, r2=2.5, r3=3.3, r4=3.6, rk2=3.0, rk3=3.0,
+ /
+ &rst iat=5,1542,  ifvari=0, ialtd=0, r1=2.2, r2=2.5, r3=3.3, r4=3.6, rk2=3.0, rk3=3.0,
+ /
+ &rst iat=769,774, ifvari=0, ialtd=0, r1=2.2, r2=2.5, r3=3.3, r4=3.6, rk2=3.0, rk3=3.0,
+ /
+ &rst iat=771,776, ifvari=0, ialtd=0, r1=2.2, r2=2.5, r3=3.3, r4=3.6, rk2=3.0, rk3=3.0,
+ /
+ &end

@@ -1,0 +1,91 @@
+#!/bin/csh
+#PBS -N
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=48:00:00
+#PBS -l cput=192:00:00
+#PBS -l mem=1gb
+#PBS -q wrkst
+#PBS -o
+#PBS -e
+#PBS -V
+
+#
+# --- Prepare calculation
+#
+limit stacksize unlimited
+set PROC=4
+set DO_PARALLEL="/home/src/amber16/bin/mpirun -np $PROC -machinefile $PBS_NODEFILE"
+set EXE="/home/src/amber16/bin/sander.MPI"
+
+################################################################################
+#      Do not modify this part of the script
+#
+#
+# --- Fix variables
+#
+set PRMTOP=
+set INPCRD=
+set SCRIPT=
+set PATH=
+
+#
+# --- Prepare calculation 
+#
+cd $PATH/equi
+
+#
+#      End of part of the script that should not be modified.
+#
+###############################################################################
+
+#
+# --- Equilibration
+#
+set OLD=$INPCRD
+set NEW=min_ntr_h
+$DO_PARALLEL $EXE -O -i $NEW.in -o $NEW.out -p $PRMTOP -c $OLD -r $NEW.restrt -ref $INPCRD
+
+set OLD=${NEW}.restrt
+set NEW=min_ntr_l
+$DO_PARALLEL $EXE -O -i $NEW.in -o $NEW.out -p $PRMTOP -c $OLD -r $NEW.restrt -ref $INPCRD
+
+set OLD=${NEW}.restrt
+set NEW=md_nvt_ntr
+$DO_PARALLEL $EXE -O -i $NEW.in -o $NEW.out -p $PRMTOP -c $OLD -r $NEW.restrt -ref $INPCRD -x $NEW.mdcrd
+
+set OLD=${NEW}.restrt
+set NEW=md_npt_ntr
+$DO_PARALLEL $EXE -O -i $NEW.in -o $NEW.out -p $PRMTOP -c $OLD -r $NEW.restrt -ref $INPCRD -x ${NEW}.mdcrd
+
+set OLD=${NEW}.restrt
+set NEW=md_nvt_red_01
+$DO_PARALLEL $EXE -O -i ${NEW}.in -o ${NEW}.out -p $PRMTOP -c $OLD -r ${NEW}.restrt -ref md_npt_ntr.restrt -x ${NEW}.mdcrd
+
+set OLD=${NEW}.restrt
+set NEW=md_nvt_red_02
+$DO_PARALLEL $EXE -O -i ${NEW}.in -o ${NEW}.out -p $PRMTOP -c $OLD -r ${NEW}.restrt -ref md_npt_ntr.restrt -x ${NEW}.mdcrd
+
+set OLD=${NEW}.restrt
+set NEW=md_nvt_red_03
+$DO_PARALLEL $EXE -O -i ${NEW}.in -o ${NEW}.out -p $PRMTOP -c $OLD -r ${NEW}.restrt -ref md_npt_ntr.restrt -x ${NEW}.mdcrd
+
+set OLD=${NEW}.restrt
+set NEW=md_nvt_red_04
+$DO_PARALLEL $EXE -O -i ${NEW}.in -o ${NEW}.out -p $PRMTOP -c $OLD -r ${NEW}.restrt -ref md_npt_ntr.restrt -x ${NEW}.mdcrd
+
+set OLD=${NEW}.restrt
+set NEW=md_nvt_red_05
+$DO_PARALLEL $EXE -O -i ${NEW}.in -o ${NEW}.out -p $PRMTOP -c $OLD -r ${NEW}.restrt -ref md_npt_ntr.restrt -x ${NEW}.mdcrd
+
+set OLD=${NEW}.restrt
+set NEW=md_nvt_red_06
+$DO_PARALLEL $EXE -O -i ${NEW}.in -o ${NEW}.out -p $PRMTOP -c $OLD -r ${NEW}.restrt -x ${NEW}.mdcrd
+
+
+#
+# --- Save results
+#
+echo Zipping
+gzip -9 *.mdcrd
+
+exit

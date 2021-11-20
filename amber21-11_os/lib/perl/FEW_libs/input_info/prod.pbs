@@ -1,0 +1,133 @@
+#!/bin/csh
+#
+# MD chains with pmemd using Intel MPI
+#
+#PBS -N
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=48:00:00
+#PBS -l cput=192:00:00
+#PBS -l mem=1gb
+#PBS -q wrkst
+#PBS -o
+#PBS -e
+#PBS -V
+
+#
+# --- Prepare calculation
+#
+limit stacksize unlimited
+set PROC=4
+set DO_PARALLEL="/home/src/amber16/bin/mpirun -np $PROC -machinefile $PBS_NODEFILE"
+set EXE="/home/src/amber16/bin"
+
+################################################################################
+#      Do not modify this part of the script
+#
+#
+# --- Fix variables
+#
+set BASE=
+set SCRIPT=
+set SY=
+set PRMTOP=
+set WORK=
+#
+# --- Variables to be modified before new queueing
+#
+@ START=
+@ END=
+set RESOLD=
+echo RESOLD $RESOLD
+#
+# --- Goto work dir
+#
+echo Goto $WORK
+cd $WORK
+#
+# --- Init for loop
+#
+@ COUNT=$START
+if($COUNT < 10) then
+  set COUNTEXP = '00'$COUNT
+else if($COUNT < 100) then
+  set COUNTEXP = '0'$COUNT
+else
+  set COUNTEXP = $COUNT
+endif
+#
+# --- Save copy of this script
+#
+cp $SCRIPT ${SCRIPT}_${COUNTEXP}
+#
+# --- Loop
+#
+if($COUNT < $END) then
+
+  echo
+  echo "=>> Processing " $COUNT
+  echo $HOSTNAME
+
+# Execute
+  echo Doing $DO_PARALLEL $EXE/pmemd.MPI for $SY in $WORK
+  $DO_PARALLEL $EXE/pmemd.MPI -O \
+                                        -i ${BASE}_${COUNTEXP}.in \
+                                        -o ${BASE}_${COUNTEXP}.out \
+                                        -c $RESOLD \
+                                        -p $PRMTOP \
+                                        -r ${BASE}_${COUNTEXP}.restrt \
+                                        -x ${BASE}_${COUNTEXP}.mdcrd
+
+# Prepare for new run
+  if($status != 0) then
+    echo Error in ${COUNTEXP}\. run
+    exit
+  else
+    set RESOLD=${BASE}_${COUNTEXP}.restrt
+
+    @ COUNT++
+    if($COUNT < 10) then
+      set COUNTEXP = '00'$COUNT
+    else if($COUNT < 100) then
+      set COUNTEXP = '0'$COUNT
+    else
+      set COUNTEXP = $COUNT
+    endif
+
+  endif
+
+#
+# --- Save results
+#
+echo Zipping
+gzip -9 *.mdcrd
+#
+# --- Modify this script
+#
+echo Modifying $SCRIPT
+set COM1="s/^@ START=[0-9]*/@ START="${COUNT}"/"
+@ COUNT--
+if($COUNT < 10) then
+  set COUNTEXP = '00'$COUNT
+else if($COUNT < 100) then
+  set COUNTEXP = '0'$COUNT
+else
+  set COUNTEXP = $COUNT
+endif
+set COM2="s/^set RESOLD=.*/set RESOLD="${BASE}_${COUNTEXP}.restrt"/"
+cat $SCRIPT | sed -e "$COM1" | sed -e "$COM2" > tmp
+mv tmp $SCRIPT
+
+#
+#      End of part of the script that should not be modified.
+#
+###############################################################################
+
+#
+# --- Re-queue
+#
+ssh cpcmaster qsub $SCRIPT
+endif
+#
+# --- Exit this script
+#
+exit

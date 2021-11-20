@@ -1,0 +1,94 @@
+#!/bin/bash
+
+#  prepare Amber and structure factor files needed for xray3-style calculations.
+#  First input is the pdb-identifier: code assumes that $1-sf.cif
+#      and $1.pdb are  available in the current directory
+#  Second (optional) input would be names of cif files needed by phenix.refine
+
+id=$1
+echo "XrayPrep log file for id $id" > $id-prep.log
+ciffiles=$2
+
+#============================================================================
+echo "Running phenix.AmberPrep" 
+phenix.AmberPrep $id.pdb >> $id-prep.log \
+     || { echo "  phenix.AmberPrep:  Program error"; exit 1; }
+
+# create an interactive parmed script (why?)
+cat <<EOF > parmed
+import os
+import sys
+from parmed.scripts import clapp
+clapp()
+EOF
+
+# next only needed for ions: how to automate?
+perl -pi -e 's/CL$/Cl-1/' ${id}_uc.pdb \
+     || { echo "  perl:  Program error"; exit 1; }
+
+echo "creating ${id}_uc.parm7"
+/bin/rm -f ${id}_uc.parm7 foo.parm7
+
+phenix.python ./parmed -n <<EOF >> $id-prep.log \
+     || { echo "  parmed:   Program error"; exit 1; }
+parm 4amber_$id.prmtop
+addPdb ${id}_uc.pdb elem
+lmod
+parmout foo.parm7
+go
+EOF
+
+add_xray -i foo.parm7 -o ${id}_uc.parm7 >> $id-prep.log \
+     || { echo "  add_xray: Program error"; exit 1; }
+
+/bin/mv 4amber_$id.rst7 ${id}_uc.rst7
+
+#============================================================================
+echo "Making input mtz file"
+phenix.cif_as_mtz $id-sf.cif  >> $id-prep.log \
+     || { echo "  phenix.cif_as_mtz:  Program error"; exit 1; }
+
+echo "Running zero-cycle phenix.refine, filter outliers, possibly convert I to F"
+phenix.refine  \
+   4phenix_$id.pdb $id-sf.mtz $ciffiles \
+   refinement.input.xray_data.r_free_flags.generate=True \
+   refinement.main.number_of_macro_cycles=0 \
+   xray_data.outliers_rejection=True \
+   prefix=cdl serial=1 \
+   write_geo=False cdl=True --overwrite >> $id-prep.log \
+     || { echo "  phenix.refine:  Program error"; exit 1; }
+
+#============================================================================
+echo "Expanding reflections to P1 symmetry"
+
+phenix.reflection_file_converter cdl_001.mtz --expand_to_p1 \
+    --label="F-obs-filtered,SIGF-obs-filtered" --generate_r_free_flags  \
+    --r_free_flags_format=ccp4  --mtz=$id-P1.mtz >> $id-prep.log
+
+#============================================================================
+echo "Making the sf.dat file"
+#  convert to formatted file:
+phenix.mtz.dump -c -f s $id-P1.mtz  | tr ',' '\t' > $id.fmtz \
+     || { echo "  phenix.mtz.dump:  Program error"; exit 1; }
+
+#  make the -sf.dat file needed by xray3:
+awk '{printf("%d\t%d\t%d\t%s\t%s\t%d\n", \
+      $1,$2,$3,$4,$5, $6>1 ? 1 : $6)}'  $id.fmtz | tail +2 > tmp.dat \
+     || { echo "  awk:  Program error"; exit 1; }
+
+nrefl=`wc -l tmp.dat | awk '{print $1}'`
+echo "$nrefl 0" > $id-sf.dat
+cat tmp.dat >> $id-sf.dat
+
+#============================================================================
+echo "Done. Created 5 files:"
+echo "   ${id}_uc.parm7        Use this as the Amber prmtop file"
+echo "   ${id}_uc.rst7         Starting coordinates in Amber restrt format"
+echo "   ${id}_uc.pdb          Use as pdb_infile"
+echo "   ${id}-sf.dat          Use as reflections_infile"
+echo "   ${id}-prep.log        Log file: examine this if problems arise"
+
+#============================================================================
+# clean up
+/bin/rm -f tmp.dat $id-sf.mtz cdl_data.mtz $id.fmtz parmed \
+     cdl_00* *.order 4phenix_$id.pdb 4amber_$id.prmtop foo*.parm7 build_uc

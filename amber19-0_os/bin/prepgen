@@ -1,4 +1,0 @@
-#!/bin/sh
-
-export AMBERHOME="$(dirname "$(cd "$(dirname "$0")" && pwd)")"
-$AMBERHOME/bin/to_be_dispatched/prepgen "$@"

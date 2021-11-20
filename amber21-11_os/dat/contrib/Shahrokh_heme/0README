@@ -1,0 +1,17 @@
+Reference: Shahrokh, K;  Orendt, A; Yost, G. and Cheatham III, T. E.
+           "Quantum mechanically derived AMBER-compatible heme parameters for 
+            various states on the cytochrome P450 catalytic cycle"
+            J. Comp. Chem. (2011)
+
+Supporting Material Tripos MOL2 format coordinate files for F-HM model B3LYP/LACVP gas-phase optimizations and RED-III derived atomic partial charges, and AMBER parameter files. 
+
+For each of the heme states:
+  (1) penta-coordinate ferric high-spin (IC6) 
+  (2) dioxygen bound (DIOXY)  
+  (3) Compound I (CPDI)
+There are three files provided:
+  (a) For the protoporphyrin macrocycle and iron (HEM.mol2), 
+  (b) For the proximal cysteine ligand (CYP.mol2),  
+  (c) AN AMBER parameter (*.frcmod) file.
+
+NOTES: These also require that a protein force field (e.g. ff14SB) and GAFF parameters be loaded as well.

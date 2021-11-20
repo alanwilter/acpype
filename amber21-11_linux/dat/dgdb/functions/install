@@ -1,0 +1,13 @@
+#!/bin/csh -f
+#    make bounds database function executables:
+#	getwcdist
+#	getbackbonedist
+#	getstackdist
+#	
+setenv NABHOME "${AMBERHOME}/dat"
+nab -O $NABHOME/dgdb/functions/getwcdist.nab -o $NABHOME/dgdb/functions/getwcdist
+nab -O $NABHOME/dgdb/functions/getbackbonedist.nab -o $NABHOME/dgdb/functions/getbackbonedist
+nab -O $NABHOME/dgdb/functions/getstackdist.nab -o $NABHOME/dgdb/functions/getstackdist
+if ( -f $NABHOME/dgdb/functions/getwcdist.c ) rm $NABHOME/dgdb/functions/getwcdist.c
+if ( -f $NABHOME/dgdb/functions/getbackbonedist.c ) rm $NABHOME/dgdb/functions/getbackbonedist.c
+if ( -f $NABHOME/dgdb/functions/getstackdist.c ) rm $NABHOME/dgdb/functions/getstackdist.c

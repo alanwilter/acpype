@@ -1,0 +1,14 @@
+ Parameters for the Proton Affinity (PA)
+ SCC-DFTB 3rd Order parameterization
+ See: Yang et al, J. Chem. Theor. Comput. (2008), vol.4, pp. 2067
+ &dftb_3rd_order
+   Gaussian_d0=-0.09d0,
+   Gaussian_g0=16.1d0,
+   Gaussian_q0=0.75d0,
+   Hubbard_deriv(1)  = -0.08d0,
+   Hubbard_deriv(6)  = -0.24d0,
+   Hubbard_deriv(8)  = -0.22d0,
+   Hubbard_deriv(15) = -0.07d0,
+   debug_print=.false.,
+ /
+

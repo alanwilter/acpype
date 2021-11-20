@@ -1,0 +1,6 @@
+#1/bin/csh
+setenv NABHOME "${AMBERHOME}/dat"
+foreach i (`ls $NABHOME/dgdb/coords/*.pdbs | sed 's/.pdbs//'`)
+echo $i
+mv ${i}.pdbs ${i}s.pdb
+end 

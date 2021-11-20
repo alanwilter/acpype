@@ -4,13 +4,14 @@
 File needed for PyPI
 """
 import setuptools
+from acpype_lib._version import version
 
 with open("README.md", "r") as fh:
 
     long_description = fh.read()
 
-__updated__ = "2021-02-05T22:22:19CET"
-version = __updated__[:19].replace("-", "").replace("T", "").replace(":", "")
+# updated__ = "2021.11.14"
+# version = updated__[:19].replace("-", "").replace("T", "").replace(":", "")
 
 setuptools.setup(
     name="acpype",
@@ -22,7 +23,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/alanwilter/acpype",
-    packages=["acpype_lib", "amber19-0_linux", "amber19-0_os"],
+    packages=["acpype_lib", "amber21-11_linux", "amber21-11_os"],
     package_dir={"acpype": "acpype"},
     include_package_data=True,
     keywords="acpype",

@@ -1,0 +1,50 @@
+# Atom order and naming according to mol2-files provided for states V0 and V1
+# First column: Sequential number of atom position in mol2-file of state V0.
+# Second column: Atom name in mol2-file of state V0
+# Thrid column: Atom name in mol2-file of state V1
+1	C1	C1
+2	N1	N1
+3	C2	C2
+4	C3	C3
+5	O1	O1
+6	C4	C4
+7	C5	C5
+8	C6	C6
+9	C7	C7
+10	C8	C8
+11	C9	C9
+12	C10	C10
+13	O2	O2
+14	N2	N2
+15	C11	C11
+16	C12	C12
+17	O3	O3
+18	C13	C13
+19	O4	O4
+20	C14	C14
+21	N3	N3
+22	C15	C15
+23	S1	S1
+24	C16	C16
+25	C17	C17
+26	C18	C18
+27	C19	C19
+28	O5	O5
+30	H1	H1
+31	H2	H2
+32	H3	H3
+33	H4	H4
+34	H5	H5
+35	H6	H6
+36	H7	H7
+37	H8	H8
+38	H9	H9
+39	H10	H10
+40	H11	H11
+41	H12	H12
+42	H13	H13
+43	H14	H14
+44	H15	H15
+45	H16	H16
+46	H17	H17
+47	H18	H18

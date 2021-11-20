@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# Configure file for packmol
+#
+# If you want to set your own compiler, run the script with:
+#
+# ./configure gfortran
+#
+# where "gfortran" can be substituted by the compiler you use,
+# put the path if it is not in the path, for example,
+# /usr/bin/gfortran
+#
+#
+# List of possible compilers:
+compilerlist="
+$1
+gfortran
+f77
+fort77
+ifc
+ifort
+"
+#
+#
+IFS=$'\n'
+
+for searchcompiler in $compilerlist; do 
+  compiler=`which $searchcompiler`
+  if [ "$compiler" \> " " ]; then
+    echo "Setting compiler to $compiler"
+    makefile=`cat Makefile`
+    \rm -f Makefile
+    for line in $makefile; do
+      echo ${line//"FORTRAN="*/"FORTRAN=$compiler"} >> Makefile
+    done
+    exit
+  fi
+done
+
+echo " "
+echo " ERROR: Could not find any fortran compiler."
+echo " "
+echo "        To use your own compiler, run this script with: "
+echo " "
+echo "        ./configure /path/to/compiler/yourcompiler "
+echo " "
+echo "        Otherwise, install one of the following compilers"
+echo "        and run this configure script again:"
+echo " "
+echo "             gfortran, f77, fort77, ifc, ifort"
+echo " "
+

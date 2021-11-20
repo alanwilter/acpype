@@ -1,0 +1,65 @@
+REMARK 999 Dihydro uridine                                                      
+HETATM    1  P   DHU     1       1.844  -1.916  -5.196  1.00  0.00           P  
+HETATM    2  O1P DHU     1       0.373  -1.820  -5.266  1.00  0.00           O  
+HETATM    3  O2P DHU     1       2.544  -3.039  -5.893  1.00  0.00           O  
+HETATM    4  O5' DHU     1       2.238  -1.908  -3.647  1.00  0.00           O  
+HETATM    5  C5' DHU     1       3.625  -1.910  -3.239  1.00  0.00           C  
+HETATM    6  C4' DHU     1       3.731  -1.734  -1.745  1.00  0.00           C  
+HETATM    7  O4' DHU     1       3.110  -0.481  -1.351  1.00  0.00           O  
+HETATM    8  C3' DHU     1       2.982  -2.764  -0.920  1.00  0.00           C  
+HETATM    9  O3' DHU     1       3.730  -3.975  -0.853  1.00  0.00           O  
+HETATM   10  C2' DHU     1       2.900  -2.045   0.419  1.00  0.00           C  
+HETATM   11  O2' DHU     1       4.150  -1.984   1.085  1.00  0.00           O  
+HETATM   12  C1' DHU     1       2.553  -0.626  -0.046  1.00  0.00           C  
+HETATM   13  N1  DHU     1       1.102  -0.396  -0.106  1.00  0.00           N  
+HETATM   14  C2  DHU     1       0.414  -0.403   1.067  1.00  0.00           C  
+HETATM   15  O2  DHU     1       0.917  -0.429   2.153  1.00  0.00           O  
+HETATM   16  N3  DHU     1      -0.970  -0.365   0.946  1.00  0.00           N  
+HETATM   17  C4  DHU     1      -1.718  -0.152  -0.187  1.00  0.00           C  
+HETATM   18  O4  DHU     1      -2.906  -0.076  -0.147  1.00  0.00           O  
+HETATM   19  C5  DHU     1      -0.899   0.000  -1.444  1.00  0.00           C  
+HETATM   20  C6  DHU     1       0.420  -0.750  -1.338  1.00  0.00           C  
+HETATM   21 1H5' DHU     1       4.008  -2.884  -3.460  1.00  0.00           H  
+HETATM   22 2H5' DHU     1       4.075  -1.045  -3.681  1.00  0.00           H  
+HETATM   23  H4' DHU     1       4.782  -1.805  -1.559  1.00  0.00           H  
+HETATM   24  H3' DHU     1       2.027  -3.061  -1.299  1.00  0.00           H  
+HETATM   25  H2' DHU     1       2.224  -2.519   1.100  1.00  0.00           H  
+HETATM   26 2HO' DHU     1       4.807  -2.467   0.577  1.00  0.00           H  
+HETATM   27  H1' DHU     1       2.948   0.085   0.649  1.00  0.00           H  
+HETATM   28  H3  DHU     1      -1.463  -0.387   1.814  1.00  0.00           H  
+HETATM   29  H5  DHU     1      -1.493  -0.344  -2.279  1.00  0.00           H  
+HETATM   30  H6  DHU     1       0.252  -1.825  -1.395  1.00  0.00           H  
+HETATM   31  H20 DHU     1      -0.712   1.062  -1.579  1.00  0.00           H  
+HETATM   32  H21 DHU     1       1.062  -0.481  -2.165  1.00  0.00           H  
+CONECT    1    4    3    2
+CONECT    2    1
+CONECT    3    1
+CONECT    4    5    1
+CONECT    5    6    4   21   22
+CONECT    6    7    8    5   23
+CONECT    7   12    6
+CONECT    8   10    6    9   24
+CONECT    9    8
+CONECT   10   12    8   11   25
+CONECT   11   10   26
+CONECT   12   13    7   10   27
+CONECT   13   14   20   12
+CONECT   14   13   15   16
+CONECT   15   14
+CONECT   16   14   17   28
+CONECT   17   16   18   19
+CONECT   18   17
+CONECT   19   17   20   29   31
+CONECT   20   13   19   30   32
+CONECT   21    5
+CONECT   22    5
+CONECT   23    6
+CONECT   24    8
+CONECT   25   10
+CONECT   26   11
+CONECT   27   12
+CONECT   28   16
+CONECT   29   19
+CONECT   30   20
+CONECT   31   19
+CONECT   32   20

@@ -1,0 +1,34 @@
+#!/bin/csh
+setenv NABHOME "${AMBERHOME}/dat"
+foreach i (`ls $NABHOME/dgdb/coords/a*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
+foreach i (`ls $NABHOME/dgdb/coords/b*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
+foreach i (`ls $NABHOME/dgdb/coords/d*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
+foreach i (`ls $NABHOME/dgdb/coords/g*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
+foreach i (`ls $NABHOME/dgdb/coords/p*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
+foreach i (`ls $NABHOME/dgdb/coords/t*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
+foreach i (`ls $NABHOME/dgdb/coords/u*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
+foreach i (`ls $NABHOME/dgdb/coords/z*.pdb`)
+	cat $i | awk ' { if (($4 !~ /HOH/) && ($1 ~ /ATOM/)) {print} }' > $$.TEMP
+	mv $$.TEMP $i
+end 
