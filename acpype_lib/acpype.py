@@ -66,10 +66,10 @@ import sys
 import subprocess as sub
 import abc
 import array  # to pacify PyLint
+import sysconfig
 from datetime import datetime
 from shutil import copy2, rmtree, which
-import sysconfig
-
+from acpype_lib import version
 
 MAXTIME = 3 * 3600
 # For pip package
@@ -90,9 +90,8 @@ if sys.version_info < (3, 6):
     raise Exception("Sorry, you need python 3.6 or higher")
 
 year = datetime.today().year
-__updated__ = "2021-11-17T20:12:45CET"
 # tag = "2019-09-26T19:44:00UTC"
-tag = __updated__
+tag = version
 
 lineHeader = f"""
 | ACPYPE: AnteChamber PYthon Parser interfacE v. {tag} (c) {year} AWSdS |
