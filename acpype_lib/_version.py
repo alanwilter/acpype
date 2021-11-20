@@ -1,5 +1,4 @@
 from subprocess import Popen, STDOUT, PIPE
-from pbr.version import VersionInfo
 
 try:
     version = (
