@@ -35,6 +35,6 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Bio-Informatics",
     ],
     python_requires=">=3.6",
-    install_requires=["pbr>=5.7.0"],
+    install_requires=[],
     zip_safe=False,
 )

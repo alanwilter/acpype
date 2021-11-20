@@ -1,5 +1,4 @@
 from subprocess import Popen, STDOUT, PIPE
-from pbr.version import VersionInfo
 
 try:
     version = (
@@ -8,4 +7,4 @@ try:
         .decode()[0:10]
     )
 except Exception:
-    version = VersionInfo("acpype").version_string()
+    version = "2021.11.17"
