@@ -2,7 +2,7 @@ import sys
 import os
 import shutil
 import time
-import json
+import ujson as json
 from acpype_lib.acpype import ACTopol, MAXTIME, while_replace, header, elapsedTime, traceback
 import io
 
