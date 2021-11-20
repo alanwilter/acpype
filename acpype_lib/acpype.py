@@ -69,7 +69,7 @@ import array  # to pacify PyLint
 from datetime import datetime
 from shutil import copy2, rmtree, which
 import sysconfig
-from acpype_lib._version import version
+from pbr.version import VersionInfo
 
 
 MAXTIME = 3 * 3600
@@ -91,7 +91,7 @@ if sys.version_info < (3, 6):
     raise Exception("Sorry, you need python 3.6 or higher")
 
 year = datetime.today().year
-__updated__ = version
+__updated__ = VersionInfo("acpype").version_string()
 # tag = "2019-09-26T19:44:00UTC"
 tag = __updated__
 
