@@ -150,7 +150,7 @@ python acpype.py -h
 At folder `acpype/acpype_lib`, type:
 
 ```bash
-  ln -s $PWD/acpype.py /usr/local/bin/acpype
+  ln -s $PWD/acpype.sh /usr/local/bin/acpype
 ```
 
 And re-login or start another shell session.
