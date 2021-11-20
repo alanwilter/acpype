@@ -248,7 +248,7 @@ def test_inputs(capsys, argv):
 @pytest.mark.parametrize(
     ("argv", "code", "msg"),
     [
-        (None, 2, "error: argument "),  # NOTE: None -> sys.argv from pystest
+        (None, 2, "pytest: error: "),  # NOTE: None -> sys.argv from pystest
         ([], 2, "error: missing input files"),
         (["-di", " 123"], 19, "ACPYPE FAILED: Input file  123 DOES NOT EXIST"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
