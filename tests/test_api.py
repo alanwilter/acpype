@@ -44,5 +44,4 @@ def test_json():
         inputFile="AAA.mol2", chargeType="gas", atomType="gaff2", debug=True, basename="AAA", chiral=False
     )
     for ft in file_types:
-        print(len(json.loads(json_output)[ft[0]]))
-test_json()
+        assert len(json.loads(json_output)[ft[0]]) == ft[1]
