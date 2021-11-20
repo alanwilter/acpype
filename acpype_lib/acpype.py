@@ -4873,11 +4873,7 @@ def get_option_parser():
         help="create improper dihedral parameters for chiral atoms in CNS",
     )
     parser.add_argument(
-        "-v",
-        "--version",
-        action="store_true",
-        dest="version",
-        help="Show the Acpype version and exit",
+        "-v", "--version", action="store_true", dest="version", help="Show the Acpype version and exit",
     )
     return parser
 
