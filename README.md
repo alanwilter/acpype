@@ -5,10 +5,10 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/lpkagami/acpype?style=social&logo=docker)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/lpkagami/acpype/latest?style=social&logo=docker)
 
-**AnteChamber PYthon Parser interfacE**
+## AnteChamber PYthon Parser interfacE
 
 A tool based in **Python** to use **Antechamber** to generate topologies for chemical
-compounds and to interface with others python applications like CCPN or ARIA.
+compounds and to interface with others python applications like CCPN and ARIA.
 
 `acpype` is pronounced as _**ace + pipe**_
 
@@ -19,12 +19,12 @@ Field (GAFF) and should be used only with compatible forcefields like AMBER and
 its variant.
 
 Several flavours of AMBER FF are ported already for GROMACS (see ffamber:
-http://ffamber.cnsm.csulb.edu/) as well as to XPLOR/CNS (see `xplor-nih`:
-http://ambermd.org/xplor-nih.html) and [CHARMM](https://www.charmm.org/).
+<http://ffamber.cnsm.csulb.edu/>) as well as to XPLOR/CNS (see `xplor-nih`:
+<http://ambermd.org/xplor-nih.html>) and [CHARMM](https://www.charmm.org/).
 
 This code is released under **[GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.en.html)**.
 
-###### NO WARRANTY AT ALL!!!
+### **NO WARRANTY AT ALL**
 
 It was inspired by:
 
@@ -32,7 +32,7 @@ It was inspired by:
   and depends on `Antechamber` and `OpenBabel`
 
 - YASARA Autosmiles:
-  http://www.yasara.org/autosmiles.htm (Elmar Krieger)
+  <http://www.yasara.org/autosmiles.htm> (Elmar Krieger)
 
 - `topolbuild` (Bruce Ray)
 
@@ -45,6 +45,7 @@ nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBE
 to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241
 
 For `Antechamber`, please cite:
+>
 > 1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
      bond type perception in molecular mechanical calculations. Journal of Molecular
      Graphics and Modelling 25, 2 (2006), 247–260. doi: 10.1016/j.jmgm.2005.12.005
@@ -57,16 +58,15 @@ If you use this code, I am glad if you cite:
 > SOUSA DA SILVA, A. W. & VRANKEN, W. F.
 ACPYPE - AnteChamber PYthon Parser interfacE.
 BMC Research Notes 5 (2012), 367 doi: 10.1186/1756-0500-5-367
-http://www.biomedcentral.com/1756-0500/5/367
+<http://www.biomedcentral.com/1756-0500/5/367>
+
+and (optionally)
 
 > BATISTA, P. R.; WILTER, A.; DURHAM, E. H. A. B. & PASCUTTI, P. G. Molecular
 Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
 Cell Biochemistry and Biophysics 44 (2006), 395-404. doi: 10.1385/CBB:44:3:395
 
 Alan Wilter Sousa da Silva, D.Sc.
-Bioinformatician, UniProt, EMBL-EBI
-Hinxton, Cambridge CB10 1SD, UK.
-http://www.ebi.ac.uk/~awilter
 
 alanwilter _at_ gmail _dot_ com
 
@@ -74,8 +74,7 @@ alanwilter _at_ gmail _dot_ com
 
 ##### Introduction
 
-We now have an up to date *webservice* at **http://bio2byte.be/acpype/** (but it
-**does not** have the `amb2gmx` funcionality).
+We now have an up to date *webservice* at **<http://bio2byte.be/acpype/>** (but it **does not** have the `amb2gmx` funcionality).
 
 To run `acpype`, locally, with its all functionalities, you need **ANTECHAMBER** from package
 [AmberTools](http://ambermd.org/) and
@@ -85,79 +84,95 @@ format.
 However, if one wants `acpype` just to emulate *amb2gmx.pl*, one needs nothing
 at all but *[Python](http://www.python.org)*.
 
-There several ways of obtaining `acpype`:
+There are several ways of obtaining `acpype`:
 
-1) Via **[CONDA](https://anaconda.org/search?q=acpype)**:
+1. Via **[CONDA](https://anaconda.org/search?q=acpype)**:
 
-```bash
-  conda install -c conda-forge acpype
-```
+   ```bash
+   conda install -c conda-forge acpype
+   ```
 
-2) Via **[PyPI](https://pypi.org/project/acpype/)**:
+2. Via **[PyPI](https://pypi.org/project/acpype/)**:
 
-```bash
-  pip install git+https://github.com/alanwilter/acpype.git
-```
+   ```bash
+   pip install git+https://github.com/alanwilter/acpype.git
+   ```
 
-  note that `pip install acpype`, unfortunately, is not picking the original one.
+   note that `pip install acpype`, unfortunately, is not *yet* picking the original one.
 
-3) By downloading it via `git`:
+3. By downloading it via `git`:
 
-```bash
-  conda create -n acpype --channel conda-forge ambertools openbabel
-  git clone https://github.com/alanwilter/acpype.git
-```
-**NB:** Using this mode, CHARMM topology files will not be generated.
+   ```bash
+   conda create -n acpype --channel conda-forge ambertools openbabel
+   git clone https://github.com/alanwilter/acpype.git
+   ```
 
-4) Via **[Docker](https://hub.docker.com/repository/docker/lpkagami/acpype/)**:
+   **NB:** Using this mode, CHARMM topology files will not be generated.
 
-If you have Docker installed, you can run Acpype with the following shell command:
+4. Via **[Docker](https://hub.docker.com/repository/docker/lpkagami/acpype/)**:
 
-On Linux / MacOS:
-```bash
-docker run --rm -v ${PWD}:/results -w /results -u $(id -u ${USER}):$(id -g ${USER}) lpkagami/acpype:latest -i FFF.pdb
-```
-On Windows:
-Using Command Prompt:
-```bash
-docker run --rm -v %cd%:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
-```
-Using PowerShell:
-```bash
-docker run --rm -v ${PWD}:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
-```
+   If you have Docker installed, you can run `acpype` with the following shell command:
+
+   On Linux / MacOS:
+
+   ```bash
+   docker run --rm -v ${PWD}:/results -w /results -u $(id -u ${USER}):$(id -g ${USER}) lpkagami/acpype:latest -i FFF.pdb
+   ```
+
+   On Windows:
+   Using Command Prompt:
+
+   ```bash
+   docker run --rm -v %cd%:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
+   ```
+
+   Using PowerShell:
+
+   ```bash
+   docker run --rm -v ${PWD}:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
+   ```
+
 **NB:** Installing via `conda` or via `pip/git` you get `AmberTools v.21.11` and `OpenBabel v3.11`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
 
 ##### To Test, if doing via `git`
 
-At folder `acpype/tests`, type:
+At folder `acpype/`, type:
 
 ```bash
-python acpype_lib/acpype.py -i FFF.pdb
+./acpype.sh -i test/FFF.pdb
 ```
 
 It'll create a folder called *FFF.acpype*, and inside it one may find topology
 files for GROMACS and CNS/XPLOR.
 
+or:
+
+```bash
+./acpype.sh -i CCCC # smiles for C4H6 molecule
+```
+
+It'll create a folder called *smiles_molecule.acpype*.
+
 To get help and more information, type:
 
 ```bash
-python acpype.py -h
+./acpype.sh -h
 ```
 
 ##### To Install
 
-At folder `acpype/acpype_lib`, type:
+At folder `acpype/`, type:
 
 ```bash
   ln -s $PWD/acpype.sh /usr/local/bin/acpype
 ```
 
-And re-login or start another shell session.
+Then re-login or start another shell session.
 
-If via `conda` or `pip`, `acpype` should show in your `$PATH`.
+If via `conda` or `pip`, `acpype` should be in your `$PATH`.
 
 ##### To Verify with GMX
+
 GROMACS < v.5.0
 
 ```bash
@@ -178,7 +193,8 @@ gmx mdrun -v -deffnm em
 vmd em.gro em.trr
 ```
 
-##### For MD, do:
+##### For MD, do
+
 GROMACS < v.5.0
 
 ```bash
@@ -195,24 +211,6 @@ gmx mdrun -v -deffnm md
 vmd md.gro md.trr
 ```
 
-###### With openmpi, for a dual core
-GROMACS < v.5.0
-
-```bash
-grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
-om-mpirun -n 2 mdrun_mpi -v -deffnm em
-grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr
-om-mpirun -n 2 mdrun_mpi -v -deffnm md
-vmd md.gro md.trr
-```
-
-GROMACS > v.5.0
-
-```bash
-gmx grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
-gmx mdrun -ntmpi 2 -v -deffnm em
-```
-
 #### To Emulate `amb2gmx.pl`
 
 For any given *prmtop* and *inpcrd* files (outputs from AMBER LEaP), type:
@@ -221,10 +219,10 @@ For any given *prmtop* and *inpcrd* files (outputs from AMBER LEaP), type:
 acpype -p FFF_AC.prmtop -x FFF_AC.inpcrd
 ```
 
-The output files `FFF_GMX.gro` and `FFF_GMX.top` will be generated at the same
-folder of the input files.
+The output files `FFF_GMX.gro` and `FFF_GMX.top` will be generated inside folder *FFF_GMX.amb2gmx*
 
 #### To Verify with CNS/XPLOR
+
 At folder *FFF.acpype*, type:
 
 ```bash
@@ -233,4 +231,4 @@ cns < FFF_CNS.inp
 
 #### To Verify with NAMD
 
-  * see [TutorialNAMD]
+- see [TutorialNAMD]
