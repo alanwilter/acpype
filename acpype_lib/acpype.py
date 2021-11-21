@@ -4883,7 +4883,7 @@ def init_main(argv=None):
 
     if args.version:
         print(header)
-        sys.exit()
+        sys.exit(0)
 
     print(header)
 

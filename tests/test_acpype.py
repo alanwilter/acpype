@@ -14,7 +14,7 @@ import os
 import shutil
 import pytest
 from pytest import approx
-from acpype_lib.acpype import ACTopol, MolTopol, _getoutput, init_main, get_option_parser
+from acpype_lib.acpype import ACTopol, MolTopol, _getoutput, init_main, version
 
 
 @pytest.mark.parametrize(
@@ -249,6 +249,7 @@ def test_inputs(capsys, argv):
     ("argv", "code", "msg"),
     [
         (None, 2, " error: "),  # NOTE: None -> sys.argv from pystest
+        (["-v"], 0, version),
         ([], 2, "error: missing input files"),
         (["-di", " 123"], 19, "ACPYPE FAILED: Input file  123 DOES NOT EXIST"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
@@ -262,9 +263,3 @@ def test_args_wrong_inputs(capsys, argv, code, msg):
     assert msg in captured.err + captured.out
     assert e_info.typename == "SystemExit"
     assert e_info.value.code == code
-
-
-def test_version():
-    parser = get_option_parser()
-    parsed = parser.parse_args(["-v"])
-    assert parsed.version
