@@ -4,6 +4,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=social)
 ![Docker Pulls](https://img.shields.io/docker/pulls/lpkagami/acpype?style=social&logo=docker)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/lpkagami/acpype/latest?style=social&logo=docker)
+![GitHub Relase](https://img.shields.io/github/release-date/alanwilter/acpype?style=social)
 
 ## AnteChamber PYthon Parser interfacE
 
