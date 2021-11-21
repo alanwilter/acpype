@@ -1,12 +1,11 @@
-from subprocess import Popen, STDOUT, PIPE
-import re
+from subprocess import run, STDOUT, PIPE
 
+out = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
 
-version = (
-    Popen("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE).communicate()[0][:-1].decode()[0:10]
-)
+if out.returncode == 0:
 
-if not re.match(r"^\d{4}\.(0[1-9]|1[012])\.(0[1-9]|[12][0-9]|3[01])$", version):
+    version = out.stdout.decode()[0:10]
+else:
     try:
         from importlib.metadata import version as ver
 
