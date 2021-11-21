@@ -76,7 +76,7 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
 
       - name: Create Release
-        if: github.ref == 'refs/heads/master' && github.event.head_commit.message == 'new_release' # will only create a new release if the commit message is 'new_release' to master branch
+        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release') # will only create a new release if the commit message is 'new_release' to master branch
         id: create_release
         uses: actions/create-release@v1
         env:
