@@ -1158,7 +1158,7 @@ def checkSmiles(smiles):
         ob.cvar.obErrorLog.StopLogging()
     elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
         import openbabel as ob
-        import pybel
+        import pybel  # type: ignore
 
         ob.cvar.obErrorLog.StopLogging()
 
@@ -2345,7 +2345,7 @@ class AbstractTopol:
             from openbabel import pybel
 
         elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-            import pybel
+            import pybel  # type: ignore
 
         """Convert Smiles to MOL2 by using babel"""
         try:
@@ -2736,7 +2736,7 @@ class AbstractTopol:
 
         elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
             import openbabel as ob
-            import pybel
+            import pybel  # type: ignore
 
         self.printMess("Using OpenBabel v." + ob.OBReleaseVersion() + "\n")
 
