@@ -770,10 +770,6 @@ oplsCode2AtomTypeDict = {}
 for k, vv in list(dictOplsAtomType2OplsGmxCode.items()):
     for code in vv:
         oplsCode2AtomTypeDict[code] = k
-#        if code in oplsCode2AtomTypeDict.keys():
-#            oplsCode2AtomTypeDict[code].append(k)
-#        else:
-#            oplsCode2AtomTypeDict[code] = [k]
 
 # Cross dictAmbAtomType2AmbGmxCode with dictOplsAtomType2OplsGmxCode & add H1,HP,H2
 dictAtomTypeAmb2OplsGmxCode = {"H1": ["140", "1.00800"], "HP": ["140", "1.00800"], "H2": ["140", "1.00800"]}
@@ -1162,7 +1158,7 @@ def checkSmiles(smiles):
         ob.cvar.obErrorLog.StopLogging()
     elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
         import openbabel as ob
-        import pybel
+        import pybel  # type: ignore
 
         ob.cvar.obErrorLog.StopLogging()
 
@@ -2349,7 +2345,7 @@ class AbstractTopol:
             from openbabel import pybel
 
         elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-            import pybel
+            import pybel  # type: ignore
 
         """Convert Smiles to MOL2 by using babel"""
         try:
@@ -2740,7 +2736,7 @@ class AbstractTopol:
 
         elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
             import openbabel as ob
-            import pybel
+            import pybel  # type: ignore
 
         self.printMess("Using OpenBabel v." + ob.OBReleaseVersion() + "\n")
 
@@ -3162,7 +3158,6 @@ class AbstractTopol:
             return
 
         atNames = [at.atomTypeName for at in self.atomTypes]
-        # print atNames
         delAtomTypes = []
         modAtomTypes = []
         atomTypesGromacs = []
@@ -3171,10 +3166,7 @@ class AbstractTopol:
             atName = at.atomTypeName
             dictAtomTypes[atName] = at
             if atName.islower() and atName.upper() in atNames:
-                # print atName, atName.upper()
                 atUpper = self.atomTypes[atNames.index(atName.upper())]
-                # print at.atomTypeName,at.mass, at.ACOEF, at.BCOEF
-                # print atUpper.atomTypeName, atUpper.mass, atUpper.ACOEF, atUpper.BCOEF
                 if at.ACOEF is atUpper.ACOEF and at.BCOEF is at.BCOEF:
                     delAtomTypes.append(atName)
                 else:
@@ -3202,9 +3194,6 @@ class AbstractTopol:
 
         self.atomTypesGromacs = atomTypesGromacs
         self.atomsGromacs = atomsGromacs
-        # print [i.atomTypeName for i in atomTypesGromacs]
-        # print modAtomTypes
-        # print delAtomTypes
 
     def writeGromacsTop(self):
         """Write GMX topology file"""
@@ -4894,7 +4883,7 @@ def init_main(argv=None):
 
     if args.version:
         print(header)
-        sys.exit()
+        sys.exit(0)
 
     print(header)
 

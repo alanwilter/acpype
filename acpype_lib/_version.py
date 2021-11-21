@@ -1,17 +1,16 @@
-from subprocess import Popen, STDOUT, PIPE
+from subprocess import run, STDOUT, PIPE
 
-try:
+out = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
+
+if out.returncode == 0:
+
+    version = out.stdout.decode()[0:10]
+else:
     try:
-        from importlib.metadata import version
+        from importlib.metadata import version as ver
 
-        version = str(version("acpype"))
+        version = ver("acpype")
     except Exception:
         import pkg_resources
 
         version = str(pkg_resources.get_distribution("acpype").version)
-except Exception:
-    version = (
-        Popen("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
-        .communicate()[0][:-1]
-        .decode()[0:10]
-    )
