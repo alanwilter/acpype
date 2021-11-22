@@ -11,10 +11,11 @@ def run_git():
 
 
 out = run_git()
+breakpoint()
 
 if out.returncode == 0:
 
-    version = out.stdout.decode().rsplit("-", 1)[0].replace("-", ".")
+    version = out.stdout.decode().rsplit("-", 1)[0].replace("-", ".").strip()
 else:
     try:
         from importlib.metadata import version as ver
