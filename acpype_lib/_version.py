@@ -19,8 +19,8 @@ else:
     try:
         from importlib.metadata import version as ver
 
-        version = ver("acpype")
+        version = ver("acpype").replace("-", "")
     except Exception:
         import pkg_resources
 
-        version = str(pkg_resources.get_distribution("acpype").version)
+        version = str(pkg_resources.get_distribution("acpype").version).replace("-", "")
