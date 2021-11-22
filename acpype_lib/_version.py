@@ -1,10 +1,20 @@
+import os
 from subprocess import run, STDOUT, PIPE
 
-out = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
+
+def run_git():
+    cur_dir = os.getcwd()
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    ver = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
+    os.chdir(cur_dir)
+    return ver
+
+
+out = run_git()
 
 if out.returncode == 0:
 
-    version = out.stdout.decode()[0:10]
+    version = out.stdout.decode().rsplit("-", 1)[0].replace("-", ".")
 else:
     try:
         from importlib.metadata import version as ver
