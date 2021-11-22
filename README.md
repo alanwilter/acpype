@@ -19,9 +19,7 @@ Topologies files to be generated so far: CNS/XPLOR, GROMACS, CHARMM and AMBER.
 Field (GAFF) and should be used only with compatible forcefields like AMBER and
 its variant.
 
-Several flavours of AMBER FF are ported already for GROMACS (see ffamber:
-<http://ffamber.cnsm.csulb.edu/>) as well as to XPLOR/CNS (see `xplor-nih`:
-<http://ambermd.org/xplor-nih.html>) and [CHARMM](https://www.charmm.org/).
+Several flavours of AMBER FF are ported already for GROMACS (see [ffamber](http://ffamber.cnsm.csulb.edu/)) as well as to XPLOR/CNS (see [`xplor-nih`](http://ambermd.org/xplor-nih.html)) and [CHARMM](https://www.charmm.org/).
 
 This code is released under **[GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.en.html)**.
 
@@ -32,8 +30,7 @@ It was inspired by:
 - `amb2gmx.pl` (Eric Sorin, David Mobley and John Chodera)
   and depends on `Antechamber` and `OpenBabel`
 
-- YASARA Autosmiles:
-  <http://www.yasara.org/autosmiles.htm> (Elmar Krieger)
+- [YASARA Autosmiles](http://www.yasara.org/autosmiles.htm) (Elmar Krieger)
 
 - `topolbuild` (Bruce Ray)
 
@@ -58,8 +55,7 @@ If you use this code, I am glad if you cite:
 
 > SOUSA DA SILVA, A. W. & VRANKEN, W. F.
 ACPYPE - AnteChamber PYthon Parser interfacE.
-BMC Research Notes 5 (2012), 367 doi: 10.1186/1756-0500-5-367
-<http://www.biomedcentral.com/1756-0500/5/367>
+BMC Research Notes 5 (2012), 367 doi: [10.1186/1756-0500-5-367](http://www.biomedcentral.com/1756-0500/5/367)
 
 and (optionally)
 
@@ -75,7 +71,7 @@ alanwilter _at_ gmail _dot_ com
 
 ##### Introduction
 
-We now have an up to date *webservice* at **<http://bio2byte.be/acpype/>** (but it **does not** have the `amb2gmx` funcionality).
+We now have an up to date *webservice* at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` funcionality).
 
 To run `acpype`, locally, with its all functionalities, you need **ANTECHAMBER** from package
 [AmberTools](http://ambermd.org/) and
