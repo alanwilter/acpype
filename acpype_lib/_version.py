@@ -11,7 +11,6 @@ def run_git():
 
 
 out = run_git()
-breakpoint()
 
 if out.returncode == 0:
 
