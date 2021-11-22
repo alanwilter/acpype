@@ -2305,9 +2305,8 @@ class AbstractTopol:
         elif "gaff2" in self.atomType:
             cmd += " -s 2"
 
-        self.parmchkLog = _getoutput(cmd)
-
         self.printDebug(cmd)
+        self.parmchkLog = _getoutput(cmd)
 
         if os.path.exists(self.acFrcmodFileName):
             check = self.checkFrcmod()
