@@ -24,7 +24,7 @@ setup(
     author="Alan Wilter Sousa da Silva",
     author_email="alanwilter@gmail.com",
     license="GPL3",
-    packages=["acpype", "acpype_lib"],
+    packages=["acpype_lib"],
     keywords=["acpype"],
     include_package_data=True,
     entry_points={"console_scripts": ["acpype = acpype_lib.acpype:init_main"]},
