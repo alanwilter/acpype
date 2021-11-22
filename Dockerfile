@@ -22,20 +22,22 @@ COPY amber21-11_linux/dat /usr/local/dat
 
 COPY acpype_lib/acpype.py /home/
 
+RUN bash /home/amber21/amber.sh
+
 RUN touch /root/.bashrc \
  && echo "export AMBERHOME='/home/amber21'\nexport ACHOME='/home/amber21/bin'\nexport LD_LIBRARY_PATH='/home/amber21/lib'\n" >> /root/.bashrc
 
-RUN cd /home/ && ln -s $PWD/acpype.py /usr/local/bin/acpype
+RUN cd /home/ && ln -s $PWD/acpype.sh /usr/local/bin/acpype
 
-RUN cd /home/amber21/bin/to_be_dispatched && ln -s $PWD/antechamber /usr/local/bin/antechamber
+RUN cd /home/amber21/bin && ln -s $PWD/antechamber /usr/local/bin/antechamber
 
-RUN cd /home/amber21/bin/to_be_dispatched && ln -s $PWD/charmmgen /usr/local/bin/charmmgen
+RUN cd /home/amber21/bin && ln -s $PWD/charmmgen /usr/local/bin/charmmgen
 
-RUN cd /home/amber21/bin/ && ln -s $PWD/tleap /usr/local/bin/tleap
+RUN cd /home/amber21/bin && ln -s $PWD/tleap /usr/local/bin/tleap
 
-RUN cd /home/amber21/bin/ && ln -s $PWD/teLeap /usr/local/bin/teLeap
+RUN cd /home/amber21/bin && ln -s $PWD/teLeap /usr/local/bin/teLeap
 
-RUN cd /home/amber21/bin/to_be_dispatched && ln -s $PWD/parmchk2 /usr/local/bin/parmchk2
+RUN cd /home/amber21/bin && ln -s $PWD/parmchk2 /usr/local/bin/parmchk2
 
 ENV ACHOME="/home/amber21/bin"
 
