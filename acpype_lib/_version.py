@@ -3,8 +3,11 @@ from subprocess import run, STDOUT, PIPE
 
 
 def run_git():
+    cur_dir = os.getcwd()
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    return run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
+    ver = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
+    os.chdir(cur_dir)
+    return ver
 
 
 out = run_git()
