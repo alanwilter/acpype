@@ -33,6 +33,7 @@ jobs:
 
       - name: Set Env
         run: |
+            echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$PWD/amber21-11_linux" >> $GITHUB_ENV
             echo "$PWD/amber21-11_linux/bin" >> $GITHUB_PATH
