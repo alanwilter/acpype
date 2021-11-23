@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-name: check_acpype_api
+name: check_acpype_api2
 on:
    push:
       branches:
@@ -57,7 +57,7 @@ jobs:
             python3 -m pip install --upgrade pip
             if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
-            ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
+            ln -s $PWD/acpype /usr/local/bin/acpype
 
       -  name: Lint with flake8
          run: flake8 -v --count
@@ -67,8 +67,8 @@ jobs:
 
       -  name: Test with PyTest
          run: |
-            # cd $PWD/test
-            # acpype -di AAA.pdb -c gas
+            cd $PWD/test
+            acpype -di AAA.pdb -c gas
             pytest --color=yes
 
       - name: Get current date
