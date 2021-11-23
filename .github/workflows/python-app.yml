@@ -70,7 +70,7 @@ jobs:
          run: |
             echo "HELLO ${PWD}"
             ls -ltr
-            pytest acpype --color=yes
+            pytest tests --color=yes
 
       - name: Get current date
         id: date
