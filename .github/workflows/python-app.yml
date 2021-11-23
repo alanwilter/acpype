@@ -67,7 +67,7 @@ jobs:
 
       -  name: Test with PyTest
          run: |
-            cd $PWD/test
+            cd $PWD/tests
             acpype -di AAA.pdb -c gas
             pytest --color=yes
 
