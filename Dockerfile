@@ -25,9 +25,9 @@ COPY acpype_lib/acpype.py /home/
 RUN bash /home/amber21/amber.sh
 
 RUN touch /root/.bashrc \
- && echo "export AMBERHOME='/home/amber21'\nexport ACHOME='/home/amber21/bin'\nexport LD_LIBRARY_PATH='/home/amber21/lib'\n" >> /root/.bashrc
+    && echo "export AMBERHOME='/home/amber21'\nexport ACHOME='/home/amber21/bin'\nexport LD_LIBRARY_PATH='/home/amber21/lib'\n" >> /root/.bashrc
 
-RUN cd /home/ && ln -s $PWD/acpype.sh /usr/local/bin/acpype
+RUN cd /home/ && ln -s $PWD/run_acpype.py /usr/local/bin/acpype
 
 RUN cd /home/amber21/bin && ln -s $PWD/antechamber /usr/local/bin/antechamber
 
