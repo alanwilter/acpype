@@ -136,7 +136,7 @@ There are several ways of obtaining `acpype`:
 At folder `acpype/`, type:
 
 ```bash
-./acpype.sh -i test/FFF.pdb
+./acpype -i test/FFF.pdb
 ```
 
 It'll create a folder called *FFF.acpype*, and inside it one may find topology
@@ -145,7 +145,7 @@ files for GROMACS and CNS/XPLOR.
 or:
 
 ```bash
-./acpype.sh -i CCCC # smiles for C4H6 1,3-Butadiene compound
+./acpype -i CCCC # smiles for C4H6 1,3-Butadiene compound
 ```
 
 It'll create a folder called *smiles_molecule.acpype*.
@@ -153,7 +153,7 @@ It'll create a folder called *smiles_molecule.acpype*.
 To get help and more information, type:
 
 ```bash
-./acpype.sh -h
+./acpype -h
 ```
 
 ##### To Install
@@ -161,7 +161,7 @@ To get help and more information, type:
 At folder `acpype/`, type:
 
 ```bash
-  ln -s $PWD/acpype.sh /usr/local/bin/acpype
+  ln -s $PWD/acpype /usr/local/bin/acpype
 ```
 
 Then re-login or start another shell session.
