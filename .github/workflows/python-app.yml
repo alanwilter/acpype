@@ -33,7 +33,6 @@ jobs:
 
       - name: Set Env
         run: |
-            echo "PYTHONPATH=$PWD/acpype_lib" >> $GITHUB_ENV
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$PWD/amber21-11_linux" >> $GITHUB_ENV
             echo "$PWD/amber21-11_linux/bin" >> $GITHUB_PATH
@@ -68,9 +67,9 @@ jobs:
 
       -  name: Test with PyTest
          run: |
-            echo "HELLO ${PWD}"
-            ls -ltr
-            pytest tests --color=yes
+            # cd $PWD/test
+            # acpype -di AAA.pdb -c gas
+            pytest --color=yes
 
       - name: Get current date
         id: date

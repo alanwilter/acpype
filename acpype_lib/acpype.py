@@ -2477,7 +2477,6 @@ class AbstractTopol:
                     continue
                 data += line
         # data need format
-        data = data.rstrip()
         sdata = [data[i : i + f].strip() for i in range(0, len(data), f)]
         if "+" and "." in data and flag != "RESIDUE_LABEL":  # it's a float
             ndata = list(map(float, sdata))
@@ -2857,6 +2856,7 @@ class AbstractTopol:
                 limIds.append(id_)
                 chargeList[id_] = fix
             id_ += 1
+        # self.printDebug(chargeList)
         self.printDebug("balanceCharges done")
         return chargeList, fix, limIds
 
@@ -2866,15 +2866,22 @@ class AbstractTopol:
         nonBonIdList = self.getFlagData("NONBONDED_PARM_INDEX")
         rawACOEFs = self.getFlagData("LENNARD_JONES_ACOEF")
         rawBCOEFs = self.getFlagData("LENNARD_JONES_BCOEF")
+        # print nonBonIdList, len(nonBonIdList), rawACOEFs, len(rawACOEFs)
         ACOEFs = []
         BCOEFs = []
         ntypes = max(uniqAtomTypeIdList)
+        # id_ = 0
+        # for atName in self._atomTypeNameList:
         for id_ in range(len(self._atomTypeNameList)):
+            # id_ = self._atomTypeNameList.index(atName)
             atomTypeId = uniqAtomTypeIdList[id_]
             index = ntypes * (atomTypeId - 1) + atomTypeId
             nonBondId = nonBonIdList[index - 1]
+            # print "*****", index, ntypes, atName, id_, atomTypeId, nonBondId
             ACOEFs.append(rawACOEFs[nonBondId - 1])
             BCOEFs.append(rawBCOEFs[nonBondId - 1])
+            # id_ += 1
+        # print ACOEFs
         self.printDebug("getABCOEFs done")
         return ACOEFs, BCOEFs
 

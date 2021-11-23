@@ -1,5 +1,4 @@
 import os
-import re
 from subprocess import run, STDOUT, PIPE
 
 
@@ -8,19 +7,15 @@ def run_git():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     ver = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
     os.chdir(cur_dir)
-    m = re.match(r"(\d{4}.\d{2}.\d{2}(-\d+)?)(\-.*)", ver.stdout.decode())
-    if m:
-        ver = m.group(1).replace("-", ".")
-        status = 0
-    else:
-        ver = 0
-        status = 1
-    return ver, status
+    return ver
 
 
-version, status = run_git()
+out = run_git()
 
-if status != 0:
+if out.returncode == 0:
+
+    version = out.stdout.decode().rsplit("-", 1)[0].replace("-", ".").strip()
+else:
     try:
         from importlib.metadata import version as ver
 
