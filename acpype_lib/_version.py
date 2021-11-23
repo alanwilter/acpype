@@ -27,4 +27,3 @@ if status != 0:
         version = ver("acpype")
     except Exception:
         version = "0"
-
