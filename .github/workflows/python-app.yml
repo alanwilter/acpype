@@ -57,7 +57,7 @@ jobs:
             python3 -m pip install --upgrade pip
             if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
             chmod +x acpype_lib/acpype.py
-            ln -s $PWD/acpype_lib/acpype.py /usr/local/bin/acpype
+            ln -s $PWD/acpype_lib/acpype.sh /usr/local/bin/acpype
 
       -  name: Lint with flake8
          run: flake8 -v --count
@@ -68,7 +68,7 @@ jobs:
       -  name: Test with PyTest
          run: |
             # cd $PWD/test
-            # acpype -di AAA.pdb -c gas
+            # acpype -di test/AAA.pdb -c gas
             pytest --color=yes
 
       - name: Get current date
