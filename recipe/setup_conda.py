@@ -6,11 +6,9 @@ and to interface with others python applications like CCPN or ARIA.
 """
 
 from setuptools import setup
-from subprocess import run, STDOUT, PIPE
+from datetime import datetime
 
-version = str(run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE).stdout.decode()[0:10]).rsplit(
-    "-", 1
-)[0]
+version = datetime.today().strftime("%Y.%m.%d")
 
 setup(
     name="acpype",
@@ -23,7 +21,7 @@ setup(
         "Topic :: Scientific/Engineering :: Bio-Informatics",
     ],
     url="https://github.com/alanwilter/acpype",
-    author="Alan Wilter Sousa da Silva",
+    author="Alan Silva",
     author_email="alanwilter@gmail.com",
     license="GPL3",
     packages=["acpype_lib"],

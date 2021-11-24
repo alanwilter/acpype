@@ -17,7 +17,7 @@ setuptools.setup(
     name="acpype",
     version=version,
     scripts=["acpype_lib/acpype.py"],
-    author="Alan Wilter Sousa da Silva",
+    author="Alan Silva",
     author_email="alanwilter@gmail.com",
     description="ACPYPE - AnteChamber PYthon Parser interfacE",
     long_description=long_description,
