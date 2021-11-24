@@ -21,7 +21,7 @@ def parse_ver(ver):
 def run_git():
     cur_dir = os.getcwd()
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    ver = run("gits describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
+    ver = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
     os.chdir(cur_dir)
     return parse_ver(ver.stdout.decode())
 
