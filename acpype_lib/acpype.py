@@ -1410,6 +1410,20 @@ def while_replace(string):
     return string
 
 
+def find_antechamber():
+    acExe = ""
+    dirAmber = os.getenv("AMBERHOME", os.getenv("ACHOME"))
+    if dirAmber:
+        for ac_bin in ["bin", "exe"]:
+            ac_path = os.path.join(dirAmber, ac_bin, "antechamber")
+            if os.path.exists(ac_path):
+                acExe = ac_path
+                break
+    if not acExe:
+        acExe = which("antechamber") or ""
+    return acExe
+
+
 class Topology_14:
 
     """
@@ -2422,6 +2436,7 @@ class AbstractTopol:
             pass
 
         self.delOutputFiles()  # required to use on Jupyter Notebook
+        os.chdir(self.rootDir)
 
     def pickleSave(self):
         """
@@ -2726,9 +2741,10 @@ class AbstractTopol:
         Get chiral atoms, its 4 neighbours and improper dihedral angle
         to store non-planar improper dihedrals for CNS (and CNS only!)
         """
-        self.chiralGroups = []
-        if not self.babelExe:
+        if not self._parent.babelExe:
             self.printWarn("No Openbabel python module, no chiral groups")
+            self.chiralGroups = []
+            return
 
         if checkOpenBabelVersion() >= 300:
             from openbabel import openbabel as ob
@@ -2954,12 +2970,12 @@ class AbstractTopol:
 
     def writeCharmmTopolFiles(self):
         """Write CHARMM topology files"""
+
         self.printMess("Writing CHARMM files\n")
 
         at = self.atomType
         self.getResidueLabel()
-        res = self.resName  # self.residueLabel[0]
-        # print res, self.residueLabel, type(self.residueLabel)
+        res = self.resName
 
         cmd = (
             "%s -dr no -i %s -fi mol2 -o %s -fo charmm -s 2 -at %s \
@@ -3127,6 +3143,8 @@ class AbstractTopol:
             }
           }
         """
+        if self.amb2gmx:
+            os.chdir(self.absHomeDir)
 
         self.printMess("Writing GROMACS files\n")
 
@@ -3137,6 +3155,9 @@ class AbstractTopol:
         self.writeGromacsTop()
 
         self.writeMdpFiles()
+
+        if self.amb2gmx:
+            os.chdir(self.rootDir)
 
     def setAtomType4Gromacs(self):
         """Atom types names in Gromacs TOP file are not case sensitive;
@@ -4071,6 +4092,10 @@ gmx mdrun -ntmpi 1 -v -deffnm md
 
     def writeCnsTopolFiles(self):
         """Write CNS topology files"""
+
+        if self.amb2gmx:
+            os.chdir(self.absHomeDir)
+
         autoAngleFlag = True
         autoDihFlag = True
         cnsDir = os.path.abspath(".")
@@ -4371,7 +4396,10 @@ stop
         dictInp["CNS_ran"] = self.baseName + "_rand.pdb"
         line = inpData % dictInp
         inpFile.write(line)
-        self.printDebug("chiralGroups %i" % len(self.chiralGroups))
+        if not self.amb2gmx:
+            self.printDebug("chiralGroups %i" % len(self.chiralGroups))
+        else:
+            os.chdir(self.rootDir)
 
 
 class ACTopol(AbstractTopol):
@@ -4412,14 +4440,6 @@ class ACTopol(AbstractTopol):
         self.direct = direct
         self.sorted = is_sorted
         self.chiral = chiral
-        self.babelExe = which("obabel") or which("babel") or ""
-        if not os.path.exists(self.babelExe):
-            if self.ext != ".mol2" and self.ext != ".mdl":
-                self.printError("no 'babel' executable; you need it if input is PDB or SMILES")
-                self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
-                raise Exception("Missing BABEL")
-            else:
-                self.printWarn("no 'babel' executable, no PDB file as input can be used!")
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
@@ -4438,6 +4458,14 @@ class ACTopol(AbstractTopol):
         self.baseOriginal = baseOriginal
         self.ext = ext
         self.baseName = base  # name of the input file without ext.
+        self.babelExe = which("obabel") or which("babel") or ""
+        if not os.path.exists(self.babelExe):
+            if self.ext != ".mol2" and self.ext != ".mdl":
+                self.printError("no 'babel' executable; you need it if input is PDB or SMILES")
+                self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
+                raise Exception("Missing BABEL")
+            else:
+                self.printWarn("no 'babel' executable, no PDB file as input can be used!")
         if self.is_smiles:
             self.convertSmilesToMol2()
         self.timeTol = timeTol
@@ -4459,16 +4487,7 @@ class ACTopol(AbstractTopol):
             self.gaffDatfile = "gaff2.dat"
         self.force = force
         self.allhdg = allhdg
-        self.acExe = ""
-        dirAmber = os.getenv("AMBERHOME", os.getenv("ACHOME"))
-        if dirAmber:
-            for ac_bin in ["bin", "exe"]:
-                ac_path = os.path.join(dirAmber, ac_bin, "antechamber")
-                if os.path.exists(ac_path):
-                    self.acExe = ac_path
-                    break
-        if not self.acExe:
-            self.acExe = which("antechamber") or ""
+        self.acExe = find_antechamber()
         if not os.path.exists(self.acExe):
             self.printError("no 'antechamber' executable... aborting ! ")
             hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
