@@ -29,6 +29,10 @@ def run_git():
 version, status = run_git()
 
 if status != 0:
-    version, status = parse_ver(ver("acpype"))
+    try:
+        version, status = parse_ver(ver("acpype"))
+    except Exception:
+        version = today
+        status = 0
 if status != 0:
     version = today
