@@ -6,7 +6,6 @@ and to interface with others python applications like CCPN or ARIA.
 """
 
 from setuptools import setup
-from subprocess import run, STDOUT, PIPE
 from datetime import datetime
 
 version = datetime.today().strftime("%Y.%m.%d")
