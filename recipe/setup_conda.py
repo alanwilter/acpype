@@ -21,7 +21,7 @@ setup(
         "Topic :: Scientific/Engineering :: Bio-Informatics",
     ],
     url="https://github.com/alanwilter/acpype",
-    author="Alan Wilter Sousa da Silva",
+    author="Alan Silva",
     author_email="alanwilter@gmail.com",
     license="GPL3",
     packages=["acpype_lib"],
