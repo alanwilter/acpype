@@ -1,4 +1,5 @@
 import os
+import re
 from subprocess import run, STDOUT, PIPE
 
 
@@ -7,20 +8,22 @@ def run_git():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     ver = run("git describe --tags --always", shell=True, stderr=STDOUT, stdout=PIPE)
     os.chdir(cur_dir)
-    return ver
+    m = re.match(r"(\d{4}.\d{2}.\d{2}(-\d+)?)(\-.*)", ver.stdout.decode())
+    if m:
+        ver = m.group(1).replace("-", ".")
+        status = 0
+    else:
+        ver = "0"
+        status = 1
+    return ver, status
 
 
-out = run_git()
+version, status = run_git()
 
-if out.returncode == 0:
-
-    version = out.stdout.decode().rsplit("-", 1)[0].replace("-", ".").strip()
-else:
+if status != 0:
     try:
         from importlib.metadata import version as ver
 
         version = ver("acpype")
     except Exception:
-        import pkg_resources
-
-        version = str(pkg_resources.get_distribution("acpype").version)
+        version = "0"
