@@ -23,7 +23,7 @@ setup(
     url="https://github.com/alanwilter/acpype",
     author="Alan Silva",
     author_email="alanwilter@gmail.com",
-    license="GPL3",
+    license="GPL-3.0-or-later",
     packages=["acpype_lib"],
     keywords=["acpype"],
     include_package_data=True,
