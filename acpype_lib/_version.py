@@ -1,7 +1,6 @@
 import os
 import re
 from subprocess import run, STDOUT, PIPE
-from importlib.metadata import version as ver
 from datetime import datetime
 
 today = datetime.today().strftime("%Y.%m.%d")
@@ -30,9 +29,16 @@ version, status = run_git()
 
 if status != 0:
     try:
+        from importlib.metadata import version as ver  # For python version > 3.8
+
         version, status = parse_ver(ver("acpype"))
     except Exception:
-        version = today
-        status = 0
+        try:
+            import pkg_resources  # For python version < 3.8
+
+            version = pkg_resources.get_distribution("acpype").version
+        except Exception:
+            version = today
+            status = 0
 if status != 0:
     version = today

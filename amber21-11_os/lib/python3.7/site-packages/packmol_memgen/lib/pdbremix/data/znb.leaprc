@@ -1,7 +1,0 @@
-# load ZnB hybrid atom and modified amino acids
-logFile leap.log
-addatomtypes {{ "DZ" "Zn" "sp3"}  { "Zn" "Zn" "sp3" } } 
-loadOff %(data_dir)s/znb.lib
-loadOff %(data_dir)s/hin.lib
-loadOff %(data_dir)s/hydroxide.lib
-loadamberparams %(data_dir)s/znb.frcmod
