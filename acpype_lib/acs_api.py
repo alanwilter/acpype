@@ -2,9 +2,12 @@ import sys
 import os
 import shutil
 import time
-import ujson as json
-from acpype_lib.acpype import ACTopol, MAXTIME, while_replace, header, elapsedTime, traceback
 import io
+import traceback
+import ujson as json
+from acpype_lib.topol import ACTopol, header
+from acpype_lib.utils import while_replace, elapsedTime
+from acpype_lib.params import MAXTIME
 
 em_mdp = io.StringIO()
 AC_frcmod = io.StringIO()
@@ -120,19 +123,15 @@ def acpype_api(
             is_sorted=is_sorted,
             chiral=chiral,
         )
-
+        # breakpoint()
         molecule.createACTopol()
         molecule.createMolTopol()
-        if not basename:
-            file_name = "smiles_molecule"
-        else:
-            file_name = basename
 
         "Output in JSON format"
         os.chdir(molecule.absHomeDir)
-        readFiles(file_name, chargeType, atomType)
+        readFiles(molecule.baseName, chargeType, atomType)
         output = {
-            "file_name": "AAA",
+            "file_name": molecule.baseName,
             "em_mdp": em_mdp.getvalue(),
             "AC_frcmod": AC_frcmod.getvalue(),
             "AC_inpcrd": AC_inpcrd.getvalue(),
@@ -159,7 +158,7 @@ def acpype_api(
         print("ACPYPE FAILED: %s" % exceptionValue)
         if debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
-            output = {"file_name": "error"}
+            output = {"file_name": f"ERROR: {str(exceptionValue)}"}
 
     execTime = int(round(time.time() - at0))
     if execTime == 0:
@@ -168,5 +167,8 @@ def acpype_api(
         amsg = elapsedTime(execTime)
     print("Total time of execution: %s" % amsg)
     clearFileInMemory()
-    shutil.rmtree(molecule.absHomeDir)
+    try:
+        shutil.rmtree(molecule.absHomeDir)
+    except Exception:
+        pass
     return json.dumps(output)
