@@ -2,7 +2,7 @@ import os
 import math
 import subprocess as sub
 from shutil import which
-from acpype_lib.definitions import Pi
+from acpype_lib.params import Pi
 
 
 def checkOpenBabelVersion():

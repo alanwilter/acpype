@@ -1,5 +1,5 @@
 import argparse
-from acpype_lib.definitions import usage, epilog, MAXTIME, outTopols
+from acpype_lib.params import usage, epilog, MAXTIME, outTopols
 
 
 def get_option_parser():

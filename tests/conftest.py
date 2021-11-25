@@ -1,4 +1,4 @@
-from acpype_lib.acpype import version
+from acpype_lib import version
 
 
 def pytest_report_header(config):
