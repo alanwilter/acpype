@@ -1,0 +1,86 @@
+#verbosity 1
+#
+# ----- leaprc for loading the Glycam_06 carbohydrate force field
+# 	also contains atom types for lipids
+#
+#################  PLEASE NOTE ########################
+##      
+##      Updated copies of the GLYCAM parameter and 
+##      prep files can be downloaded from the GLYCAM
+##      web site's Documentation page:
+##      
+##      http://www.glycam.org/params
+##      
+#######################################################
+#
+#       load atom type hybridizations
+#       (includes atom types relevant to lipids)
+#
+addAtomTypes{ 
+        { "C"   "C" "sp2" }
+        { "CG"  "C" "sp3" }
+        { "CY"  "C" "sp3" }
+        { "CK"  "C" "sp2" }
+        { "CT"  "C" "sp3" }
+        { "CJ"  "C" "sp2" }
+        { "CP"  "C" "sp3" }
+        { "H"   "H" "sp3" }
+        { "H1"  "H" "sp3" }
+        { "H2"  "H" "sp3" }
+        { "HA"  "H" "sp3" }
+        { "HP"  "H" "sp3" }
+        { "HC"  "H" "sp3" }
+        { "HO"  "H" "sp3" }
+        { "HW"  "H" "sp3" }
+        { "N"   "N" "sp2" }
+        { "NT"  "N" "sp3" }
+        { "N3"  "N" "sp3" }
+        { "OH"  "O" "sp3" }
+        { "OS"  "O" "sp3" }
+        { "O"   "O" "sp2" }
+        { "O2"  "O" "sp2" }
+        { "OW"  "O" "sp3" }
+        { "OY"  "O" "sp3" }
+        { "S"   "S" "sp3" }
+        { "SM"  "S" "sp3" }
+        { "P"   "P" "sp3" }
+}
+#
+#	add residue maps for linking glycans to proteins
+#	Note that use of these requires sourcing the ff99 leaprc
+#	and loading the amino libraries in the load libs section
+#
+addPdbResMap {
+        { 0 "OLS" "NOLS" } { 1 "OLS" "COLS" }
+        { 0 "OLT" "NOLT" } { 1 "OLT" "COLT" }
+        { 0 "OLP" "NOLP" } { 1 "OLP" "COLP" }
+        { 0 "HYP" "NHYP" } { 1 "HYP" "CHYP" }
+        { 0 "NLN" "NNLN" } { 1 "NLN" "CNLN" }
+}
+#
+#       load the main paramter set
+#
+glycam_06 = loadamberparams GLYCAM_06g.dat
+#
+#       load all prep files for polysaccharides and lipids
+#
+loadamberprep GLYCAM_06.prep
+loadamberprep GLYCAM_06_lipids.prep
+#
+#       load lib files for attaching glycans to proteins
+#
+loadOff GLYCAM_06_amino.lib
+loadOff GLYCAM_06_aminoct.lib
+loadOff GLYCAM_06_aminont.lib
+#
+#       load water and ions
+#       assumes most users want to use tip3p as the explicit solvent model
+#       but this can be easily switched by the following commands in leap:
+#       HOH = TP5
+#       WAT = TP5
+#       loadamberparams frcmod.tip5p
+#
+HOH = TP3
+WAT = TP3
+loadOff ions94.lib
+loadOff solvents.lib

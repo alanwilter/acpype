@@ -1,9 +1,10 @@
-include amber21-11_dat/*
 include amber21-11_os/*
+include amber21-11_os/dat/*
 include amber21-11_os/lib/*
 include amber21-11_os/bin/*
 include amber21-11_os/bin/wrapped_progs/*
 include amber21-11_linux/*
+include amber21-11_linux/dat/*
 include amber21-11_linux/lib/*
 include amber21-11_linux/bin/*
 include amber21-11_linux/bin/wrapped_progs/*

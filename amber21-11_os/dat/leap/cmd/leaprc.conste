@@ -1,0 +1,14 @@
+# This file loads all parameters necessary to create prmtop
+# files consistent with Constant Redox Potential reference compound
+# energies
+
+source oldff/leaprc.ff10
+
+# Extra constant Redox Potential libraries for the HEME group
+loadOFF conste.lib
+
+# Necessary constant Redox Potential force field modifications
+loadAmberParams frcmod.conste
+
+# PBRadii must be mbondi2, corresponding to the proper reference energies
+set default PBRadii mbondi2

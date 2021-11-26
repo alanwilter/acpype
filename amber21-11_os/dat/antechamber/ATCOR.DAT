@@ -1,0 +1,146 @@
+CORR C  1 c
+CORR CA 1 c2 ca cc
+CORR CB 0 c2 cc ce
+CORR CC 1 c2 cc ce
+CORR CD 1 c2 ce 
+CORR CK 1 c2 cc ce
+CORR CM 1 c2 cc ce
+CORR CN 1 c2 cc ce
+CORR CQ 1 c2 cc ce
+CORR CR 1 c2 cc ce
+CORR CT 0 c3 
+CORR CV 1 c2 cc ce
+CORR CW 1 c2 cc ce
+CORR C* 1 c2 cc ce
+CORR CY 0 c1
+CORR CZ 0 c1
+CORR C1 0 c1
+CORR H  0 hn
+CORR HO 0 ho
+CORR HS 0 hs
+CORR HP 0 hc
+CORR HA 0 hc
+CORR HC 0 hc
+CORR H1 0 hc
+CORR H2 0 hc
+CORR H3 0 hc
+CORR H4 0 ha hc
+CORR H5 0 ha hc
+CORR F  0 f 
+CORR Cl 0 cl
+CORR Br 0 br
+CORR i  0 i 
+CORR N  1 n 
+CORR NA 1 na
+CORR NB 0 n2 nc ne
+CORR NC 0 n2 nc ne
+CORR N2 1 n3 nh
+CORR N3 0 n4
+CORR NT 0 n3
+CORR N* 1 na 
+CORR NY 0 n1
+CORR O  0 o 
+CORR O2 0 o 
+CORR OW 0 oh
+CORR OH 0 oh
+CORR OS 0 os
+CORR P  0 p4
+CORR S  0 ss
+CORR SH 0 sh
+CORR hc 0 hc
+CORR ha 0 hc
+CORR hn 0 hn
+CORR ho 0 ho
+CORR hp 0 hp
+CORR hs 0 hs
+CORR hw 0 ho
+CORR hx 0 hc
+CORR h1 0 hc
+CORR h2 0 hc
+CORR h3 0 hc
+CORR h4 0 hc
+CORR h5 0 hc
+CORR f  0 f 
+CORR cl 0 cl
+CORR br 0 br
+CORR i  0 i 
+CORR c3 0 c3
+CORR c2 1 c2 
+CORR c1 0 c1 
+CORR c  1 c2
+CORR cs 1 c  c2
+CORR ca 1 c2
+CORR cc 1 c2 ce 
+CORR cd 1 c2 ce 
+CORR ce 1 c2 
+CORR cf 1 c2 
+CORR cg 0 c1
+CORR ch 0 c1
+CORR cp 1 c2 cq ca 
+CORR cq 1 c2 cp ca 
+CORR cu 0 c2
+CORR cv 0 c2
+CORR cx 0 c3
+CORR cy 0 c3
+CORR cz 1 c2
+CORR ni 1 n
+CORR nj 1 n
+CORR ns 1 n 
+CORR nt 1 n 
+CORR n  1 n 
+CORR n1 0 n1   
+CORR n2 1 n2
+CORR n3 0 n3
+CORR n7 0 n3
+CORR n8 0 n3
+CORR n9 0 n3
+CORR nk 0 n4
+CORR nl 0 n4
+CORR nx 0 n4
+CORR ny 0 n4
+CORR nz 0 n4
+CORR n+ 0 n4
+CORR n4 0 n4
+CORR na 1 n3
+CORR nb 0 n2 nc 
+CORR nc 0 n2 ne
+CORR nd 0 n2 ne
+CORR ne 0 n2 
+CORR nf 0 n2 
+CORR nm 1 nh
+CORR nn 1 nh
+CORR nu 1 nh 
+CORR nv 1 nh 
+CORR nh 1 n3 
+CORR n5 0 n3
+CORR n6 0 n3
+CORR np 0 n3
+CORR nq 0 n3
+CORR no 0 n3
+CORR o  0 o 
+CORR oh 0 oh
+CORR op 0 os
+CORR oq 0 os
+CORR os 0 os
+CORR ow 0 oh
+CORR s  0 s 
+CORR s2 0 s2
+CORR s4 0 s4
+CORR s6 0 s6
+CORR sp 0 ss
+CORR sq 0 ss
+CORR ss 0 ss
+CORR sh 0 sh
+CORR sx 0 s4
+CORR sy 0 s6
+CORR p2 0 p2
+CORR p3 0 p3
+CORR p4 0 p4
+CORR p5 0 p5
+CORR pb 0 p2 pc
+CORR pc 0 p2 pe
+CORR pd 0 p2 pe
+CORR pe 0 p2 
+CORR pf 0 p2 
+CORR px 0 p4
+CORR py 0 p5
