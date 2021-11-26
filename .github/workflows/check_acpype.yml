@@ -20,9 +20,9 @@ jobs:
          with:
             python-version: 3.8
 
-      - name: Cache pip
-        uses: actions/cache@v2
-        with:
+      -  name: Cache pip
+         uses: actions/cache@v2
+         with:
             # This path is specific to Ubuntu
             path: ~/.cache/pip
             # Look to see if there is a cache hit for the corresponding requirements file
@@ -31,28 +31,28 @@ jobs:
                ${{ runner.os }}-pip-
                ${{ runner.os }}-
 
-      - name: Set Env
-        run: |
+      -  name: Set Env
+         run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
             echo "AMBERHOME=$PWD/amber21-11_linux" >> $GITHUB_ENV
             echo "$PWD/amber21-11_linux/bin" >> $GITHUB_PATH
 
-      - name: Install dependencies
-        run: |
+      -  name: Install dependencies
+         run: |
             sudo apt-get update
             sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
 
-      - name: Install OpenBabel
-        run: |
+      -  name: Install OpenBabel
+         run: |
             sudo apt-get install --no-install-recommends -y openbabel
 
-      - name: Install OpenBabel Python Module and Hack it
-        run: |
+      -  name: Install OpenBabel Python Module and Hack it
+         run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
             ln -s /usr/lib/python3/dist-packages/openbabel /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/
 
-      - name: Install Pip
-        run: |
+      -  name: Install Pip
+         run: |
             sudo apt-get install --no-install-recommends -y python3-pip
             python3 -m pip install --upgrade pip
             if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
@@ -70,18 +70,34 @@ jobs:
             # acpype -di test/AAA.pdb -c gas
             pytest --color=yes
 
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
+      -  name: Get current date
+         id: date
+         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
 
-      - name: Create Release
-        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release') # will only create a new release if the commit message is 'new_release' to master branch
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.date.outputs.date }}
-          release_name: Release ${{ steps.date.outputs.date }}
-          draft: false
-          prerelease: false
+      -  name: Create tag
+         # will only create a new release if the commit message is 'new_release' to master branch
+         if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_tag')
+         uses: actions/github-script@v3
+         with:
+            # github-token: ${{ github.token }} # optional
+            script: |
+               github.git.createRef({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               ref: "refs/tags/${{ steps.date.outputs.date }}",
+               sha: context.sha
+               })
+
+      -  name: Create Release
+         # will only create a new release if the commit message is 'new_release' to master branch
+         if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release')
+         id: create_release
+         uses: actions/create-release@v1
+         env:
+            # This token is provided by Actions, you do not need to create your own token
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+            tag_name: ${{ steps.date.outputs.date }}
+            release_name: Release ${{ steps.date.outputs.date }}
+            draft: false
+            prerelease: false
