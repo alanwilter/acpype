@@ -23,7 +23,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/alanwilter/acpype/tree/new_pip_package",
-    packages=["acpype_lib", "amber21-11_linux", "amber21-11_os"],
+    packages=["acpype_lib", "amber21-11_linux", "amber21-11_os", "amber21-11_dat"],
     package_dir={"acpype": "acpype"},
     include_package_data=True,
     keywords="acpype",

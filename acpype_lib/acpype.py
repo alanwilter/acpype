@@ -68,7 +68,7 @@ from acpype_lib.utils import checkSmiles, elapsedTime
 
 # For pip package
 if which("antechamber") is None:
-    LOCAL_PATH = sysconfig.get_paths()["purelib"]
+    LOCAL_PATH = "/home/lkagami/acpype"  # sysconfig.get_paths()["purelib"]
     if sys.platform == "linux":
         os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_linux/bin:" + LOCAL_PATH + "/amber21-11_linux/dat/"
         os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
