@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# AMBER wrapper script for the program parmchk2.
+# Calls the real parmchk2 after setting needed environment variables.
+
+this_script_dir="$(cd "$(dirname "$0")" && pwd)"
+source $this_script_dir/../amber.sh
+
+$AMBERHOME/bin/wrapped_progs/parmchk2 "$@"

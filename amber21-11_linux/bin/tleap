@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export AMBERHOME="$(dirname "$(cd "$(dirname "$0")" && pwd)")"
+
+$AMBERHOME/bin/teLeap \
+           -I$AMBERHOME/dat/leap/prep \
+           -I$AMBERHOME/dat/leap/lib \
+           -I$AMBERHOME/dat/leap/parm \
+           -I$AMBERHOME/dat/leap/cmd \
+            $*
