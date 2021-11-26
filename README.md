@@ -116,8 +116,7 @@ There are several ways of obtaining `acpype`:
    docker pull acpype/acpype:latest
    ```
 
-   Then, on Linux / MacOS:
-   choose a folder where to work (e.g. contains your PDB, MOL2 or inpcrd/prmtop files) and do:
+   Then, on Linux / MacOS choose a folder where to work (e.g. contains your PDB, MOL2 or inpcrd/prmtop files) and do:
 
    ```bash
    
