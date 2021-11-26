@@ -8,7 +8,7 @@ import array
 from datetime import datetime
 from shutil import copy2, rmtree, which
 from acpype_lib.mol import Atom, Angle, AtomType, Bond, Dihedral
-from acpype_lib import version
+from acpype_lib import __version__ as version
 from acpype_lib.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_TEMPLATE, leapAmberFile
 from acpype_lib.params import ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
 from acpype_lib.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
