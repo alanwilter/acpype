@@ -10,8 +10,6 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 COPY amber21-11_linux /home/amber21
 
-COPY amber21-11_linux/dat /usr/local/dat
-
 COPY run_acpype.py /home
 
 COPY acpype_lib /home/acpype_lib
@@ -37,5 +35,7 @@ RUN apt-get update && apt-get install -y \
     openbabel \
     python3-openbabel \
     libgfortran5 \
-    libarpack++2-dev
+    libarpack++2-dev \
+    && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
