@@ -14,7 +14,7 @@ import os
 import shutil
 import pytest
 from pytest import approx
-from acpype_lib import version
+from acpype_lib import __version__ as version
 from acpype_lib.acpype import init_main
 from acpype_lib.topol import ACTopol, MolTopol
 from acpype_lib.utils import _getoutput

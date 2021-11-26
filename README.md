@@ -2,7 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=social)
 ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=social)
-![Docker Pulls](https://img.shields.io/docker/pulls/lpkagami/acpype?style=social&logo=docker)
+![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=social&logo=docker)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/lpkagami/acpype/latest?style=social&logo=docker)
 ![GitHub Relase](https://img.shields.io/github/release-date/alanwilter/acpype?style=social)
 ![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg)
@@ -108,27 +108,38 @@ There are several ways of obtaining `acpype`:
 
    **NB:** Using this mode, CHARMM topology files will not be generated.
 
-4. Via **[Docker](https://hub.docker.com/repository/docker/lpkagami/acpype/)**:
+4. Via **[Docker](https://hub.docker.com/repository/docker/acpype/acpype/)**:
 
-   If you have Docker installed, you can run `acpype` with the following shell command:
+   If you have Docker installed, you can run `acpype` by:
+  
+   ```bash
+   docker pull acpype/acpype:latest
+   ```
 
-   On Linux / MacOS:
+   Then, on Linux / MacOS choose a folder where to work (e.g. contains your PDB, MOL2 or inpcrd/prmtop files) and do:
 
    ```bash
-   docker run --rm -v ${PWD}:/results -w /results -u $(id -u ${USER}):$(id -g ${USER}) lpkagami/acpype:latest -i FFF.pdb
+   
+   # it opens a terminal inside docker with access to your working folder
+   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype bash
+   
+   # use acpype 
+   acpype -i CCCC
+   acpype -i DDD.pdb -c gas # if you have a DDD.pdb file there in "wdir" ($PWD)
+   exit # and your output files will be at your working directory ($PWD)
    ```
 
    On Windows:
    Using Command Prompt:
 
    ```bash
-   docker run --rm -v %cd%:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
+   docker run -i -t --rm -v%cd%:/wdir -w /wdir acpype bash
    ```
 
    Using PowerShell:
 
    ```bash
-   docker run --rm -v ${PWD}:/results -w /results -u root lpkagami/acpype:latest -i FFF.pdb
+   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype bash
    ```
 
 **NB:** Installing via `conda` or via `pip/git` you get `AmberTools v.21.11` and `OpenBabel v3.11`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
