@@ -196,10 +196,11 @@ def init_main(argv=None):
     except Exception:
         pass
 
-    if checkSmiles(args.input):
-        afile = "smiles_molecule.mol2"
-        if os.path.exists(afile):
-            os.remove(afile)
+    if not amb2gmxF and molecule.babelExe:
+        if checkSmiles(args.input):
+            afile = "smiles_molecule.mol2"
+            if os.path.exists(afile):
+                os.remove(afile)
 
 
 if __name__ == "__main__":
