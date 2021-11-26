@@ -3,19 +3,19 @@
 """
 File needed for PyPI
 """
-import setuptools
-from acpype_lib._version import version
+from typing import Dict
+from setuptools import setup
 
 with open("README.md", "r") as fh:
-
     long_description = fh.read()
 
-# updated__ = "2021.11.14"
-# version = updated__[:19].replace("-", "").replace("T", "").replace(":", "")
+dver: Dict = {}
+with open("./acpype_lib/__init__.py") as fp:
+    exec(fp.read(), dver)
 
-setuptools.setup(
+setup(
     name="acpype",
-    version=version,
+    version=dver["__version__"],
     scripts=["acpype_lib/acpype.py"],
     author="Alan Silva",
     author_email="alanwilter@gmail.com",
