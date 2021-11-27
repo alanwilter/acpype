@@ -22,7 +22,7 @@ setup(
     description="ACPYPE - AnteChamber PYthon Parser interfacE",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/alanwilter/acpype",
+    url="https://github.com/alanwilter/acpype/tree/new_pip_package",
     packages=["acpype_lib", "amber21-11_linux", "amber21-11_os"],
     package_dir={"acpype": "acpype"},
     include_package_data=True,
