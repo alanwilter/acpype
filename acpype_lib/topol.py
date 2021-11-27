@@ -3068,7 +3068,7 @@ class ACTopol(AbstractTopol):
         self.baseOriginal = baseOriginal
         self.ext = ext
         self.baseName = base  # name of the input file without ext.
-        self.babelExe = which("obabel") or which("babel") or ""
+        self.babelExe = which("obabel") or ""
         if not os.path.exists(self.babelExe):
             if self.ext != ".mol2" and self.ext != ".mdl":
                 self.printError("no 'babel' executable; you need it if input is PDB or SMILES")
