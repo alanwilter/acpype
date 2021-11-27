@@ -121,7 +121,7 @@ There are several ways of obtaining `acpype`:
    ```bash
    
    # it opens a terminal inside docker with access to your working folder
-   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype bash
+   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype/acpype bash
    
    # use acpype 
    acpype -i CCCC
