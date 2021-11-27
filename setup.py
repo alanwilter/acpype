@@ -23,6 +23,10 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/alanwilter/acpype/tree/new_pip_package",
+    project_urls={
+        "Bug Tracker": "https://github.com/alanwilter/acpype/issues",
+        "Wiki": "https://github.com/alanwilter/acpype/wiki",
+    },
     packages=["acpype_lib", "amber21-11_linux", "amber21-11_os"],
     package_dir={"acpype": "acpype"},
     include_package_data=True,

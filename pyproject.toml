@@ -13,3 +13,6 @@ exclude = '''
   | amber.*
 )/
 '''
+[build-system]
+requires = ["setuptools>=58", "wheel"]
+build-backend = "setuptools.build_meta" # maybe poetry in the future
