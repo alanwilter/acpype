@@ -254,7 +254,7 @@ def test_inputs(capsys, argv):
         (None, 2, " error: "),  # NOTE: None -> sys.argv from pystest
         (["-v"], 0, version),
         ([], 2, "error: missing input files"),
-        (["-di", " 123"], 19, "ACPYPE FAILED: Input file  123 DOES NOT EXIST"),
+        (["-di", " 123"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
         (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
     ],

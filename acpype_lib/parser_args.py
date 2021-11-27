@@ -3,6 +3,7 @@ from acpype_lib.params import usage, epilog, MAXTIME, outTopols
 
 
 def get_option_parser():
+    # not used yet: -e -l -r
     parser = argparse.ArgumentParser(usage=usage + epilog)
     group = parser.add_mutually_exclusive_group()
     parser.add_argument(

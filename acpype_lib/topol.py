@@ -1,3 +1,4 @@
+import re
 import signal
 import math
 import os
@@ -3053,14 +3054,15 @@ class ACTopol(AbstractTopol):
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
-        if not os.path.exists(self.absInputFile) and checkSmiles(inputFile):
-            self.is_smiles = True
-            self.smiles = inputFile
-            if not basename:
-                self.inputFile = "smiles_molecule.mol2"
-            else:
-                self.inputFile = f"{basename}.mol2"
-            self.absInputFile = os.path.abspath(self.inputFile)
+        if not os.path.exists(self.absInputFile) and not re.search(r"\.mol2$|\.mdl$|\.pdb$", self.inputFile):
+            if checkSmiles(inputFile):
+                self.is_smiles = True
+                self.smiles = inputFile
+                if not basename:
+                    self.inputFile = "smiles_molecule.mol2"
+                else:
+                    self.inputFile = f"{basename}.mol2"
+                self.absInputFile = os.path.abspath(self.inputFile)
         elif not os.path.exists(self.absInputFile):
             raise Exception(f"Input file {inputFile} DOES NOT EXIST")
         baseOriginal, ext = os.path.splitext(self.inputFile)

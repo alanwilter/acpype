@@ -16,25 +16,31 @@ def checkOpenBabelVersion():
 
 def checkSmiles(smiles):
 
-    if checkOpenBabelVersion() >= 300:
-        from openbabel import openbabel as ob
-        from openbabel import pybel
+    try:
+        if checkOpenBabelVersion() >= 300:
+            from openbabel import openbabel as ob
+            from openbabel import pybel
 
-        ob.cvar.obErrorLog.StopLogging()
-    elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-        import openbabel as ob
-        import pybel  # type: ignore
+            ob.cvar.obErrorLog.StopLogging()
 
-        ob.cvar.obErrorLog.StopLogging()
+        elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
+            import openbabel as ob
+            import pybel  # type: ignore
 
-    " Check if input is a smiles string "
+            ob.cvar.obErrorLog.StopLogging()
+    except AttributeError:
+        print("WARNING: your input may be a SMILES but")
+        print("         without OpenBabel, this functionality won't work")
+        return False
 
+    # Check if input is a smiles string
     try:
         ob.obErrorLog.SetOutputLevel(0)
         pybel.readstring("smi", smiles)
         return True
     except Exception:
         ob.obErrorLog.SetOutputLevel(0)
+
         return False
 
 
