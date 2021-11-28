@@ -14,7 +14,7 @@ from acpype_lib.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLE
 from acpype_lib.params import binaries, ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
 from acpype_lib.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
 from acpype_lib.utils import _getoutput, while_replace, distanceAA, job_pids_family, checkOpenBabelVersion
-from acpype_lib.utils import checkSmiles, find_antechamber, elapsedTime, imprDihAngle, parmMerge
+from acpype_lib.utils import find_bin, elapsedTime, imprDihAngle, parmMerge
 
 year = datetime.today().year
 tag = version
@@ -210,7 +210,7 @@ class AbstractTopol:
         self.tmpDir = None
         self.absInputFile = None
         self.chargeType = None
-        self.babelExe = None
+        self.obabelExe = None
         self.baseName = None
         self.acExe = None
         self.force = None
@@ -251,7 +251,7 @@ class AbstractTopol:
         self.tleapLog = None
         self.parmchkLog = None
         self.inputFile = None
-        self.babelLog = None
+        self.obabelLog = None
         self.absHomeDir = None
         self.molTopol = None
         self.topFileData = None
@@ -316,6 +316,35 @@ class AbstractTopol:
             ll = ll[0]
         return ll
 
+    def checkSmiles(self):
+
+        if find_bin(self.binaries["obabel_bin"]):
+            if checkOpenBabelVersion() >= 300:
+                from openbabel import openbabel as ob
+                from openbabel import pybel
+
+                ob.cvar.obErrorLog.StopLogging()
+
+            elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
+                import openbabel as ob
+                import pybel  # type: ignore
+
+                ob.cvar.obErrorLog.StopLogging()
+        else:
+            print("WARNING: your input may be a SMILES but")
+            print("         without OpenBabel, this functionality won't work")
+            return False
+
+        # Check if input is a smiles string
+        try:
+            ob.obErrorLog.SetOutputLevel(0)
+            pybel.readstring("smi", self.smiles)
+            return True
+        except Exception:
+            ob.obErrorLog.SetOutputLevel(0)
+
+            return False
+
     def guessCharge(self):
         """
         Guess the charge of a system based on antechamber
@@ -344,7 +373,7 @@ class AbstractTopol:
             self.printWarn("no charge value given, trying to guess one...")
             mol2FileForGuessCharge = self.inputFile
             if self.ext == ".pdb":
-                cmd = f"{self.babelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
+                cmd = f"{self.obabelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
                 self.printDebug(f"guessCharge: {cmd}")
                 out = _getoutput(cmd)
                 self.printDebug(out)
@@ -955,23 +984,24 @@ class AbstractTopol:
         return check
 
     def convertPdbToMol2(self):
-        """Convert PDB to MOL2 by using babel"""
+        """Convert PDB to MOL2 by using obabel"""
         if self.ext == ".pdb":
-            if self.execBabel():
-                self.printError("convert pdb to mol2 via babel failed")
+            if self.execObabel():
+                self.printError(f"convert pdb to mol2 via {binaries['obabel_bin']} failed")
                 return True
         return False
 
     def convertSmilesToMol2(self):
-        if not self.babelExe:
-            raise Exception("SMILES needs openbabel python module")
+        """Convert Smiles to MOL2 by using obabel"""
+
+        if not self.obabelExe:
+            raise Exception("SMILES needs OpenBabel python module")
         if checkOpenBabelVersion() >= 300:
             from openbabel import pybel
 
         elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
             import pybel  # type: ignore
 
-        """Convert Smiles to MOL2 by using babel"""
         try:
             mymol = pybel.readstring("smi", str(self.smiles))
             mymol.addh()
@@ -981,20 +1011,20 @@ class AbstractTopol:
         except Exception:
             return False
 
-    def execBabel(self):
-        """Execute babel"""
+    def execObabel(self):
+        """Execute obabel"""
         self.makeDir()
 
-        cmd = f"{self.babelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
+        cmd = f"{self.obabelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
         self.printDebug(cmd)
-        self.babelLog = _getoutput(cmd)
+        self.obabelLog = _getoutput(cmd)
         self.ext = ".mol2"
         self.inputFile = self.baseName + self.ext
         self.acParDict["ext"] = "mol2"
         if os.path.exists(self.inputFile):
             self.printMess("* Babel OK *")
         else:
-            self.printQuoted(self.babelLog)
+            self.printQuoted(self.obabelLog)
             return True
         return False
 
@@ -1352,7 +1382,7 @@ class AbstractTopol:
         Get chiral atoms, its 4 neighbours and improper dihedral angle
         to store non-planar improper dihedrals for CNS (and CNS only!)
         """
-        if not self._parent.babelExe:
+        if not self._parent.obabelExe:
             self.printWarn("No Openbabel python module, no chiral groups")
             self.chiralGroups = []
             return
@@ -3044,6 +3074,7 @@ class ACTopol(AbstractTopol):
         amb2gmx=False,
     ):
         super().__init__()
+        self.binaries = binaries
         self.amb2gmx = amb2gmx
         self.debug = debug
         self.verbose = verbose
@@ -3052,13 +3083,13 @@ class ACTopol(AbstractTopol):
         self.direct = direct
         self.sorted = is_sorted
         self.chiral = chiral
-        self.acExe = find_antechamber(binaries["ac_bin"])
+        self.acExe = find_bin(binaries["ac_bin"])
         if not os.path.exists(self.acExe):
-            self.printError("no 'antechamber' executable... aborting! ")
-            hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
+            self.printError(f"no '{binaries['ac_bin']}' executable... aborting! ")
+            hint1 = "HINT1: is 'AMBERHOME' environment variable set?"
             hint2 = (
-                "HINT2: is 'antechamber' in your $PATH?"
-                + "\n    What 'which antechamber' in your terminal says?"
+                f"HINT2: is '{binaries['ac_bin']}' in your $PATH?"
+                + f"\n    What 'which {binaries['ac_bin']}' in your terminal says?"
                 + "\n    'alias' doesn't work for ACPYPE."
             )
             self.printMess(hint1)
@@ -3067,10 +3098,11 @@ class ACTopol(AbstractTopol):
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
+
         if not os.path.exists(self.absInputFile) and not re.search(r"\.mol2$|\.mdl$|\.pdb$", self.inputFile):
-            if checkSmiles(inputFile):
+            self.smiles = inputFile
+            if self.checkSmiles():
                 self.is_smiles = True
-                self.smiles = inputFile
                 if not basename:
                     self.inputFile = "smiles_molecule.mol2"
                 else:
@@ -3078,6 +3110,7 @@ class ACTopol(AbstractTopol):
                 self.absInputFile = os.path.abspath(self.inputFile)
             else:
                 self.is_smiles = False
+                self.smiles = None
         elif not os.path.exists(self.absInputFile):
             raise Exception(f"Input file {inputFile} DOES NOT EXIST")
         baseOriginal, ext = os.path.splitext(self.inputFile)
@@ -3085,14 +3118,14 @@ class ACTopol(AbstractTopol):
         self.baseOriginal = baseOriginal
         self.ext = ext
         self.baseName = base  # name of the input file without ext.
-        self.babelExe = which("obabel") or ""
-        if not os.path.exists(self.babelExe):
+        self.obabelExe = find_bin(binaries["obabel_bin"])
+        if not os.path.exists(self.obabelExe):
             if self.ext != ".mol2" and self.ext != ".mdl":
-                self.printError("no 'babel' executable; you need it if input is PDB or SMILES")
+                self.printError(f"no '{binaries['obabel_bin']}' executable; you need it if input is PDB or SMILES")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
-                raise Exception("Missing BABEL")
+                raise Exception("Missing OBABEL")
             else:
-                self.printWarn("no 'babel' executable, no PDB file as input can be used!")
+                self.printWarn(f"no '{binaries['obabel_bin']}' executable, no PDB file can be used as input!")
         if self.is_smiles:
             self.convertSmilesToMol2()
         self.timeTol = timeTol

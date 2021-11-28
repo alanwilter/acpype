@@ -63,8 +63,7 @@ import sysconfig
 from shutil import rmtree, which
 from acpype_lib.topol import MolTopol, ACTopol, header
 from acpype_lib.parser_args import get_option_parser
-from acpype_lib.utils import while_replace
-from acpype_lib.utils import checkSmiles, elapsedTime
+from acpype_lib.utils import while_replace, elapsedTime
 from acpype_lib.params import binaries
 
 
@@ -77,12 +76,12 @@ def set_for_pip():
                 os.pathsep + LOCAL_PATH + "/amber21-11_linux/bin:" + LOCAL_PATH + "/amber21-11_linux/dat/"
             )
             os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
-            os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_linux/bin/"
+            # os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_linux/bin/"
             os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_linux/lib/"
         elif sys.platform == "darwin":
             os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_os/bin:" + LOCAL_PATH + "/amber21-11_os/dat/"
             os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
-            os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_os/bin/"
+            # os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_os/bin/"
             os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
             os.environ["DYLD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
 
@@ -207,8 +206,8 @@ def init_main(binaries=binaries, argv=None):
     except Exception:
         pass
 
-    if not amb2gmxF and molecule.babelExe:
-        if checkSmiles(args.input):
+    if not amb2gmxF and molecule.obabelExe:
+        if molecule.checkSmiles():
             afile = "smiles_molecule.mol2"
             if os.path.exists(afile):
                 os.remove(afile)
