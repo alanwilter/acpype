@@ -1,3 +1,5 @@
+binaries = {"ac_bin": "antechamber", "obabel_bin": "obabel"}
+
 MAXTIME = 3 * 3600
 cal = 4.184
 Pi = 3.141593

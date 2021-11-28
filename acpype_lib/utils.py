@@ -28,7 +28,7 @@ def checkSmiles(smiles):
             import pybel  # type: ignore
 
             ob.cvar.obErrorLog.StopLogging()
-    except AttributeError:
+    except Exception:
         print("WARNING: your input may be a SMILES but")
         print("         without OpenBabel, this functionality won't work")
         return False
@@ -281,15 +281,6 @@ def while_replace(string):
     return string
 
 
-def find_antechamber():
-    acExe = ""
-    dirAmber = os.getenv("AMBERHOME", os.getenv("ACHOME"))
-    if dirAmber:
-        for ac_bin in ["bin", "exe"]:
-            ac_path = os.path.join(dirAmber, ac_bin, "antechamber")
-            if os.path.exists(ac_path):
-                acExe = ac_path
-                break
-    if not acExe:
-        acExe = which("antechamber") or ""
+def find_antechamber(abin):
+    acExe = which(abin) or ""
     return acExe

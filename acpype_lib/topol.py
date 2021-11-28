@@ -11,7 +11,7 @@ from shutil import copy2, rmtree, which
 from acpype_lib.mol import Atom, Angle, AtomType, Bond, Dihedral
 from acpype_lib import __version__ as version
 from acpype_lib.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_TEMPLATE, leapAmberFile
-from acpype_lib.params import ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
+from acpype_lib.params import binaries, ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
 from acpype_lib.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
 from acpype_lib.utils import _getoutput, while_replace, distanceAA, job_pids_family, checkOpenBabelVersion
 from acpype_lib.utils import checkSmiles, find_antechamber, elapsedTime, imprDihAngle, parmMerge
@@ -3022,6 +3022,7 @@ class ACTopol(AbstractTopol):
     def __init__(
         self,
         inputFile,
+        binaries=binaries,
         chargeType="bcc",
         chargeVal=None,
         multiplicity="1",
@@ -3051,6 +3052,18 @@ class ACTopol(AbstractTopol):
         self.direct = direct
         self.sorted = is_sorted
         self.chiral = chiral
+        self.acExe = find_antechamber(binaries["ac_bin"])
+        if not os.path.exists(self.acExe):
+            self.printError("no 'antechamber' executable... aborting! ")
+            hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
+            hint2 = (
+                "HINT2: is 'antechamber' in your $PATH?"
+                + "\n    What 'which antechamber' in your terminal says?"
+                + "\n    'alias' doesn't work for ACPYPE."
+            )
+            self.printMess(hint1)
+            self.printMess(hint2)
+            raise Exception("Missing ANTECHAMBER")
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
@@ -3063,6 +3076,8 @@ class ACTopol(AbstractTopol):
                 else:
                     self.inputFile = f"{basename}.mol2"
                 self.absInputFile = os.path.abspath(self.inputFile)
+            else:
+                self.is_smiles = False
         elif not os.path.exists(self.absInputFile):
             raise Exception(f"Input file {inputFile} DOES NOT EXIST")
         baseOriginal, ext = os.path.splitext(self.inputFile)
@@ -3099,18 +3114,6 @@ class ACTopol(AbstractTopol):
             self.gaffDatfile = "gaff2.dat"
         self.force = force
         self.allhdg = allhdg
-        self.acExe = find_antechamber()
-        if not os.path.exists(self.acExe):
-            self.printError("no 'antechamber' executable... aborting ! ")
-            hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
-            hint2 = (
-                "HINT2: is 'antechamber' in your $PATH?"
-                + "\n    What 'which antechamber' in your terminal says?"
-                + "\n    'alias' doesn't work for ACPYPE."
-            )
-            self.printMess(hint1)
-            self.printMess(hint2)
-            raise Exception("Missing ANTECHAMBER")
         self.tleapExe = which("tleap") or ""
         self.parmchkExe = which("parmchk2") or ""
         acBase = base + "_AC"

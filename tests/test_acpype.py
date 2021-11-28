@@ -132,13 +132,17 @@ def test_ildn_gmx4_fail():
     shutil.rmtree(molecule.absHomeDir)
 
 
-def test_smiles():
+@pytest.mark.parametrize(
+    ("base", "msg"), [(None, "smiles_molecule.mol2"), ("thalidomide_smiles", "thalidomide_smiles.mol2")],
+)
+def test_smiles(base, msg):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     smiles = "c1ccc2c(c1)C(=O)N(C2=O)C3CCC(=NC3=O)O"
-    molecule = ACTopol(smiles, basename="thalidomide_smiles", chargeType="gas", debug=True)
+    molecule = ACTopol(smiles, basename=base, chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule
+    assert molecule.inputFile == msg
     assert len(molecule.molTopol.atoms) == 29
     shutil.rmtree(molecule.absHomeDir)
     os.remove(molecule.absInputFile)
@@ -241,7 +245,7 @@ def test_charge_user():
 def test_inputs(capsys, argv):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     temp_base = "vir_temp"
-    init_main(argv + ["-b", temp_base])
+    init_main(argv=argv + ["-b", temp_base])
     captured = capsys.readouterr()
     assert "Total time of execution:" in captured.out
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -254,6 +258,7 @@ def test_inputs(capsys, argv):
         (None, 2, " error: "),  # NOTE: None -> sys.argv from pystest
         (["-v"], 0, version),
         ([], 2, "error: missing input files"),
+        (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
         (["-di", " 123"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
         (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
@@ -261,7 +266,7 @@ def test_inputs(capsys, argv):
 )
 def test_args_wrong_inputs(capsys, argv, code, msg):
     with pytest.raises(SystemExit) as e_info:
-        init_main(argv)
+        init_main(argv=argv)
     captured = capsys.readouterr()
     assert msg in captured.err + captured.out
     assert e_info.typename == "SystemExit"

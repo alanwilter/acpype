@@ -65,30 +65,40 @@ from acpype_lib.topol import MolTopol, ACTopol, header
 from acpype_lib.parser_args import get_option_parser
 from acpype_lib.utils import while_replace
 from acpype_lib.utils import checkSmiles, elapsedTime
-
-# For pip package
-if which("antechamber") is None:
-    LOCAL_PATH = sysconfig.get_paths()["purelib"]
-    if sys.platform == "linux":
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_linux/bin:" + LOCAL_PATH + "/amber21-11_linux/dat/"
-        os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
-        os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_linux/bin/"
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_linux/lib/"
-    elif sys.platform == "darwin":
-        os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_os/bin:" + LOCAL_PATH + "/amber21-11_os/dat/"
-        os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
-        os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_os/bin/"
-        os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
-
-if sys.version_info < (3, 6):
-    raise Exception("Sorry, you need python 3.6 or higher")
+from acpype_lib.params import binaries
 
 
-def init_main(argv=None):
+def set_for_pip():
+    # For pip package
+    if which(binaries["ac_bin"]) is None:
+        LOCAL_PATH = sysconfig.get_paths()["purelib"]
+        if sys.platform == "linux":
+            os.environ["PATH"] += (
+                os.pathsep + LOCAL_PATH + "/amber21-11_linux/bin:" + LOCAL_PATH + "/amber21-11_linux/dat/"
+            )
+            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
+            os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_linux/bin/"
+            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_linux/lib/"
+        elif sys.platform == "darwin":
+            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_os/bin:" + LOCAL_PATH + "/amber21-11_os/dat/"
+            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
+            os.environ["ACHOME"] = LOCAL_PATH + "/amber21-11_os/bin/"
+            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
+            os.environ["DYLD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
+
+
+def chk_py_ver():
+    if sys.version_info < (3, 6):
+        raise Exception("Sorry, you need python 3.6 or higher")
+
+
+def init_main(binaries=binaries, argv=None):
 
     """
     Main function, to satisfy Conda
     """
+    chk_py_ver()
+    set_for_pip()
     if argv is None:
         argv = sys.argv[1:]
 
@@ -141,6 +151,7 @@ def init_main(argv=None):
         else:
             molecule = ACTopol(
                 args.input,
+                binaries=binaries,
                 chargeType=args.charge_method,
                 chargeVal=args.net_charge,
                 debug=args.debug,
