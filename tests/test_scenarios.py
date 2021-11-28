@@ -49,3 +49,15 @@ def test_no_obabel(capsys, inp, msg):
     assert msg in captured.out
     assert e_info.typename == "SystemExit"
     assert e_info.value.code == 19
+
+
+def test_amb2gmx_no_bins(capsys):
+    binaries = {"ac_bin": "no_ac", "obabel_bin": "no_obabel"}
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    argv = ["-x", "Base.inpcrd", "-p", "Base.prmtop"]
+    temp_base = "vir_temp"
+    init_main(argv=argv + ["-b", temp_base], binaries=binaries)
+    captured = capsys.readouterr()
+    assert "Total time of execution:" in captured.out
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    _getoutput(f"rm -fr {temp_base}*")
