@@ -110,23 +110,18 @@ There are several ways of obtaining `acpype`:
 
 4. Via **[Docker](https://hub.docker.com/repository/docker/acpype/acpype/)**:
 
-   If you have Docker installed, you can run `acpype` by:
-  
-   ```bash
-   docker pull acpype/acpype:latest
-   ```
+   If you have Docker installed, you can run `acpype_docker.sh` by:
 
-   Then, on Linux / MacOS choose a folder where to work (e.g. contains your PDB, MOL2 or inpcrd/prmtop files) and do:
+   NOTE: first time may take some time as it pulls the `acpype` docker image.
+
+   On Linux / MacOS:
 
    ```bash
+   ln -fsv "$PWD/acpype_docker.sh" /usr/local/bin/acpype_docker
+
+   acpype_docker -i CCCC
    
-   # it opens a terminal inside docker with access to your working folder
-   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype/acpype bash
-   
-   # use acpype 
-   acpype -i CCCC
-   acpype -i DDD.pdb -c gas # if you have a DDD.pdb file there in "wdir" ($PWD)
-   exit # and your output files will be at your working directory ($PWD)
+   acpype_docker -i tests/DDD.pdb -c gas
    ```
 
    On Windows:
@@ -174,7 +169,7 @@ To get help and more information, type:
 At folder `acpype/`, type:
 
 ```bash
-  ln -s $PWD/run_acpype.py /usr/local/bin/acpype
+  ln -fsv "$PWD/run_acpype.py" /usr/local/bin/acpype
 ```
 
 Then re-login or start another shell session.
