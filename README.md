@@ -107,9 +107,9 @@ There are several ways of obtaining `acpype`:
    conda create -n acpype --channel conda-forge ambertools openbabel
 
    pip install acpype
-   
+
    # or if you feel daring
-   
+
    pip install git+https://github.com/alanwilter/acpype.git
    ```
 
@@ -138,24 +138,22 @@ There are several ways of obtaining `acpype`:
    ```bash
    ln -fsv "$PWD/acpype_docker.sh" /usr/local/bin/acpype_docker
 
-   acpype_docker -i CCCC
-   
-   acpype_docker -i tests/DDD.pdb -c gas
    ```
 
    On Windows:
    Using Command Prompt:
 
-   ```bash
-   docker run -i -t --rm -v%cd%:/wdir -w /wdir acpype bash
-   ```
-
-   Using PowerShell:
+    In the directory where the `acpype_docker.bat` file is found:
 
    ```bash
-   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype bash
+   setx /M path "%path%;%cd%"
    ```
+   Commands:
+   ```bash
+   acpype_docker -i CCCC
 
+   acpype_docker -i tests/DDD.pdb -c gas
+   ```
 **NB:**
 
 - By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
