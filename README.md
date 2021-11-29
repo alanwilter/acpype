@@ -1,12 +1,17 @@
 # ACPYPE
 
-![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=social)
-![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=social)
-![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=social&logo=docker)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/lpkagami/acpype/latest?style=social&logo=docker)
-![GitHub Relase](https://img.shields.io/github/release-date/alanwilter/acpype?style=social)
-![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg)
-![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg)
+![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)
+![GitHub Relase](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
+![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/acpype/acpype/latest?style=plastic&logo=docker)
+![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)
+![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)<!-- ![Conda](https://img.shields.io/conda/pn/conda-forge/acpype?logo=conda-forge&style=plastic) -->
+![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype)
+<!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
+<!-- ![Scrutinizer coverage (GitHub/BitBucket)](https://img.shields.io/scrutinizer/coverage/g/alanwilter/acpype) -->
 
 ## AnteChamber PYthon Parser interfacE
 
@@ -87,21 +92,33 @@ There are several ways of obtaining `acpype`:
 
 1. Via **[CONDA](https://anaconda.org/search?q=acpype)**:
 
+   *(It should be wholesome, fully funcional, all batteries included)*
+
    ```bash
    conda install -c conda-forge acpype
    ```
 
 2. Via **[PyPI](https://pypi.org/project/acpype/)**:
 
+   *(Make sure you  have `AmberTools` and, optionally but highly recommended, `OpenBabel` )*
+
    ```bash
+   # You can use conda to get the needed 3rd parties for example
+   conda create -n acpype --channel conda-forge ambertools openbabel
+
+   pip install acpype
+   
+   # or if you daring
+   
    pip install git+https://github.com/alanwilter/acpype.git
    ```
 
-   note that `pip install acpype`, unfortunately, is not *yet* picking the original one.
-
 3. By downloading it via `git`:
 
+   *(Make sure you  have `AmberTools` and, optionally but highly recommended, `OpenBabel` )*
+
    ```bash
+   # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
    git clone https://github.com/alanwilter/acpype.git
    ```
@@ -109,6 +126,8 @@ There are several ways of obtaining `acpype`:
    **NB:** Using this mode, CHARMM topology files will not be generated.
 
 4. Via **[Docker](https://hub.docker.com/repository/docker/acpype/acpype/)**:
+
+   *(It should be wholesome, fully funcional, all batteries included)*
 
    If you have Docker installed, you can run `acpype_docker.sh` by:
 
@@ -137,7 +156,10 @@ There are several ways of obtaining `acpype`:
    docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype bash
    ```
 
-**NB:** Installing via `conda` or via `pip/git` you get `AmberTools v.21.11` and `OpenBabel v3.11`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
+**NB:**
+
+- By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
+- By installing via `pip` you get `AmberTools` (as described above) embeded. However, the included binaries may not work in your system (library dependecies issues) and with only provide binaries for Linux (Ubuntu20) and Mac OSX.
 
 ##### To Test, if doing via `git`
 
@@ -236,4 +258,4 @@ cns < FFF_CNS.inp
 
 #### To Verify with NAMD
 
-- see [TutorialNAMD]
+- see [TutorialNAMD](../../Tutorial-NAMD)
