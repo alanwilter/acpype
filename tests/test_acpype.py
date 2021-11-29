@@ -1,15 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-Requirements:
-* pytest
-* pytest-html
-
-To run:
-pytest -s --html=report.html
-
-"""
 import os
 import shutil
 import pytest
