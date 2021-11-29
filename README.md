@@ -106,6 +106,9 @@ There are several ways of obtaining `acpype`:
    # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
 
+   # Or for Ubuntu 20:
+   apt-get install -y openbabel python3-openbabel libarpack++2-dev libgfortran5
+
    pip install acpype
 
    # or if you feel daring
@@ -120,6 +123,10 @@ There are several ways of obtaining `acpype`:
    ```bash
    # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
+
+   # Or for Ubuntu 20:
+   apt-get install -y openbabel python3-openbabel libarpack++2-dev libgfortran5
+   
    git clone https://github.com/alanwilter/acpype.git
    ```
 
@@ -148,12 +155,15 @@ There are several ways of obtaining `acpype`:
    ```bash
    setx /M path "%path%;%cd%"
    ```
+
    Commands:
+
    ```bash
    acpype_docker -i CCCC
 
    acpype_docker -i tests/DDD.pdb -c gas
    ```
+
 **NB:**
 
 - By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
