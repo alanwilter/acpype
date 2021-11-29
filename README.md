@@ -108,7 +108,7 @@ There are several ways of obtaining `acpype`:
 
    pip install acpype
    
-   # or if you daring
+   # or if you feel daring
    
    pip install git+https://github.com/alanwilter/acpype.git
    ```
@@ -258,4 +258,4 @@ cns < FFF_CNS.inp
 
 #### To Verify with NAMD
 
-- see [TutorialNAMD](../../Tutorial-NAMD)
+- see [TutorialNAMD](../../wiki/Tutorial-NAMD)
