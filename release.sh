@@ -4,6 +4,8 @@
 
 set -euo pipefail
 
+version="$(grep -o '[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}' acpype_lib/__init__.py)"
+
 function usage() {
     echo "syntax: $0 < [-p, -d] | -a > to create a release for pip or docker or both"
     echo " -p : for pip, create wheel and upload to https://pypi.org/project/acpype/ (if you have permission)"
@@ -17,18 +19,17 @@ function usage() {
 function run_pip() {
     echo ">>> Creating pip package"
     python3 -m build
-    python3 -m twine upload --repository testpypi dist/*"$today"* # TestPyPI
-    python3 -m twine upload --repository acpype dist/*"$today"*   # official release
-    rm -vfr dist/*"$today"*
+    python3 -m twine upload --repository testpypi dist/*"$version"* # TestPyPI
+    python3 -m twine upload --repository pypi dist/*"$version"*     # official release
+    rm -vfr dist/*"$version"*
 }
 
 function run_docker() {
     echo ">>> Creating docker images"
-    docker build -t acpype/acpype:latest -t acpype/acpype:"$today" .
-
+    docker build -t acpype/acpype:latest -t acpype/acpype:"$version" .
     echo ">>> Pushing docker images"
     docker push acpype/acpype --all-tags
-    docker image rm acpype/acpype:"$today"
+    docker image rm acpype/acpype:"$version"
 }
 
 function run_both() {
@@ -64,8 +65,6 @@ fi
 if ${verb}; then
     set -x
 fi
-
-today="$(date +%Y.%m.%d)"
 
 if $do_pip; then
     run_pip
