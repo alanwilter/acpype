@@ -1,15 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-Requirements:
-* pytest
-* pytest-html
-
-To run:
-pytest -s --html=report.html
-
-"""
 import os
 import ujson as json
 from acpype_lib.acs_api import acpype_api
@@ -48,7 +36,8 @@ def test_json_simple():
 def test_json_failed():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     jj = json.loads(acpype_api(inputFile="_fake_", debug=True))
-    assert jj.get("file_name") == "ERROR: Input file _fake_ DOES NOT EXIST"
+    assert "ERROR: [Errno 2] No such file or directory" in jj.get("file_name")
+    assert "tests/_fake_" in jj.get("file_name")
 
 
 def get_json():

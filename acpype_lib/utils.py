@@ -5,6 +5,10 @@ from shutil import which
 from acpype_lib.params import Pi
 
 
+def find_bin(abin):
+    return which(abin) or ""
+
+
 def checkOpenBabelVersion():
     "check openbabel version"
     import openbabel as obl
@@ -12,30 +16,6 @@ def checkOpenBabelVersion():
 
     warnings.filterwarnings("ignore")
     return int(obl.OBReleaseVersion().replace(".", ""))
-
-
-def checkSmiles(smiles):
-
-    if checkOpenBabelVersion() >= 300:
-        from openbabel import openbabel as ob
-        from openbabel import pybel
-
-        ob.cvar.obErrorLog.StopLogging()
-    elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-        import openbabel as ob
-        import pybel  # type: ignore
-
-        ob.cvar.obErrorLog.StopLogging()
-
-    " Check if input is a smiles string "
-
-    try:
-        ob.obErrorLog.SetOutputLevel(0)
-        pybel.readstring("smi", smiles)
-        return True
-    except Exception:
-        ob.obErrorLog.SetOutputLevel(0)
-        return False
 
 
 def dotproduct(aa, bb):
@@ -273,17 +253,3 @@ def while_replace(string):
     while "  " in string:
         string = string.replace("  ", " ")
     return string
-
-
-def find_antechamber():
-    acExe = ""
-    dirAmber = os.getenv("AMBERHOME", os.getenv("ACHOME"))
-    if dirAmber:
-        for ac_bin in ["bin", "exe"]:
-            ac_path = os.path.join(dirAmber, ac_bin, "antechamber")
-            if os.path.exists(ac_path):
-                acExe = ac_path
-                break
-    if not acExe:
-        acExe = which("antechamber") or ""
-    return acExe

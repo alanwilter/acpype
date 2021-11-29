@@ -29,9 +29,11 @@ RUN apt-get update && apt-get install -y \
     python3-openbabel \
     libgfortran5 \
     libarpack++2-dev \
+    python3-ipython \
     && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY run_acpype.py /home
 COPY acpype_lib /home/acpype_lib
 RUN ln -s /home/run_acpype.py /usr/local/bin/acpype
+ENV PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/amber21/bin" 

@@ -1,12 +1,17 @@
 # ACPYPE
 
-![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=social)
-![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=social)
-![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=social&logo=docker)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/lpkagami/acpype/latest?style=social&logo=docker)
-![GitHub Relase](https://img.shields.io/github/release-date/alanwilter/acpype?style=social)
-![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg)
-![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg)
+![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)
+![GitHub Relase](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
+![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/acpype/acpype/latest?style=plastic&logo=docker)
+![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)
+![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)<!-- ![Conda](https://img.shields.io/conda/pn/conda-forge/acpype?logo=conda-forge&style=plastic) -->
+![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype)
+<!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
+<!-- ![Scrutinizer coverage (GitHub/BitBucket)](https://img.shields.io/scrutinizer/coverage/g/alanwilter/acpype) -->
 
 ## AnteChamber PYthon Parser interfacE
 
@@ -87,21 +92,33 @@ There are several ways of obtaining `acpype`:
 
 1. Via **[CONDA](https://anaconda.org/search?q=acpype)**:
 
+   *(It should be wholesome, fully funcional, all batteries included)*
+
    ```bash
    conda install -c conda-forge acpype
    ```
 
 2. Via **[PyPI](https://pypi.org/project/acpype/)**:
 
+   *(Make sure you  have `AmberTools` and, optionally but highly recommended, `OpenBabel` )*
+
    ```bash
+   # You can use conda to get the needed 3rd parties for example
+   conda create -n acpype --channel conda-forge ambertools openbabel
+
+   pip install acpype
+
+   # or if you feel daring
+
    pip install git+https://github.com/alanwilter/acpype.git
    ```
 
-   note that `pip install acpype`, unfortunately, is not *yet* picking the original one.
-
 3. By downloading it via `git`:
 
+   *(Make sure you  have `AmberTools` and, optionally but highly recommended, `OpenBabel` )*
+
    ```bash
+   # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
    git clone https://github.com/alanwilter/acpype.git
    ```
@@ -110,39 +127,37 @@ There are several ways of obtaining `acpype`:
 
 4. Via **[Docker](https://hub.docker.com/repository/docker/acpype/acpype/)**:
 
-   If you have Docker installed, you can run `acpype` by:
-  
-   ```bash
-   docker pull acpype/acpype:latest
-   ```
+   *(It should be wholesome, fully funcional, all batteries included)*
 
-   Then, on Linux / MacOS choose a folder where to work (e.g. contains your PDB, MOL2 or inpcrd/prmtop files) and do:
+   If you have Docker installed, you can run `acpype_docker.sh` by:
+
+   NOTE: first time may take some time as it pulls the `acpype` docker image.
+
+   On Linux / MacOS:
 
    ```bash
-   
-   # it opens a terminal inside docker with access to your working folder
-   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype/acpype bash
-   
-   # use acpype 
-   acpype -i CCCC
-   acpype -i DDD.pdb -c gas # if you have a DDD.pdb file there in "wdir" ($PWD)
-   exit # and your output files will be at your working directory ($PWD)
+   ln -fsv "$PWD/acpype_docker.sh" /usr/local/bin/acpype_docker
+
    ```
 
    On Windows:
    Using Command Prompt:
 
-   ```bash
-   docker run -i -t --rm -v%cd%:/wdir -w /wdir acpype bash
-   ```
-
-   Using PowerShell:
+    In the directory where the `acpype_docker.bat` file is found:
 
    ```bash
-   docker run -i -t --rm -v ${PWD}:/wdir -w /wdir acpype bash
+   setx /M path "%path%;%cd%"
    ```
+   Commands:
+   ```bash
+   acpype_docker -i CCCC
 
-**NB:** Installing via `conda` or via `pip/git` you get `AmberTools v.21.11` and `OpenBabel v3.11`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
+   acpype_docker -i tests/DDD.pdb -c gas
+   ```
+**NB:**
+
+- By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
+- By installing via `pip` you get `AmberTools` (as described above) embeded. However, the included binaries may not work in your system (library dependecies issues) and with only provide binaries for Linux (Ubuntu20) and Mac OSX.
 
 ##### To Test, if doing via `git`
 
@@ -174,7 +189,7 @@ To get help and more information, type:
 At folder `acpype/`, type:
 
 ```bash
-  ln -s $PWD/run_acpype.py /usr/local/bin/acpype
+  ln -fsv "$PWD/run_acpype.py" /usr/local/bin/acpype
 ```
 
 Then re-login or start another shell session.
@@ -241,4 +256,4 @@ cns < FFF_CNS.inp
 
 #### To Verify with NAMD
 
-- see [TutorialNAMD]
+- see [TutorialNAMD](../../wiki/Tutorial-NAMD)
