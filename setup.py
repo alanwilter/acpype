@@ -22,7 +22,7 @@ setup(
     description="ACPYPE - AnteChamber PYthon Parser interfacE",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/alanwilter/acpype/tree/new_pip_package",
+    url="https://github.com/alanwilter/acpype",
     project_urls={
         "Bug Tracker": "https://github.com/alanwilter/acpype/issues",
         "Wiki": "https://github.com/alanwilter/acpype/wiki",
