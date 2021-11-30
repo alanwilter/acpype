@@ -2,7 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)
-![GitHub Relase](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
+![GitHub Release](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
 ![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/acpype/acpype/latest?style=plastic&logo=docker)
 ![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)
@@ -78,7 +78,7 @@ alanwilter _at_ gmail _dot_ com
 
 ##### Introduction
 
-We now have an up to date *webservice* at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` funcionality).
+We now have an up to date *webservice* at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` functionality).
 
 To run `acpype`, locally, with its all functionalities, you need **ANTECHAMBER** from package
 [AmberTools](http://ambermd.org/) and
@@ -134,7 +134,7 @@ There are several ways of obtaining `acpype`:
 
 4. Via **[Docker](https://hub.docker.com/repository/docker/acpype/acpype/)**:
 
-   *(It should be wholesome, fully funcional, all batteries included)*
+   *(It should be wholesome, fully functional, all batteries included)*
 
    If you have Docker installed, you can run `acpype_docker.sh` by:
 
@@ -166,8 +166,8 @@ There are several ways of obtaining `acpype`:
 
 **NB:**
 
-- By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` comes with binary `charmmgen` from `AmberTools17` in order to generate CHARMM topologies.
-- By installing via `pip` you get `AmberTools` (as described above) embeded. However, the included binaries may not work in your system (library dependecies issues) and with only provide binaries for Linux (Ubuntu20) and Mac OSX.
+- By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` is a stripped version from the original containing only the necessary binaries and libraries and comes with the `charmmgen` binary from `AmberTools17` in order to generate CHARMM topologies.
+- By installing via `pip` you get `AmberTools` (as described above) embedded. However, the included binaries may not work in your system (library dependencies issues) and with only provide binaries for Linux (Ubuntu20) and macOS (Intel).
 
 ##### To Test, if doing via `git`
 
