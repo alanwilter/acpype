@@ -117,6 +117,7 @@ def parseFrcmod(lista):
     """Parse FRCMOD file"""
     heads = ["MASS", "BOND", "ANGL", "DIHE", "IMPR", "HBON", "NONB"]
     dict_ = {}
+    dd = {}
     for line in lista[1:]:
         line = line.strip()
         if line[:4] in heads:
@@ -180,6 +181,8 @@ def parmMerge(fdat1, fdat2, frcmod=False):
         return mname
 
     dat2 = splitBlock(open(fdat2).readlines())
+    id1 = 0
+    id2 = 0
     for kk in list(dat1)[:8]:
         if kk == 0:
             lines = dat1[kk][1:-1] + dat2[kk][1:-1] + [""]
