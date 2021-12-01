@@ -180,7 +180,7 @@ At folder `acpype/`, type:
 It'll create a folder called *FFF.acpype*, and inside it one may find topology
 files for GROMACS and CNS/XPLOR.
 
-or using a molecule in [smiles](https://archive.epa.gov/med/med_archive_03/web/html/smiles.html) form:
+or using a molecule in [SMILES](https://archive.epa.gov/med/med_archive_03/web/html/smiles.html) notation:
 
 ```bash
 ./run_acpype.py -i CCCC # smiles for C4H6 1,3-Butadiene compound
