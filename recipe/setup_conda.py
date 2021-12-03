@@ -8,7 +8,7 @@ from typing import Dict
 from setuptools import setup
 
 dver: Dict = {}
-with open("./acpype_lib/__init__.py") as fp:
+with open("./acpype/__init__.py") as fp:
     exec(fp.read(), dver)
 
 setup(
@@ -25,9 +25,9 @@ setup(
     author="Alan Silva",
     author_email="alanwilter@gmail.com",
     license="GPL-3.0-or-later",
-    packages=["acpype_lib"],
+    packages=["acpype"],
     keywords=["acpype"],
     include_package_data=True,
-    entry_points={"console_scripts": ["acpype = acpype_lib.acpype:init_main"]},
+    entry_points={"console_scripts": ["acpype = acpype.cli:init_main"]},
     zip_safe=False,
 )

@@ -1,6 +1,6 @@
 import os
 import ujson as json
-from acpype_lib.acs_api import acpype_api
+from acpype.acs_api import acpype_api
 
 file_types = (
     ("file_name"),
