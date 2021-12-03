@@ -49,8 +49,9 @@ jobs:
       -  name: Install OpenBabel Python Module and Hack it
          run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
+            ln -s /usr/lib/python3/dist-packages/openbabel /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/
             # suggested by https://github.com/actions/setup-python/issues/270
-            ln -s /usr/lib/python3/dist-packages/openbabel $pythonPath/lib/python3.8/
+            #ln -s /usr/lib/python3/dist-packages/openbabel ${{ env.pythonPath }}/lib/python3.8/
 
       -  name: Install Pip
          run: |
