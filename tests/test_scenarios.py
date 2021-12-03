@@ -1,7 +1,7 @@
 import os
 import pytest
-from acpype_lib.acpype import init_main
-from acpype_lib.utils import _getoutput
+from acpype import cli
+from acpype.utils import _getoutput
 
 
 def test_no_ac(capsys):
@@ -10,7 +10,7 @@ def test_no_ac(capsys):
     inp = "AAA.mol2"
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     with pytest.raises(SystemExit) as e_info:
-        init_main(argv=["-di", inp, "-c", "gas"], binaries=binaries)
+        cli.init_main(argv=["-di", inp, "-c", "gas"], binaries=binaries)
     captured = capsys.readouterr()
     assert msg in captured.out
     assert e_info.typename == "SystemExit"
@@ -25,7 +25,7 @@ def test_only_ac(capsys):
     inp = "AAA.mol2"
     temp_base = "vir_temp"
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    init_main(argv=["-di", inp, "-c", "gas", "-b", temp_base], binaries=binaries)
+    cli.init_main(argv=["-di", inp, "-c", "gas", "-b", temp_base], binaries=binaries)
     captured = capsys.readouterr()
     assert msg1 in captured.out
     assert msg2 in captured.out
@@ -44,7 +44,7 @@ def test_no_obabel(capsys, inp, msg):
     binaries = {"ac_bin": "antechamber", "obabel_bin": "no_obabel"}
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     with pytest.raises(SystemExit) as e_info:
-        init_main(argv=["-di", inp, "-c", "gas"], binaries=binaries)
+        cli.init_main(argv=["-di", inp, "-c", "gas"], binaries=binaries)
     captured = capsys.readouterr()
     assert msg in captured.out
     assert e_info.typename == "SystemExit"
@@ -56,7 +56,7 @@ def test_amb2gmx_no_bins(capsys):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     argv = ["-x", "Base.inpcrd", "-p", "Base.prmtop"]
     temp_base = "vir_temp"
-    init_main(argv=argv + ["-b", temp_base], binaries=binaries)
+    cli.init_main(argv=argv + ["-b", temp_base], binaries=binaries)
     captured = capsys.readouterr()
     assert "Total time of execution:" in captured.out
     os.chdir(os.path.dirname(os.path.abspath(__file__)))

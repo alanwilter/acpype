@@ -1,4 +1,4 @@
-from acpype_lib.mol import Atom, Angle, Bond, Dihedral
+from acpype.mol import Atom, Angle, Bond, Dihedral
 
 r = "<[<Atom id=3, name=C1, c3>, <Atom id=4, name=H, hc>, <Atom id=5, name=H, hc>, <Atom id=6, name=H, hc>], ang=0.00>"
 
