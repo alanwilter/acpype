@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-version="$(grep -o '[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}' acpype/__init__.py)"
+version="$(grep -o '[0-9]\{4\}\.[0-9]\{1,2\}\.[0-9]\{1,2\}' acpype/__init__.py)"
 
 function usage() {
     echo "syntax: $0 < [-p, -d] | -a > to create a release for pip or docker or both"
