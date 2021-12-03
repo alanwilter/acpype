@@ -10,10 +10,10 @@ __pycache__/
 *.py[cod]
 
 # C extensions
-*.so
+# *.so
 
 # Distribution / packaging
-bin/
+# bin/
 build/
 develop-eggs/
 dist/
