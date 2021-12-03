@@ -724,7 +724,7 @@ class AbstractTopol:
                         -eq    equalizing atomic charge, default is 1 for '-c resp' and '-c bcc' and 0
                                 for the other charge methods
                                 0    : no use
-                                1    : by atomic paths 
+                                1    : by atomic paths
                                 2    : by atomic paths and structural information, i.e. E/Z configurations
                         -pf    remove intermediate files: yes(y) or no(n)[default]
                         -pl    maximum path length to determin equivalence of atomic charges for resp and bcc,
@@ -735,29 +735,29 @@ class AbstractTopol:
                         -i -o -fi and -fo must appear; others are optional
                         Use 'antechamber -L' to list the supported file formats and charge methods
 
-                             List of the File Formats  
+                             List of the File Formats
 
                 file format type  abbre. index | file format type abbre. index
                 --------------------------------------------------------------
-                Antechamber        ac       1  | Sybyl Mol2         mol2    2 
-                PDB                pdb      3  | Modified PDB       mpdb    4 
-                AMBER PREP (int)   prepi    5  | AMBER PREP (car)   prepc   6 
-                Gaussian Z-Matrix  gzmat    7  | Gaussian Cartesian gcrt    8 
-                Mopac Internal     mopint   9  | Mopac Cartesian    mopcrt 10 
-                Gaussian Output    gout    11  | Mopac Output       mopout 12 
-                Alchemy            alc     13  | CSD                csd    14 
-                MDL                mdl     15  | Hyper              hin    16 
-                AMBER Restart      rst     17  | Jaguar Cartesian   jcrt   18 
-                Jaguar Z-Matrix    jzmat   19  | Jaguar Output      jout   20 
-                Divcon Input       divcrt  21  | Divcon Output      divout 22 
-                SQM Input          sqmcrt  23  | SQM Output         sqmout 24 
-                Charmm             charmm  25  | Gaussian ESP       gesp   26 
-                Component cif      ccif    27  | GAMESS dat         gamess 28 
-                Orca input         orcinp  29  | Orca output        orcout 30 
+                Antechamber        ac       1  | Sybyl Mol2         mol2    2
+                PDB                pdb      3  | Modified PDB       mpdb    4
+                AMBER PREP (int)   prepi    5  | AMBER PREP (car)   prepc   6
+                Gaussian Z-Matrix  gzmat    7  | Gaussian Cartesian gcrt    8
+                Mopac Internal     mopint   9  | Mopac Cartesian    mopcrt 10
+                Gaussian Output    gout    11  | Mopac Output       mopout 12
+                Alchemy            alc     13  | CSD                csd    14
+                MDL                mdl     15  | Hyper              hin    16
+                AMBER Restart      rst     17  | Jaguar Cartesian   jcrt   18
+                Jaguar Z-Matrix    jzmat   19  | Jaguar Output      jout   20
+                Divcon Input       divcrt  21  | Divcon Output      divout 22
+                SQM Input          sqmcrt  23  | SQM Output         sqmout 24
+                Charmm             charmm  25  | Gaussian ESP       gesp   26
+                Component cif      ccif    27  | GAMESS dat         gamess 28
+                Orca input         orcinp  29  | Orca output        orcout 30
                 --------------------------------------------------------------
                 AMBER restart file can only be read in as additional file.
 
-                             List of the Charge Methods  
+                             List of the Charge Methods
 
                 charge method     abbre. index | charge method    abbre. index
                 --------------------------------------------------------------
