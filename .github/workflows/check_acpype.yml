@@ -50,7 +50,7 @@ jobs:
          run: |
             sudo apt-get install --no-install-recommends -y python3-openbabel
             # suggested by https://github.com/actions/setup-python/issues/270
-            ln -s /usr/lib/python3/dist-packages/openbabel ${{ env.pythonPath }}/lib/python3.8/
+            ln -s /usr/lib/python3/dist-packages/openbabel $pythonPath/lib/python3.8/
 
       -  name: Install Pip
          run: |
