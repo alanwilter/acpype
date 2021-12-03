@@ -47,11 +47,7 @@
     Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
     Cell Biochemistry and Biophysics 44 (2006), 395-404. doi: 10.1385/CBB:44:3:395
 
-    Alan Wilter Sousa da Silva, D.Sc.
-    Bioinformatician, UniProt, EMBL-EBI
-    Hinxton, Cambridge CB10 1SD, UK.
-    >>http://www.ebi.ac.uk/~awilter<<
-
+    Alan Silva, D.Sc.
     alanwilter _at_ gmail _dot_ com
 """
 
