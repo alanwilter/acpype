@@ -34,8 +34,8 @@ jobs:
       -  name: Set Env
          run: |
             echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
-            echo "AMBERHOME=$PWD/amber21-11_linux" >> $GITHUB_ENV
-            echo "$PWD/amber21-11_linux/bin" >> $GITHUB_PATH
+            echo "AMBERHOME=$PWD/acpype/amber21-11_linux" >> $GITHUB_ENV
+            echo "$PWD/acpype/amber21-11_linux/bin" >> $GITHUB_PATH
 
       -  name: Install dependencies
          run: |
