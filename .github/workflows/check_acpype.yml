@@ -74,7 +74,7 @@ jobs:
 
       -  name: Get current date
          id: date
-         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
+         run: echo "::set-output name=date::$(date +'%Y.%-m.%-d')"
 
       -  name: Create tag
          # will only create a new release if the commit message is 'new_release' to master branch
