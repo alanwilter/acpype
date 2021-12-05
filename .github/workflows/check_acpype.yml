@@ -49,17 +49,12 @@ jobs:
            run: |
               sudo apt-get install --no-install-recommends -y openbabel
 
-         - name: Install OpenBabel Python Module and Hack it
-           run: |
-              sudo apt-get install --no-install-recommends -y python3-openbabel
-              # suggested by https://github.com/actions/setup-python/issues/270
-              ln -s /usr/lib/python3/dist-packages/openbabel $pythonLocation/lib/python${{ matrix.python-version }}/
-
          - name: Install Pip
            run: |
               sudo apt-get install --no-install-recommends -y python3-pip
               python3 -m pip install --upgrade pip
-              if [ -f requirements.txt ]; then python3 -m pip  install -r requirements.txt; fi
+              python3 -m pip install --upgrade openbabel-wheel
+              if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
               # chmod +x acpype/acpype.py
               # ln -s $PWD/run_acpype.py /usr/local/bin/acpype
 
