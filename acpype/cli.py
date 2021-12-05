@@ -184,7 +184,7 @@ def init_main(binaries=binaries, argv=None):
     if args.ipython:
         import IPython  # pylint: disable=import-outside-toplevel
 
-        IPython.embed()
+        IPython.embed(colors="neutral")
 
     try:
         rmtree(molecule.tmpDir)
