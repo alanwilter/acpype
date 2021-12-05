@@ -1,2 +1,2 @@
 @echo on
-docker run -i -t -v %cd%:/wdir -w /wdir acpype/acpype acpype %*
+docker run --rm -i -t -v %cd%:/wdir -w /wdir acpype/acpype acpype %*
