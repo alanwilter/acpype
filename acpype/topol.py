@@ -1800,6 +1800,8 @@ class AbstractTopol:
 
         self.writeGroFile()
 
+        self.writePosreFile()
+
         self.writeGromacsTop()
 
         self.writeMdpFiles()
@@ -2707,6 +2709,19 @@ class AbstractTopol:
             boxZ = max(Z) - min(Z)  # + 2.0
             text = "%11.5f %11.5f %11.5f\n" % (boxX * 20.0, boxY * 20.0, boxZ * 20.0)
         groFile.write(text)
+
+    def writePosreFile(self, fc=1000):
+        """Write file with positional restraints for heavy atoms"""
+        self.printDebug("writing POSRE file")
+        posre = "posre_" + self.baseName + ".itp"
+        gmxDir = os.path.abspath(".")
+        posreFileName = os.path.join(gmxDir, posre)
+        posreFile = open(posreFileName, "w")
+        posreFile.write("; " + head % (posre, date))
+        posreFile.write("\n[ position_restraints ]\n; atom  type      fx      fy      fz\n")
+        for atom in self.atoms:
+            if not atom.atomType.atomTypeName.upper().startswith("H"):
+                posreFile.write(f"{atom.id:>6d}     1 {fc:>5d} {fc:>5d} {fc:>5d}\n")
 
     def writeMdpFiles(self):
         """Write MDP for test with GROMACS"""
