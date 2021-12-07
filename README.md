@@ -174,7 +174,7 @@ There are several ways of obtaining `acpype`:
 At folder `acpype/`, type:
 
 ```bash
-./run_acpype.py -i test/FFF.pdb
+./run_acpype.py -i tests/FFF.pdb
 ```
 
 It'll create a folder called *FFF.acpype*, and inside it one may find topology
