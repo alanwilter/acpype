@@ -23,7 +23,7 @@ def dotproduct(aa, bb):
     return sum((a * b) for a, b in zip(aa, bb))
 
 
-def crosproduct(a, b):
+def cross_product(a, b):
     """cross product"""
     c = [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
     return c
@@ -45,10 +45,10 @@ def imprDihAngle(a, b, c, d):
     bc = vec_sub(c, b)
     cb = vec_sub(b, c)
     cd = vec_sub(d, c)
-    n1 = crosproduct(ba, bc)
-    n2 = crosproduct(cb, cd)
+    n1 = cross_product(ba, bc)
+    n2 = cross_product(cb, cd)
     angle = math.acos(dotproduct(n1, n2) / (length(n1) * length(n2))) * 180 / Pi
-    cp = crosproduct(n1, n2)
+    cp = cross_product(n1, n2)
     if dotproduct(cp, bc) < 0:
         angle = -1 * angle
     return angle

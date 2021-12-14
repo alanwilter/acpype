@@ -150,7 +150,7 @@ class Topology_14:
                 if lj_bcoeff != 0:
                     sigma6 = lj_acoeff / lj_bcoeff
                 else:
-                    sigma6 = 1  # arbitrary and doesnt matter
+                    sigma6 = 1  # arbitrary and doesn't matter
                 epsilon = lj_bcoeff / 4 / sigma6 * 4.184
                 sigma = sigma6 ** (1 / 6) / 10
                 pair_buff = (
@@ -203,7 +203,7 @@ class AbstractTopol:
     @abc.abstractmethod
     def __init__(self):
         if self.__class__ is AbstractTopol:
-            raise TypeError("Attempt to create istance of abstract class AbstractTopol")
+            raise TypeError("Attempt to create instance of abstract class AbstractTopol")
         self.debug = None
         self.verbose = None
         self.chargeVal = None
@@ -232,7 +232,7 @@ class AbstractTopol:
         self.rootDir = None
         self.extOld = None
         self.direct = None
-        self.disam = None
+        self.merge = None
         self.gmx4 = None
         self.sorted = None
         self.chiral = None
@@ -686,7 +686,7 @@ class AbstractTopol:
                                 bond  : only read in bond type
                         -m     multiplicity (2S+1), default is 1
                         -rn    residue name, overrides input file, default is MOL
-                        -rf    residue toplogy file name in prep input file,
+                        -rf    residue topology file name in prep input file,
                                 default is molecule.res
                         -ch    check file name for gaussian, default is 'molecule'
                         -ek    mopac or sqm keyword, inside quotes; overwrites previous ones
@@ -862,7 +862,7 @@ class AbstractTopol:
                     os.remove(file_)
 
     def checkXyzAndTopFiles(self):
-        """Cehck XYZ and TOP files"""
+        """Check XYZ and TOP files"""
         fileXyz = self.acXyzFileName
         fileTop = self.acTopFileName
         if os.path.exists(fileXyz) and os.path.exists(fileTop):
@@ -1065,7 +1065,7 @@ class AbstractTopol:
             verbose=self.verbose,
             debug=self.debug,
             gmx4=self.gmx4,
-            disam=self.disam,
+            merge=self.merge,
             direct=self.direct,
             is_sorted=self.sorted,
             chiral=self.chiral,
@@ -1437,7 +1437,7 @@ class AbstractTopol:
         follow the heavy atom they are bonded to and belong to the same charge
         group.
 
-        Currently, atom mass < 1.2 is taken to denote a proton.  This behavior
+        Currently, atom mass < 1.2 is taken to denote a proton.  This behaviour
         may be changed by modifying the 'is_hydrogen' function within.
 
         JDC 2011-02-03
@@ -1525,7 +1525,7 @@ class AbstractTopol:
         return chargeList, fix, limIds
 
     def getABCOEFs(self):
-        """Get non-bonded coeficients"""
+        """Get non-bonded coefficients"""
         uniqAtomTypeIdList = self.getFlagData("ATOM_TYPE_INDEX")
         nonBonIdList = self.getFlagData("NONBONDED_PARM_INDEX")
         rawACOEFs = self.getFlagData("LENNARD_JONES_ACOEF")
@@ -1546,17 +1546,16 @@ class AbstractTopol:
         """
         It takes self.condensedProperDihedrals and returns
         self.properDihedralsCoefRB, a reduced list of quartet atoms + RB.
-        Coeficients ready for GMX (multiplied by 4.184)
+        Coefficients ready for GMX (multiplied by 4.184)
 
         self.properDihedralsCoefRB = [ [atom1,..., atom4], C[0:5] ]
 
         For proper dihedrals: a quartet of atoms may appear with more than
         one set of parameters and to convert to GMX they are treated as RBs.
 
-        The resulting coefs calculated here may look slighted different from
-        the ones calculated by amb2gmx.pl because python is taken full float
-        number from prmtop and not rounded numbers from rdparm.out as
-        amb2gmx.pl does.
+        The resulting coefficients calculated here may look slighted different
+        from the ones calculated by amb2gmx.pl because python is taken full float
+        number from prmtop and not rounded numbers from rdparm.out as amb2gmx.pl does.
         """
         properDihedralsCoefRB = []
         properDihedralsAlphaGamma = []
@@ -1814,49 +1813,51 @@ class AbstractTopol:
         this routine will append a '_' to lower case atom type.
         E.g.: CA and ca -> CA and ca_
         """
-        if self.disam:
-            self.printMess("Disambiguating lower and uppercase atomtypes in GMX top file.\n")
-            self.atomTypesGromacs = self.atomTypes
-            self.atomsGromacs = self.atoms
+
+        if self.merge:
+            self.printMess("Merging identical lower and uppercase atomtypes in GMX top file.\n")
+            atNames = [at.atomTypeName for at in self.atomTypes]
+            delAtomTypes = []
+            modAtomTypes = []
+            atomTypesGromacs = []
+            dictAtomTypes = {}
+            for at in self.atomTypes:
+                atName = at.atomTypeName
+                dictAtomTypes[atName] = at
+                if atName.islower() and atName.upper() in atNames:
+                    atUpper = self.atomTypes[atNames.index(atName.upper())]
+                    if at.ACOEF == atUpper.ACOEF and at.BCOEF == atUpper.BCOEF and at.mass == atUpper.mass:
+                        delAtomTypes.append(atName)
+                    else:
+                        newAtName = atName + "_"
+                        modAtomTypes.append(atName)
+                        atomType = AtomType(newAtName, at.mass, at.ACOEF, at.BCOEF)
+                        atomTypesGromacs.append(atomType)
+                        dictAtomTypes[newAtName] = atomType
+                else:
+                    atomTypesGromacs.append(at)
+
+            atomsGromacs = []
+            for a in self.atoms:
+                atName = a.atomType.atomTypeName
+                if atName in delAtomTypes:
+                    atom = Atom(a.atomName, dictAtomTypes[atName.upper()], a.id, a.resid, a.mass, a.charge, a.coords)
+                    atom.cgnr = a.cgnr
+                    atomsGromacs.append(atom)
+                elif atName in modAtomTypes:
+                    atom = Atom(a.atomName, dictAtomTypes[atName + "_"], a.id, a.resid, a.mass, a.charge, a.coords)
+                    atom.cgnr = a.cgnr
+                    atomsGromacs.append(atom)
+                else:
+                    atomsGromacs.append(a)
+
+            self.atomTypesGromacs = atomTypesGromacs
+            self.atomsGromacs = atomsGromacs
             return
 
-        atNames = [at.atomTypeName for at in self.atomTypes]
-        delAtomTypes = []
-        modAtomTypes = []
-        atomTypesGromacs = []
-        dictAtomTypes = {}
-        for at in self.atomTypes:
-            atName = at.atomTypeName
-            dictAtomTypes[atName] = at
-            if atName.islower() and atName.upper() in atNames:
-                atUpper = self.atomTypes[atNames.index(atName.upper())]
-                if at.ACOEF is atUpper.ACOEF and at.BCOEF is at.BCOEF:
-                    delAtomTypes.append(atName)
-                else:
-                    newAtName = atName + "_"
-                    modAtomTypes.append(atName)
-                    atomType = AtomType(newAtName, at.mass, at.ACOEF, at.BCOEF)
-                    atomTypesGromacs.append(atomType)
-                    dictAtomTypes[newAtName] = atomType
-            else:
-                atomTypesGromacs.append(at)
-
-        atomsGromacs = []
-        for a in self.atoms:
-            atName = a.atomType.atomTypeName
-            if atName in delAtomTypes:
-                atom = Atom(a.atomName, dictAtomTypes[atName.upper()], a.id, a.resid, a.mass, a.charge, a.coords)
-                atom.cgnr = a.cgnr
-                atomsGromacs.append(atom)
-            elif atName in modAtomTypes:
-                atom = Atom(a.atomName, dictAtomTypes[atName + "_"], a.id, a.resid, a.mass, a.charge, a.coords)
-                atom.cgnr = a.cgnr
-                atomsGromacs.append(atom)
-            else:
-                atomsGromacs.append(a)
-
-        self.atomTypesGromacs = atomTypesGromacs
-        self.atomsGromacs = atomsGromacs
+        self.printMess("Disambiguating lower and uppercase atomtypes in GMX top file, even if identical.\n")
+        self.atomTypesGromacs = self.atomTypes
+        self.atomsGromacs = self.atoms
 
     def writeGromacsTop(self):
         """Write GMX topology file"""
@@ -1901,7 +1902,7 @@ class AbstractTopol:
 """
         headAtomtypesOpls = """
 ; For OPLS atomtypes manual fine tuning
-; AC_at:OPLS_at:OPLScode: Possible_Aternatives (see ffoplsaa.atp and ffoplsaanb.itp)
+; AC_at:OPLS_at:OPLScode: Possible_Alternatives (see ffoplsaa.atp and ffoplsaanb.itp)
 """
         headMoleculetype = """
 [ moleculetype ]
@@ -1979,7 +1980,7 @@ class AbstractTopol:
   NA+             1
 
 [ atoms ]
-  ; id_    at type res nr  residu name     at name  cg nr  charge   mass
+  ; id_    at type res nr  residue name     at name  cg nr  charge   mass
     1       %s      1          NA+         NA+       1      1     22.9898
 """
         headCl = """
@@ -1988,7 +1989,7 @@ class AbstractTopol:
   CL-             1
 
 [ atoms ]
-  ; id_    at type res nr  residu name     at name  cg nr  charge   mass
+  ; id_    at type res nr  residue name     at name  cg nr  charge   mass
     1       %s      1         CL-           CL-      1     -1     35.45300
 """
         headK = """
@@ -1997,7 +1998,7 @@ class AbstractTopol:
   K+             1
 
 [ atoms ]
-  ; id_    at type res nr  residu name     at name  cg nr  charge   mass
+  ; id_    at type res nr  residue name     at name  cg nr  charge   mass
     1       %s       1          K+         K+       1      1     39.100
 """
         headWaterTip3p = """
@@ -3078,7 +3079,7 @@ class ACTopol(AbstractTopol):
         chargeType="bcc",
         chargeVal=None,
         multiplicity="1",
-        atomType="gaff",
+        atomType="gaff2",
         force=False,
         basename=None,
         debug=False,
@@ -3089,7 +3090,7 @@ class ACTopol(AbstractTopol):
         ekFlag=None,
         verbose=True,
         gmx4=False,
-        disam=False,
+        merge=False,
         direct=False,
         is_sorted=False,
         chiral=False,
@@ -3101,7 +3102,7 @@ class ACTopol(AbstractTopol):
         self.debug = debug
         self.verbose = verbose
         self.gmx4 = gmx4
-        self.disam = disam
+        self.merge = merge
         self.direct = direct
         self.sorted = is_sorted
         self.chiral = chiral
@@ -3220,7 +3221,7 @@ class MolTopol(AbstractTopol):
         basename=None,
         verbose=True,
         gmx4=False,
-        disam=False,
+        merge=False,
         direct=False,
         is_sorted=False,
         chiral=False,
@@ -3232,7 +3233,7 @@ class MolTopol(AbstractTopol):
         self.allhdg = False
         self.debug = debug
         self.gmx4 = gmx4
-        self.disam = disam
+        self.merge = merge
         self.direct = direct
         self.sorted = is_sorted
         self.verbose = verbose
