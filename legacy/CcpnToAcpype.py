@@ -10,8 +10,8 @@ import os
 import string
 import random
 
-from ccpnmr.format.converters import PdbFormat  # @UnresolvedImport
-from ccpnmr.format.converters import Mol2Format  # @UnresolvedImport
+from ccpnmr.format.converters import PdbFormat  # type: ignore
+from ccpnmr.format.converters import Mol2Format  # type: ignore
 
 letters = string.ascii_letters
 
@@ -238,7 +238,7 @@ class AcpypeForCcpnProject(object):
         chargeVal=None,
         guessCharge=False,
         multiplicity="1",
-        atomType="gaff",
+        atomType="gaff2",
         force=False,
         basename=None,
         debug=False,
@@ -336,7 +336,7 @@ class AcpypeForCcpnProject(object):
 
                 if not molecule.acExe:
                     molecule.printError("no 'antechamber' executable... aborting!")
-                    hint1 = "HINT1: is 'AMBERHOME' or 'ACHOME' environment variable set?"
+                    hint1 = "HINT1: is 'AMBERHOME' environment variable set?"
                     hint2 = (
                         "HINT2: is 'antechamber' in your $PATH?"
                         + "    What 'which antechamber' in your terminal says?"

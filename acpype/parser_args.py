@@ -58,9 +58,9 @@ def get_option_parser():
         "--atom_type",
         choices=["gaff", "amber", "gaff2", "amber2"],
         action="store",
-        default="gaff",
+        default="gaff2",
         dest="atom_type",
-        help="atom type, can be gaff, gaff2, amber (AMBER14SB) or amber2 (AMBER14SB + GAFF2), default is gaff",
+        help="atom type, can be gaff, gaff2 (default), amber (AMBER14SB) or amber2 (AMBER14SB + GAFF2)",
     )
     parser.add_argument(
         "-q",
@@ -125,10 +125,10 @@ def get_option_parser():
     )
     parser.add_argument(
         "-g",
-        "--disambiguate",
+        "--merge",
         action="store_true",
-        dest="disambiguate",
-        help="disambiguate lower and uppercase atomtypes in GMX top file",
+        dest="merge",
+        help="Merge lower and uppercase atomtypes in GMX top file if identical parameters",
     )
     parser.add_argument(
         "-u",
