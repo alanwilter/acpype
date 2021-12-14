@@ -12,6 +12,9 @@
 ![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype)
+![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2021.12.3/master?style=plastic)
+<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5601736.svg)](https://doi.org/10.1186/1756-0500-5-367)
+![DOI](https://doi.org/10.1186/1756-0500-5-367) -->
 <!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
 <!-- ![Scrutinizer coverage (GitHub/BitBucket)](https://img.shields.io/scrutinizer/coverage/g/alanwilter/acpype) -->
 
@@ -94,7 +97,7 @@ There are several ways of obtaining `acpype`:
 
 1. Via **[CONDA](https://anaconda.org/search?q=acpype)**:
 
-   *(It should be wholesome, fully funcional, all batteries included)*
+   *(It should be wholesome, fully functional, all batteries included)*
 
    ```bash
    conda install -c conda-forge acpype
@@ -117,6 +120,8 @@ There are several ways of obtaining `acpype`:
 
    pip install git+https://github.com/alanwilter/acpype.git
    ```
+
+   **NB:** If using OpenBabel python module, it's really ***CRITICAL*** to have it installed in the same `Python` environment of `acpype`.
 
 3. By downloading it via `git`:
 
