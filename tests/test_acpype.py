@@ -21,12 +21,36 @@ def test_mol2_sorted(issorted, charge, msg):
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule
+    assert molecule.molTopol.atomTypes[0].__repr__() == "<AtomType=nz>"
     assert len(molecule.molTopol.atoms) == 33
-    assert len(molecule.molTopol.properDihedrals) == 95
+    assert len(molecule.molTopol.properDihedrals) == 98
     assert len(molecule.molTopol.improperDihedrals) == 5
     assert molecule.molTopol.totalCharge == 0
     assert molecule.molTopol.atoms[0].charge == approx(charge)
     assert molecule.molTopol.atoms[-1].__repr__() == msg
+    shutil.rmtree(molecule.absHomeDir)
+
+
+@pytest.mark.parametrize(
+    ("merge", "gaff", "n_at", "acoef", "bcoef", "msg"),
+    [
+        (False, "1", 50, 379876.399, 564.885984, "<AtomType=o>"),
+        (False, "2", 50, 376435.47, 469.350655, "<AtomType=o>"),
+        (True, "1", 41, 361397.723, 495.732238, "<AtomType=os>"),
+        (True, "2", 50, 376435.47, 469.350655, "<AtomType=o_>"),
+    ],
+)
+def test_merge(merge, gaff, n_at, acoef, bcoef, msg):
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    molecule = MolTopol(
+        acFileTop=f"ComplexG{gaff}.prmtop", acFileXyz=f"ComplexG{gaff}.inpcrd", debug=True, amb2gmx=True, merge=merge
+    )
+    molecule.writeGromacsTopolFiles()
+    assert molecule
+    assert len(molecule.atomTypesGromacs) == n_at
+    assert molecule.atomTypesGromacs[31].ACOEF == acoef
+    assert molecule.atomTypesGromacs[31].BCOEF == bcoef
+    assert molecule.atomTypesGromacs[31].__repr__() == msg
     shutil.rmtree(molecule.absHomeDir)
 
 
@@ -36,9 +60,9 @@ def test_pdb(capsys):
     molecule.createACTopol()
     molecule.createMolTopol()
     assert len(molecule.molTopol.atoms) == 63
-    assert len(molecule.molTopol.properDihedrals) == 185
+    assert len(molecule.molTopol.properDihedrals) == 188
     assert len(molecule.molTopol.improperDihedrals) == 23
-    assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=n4>>"
+    assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
     # check gaff2 and force
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True)
@@ -84,7 +108,7 @@ def test_charges_chiral():
     molecule.createMolTopol()
     assert molecule
     assert len(molecule.molTopol.atoms) == 69
-    assert len(molecule.molTopol.properDihedrals) == 215
+    assert len(molecule.molTopol.properDihedrals) == 218
     assert len(molecule.molTopol.improperDihedrals) == 5
     assert len(molecule.molTopol.chiralGroups) == 3
     assert molecule.chargeVal == "3"
@@ -172,7 +196,7 @@ def test_amb2gmx(dd, g4, ntext):
     [
         (
             "bcc",
-            "-dr no -i benzene.mol2 -fi mol2 -o benzene_bcc_gaff.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff",
+            "-dr no -i benzene.mol2 -fi mol2 -o benzene_bcc_gaff2.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
         ),
         ("user", "cannot read charges from a PDB file"),
     ],
@@ -220,7 +244,7 @@ def test_charge_user():
     molecule.createMolTopol()
     assert molecule
     assert len(molecule.molTopol.atoms) == 39
-    assert len(molecule.molTopol.properDihedrals) == 126
+    assert len(molecule.molTopol.properDihedrals) == 128
     assert len(molecule.molTopol.improperDihedrals) == 7
     assert molecule.molTopol.atoms[0].charge == 0.1667
     assert molecule.molTopol.atoms[15].charge == -0.517
@@ -243,7 +267,7 @@ def test_inputs(capsys, argv):
 @pytest.mark.parametrize(
     ("argv", "code", "msg"),
     [
-        (None, 2, " error: "),  # NOTE: None -> sys.argv from pystest
+        (None, 2, " error: "),  # NOTE: None -> sys.argv from pytest
         (["-v"], 0, version),
         ([], 2, "error: missing input files"),
         (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
