@@ -2,18 +2,18 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/alanwilter/acpype/graphs/commit-activity)
 [![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)
-![python](https://img.shields.io/badge/python-3.6%2E%2E%2E3.10-blue.svg)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)
-![GitHub Release](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
-![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/acpype/acpype/latest?style=plastic&logo=docker)
-![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)
-![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)<!-- ![Conda](https://img.shields.io/conda/pn/conda-forge/acpype?logo=conda-forge&style=plastic) -->
-![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype)
-![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2021.12.3/master?style=plastic)
+[![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)](https://github.com/alanwilter/acpype)
+[![python](https://img.shields.io/badge/python-3.6%2E%2E%2E3.10-blue.svg)](https://github.com/alanwilter/acpype)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)](https://github.com/alanwilter/acpype)
+[![GitHub Release](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)](https://github.com/alanwilter/acpype)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
+[![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)](https://hub.docker.com/r/acpype/acpype)
+[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/acpype/acpype/latest?style=plastic&logo=docker)](https://hub.docker.com/r/acpype/acpype/tags)
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)](https://anaconda.org/conda-forge/acpype)
+[![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)](https://anaconda.org/conda-forge/acpype/files)<!-- ![Conda](https://img.shields.io/conda/pn/conda-forge/acpype?logo=conda-forge&style=plastic) -->
+[![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype)](https://github.com/alanwilter/acpype)
+[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2021.12.3/master?style=plastic)](https://github.com/alanwilter/acpype)
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5601736.svg)](https://doi.org/10.1186/1756-0500-5-367)
 ![DOI](https://doi.org/10.1186/1756-0500-5-367) -->
 <!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
