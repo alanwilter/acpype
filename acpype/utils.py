@@ -262,12 +262,9 @@ def while_replace(string):
 
 def set_logging_conf():
     # Setting logging configurations
-    file_handler = logging.FileHandler(filename="acpype_run.log")
+    file_handler = logging.FileHandler(filename="/tmp/acpype_run.log")
     stdout_handler = logging.StreamHandler(sys.stdout)
     handlers = [file_handler, stdout_handler]
     logging.basicConfig(
-        level=logging.DEBUG,
-        format="[%(asctime)s] %(levelname)s - %(message)s",
-        datefmt="%m/%d/%Y %I:%M:%S %p",
-        handlers=handlers,
+        level=logging.DEBUG, format="%(message)s", datefmt="%m/%d/%Y %I:%M:%S %p", handlers=handlers,
     )

@@ -285,12 +285,12 @@ class AbstractTopol:
     def printDebug(self, text=""):
         """Debug log level"""
         if self.debug:
-            logging.debug(f"{while_replace(text)}")
+            logging.debug(f"DEBUG: {while_replace(text)}")
 
     def printWarn(self, text=""):
         """Warn log level"""
         if self.verbose:
-            logging.warning(f"{while_replace(text)}")
+            logging.warning(f"WARNING: {while_replace(text)}")
 
     def printError(self, text=""):
         """Error log level"""

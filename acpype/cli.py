@@ -107,7 +107,7 @@ def init_main(binaries=binaries, argv=None):
         print(header)
         sys.exit(0)
 
-    print(header)
+    logging.info(header)
 
     if not args.input:
         amb2gmxF = True
@@ -170,7 +170,7 @@ def init_main(binaries=binaries, argv=None):
             molecule.createACTopol()
             molecule.createMolTopol()
             try:
-                move("acpype_run.log", molecule.absHomeDir)
+                move("/tmp/acpype_run.log", molecule.absHomeDir)
             except Exception:
                 pass
         acpypeFailed = False
