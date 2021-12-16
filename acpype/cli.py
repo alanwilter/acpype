@@ -55,11 +55,15 @@ import traceback
 import time
 import os
 import sys
-from shutil import rmtree, which
+from shutil import rmtree, which, move
 from acpype.topol import MolTopol, ACTopol, header
 from acpype.parser_args import get_option_parser
 from acpype.utils import while_replace, elapsedTime
 from acpype.params import binaries
+from acpype.utils import set_logging_conf
+import logging
+
+set_logging_conf()
 
 
 def set_for_pip(binaries):
@@ -114,14 +118,14 @@ def init_main(binaries=binaries, argv=None):
 
     if args.debug:
         texta = "Python Version %s" % sys.version
-        print("DEBUG: %s" % while_replace(texta))
+        logging.debug("DEBUG: %s" % while_replace(texta))
 
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
     try:
         if amb2gmxF:
-            print("Converting Amber input files to Gromacs ...")
+            logging.info("Converting Amber input files to Gromacs ...")
             system = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
@@ -165,11 +169,14 @@ def init_main(binaries=binaries, argv=None):
 
             molecule.createACTopol()
             molecule.createMolTopol()
-
+            try:
+                move("acpype_run.log", molecule.absHomeDir)
+            except Exception:
+                pass
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-        print("ACPYPE FAILED: %s" % exceptionValue)
+        logging.error("ACPYPE FAILED: %s" % exceptionValue)
         if args.debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
         acpypeFailed = True
@@ -179,7 +186,7 @@ def init_main(binaries=binaries, argv=None):
         amsg = "less than a second"
     else:
         amsg = elapsedTime(execTime)
-    print("Total time of execution: %s" % amsg)
+    logging.info("Total time of execution: %s" % amsg)
 
     if args.ipython:
         import IPython  # pylint: disable=import-outside-toplevel
@@ -190,6 +197,7 @@ def init_main(binaries=binaries, argv=None):
         rmtree(molecule.tmpDir)
     except Exception:
         pass
+
     if acpypeFailed:
         sys.exit(19)
     try:

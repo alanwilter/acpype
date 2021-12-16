@@ -1,8 +1,10 @@
 import os
 import math
+import sys
 import subprocess as sub
 from shutil import which
 from acpype.params import Pi
+import logging
 
 
 def find_bin(abin):
@@ -256,3 +258,16 @@ def while_replace(string):
     while "  " in string:
         string = string.replace("  ", " ")
     return string
+
+
+def set_logging_conf():
+    # Setting logging configurations
+    file_handler = logging.FileHandler(filename="acpype_run.log")
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    handlers = [file_handler, stdout_handler]
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="[%(asctime)s] %(levelname)s - %(message)s",
+        datefmt="%m/%d/%Y %I:%M:%S %p",
+        handlers=handlers,
+    )

@@ -6,6 +6,7 @@ import pickle
 import subprocess as sub
 import abc
 import array
+import logging
 from datetime import datetime
 from shutil import copy2, rmtree, which
 from acpype.mol import Atom, Angle, AtomType, Bond, Dihedral
@@ -14,7 +15,7 @@ from acpype.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_T
 from acpype.params import binaries, ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
 from acpype.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
 from acpype.utils import _getoutput, while_replace, distanceAA, job_pids_family, checkOpenBabelVersion
-from acpype.utils import find_bin, elapsedTime, imprDihAngle, parmMerge
+from acpype.utils import find_bin, elapsedTime, imprDihAngle, parmMerge, set_logging_conf
 
 year = datetime.today().year
 tag = version
@@ -33,6 +34,8 @@ header = f"{frameLine}{lineHeader}{frameLine}"
 head = "%s created by acpype (v: " + tag + ") on %s\n"
 
 date = datetime.now().ctime()
+
+set_logging_conf()
 
 
 class Topology_14:
@@ -93,7 +96,7 @@ class Topology_14:
             try:
                 setattr(self, attributes[i], self.p7_array_read(buff, flag_strings[i]))
             except Exception:
-                print("Skipping non-existent attributes", attributes[i], flag_strings[i])
+                logging.info("Skipping non-existent attributes", attributes[i], flag_strings[i])
 
     @staticmethod
     def skipline(buff, index):
@@ -282,29 +285,29 @@ class AbstractTopol:
     def printDebug(self, text=""):
         """Debug log level"""
         if self.debug:
-            print(f"DEBUG: {while_replace(text)}")
+            logging.debug(f"{while_replace(text)}")
 
     def printWarn(self, text=""):
         """Warn log level"""
         if self.verbose:
-            print(f"WARNING: {while_replace(text)}")
+            logging.warning(f"{while_replace(text)}")
 
     def printError(self, text=""):
         """Error log level"""
         if self.verbose:
-            print(f"ERROR: {while_replace(text)}")
+            logging.info(f"ERROR: {while_replace(text)}")
 
     def printMess(self, text=""):
         """Info log level"""
         if self.verbose:
-            print(f"==> {while_replace(text)}")
+            logging.info(f"==> {while_replace(text)}")
 
     def printQuoted(self, text=""):
         """Print quoted messages"""
         if self.verbose:
-            print(10 * "+" + "start_quote" + 59 * "+")
-            print(while_replace(text))
-            print(10 * "+" + "end_quote" + 61 * "+")
+            logging.info(10 * "+" + "start_quote" + 59 * "+")
+            logging.info(while_replace(text))
+            logging.info(10 * "+" + "end_quote" + 61 * "+")
 
     def search(self, name=None, alist=False):
         """
@@ -331,8 +334,8 @@ class AbstractTopol:
 
                 ob.cvar.obErrorLog.StopLogging()
         else:
-            print("WARNING: your input may be a SMILES but")
-            print("         without OpenBabel, this functionality won't work")
+            logging.warning("WARNING: your input may be a SMILES but")
+            logging.warning("         without OpenBabel, this functionality won't work")
             return False
 
         # Check if input is a smiles string
@@ -389,7 +392,7 @@ class AbstractTopol:
             if self.debug:
                 self.printMess("Debugging...")
                 cmd = cmd.replace("-pf y", "-pf n")
-                print(while_replace(cmd))
+                logging.info(while_replace(cmd))
 
             log = _getoutput(cmd).strip()
 
