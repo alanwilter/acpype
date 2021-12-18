@@ -60,7 +60,7 @@ from acpype.topol import MolTopol, ACTopol, header
 from acpype.parser_args import get_option_parser
 from acpype.utils import while_replace, elapsedTime
 from acpype.params import binaries
-from acpype.utils import set_logging_conf
+from acpype.logger import set_logging_conf
 import logging
 
 set_logging_conf()
@@ -118,7 +118,7 @@ def init_main(binaries=binaries, argv=None):
 
     if args.debug:
         texta = "Python Version %s" % sys.version
-        logging.debug("DEBUG: %s" % while_replace(texta))
+        logging.debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")

@@ -15,7 +15,8 @@ from acpype.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_T
 from acpype.params import binaries, ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
 from acpype.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
 from acpype.utils import _getoutput, while_replace, distanceAA, job_pids_family, checkOpenBabelVersion
-from acpype.utils import find_bin, elapsedTime, imprDihAngle, parmMerge, set_logging_conf
+from acpype.utils import find_bin, elapsedTime, imprDihAngle, parmMerge
+from acpype.logger import set_logging_conf
 
 year = datetime.today().year
 tag = version
@@ -285,17 +286,17 @@ class AbstractTopol:
     def printDebug(self, text=""):
         """Debug log level"""
         if self.debug:
-            logging.debug(f"DEBUG: {while_replace(text)}")
+            logging.debug(f"{while_replace(text)}")
 
     def printWarn(self, text=""):
         """Warn log level"""
         if self.verbose:
-            logging.warning(f"WARNING: {while_replace(text)}")
+            logging.warning(f"{while_replace(text)}")
 
     def printError(self, text=""):
         """Error log level"""
         if self.verbose:
-            logging.info(f"ERROR: {while_replace(text)}")
+            logging.error(f"{while_replace(text)}")
 
     def printMess(self, text=""):
         """Info log level"""
