@@ -86,7 +86,8 @@ def test_pdb(capsys):
 
 
 @pytest.mark.parametrize(
-    ("force", "at", "ndih"), [(False, "amber", 189), (True, "amber2", 187)],
+    ("force", "at", "ndih"),
+    [(False, "amber", 189), (True, "amber2", 187)],
 )
 def test_amber(force, at, ndih):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -145,7 +146,8 @@ def test_ildn_gmx4_fail():
 
 
 @pytest.mark.parametrize(
-    ("base", "msg"), [(None, "smiles_molecule.mol2"), ("thalidomide_smiles", "thalidomide_smiles.mol2")],
+    ("base", "msg"),
+    [(None, "smiles_molecule.mol2"), ("thalidomide_smiles", "thalidomide_smiles.mol2")],
 )
 def test_smiles(base, msg):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -171,7 +173,8 @@ def test_glycam():
 
 
 @pytest.mark.parametrize(
-    ("dd", "g4", "ntext"), [(False, False, 14193), (True, False, 31516), (False, True, 12124), (True, True, 29447)],
+    ("dd", "g4", "ntext"),
+    [(False, False, 14193), (True, False, 31516), (False, True, 12124), (True, True, 29447)],
 )
 def test_amb2gmx(dd, g4, ntext):
     # oct box with water and ions
@@ -252,7 +255,8 @@ def test_charge_user():
 
 
 @pytest.mark.parametrize(
-    ("argv"), [["-di", "cccc"], ["-x", "Base.inpcrd", "-p", "Base.prmtop"]],
+    ("argv"),
+    [["-di", "cccc"], ["-x", "Base.inpcrd", "-p", "Base.prmtop"]],
 )
 def test_inputs(capsys, argv):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))

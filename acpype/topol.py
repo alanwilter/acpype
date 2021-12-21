@@ -2114,14 +2114,18 @@ class AbstractTopol:
             # OW 629362.166 625.267765 spce
             # OW 581935.564 594.825035 tip3p
             #       print aTypeName, A, B
-            line = " %-8s %-11s %3.5f  %3.5f   A   %13.5e %13.5e" % (
-                aTypeName,
-                aTypeName,
-                0.0,
-                0.0,
-                sigma,
-                epsilon,
-            ) + " ; %4.2f  %1.4f\n" % (r0, epAmber)
+            line = (
+                " %-8s %-11s %3.5f  %3.5f   A   %13.5e %13.5e"
+                % (
+                    aTypeName,
+                    aTypeName,
+                    0.0,
+                    0.0,
+                    sigma,
+                    epsilon,
+                )
+                + " ; %4.2f  %1.4f\n" % (r0, epAmber)
+            )
             oline = "; %s:%s:opls_%s: %s\n" % (aTypeName, aTypeNameOpls, oaCode[0], repr(oaCode[1:]))
             # tmpFile.write(line)
             temp.append(line)
@@ -2373,32 +2377,40 @@ class AbstractTopol:
                 oat3 = id2oplsATDict.get(id3)
                 oat4 = id2oplsATDict.get(id4)
                 c0, c1, c2, c3, c4, c5 = dih[1]
-                line = "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
-                    id1,
-                    id2,
-                    id3,
-                    id4,
-                    3,
-                    c0,
-                    c1,
-                    c2,
-                    c3,
-                    c4,
-                    c5,
-                ) + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
-                oline = "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
-                    id1,
-                    id2,
-                    id3,
-                    id4,
-                    3,
-                    c0,
-                    c1,
-                    c2,
-                    c3,
-                    c4,
-                    c5,
-                ) + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
+                line = (
+                    "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
+                    % (
+                        id1,
+                        id2,
+                        id3,
+                        id4,
+                        3,
+                        c0,
+                        c1,
+                        c2,
+                        c3,
+                        c4,
+                        c5,
+                    )
+                    + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
+                )
+                oline = (
+                    "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
+                    % (
+                        id1,
+                        id2,
+                        id3,
+                        id4,
+                        3,
+                        c0,
+                        c1,
+                        c2,
+                        c3,
+                        c4,
+                        c5,
+                    )
+                    + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
+                )
                 temp.append(line)
                 otemp.append(oline)
             temp.sort()
