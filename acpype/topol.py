@@ -286,29 +286,36 @@ class AbstractTopol:
     def printDebug(self, text=""):
         """Debug log level"""
         if self.debug:
+            print((f"DEBUG: {while_replace(text)}"))
             logging.debug(f"{while_replace(text)}")
 
     def printWarn(self, text=""):
         """Warn log level"""
         if self.verbose:
+            print(f"WARNING: {while_replace(text)}")
             logging.warning(f"{while_replace(text)}")
 
     def printError(self, text=""):
         """Error log level"""
         if self.verbose:
+            print(f"ERROR: {while_replace(text)}")
             logging.error(f"{while_replace(text)}")
 
     def printMess(self, text=""):
         """Info log level"""
         if self.verbose:
+            print(f"==> {while_replace(text)}")
             logging.info(f"==> {while_replace(text)}")
 
     def printQuoted(self, text=""):
         """Print quoted messages"""
         if self.verbose:
+            print(10 * "+" + "start_quote" + 59 * "+")
             logging.info(10 * "+" + "start_quote" + 59 * "+")
+            print(while_replace(text))
             logging.info(while_replace(text))
             logging.info(10 * "+" + "end_quote" + 61 * "+")
+            print(10 * "+" + "end_quote" + 61 * "+")
 
     def search(self, name=None, alist=False):
         """

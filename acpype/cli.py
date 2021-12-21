@@ -107,6 +107,7 @@ def init_main(binaries=binaries, argv=None):
         print(header)
         sys.exit(0)
 
+    print(header)
     logging.info(header)
 
     if not args.input:
@@ -118,6 +119,7 @@ def init_main(binaries=binaries, argv=None):
 
     if args.debug:
         texta = "Python Version %s" % sys.version
+        print(while_replace(texta))
         logging.debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
@@ -125,6 +127,7 @@ def init_main(binaries=binaries, argv=None):
 
     try:
         if amb2gmxF:
+            print("Converting Amber input files to Gromacs ...")
             logging.info("Converting Amber input files to Gromacs ...")
             system = MolTopol(
                 acFileXyz=args.inpcrd,
@@ -176,6 +179,7 @@ def init_main(binaries=binaries, argv=None):
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
+        print("ACPYPE FAILED: %s" % exceptionValue)
         logging.error("ACPYPE FAILED: %s" % exceptionValue)
         if args.debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
@@ -186,6 +190,7 @@ def init_main(binaries=binaries, argv=None):
         amsg = "less than a second"
     else:
         amsg = elapsedTime(execTime)
+    print("Total time of execution: %s" % amsg)
     logging.info("Total time of execution: %s" % amsg)
 
     if args.ipython:
