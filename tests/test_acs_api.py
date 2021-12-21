@@ -1,5 +1,5 @@
 import os
-import ujson as json
+import json
 from acpype.acs_api import acpype_api
 
 file_types = (
