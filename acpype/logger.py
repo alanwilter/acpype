@@ -6,7 +6,7 @@ class MyFileFormatter(logging.Formatter):
 
     err_fmt = "ERROR: %(msg)s"
     warn_fmt = "WARNING: %(msg)s"
-    dbg_fmt = "DEBUG: %(module)s: %(lineno)d: %(msg)s"
+    dbg_fmt = "DEBUG: %(msg)s"
     info_fmt = "%(msg)s"
 
     def __init__(self):

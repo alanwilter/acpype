@@ -1,10 +1,8 @@
 import os
 import math
-import sys
 import subprocess as sub
 from shutil import which
 from acpype.params import Pi
-import logging
 
 
 def find_bin(abin):
