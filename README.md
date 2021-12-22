@@ -13,6 +13,7 @@
 [![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype)](https://github.com/alanwilter/acpype)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2021.12.22/master?style=plastic)](https://github.com/alanwilter/acpype)
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5601736.svg)](https://doi.org/10.1186/1756-0500-5-367)
 ![DOI](https://doi.org/10.1186/1756-0500-5-367) -->
