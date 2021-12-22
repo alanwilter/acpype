@@ -83,6 +83,7 @@ def set_for_pip(binaries):
 
 def chk_py_ver():
     if sys.version_info < (3, 6):
+        logging.exception("Sorry, you need python 3.6 or higher")
         raise Exception("Sorry, you need python 3.6 or higher")
 
 

@@ -73,7 +73,6 @@ def test_pdb(capsys):
     assert len(molecule.molTopol.properDihedrals) == 188
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
-    print(captured.out)
     assert "==> Overwriting pickle file FFF.pkl" in captured.out
     # check for already present
     os.chdir(os.path.dirname(os.path.abspath(__file__)))

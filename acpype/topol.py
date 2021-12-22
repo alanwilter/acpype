@@ -97,6 +97,7 @@ class Topology_14:
             try:
                 setattr(self, attributes[i], self.p7_array_read(buff, flag_strings[i]))
             except Exception:
+                print("Skipping non-existent attributes", attributes[i], flag_strings[i])
                 logging.info("Skipping non-existent attributes", attributes[i], flag_strings[i])
 
     @staticmethod
@@ -207,6 +208,7 @@ class AbstractTopol:
     @abc.abstractmethod
     def __init__(self):
         if self.__class__ is AbstractTopol:
+            logging.exception("Attempt to create instance of abstract class AbstractTopol")
             raise TypeError("Attempt to create instance of abstract class AbstractTopol")
         self.debug = None
         self.verbose = None
@@ -286,20 +288,20 @@ class AbstractTopol:
     def printDebug(self, text=""):
         """Debug log level"""
         if self.debug:
-            print((f"DEBUG: {while_replace(text)}"))
+            print(f"DEBUG: {while_replace(text)}")
             logging.debug(f"{while_replace(text)}")
 
     def printWarn(self, text=""):
         """Warn log level"""
         if self.verbose:
             print(f"WARNING: {while_replace(text)}")
-            logging.warning(f"{while_replace(text)}")
+            logging.warning(f"WARNING: {while_replace(text)}")
 
     def printError(self, text=""):
         """Error log level"""
         if self.verbose:
             print(f"ERROR: {while_replace(text)}")
-            logging.error(f"{while_replace(text)}")
+            logging.error(f"ERROR: {while_replace(text)}")
 
     def printMess(self, text=""):
         """Info log level"""
@@ -314,8 +316,8 @@ class AbstractTopol:
             logging.info(10 * "+" + "start_quote" + 59 * "+")
             print(while_replace(text))
             logging.info(while_replace(text))
-            logging.info(10 * "+" + "end_quote" + 61 * "+")
             print(10 * "+" + "end_quote" + 61 * "+")
+            logging.info(10 * "+" + "end_quote" + 61 * "+")
 
     def search(self, name=None, alist=False):
         """
@@ -342,7 +344,9 @@ class AbstractTopol:
 
                 ob.cvar.obErrorLog.StopLogging()
         else:
+            print("WARNING: your input may be a SMILES but")
             logging.warning("WARNING: your input may be a SMILES but")
+            print("         without OpenBabel, this functionality won't work")
             logging.warning("         without OpenBabel, this functionality won't work")
             return False
 
@@ -400,6 +404,7 @@ class AbstractTopol:
             if self.debug:
                 self.printMess("Debugging...")
                 cmd = cmd.replace("-pf y", "-pf n")
+                print(while_replace(cmd))
                 logging.info(while_replace(cmd))
 
             log = _getoutput(cmd).strip()
@@ -428,6 +433,7 @@ class AbstractTopol:
         if drift > diffTol:
             self.printError("Net charge drift '%3.5f' bigger than tolerance '%3.5f'" % (drift, diffTol))
             if not self.force:
+                logging.exception("Error with calculated charge")
                 raise Exception("Error with calculated charge")
         self.chargeVal = str(charge2)
         self.printMess(f"... charge set to {charge2}")
@@ -479,6 +485,7 @@ class AbstractTopol:
         if len(residues) > 1:
             self.printError(f"more than one residue detected '{str(residues)}'")
             self.printError(f"verify your input file '{self.inputFile}'. Aborting ...")
+            logging.exception("Only ONE Residue is allowed for ACPYPE to work")
             raise Exception("Only ONE Residue is allowed for ACPYPE to work")
 
         dups = ""
@@ -528,6 +535,7 @@ class AbstractTopol:
             else:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 rmtree(self.tmpDir)
+                logging.exception("Coordinates issues with your system")
                 raise Exception("Coordinates issues with your system")
         try:  # scape resname list index out of range
             resname = list(residues)[0].strip()
@@ -849,6 +857,7 @@ class AbstractTopol:
         # os.system('kill -15 %s' % pids)
         for i in pids.split():
             os.kill(int(i), 15)
+        logging.exception("Semi-QM taking too long to finish... aborting!")
         raise Exception("Semi-QM taking too long to finish... aborting!")
 
     def delOutputFiles(self):
@@ -1013,6 +1022,7 @@ class AbstractTopol:
         """Convert Smiles to MOL2 by using obabel"""
 
         if not self.obabelExe:
+            logging.exception("SMILES needs OpenBabel python module")
             raise Exception("SMILES needs OpenBabel python module")
         if checkOpenBabelVersion() >= 300:
             from openbabel import pybel
@@ -1130,6 +1140,7 @@ class AbstractTopol:
         data = ""
 
         if not self.topFileData:
+            logging.exception("PRMTOP file empty?")
             raise Exception("PRMTOP file empty?")
 
         for rawLine in self.topFileData:
@@ -1196,6 +1207,7 @@ class AbstractTopol:
         [[x1,y1,z1],[x2,y2,z2], etc.]
         """
         if not self.xyzFileData:
+            logging.exception("INPCRD file empty?")
             raise Exception("INPCRD file empty?")
         data = ""
         for rawLine in self.xyzFileData[2:]:
@@ -1580,6 +1592,7 @@ class AbstractTopol:
                 phaseRaw = dih.phase * radPi  # in degree
                 phase = int(phaseRaw)  # in degree
                 if period > 4 and self.gmx4:
+                    logging.exception("Likely trying to convert ILDN to RB, DO NOT use option '-z'")
                     raise Exception("Likely trying to convert ILDN to RB, DO NOT use option '-z'")
                 if phase in [0, 180]:
                     properDihedralsGmx45.append([item[0].atoms, phaseRaw, kPhi, period])
@@ -3128,6 +3141,7 @@ class ACTopol(AbstractTopol):
             )
             self.printMess(hint1)
             self.printMess(hint2)
+            logging.exception("Missing ANTECHAMBER")
             raise Exception("Missing ANTECHAMBER")
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
@@ -3146,6 +3160,7 @@ class ACTopol(AbstractTopol):
                 self.is_smiles = False
                 self.smiles = None
         elif not os.path.exists(self.absInputFile):
+            logging.exception(f"Input file {inputFile} DOES NOT EXIST")
             raise Exception(f"Input file {inputFile} DOES NOT EXIST")
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
@@ -3157,6 +3172,7 @@ class ACTopol(AbstractTopol):
             if self.ext != ".mol2" and self.ext != ".mdl":
                 self.printError(f"no '{binaries['obabel_bin']}' executable; you need it if input is PDB or SMILES")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
+                logging.exception("Missing OBABEL")
                 raise Exception("Missing OBABEL")
             else:
                 self.printWarn(f"no '{binaries['obabel_bin']}' executable, no PDB file can be used as input!")
