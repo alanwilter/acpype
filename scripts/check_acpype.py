@@ -107,9 +107,6 @@ aa_dict = {
     "Y": "tyr",
 }
 
-# hisDictConv = {'HHH':['HIE', 'HISB'], 'JJJ':['HIP', 'HISH'], 'OOO':['HID', 'HISA']}
-
-
 hisDictConv = {"HHH": ["HIE", "HISE"], "JJJ": ["HIP", "HISH"], "OOO": ["HID", "HISD"]}
 
 pymolScript = (

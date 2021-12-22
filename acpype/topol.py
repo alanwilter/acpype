@@ -1061,7 +1061,7 @@ class AbstractTopol:
         """
         self.topFileData = open(self.acTopFileName, "r").readlines()
         self.molTopol = MolTopol(
-            self,
+            self,  # acTopolObj
             verbose=self.verbose,
             debug=self.debug,
             gmx4=self.gmx4,
@@ -3254,7 +3254,9 @@ class MolTopol(AbstractTopol):
             self.allhdg = self._parent.allhdg
             self.debug = self._parent.debug
             self.inputFile = self._parent.inputFile
-        if not os.path.exists(acFileXyz) and not os.path.exists(acFileTop):
+        elif not self.amb2gmx:
+            self.amb2gmx = True
+        if not os.path.exists(acFileXyz) or not os.path.exists(acFileTop):
             self.printError("Files '%s' and/or '%s' don't exist" % (acFileXyz, acFileTop))
             self.printError("molTopol object won't be created")
 
