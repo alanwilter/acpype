@@ -10,8 +10,8 @@ from datetime import datetime
 from shutil import copy2, rmtree, which
 from acpype.mol import Atom, Angle, AtomType, Bond, Dihedral
 from acpype import __version__ as version
-from acpype.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_TEMPLATE, leapAmberFile
-from acpype.params import binaries, ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
+from acpype.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_TEMPLATE, leapAmberFile, radPi, cal
+from acpype.params import binaries, ionOrSolResNameList, outTopols, qDict, qConv, diffTol, specialGaffAtoms
 from acpype.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
 from acpype.utils import _getoutput, while_replace, distanceAA, job_pids_family, checkOpenBabelVersion
 from acpype.utils import find_bin, elapsedTime, imprDihAngle, parmMerge
@@ -1643,8 +1643,11 @@ class AbstractTopol:
         Write a new PDB file_ with the atom names defined by Antechamber
         Input: file_ path string
         The format generated here use is slightly different from
-        http://www.wwpdb.org/documentation/format23/sect9.html respected to
-        atom name
+        old: http://www.wwpdb.org/documentation/file-format-content/format23/sect9.html
+        latest: http://www.wwpdb.org/documentation/file-format-content/format33/sect9.html
+        respected to atom name
+        Using GAFF2 atom types
+        CU/Cu Copper, CL/cl Chlorine, BR/br Bromine
         """
         # TODO: assuming only one residue ('1')
         pdbFile = open(file_, "w")
@@ -1654,19 +1657,10 @@ class AbstractTopol:
         for atom in self.atoms:
             # id_ = self.atoms.index(atom) + 1
             aName = atom.atomName
-            if len(aName) == 2 or len(aName) == 3:
-                aName = "%s " % aName.capitalize()
-                s = aName
-
-            elif len(aName) == 1:
-                aName = " %s  " % aName
-                if "C" or "H" in aName:
-                    s = "Xx"
-
-            #        for ll in aName:
-            #            if ll.isalpha():
-            #                s = ll
-            #                break
+            if atom.atomType.atomTypeName.upper() in specialGaffAtoms:
+                s = atom.atomType.atomTypeName.upper()
+            else:
+                s = atom.atomType.atomTypeName[0].upper()
 
             rName = self.residueLabel[0]
             x = atom.coords[0]
@@ -1685,7 +1679,7 @@ class AbstractTopol:
                 1.0,
                 0.0,
                 10 * " ",
-                "".join(filter(str.isalpha, s)),
+                s,
             )
             pdbFile.write(line)
             id_ += 1
