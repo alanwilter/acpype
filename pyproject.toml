@@ -16,7 +16,7 @@ exclude = '''
 
 [tool.poetry]
 name = "acpype"
-version = "2021.12.22"
+version = "2021.12.23"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 authors = ["Alan Silva <alanwilter@gmail.com>"]
 license = "GPL-3.0"

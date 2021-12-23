@@ -1866,6 +1866,7 @@ class AbstractTopol:
         otopText = []
         top = self.baseName + "_GMX.top"
         itp = self.baseName + "_GMX.itp"
+        posre = "posre_" + self.baseName + ".itp"
         otop = self.baseName + "_GMX_OPLS.top"
         oitp = self.baseName + "_GMX_OPLS.itp"
 
@@ -1877,6 +1878,12 @@ class AbstractTopol:
         headItp = """
 ; Include %s topology
 #include "%s"
+"""
+        headLigPosre = """
+; Ligand position restraints
+#ifdef POSRES_LIG
+#include "%s"
+#endif
 """
         headOpls = """
 ; Include forcefield parameters
@@ -2070,17 +2077,17 @@ class AbstractTopol:
         headWater = headWaterTip3p
 
         nWat = 0
-        # topFile.write("; " + head % (top, date))
         topText.append("; " + head % (top, date))
         otopText.append("; " + head % (otop, date))
-        # topFile.write(headDefault)
         topText.append(headDefault)
 
         nSolute = 0
         if not self.amb2gmx:
             topText.append(headItp % (itp, itp))
+            topText.append(headLigPosre % posre)
             otopText.append(headOpls)
             otopText.append(headItp % (itp, itp))
+            otopText.append(headLigPosre % posre)
             itpText.append("; " + head % (itp, date))
             oitpText.append("; " + head % (oitp, date))
 
@@ -2718,7 +2725,10 @@ class AbstractTopol:
         groFile.write(text)
 
     def writePosreFile(self, fc=1000):
-        """Write file with positional restraints for heavy atoms"""
+        """
+        Write file with positional restraints for heavy atoms
+        http://www.mdtutorials.com/gmx/complex/06_equil.html
+        """
         self.printDebug("writing POSRE file")
         posre = "posre_" + self.baseName + ".itp"
         gmxDir = os.path.abspath(".")
@@ -2733,23 +2743,56 @@ class AbstractTopol:
     def writeMdpFiles(self):
         """Write MDP for test with GROMACS"""
         emMdp = f"""; to test
-; gmx grompp -f em.mdp -c {self.baseName}_GMX.gro -p {self.baseName}_GMX.top -o em.tpr -v
+; echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 1 -c -princ
+; gmx grompp -f em.mdp -c out.gro -p {self.baseName}_GMX.top -o em.tpr -v
 ; gmx mdrun -ntmpi 1 -v -deffnm em
-integrator               = steep
-nsteps                   = 500
+
+; Parameters describing what to do, when to stop and what to save
+integrator      = steep     ; Algorithm (steep = steepest descent minimization)
+nsteps          = 500       ; Maximum number of (minimization) steps to perform
+nstxout         = 10
+
+; Parameters describing how to find the neighbors of each atom and how to calculate the interactions
+nstlist         = 1             ; Frequency to update the neighbour list and long range forces
+cutoff-scheme   = Verlet
+rlist           = 1.2           ; Cut-off for making neighbour list (short range forces)
+coulombtype     = PME           ; Treatment of long range electrostatic interactions
+rcoulomb        = 1.2           ; long range electrostatic cut-off
+vdw-type        = cutoff
+vdw-modifier    = force-switch
+rvdw-switch     = 1.0
+rvdw            = 1.2           ; long range Van der Waals cut-off
+pbc             = xyz           ; Periodic Boundary Conditions
+DispCorr        = no
+; vmd em.gro em.trr
 """
         mdMdp = f"""; to test
 ; gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr
 ; gmx mdrun -ntmpi 1 -v -deffnm md
+; define                   = -DPOSRES_LIG
 integrator               = md
 nsteps                   = 10000
 nstxout                  = 10
+cutoff-scheme            = verlet
+coulombtype              = PME
+constraints              = h-bonds
+vdwtype                  = cutoff
+vdw-modifier             = force-switch
+rlist                    = 1.0
+rvdw                     = 1.0
+rvdw-switch              = 0.9
+rcoulomb                 = 1.1
+DispCorr                 = EnerPres
+lincs-iter               = 2
+fourierspacing           = 0.25
+gen-vel                  = yes
 ; vmd md.gro md.trr
 """
         rungmx = f"""
-gmx grompp -f em.mdp -c {self.baseName}_GMX.gro -p {self.baseName}_GMX.top -o em.tpr -v
+echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 1 -c -princ
+gmx grompp -f em.mdp -c out.gro -p {self.baseName}_GMX.top -o em.tpr -v
 gmx mdrun -ntmpi 1 -v -deffnm em
-gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr
+gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr -r em.gro
 gmx mdrun -ntmpi 1 -v -deffnm md
 """
         emMdpFile = open("em.mdp", "w")
