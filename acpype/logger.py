@@ -75,16 +75,17 @@ class MyStreamFormatter(logging.Formatter):
 def set_logging_conf():
     # Setting logging configurations
     logger = logging.getLogger("Logger")
-    if not getattr(logger, "handler_set", None):
-        fmt = MyFileFormatter()
-        smt = MyStreamFormatter()
-        file_handler = logging.FileHandler(filename="/tmp/acpype_run.log")
-        stdout_handler = logging.StreamHandler(sys.stdout)
-        stdout_handler.setFormatter(smt)
-        file_handler.setFormatter(fmt)
+    if logger.handlers:
+        logger.handlers.pop()
+
+    fmt = MyFileFormatter()
+    smt = MyStreamFormatter()
+    file_handler = logging.FileHandler(filename="/tmp/acpype_run.log")
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    stdout_handler.setFormatter(smt)
+    file_handler.setFormatter(fmt)
+    if not logger.handlers:
         logger.addHandler(file_handler)
-        logger.addHandler(stdout_handler)
-        logger.setLevel(logging.DEBUG)
-        logger.propagate = False
-        logger.handler_set = True
+    logger.addHandler(stdout_handler)
+    logger.setLevel(logging.DEBUG)
     return logger
