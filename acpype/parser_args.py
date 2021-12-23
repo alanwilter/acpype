@@ -21,10 +21,18 @@ def get_option_parser():
         help="a basename for the project (folder and output files)",
     )
     parser.add_argument(
-        "-x", "--inpcrd", action="store", dest="inpcrd", help="amber inpcrd file name (always used with -p)",
+        "-x",
+        "--inpcrd",
+        action="store",
+        dest="inpcrd",
+        help="amber inpcrd file name (always used with -p)",
     )
     parser.add_argument(
-        "-p", "--prmtop", action="store", dest="prmtop", help="amber prmtop file name (always used with -x)",
+        "-p",
+        "--prmtop",
+        action="store",
+        dest="prmtop",
+        help="amber prmtop file name (always used with -x)",
     )
     parser.add_argument(
         "-c",
@@ -72,10 +80,18 @@ def get_option_parser():
         help="am1-bcc flag, sqm (default), divcon, mopac",
     )
     parser.add_argument(
-        "-k", "--keyword", action="store", dest="keyword", help="mopac or sqm keyword, inside quotes",
+        "-k",
+        "--keyword",
+        action="store",
+        dest="keyword",
+        help="mopac or sqm keyword, inside quotes",
     )
     parser.add_argument(
-        "-f", "--force", action="store_true", dest="force", help="force topologies recalculation anew",
+        "-f",
+        "--force",
+        action="store_true",
+        dest="force",
+        help="force topologies recalculation anew",
     )
     group.add_argument(
         "-d",
@@ -94,7 +110,11 @@ def get_option_parser():
         help="output topologies: all (default), gmx, cns or charmm",
     )
     parser.add_argument(
-        "-z", "--gmx4", action="store_true", dest="gmx4", help="write RB dihedrals old GMX 4.0",
+        "-z",
+        "--gmx4",
+        action="store_true",
+        dest="gmx4",
+        help="write RB dihedrals old GMX 4.0",
     )
     parser.add_argument(
         "-t",
@@ -113,7 +133,11 @@ def get_option_parser():
         help="max time (in sec) tolerance for sqm/mopac, default is %i hours" % (MAXTIME // 3600),
     )
     parser.add_argument(
-        "-y", "--ipython", action="store_true", dest="ipython", help="start iPython interpreter",
+        "-y",
+        "--ipython",
+        action="store_true",
+        dest="ipython",
+        help="start iPython interpreter",
     )
     group.add_argument(
         "-w",
@@ -139,7 +163,11 @@ def get_option_parser():
         # NOTE: when solvent is present, gmx mdrun is not working, lack solvent topology
     )
     parser.add_argument(
-        "-l", "--sorted", action="store_true", dest="sorted", help="sort atoms for GMX ordering",
+        "-l",
+        "--sorted",
+        action="store_true",
+        dest="sorted",
+        help="sort atoms for GMX ordering",
     )
     parser.add_argument(
         "-j",
@@ -149,6 +177,10 @@ def get_option_parser():
         help="create improper dihedral parameters for chiral atoms in CNS",
     )
     parser.add_argument(
-        "-v", "--version", action="store_true", dest="version", help="Show the Acpype version and exit",
+        "-v",
+        "--version",
+        action="store_true",
+        dest="version",
+        help="Show the Acpype version and exit",
     )
     return parser

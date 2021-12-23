@@ -10,8 +10,8 @@ from datetime import datetime
 from shutil import copy2, rmtree, which
 from acpype.mol import Atom, Angle, AtomType, Bond, Dihedral
 from acpype import __version__ as version
-from acpype.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_TEMPLATE, leapAmberFile
-from acpype.params import binaries, ionOrSolResNameList, radPi, cal, outTopols, qDict, qConv, diffTol
+from acpype.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_TEMPLATE, leapAmberFile, radPi, cal
+from acpype.params import binaries, ionOrSolResNameList, outTopols, qDict, qConv, diffTol, specialGaffAtoms
 from acpype.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
 from acpype.utils import _getoutput, while_replace, distanceAA, job_pids_family, checkOpenBabelVersion
 from acpype.utils import find_bin, elapsedTime, imprDihAngle, parmMerge
@@ -1061,7 +1061,7 @@ class AbstractTopol:
         """
         self.topFileData = open(self.acTopFileName, "r").readlines()
         self.molTopol = MolTopol(
-            self,
+            self,  # acTopolObj
             verbose=self.verbose,
             debug=self.debug,
             gmx4=self.gmx4,
@@ -1643,8 +1643,11 @@ class AbstractTopol:
         Write a new PDB file_ with the atom names defined by Antechamber
         Input: file_ path string
         The format generated here use is slightly different from
-        http://www.wwpdb.org/documentation/format23/sect9.html respected to
-        atom name
+        old: http://www.wwpdb.org/documentation/file-format-content/format23/sect9.html
+        latest: http://www.wwpdb.org/documentation/file-format-content/format33/sect9.html
+        respected to atom name
+        Using GAFF2 atom types
+        CU/Cu Copper, CL/cl Chlorine, BR/br Bromine
         """
         # TODO: assuming only one residue ('1')
         pdbFile = open(file_, "w")
@@ -1654,19 +1657,10 @@ class AbstractTopol:
         for atom in self.atoms:
             # id_ = self.atoms.index(atom) + 1
             aName = atom.atomName
-            if len(aName) == 2 or len(aName) == 3:
-                aName = "%s " % aName.capitalize()
-                s = aName
-
-            elif len(aName) == 1:
-                aName = " %s  " % aName
-                if "C" or "H" in aName:
-                    s = "Xx"
-
-            #        for ll in aName:
-            #            if ll.isalpha():
-            #                s = ll
-            #                break
+            if atom.atomType.atomTypeName.upper() in specialGaffAtoms:
+                s = atom.atomType.atomTypeName.upper()
+            else:
+                s = atom.atomType.atomTypeName[0].upper()
 
             rName = self.residueLabel[0]
             x = atom.coords[0]
@@ -1685,7 +1679,7 @@ class AbstractTopol:
                 1.0,
                 0.0,
                 10 * " ",
-                "".join(filter(str.isalpha, s)),
+                s,
             )
             pdbFile.write(line)
             id_ += 1
@@ -1872,6 +1866,7 @@ class AbstractTopol:
         otopText = []
         top = self.baseName + "_GMX.top"
         itp = self.baseName + "_GMX.itp"
+        posre = "posre_" + self.baseName + ".itp"
         otop = self.baseName + "_GMX_OPLS.top"
         oitp = self.baseName + "_GMX_OPLS.itp"
 
@@ -1883,6 +1878,12 @@ class AbstractTopol:
         headItp = """
 ; Include %s topology
 #include "%s"
+"""
+        headLigPosre = """
+; Ligand position restraints
+#ifdef POSRES_LIG
+#include "%s"
+#endif
 """
         headOpls = """
 ; Include forcefield parameters
@@ -2076,17 +2077,17 @@ class AbstractTopol:
         headWater = headWaterTip3p
 
         nWat = 0
-        # topFile.write("; " + head % (top, date))
         topText.append("; " + head % (top, date))
         otopText.append("; " + head % (otop, date))
-        # topFile.write(headDefault)
         topText.append(headDefault)
 
         nSolute = 0
         if not self.amb2gmx:
             topText.append(headItp % (itp, itp))
+            topText.append(headLigPosre % posre)
             otopText.append(headOpls)
             otopText.append(headItp % (itp, itp))
+            otopText.append(headLigPosre % posre)
             itpText.append("; " + head % (itp, date))
             oitpText.append("; " + head % (oitp, date))
 
@@ -2114,14 +2115,18 @@ class AbstractTopol:
             # OW 629362.166 625.267765 spce
             # OW 581935.564 594.825035 tip3p
             #       print aTypeName, A, B
-            line = " %-8s %-11s %3.5f  %3.5f   A   %13.5e %13.5e" % (
-                aTypeName,
-                aTypeName,
-                0.0,
-                0.0,
-                sigma,
-                epsilon,
-            ) + " ; %4.2f  %1.4f\n" % (r0, epAmber)
+            line = (
+                " %-8s %-11s %3.5f  %3.5f   A   %13.5e %13.5e"
+                % (
+                    aTypeName,
+                    aTypeName,
+                    0.0,
+                    0.0,
+                    sigma,
+                    epsilon,
+                )
+                + " ; %4.2f  %1.4f\n" % (r0, epAmber)
+            )
             oline = "; %s:%s:opls_%s: %s\n" % (aTypeName, aTypeNameOpls, oaCode[0], repr(oaCode[1:]))
             # tmpFile.write(line)
             temp.append(line)
@@ -2373,32 +2378,40 @@ class AbstractTopol:
                 oat3 = id2oplsATDict.get(id3)
                 oat4 = id2oplsATDict.get(id4)
                 c0, c1, c2, c3, c4, c5 = dih[1]
-                line = "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
-                    id1,
-                    id2,
-                    id3,
-                    id4,
-                    3,
-                    c0,
-                    c1,
-                    c2,
-                    c3,
-                    c4,
-                    c5,
-                ) + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
-                oline = "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
-                    id1,
-                    id2,
-                    id3,
-                    id4,
-                    3,
-                    c0,
-                    c1,
-                    c2,
-                    c3,
-                    c4,
-                    c5,
-                ) + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
+                line = (
+                    "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
+                    % (
+                        id1,
+                        id2,
+                        id3,
+                        id4,
+                        3,
+                        c0,
+                        c1,
+                        c2,
+                        c3,
+                        c4,
+                        c5,
+                    )
+                    + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
+                )
+                oline = (
+                    "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
+                    % (
+                        id1,
+                        id2,
+                        id3,
+                        id4,
+                        3,
+                        c0,
+                        c1,
+                        c2,
+                        c3,
+                        c4,
+                        c5,
+                    )
+                    + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
+                )
                 temp.append(line)
                 otemp.append(oline)
             temp.sort()
@@ -2712,7 +2725,10 @@ class AbstractTopol:
         groFile.write(text)
 
     def writePosreFile(self, fc=1000):
-        """Write file with positional restraints for heavy atoms"""
+        """
+        Write file with positional restraints for heavy atoms
+        http://www.mdtutorials.com/gmx/complex/06_equil.html
+        """
         self.printDebug("writing POSRE file")
         posre = "posre_" + self.baseName + ".itp"
         gmxDir = os.path.abspath(".")
@@ -2727,23 +2743,56 @@ class AbstractTopol:
     def writeMdpFiles(self):
         """Write MDP for test with GROMACS"""
         emMdp = f"""; to test
-; gmx grompp -f em.mdp -c {self.baseName}_GMX.gro -p {self.baseName}_GMX.top -o em.tpr -v
+; echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 1 -c -princ
+; gmx grompp -f em.mdp -c out.gro -p {self.baseName}_GMX.top -o em.tpr -v
 ; gmx mdrun -ntmpi 1 -v -deffnm em
-integrator               = steep
-nsteps                   = 500
+
+; Parameters describing what to do, when to stop and what to save
+integrator      = steep     ; Algorithm (steep = steepest descent minimization)
+nsteps          = 500       ; Maximum number of (minimization) steps to perform
+nstxout         = 10
+
+; Parameters describing how to find the neighbors of each atom and how to calculate the interactions
+nstlist         = 1             ; Frequency to update the neighbour list and long range forces
+cutoff-scheme   = Verlet
+rlist           = 1.2           ; Cut-off for making neighbour list (short range forces)
+coulombtype     = PME           ; Treatment of long range electrostatic interactions
+rcoulomb        = 1.2           ; long range electrostatic cut-off
+vdw-type        = cutoff
+vdw-modifier    = force-switch
+rvdw-switch     = 1.0
+rvdw            = 1.2           ; long range Van der Waals cut-off
+pbc             = xyz           ; Periodic Boundary Conditions
+DispCorr        = no
+; vmd em.gro em.trr
 """
         mdMdp = f"""; to test
 ; gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr
 ; gmx mdrun -ntmpi 1 -v -deffnm md
+; define                   = -DPOSRES_LIG
 integrator               = md
 nsteps                   = 10000
 nstxout                  = 10
+cutoff-scheme            = verlet
+coulombtype              = PME
+constraints              = h-bonds
+vdwtype                  = cutoff
+vdw-modifier             = force-switch
+rlist                    = 1.0
+rvdw                     = 1.0
+rvdw-switch              = 0.9
+rcoulomb                 = 1.1
+DispCorr                 = EnerPres
+lincs-iter               = 2
+fourierspacing           = 0.25
+gen-vel                  = yes
 ; vmd md.gro md.trr
 """
         rungmx = f"""
-gmx grompp -f em.mdp -c {self.baseName}_GMX.gro -p {self.baseName}_GMX.top -o em.tpr -v
+echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 1 -c -princ
+gmx grompp -f em.mdp -c out.gro -p {self.baseName}_GMX.top -o em.tpr -v
 gmx mdrun -ntmpi 1 -v -deffnm em
-gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr
+gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr -r em.gro
 gmx mdrun -ntmpi 1 -v -deffnm md
 """
         emMdpFile = open("em.mdp", "w")
@@ -3248,7 +3297,9 @@ class MolTopol(AbstractTopol):
             self.allhdg = self._parent.allhdg
             self.debug = self._parent.debug
             self.inputFile = self._parent.inputFile
-        if not os.path.exists(acFileXyz) and not os.path.exists(acFileTop):
+        elif not self.amb2gmx:
+            self.amb2gmx = True
+        if not os.path.exists(acFileXyz) or not os.path.exists(acFileTop):
             self.printError("Files '%s' and/or '%s' don't exist" % (acFileXyz, acFileTop))
             self.printError("molTopol object won't be created")
 
