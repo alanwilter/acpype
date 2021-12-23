@@ -61,9 +61,6 @@ from acpype.parser_args import get_option_parser
 from acpype.utils import while_replace, elapsedTime
 from acpype.params import binaries
 from acpype.logger import set_logging_conf
-import logging
-
-set_logging_conf()
 
 
 def set_for_pip(binaries):
@@ -83,8 +80,9 @@ def set_for_pip(binaries):
 
 def chk_py_ver():
     if sys.version_info < (3, 6):
-        logging.exception("Sorry, you need python 3.6 or higher")
-        raise Exception("Sorry, you need python 3.6 or higher")
+        msg = "Sorry, you need python 3.6 or higher"
+        set_logging_conf().exception(msg)
+        raise Exception(msg)
 
 
 def init_main(binaries=binaries, argv=None):
@@ -108,8 +106,7 @@ def init_main(binaries=binaries, argv=None):
         print(header)
         sys.exit(0)
 
-    print(header)
-    logging.info(header)
+    set_logging_conf().info(header)
 
     if not args.input:
         amb2gmxF = True
@@ -120,16 +117,14 @@ def init_main(binaries=binaries, argv=None):
 
     if args.debug:
         texta = "Python Version %s" % sys.version
-        print(while_replace(texta))
-        logging.debug(while_replace(texta))
+        set_logging_conf().debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
     try:
         if amb2gmxF:
-            print("Converting Amber input files to Gromacs ...")
-            logging.info("Converting Amber input files to Gromacs ...")
+            set_logging_conf().info("Converting Amber input files to Gromacs ...")
             system = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
@@ -180,8 +175,7 @@ def init_main(binaries=binaries, argv=None):
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-        print("ACPYPE FAILED: %s" % exceptionValue)
-        logging.error("ACPYPE FAILED: %s" % exceptionValue)
+        set_logging_conf().error("ACPYPE FAILED: %s" % exceptionValue)
         if args.debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
         acpypeFailed = True
@@ -191,8 +185,7 @@ def init_main(binaries=binaries, argv=None):
         amsg = "less than a second"
     else:
         amsg = elapsedTime(execTime)
-    print("Total time of execution: %s" % amsg)
-    logging.info("Total time of execution: %s" % amsg)
+    set_logging_conf().info("Total time of execution: %s" % amsg)
 
     if args.ipython:
         import IPython  # pylint: disable=import-outside-toplevel
