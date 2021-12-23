@@ -19,6 +19,8 @@ qDict = {"mopac": 0, "divcon": 1, "sqm": 2}
 # amb2gmx mode
 ionOrSolResNameList = ["Cl-", "Na+", "K+", "CIO", "Cs+", "IB", "Li+", "MG2", "Rb+", "WAT", "MOH", "NMA"]
 
+specialGaffAtoms = ["CU", "BR", "CL"]
+
 # leapAmberFile = 'leaprc.ff99SB'  # 'leaprc.ff10' and 'leaprc.ff99bsc0' has extra Atom Types not in parm99.dat
 leapAmberFile = "leaprc.protein.ff14SB"  # 'leaprc.ff14SB'
 

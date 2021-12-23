@@ -4,7 +4,7 @@ import shutil
 import time
 import io
 import traceback
-import ujson as json
+import json
 from acpype.topol import ACTopol, header
 from acpype.utils import while_replace, elapsedTime
 from acpype.params import MAXTIME
