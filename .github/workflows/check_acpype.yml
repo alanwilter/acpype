@@ -53,10 +53,13 @@ jobs:
            run: |
               sudo apt-get install --no-install-recommends -y python3-pip
               python3 -m pip install --upgrade pip
-              python3 -m pip install --upgrade openbabel-wheel
-              if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
-              # chmod +x acpype/acpype.py
-              # ln -s $PWD/run_acpype.py /usr/local/bin/acpype
+              python3 -m pip install --upgrade openbabel-wheel poetry
+              poetry install
+           #   poetry build
+           #   pip3 install dist/*whl
+           #   if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
+           # chmod +x acpype/acpype.py
+           # ln -s $PWD/run_acpype.py /usr/local/bin/acpype
 
          - name: Lint with flake8
            run: flake8 -v --count
