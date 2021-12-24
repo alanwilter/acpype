@@ -1081,7 +1081,8 @@ class AbstractTopol:
             self.printError("pickleSave failed")
             pass
 
-        self.delOutputFiles()  # required to use on Jupyter Notebook
+        if not self.debug:
+            self.delOutputFiles()  # required to use on Jupyter Notebook
         os.chdir(self.rootDir)
 
     def pickleSave(self):
