@@ -39,8 +39,9 @@ class LogFormatter(logging.Formatter):
         return result
 
 
-def set_logging_conf():
+def set_logging_conf(level=20):
     # Setting logging configurations
+    logging.root.setLevel(0)
     logger = logging.getLogger(__name__)
     if logger.handlers:
         logger.handlers.pop()
@@ -48,10 +49,12 @@ def set_logging_conf():
     fmt = LogFormatter()
     file_handler = logging.FileHandler(filename=tmpLogFile)
     stdout_handler = logging.StreamHandler(sys.stdout)
+    file_handler.setLevel(logging.DEBUG)
+    stdout_handler.setLevel(level)
     stdout_handler.setFormatter(fmt)
     file_handler.setFormatter(fmt)
     if not logger.handlers:
         logger.addHandler(file_handler)
     logger.addHandler(stdout_handler)
-    logger.setLevel(logging.DEBUG)
+    # logger.setLevel(logging.DEBUG)
     return logger

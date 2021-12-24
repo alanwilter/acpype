@@ -91,7 +91,13 @@ def init_main(binaries=binaries, argv=None):
         print(header)
         sys.exit(0)
 
-    logger().info(header)
+    level = 20
+    if not args.verboseless:
+        level = 100
+    if args.debug:
+        level = 10
+
+    logger(level).info(header)
 
     if not args.input:
         amb2gmxF = True
@@ -100,16 +106,16 @@ def init_main(binaries=binaries, argv=None):
     elif args.inpcrd or args.prmtop:
         parser.error("either '-i' or ('-p', '-x'), but not both")
 
-    if args.debug:
-        texta = "Python Version %s" % sys.version
-        logger().debug(while_replace(texta))
+    logger(level).debug(f"CLI: {' '.join(argv)}")
+    texta = "Python Version %s" % sys.version
+    logger(level).debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
     try:
         if amb2gmxF:
-            logger().info("Converting Amber input files to Gromacs ...")
+            logger(level).info("Converting Amber input files to Gromacs ...")
             system = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
@@ -158,7 +164,7 @@ def init_main(binaries=binaries, argv=None):
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-        logger().error("ACPYPE FAILED: %s" % exceptionValue)
+        logger(level).error("ACPYPE FAILED: %s" % exceptionValue)
         if args.debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
         acpypeFailed = True
@@ -168,7 +174,7 @@ def init_main(binaries=binaries, argv=None):
         amsg = "less than a second"
     else:
         amsg = elapsedTime(execTime)
-    logger().info("Total time of execution: %s" % amsg)
+    logger(level).info("Total time of execution: %s" % amsg)
 
     if args.ipython:
         import IPython  # pylint: disable=import-outside-toplevel
