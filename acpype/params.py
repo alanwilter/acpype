@@ -11,8 +11,6 @@ maxDist2 = maxDist ** 2  # squared Ang.
 minDist2 = minDist ** 2  # squared Ang.
 diffTol = 0.01
 
-tmpLogFile = "/tmp/acpype_run.log"
-
 # List of Topology Formats created by acpype so far:
 outTopols = ["gmx", "cns", "charmm"]
 qDict = {"mopac": 0, "divcon": 1, "sqm": 2}

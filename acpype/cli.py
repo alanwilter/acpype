@@ -58,9 +58,9 @@ import sys
 from shutil import rmtree
 from acpype.topol import MolTopol, ACTopol, header
 from acpype.parser_args import get_option_parser
-from acpype.utils import while_replace, elapsedTime, copy_log, set_for_pip
+from acpype.utils import while_replace, elapsedTime, set_for_pip
 from acpype.params import binaries
-from acpype.logger import set_logging_conf as logger
+from acpype.logger import copy_log, set_logging_conf as logger
 
 
 def chk_py_ver():

@@ -1,6 +1,10 @@
-import logging
+import os
+from shutil import move
 import sys
-from acpype.params import tmpLogFile
+import logging
+from tempfile import NamedTemporaryFile
+
+tmpLogFile = NamedTemporaryFile().name
 
 
 class LogFormatter(logging.Formatter):
@@ -39,6 +43,14 @@ class LogFormatter(logging.Formatter):
         return result
 
 
+def copy_log(molecule):
+    local_log = os.path.join(molecule.absHomeDir, "acpype.log")
+    if os.path.exists(local_log):
+        os.remove(local_log)
+    if os.path.exists(tmpLogFile):
+        move(tmpLogFile, local_log)
+
+
 def set_logging_conf(level=20):
     # Setting logging configurations
     logging.root.setLevel(0)
@@ -56,5 +68,4 @@ def set_logging_conf(level=20):
     if not logger.handlers:
         logger.addHandler(file_handler)
     logger.addHandler(stdout_handler)
-    # logger.setLevel(logging.DEBUG)
     return logger

@@ -2,8 +2,8 @@ import os
 import sys
 import math
 import subprocess as sub
-from shutil import which, move
-from acpype.params import Pi, tmpLogFile
+from shutil import which
+from acpype.params import Pi
 
 
 def find_bin(abin):
@@ -257,15 +257,6 @@ def while_replace(string):
     while "  " in string:
         string = string.replace("  ", " ")
     return string
-
-
-def copy_log(molecule):
-    base_log = os.path.basename(tmpLogFile)
-    local_log = os.path.join(molecule.absHomeDir, base_log)
-    if os.path.exists(local_log):
-        os.remove(local_log)
-    if os.path.exists(tmpLogFile):
-        move(tmpLogFile, molecule.absHomeDir)
 
 
 def set_for_pip(binaries):
