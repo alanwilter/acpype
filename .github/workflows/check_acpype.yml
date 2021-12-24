@@ -52,19 +52,19 @@ jobs:
          - name: Install Poetry
            run: |
               curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-              poetry add openbabel-wheel
-              poetry install
+              $HOME/.poetry/bin/poetry add openbabel-wheel
+              $HOME/.poetry/bin/poetry install
 
          - name: Lint with flake8
-           run: poetry run flake8 -v --count
+           run: $HOME/.poetry/bin/poetry run flake8 -v --count
 
          - name: Check format with black
-           run: poetry run black --diff --check .
+           run: $HOME/.poetry/bin/poetry run black --diff --check .
 
          - name: Test with PyTest
            run: |
               # acpype -di test/AAA.pdb -c gas
-              poetry run pytest --color=yes
+              $HOME/.poetry/bin/poetry run pytest --color=yes
 
          - name: Get current date
            id: date
