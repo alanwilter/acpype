@@ -1,4 +1,5 @@
 import os
+import sys
 import math
 import subprocess as sub
 from shutil import which
@@ -256,3 +257,18 @@ def while_replace(string):
     while "  " in string:
         string = string.replace("  ", " ")
     return string
+
+
+def set_for_pip(binaries):
+    # For pip package
+    if which(binaries["ac_bin"]) is None:
+        LOCAL_PATH = os.path.dirname(__file__)
+        if sys.platform == "linux":
+            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_linux/bin"
+            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
+            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_linux/lib/"
+        elif sys.platform == "darwin":
+            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_os/bin"
+            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
+            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
+            os.environ["DYLD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"

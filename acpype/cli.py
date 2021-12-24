@@ -55,31 +55,19 @@ import traceback
 import time
 import os
 import sys
-from shutil import rmtree, which
+from shutil import rmtree
 from acpype.topol import MolTopol, ACTopol, header
 from acpype.parser_args import get_option_parser
-from acpype.utils import while_replace, elapsedTime
+from acpype.utils import while_replace, elapsedTime, set_for_pip
 from acpype.params import binaries
-
-
-def set_for_pip(binaries):
-    # For pip package
-    if which(binaries["ac_bin"]) is None:
-        LOCAL_PATH = os.path.dirname(__file__)
-        if sys.platform == "linux":
-            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_linux/bin"
-            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_linux/"
-            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_linux/lib/"
-        elif sys.platform == "darwin":
-            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_os/bin"
-            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
-            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
-            os.environ["DYLD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
+from acpype.logger import copy_log, set_logging_conf as logger
 
 
 def chk_py_ver():
     if sys.version_info < (3, 6):
-        raise Exception("Sorry, you need python 3.6 or higher")
+        msg = "Sorry, you need python 3.6 or higher"
+        logger().exception(msg)
+        raise Exception(msg)
 
 
 def init_main(binaries=binaries, argv=None):
@@ -103,7 +91,13 @@ def init_main(binaries=binaries, argv=None):
         print(header)
         sys.exit(0)
 
-    print(header)
+    level = 20
+    if not args.verboseless:
+        level = 100
+    if args.debug:
+        level = 10
+
+    logger(level).info(header)
 
     if not args.input:
         amb2gmxF = True
@@ -112,16 +106,16 @@ def init_main(binaries=binaries, argv=None):
     elif args.inpcrd or args.prmtop:
         parser.error("either '-i' or ('-p', '-x'), but not both")
 
-    if args.debug:
-        texta = "Python Version %s" % sys.version
-        print("DEBUG: %s" % while_replace(texta))
+    logger(level).debug(f"CLI: {' '.join(argv)}")
+    texta = "Python Version %s" % sys.version
+    logger(level).debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
     try:
         if amb2gmxF:
-            print("Converting Amber input files to Gromacs ...")
+            logger(level).info("Converting Amber input files to Gromacs ...")
             system = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
@@ -138,6 +132,7 @@ def init_main(binaries=binaries, argv=None):
 
             system.printDebug("prmtop and inpcrd files parsed")
             system.writeGromacsTopolFiles()
+            copy_log(system)
         else:
             molecule = ACTopol(
                 args.input,
@@ -165,11 +160,11 @@ def init_main(binaries=binaries, argv=None):
 
             molecule.createACTopol()
             molecule.createMolTopol()
-
+            copy_log(molecule)
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-        print("ACPYPE FAILED: %s" % exceptionValue)
+        logger(level).error("ACPYPE FAILED: %s" % exceptionValue)
         if args.debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
         acpypeFailed = True
@@ -179,7 +174,7 @@ def init_main(binaries=binaries, argv=None):
         amsg = "less than a second"
     else:
         amsg = elapsedTime(execTime)
-    print("Total time of execution: %s" % amsg)
+    logger(level).info("Total time of execution: %s" % amsg)
 
     if args.ipython:
         import IPython  # pylint: disable=import-outside-toplevel
@@ -190,6 +185,7 @@ def init_main(binaries=binaries, argv=None):
         rmtree(molecule.tmpDir)
     except Exception:
         pass
+
     if acpypeFailed:
         sys.exit(19)
     try:

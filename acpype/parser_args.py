@@ -100,6 +100,14 @@ def get_option_parser():
         dest="debug",
         help="for debugging purposes, keep any temporary file created (not allowed with arg -w)",
     )
+    group.add_argument(
+        "-w",
+        "--verboseless",
+        action="store_false",
+        default=True,
+        dest="verboseless",
+        help="print nothing (not allowed with arg -d)",
+    )
     parser.add_argument(
         "-o",
         "--outtop",
@@ -138,14 +146,6 @@ def get_option_parser():
         action="store_true",
         dest="ipython",
         help="start iPython interpreter",
-    )
-    group.add_argument(
-        "-w",
-        "--verboseless",
-        action="store_false",
-        default=True,
-        dest="verboseless",
-        help="print nothing (not allowed with arg -d)",
     )
     parser.add_argument(
         "-g",

@@ -192,6 +192,7 @@ def test_inputs(capsys, argv):
         (None, 2, " error: "),  # NOTE: None -> sys.argv from pytest
         (["-v"], 0, version),
         ([], 2, "error: missing input files"),
+        (["-d", "-w"], 2, "error: argument -w/--verboseless: not allowed with argument -d/--debug"),
         (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
         (["-di", " 123"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
