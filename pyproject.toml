@@ -19,7 +19,21 @@ name = "acpype"
 version = "2021.12.24"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 authors = ["Alan Silva <alanwilter@gmail.com>"]
-license = "GPL-3.0"
+license = "GPL-3.0-or-later"
+readme = "README.md"
+homepage = "https://alanwilter.github.io/acpype/"
+repository = "https://github.com/alanwilter/acpype"
+keywords = ["acpype", "amber", "gromacs"]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3.7",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+# packages = [{ include = "acpype" }]
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
+"Wiki" = "https://github.com/alanwilter/acpype/wiki"
 
 [tool.poetry.dependencies]
 python = ">=3.6.2,<4.0"
@@ -30,8 +44,11 @@ black = { extras = ["jupyter"], version = "^21.12b0" }
 pytest-cov = "^3.0.0"
 mypy = "^0.920"
 pdbpp = "^0.10.3"
-ipdb = "^0.13.9"
+ipython = "7.10"
+ipdb = "0.13"
+build = "^0.7.0"
 
 [build-system]
 requires = ["setuptools>=58", "wheel", "poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+# build-backend = "setuptools.build_meta"
