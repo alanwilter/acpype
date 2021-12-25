@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+import fnmatch
+import os
+import sys
+
 from acpype.utils import _getoutput
 
 # Gmm with 200 atoms, biggest OK
@@ -7,9 +11,6 @@ from acpype.utils import _getoutput
 
 # semi-QM = mopac (AT 1.2) or sqm (AT 1.3)
 
-import os
-import sys
-import fnmatch
 
 global id
 id = 1

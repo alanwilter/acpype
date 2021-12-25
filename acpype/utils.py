@@ -1,8 +1,9 @@
-import os
-import sys
 import math
+import os
 import subprocess as sub
+import sys
 from shutil import which
+
 from acpype.params import Pi
 
 
@@ -12,8 +13,9 @@ def find_bin(abin):
 
 def checkOpenBabelVersion():
     "check openbabel version"
-    import openbabel as obl
     import warnings
+
+    import openbabel as obl
 
     warnings.filterwarnings("ignore")
     return int(obl.OBReleaseVersion().replace(".", ""))

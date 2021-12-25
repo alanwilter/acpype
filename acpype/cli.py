@@ -51,16 +51,18 @@
     alanwilter _at_ gmail _dot_ com
 """
 
-import traceback
-import time
 import os
 import sys
+import time
+import traceback
 from shutil import rmtree
-from acpype.topol import MolTopol, ACTopol, header
-from acpype.parser_args import get_option_parser
-from acpype.utils import while_replace, elapsedTime, set_for_pip
+
+from acpype.logger import copy_log
+from acpype.logger import set_logging_conf as logger
 from acpype.params import binaries
-from acpype.logger import copy_log, set_logging_conf as logger
+from acpype.parser_args import get_option_parser
+from acpype.topol import ACTopol, MolTopol, header
+from acpype.utils import elapsedTime, set_for_pip, while_replace
 
 
 def chk_py_ver():

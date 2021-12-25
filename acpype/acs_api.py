@@ -1,13 +1,14 @@
-import sys
+import io
+import json
 import os
 import shutil
+import sys
 import time
-import io
 import traceback
-import json
-from acpype.topol import ACTopol, header
-from acpype.utils import while_replace, elapsedTime
+
 from acpype.params import MAXTIME
+from acpype.topol import ACTopol, header
+from acpype.utils import elapsedTime, while_replace
 
 em_mdp = io.StringIO()
 AC_frcmod = io.StringIO()

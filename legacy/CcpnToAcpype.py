@@ -1,17 +1,18 @@
 from __future__ import print_function
-from builtins import range
-from builtins import object
-from shutil import rmtree
-from acpype.cli import elapsedTime, header, ACTopol
+
+import os
+import random
+import string
+import sys
 import time
 import traceback
-import sys
-import os
-import string
-import random
+from builtins import object, range
+from shutil import rmtree
 
-from ccpnmr.format.converters import PdbFormat  # type: ignore
 from ccpnmr.format.converters import Mol2Format  # type: ignore
+from ccpnmr.format.converters import PdbFormat  # type: ignore
+
+from acpype.cli import ACTopol, elapsedTime, header
 
 letters = string.ascii_letters
 

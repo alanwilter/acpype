@@ -1,5 +1,6 @@
-import os
 import json
+import os
+
 from acpype.acs_api import acpype_api
 
 file_types = (

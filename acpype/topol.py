@@ -1,21 +1,49 @@
-import re
-import signal
+import abc
+import array
 import math
 import os
 import pickle
+import re
+import signal
 import subprocess as sub
-import abc
-import array
 from datetime import datetime
 from shutil import copy2, rmtree, which
-from acpype.mol import Atom, Angle, AtomType, Bond, Dihedral
+
 from acpype import __version__ as version
-from acpype.params import minDist, minDist2, maxDist, maxDist2, MAXTIME, TLEAP_TEMPLATE, leapAmberFile, radPi, cal
-from acpype.params import binaries, ionOrSolResNameList, outTopols, qDict, qConv, diffTol, specialGaffAtoms
-from acpype.params import dictAtomTypeAmb2OplsGmxCode, dictAtomTypeGaff2OplsGmxCode, oplsCode2AtomTypeDict
-from acpype.utils import _getoutput, while_replace, distanceAA, job_pids_family, checkOpenBabelVersion
-from acpype.utils import find_bin, elapsedTime, imprDihAngle, parmMerge
 from acpype.logger import set_logging_conf as logger
+from acpype.mol import Angle, Atom, AtomType, Bond, Dihedral
+from acpype.params import (
+    MAXTIME,
+    TLEAP_TEMPLATE,
+    binaries,
+    cal,
+    dictAtomTypeAmb2OplsGmxCode,
+    dictAtomTypeGaff2OplsGmxCode,
+    diffTol,
+    ionOrSolResNameList,
+    leapAmberFile,
+    maxDist,
+    maxDist2,
+    minDist,
+    minDist2,
+    oplsCode2AtomTypeDict,
+    outTopols,
+    qConv,
+    qDict,
+    radPi,
+    specialGaffAtoms,
+)
+from acpype.utils import (
+    _getoutput,
+    checkOpenBabelVersion,
+    distanceAA,
+    elapsedTime,
+    find_bin,
+    imprDihAngle,
+    job_pids_family,
+    parmMerge,
+    while_replace,
+)
 
 year = datetime.today().year
 tag = version
