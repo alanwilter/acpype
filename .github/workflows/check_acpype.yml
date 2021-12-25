@@ -71,8 +71,8 @@ jobs:
            run: |
               poetry run pytest --color=yes --cov=./ --cov-report=xml
 
-         - name: Upload coverage to Codecov ${{ matrix.python-version[0] }}
-           if: ${{ matrix.python-version }} == ${{ matrix.python-version[0] }}
+         - name: Upload coverage to Codecov ${{ matrix.python-version[0] }} ${{ matrix.python-version }}
+           if: ${{ matrix.python-version }} == "Python 3.6"
            uses: codecov/codecov-action@v2
            with:
               fail_ci_if_error: true
