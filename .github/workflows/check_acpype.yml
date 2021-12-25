@@ -66,6 +66,10 @@ jobs:
               # acpype -di test/AAA.pdb -c gas
               poetry run pytest --color=yes
 
+   release:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
          - name: Get current date
            id: date
            run: echo "::set-output name=date::$(date +'%Y.%-m.%-d')"
