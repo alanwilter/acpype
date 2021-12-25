@@ -38,6 +38,9 @@ classifiers = [
 "Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
 "Wiki" = "https://github.com/alanwilter/acpype/wiki"
 
+[tool.poetry.scripts]
+acpype = "acpype.cli:init_main"
+
 [tool.poetry.dependencies]
 python = ">=3.6.2,<4.0"
 
@@ -49,10 +52,8 @@ mypy = "^0.920"
 pdbpp = "^0.10.3"
 ipython = "7.10"
 ipdb = "0.13"
-build = "^0.7.0"
 isort = "^5.10.1"
 
 [build-system]
-requires = ["setuptools>=58", "wheel", "poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-# build-backend = "setuptools.build_meta"
