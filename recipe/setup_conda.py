@@ -5,6 +5,7 @@ A tool based in Python to use Antechamber to generate topologies for chemical co
 and to interface with others python applications like CCPN or ARIA.
 """
 from typing import Dict
+
 from setuptools import setup
 
 dver: Dict = {}
@@ -18,15 +19,15 @@ setup(
     classifiers=[
         "Intended Audience :: Science/Research",
         "Natural Language :: English",
-        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Scientific/Engineering :: Bio-Informatics",
     ],
-    url="https://github.com/alanwilter/acpype",
+    url="https://alanwilter.github.io/acpype/",
     author="Alan Silva",
     author_email="alanwilter@gmail.com",
     license="GPL-3.0-or-later",
     packages=["acpype"],
-    keywords=["acpype"],
+    keywords=["acpype", "amber", "gromacs"],
     include_package_data=True,
     entry_points={"console_scripts": ["acpype = acpype.cli:init_main"]},
     zip_safe=False,

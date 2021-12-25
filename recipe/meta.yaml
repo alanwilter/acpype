@@ -24,6 +24,6 @@ test:
     - acpype -v
 
 about:
-  home: https://github.com/alanwilter/acpype
+  home: https://alanwilter.github.io/acpype/
   license: GPL-3.0-or-later
   license_file: LICENSE

@@ -1,5 +1,7 @@
 import os
+
 import pytest
+
 from acpype import cli
 from acpype.utils import _getoutput
 

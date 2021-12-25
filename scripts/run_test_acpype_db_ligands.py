@@ -2,10 +2,9 @@
 
 # usage: ./run_test_acpype_db_ligands.py (opt: n=10 or "['001','Rca']")
 
-import sys
 import os
+import sys
 import time
-
 from subprocess import Popen
 
 numCpu = 20

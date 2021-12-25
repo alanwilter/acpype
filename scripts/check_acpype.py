@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import os
-from acpype.topol import ACTopol
-from acpype.utils import _getoutput
 import shutil
 from glob import glob
+
+from acpype.topol import ACTopol
+from acpype.utils import _getoutput
 
 usePymol = True
 ffType = "amber"  # gaff

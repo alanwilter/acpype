@@ -1,7 +1,7 @@
-import os
-from shutil import move
-import sys
 import logging
+import os
+import sys
+from shutil import move
 from tempfile import NamedTemporaryFile
 
 tmpLogFile = NamedTemporaryFile().name

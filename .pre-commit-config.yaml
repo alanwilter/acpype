@@ -13,6 +13,12 @@ repos:
         language: system
         types: [python]
         require_serial: true
+      - id: isort
+        name: isort
+        entry: poetry run isort .
+        language: system
+        types: [python]
+        require_serial: true
       - id: ver_today
         name: ver_today
         entry: ./scripts/ver_today.sh

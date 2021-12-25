@@ -1,6 +1,8 @@
 import os
 import shutil
+
 import pytest
+
 from acpype.topol import MolTopol
 
 

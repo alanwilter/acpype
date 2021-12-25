@@ -1,7 +1,9 @@
 import os
 import shutil
+
 import pytest
 from pytest import approx
+
 from acpype import __version__ as version
 from acpype.cli import init_main
 from acpype.topol import ACTopol

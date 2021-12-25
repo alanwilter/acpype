@@ -1,8 +1,9 @@
-import os
-import sys
 import math
+import os
 import subprocess as sub
+import sys
 from shutil import which
+
 from acpype.params import Pi
 
 
@@ -12,8 +13,9 @@ def find_bin(abin):
 
 def checkOpenBabelVersion():
     "check openbabel version"
-    import openbabel as obl
     import warnings
+
+    import openbabel as obl
 
     warnings.filterwarnings("ignore")
     return int(obl.OBReleaseVersion().replace(".", ""))
@@ -248,7 +250,10 @@ def job_pids_family(jpid):
 
 
 def _getoutput(cmd):
-    """to simulate commands.getoutput in order to work with python 2.6 up to 3.x"""
+    """
+    To simulate commands.getoutput
+    shell=True is necessary despite security issues
+    """
     out = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE).communicate()[0][:-1]
     return out.decode()
 
