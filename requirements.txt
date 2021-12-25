@@ -1,4 +1,0 @@
-# for checks
-pytest-cov==3.0.0
-black==21.12b0
-flake8==4.0.1
