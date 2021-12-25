@@ -1,3 +1,6 @@
+[tool.isort]
+profile = "black"
+
 [tool.black]
 line-length = 120
 exclude = '''
@@ -47,6 +50,7 @@ pdbpp = "^0.10.3"
 ipython = "7.10"
 ipdb = "0.13"
 build = "^0.7.0"
+isort = "^5.10.1"
 
 [build-system]
 requires = ["setuptools>=58", "wheel", "poetry-core>=1.0.0"]
