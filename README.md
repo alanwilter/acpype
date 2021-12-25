@@ -14,8 +14,8 @@
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype?style=plastic)](https://github.com/alanwilter/acpype)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
 [![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2021.12.24/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
-![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)
-![Codecov branch](https://img.shields.io/codecov/c/github/alanwilter/acpype/mv2poetry?style=plastic&token=a719f1fe-3a60-49a3-8804-9a44998c9e4a)
+[![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
+
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5601736.svg)](https://doi.org/10.1186/1756-0500-5-367)
 ![DOI](https://doi.org/10.1186/1756-0500-5-367) -->
 <!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
