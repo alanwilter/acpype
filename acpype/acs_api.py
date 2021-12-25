@@ -171,5 +171,5 @@ def acpype_api(
     try:
         shutil.rmtree(molecule.absHomeDir)
     except Exception:
-        pass
+        print("DEBUG: No folder left to be removed")
     return json.dumps(output)

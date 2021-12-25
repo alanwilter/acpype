@@ -186,14 +186,14 @@ def init_main(binaries=binaries, argv=None):
     try:
         rmtree(molecule.tmpDir)
     except Exception:
-        pass
+        logger(level).debug("No tmp folder left to be removed")
 
     if acpypeFailed:
         sys.exit(19)
     try:
         os.chdir(molecule.rootDir)
     except Exception:
-        pass
+        logger(level).debug("No need to return to the original folder")
 
     if not amb2gmxF and molecule.obabelExe:
         if molecule.checkSmiles():

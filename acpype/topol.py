@@ -837,7 +837,7 @@ class AbstractTopol:
             try:
                 os.remove(self.acMol2FileName)
             except Exception:
-                pass
+                self.printDebug("No file left to be removed")
             signal.signal(signal.SIGALRM, self.signal_handler)
             signal.alarm(self.timeTol)
             p = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE)
@@ -931,7 +931,7 @@ class AbstractTopol:
                 os.remove(self.acTopFileName)
                 os.remove(self.acXyzFileName)
             except Exception:
-                pass
+                self.printDebug("No crd or prm files left to be removed")
             self.printMess("Executing Tleap...")
             self.printDebug(cmd)
             self.tleapLog = _getoutput(cmd)
@@ -1107,7 +1107,6 @@ class AbstractTopol:
             self.pickleSave()
         except Exception:
             self.printError("pickleSave failed")
-            pass
 
         if not self.debug:
             self.delOutputFiles()  # required to use on Jupyter Notebook
@@ -1406,7 +1405,7 @@ class AbstractTopol:
         try:
             atomPairs = sorted(atomPairs)
         except Exception:
-            pass
+            self.printDebug("No atomPairs to be sorted")
         self.properDihedrals = properDih
         self.improperDihedrals = improperDih
         self.condensedProperDihedrals = condProperDih  # [[],[],...]
