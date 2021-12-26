@@ -9,6 +9,25 @@ exclude = '''
   | \.mypy_cache
   | \.tox
   | \.venv
+  | __pycache__
+  | _build
+  | buck-out
+  | build
+  | dist
+  | amber.*
+)/
+'''
+
+[tool.flake8] # it does nothing here, still need tox.ini
+max-line-length = 120
+extend-ignore = '''W503,E203,E501'''
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | __pycache__
   | _build
   | buck-out
   | build
