@@ -54,11 +54,11 @@
 import os
 import sys
 import time
-import traceback
 from shutil import rmtree
 
 from acpype.logger import copy_log
 from acpype.logger import set_logging_conf as logger
+from acpype.logger import tmpLogFile
 from acpype.params import binaries
 from acpype.parser_args import get_option_parser
 from acpype.topol import ACTopol, MolTopol, header
@@ -70,6 +70,12 @@ def chk_py_ver():
         msg = "Sorry, you need python 3.6 or higher"
         logger().exception(msg)
         raise Exception(msg)
+
+
+def handle_exception(level):
+    _exceptionType, exceptionValue, _exceptionTraceback = sys.exc_info()
+    logger(level).exception(f"ACPYPE FAILED: {exceptionValue}")
+    return True
 
 
 def init_main(binaries=binaries, argv=None):
@@ -115,9 +121,10 @@ def init_main(binaries=binaries, argv=None):
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
-    try:
-        if amb2gmxF:
-            logger(level).info("Converting Amber input files to Gromacs ...")
+    acpypeFailed = False
+    if amb2gmxF:
+        logger(level).info("Converting Amber input files to Gromacs ...")
+        try:
             molecule = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
@@ -131,10 +138,17 @@ def init_main(binaries=binaries, argv=None):
                 is_sorted=args.sorted,
                 chiral=args.chiral,
             )
+        except Exception:
+            acpypeFailed = handle_exception(level)
+        if not acpypeFailed:
+            try:
+                molecule.printDebug("prmtop and inpcrd files parsed")
+                molecule.writeGromacsTopolFiles()
+            except Exception:
+                acpypeFailed = handle_exception(level)
 
-            molecule.printDebug("prmtop and inpcrd files parsed")
-            molecule.writeGromacsTopolFiles()
-        else:
+    else:
+        try:
             molecule = ACTopol(
                 args.input,
                 binaries=binaries,
@@ -158,16 +172,18 @@ def init_main(binaries=binaries, argv=None):
                 chiral=args.chiral,
                 amb2gmx=False,
             )
-
-            molecule.createACTopol()
-            molecule.createMolTopol()
-        acpypeFailed = False
-    except Exception:
-        _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-        logger(level).error("ACPYPE FAILED: %s" % exceptionValue)
-        if args.debug:
-            traceback.print_tb(exceptionTraceback, file=sys.stdout)
-        acpypeFailed = True
+        except Exception:
+            acpypeFailed = handle_exception(level)
+        if not acpypeFailed:
+            try:
+                molecule.createACTopol()
+            except Exception:
+                acpypeFailed = handle_exception(level)
+        if not acpypeFailed:
+            try:
+                molecule.createMolTopol()
+            except Exception:
+                acpypeFailed = handle_exception(level)
 
     execTime = int(round(time.time() - at0))
     if execTime == 0:
@@ -181,11 +197,22 @@ def init_main(binaries=binaries, argv=None):
 
         IPython.embed(colors="neutral")
 
+    if not args.debug:
+        try:
+            rmtree(molecule.tmpDir)
+        except Exception:
+            logger(level).debug("No tmp folder left to be removed")
+    else:
+        try:
+            logger(level).debug(f"Keeping folder '{molecule.tmpDir}' for possible helping debugging")
+        except Exception:
+            logger(level).debug("No tmp folder left to be removed")
+
     try:
-        rmtree(molecule.tmpDir)
-    except Exception:
-        logger(level).debug("No tmp folder left to be removed")
-    copy_log(molecule)
+        copy_log(molecule)
+    except UnboundLocalError:
+        print(f"Log tmp location: {tmpLogFile}")
+
     if acpypeFailed:
         sys.exit(19)
     try:

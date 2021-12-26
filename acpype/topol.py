@@ -541,7 +541,8 @@ class AbstractTopol:
                 self.printWarn("You chose to proceed anyway with '-f' option. GOOD LUCK!")
             else:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
-                rmtree(self.tmpDir)
+                if not self.debug:
+                    rmtree(self.tmpDir)
                 logger(self.level).exception("Coordinates issues with your system")
                 raise Exception("Coordinates issues with your system")
         try:  # scape resname list index out of range
