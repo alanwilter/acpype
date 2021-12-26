@@ -118,7 +118,7 @@ def init_main(binaries=binaries, argv=None):
     try:
         if amb2gmxF:
             logger(level).info("Converting Amber input files to Gromacs ...")
-            system = MolTopol(
+            molecule = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
                 amb2gmx=True,
@@ -132,9 +132,8 @@ def init_main(binaries=binaries, argv=None):
                 chiral=args.chiral,
             )
 
-            system.printDebug("prmtop and inpcrd files parsed")
-            system.writeGromacsTopolFiles()
-            copy_log(system)
+            molecule.printDebug("prmtop and inpcrd files parsed")
+            molecule.writeGromacsTopolFiles()
         else:
             molecule = ACTopol(
                 args.input,
@@ -162,7 +161,6 @@ def init_main(binaries=binaries, argv=None):
 
             molecule.createACTopol()
             molecule.createMolTopol()
-            copy_log(molecule)
         acpypeFailed = False
     except Exception:
         _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
@@ -179,7 +177,7 @@ def init_main(binaries=binaries, argv=None):
     logger(level).info("Total time of execution: %s" % amsg)
 
     if args.ipython:
-        import IPython  # pylint: disable=import-outside-toplevel
+        import IPython
 
         IPython.embed(colors="neutral")
 
@@ -187,7 +185,7 @@ def init_main(binaries=binaries, argv=None):
         rmtree(molecule.tmpDir)
     except Exception:
         logger(level).debug("No tmp folder left to be removed")
-
+    copy_log(molecule)
     if acpypeFailed:
         sys.exit(19)
     try:
