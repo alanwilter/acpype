@@ -194,6 +194,7 @@ def test_inputs(janitor, capsys, argv, msg):
         ([], 2, "error: missing input files"),
         (["-d", "-w"], 2, "error: argument -w/--verboseless: not allowed with argument -d/--debug"),
         (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
+        (["-zx", "ILDN.inpcrd", "-p", "ILDN.prmtop"], 19, "Likely trying to convert ILDN to RB"),
         (["-di", " 123"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
         (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),

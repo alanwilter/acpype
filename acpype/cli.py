@@ -142,8 +142,8 @@ def init_main(binaries=binaries, argv=None):
             acpypeFailed = handle_exception(level)
         if not acpypeFailed:
             try:
-                molecule.printDebug("prmtop and inpcrd files parsed")
                 molecule.writeGromacsTopolFiles()
+                molecule.printDebug("prmtop and inpcrd files parsed")
             except Exception:
                 acpypeFailed = handle_exception(level)
 
