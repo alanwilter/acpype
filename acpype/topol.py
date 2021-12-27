@@ -1403,10 +1403,8 @@ class AbstractTopol:
                     atomPairs.add(pair)
             else:
                 improperDih.append(dihedral)
-        try:
-            atomPairs = sorted(atomPairs)
-        except Exception:
-            self.printDebug("No atomPairs to be sorted")
+        if self.sorted:
+            atomPairs = sorted(atomPairs, key=lambda x: (x[0].id, x[1].id))
         self.properDihedrals = properDih
         self.improperDihedrals = improperDih
         self.condensedProperDihedrals = condProperDih  # [[],[],...]

@@ -204,7 +204,8 @@ def init_main(binaries=binaries, argv=None):
             logger(level).debug("No tmp folder left to be removed")
     else:
         try:
-            logger(level).debug(f"Keeping folder '{molecule.tmpDir}' for possible helping debugging")
+            if molecule.tmpDir:
+                logger(level).debug(f"Keeping folder '{molecule.tmpDir}' for possible helping debugging")
         except Exception:
             logger(level).debug("No tmp folder left to be removed")
 
