@@ -232,8 +232,9 @@ class AbstractTopol:
     @abc.abstractmethod
     def __init__(self):
         if self.__class__ is AbstractTopol:
-            logger().exception("Attempt to create instance of abstract class AbstractTopol")
-            raise TypeError("Attempt to create instance of abstract class AbstractTopol")
+            msg = "Attempt to create instance of abstract class AbstractTopol"
+            logger().error(msg)
+            raise TypeError(msg)
         self.debug = None
         self.verbose = None
         self.chargeVal = None
@@ -441,8 +442,9 @@ class AbstractTopol:
         if drift > diffTol:
             self.printError("Net charge drift '%3.5f' bigger than tolerance '%3.5f'" % (drift, diffTol))
             if not self.force:
-                logger(self.level).exception("Error with calculated charge")
-                raise Exception("Error with calculated charge")
+                msg = "Error with calculated charge"
+                logger(self.level).error(msg)
+                raise Exception(msg)
         self.chargeVal = str(charge2)
         self.printMess(f"... charge set to {charge2}")
         os.chdir(localDir)
@@ -492,8 +494,9 @@ class AbstractTopol:
         if len(residues) > 1:
             self.printError(f"more than one residue detected '{str(residues)}'")
             self.printError(f"verify your input file '{self.inputFile}'. Aborting ...")
-            logger(self.level).exception("Only ONE Residue is allowed for ACPYPE to work")
-            raise Exception("Only ONE Residue is allowed for ACPYPE to work")
+            msg = "Only ONE Residue is allowed for ACPYPE to work"
+            logger(self.level).error(msg)
+            raise Exception(msg)
 
         dups = ""
         shortd = ""
@@ -543,8 +546,9 @@ class AbstractTopol:
                 self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 if not self.debug:
                     rmtree(self.tmpDir)
-                logger(self.level).exception("Coordinates issues with your system")
-                raise Exception("Coordinates issues with your system")
+                msg = "Coordinates issues with your system"
+                logger(self.level).error(msg)
+                raise Exception(msg)
         try:  # scape resname list index out of range
             resname = list(residues)[0].strip()
             newresname = resname
@@ -863,8 +867,9 @@ class AbstractTopol:
         # os.system('kill -15 %s' % pids)
         for i in pids.split():
             os.kill(int(i), 15)
-        logger(self.level).exception("Semi-QM taking too long to finish... aborting!")
-        raise Exception("Semi-QM taking too long to finish... aborting!")
+        msg = "Semi-QM taking too long to finish... aborting!"
+        logger(self.level).error(msg)
+        raise Exception(msg)
 
     def delOutputFiles(self):
         """Delete temporary output files"""
@@ -1028,8 +1033,9 @@ class AbstractTopol:
         """Convert Smiles to MOL2 by using obabel"""
 
         if not self.obabelExe:
-            logger(self.level).exception("SMILES needs OpenBabel python module")
-            raise Exception("SMILES needs OpenBabel python module")
+            msg = "SMILES needs OpenBabel python module"
+            logger(self.level).error(msg)
+            raise Exception(msg)
         if checkOpenBabelVersion() >= 300:
             from openbabel import pybel
 
@@ -1146,8 +1152,9 @@ class AbstractTopol:
         data = ""
 
         if not self.topFileData:
-            logger(self.level).exception("PRMTOP file empty?")
-            raise Exception("PRMTOP file empty?")
+            msg = "PRMTOP file empty?"
+            logger(self.level).error(msg)
+            raise Exception(msg)
 
         for rawLine in self.topFileData:
             if "%COMMENT" in rawLine:
@@ -1213,8 +1220,9 @@ class AbstractTopol:
         [[x1,y1,z1],[x2,y2,z2], etc.]
         """
         if not self.xyzFileData:
-            logger(self.level).exception("INPCRD file empty?")
-            raise Exception("INPCRD file empty?")
+            msg = "INPCRD file empty?"
+            logger(self.level).error(msg)
+            raise Exception(msg)
         data = ""
         for rawLine in self.xyzFileData[2:]:
             line = rawLine.replace("\r", "").replace("\n", "")
@@ -1598,7 +1606,7 @@ class AbstractTopol:
                 if period > 4 and self.gmx4:
                     rmtree(self.absHomeDir)
                     msg = "Likely trying to convert ILDN to RB, DO NOT use option '-z'"
-                    logger(self.level).exception(msg, exc_info=False)
+                    logger(self.level).error(msg)
                     raise Exception(msg)
                 if phase in [0, 180]:
                     properDihedralsGmx45.append([item[0].atoms, phaseRaw, kPhi, period])
@@ -3202,8 +3210,9 @@ class ACTopol(AbstractTopol):
             )
             self.printMess(hint1)
             self.printMess(hint2)
-            logger(self.level).exception("Missing ANTECHAMBER")
-            raise Exception("Missing ANTECHAMBER")
+            msg = "Missing ANTECHAMBER"
+            logger(self.level).error(msg)
+            raise Exception(msg)
         self.inputFile = os.path.basename(inputFile)
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
@@ -3221,8 +3230,9 @@ class ACTopol(AbstractTopol):
                 self.is_smiles = False
                 self.smiles = None
         elif not os.path.exists(self.absInputFile):
-            logger(self.level).exception(f"Input file {inputFile} DOES NOT EXIST")
-            raise Exception(f"Input file {inputFile} DOES NOT EXIST")
+            msg = f"Input file {inputFile} DOES NOT EXIST"
+            logger(self.level).error(msg)
+            raise Exception(msg)
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
         self.baseOriginal = baseOriginal
@@ -3233,8 +3243,9 @@ class ACTopol(AbstractTopol):
             if self.ext != ".mol2" and self.ext != ".mdl":
                 self.printError(f"no '{binaries['obabel_bin']}' executable; you need it if input is PDB or SMILES")
                 self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
-                logger(self.level).exception("Missing OBABEL")
-                raise Exception("Missing OBABEL")
+                msg = "Missing OBABEL"
+                logger(self.level).error(msg)
+                raise Exception(msg)
             else:
                 self.printWarn(f"no '{binaries['obabel_bin']}' executable, no PDB file can be used as input!")
         if self.is_smiles:

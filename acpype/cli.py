@@ -68,7 +68,7 @@ from acpype.utils import elapsedTime, set_for_pip, while_replace
 def chk_py_ver():
     if sys.version_info < (3, 6):
         msg = "Sorry, you need python 3.6 or higher"
-        logger().exception(msg)
+        logger().error(msg)
         raise Exception(msg)
 
 
