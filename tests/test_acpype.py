@@ -171,14 +171,18 @@ def test_charge_user(janitor):
 
 
 @pytest.mark.parametrize(
-    ("argv"),
-    [["-di", "cccc"], ["-x", "Base.inpcrd", "-p", "Base.prmtop"]],
+    ("argv", "msg"),
+    [
+        (["-di", "cccc"], "Total time of execution:"),
+        (["-x", "Base.inpcrd", "-p", "Base.prmtop"], "Total time of execution:"),
+        (["-wi", "cccc"], ""),
+    ],
 )
-def test_inputs(janitor, capsys, argv):
+def test_inputs(janitor, capsys, argv, msg):
     temp_base = "vir_temp"
     init_main(argv=argv + ["-b", temp_base])
     captured = capsys.readouterr()
-    assert "Total time of execution:" in captured.out
+    assert msg in captured.out
     _getoutput(f"rm -vfr {temp_base}* .*{temp_base}*")
 
 
