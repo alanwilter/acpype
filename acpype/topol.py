@@ -1596,8 +1596,10 @@ class AbstractTopol:
                 phaseRaw = dih.phase * radPi  # in degree
                 phase = int(phaseRaw)  # in degree
                 if period > 4 and self.gmx4:
-                    logger(self.level).exception("Likely trying to convert ILDN to RB, DO NOT use option '-z'")
-                    raise Exception("Likely trying to convert ILDN to RB, DO NOT use option '-z'")
+                    rmtree(self.absHomeDir)
+                    msg = "Likely trying to convert ILDN to RB, DO NOT use option '-z'"
+                    logger(self.level).exception(msg, exc_info=False)
+                    raise Exception(msg)
                 if phase in [0, 180]:
                     properDihedralsGmx45.append([item[0].atoms, phaseRaw, kPhi, period])
                     if self.gmx4:

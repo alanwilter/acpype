@@ -193,9 +193,12 @@ def init_main(binaries=binaries, argv=None):
     logger(level).info("Total time of execution: %s" % amsg)
 
     if args.ipython:
-        import IPython
+        try:
+            import IPython
 
-        IPython.embed(colors="neutral")
+            IPython.embed(colors="neutral")
+        except ModuleNotFoundError:
+            logger(level).exception("No 'ipython' installed")
 
     if not args.debug:
         try:
