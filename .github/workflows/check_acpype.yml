@@ -39,6 +39,7 @@ jobs:
 
          - name: Set Env
            run: |
+              echo "PYTEST_ADDOPTS=--random-order" >> $GITHUB_ENV
               echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
               echo "AMBERHOME=$PWD/acpype/amber21-11_linux" >> $GITHUB_ENV
               echo "$PWD/acpype/amber21-11_linux/bin" >> $GITHUB_PATH

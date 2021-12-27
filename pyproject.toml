@@ -71,6 +71,7 @@ mypy = "^0.920"
 pdbpp = "^0.10.3"
 ipdb = "0.13"
 isort = "^5.10.1"
+pytest-random-order = "^1.0.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
