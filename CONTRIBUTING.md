@@ -4,7 +4,9 @@ For `Linux` (Ubuntu 20 recommended) and `macOS`. Anyway, `CONDA` is strongly rec
 Also recommended is GPG key, so do accordingly in [GitHub](https://docs.github.com/articles/generating-a-gpg-key/).
 
 ```bash
-conda create -n acpype python=3.9 ambertools openbabel ocl-icd-system pre-commit poetry ipython gromacs=2019.1 -y
+curl -sSL https://install.python-poetry.org | python3 -
+
+conda create -n acpype python=3.9 ambertools openbabel ocl-icd-system pre-commit ipython gromacs=2019.1 -y
 # ocl-icd-system: case you have GPU
 
 conda activate acpype
