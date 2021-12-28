@@ -122,7 +122,7 @@ class Topology_14:
             try:
                 setattr(self, attributes[i], self.p7_array_read(buff, flag_strings[i]))
             except Exception:
-                logger().info("Skipping non-existent attributes", attributes[i], flag_strings[i])
+                logger().exception(f"Skipping non-existent attributes {attributes[i]} {flag_strings[i]}")
 
     @staticmethod
     def skipline(buff, index):
@@ -3303,7 +3303,7 @@ class MolTopol(AbstractTopol):
     """ "
     Class to write topologies and parameters files for several applications
 
-    http://amber.scripps.edu/formats.html (not updated to amber 10 yet)
+    https://ambermd.org/FileFormats.php
 
     Parser, take information in AC xyz and top files and convert to objects
 
