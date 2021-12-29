@@ -38,7 +38,7 @@ exclude = '''
 
 [tool.poetry]
 name = "acpype"
-version = "2021.12.28"
+version = "2021.12.30"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 authors = ["Alan Silva <alanwilter@gmail.com>"]
 license = "GPL-3.0-or-later"
@@ -56,6 +56,8 @@ classifiers = [
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
 "Wiki" = "https://github.com/alanwilter/acpype/wiki"
+"Docs" = "https://acpype.readthedocs.io"
+"DOI" = "https://doi.org/10.1186/1756-0500-5-367"
 
 [tool.poetry.scripts]
 acpype = "acpype.cli:init_main"

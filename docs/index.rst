@@ -6,10 +6,19 @@
 Welcome to ACPYPE's documentation!
 ==================================
 
-.. automodule:: acpype
-    :members:
 
+**ACPYPE - AnteChamber PYthon Parser interfacE**
 
+A tool based in **Python** to use **Antechamber** to generate topologies for chemical
+compounds and to interface with others python applications like CCPN and ARIA.
+Topologies files to be generated so far: CNS/XPLOR, GROMACS, CHARMM and AMBER.
+
+.. autosummary::
+   :toctree: _autosummary
+   :template: custom-module-template.rst
+   :recursive:
+
+   acpype
 
 Indices and tables
 ==================

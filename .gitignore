@@ -84,3 +84,4 @@ private.env
 .idea
 
 .vscode/
+docs/_autosummary
