@@ -18,12 +18,12 @@ sys.path.insert(0, os.path.abspath(".."))
 
 
 # -- Project information -----------------------------------------------------
-
+year = str(datetime.today().year)
 project = "ACPYPE"
-copyright = "2021, Alan Silva"
+copyright = f"{year}, Alan Silva"
 author = "Alan Silva"
 
-release = str(datetime.today().year)
+release = year
 # The full version, including alpha/beta/rc tags
 try:
     import acpype
