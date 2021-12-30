@@ -1,6 +1,6 @@
 # ACPYPE
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=plastic)](https://GitHub.com/alanwilter/acpype/graphs/commit-activity)<!-- [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103&style=plastic)](https://github.com/ellerbrock/open-source-badges/) -->
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=plastic)](https://GitHub.com/alanwilter/acpype/graphs/commit-activity)
 [![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)](https://github.com/alanwilter/acpype)
 [![python](https://img.shields.io/badge/python-3.6%2E%2E%2E3.10-blue.svg?style=plastic&logo=python)](https://github.com/alanwilter/acpype)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)](https://github.com/alanwilter/acpype)
