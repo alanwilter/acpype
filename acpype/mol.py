@@ -10,10 +10,12 @@ class Atom:
     in gaff.dat for example; same atom type (i = j):
         r0 = 1/2 * (2 * ACOEF/BCOEF)^(1/6)
         epsilon = 1/(4 * A) * BCOEF^2
+
     To convert r0 and epsilon to ACOEF and BCOEF
         ACOEF = sqrt(ep_i * ep_j) * (r0_i + r0_j)^12
         BCOEF = 2 * sqrt(ep_i * ep_j) * (r0_i + r0_j)^6
               = 2 * ACOEF/(r0_i + r0_j)^6
+
     where index i and j for atom types.
     Coord is given in Ang. and mass in Atomic Mass Unit.
     """
