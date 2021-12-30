@@ -19,7 +19,7 @@
 [![Citations](https://img.shields.io/static/v1?label=Citations&message=1040&color=orange&style=plastic)](https://scholar.google.com/scholar?hl=en&as_sdt=2005&sciodt=0%2C5&cites=15065215520855508960&scipsc=&q=ACPYPE-Antechamber+python+parser+interface&btnG=)
 <!-- [![DOI:doi.org/10.1186/1756-0500-5-367](https://img.shields.io/badge/DOI-10.1186%2F1756--0500--5--367-blue?style=plastic)](https://doi.org/10.1186/1756-0500-5-367) -->
 <!-- [![Google Scholar Citations](https://openbabel.org/citations.svg?maxAge=86400)](https://scholar.google.com/scholar?cites=15065215520855508960&as_sdt=2005&sciodt=0,5&hl=en) -->
-<!-- ![Scrutinizer code quality (GitHub/Biucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
+<!-- ![Scrutinizer code quality (GitHub/Bucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
 
 ## AnteChamber PYthon Parser interfacE
 

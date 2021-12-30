@@ -6,9 +6,10 @@ on:
       branches: [master]
 
    pull_request:
+      branches: [master]
       paths:
-         - acpype/**
-         - tests/**
+         - "acpype/**/*.py"
+         - "tests/**/*.py"
 
 jobs:
    check-test:
