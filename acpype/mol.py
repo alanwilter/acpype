@@ -6,7 +6,8 @@
     paramenters are stored.
 
     Example:
-        atom = acpype.mol.Atom(...) # to be improved
+
+        >>> atom = acpype.mol.Atom(...) # to be improved
 
     Attributes:
         acpype.mol.Atom     : define Atom
@@ -38,23 +39,25 @@ class AtomType:
 
 
 class Atom:
-    """
+    r"""
     Atom Object Definition
 
     Charges in *prmtop* file are divided by ``18.2223`` to be converted
     in units of the electron charge.
 
     To convert ``ACOEF`` and ``BCOEF`` to ``r0`` (Å) and ``epsilon`` (ε: kcal/mol), as seen
-    in ``gaff.dat`` for example, for a same atom type (``i = j``)::
+    in ``gaff.dat`` for example, for a same atom type (``i = j``):
 
-        r0 = 1/2 * (2 * ACOEF/BCOEF)^(1/6)
-        epsilon = 1/(4 * A) * BCOEF^2
+    .. math::
+        r_0 &= 1/2 * (2 * A_{coef}/B_{coef})^{1/6} \\
+        \epsilon &= 1/(4 * A_{coef}) * B_{coef}^2
 
-    To convert ``r0`` and ``epsilon`` to ``ACOEF`` and ``BCOEF``::
+    To convert ``r0`` and ``epsilon`` to ``ACOEF`` and ``BCOEF``:
 
-        ACOEF = sqrt(ep_i * ep_j) * (r0_i + r0_j)^12
-        BCOEF = 2 * sqrt(ep_i * ep_j) * (r0_i + r0_j)^6
-        BCOEF = 2 * ACOEF/(r0_i + r0_j)^6
+    .. math::
+        A_{coef} &= \sqrt{\epsilon_i * \epsilon_j} * (r_{0i} + r_{0j})^{12} \\
+        B_{coef} &= 2 * \sqrt{\epsilon_i * \epsilon_j} * (r_{0i} + r_{0j})^6 \\
+                          &= 2 * A_{coef}/(r_{0i} + r_{0j})^6
 
     where index ``i`` and ``j`` for atom types.
     Coordinates are given in Å and masses in Atomic Mass Unit.
