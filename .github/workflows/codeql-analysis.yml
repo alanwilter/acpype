@@ -9,20 +9,18 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL2"
+name: "CodeQL"
 
 on:
   push:
-    branches: [master, tttt]
-    paths-ignore:
-      - "**.yml"
-      - "**.md"
+    branches:
+      - master
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [master]
-    paths-ignore:
-      - "**.md"
-      - "**.yml"
+    branches:
+      - master
+    paths:
+      - "acpype/**"
+      - "tests/**"
   schedule:
     - cron: "15 0 * * *"
 
