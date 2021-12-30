@@ -3,9 +3,7 @@
 name: check_acpype
 on:
    push:
-      paths:
-         - acpype/**
-         - tests/**
+      branches: [master]
 
    pull_request:
       paths:
