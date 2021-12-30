@@ -1,115 +1,120 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 name: check_acpype
+
 on:
-   push:
-      branches:
-         - master
-   pull_request:
-      branches:
-         - master
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "acpype/**"
+      - "tests/**"
+
 jobs:
-   check-test:
-      runs-on: ubuntu-latest
-      strategy:
-         matrix:
-            python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+  check-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
 
-      steps:
-         - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-         - name: Set up Python ${{ matrix.python-version }}
-           uses: actions/setup-python@v2
-           with:
-              python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-         # - name: Python Poetry Action
-         #   uses: abatilo/actions-poetry@v2.1.3
+      # - name: Python Poetry Action
+      #   uses: abatilo/actions-poetry@v2.1.3
 
-         - name: Cache pip
-           uses: actions/cache@v2
-           with:
-              # This path is specific to Ubuntu
-              path: ~/.cache/pip
-              # Look to see if there is a cache hit for the corresponding requirements file
-              key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-              restore-keys: |
-                 ${{ runner.os }}-pip-
-                 ${{ runner.os }}-
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          # This path is specific to Ubuntu
+          path: ~/.cache/pip
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
 
-         - name: Set Env
-           run: |
-              echo "PYTEST_ADDOPTS=--random-order" >> $GITHUB_ENV
-              echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
-              echo "AMBERHOME=$PWD/acpype/amber21-11_linux" >> $GITHUB_ENV
-              echo "$PWD/acpype/amber21-11_linux/bin" >> $GITHUB_PATH
+      - name: Set Env
+        run: |
+          echo "PYTEST_ADDOPTS=--random-order" >> $GITHUB_ENV
+          echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
+          echo "AMBERHOME=$PWD/acpype/amber21-11_linux" >> $GITHUB_ENV
+          echo "$PWD/acpype/amber21-11_linux/bin" >> $GITHUB_PATH
 
-         - name: Install dependencies
-           run: |
-              sudo apt-get update
-              sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
 
-         - name: Install OpenBabel
-           run: |
-              sudo apt-get install --no-install-recommends -y openbabel
+      - name: Install OpenBabel
+        run: |
+          sudo apt-get install --no-install-recommends -y openbabel
 
-         - name: Poetry install dependencies
-           run: |
-              pip3 install poetry
-              poetry add openbabel-wheel
-              poetry install
+      - name: Poetry install dependencies
+        run: |
+          pip3 install poetry
+          poetry add openbabel-wheel
+          poetry install
 
-         - name: Lint with flake8
-           run: poetry run flake8 -v --count
+      - name: Lint with flake8
+        run: poetry run flake8 -v --count
 
-         - name: Check format with black
-           run: poetry run black --diff --check .
+      - name: Check format with black
+        run: poetry run black --diff --check .
 
-         - name: Run isort
-           run: poetry run isort . --check-only --profile black
+      - name: Run isort
+        run: poetry run isort . --check-only --profile black
 
-         - name: Test with PyTest
-           run: |
-              poetry run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml
+      - name: Test with PyTest
+        run: |
+          poetry run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml
 
-         - name: Upload coverage to Codecov
-           if: matrix.python-version == 3.6
-           uses: codecov/codecov-action@v2
-           with:
-              fail_ci_if_error: true
+      - name: Upload coverage to Codecov
+        if: matrix.python-version == 3.6
+        uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
 
-   release:
-      needs: check-test
-      runs-on: ubuntu-latest
-      steps:
-         - name: Get current date
-           id: date
-           run: echo "::set-output name=date::$(date +'%Y.%-m.%-d')"
+  release:
+    needs: check-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y.%-m.%-d')"
 
-         - name: Create tag
-           # will only create a new release if the commit message is 'new_release' to master branch
-           if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_tag')
-           uses: actions/github-script@v3
-           with:
-              # github-token: ${{ github.token }} # optional
-              script: |
-                 github.git.createRef({
-                 owner: context.repo.owner,
-                 repo: context.repo.repo,
-                 ref: "refs/tags/${{ steps.date.outputs.date }}",
-                 sha: context.sha
-                 })
+      - name: Create tag
+        # will only create a new release if the commit message is 'new_release' to master branch
+        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_tag')
+        uses: actions/github-script@v3
+        with:
+          # github-token: ${{ github.token }} # optional
+          script: |
+            github.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: "refs/tags/${{ steps.date.outputs.date }}",
+            sha: context.sha
+            })
 
-         - name: Create Release
-           # will only create a new release if the commit message is 'new_release' to master branch
-           if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release')
-           id: create_release
-           uses: actions/create-release@v1
-           env:
-              # This token is provided by Actions, you do not need to create your own token
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           with:
-              tag_name: ${{ steps.date.outputs.date }}
-              release_name: Release ${{ steps.date.outputs.date }}
-              draft: false
-              prerelease: false
+      - name: Create Release
+        # will only create a new release if the commit message is 'new_release' to master branch
+        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release')
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.date.outputs.date }}
+          release_name: Release ${{ steps.date.outputs.date }}
+          draft: false
+          prerelease: false
