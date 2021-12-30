@@ -16,6 +16,7 @@ on:
     branches: [master, tttt]
     paths-ignore:
       - "**.yml"
+      - "**.md"
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [master]
