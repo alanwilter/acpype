@@ -7,12 +7,12 @@ on:
          - acpype/**
          - tests/**
 
-   pull_request:
-      branches:
-         - master
-      paths:
-         - acpype/**
-         - tests/**
+   # pull_request:
+   #    branches:
+   #       - master
+   #    paths:
+   #       - acpype/**
+   #       - tests/**
 
 jobs:
    check-test:
