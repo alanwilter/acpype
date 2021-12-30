@@ -15,7 +15,6 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
 [![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2021.12.24/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
-<!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
 
 ## AnteChamber PYthon Parser interfacE
 
