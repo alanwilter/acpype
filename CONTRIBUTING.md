@@ -1,5 +1,7 @@
 # Instructions for setting up a development environment
 
+## For Coding
+
 For `Linux` (Ubuntu 20 recommended) and `macOS`. Anyway, `CONDA` is strongly recommended.
 Also recommended is GPG key, so do accordingly in [GitHub](https://docs.github.com/articles/generating-a-gpg-key/).
 
@@ -51,3 +53,19 @@ If using `VSCode`:
 
     You could use this `poetry virtualenv` as the `Python Interpreter` for `VSCode`, however `ambertools`, `gromacs` and `openbabel` won't be available (unless you've had installed them system wide by other means rather than `conda`).
     To avoid further troubles, go back to `conda activate acpype` and remember to do the instructions above if you add new dependencies to the project via `poetry`.
+
+## For Documenting
+
+Using [Sphinx](https://www.sphinx-doc.org) with theme from `pip install sphinx-rtd-theme`.
+
+Online documentation provided by [Read the Docs](http://acpype.readthedocs.io).
+
+To test it locally:
+
+```bash
+cd docs/
+make clean
+make html
+```
+
+Then open `_build/html/index.html` in a browser.
