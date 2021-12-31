@@ -152,7 +152,9 @@ def test_sqm_tleap(janitor, capsys, ct, ft, msg):
 
 def test_ekFlag(janitor):
     molecule = ACTopol(
-        "benzene.pdb", ekFlag='''"qm_theory='AM1', grms_tol=0.0005, scfconv=1.d-10, ndiis_attempts=700, qmcharge=0"'''
+        "benzene.pdb",
+        ekFlag='''"qm_theory='AM1', grms_tol=0.0005, scfconv=1.d-10, ndiis_attempts=700, qmcharge=0"''',
+        gmx4=True,
     )
     molecule.createACTopol()
     molecule.createMolTopol()
@@ -216,6 +218,14 @@ def test_charge_user(janitor):
             ["-i", "lower_res.pdb", "-b", "vir_temp"],
             "WARNING: this may raise problem with some applications like CNS",
         ),
+        (
+            ["-fi", "too_close.pdb", "-b", "vir_temp"],
+            "You chose to proceed anyway with '-f' option. GOOD LUCK!",
+        ),
+        (
+            ["-i", "no_res.pdb", "-b", "vir_temp"],
+            "No residue name identified, using default resname: 'LIG'",
+        ),
     ],
 )
 def test_inputs(janitor, capsys, argv, msg):
@@ -240,6 +250,10 @@ def test_inputs(janitor, capsys, argv, msg):
         (["-x", "glycam_empty.inpcrd", "-p", "glycam_exe.prmtop"], 19, "ERROR: ACPYPE FAILED: INPCRD file empty?"),
         (["-di", "cccccc", "-n", "-1", "-b", "vir_temp"], 19, "Fatal Error!"),
         (["-di", " 123", "-b", "vir_temp"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
+        (["-i", "double_res.pdb", "-b", "vir_temp"], 19, "Only ONE Residue is allowed for ACPYPE to work"),
+        (["-i", "same_coord.pdb", "-b", "vir_temp"], 19, "Atoms with same coordinates in"),
+        (["-i", "too_close.pdb", "-b", "vir_temp"], 19, "Atoms TOO close (<"),
+        (["-i", "too_far.pdb", "-b", "vir_temp"], 19, "Atoms TOO scattered (>"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
         (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
     ],
