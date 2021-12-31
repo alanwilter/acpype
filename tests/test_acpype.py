@@ -208,7 +208,8 @@ def test_inputs(janitor, capsys, argv, msg):
         (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
         (["-zx", "ILDN.inpcrd", "-p", "ILDN.prmtop"], 19, "Likely trying to convert ILDN to RB"),
         (["-x", "glycam_exe.inpcrd", "-p", "glycam_corrupt.prmtop"], 19, "Skipping non-existent attributes dihedral_p"),
-        (["-di", " 123"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
+        (["-di", "cccccc", "-n", "-1", "-b", "vir_temp"], 19, "Fatal Error!"),
+        (["-di", " 123", "-b", "vir_temp"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
         (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
     ],
@@ -220,4 +221,4 @@ def test_args_wrong_inputs(janitor, capsys, argv, code, msg):
     assert msg in captured.err + captured.out
     assert e_info.typename == "SystemExit"
     assert e_info.value.code == code
-    janitor.append(".acpype_tmp_ 123")
+    _getoutput("rm -vfr vir_temp* .*vir_temp*")
