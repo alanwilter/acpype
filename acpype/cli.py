@@ -72,7 +72,7 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
         parser.error("either '-i' or ('-p', '-x'), but not both")
 
     logger(level).debug(f"CLI: {' '.join(argv)}")
-    texta = "Python Version %s" % sys.version
+    texta = f"Python Version {sys.version}"
     logger(level).debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
@@ -147,7 +147,7 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
         amsg = "less than a second"
     else:
         amsg = elapsedTime(execTime)
-    logger(level).info("Total time of execution: %s" % amsg)
+    logger(level).info(f"Total time of execution: {amsg}")
 
     if args.ipython:
         try:

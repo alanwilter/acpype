@@ -200,6 +200,18 @@ def test_charge_user(janitor):
         (["-i", "cccc"], "Total time of execution:"),
         (["-x", "Base.inpcrd", "-p", "Base.prmtop", "-b", "vir_temp"], "Total time of execution:"),
         (["-wi", "cccc", "-b", "vir_temp"], ""),
+        (
+            ["-i", "wrong_res_set.pdb", "-b", "vir_temp"],
+            "In vir_temp_AC.lib, residue name will be 'RSET' instead of 'SET' elsewhere",
+        ),
+        (
+            ["-i", "wrong_res_num.pdb", "-b", "vir_temp"],
+            "In vir_temp_AC.lib, residue name will be 'R100' instead of '100' elsewhere",
+        ),
+        (
+            ["-i", "wrong_res_sym.pdb", "-b", "vir_temp"],
+            "In vir_temp_AC.lib, residue name will be 'MOL' instead of '+++' elsewhere",
+        ),
     ],
 )
 def test_inputs(janitor, capsys, argv, msg):
