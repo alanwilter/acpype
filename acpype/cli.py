@@ -4,13 +4,14 @@ import os
 import sys
 import time
 from shutil import rmtree
+from typing import Dict, List, Optional
 
 from acpype.logger import copy_log
 from acpype.logger import set_logging_conf as logger
 from acpype.logger import tmpLogFile
 from acpype.params import binaries
 from acpype.parser_args import get_option_parser
-from acpype.topol import ACTopol, MolTopol, header
+from acpype.topol import AbstractTopol, ACTopol, MolTopol, header
 from acpype.utils import elapsedTime, set_for_pip, while_replace
 
 
@@ -27,14 +28,14 @@ def handle_exception(level):
     return True
 
 
-def init_main(binaries=binaries, argv=None):
+def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = None):
 
     """
     Orchestrate the command line usage for ACPYPE with its all input arguments.
 
     Args:
-        binaries ([type], optional): Mostly used for debug and testing. Defaults to acpype.params.binaries.
-        argv ([type], optional): Mostly used for debug and testing. Defaults to None.
+        binaries (Dict[str, str], optional): Mostly used for debug and testing. Defaults to ``acpype.params.binaries``.
+        argv (Optional[List[str]], optional): Mostly used for debug and testing. Defaults to None.
 
     Returns:
         SystemExit(status): 0 or 19 (failed)
@@ -81,7 +82,7 @@ def init_main(binaries=binaries, argv=None):
     if amb2gmxF:
         logger(level).info("Converting Amber input files to Gromacs ...")
         try:
-            molecule = MolTopol(
+            molecule: AbstractTopol = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
                 amb2gmx=True,

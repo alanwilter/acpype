@@ -221,20 +221,14 @@ class Topology_14:
         )
 
 
-class AbstractTopol:
+class AbstractTopol(abc.ABC):
 
     """
-    Super class to build topologies
+    Abstract super class to build topologies
     """
-
-    __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
     def __init__(self):
-        if self.__class__ is AbstractTopol:
-            msg = "Attempt to create instance of abstract class AbstractTopol"
-            logger().error(msg)
-            raise TypeError(msg)
         self.debug = None
         self.verbose = None
         self.chargeVal = None
