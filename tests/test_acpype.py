@@ -150,6 +150,18 @@ def test_sqm_tleap(janitor, capsys, ct, ft, msg):
     janitor.append(molecule.tmpDir)
 
 
+def test_ekFlag(janitor):
+    molecule = ACTopol(
+        "benzene.pdb", ekFlag='''"qm_theory='AM1', grms_tol=0.0005, scfconv=1.d-10, ndiis_attempts=700, qmcharge=0"'''
+    )
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule
+    assert len(molecule.molTopol.atoms) == 12
+    janitor.append(molecule.absHomeDir)
+    janitor.append(molecule.tmpDir)
+
+
 def test_time_limit(janitor):
     molecule = ACTopol("KKK.pdb", chargeType="bcc", debug=True, timeTol=2)
     with pytest.raises(Exception) as e_info:
@@ -185,17 +197,17 @@ def test_charge_user(janitor):
 @pytest.mark.parametrize(
     ("argv", "msg"),
     [
-        (["-di", "cccc"], "Total time of execution:"),
-        (["-x", "Base.inpcrd", "-p", "Base.prmtop"], "Total time of execution:"),
-        (["-wi", "cccc"], ""),
+        (["-i", "cccc"], "Total time of execution:"),
+        (["-x", "Base.inpcrd", "-p", "Base.prmtop", "-b", "vir_temp"], "Total time of execution:"),
+        (["-wi", "cccc", "-b", "vir_temp"], ""),
     ],
 )
 def test_inputs(janitor, capsys, argv, msg):
     temp_base = "vir_temp"
-    init_main(argv=argv + ["-b", temp_base])
+    init_main(argv=argv)
     captured = capsys.readouterr()
     assert msg in captured.out
-    _getoutput(f"rm -vfr {temp_base}* .*{temp_base}*")
+    _getoutput(f"rm -vfr {temp_base}* .*{temp_base}* smiles_molecule.acpype")
 
 
 @pytest.mark.parametrize(
