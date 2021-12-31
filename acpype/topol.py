@@ -3246,6 +3246,8 @@ class ACTopol(AbstractTopol):
             self.convertSmilesToMol2()
         self.timeTol = timeTol
         self.printDebug("Max execution time tolerance is %s" % elapsedTime(self.timeTol))
+        # ekFlag e.g. (default used by sqm):
+        # acpype -i cccc -k "qm_theory='AM1', grms_tol=0.0005, scfconv=1.d-10, ndiis_attempts=700, qmcharge=0"
         if ekFlag == '"None"' or ekFlag is None:
             self.ekFlag = ""
         else:
@@ -3271,7 +3273,11 @@ class ACTopol(AbstractTopol):
         self.acTopFileName = acBase + ".prmtop"
         self.acFrcmodFileName = acBase + ".frcmod"
         self.tmpDir = os.path.join(self.rootDir, ".acpype_tmp_%s" % os.path.basename(base))
-        self.setResNameCheckCoords()
+        try:
+            self.setResNameCheckCoords()
+        except Exception:
+            rmtree(self.tmpDir)
+            logger(self.level).exception("Issues with input file data format")
         self.guessCharge()
         acMol2FileName = "%s_%s_%s.mol2" % (base, chargeType, atomType)
         self.acMol2FileName = acMol2FileName
