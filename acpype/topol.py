@@ -432,9 +432,9 @@ class AbstractTopol(abc.ABC):
         charge = float(charge)
         charge2 = int(round(charge))
         drift = abs(charge2 - charge)
-        self.printDebug("Net charge drift '%3.6f'" % drift)
+        self.printDebug(f"Net charge drift '{drift:3.6f}'")
         if drift > diffTol:
-            self.printError("Net charge drift '%3.5f' bigger than tolerance '%3.5f'" % (drift, diffTol))
+            self.printError(f"Net charge drift '{drift:3.5f}' bigger than tolerance '{diffTol:3.5f}'")
             if not self.force:
                 msg = "Error with calculated charge"
                 logger(self.level).error(msg)
@@ -444,8 +444,9 @@ class AbstractTopol(abc.ABC):
         os.chdir(localDir)
 
     def setResNameCheckCoords(self):
-        """Set a 3 letter residue name
-        and check coords duplication
+        """
+        Set a 3 letter residue name and check coords for issues
+        like duplication, atoms too close or too sparse
         """
         exit_ = False
         localDir = os.path.abspath(".")
@@ -529,7 +530,7 @@ class AbstractTopol(abc.ABC):
             exit_ = True
 
         if longd:
-            self.printError(f"Atoms TOO alone (> {maxDist} Ang.)")
+            self.printError(f"Atoms TOO scattered (> {maxDist} Ang.)")
             self.printQuoted(longd[:-1])
             exit_ = True
 
@@ -542,14 +543,15 @@ class AbstractTopol(abc.ABC):
                     rmtree(self.tmpDir)
                 msg = "Coordinates issues with your system"
                 logger(self.level).error(msg)
+                rmtree(self.tmpDir)
                 raise Exception(msg)
-        try:  # scape resname list index out of range
-            resname = list(residues)[0].strip()
-            newresname = resname
-        except Exception:
-            self.printError("resname list index out of range, using default resname: 'LIG'")
+
+        # escape resname list index out of range: no RES name in pdb for example
+        resname = list(residues)[0].strip()
+        if not resname:
             resname = "LIG"
-            newresname = resname
+            self.printWarn("No residue name identified, using default resname: 'LIG'")
+        newresname = resname
 
         # To avoid resname likes: 001 (all numbers), 1e2 (sci number), ADD : reserved terms for leap
         leapWords = [
@@ -1115,12 +1117,16 @@ class AbstractTopol(abc.ABC):
 
     def pickleSave(self):
         """
-        To restore:
-            from acpype import *
-            #import cPickle as pickle
-            import pickle
-            o = pickle.load(open('DDD.pkl','rb'))
-            NB: It fails to restore with ipython in Mac (Linux OK)
+        Example:
+
+            to restore:
+
+            .. code-block:: python
+
+                from acpype import *
+                # import cPickle as pickle
+                import pickle
+                mol = pickle.load(open('DDD.pkl','rb'))
         """
         pklFile = self.baseName + ".pkl"
         dumpFlag = False
@@ -3271,11 +3277,7 @@ class ACTopol(AbstractTopol):
         self.acTopFileName = acBase + ".prmtop"
         self.acFrcmodFileName = acBase + ".frcmod"
         self.tmpDir = os.path.join(self.rootDir, ".acpype_tmp_%s" % os.path.basename(base))
-        try:
-            self.setResNameCheckCoords()
-        except Exception:
-            rmtree(self.tmpDir)
-            logger(self.level).exception("Issues with input file data format")
+        self.setResNameCheckCoords()
         self.guessCharge()
         acMol2FileName = "%s_%s_%s.mol2" % (base, chargeType, atomType)
         self.acMol2FileName = acMol2FileName
