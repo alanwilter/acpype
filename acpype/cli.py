@@ -120,7 +120,7 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
                 basename=args.basename,
                 timeTol=args.max_time,
                 qprog=args.qprog,
-                ekFlag='''"%s"''' % args.keyword,
+                ekFlag=f'''"{args.keyword}"''',
                 verbose=args.verboseless,
                 gmx4=args.gmx4,
                 merge=args.merge,
@@ -176,10 +176,8 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
 
     if acpypeFailed:
         sys.exit(19)
-    try:
-        os.chdir(molecule.rootDir)
-    except Exception:
-        logger(level).debug("No need to return to the original folder")
+
+    os.chdir(molecule.rootDir)
 
     if not amb2gmxF and molecule.obabelExe:
         if molecule.checkSmiles():
