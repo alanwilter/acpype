@@ -212,6 +212,10 @@ def test_charge_user(janitor):
             ["-i", "wrong_res_sym.pdb", "-b", "vir_temp"],
             "In vir_temp_AC.lib, residue name will be 'MOL' instead of '+++' elsewhere",
         ),
+        (
+            ["-i", "lower_res.pdb", "-b", "vir_temp"],
+            "WARNING: this may raise problem with some applications like CNS",
+        ),
     ],
 )
 def test_inputs(janitor, capsys, argv, msg):
@@ -232,6 +236,8 @@ def test_inputs(janitor, capsys, argv, msg):
         (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
         (["-zx", "ILDN.inpcrd", "-p", "ILDN.prmtop"], 19, "Likely trying to convert ILDN to RB"),
         (["-x", "glycam_exe.inpcrd", "-p", "glycam_corrupt.prmtop"], 19, "Skipping non-existent attributes dihedral_p"),
+        (["-x", "glycam_exe.inpcrd", "-p", "glycam_empty.prmtop"], 19, "ERROR: ACPYPE FAILED: PRMTOP file empty?"),
+        (["-x", "glycam_empty.inpcrd", "-p", "glycam_exe.prmtop"], 19, "ERROR: ACPYPE FAILED: INPCRD file empty?"),
         (["-di", "cccccc", "-n", "-1", "-b", "vir_temp"], 19, "Fatal Error!"),
         (["-di", " 123", "-b", "vir_temp"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),

@@ -1151,8 +1151,6 @@ class AbstractTopol(abc.ABC):
             raise Exception(msg)
 
         for rawLine in self.topFileData:
-            if "%COMMENT" in rawLine:
-                continue
             line = rawLine.replace("\r", "").replace("\n", "")
             if tFlag in line:
                 block = True
