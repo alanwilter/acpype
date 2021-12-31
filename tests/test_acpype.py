@@ -112,18 +112,30 @@ def test_smiles(janitor, base, msg):
 
 
 @pytest.mark.parametrize(
-    ("ct", "msg"),
+    ("ct", "ft", "msg"),
     [
         (
             "bcc",
+            "pdb",
             "-dr no -i benzene.mol2 -fi mol2 -o benzene_bcc_gaff2.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
         ),
-        ("user", "cannot read charges from a PDB file"),
+        (
+            "bcc",
+            "mol",
+            "-dr no -i benzene.mol -fi mdl -o benzene_bcc_gaff2.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+        ),
+        (
+            "bcc",
+            "mdl",
+            "-dr no -i benzene.mdl -fi mdl -o benzene_bcc_gaff2.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+        ),
+        ("user", "pdb", "cannot read charges from a PDB file"),
     ],
 )
-def test_sqm_tleap(janitor, capsys, ct, msg):
+def test_sqm_tleap(janitor, capsys, ct, ft, msg):
     # check chargeType user with PDB -> use bcc
-    molecule = ACTopol("benzene.pdb", chargeType=ct, debug=True)
+    # .mol and .mdl are the same file type
+    molecule = ACTopol(f"benzene.{ft}", chargeType=ct, debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
     captured = capsys.readouterr()
