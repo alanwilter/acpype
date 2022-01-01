@@ -404,10 +404,8 @@ class AbstractTopol(abc.ABC):
                 if in_mol == "mol":
                     in_mol = "mdl"
 
-            cmd = f"{self.acExe} -dr no -i {mol2FileForGuessCharge} -fi {in_mol} -o tmp -fo mol2 -c gas -pf y"
+            cmd = f"{self.acExe} -dr no -i {mol2FileForGuessCharge} -fi {in_mol} -o tmp -fo mol2 -c gas -pf n"
 
-            self.printDebug("Debugging...")
-            cmd = cmd.replace("-pf y", "-pf n")
             logger(self.level).debug(while_replace(cmd))
 
             log = _getoutput(cmd).strip()
@@ -668,9 +666,7 @@ class AbstractTopol(abc.ABC):
         """Reads the charges in given mol2 file and returns the total"""
         charge = 0.0
         ll = []
-        cmd = f"{self.acExe} -dr no -i {mol2File} -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf y"
-        self.printDebug("Debugging...")
-        cmd = cmd.replace("-pf y", "-pf n")
+        cmd = f"{self.acExe} -dr no -i {mol2File} -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf n"
 
         self.printDebug(cmd)
 
@@ -814,7 +810,7 @@ class AbstractTopol(abc.ABC):
         if exten == "mol":
             exten = "mdl"
 
-        cmd = "%s -dr no -i %s -fi %s -o %s -fo mol2 %s -nc %s -m %s -s 2 -df %s -at %s -pf y %s" % (
+        cmd = "%s -dr no -i %s -fi %s -o %s -fo mol2 %s -nc %s -m %s -s 2 -df %s -at %s -pf n %s" % (
             self.acExe,
             self.inputFile,
             exten,
@@ -826,9 +822,6 @@ class AbstractTopol(abc.ABC):
             at,
             self.ekFlag,
         )
-
-        self.printDebug("Debugging...")
-        cmd = cmd.replace("-pf y", "-pf n")
 
         self.printDebug(cmd)
 
@@ -1028,10 +1021,11 @@ class AbstractTopol(abc.ABC):
     def convertSmilesToMol2(self):
         """Convert Smiles to MOL2 by using obabel"""
 
-        if not self.obabelExe:
-            msg = "SMILES needs OpenBabel python module"
-            logger(self.level).error(msg)
-            raise Exception(msg)
+        # if not self.obabelExe:
+        #     msg = "SMILES needs OpenBabel python module"
+        #     logger(self.level).error(msg)
+        #     raise Exception(msg)
+
         if checkOpenBabelVersion() >= 300:
             from openbabel import pybel
 
@@ -1458,7 +1452,7 @@ class AbstractTopol(abc.ABC):
                     quad.append(bAts[0])
             if len(quad) != 4:
                 if self.chiral:
-                    self.printWarn("Atom %s has less than 4 connections to 4 different atoms. It's NOT Chiral!" % atChi)
+                    self.printWarn(f"Atom {atChi} has less than 4 connections to 4 different atoms. It's NOT Chiral!")
                 continue
             v1, v2, v3, v4 = [x.coords for x in quad]
             chiralGroups.append((atChi, quad, imprDihAngle(v1, v2, v3, v4)))
@@ -1545,7 +1539,6 @@ class AbstractTopol(abc.ABC):
         else:
             lim = minVal
         nLims = chargeList.count(lim)
-        # limId = chargeList.index(lim)
         diff = totalConverted - round(totalConverted)
         fix = lim - diff * qConv / nLims
         id_ = 0
@@ -1660,13 +1653,9 @@ class AbstractTopol(abc.ABC):
         self.getResidueLabel()
         res = self.resName
 
-        cmd = (
-            "%s -dr no -i %s -fi mol2 -o %s -fo charmm -s 2 -at %s \
-        -pf y -rn %s"
-            % (self.acExe, self.acMol2FileName, self.charmmBase, at, res)
-        )
+        cmd = f"{self.acExe} -dr no -i {self.acMol2FileName} -fi mol2 -o {self.charmmBase} \
+            -fo charmm -s 2 -at {at} -pf n -rn {res}"
 
-        cmd = cmd.replace("-pf y", "-pf n")
         self.printDebug(cmd)
 
         log = _getoutput(cmd)
