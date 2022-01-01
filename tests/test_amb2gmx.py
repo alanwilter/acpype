@@ -6,6 +6,7 @@ from acpype.topol import MolTopol
 def test_glycam(janitor):
     molecule = MolTopol(acFileTop="glycam_exe.prmtop", acFileXyz="glycam_exe.inpcrd", debug=True, amb2gmx=True)
     molecule.writeGromacsTopolFiles()
+    molecule.writeCnsTopolFiles()
     assert molecule
     assert molecule.topo14Data.hasNondefault14()
     assert len(molecule.topo14Data.scnb_scale_factor) == 31

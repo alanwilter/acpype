@@ -176,9 +176,9 @@ def test_time_limit(janitor):
 def test_wrong_element(janitor, capsys):
     # Only elements are allowed: C, N, O, S, P, H, F, Cl, Br and I
     with pytest.raises(Exception) as e_info:
-        ACTopol("HEM.mol2", chargeType="user", debug=True)
+        ACTopol("HEM.pdb", debug=True)
     captured = capsys.readouterr()
-    assert e_info.typename == "FileNotFoundError"
+    assert e_info.typename == "TypeError"
     assert "Unrecognized case-sensitive atomic symbol ( FE)." in captured.out
 
 
@@ -256,6 +256,7 @@ def test_inputs(janitor, capsys, argv, msg):
         (["-i", "too_far.pdb", "-b", "vir_temp"], 19, "Atoms TOO scattered (>"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
         (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
+        (["-i", "drift.mol2", "-c", "user"], 19, "Net charge drift '0.02020' bigger than tolerance '0.01000'"),
     ],
 )
 def test_args_wrong_inputs(janitor, capsys, argv, code, msg):
