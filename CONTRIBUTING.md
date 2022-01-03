@@ -8,7 +8,7 @@ Also recommended is GPG key, so do accordingly in [GitHub](https://docs.github.c
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
 
-conda create -n acpype python=3.9 ambertools openbabel ocl-icd-system pre-commit ipython sphinx gromacs=2019.1 -y
+conda create -n acpype python=3.9 ambertools openbabel ocl-icd-system ipython gromacs=2019.1 -y
 # ocl-icd-system: case you have GPU
 
 conda activate acpype
