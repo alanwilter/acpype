@@ -32,6 +32,8 @@ except ImportError:
 else:
     release = acpype.__version__
 
+version = release
+
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
