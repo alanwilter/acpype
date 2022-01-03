@@ -183,9 +183,9 @@ class Topology_14:
                 epsilon = lj_bcoeff / 4 / sigma6 * 4.184
                 sigma = sigma6 ** (1 / 6) / 10
                 pair_buff = (
-                    "{:>10.0f} {:>10.0f} {:>6.0f} ".format(ai + 1, al + 1, 1)
-                    + "{:>10.6f} {:>10.6f} ".format(qi, ql)
-                    + "{:>15.5e} {:>15.5e}\n".format(sigma, epsilon)
+                    f"{ai + 1:>10.0f} {al + 1:>10.0f} {1:>6.0f} "
+                    + f"{qi:>10.6f} {ql:>10.6f} "
+                    + f"{sigma:>15.5e} {epsilon:>15.5e}\n"
                 )
                 pair_list.append(pair_buff)
             j += 5
@@ -320,11 +320,17 @@ class AbstractTopol(abc.ABC):
         """Info log level"""
         logger(self.level).info(f"==> {while_replace(text)}")
 
-    def printQuoted(self, text=""):
+    def printDebugQuoted(self, text=""):
         """Print quoted messages"""
         logger(self.level).debug(10 * "+" + "start_quote" + 59 * "+")
         logger(self.level).debug(while_replace(text))
         logger(self.level).debug(10 * "+" + "end_quote" + 61 * "+")
+
+    def printErrorQuoted(self, text=""):
+        """Print quoted messages"""
+        logger(self.level).error(10 * "+" + "start_quote" + 59 * "+")
+        logger(self.level).error(while_replace(text))
+        logger(self.level).error(10 * "+" + "end_quote" + 61 * "+")
 
     def search(self, name=None, alist=False):
         """
@@ -422,10 +428,14 @@ class AbstractTopol(abc.ABC):
                 except Exception:
                     error = True
 
+            if not charge:
+                error = True
+                charge = 0
             if error:
                 self.printError("guessCharge failed")
                 os.chdir(localDir)
-                self.printQuoted(log)
+                rmtree(self.tmpDir)
+                self.printErrorQuoted(log)
                 self.printMess("Trying with net charge = 0 ...")
         charge = float(charge)
         charge2 = int(round(charge))
@@ -436,6 +446,7 @@ class AbstractTopol(abc.ABC):
             if not self.force:
                 msg = "Error with calculated charge"
                 logger(self.level).error(msg)
+                rmtree(self.tmpDir)
                 raise Exception(msg)
         self.chargeVal = str(charge2)
         self.printMess(f"... charge set to {charge2}")
@@ -456,7 +467,7 @@ class AbstractTopol(abc.ABC):
 
         exten = self.ext[1:]
         if self.ext == ".pdb":
-            tmpFile = open(self.inputFile, "r")
+            tmpFile = open(self.inputFile)
         else:
             if exten == "mol":
                 exten = "mdl"
@@ -466,7 +477,7 @@ class AbstractTopol(abc.ABC):
             if not out.isspace():
                 self.printDebug(out)
             try:
-                tmpFile = open("tmp", "r")
+                tmpFile = open("tmp")
             except Exception:
                 rmtree(self.tmpDir)
                 raise
@@ -519,17 +530,17 @@ class AbstractTopol(abc.ABC):
 
         if dups:
             self.printError(f"Atoms with same coordinates in '{self.inputFile}'!")
-            self.printQuoted(dups[:-1])
+            self.printErrorQuoted(dups[:-1])
             exit_ = True
 
         if shortd:
             self.printError(f"Atoms TOO close (< {minDist} Ang.)")
-            self.printQuoted(f"Dist (Ang.)    Atoms\n{shortd[:-1]}")
+            self.printErrorQuoted(f"Dist (Ang.)    Atoms\n{shortd[:-1]}")
             exit_ = True
 
         if longd:
             self.printError(f"Atoms TOO scattered (> {maxDist} Ang.)")
-            self.printQuoted(longd[:-1])
+            self.printErrorQuoted(longd[:-1])
             exit_ = True
 
         if exit_:
@@ -673,13 +684,13 @@ class AbstractTopol(abc.ABC):
         log = _getoutput(cmd)
 
         if os.path.exists("tmp.crg"):
-            tmpFile = open("tmp.crg", "r")
+            tmpFile = open("tmp.crg")
             tmpData = tmpFile.readlines()
             for line in tmpData:
                 ll += line.split()
             charge = sum(map(float, ll))
         if not log.isspace():
-            self.printQuoted(log)
+            self.printDebugQuoted(log)
 
         self.printDebug("readMol2TotalCharge: " + str(charge))
 
@@ -810,7 +821,7 @@ class AbstractTopol(abc.ABC):
         if exten == "mol":
             exten = "mdl"
 
-        cmd = "%s -dr no -i %s -fi %s -o %s -fo mol2 %s -nc %s -m %s -s 2 -df %s -at %s -pf n %s" % (
+        cmd = "{} -dr no -i {} -fi {} -o {} -fo mol2 {} -nc {} -m {} -s 2 -df {} -at {} -pf n {}".format(
             self.acExe,
             self.inputFile,
             exten,
@@ -843,7 +854,7 @@ class AbstractTopol(abc.ABC):
         if os.path.exists(self.acMol2FileName):
             self.printMess("* Antechamber OK *")
         else:
-            self.printQuoted(self.acLog)
+            self.printErrorQuoted(self.acLog)
             return True
         return False
 
@@ -851,8 +862,8 @@ class AbstractTopol(abc.ABC):
         """Signal handler"""
         global pid
         pids = job_pids_family(pid)
-        self.printDebug("PID: %s, PIDS: %s" % (pid, pids))
-        self.printMess("Timed out! Process %s killed, max exec time (%ss) exceeded" % (pids, self.timeTol))
+        self.printDebug(f"PID: {pid}, PIDS: {pids}")
+        self.printMess(f"Timed out! Process {pids} killed, max exec time ({self.timeTol}s) exceeded")
         # os.system('kill -15 %s' % pids)
         for i in pids.split():
             os.kill(int(i), 15)
@@ -935,7 +946,7 @@ class AbstractTopol(abc.ABC):
         if self.checkXyzAndTopFiles():
             self.printMess("* Tleap OK *")
         else:
-            self.printQuoted(self.tleapLog)
+            self.printErrorQuoted(self.tleapLog)
             return True
         return False
 
@@ -953,7 +964,7 @@ class AbstractTopol(abc.ABC):
                 block = False
             if block:
                 check += line
-        self.printQuoted(check[:-1])
+        self.printDebugQuoted(check[:-1])
 
     def locateDat(self, aFile):
         """locate a file pertinent to $AMBERHOME/dat/leap/parm/"""
@@ -993,18 +1004,18 @@ class AbstractTopol(abc.ABC):
             check = self.checkFrcmod()
             if check:
                 self.printWarn("Couldn't determine all parameters:")
-                self.printMess("From file '%s'\n" % self.acFrcmodFileName + check)
+                self.printMess(f"From file '{self.acFrcmodFileName + check}'\n")
             else:
                 self.printMess("* Parmchk OK *")
         else:
-            self.printQuoted(self.parmchkLog)
+            self.printErrorQuoted(self.parmchkLog)
             return True
         return False
 
     def checkFrcmod(self):
         """Check FRCMOD file"""
         check = ""
-        frcmodContent = open(self.acFrcmodFileName, "r").readlines()
+        frcmodContent = open(self.acFrcmodFileName).readlines()
         for line in frcmodContent:
             if "ATTN, need revision" in line:
                 check += line
@@ -1054,7 +1065,7 @@ class AbstractTopol(abc.ABC):
         if os.path.exists(self.inputFile):
             self.printMess("* Babel OK *")
         else:
-            self.printQuoted(self.obabelLog)
+            self.printErrorQuoted(self.obabelLog)
             return True
         return False
 
@@ -1082,7 +1093,7 @@ class AbstractTopol(abc.ABC):
         """
         Create molTop obj
         """
-        self.topFileData = open(self.acTopFileName, "r").readlines()
+        self.topFileData = open(self.acTopFileName).readlines()
         self.molTopol = MolTopol(
             self,  # acTopolObj
             verbose=self.verbose,
@@ -1202,7 +1213,7 @@ class AbstractTopol(abc.ABC):
         residueLabel = self.getFlagData("RESIDUE_LABEL")
         residueLabel = list(map(str, residueLabel))
         if residueLabel[0] != residueLabel[0].upper():
-            self.printWarn("residue label '%s' in '%s' is not all UPPERCASE" % (residueLabel[0], self.inputFile))
+            self.printWarn(f"residue label '{residueLabel[0]}' in '{self.inputFile}' is not all UPPERCASE")
             self.printWarn("this may raise problem with some applications like CNS")
         self.residueLabel = residueLabel
 
@@ -1454,7 +1465,7 @@ class AbstractTopol(abc.ABC):
                 if self.chiral:
                     self.printWarn(f"Atom {atChi} has less than 4 connections to 4 different atoms. It's NOT Chiral!")
                 continue
-            v1, v2, v3, v4 = [x.coords for x in quad]
+            v1, v2, v3, v4 = (x.coords for x in quad)
             chiralGroups.append((atChi, quad, imprDihAngle(v1, v2, v3, v4)))
         self.chiralGroups = chiralGroups
 
@@ -1659,7 +1670,7 @@ class AbstractTopol(abc.ABC):
         self.printDebug(cmd)
 
         log = _getoutput(cmd)
-        self.printQuoted(log)
+        self.printDebugQuoted(log)
 
     def writePdb(self, file_):
         """
@@ -2148,9 +2159,9 @@ class AbstractTopol(abc.ABC):
                     sigma,
                     epsilon,
                 )
-                + " ; %4.2f  %1.4f\n" % (r0, epAmber)
+                + f" ; {r0:4.2f}  {epAmber:1.4f}\n"
             )
-            oline = "; %s:%s:opls_%s: %s\n" % (aTypeName, aTypeNameOpls, oaCode[0], repr(oaCode[1:]))
+            oline = f"; {aTypeName}:{aTypeNameOpls}:opls_{oaCode[0]}: {repr(oaCode[1:])}\n"
             # tmpFile.write(line)
             temp.append(line)
             otemp.append(oline)
@@ -2172,7 +2183,7 @@ class AbstractTopol(abc.ABC):
             oitpText += otemp
         self.printDebug("GMX atomtypes done")
 
-        if len(self.atoms) > 3 * nWat + sum([x[1] for x in ionsSorted]):
+        if len(self.atoms) > 3 * nWat + sum(x[1] for x in ionsSorted):
             nSolute = 1
 
         if nWat:
@@ -2714,7 +2725,7 @@ class AbstractTopol(abc.ABC):
             # vZ = self.pbc[1][2]
             if vX == 90.0:
                 self.printDebug("PBC triclinic")
-                text = "%11.5f %11.5f %11.5f\n" % (boxX, boxY, boxZ)
+                text = f"{boxX:11.5f} {boxY:11.5f} {boxZ:11.5f}\n"
             elif round(vX, 2) == 109.47:
                 self.printDebug("PBC octahedron")
                 f1 = 0.471405  # 1/3 * sqrt(2)
@@ -2725,7 +2736,7 @@ class AbstractTopol(abc.ABC):
                 v12 = f2
                 v13 = -f2
                 v23 = f1 * boxX
-                text = "%11.5f %11.5f %11.5f %11.5f %11.5f %11.5f %11.5f %11.5f %11.5f\n" % (
+                text = "{:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f}\n".format(
                     boxX,
                     v22,
                     v33,
@@ -2744,7 +2755,7 @@ class AbstractTopol(abc.ABC):
             boxX = max(X) - min(X)  # + 2.0 # 2.0 is double of rlist
             boxY = max(Y) - min(Y)  # + 2.0
             boxZ = max(Z) - min(Z)  # + 2.0
-            text = "%11.5f %11.5f %11.5f\n" % (boxX * 20.0, boxY * 20.0, boxZ * 20.0)
+            text = f"{boxX * 20.0:11.5f} {boxY * 20.0:11.5f} {boxZ * 20.0:11.5f}\n"
         groFile.write(text)
 
     def writePosreFile(self, fc=1000):
@@ -2988,7 +2999,7 @@ eriod phase }\n"
         # print "Writing CNS TOP file\n"
         topFile.write("Remarks " + head % (top, date))
         topFile.write("\nset echo=false end\n")
-        topFile.write("\nautogenerate angles=%s dihedrals=%s end\n" % (autoAngleFlag, autoDihFlag))
+        topFile.write(f"\nautogenerate angles={autoAngleFlag} dihedrals={autoDihFlag} end\n")
         topFile.write("\n{ atomType  mass }\n")
 
         for at in self.atomTypes:
@@ -3268,7 +3279,7 @@ class ACTopol(AbstractTopol):
         self.tmpDir = os.path.join(self.rootDir, ".acpype_tmp_%s" % os.path.basename(base))
         self.setResNameCheckCoords()
         self.guessCharge()
-        acMol2FileName = "%s_%s_%s.mol2" % (base, chargeType, atomType)
+        acMol2FileName = f"{base}_{chargeType}_{atomType}.mol2"
         self.acMol2FileName = acMol2FileName
         self.charmmBase = "%s_CHARMM" % base
         self.qFlag = qDict[qprog]
@@ -3347,11 +3358,11 @@ class MolTopol(AbstractTopol):
         elif not self.amb2gmx:
             self.amb2gmx = True
         if not os.path.exists(acFileXyz) or not os.path.exists(acFileTop):
-            self.printError("Files '%s' and/or '%s' don't exist" % (acFileXyz, acFileTop))
+            self.printError(f"Files '{acFileXyz}' and/or '{acFileTop}' don't exist")
             self.printError("molTopol object won't be created")
 
-        self.xyzFileData = open(acFileXyz, "r").readlines()
-        self.topFileData = [x for x in open(acFileTop, "r").readlines() if not x.startswith("%COMMENT")]
+        self.xyzFileData = open(acFileXyz).readlines()
+        self.topFileData = [x for x in open(acFileTop).readlines() if not x.startswith("%COMMENT")]
         self.topo14Data = Topology_14()
         self.topo14Data.read_amber_topology("".join(self.topFileData))
         self.printDebug("prmtop and inpcrd files loaded")
