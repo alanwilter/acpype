@@ -1,12 +1,9 @@
-from __future__ import print_function
-
 import os
 import random
 import string
 import sys
 import time
 import traceback
-from builtins import object, range
 from shutil import rmtree
 
 from ccpnmr.format.converters import Mol2Format  # type: ignore
@@ -22,8 +19,7 @@ def dirWalk(adir):
     for f in os.listdir(adir):
         fullpath = os.path.abspath(os.path.join(adir, f))
         if os.path.isdir(fullpath) and not os.path.islink(fullpath):
-            for x in dirWalk(fullpath):  # recurse into subdir
-                yield x
+            yield from dirWalk(fullpath)
         else:
             yield fullpath
 
@@ -33,10 +29,10 @@ def addMolPep(cnsPepPath, molName):
     Add info about MOL in CNS topol*.pep file
     input: cns pep file path to be modified and MOL name
     """
-    txt = "first IONS tail + %s end\nlast IONS head - %s end\n\n" % (molName, molName)
+    txt = f"first IONS tail + {molName} end\nlast IONS head - {molName} end\n\n"
     pepFile = open(cnsPepPath).read()
     if txt in pepFile:
-        print("%s already added to %s" % (molName, cnsPepPath))
+        print(f"{molName} already added to {cnsPepPath}")
         return False
     pepFile = pepFile.splitlines(1)
     pepFile.reverse()
@@ -50,7 +46,7 @@ def addMolPep(cnsPepPath, molName):
     nPepFile = open(cnsPepPath, "w")
     nPepFile.writelines(pepFile)
     nPepFile.close()
-    print("%s added to %s" % (molName, cnsPepPath))
+    print(f"{molName} added to {cnsPepPath}")
     return True
 
 
@@ -76,7 +72,7 @@ def addMolPar(cnsParPath, molParPath):
 
     parFile = open(cnsParPath).read()
     if txt in parFile:
-        print("%s already added to %s" % (molName, cnsParPath))
+        print(f"{molName} already added to {cnsParPath}")
         return False
 
     molFile = open(molParPath).readlines()
@@ -123,7 +119,7 @@ def addMolPar(cnsParPath, molParPath):
     nParFile = open(cnsParPath, "w")
     nParFile.writelines(parList)
     nParFile.close()
-    print("%s added to %s" % (molName, cnsParPath))
+    print(f"{molName} added to {cnsParPath}")
     return True
 
 
@@ -151,7 +147,7 @@ def addMolTop(cnsTopPath, molTopPath):
 
     topFile = open(cnsTopPath).read()
     if txt in topFile:
-        print("%s already added to %s" % (molName, cnsTopPath))
+        print(f"{molName} already added to {cnsTopPath}")
         return False
 
     molFile = open(molTopPath).readlines()
@@ -189,11 +185,11 @@ def addMolTop(cnsTopPath, molTopPath):
     nTopFile = open(cnsTopPath, "w")
     nTopFile.writelines(topList)
     nTopFile.close()
-    print("%s added to %s" % (molName, cnsTopPath))
+    print(f"{molName} added to {cnsTopPath}")
     return True
 
 
-class AcpypeForCcpnProject(object):
+class AcpypeForCcpnProject:
     """
     Class to take a Ccpn project, check if it has an
     unusual chem comp and call ACPYPE API to generate
@@ -272,9 +268,9 @@ class AcpypeForCcpnProject(object):
             res = chain.findFirstResidue()
             resName = res.ccpCode.upper()
             if chargeVal is None:
-                print("Running ACPYPE for '%s : %s' and trying to guess net charge" % (resName, chain.molecule.name))
+                print(f"Running ACPYPE for '{resName} : {chain.molecule.name}' and trying to guess net charge")
             else:
-                print("Running ACPYPE for '%s : %s' with charge '%s'" % (resName, chain.molecule.name, chargeVal))
+                print(f"Running ACPYPE for '{resName} : {chain.molecule.name}' with charge '{chargeVal}'")
             random.seed()
             d = [random.choice(letters) for x in range(10)]
             randString = "".join(d)

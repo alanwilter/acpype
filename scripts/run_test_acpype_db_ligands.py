@@ -37,7 +37,7 @@ def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, s
         value = seconds / length
         if value > 0:
             seconds = seconds % length
-            time.append("%s%s" % (str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
+            time.append("{}{}".format(str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
         if seconds < 1:
             break
 

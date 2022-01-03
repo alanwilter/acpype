@@ -89,10 +89,10 @@ class Atom:
         self.coords = coord
 
     def __str__(self):
-        return "<Atom id=%s, name=%s, %s>" % (self.id, self.atomName, self.atomType)
+        return f"<Atom id={self.id}, name={self.atomName}, {self.atomType}>"
 
     def __repr__(self):
-        return "<Atom id=%s, name=%s, %s>" % (self.id, self.atomName, self.atomType)
+        return f"<Atom id={self.id}, name={self.atomName}, {self.atomType}>"
 
 
 class Bond:
@@ -107,10 +107,10 @@ class Bond:
         self.rEq = rEq
 
     def __str__(self):
-        return "<%s, r=%s>" % (self.atoms, self.rEq)
+        return f"<{self.atoms}, r={self.rEq}>"
 
     def __repr__(self):
-        return "<%s, r=%s>" % (self.atoms, self.rEq)
+        return f"<{self.atoms}, r={self.rEq}>"
 
 
 class Angle:
@@ -125,10 +125,10 @@ class Angle:
         self.thetaEq = thetaEq  # rad, to convert to degree: thetaEq * 180/Pi
 
     def __str__(self):
-        return "<%s, ang=%.2f>" % (self.atoms, self.thetaEq * 180 / Pi)
+        return f"<{self.atoms}, ang={self.thetaEq * 180 / Pi:.2f}>"
 
     def __repr__(self):
-        return "<%s, ang=%.2f>" % (self.atoms, self.thetaEq * 180 / Pi)
+        return f"<{self.atoms}, ang={self.thetaEq * 180 / Pi:.2f}>"
 
 
 class Dihedral:
@@ -145,7 +145,7 @@ class Dihedral:
         self.phase = phase  # rad, to convert to degree: kPhi * 180/Pi
 
     def __str__(self):
-        return "<%s, ang=%.2f>" % (self.atoms, self.phase * 180 / Pi)
+        return f"<{self.atoms}, ang={self.phase * 180 / Pi:.2f}>"
 
     def __repr__(self):
-        return "<%s, ang=%.2f>" % (self.atoms, self.phase * 180 / Pi)
+        return f"<{self.atoms}, ang={self.phase * 180 / Pi:.2f}>"

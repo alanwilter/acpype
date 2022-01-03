@@ -13,7 +13,7 @@ debug = True
 
 water = " -water none"
 
-print("usePymol: %s, ffType: %s, cType: %s" % (usePymol, ffType, cType))
+print(f"usePymol: {usePymol}, ffType: {ffType}, cType: {cType}")
 
 tmpDir = "/tmp/testAcpype"
 
@@ -427,14 +427,14 @@ def checkTopAcpype(res):
             except Exception:
                 pass
         if not found:
-            print("%s %s %s not found in %s Bon" % (dict_[ll], ent, item, ffType))
+            print(f"{dict_[ll]} {ent} {item} not found in {ffType} Bon")
         # print(item, e, par)
         return par
 
     compareParameters = True
 
     agRes = parseTopFile(open("ag%s.top" % (res)).readlines())
-    acRes = parseTopFile(open("ag%s.acpype/ag%s_GMX.itp" % (res, res)).readlines())
+    acRes = parseTopFile(open(f"ag{res}.acpype/ag{res}_GMX.itp").readlines())
     ffBon = aBon
     ffgRes = agRes
 
@@ -638,7 +638,7 @@ def build_residues_tleap():
         _getoutput(cmd)
         # cmd = "%s -O; %s < restrt > %s.pdb; mv mdinfo %s.mdinfo" % (sanderExe, ambpdbExe, aai3, aai3)
         # -i mdin -o mdout -p prmtop -c inpcrd" % (sanderExe)
-        cmd = "%s -O; %s -c restrt > %s.pdb" % (sanderExe, ambpdbExe, aai3)
+        cmd = f"{sanderExe} -O; {ambpdbExe} -c restrt > {aai3}.pdb"
         _getoutput(cmd)
     _getoutput("rm -f mdout mdinfo mdin restrt tleap.in prmtop inpcrd leap.log")
 
@@ -780,7 +780,7 @@ if __name__ == "__main__":
         ff = open(tmpFile, "w")
         ff.writelines(pymolScript)
         ff.close()
-        cmd = "%s -qc %s" % (exePymol, tmpFile)
+        cmd = f"{exePymol} -qc {tmpFile}"
         os.system(cmd)
     else:
         build_residues_tleap()
@@ -791,7 +791,7 @@ if __name__ == "__main__":
         res, ext = os.path.splitext(resFile)  # eg. res = 'AAA'
         # if res != 'RRR': continue
         if len(resFile) == 7 and ext == ".pdb" and resFile[:3].isupper():
-            print("\nFile %s : residue %s" % (resFile, aa_dict[res[0]].upper()))
+            print(f"\nFile {resFile} : residue {aa_dict[res[0]].upper()}")
 
             _pdb = createOldPdb2(resFile)  # using my own dict
             apdb = createAmberPdb3(_pdb)  # create file aAAA.pdb with NXXX, CXXX
@@ -799,7 +799,7 @@ if __name__ == "__main__":
             # from ogpdb to amber pdb and top
             agpdb = "ag%s.pdb" % res  # output name
             agtop = "ag%s.top" % res
-            cmd = " %s -f %s -o %s -p %s -ff amber99sb %s" % (pdb2gmx, apdb, agpdb, agtop, water)
+            cmd = f" {pdb2gmx} -f {apdb} -o {agpdb} -p {agtop} -ff amber99sb {water}"
             pdebug(cmd)
             out = _getoutput(cmd)
             # print(out)

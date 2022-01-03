@@ -351,7 +351,7 @@ def analyseFile(mol, structure, file):
     guessChargeValue = None
     warnTypes = ""
     errorTypes = ""
-    tmpFile = open(file, "r")
+    tmpFile = open(file)
     content = tmpFile.readlines()
     for line in content:
         if "WARNING: " in line:
@@ -366,17 +366,17 @@ def analyseFile(mol, structure, file):
             elif "The unperturbed charge of the" in line:
                 warnTypes += "_3"
                 charge = round(float(line[44:54]))
-                WT3.add("%s: %s" % (mol, charge))
+                WT3.add(f"{mol}: {charge}")
             elif "Couldn't determine all parameters" in line:
                 warnTypes += "_4"
-                WT4.append("%s_%s" % (mol, structure))
+                WT4.append(f"{mol}_{structure}")
             elif "There is a bond of" in line:
                 warnTypes += "_5"
                 # _dist = round(float(line[27:37]))
-                WT5.add("%s_%s" % (mol, structure))
+                WT5.add(f"{mol}_{structure}")
             elif " atom type of " in line:
                 warnTypes += "_6"
-                WT6.add("%s_%s" % (mol, structure))
+                WT6.add(f"{mol}_{structure}")
             # elif "no 'babel' executable, no PDB" in line:
             elif "residue name will be 'MOL' instead of" in line:
                 warnTypes += "_8"
@@ -385,33 +385,33 @@ def analyseFile(mol, structure, file):
                 warnTypes += "_9"
         if "Warning: Close contact of " in line:
             warnTypes += "_7"
-            WT7.add("%s_%s" % (mol, structure))
+            WT7.add(f"{mol}_{structure}")
 
         if "ERROR: " in line:
             if "guessCharge failed" in line:
                 errorTypes += "_0"
-                ET0.append("%s_%s" % (mol, structure))
+                ET0.append(f"{mol}_{structure}")
             elif "Atoms with same coordinates in" in line:
                 errorTypes += "_1"
-                ET1.append("%s_%s" % (mol, structure))
+                ET1.append(f"{mol}_{structure}")
             elif "Atoms TOO close" in line:
                 errorTypes += "_2"
-                ET2.append("%s_%s" % (mol, structure))
+                ET2.append(f"{mol}_{structure}")
             elif "Atoms TOO alone" in line:
                 errorTypes += "_3"
-                ET3.append("%s_%s" % (mol, structure))
+                ET3.append(f"{mol}_{structure}")
             elif "Antechamber failed" in line:
                 errorTypes += "_4"
-                ET4.append("%s_%s" % (mol, structure))
+                ET4.append(f"{mol}_{structure}")
             elif "Parmchk failed" in line:
                 errorTypes += "_5"
-                ET5.append("%s_%s" % (mol, structure))
+                ET5.append(f"{mol}_{structure}")
             elif "Tleap failed" in line:
                 errorTypes += "_6"
-                ET6.append("%s_%s" % (mol, structure))
+                ET6.append(f"{mol}_{structure}")
             elif "syntax error" in line:
                 errorTypes += "_8"
-                ET8.add("%s_%s" % (mol, structure))
+                ET8.add(f"{mol}_{structure}")
             elif "Use '-f' option if you want to proceed anyway. Aborting" in line:
                 pass
             else:
@@ -419,10 +419,10 @@ def analyseFile(mol, structure, file):
                 errorTypes += "_10"
         if "No such file or directory: 'tmp'" in line:
             errorTypes += "_7"
-            ET7.add("%s_%s" % (mol, structure))
+            ET7.add(f"{mol}_{structure}")
         if "Semi-QM taking too long to finish" in line:
             errorTypes += "_9"
-            ET9.append("%s_%s" % (mol, structure))
+            ET9.append(f"{mol}_{structure}")
         if "Total time of execution:" in line:
             if mol in execTime:
                 # execTime[mol].append({structure:line[:-1].split(':')[1]})
@@ -441,7 +441,7 @@ def analyseFile(mol, structure, file):
 
     if checkChargeComparison:
         mol2FileName = file.replace(".out", ".mol2")
-        mol2File = open(mol2FileName, "r").readlines()
+        mol2File = open(mol2FileName).readlines()
         for line in mol2File:
             if "# Overall charge:" in line:
                 mol2Charge = int(line.split(":")[1])
@@ -617,7 +617,7 @@ def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, s
         value = seconds / length
         if value > 0:
             seconds = seconds % length
-            time.append("%s%s" % (str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
+            time.append("{}{}".format(str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
         if seconds < 1:
             break
 
@@ -707,13 +707,13 @@ for molDir in ccpCodes:
                 pdbMol2 = True
                 totalPdbMol2Count += 1
         elif ".ideal.acpype/sqm.out" in file:
-            content = open(file, "r").read()
+            content = open(file).read()
             if "No convergence in SCF after" in content:
-                SCFfailedList.append("%s_%s" % (molDir, "ideal"))
+                SCFfailedList.append("{}_{}".format(molDir, "ideal"))
         elif ".pdb.acpype/sqm.out" in file:
-            content = open(file, "r").read()
+            content = open(file).read()
             if "No convergence in SCF after" in content:
-                SCFfailedList.append("%s_%s" % (molDir, "pdb"))
+                SCFfailedList.append("{}_{}".format(molDir, "pdb"))
     if countIdealMol2 > 2:
         multIdealMol2.append(molDir)
     if countPdbMol2 > 2:
@@ -778,7 +778,7 @@ for group in groupResults:
     totalTxt += "+ %i " % subTot
 totalTxt = totalTxt[2:]
 sumVal = eval(totalTxt)
-print("%s= %s" % (totalTxt, sumVal))
+print(f"{totalTxt}= {sumVal}")
 
 # print results
 
@@ -793,7 +793,7 @@ if atomicDetailed:
         print("=>Mols have duplicated coordinates")
         for molLabel in ET1:
             mol, structure = molLabel.split("_")
-            cmd = "grep -e '^ATOM' %s/*%s.out" % (mol, structure)
+            cmd = f"grep -e '^ATOM' {mol}/*{structure}.out"
             out = _getoutput(cmd)
             print("# %s #" % molLabel)
             print(out, "\n")
@@ -802,7 +802,7 @@ if atomicDetailed:
         print("=>Mols have atoms in close contact")
         for molLabel in WT7:
             mol, structure = molLabel.split("_")
-            cmd = "grep -e '^Warning: Close contact of' %s/*%s.out" % (mol, structure)
+            cmd = f"grep -e '^Warning: Close contact of' {mol}/*{structure}.out"
             out = _getoutput(cmd)
             print("# %s #" % molLabel)
             print(out, "\n")
@@ -811,7 +811,7 @@ if atomicDetailed:
         print("=>Mols have irregular bonds")
         for molLabel in WT5:
             mol, structure = molLabel.split("_")
-            cmd = "grep -A 1 -e '^WARNING: There is a bond of' %s/*%s.out" % (mol, structure)
+            cmd = f"grep -A 1 -e '^WARNING: There is a bond of' {mol}/*{structure}.out"
             out = _getoutput(cmd)
             print("# %s #" % molLabel)
             print(out, "\n")
@@ -820,7 +820,7 @@ if atomicDetailed:
         print("=>Mols have atoms too close")
         for molLabel in ET2:
             mol, structure = molLabel.split("_")
-            cmd = "grep -e '^ .*ATOM' %s/*%s.out" % (mol, structure)
+            cmd = f"grep -e '^ .*ATOM' {mol}/*{structure}.out"
             out = _getoutput(cmd)
             print("# %s #" % molLabel)
             print(out, "\n")
@@ -829,7 +829,7 @@ if atomicDetailed:
         print("=>Mols have atoms too alone")
         for molLabel in ET3:
             mol, structure = molLabel.split("_")
-            cmd = r"""grep -e "^\['ATOM" %s/*%s.out""" % (mol, structure)
+            cmd = fr"""grep -e "^\['ATOM" {mol}/*{structure}.out"""
             out = _getoutput(cmd)
             print("# %s #" % molLabel)
             print(out, "\n")
@@ -893,8 +893,8 @@ print("\n>>> Time Job Execution Summary <<<\n")
 if listMolTime:
     # print maxExecTime, minExecTime
     print("Number of clean jobs:", nJobs)
-    print("Longest job: Mol='%s', time= %s" % (maxMolTime, elapsedTime(maxExecTime)))
-    print("Fatest job: Mol='%s', time= %s" % (minMolTime, elapsedTime(minExecTime)))
+    print(f"Longest job: Mol='{maxMolTime}', time= {elapsedTime(maxExecTime)}")
+    print(f"Fatest job: Mol='{minMolTime}', time= {elapsedTime(minExecTime)}")
     print("Average time of execution per clean job: %s" % elapsedTime(totalCleanExecTime / nJobs))
 else:
     print("NO time stats available for clean jobs")

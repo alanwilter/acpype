@@ -29,6 +29,12 @@ repos:
         language: system
         types: [python]
         require_serial: true
+      - id: pyupgrade
+        name: pyupgrade
+        entry: poetry run pyupgrade --py36-plus
+        language: system
+        types: [python]
+        require_serial: true
       - id: ver_today
         name: ver_today
         entry: ./scripts/ver_today.sh

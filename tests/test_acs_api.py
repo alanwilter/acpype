@@ -29,7 +29,7 @@ file_types = (
 
 def test_json_simple(janitor):
     jj = json.loads(acpype_api(inputFile="benzene.pdb", debug=True))
-    assert min([len(jj.get(x)) for x in file_types]) >= 7
+    assert min(len(jj.get(x)) for x in file_types) >= 7
     assert jj.get("file_name") == "benzene"
     janitor.append("../.acpype_tmp_benzene")
 
