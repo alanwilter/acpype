@@ -19,8 +19,9 @@ function usage() {
 function run_pip() {
     echo ">>> Creating pip package"
     poetry build
+    poetry publish
     # python3 -m twine upload --repository testpypi dist/*"$version"* # TestPyPI
-    python3 -m twine upload --repository pypi dist/*"$version"* # official release
+    # python3 -m twine upload --repository pypi dist/*"$version"* # official release
     rm -vfr dist/*"$version"*
 }
 
