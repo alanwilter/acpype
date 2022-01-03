@@ -51,4 +51,3 @@ ff12polL:
 ff12polA:
 	/bin/rm -f ff12polA.log
 	../../../bin/teLeap -s -f ff12polA.cmd
-

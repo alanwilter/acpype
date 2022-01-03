@@ -1,5 +1,5 @@
 import json
-import os
+from glob import glob
 
 from acpype.acs_api import acpype_api
 
@@ -27,18 +27,19 @@ file_types = (
 )
 
 
-def test_json_simple():
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+def test_json_simple(janitor):
     jj = json.loads(acpype_api(inputFile="benzene.pdb", debug=True))
-    assert min([len(jj.get(x)) for x in file_types]) >= 7
+    assert min(len(jj.get(x)) for x in file_types) >= 7
     assert jj.get("file_name") == "benzene"
+    janitor.append("../.acpype_tmp_benzene")
 
 
-def test_json_failed():
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+def test_json_failed(janitor):
     jj = json.loads(acpype_api(inputFile="_fake_", debug=True))
     assert "ERROR: [Errno 2] No such file or directory" in jj.get("file_name")
     assert "tests/_fake_" in jj.get("file_name")
+    for ii in glob(".*_fake_*"):
+        janitor.append(ii)
 
 
 def get_json():
@@ -46,8 +47,8 @@ def get_json():
     return json.loads(json_output)
 
 
-def test_json():
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+def test_json(janitor):
     jj = get_json()
+    janitor.append("../.acpype_tmp_AAA")
     for ft in file_types:
         assert len(jj.get(ft)) > 2

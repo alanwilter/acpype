@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
 import shutil
 from glob import glob
@@ -6,14 +6,14 @@ from glob import glob
 from acpype.topol import ACTopol
 from acpype.utils import _getoutput
 
-usePymol = True
+usePymol = False
 ffType = "amber"  # gaff
 cType = "gas"
-debug = False
+debug = True
 
 water = " -water none"
 
-print("usePymol: %s, ffType: %s, cType: %s" % (usePymol, ffType, cType))
+print(f"usePymol: {usePymol}, ffType: {ffType}, cType: {cType}")
 
 tmpDir = "/tmp/testAcpype"
 
@@ -34,15 +34,15 @@ ambpdbExe = os.path.join(os.path.dirname(acExe), "ambpdb")
 exePymol = "/sw/bin/pymol"
 
 # Binaries for gromacs
-gpath = "/sw/"
+gpath = "/home/awilter/miniconda3/envs/acpype/"
 gmxTopDir = gpath + "share"
-pdb2gmx = gpath + "bin/pdb2gmx"
-grompp = gpath + "bin/grompp"
-mdrun = gpath + "bin/mdrun"
-g_energy = gpath + "bin/g_energy"
-gmxdump = gpath + "bin/gmxdump"
+pdb2gmx = gpath + "bin/gmx pdb2gmx"
+grompp = gpath + "bin/gmx grompp"
+mdrun = gpath + "bin/gmx mdrun"
+g_energy = gpath + "bin/gmx energy"
+gmxdump = gpath + "bin/gmx dump"
 
-amberff = "leaprc.ff99SB"
+amberff = "oldff/leaprc.ff99SB"
 
 genPdbTemplate = """
 source %(amberff)s
@@ -56,6 +56,7 @@ spe_mdp = """
 # Create SPE.mdp file #single point energy
 cat << EOF >| SPE.mdp
 define = -DFLEXIBLE
+cutoff-scheme            = group
 integrator               = md
 nsteps                   = 0
 dt                       = 0.001
@@ -426,14 +427,14 @@ def checkTopAcpype(res):
             except Exception:
                 pass
         if not found:
-            print("%s %s %s not found in %s Bon" % (dict_[ll], ent, item, ffType))
+            print(f"{dict_[ll]} {ent} {item} not found in {ffType} Bon")
         # print(item, e, par)
         return par
 
     compareParameters = True
 
     agRes = parseTopFile(open("ag%s.top" % (res)).readlines())
-    acRes = parseTopFile(open("ag%s.acpype/ag%s_GMX.itp" % (res, res)).readlines())
+    acRes = parseTopFile(open(f"ag{res}.acpype/ag{res}_GMX.itp").readlines())
     ffBon = aBon
     ffgRes = agRes
 
@@ -637,13 +638,15 @@ def build_residues_tleap():
         _getoutput(cmd)
         # cmd = "%s -O; %s < restrt > %s.pdb; mv mdinfo %s.mdinfo" % (sanderExe, ambpdbExe, aai3, aai3)
         # -i mdin -o mdout -p prmtop -c inpcrd" % (sanderExe)
-        cmd = "%s -O; %s < restrt > %s.pdb" % (sanderExe, ambpdbExe, aai3)
+        cmd = f"{sanderExe} -O; {ambpdbExe} -c restrt > {aai3}.pdb"
         _getoutput(cmd)
     _getoutput("rm -f mdout mdinfo mdin restrt tleap.in prmtop inpcrd leap.log")
 
 
 def error(v1, v2):
     """percentage relative error"""
+    if v1 == v2:
+        return 0
     return abs(v1 - v2) / max(abs(v1), abs(v2)) * 100
 
 
@@ -703,8 +706,9 @@ def calcGmxPotEnerDiff(res):
     # print(dictEnerAMB)
 
     # calc Pot Ener for agXXX.acpype/agXXX.pdb (ACPYPE_GMX)
-    template = """%(grompp)s -c ag%(res)s.acpype/ag%(res)s_NEW.pdb -p ag%(res)s.acpype/ag%(res)s_GMX.top -f SPE.mdp
--o ag%(res)s.tpr -pp ag%(res)sp.top
+    template = """
+    %(grompp)s -c ag%(res)s.acpype/ag%(res)s_NEW.pdb -p ag%(res)s.acpype/ag%(res)s_GMX.top -f SPE.mdp \
+    -o ag%(res)s.tpr -pp ag%(res)sp.top
     %(mdrun)s -v -deffnm ag%(res)s
     echo %(tEner)s | %(g_energy)s -f ag%(res)s.edr
     """
@@ -776,7 +780,7 @@ if __name__ == "__main__":
         ff = open(tmpFile, "w")
         ff.writelines(pymolScript)
         ff.close()
-        cmd = "%s -qc %s" % (exePymol, tmpFile)
+        cmd = f"{exePymol} -qc {tmpFile}"
         os.system(cmd)
     else:
         build_residues_tleap()
@@ -787,7 +791,7 @@ if __name__ == "__main__":
         res, ext = os.path.splitext(resFile)  # eg. res = 'AAA'
         # if res != 'RRR': continue
         if len(resFile) == 7 and ext == ".pdb" and resFile[:3].isupper():
-            print("\nFile %s : residue %s" % (resFile, aa_dict[res[0]].upper()))
+            print(f"\nFile {resFile} : residue {aa_dict[res[0]].upper()}")
 
             _pdb = createOldPdb2(resFile)  # using my own dict
             apdb = createAmberPdb3(_pdb)  # create file aAAA.pdb with NXXX, CXXX
@@ -795,7 +799,7 @@ if __name__ == "__main__":
             # from ogpdb to amber pdb and top
             agpdb = "ag%s.pdb" % res  # output name
             agtop = "ag%s.top" % res
-            cmd = " %s -f %s -o %s -p %s -ff amber99sb %s" % (pdb2gmx, apdb, agpdb, agtop, water)
+            cmd = f" {pdb2gmx} -f {apdb} -o {agpdb} -p {agtop} -ff amber99sb {water}"
             pdebug(cmd)
             out = _getoutput(cmd)
             # print(out)

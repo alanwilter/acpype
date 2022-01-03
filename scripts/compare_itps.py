@@ -44,11 +44,11 @@ def compareDicts(d1, d2):
                 try:
                     _tempD1.remove(item)
                 except Exception:
-                    print("\tDuplicate item %s in %s itp2" % (repr(item), flag))
+                    print(f"\tDuplicate item {repr(item)} in {flag} itp2")
                 try:
                     _tempD2.remove(item)
                 except Exception:
-                    print("\tDuplicate item %s in %s itp1" % (repr(item), flag))
+                    print(f"\tDuplicate item {repr(item)} in {flag} itp1")
             else:
                 t = item[:-1]
                 t.reverse()
@@ -57,11 +57,11 @@ def compareDicts(d1, d2):
                     try:
                         _tempD1.remove(item)
                     except Exception:
-                        print("\tDuplicate item %s in %s itp2" % (repr(item), flag))
+                        print(f"\tDuplicate item {repr(item)} in {flag} itp2")
                     try:
                         _tempD2.remove(itemRev)
                     except Exception:
-                        print("\tDuplicate item %s in %s itp1" % (repr(item), flag))
+                        print(f"\tDuplicate item {repr(item)} in {flag} itp1")
 
         tD1 = _tempD1[:]
         tD2 = _tempD2[:]

@@ -74,4 +74,3 @@ HOH = OPC
 WAT = OPC
 loadAmberParams frcmod.opc
 loadAmberParams frcmod.ionslm_126_opc
-

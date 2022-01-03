@@ -47,4 +47,3 @@ lipid14 = loadamberparams lipid14.dat
 #       Load the Lipid14 master lib file.
 #       Note that other residues are stored in the lipid14_supp.lib file and will be released at a later date.
 loadoff lipid14.lib
-

@@ -44,6 +44,8 @@ class LogFormatter(logging.Formatter):
 
 
 def copy_log(molecule):
+    if not os.path.exists(molecule.absHomeDir):
+        raise UnboundLocalError
     local_log = os.path.join(molecule.absHomeDir, "acpype.log")
     if os.path.exists(local_log):
         os.remove(local_log)

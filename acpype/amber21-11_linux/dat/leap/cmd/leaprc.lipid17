@@ -42,4 +42,3 @@ lipid17 = loadamberparams lipid17.dat
 # Load the Lipid17 master lib file.
 #
 loadoff lipid17.lib
-

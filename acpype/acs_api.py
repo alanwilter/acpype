@@ -67,7 +67,7 @@ def readFiles(basename, chargeType, atomType):
             filename = basename + "_" + chargeType + "_" + atomType + files[1]
         else:
             filename = basename + files[1]
-        readfile = tuple(open(filename, "r"))
+        readfile = tuple(open(filename))
         for line in readfile:
             files[0].write(line)
 
@@ -171,5 +171,5 @@ def acpype_api(
     try:
         shutil.rmtree(molecule.absHomeDir)
     except Exception:
-        pass
+        print("DEBUG: No folder left to be removed")
     return json.dumps(output)

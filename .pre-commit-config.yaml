@@ -1,4 +1,12 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      # - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: debug-statements
+
   - repo: local
     hooks:
       - id: flake8
@@ -16,6 +24,12 @@ repos:
       - id: isort
         name: isort
         entry: poetry run isort .
+        language: system
+        types: [python]
+        require_serial: true
+      - id: pyupgrade
+        name: pyupgrade
+        entry: poetry run pyupgrade --py36-plus
         language: system
         types: [python]
         require_serial: true

@@ -1,81 +1,44 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-    Requirements: Python 3.6 or higher
-                  Antechamber (from AmberTools preferably)
-                  OpenBabel (optional, but strongly recommended)
-
-    This code is released under GNU General Public License V3.
-
-          <<<  NO WARRANTY AT ALL!!!  >>>
-
-    It was inspired by:
-
-    - amb2gmx.pl (Eric Sorin, David Mobley and John Chodera)
-      and depends on Antechamber and Openbabel
-
-    - YASARA Autosmiles:
-      http://www.yasara.org/autosmiles.htm (Elmar Krieger)
-
-    - topolbuild (Bruce Ray)
-
-    - xplo2d (G.J. Kleywegt)
-
-    For Non-uniform 1-4 scale factor conversion (e.g. if using GLYCAM06), please cite:
-
-    BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for
-    nonuniform 1-4 scale factors: Conversion of the GLYCAM06 force field from AMBER
-    to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241
-
-    For Antechamber, please cite:
-    1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
-       bond type perception in molecular mechanical calculations. Journal of Molecular
-       Graphics and Modelling 25, 2 (2006), 247-260. doi: 10.1016/j.jmgm.2005.12.005
-    2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
-       Development and testing of a General Amber Force Field. Journal of Computational
-       Chemistry 25, 9 (2004), 1157-1174. doi: 10.1002/jcc.20035
-
-    If you use this code, I am glad if you cite:
-
-    SOUSA DA SILVA, A. W. & VRANKEN, W. F.
-    ACPYPE - AnteChamber PYthon Parser interfacE.
-    BMC Research Notes 5 (2012), 367 doi: 10.1186/1756-0500-5-367
-    http://www.biomedcentral.com/1756-0500/5/367
-
-    BATISTA, P. R.; WILTER, A.; DURHAM, E. H. A. B. & PASCUTTI, P. G. Molecular
-    Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
-    Cell Biochemistry and Biophysics 44 (2006), 395-404. doi: 10.1385/CBB:44:3:395
-
-    Alan Silva, D.Sc.
-    alanwilter _at_ gmail _dot_ com
-"""
 
 import os
 import sys
 import time
-import traceback
 from shutil import rmtree
+from typing import Dict, List, Optional
 
 from acpype.logger import copy_log
 from acpype.logger import set_logging_conf as logger
+from acpype.logger import tmpLogFile
 from acpype.params import binaries
 from acpype.parser_args import get_option_parser
-from acpype.topol import ACTopol, MolTopol, header
+from acpype.topol import AbstractTopol, ACTopol, MolTopol, header
 from acpype.utils import elapsedTime, set_for_pip, while_replace
 
 
 def chk_py_ver():
     if sys.version_info < (3, 6):
         msg = "Sorry, you need python 3.6 or higher"
-        logger().exception(msg)
+        logger().error(msg)
         raise Exception(msg)
 
 
-def init_main(binaries=binaries, argv=None):
+def handle_exception(level):
+    _exceptionType, exceptionValue, _exceptionTraceback = sys.exc_info()
+    logger(level).exception(f"ACPYPE FAILED: {exceptionValue}")
+    return True
+
+
+def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = None):
 
     """
-    Main function, to satisfy Conda
+    Orchestrate the command line usage for ACPYPE with its all input arguments.
+
+    Args:
+        binaries (Dict[str, str], optional): Mostly used for debug and testing. Defaults to ``acpype.params.binaries``.
+        argv (Optional[List[str]], optional): Mostly used for debug and testing. Defaults to None.
+
+    Returns:
+        SystemExit(status): 0 or 19 (failed)
     """
     chk_py_ver()
     set_for_pip(binaries)
@@ -109,16 +72,17 @@ def init_main(binaries=binaries, argv=None):
         parser.error("either '-i' or ('-p', '-x'), but not both")
 
     logger(level).debug(f"CLI: {' '.join(argv)}")
-    texta = "Python Version %s" % sys.version
+    texta = f"Python Version {sys.version}"
     logger(level).debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
         parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
-    try:
-        if amb2gmxF:
-            logger(level).info("Converting Amber input files to Gromacs ...")
-            system = MolTopol(
+    acpypeFailed = False
+    if amb2gmxF:
+        logger(level).info("Converting Amber input files to Gromacs ...")
+        try:
+            molecule: AbstractTopol = MolTopol(
                 acFileXyz=args.inpcrd,
                 acFileTop=args.prmtop,
                 amb2gmx=True,
@@ -131,11 +95,17 @@ def init_main(binaries=binaries, argv=None):
                 is_sorted=args.sorted,
                 chiral=args.chiral,
             )
+        except Exception:
+            acpypeFailed = handle_exception(level)
+        if not acpypeFailed:
+            try:
+                molecule.writeGromacsTopolFiles()
+                molecule.printDebug("prmtop and inpcrd files parsed")
+            except Exception:
+                acpypeFailed = handle_exception(level)
 
-            system.printDebug("prmtop and inpcrd files parsed")
-            system.writeGromacsTopolFiles()
-            copy_log(system)
-        else:
+    else:
+        try:
             molecule = ACTopol(
                 args.input,
                 binaries=binaries,
@@ -150,7 +120,7 @@ def init_main(binaries=binaries, argv=None):
                 basename=args.basename,
                 timeTol=args.max_time,
                 qprog=args.qprog,
-                ekFlag='''"%s"''' % args.keyword,
+                ekFlag=f'''"{args.keyword}"''',
                 verbose=args.verboseless,
                 gmx4=args.gmx4,
                 merge=args.merge,
@@ -159,41 +129,55 @@ def init_main(binaries=binaries, argv=None):
                 chiral=args.chiral,
                 amb2gmx=False,
             )
-
-            molecule.createACTopol()
-            molecule.createMolTopol()
-            copy_log(molecule)
-        acpypeFailed = False
-    except Exception:
-        _exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-        logger(level).error("ACPYPE FAILED: %s" % exceptionValue)
-        if args.debug:
-            traceback.print_tb(exceptionTraceback, file=sys.stdout)
-        acpypeFailed = True
+        except Exception:
+            acpypeFailed = handle_exception(level)
+        if not acpypeFailed:
+            try:
+                molecule.createACTopol()
+            except Exception:
+                acpypeFailed = handle_exception(level)
+        if not acpypeFailed:
+            try:
+                molecule.createMolTopol()
+            except Exception:
+                acpypeFailed = handle_exception(level)
 
     execTime = int(round(time.time() - at0))
     if execTime == 0:
         amsg = "less than a second"
     else:
         amsg = elapsedTime(execTime)
-    logger(level).info("Total time of execution: %s" % amsg)
+    logger(level).info(f"Total time of execution: {amsg}")
 
     if args.ipython:
-        import IPython  # pylint: disable=import-outside-toplevel
+        try:
+            import IPython
 
-        IPython.embed(colors="neutral")
+            IPython.embed(colors="neutral")
+        except ModuleNotFoundError:
+            logger(level).exception("No 'ipython' installed")
+
+    if not args.debug:
+        try:
+            rmtree(molecule.tmpDir)
+        except Exception:
+            logger(level).debug("No tmp folder left to be removed")
+    else:
+        try:
+            if molecule.tmpDir:
+                logger(level).debug(f"Keeping folder '{molecule.tmpDir}' for possible helping debugging")
+        except Exception:
+            logger(level).debug("No tmp folder left to be removed")
 
     try:
-        rmtree(molecule.tmpDir)
-    except Exception:
-        pass
+        copy_log(molecule)
+    except UnboundLocalError:
+        print(f"Log tmp location: {tmpLogFile}")
 
     if acpypeFailed:
         sys.exit(19)
-    try:
-        os.chdir(molecule.rootDir)
-    except Exception:
-        pass
+
+    os.chdir(molecule.rootDir)
 
     if not amb2gmxF and molecule.obabelExe:
         if molecule.checkSmiles():

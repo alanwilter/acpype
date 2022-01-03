@@ -9,6 +9,25 @@ exclude = '''
   | \.mypy_cache
   | \.tox
   | \.venv
+  | __pycache__
+  | _build
+  | buck-out
+  | build
+  | dist
+  | amber.*
+)/
+'''
+
+[tool.flake8] # it does nothing here, still need tox.ini
+max-line-length = 120
+extend-ignore = '''W503,E203,E501'''
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | __pycache__
   | _build
   | buck-out
   | build
@@ -19,7 +38,7 @@ exclude = '''
 
 [tool.poetry]
 name = "acpype"
-version = "2021.12.25"
+version = "2022.1.3"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 authors = ["Alan Silva <alanwilter@gmail.com>"]
 license = "GPL-3.0-or-later"
@@ -37,6 +56,8 @@ classifiers = [
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
 "Wiki" = "https://github.com/alanwilter/acpype/wiki"
+"Docs" = "https://acpype.readthedocs.io"
+"DOI" = "https://doi.org/10.1186/1756-0500-5-367"
 
 [tool.poetry.scripts]
 acpype = "acpype.cli:init_main"
@@ -50,9 +71,12 @@ black = { extras = ["jupyter"], version = "^21.12b0" }
 pytest-cov = "^3.0.0"
 mypy = "^0.920"
 pdbpp = "^0.10.3"
-ipython = "7.10"
 ipdb = "0.13"
 isort = "^5.10.1"
+pytest-random-order = "^1.0.4"
+pyupgrade = "^2.31.0"
+pre-commit = "^2.16.0"
+Sphinx = "^4.3.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
