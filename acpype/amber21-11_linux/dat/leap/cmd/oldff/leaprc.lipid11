@@ -44,4 +44,3 @@ lipid11 = loadamberparams lipid11.dat
 
 #       Load the Lipid 11 master lib file.
 loadoff lipid11.lib
-

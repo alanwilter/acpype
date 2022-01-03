@@ -45,5 +45,3 @@ dyeparams = loadamberparams amberdyes.dat
 # Load the AmberDyes lib files
 #
 loadoff amberdyes.lib
-
-

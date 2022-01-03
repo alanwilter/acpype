@@ -134,4 +134,3 @@ addPdbAtomMap {
   { "O1P" "OP1" }
   { "O2P" "OP2" }
 }
-

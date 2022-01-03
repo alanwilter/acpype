@@ -13,4 +13,3 @@ HO-O2-CO-O2    1       6.0         0.0          1 ! modified from HO-OH-C -O    
 2C-CO-O2-HO   1    0.479         0.0            -3. ! copied from 2C-C -OH-HO in frcmod.ff14s
 2C-CO-O2-HO   1    6.000       180.0            -2. ! copied from 2C-C -OH-HO in frcmod.ff14s and increased barrier
 2C-CO-O2-HO   1    0.448       180.0             1. ! copied from 2C-C -OH-HO in frcmod.ff14sb
-

@@ -72,4 +72,3 @@ HOH = T4D
 WAT = T4D
 loadAmberParams frcmod.tip4pd
 loadAmberParams frcmod.ions_charmm22
-

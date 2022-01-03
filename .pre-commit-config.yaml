@@ -3,11 +3,9 @@ repos:
     rev: v4.1.0
     hooks:
       # - id: trailing-whitespace
-      # - id: end-of-file-fixer
-      # - id: check-yaml
+      - id: end-of-file-fixer
       - id: check-added-large-files
-      # - id: requirements-txt-fixer
-      # - id: double-quote-string-fixer
+      - id: debug-statements
 
   - repo: local
     hooks:

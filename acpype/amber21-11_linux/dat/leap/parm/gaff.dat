@@ -7308,5 +7308,3 @@ Updates to GAFF 1.81, May, 2017:
    added new atom types for n3/n4/n/nh/os/ss in RG3 and RG4
    updated bond length/angle parameters involved by the newly introduced atom types
 ---------------------------------------------------------------------------
-
-

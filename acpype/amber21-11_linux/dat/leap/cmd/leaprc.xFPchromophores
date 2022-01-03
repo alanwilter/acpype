@@ -17,4 +17,3 @@ xFPparams = loadamberparams frcmod.xFPchromophores
 #
 
 loadOff xFPchromophores.lib
-

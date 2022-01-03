@@ -82,4 +82,3 @@ loadAmberParams frcmod.tip3p
 loadAmberParams frcmod.ions1lm_126_tip3p
 loadAmberParams frcmod.ionsjc_tip3p
 loadAmberParams frcmod.ions234lm_126_tip3p
-

@@ -21,4 +21,3 @@ WAT = SPC
 loadAmberParams frcmod.spceb
 loadAmberParams frcmod.ionsjc_spce
 loadAmberParams frcmod.ions234lm_126_spce
-

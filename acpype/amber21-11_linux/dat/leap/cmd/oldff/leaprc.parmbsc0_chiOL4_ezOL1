@@ -23,4 +23,3 @@ addPdbAtomMap {
 loadamberprep dna_nuc94-bsc0_chiOl4-ezOL1.in
 ez = loadamberparams frcmod.parmbsc0_ezOL1
 chi = loadamberparams frcmod.chiOL4
-

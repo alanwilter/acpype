@@ -17,4 +17,3 @@ addAtomTypes {
 #
 loadOff music.lib
 music = loadamberparams music.dat
-
