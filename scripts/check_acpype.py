@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
 import shutil
 from glob import glob
@@ -6,10 +6,10 @@ from glob import glob
 from acpype.topol import ACTopol
 from acpype.utils import _getoutput
 
-usePymol = True
+usePymol = False
 ffType = "amber"  # gaff
 cType = "gas"
-debug = False
+debug = True
 
 water = " -water none"
 
@@ -34,15 +34,15 @@ ambpdbExe = os.path.join(os.path.dirname(acExe), "ambpdb")
 exePymol = "/sw/bin/pymol"
 
 # Binaries for gromacs
-gpath = "/sw/"
+gpath = "/home/awilter/miniconda3/envs/acpype/"
 gmxTopDir = gpath + "share"
-pdb2gmx = gpath + "bin/pdb2gmx"
-grompp = gpath + "bin/grompp"
-mdrun = gpath + "bin/mdrun"
-g_energy = gpath + "bin/g_energy"
-gmxdump = gpath + "bin/gmxdump"
+pdb2gmx = gpath + "bin/gmx pdb2gmx"
+grompp = gpath + "bin/gmx grompp"
+mdrun = gpath + "bin/gmx mdrun"
+g_energy = gpath + "bin/gmx energy"
+gmxdump = gpath + "bin/gmx dump"
 
-amberff = "leaprc.ff99SB"
+amberff = "oldff/leaprc.ff99SB"
 
 genPdbTemplate = """
 source %(amberff)s
@@ -56,6 +56,7 @@ spe_mdp = """
 # Create SPE.mdp file #single point energy
 cat << EOF >| SPE.mdp
 define = -DFLEXIBLE
+cutoff-scheme            = group
 integrator               = md
 nsteps                   = 0
 dt                       = 0.001
@@ -637,13 +638,15 @@ def build_residues_tleap():
         _getoutput(cmd)
         # cmd = "%s -O; %s < restrt > %s.pdb; mv mdinfo %s.mdinfo" % (sanderExe, ambpdbExe, aai3, aai3)
         # -i mdin -o mdout -p prmtop -c inpcrd" % (sanderExe)
-        cmd = "%s -O; %s < restrt > %s.pdb" % (sanderExe, ambpdbExe, aai3)
+        cmd = "%s -O; %s -c restrt > %s.pdb" % (sanderExe, ambpdbExe, aai3)
         _getoutput(cmd)
     _getoutput("rm -f mdout mdinfo mdin restrt tleap.in prmtop inpcrd leap.log")
 
 
 def error(v1, v2):
     """percentage relative error"""
+    if v1 == v2:
+        return 0
     return abs(v1 - v2) / max(abs(v1), abs(v2)) * 100
 
 
@@ -703,8 +706,9 @@ def calcGmxPotEnerDiff(res):
     # print(dictEnerAMB)
 
     # calc Pot Ener for agXXX.acpype/agXXX.pdb (ACPYPE_GMX)
-    template = """%(grompp)s -c ag%(res)s.acpype/ag%(res)s_NEW.pdb -p ag%(res)s.acpype/ag%(res)s_GMX.top -f SPE.mdp
--o ag%(res)s.tpr -pp ag%(res)sp.top
+    template = """
+    %(grompp)s -c ag%(res)s.acpype/ag%(res)s_NEW.pdb -p ag%(res)s.acpype/ag%(res)s_GMX.top -f SPE.mdp \
+    -o ag%(res)s.tpr -pp ag%(res)sp.top
     %(mdrun)s -v -deffnm ag%(res)s
     echo %(tEner)s | %(g_energy)s -f ag%(res)s.edr
     """
