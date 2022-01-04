@@ -1171,9 +1171,26 @@ class AbstractTopol(abc.ABC):
         """
         For a given acFileTop flag, return a list of the data related.
         """
+
+        def proc_line(line):
+            # data need format
+            data = line.rstrip()
+            sdata = [data[i : i + f].strip() for i in range(0, len(data), f)]
+            if "+" and "." in data and flag != "RESIDUE_LABEL":  # it's a float
+                ndata = list(map(float, sdata))
+            elif flag != "RESIDUE_LABEL":
+                try:  # try if it's integer
+                    ndata = list(map(int, sdata))
+                except Exception:
+                    ndata = sdata
+            else:
+                ndata = sdata
+
+            return ndata
+
         block = False
         tFlag = "%FLAG " + flag
-        data = ""
+        ndata = []
 
         if not self.topFileData:
             msg = "PRMTOP file empty?"
@@ -1195,19 +1212,8 @@ class AbstractTopol(abc.ABC):
                             f = int(line.split(c)[1])
                             break
                     continue
-                data += line
-        # data need format
-        data = data.rstrip()
-        sdata = [data[i : i + f].strip() for i in range(0, len(data), f)]
-        if "+" and "." in data and flag != "RESIDUE_LABEL":  # it's a float
-            ndata = list(map(float, sdata))
-        elif flag != "RESIDUE_LABEL":
-            try:  # try if it's integer
-                ndata = list(map(int, sdata))
-            except Exception:
-                ndata = sdata
-        else:
-            ndata = sdata
+                ndata += proc_line(line)
+
         if flag == "AMBER_ATOM_TYPE":
             nn = []
             ll = set()
