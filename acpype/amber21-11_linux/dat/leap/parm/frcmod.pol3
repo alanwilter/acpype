@@ -2,11 +2,11 @@ This is the additional/replacement parameter set for POL3 water
 MASS
 OW    16.0       0.528
 HW     1.008     0.170
- 
+
 BOND
 OW-HW  320.0    1.0000      SPC/E and POL3 water
 HW-HW  553.0    1.6330      SPC/E and POL3 water
- 
+
 ANGLE
 
 DIHE

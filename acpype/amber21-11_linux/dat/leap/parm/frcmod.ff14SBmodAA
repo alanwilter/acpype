@@ -2,18 +2,18 @@ Parameters for Modified Amino acids (Belfon & Simmerling) to be used with leaprc
 MASS
 SX    32.060       # Sulfur in CNX
 MC    12.010       # Carbon double bond sp2 in a ring
-YC    12.010       # Carbon next to a double bond in a ring 
+YC    12.010       # Carbon next to a double bond in a ring
 8C    12.010       # sp3 carbons in ALY
 GC    12.010       # gamma Carbon in CYF
 AC    12.010       $ gamma carbon in AZG
 NR    14.010       # nitrogen in a nitroxide
 RO    16.000       # oxygen in a nitroxide
-SE    78.960       # Selenium 
+SE    78.960       # Selenium
 SC    12.010       # Carbon bonded to Selenium
 CY    12.010       # CN triple bond from parm10
 NY    14.010       # CN triple bond from parm10
-AC    12.010       # gamma Carbon in AZF 
-NG    14.010       # N in 
+AC    12.010       # gamma Carbon in AZF
+NG    14.010       # N in
 NF    14.010       # N in NNN
 
 BOND
@@ -41,7 +41,7 @@ CT-AC    317.000   1.510
 CX-8C    310.000   1.526
 8C-H1    340.000   1.090
 8C-HC    340.000   1.090
-SE-CT    180.500   1.961   # MSE 
+SE-CT    180.500   1.961   # MSE
 SC-SE    180.500   1.961
 2C-SC    310.000   1.526
 SC-H1    340.000   1.090
@@ -132,30 +132,30 @@ SX-CT-MC-YC       1    0.631960       0   -1
 SX-CT-MC-YC       1    0.433585       0   -2
 SX-CT-MC-YC       1    1.123210       0   -3
 SX-CT-MC-YC       1    0.090432     180    4
-SX-CT-MC-MC       1    0.000000       0    2  
-RO-NR-YC-CT       1    0.000000       0    2    
-RO-NR-YC-MC       1    0.000000       0    2    
-NR-YC-MC-MC       1    0.000000       0    2.0    
-CT-YC-MC-MC       1    0.000000       0    2.0    
-CT-YC-NR-YC       1    0.000000       0    2.0    
-YC-MC-MC-YC       1    3.625000     180    2.0    
-CT-MC-MC-YC       1    3.625000     180    2.0    
-YC-MC-MC-HA       1    3.625000     180    2.0    
-CT-MC-MC-HA       1    3.625000     180    2.0    
-SX-SX-CT-HC       1    0.333333       0    3.0    
-C-CT-YC-MC        1    0.155556       0    3.0    
-HC-CT-YC-CT       1    0.155556       0    3.0    
-NR-YC-CT-HC       1    0.155556       0    3.0    
-HC-CT-YC-MC       1    0.155556       0    3.0    
-HC-CT-MC-MC       1    0.000000       0    2.0    
-NR-YC-MC-HA       1    0.000000       0    2.0    
-CT-YC-MC-HA       1    0.000000       0    2.0    
-HC-CT-MC-YC       1    0.000000       0    2.0    
-HC-CT-MC-MC       1    0.000000       0    2.0    
-YC-NR-YC-MC       1    0.000000       0    2.0    
-CT-MC-YC-CT       1    0.000000       0    2.0    
-CT-MC-YC-NR       1    0.000000       0    2.0    
-H1-2C-SX-SX       1    0.333333       0    3.0    
+SX-CT-MC-MC       1    0.000000       0    2
+RO-NR-YC-CT       1    0.000000       0    2
+RO-NR-YC-MC       1    0.000000       0    2
+NR-YC-MC-MC       1    0.000000       0    2.0
+CT-YC-MC-MC       1    0.000000       0    2.0
+CT-YC-NR-YC       1    0.000000       0    2.0
+YC-MC-MC-YC       1    3.625000     180    2.0
+CT-MC-MC-YC       1    3.625000     180    2.0
+YC-MC-MC-HA       1    3.625000     180    2.0
+CT-MC-MC-HA       1    3.625000     180    2.0
+SX-SX-CT-HC       1    0.333333       0    3.0
+C-CT-YC-MC        1    0.155556       0    3.0
+HC-CT-YC-CT       1    0.155556       0    3.0
+NR-YC-CT-HC       1    0.155556       0    3.0
+HC-CT-YC-MC       1    0.155556       0    3.0
+HC-CT-MC-MC       1    0.000000       0    2.0
+NR-YC-MC-HA       1    0.000000       0    2.0
+CT-YC-MC-HA       1    0.000000       0    2.0
+HC-CT-MC-YC       1    0.000000       0    2.0
+HC-CT-MC-MC       1    0.000000       0    2.0
+YC-NR-YC-MC       1    0.000000       0    2.0
+CT-MC-YC-CT       1    0.000000       0    2.0
+CT-MC-YC-NR       1    0.000000       0    2.0
+H1-2C-SX-SX       1    0.333333       0    3.0
 N -CX-CT-GC       1    0.584734     180   -1      #CYF
 N -CX-CT-GC       1    0.306292     180   -2
 N -CX-CT-GC       1    1.274660       0   -3
@@ -168,14 +168,14 @@ CX-CT-GC-CA       1    0.057219       0   -1
 CX-CT-GC-CA       1    0.099991     180   -2
 CX-CT-GC-CA       1    0.188248       0   -3
 CX-CT-GC-CA       1    0.005340       0    4
-H1-CX-CT-GC       1    0.155556       0    3.0    
-GC-CA-CA-HA       1    3.625000     180    2.0    
-CT-GC-CA-CA       1    3.625000     180    2.0    
-HA-CA-GC-CA       1    3.625000     180    2.0    
-CT-GC-CA-HA       1    3.625000     180    2.0    
-CA-CA-GC-CA       1    3.625000     180    2.0    
-HC-CT-GC-CA       1    0.000000       0    2.0    
-CA-CA-CY-NY       1    0.000000       0    0.0    
+H1-CX-CT-GC       1    0.155556       0    3.0
+GC-CA-CA-HA       1    3.625000     180    2.0
+CT-GC-CA-CA       1    3.625000     180    2.0
+HA-CA-GC-CA       1    3.625000     180    2.0
+CT-GC-CA-HA       1    3.625000     180    2.0
+CA-CA-GC-CA       1    3.625000     180    2.0
+HC-CT-GC-CA       1    0.000000       0    2.0
+CA-CA-CY-NY       1    0.000000       0    0.0
 N -CX-CT-AC       1    0.627314     180   -1   #AZF
 N -CX-CT-AC       1    0.311707     180   -2
 N -CX-CT-AC       1    1.270850       0   -3
@@ -188,11 +188,11 @@ CX-CT-AC-CA       1    0.285698     180   -1
 CX-CT-AC-CA       1    0.101392     180   -2
 CX-CT-AC-CA       1    0.587261       0   -3
 CX-CT-AC-CA       1    0.021653       0    4
-CA-CA-CA-NG       1    3.625000    180     2.0    
-CA-CA-NG-NF       1    0.000000    180     3.0    
-CA-NG-NF-NF       1    0.000000    180     2.0    
-CA-CA-AC-CA       1    3.625000    180     2.0    
-CA-CA-CA-CA       1    3.625000    180     2.0    
+CA-CA-CA-NG       1    3.625000    180     2.0
+CA-CA-NG-NF       1    0.000000    180     3.0
+CA-NG-NF-NF       1    0.000000    180     2.0
+CA-CA-AC-CA       1    3.625000    180     2.0
+CA-CA-CA-CA       1    3.625000    180     2.0
 N -CX-8C-8C       1    0.241425     180   -1   #ALY
 N -CX-8C-8C       1    0.251216     180   -2
 N -CX-8C-8C       1    0.574050       0   -3
@@ -217,31 +217,31 @@ CX-8C-8C-8C       1    0.061567       0    4
 8C-8C-N -C        1    0.436589       0   -2
 8C-8C-N -C        1    0.061705       0   -3
 8C-8C-N -C        1    0.014692     180    4
-C -N -CX-8C       1    2.000000       0   -1.0    
-C -N -CX-8C       1    1.800000       0   -2.0    
-C -N -CX-8C       1    0.800000       0   -3.0    
-C -N -CX-8C       1    0.000000       0    4.0    
-8C-N -C -O        1    2.500000       0    2.0    
-8C-N -C -CT       1    2.500000       0    2.0    
-8C-CX-C -O        1    0.000000       0    2.0    
-8C-CX-C -N        1    0.200000       0   -1.0    
-8C-CX-C -N        1    0.200000       0   -2.0    
-8C-CX-C -N        1    0.400000       0   -3.0    
-8C-CX-C -N        1    0.000000       0    4.0    
-H1-8C-N -H        1    0.000000       0    2.0    
-H1-8C-N -C        1    0.000000       0    2.0    
-HC-8C-8C-H1       1    0.155556       0    3.0    
-HC-8C-8C-N        1    0.155556       0    3.0    
-H1-CX-8C-8C       1    0.155556       0    3.0    
-8C-8C-8C-H1       1    0.155556       0    3.0    
-HC-8C-8C-HC       1    0.150000       0    3.0    
-HC-8C-8C-8C       1    0.160000       0    3.0    
-CX-8C-8C-HC       1    0.160000       0    3.0    
-H -N -CX-8C       1    0.000000       0    2.0    
-N -CX-8C-HC       1    0.155556       0    3.0    
+C -N -CX-8C       1    2.000000       0   -1.0
+C -N -CX-8C       1    1.800000       0   -2.0
+C -N -CX-8C       1    0.800000       0   -3.0
+C -N -CX-8C       1    0.000000       0    4.0
+8C-N -C -O        1    2.500000       0    2.0
+8C-N -C -CT       1    2.500000       0    2.0
+8C-CX-C -O        1    0.000000       0    2.0
+8C-CX-C -N        1    0.200000       0   -1.0
+8C-CX-C -N        1    0.200000       0   -2.0
+8C-CX-C -N        1    0.400000       0   -3.0
+8C-CX-C -N        1    0.000000       0    4.0
+H1-8C-N -H        1    0.000000       0    2.0
+H1-8C-N -C        1    0.000000       0    2.0
+HC-8C-8C-H1       1    0.155556       0    3.0
+HC-8C-8C-N        1    0.155556       0    3.0
+H1-CX-8C-8C       1    0.155556       0    3.0
+8C-8C-8C-H1       1    0.155556       0    3.0
+HC-8C-8C-HC       1    0.150000       0    3.0
+HC-8C-8C-8C       1    0.160000       0    3.0
+CX-8C-8C-HC       1    0.160000       0    3.0
+H -N -CX-8C       1    0.000000       0    2.0
+N -CX-8C-HC       1    0.155556       0    3.0
 8C-8C-N -H        1    0.000000       0    2.0
-HC-8C-CX-C        1    0.155556       0    3.0    
-H1-8C-CX-C        1    0.155556       0    3.0    
+HC-8C-CX-C        1    0.155556       0    3.0
+H1-8C-CX-C        1    0.155556       0    3.0
 H1-CX-8C-HC       1    0.155556       0    3.0
 N -CX-2C-SC       1    0.169508       0   -1      #MSE
 N -CX-2C-SC       1    0.248408     180   -2
@@ -261,7 +261,7 @@ CX-2C-SC-SE       1    0.087035       0    4
 2C-SC-SE-CT       1    0.038904     180    4
 H1-SC-SE-CT       1    0.333000       0    3.0
 SC-SE-CT-H1       1    0.333000       0    3.
-HC-2C-SC-H1       1    0.156000       0    3.0    
+HC-2C-SC-H1       1    0.156000       0    3.0
 HC-2C-SC-SE       1    0.156000       0    3.0
 H1-CX-2C-SC       1    0.155556       0    3.0
 CX-2C-SC-H1       1    0.156000       0    3.0

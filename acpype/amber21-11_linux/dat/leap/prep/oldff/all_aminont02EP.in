@@ -1,10 +1,10 @@
-    1    1  200                                               
-db2000_lp035_EP.dat                                                      
-ALANINE                                                       
-                                                              
- ALA  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+    1    1  200
+db2000_lp035_EP.dat
+ALANINE
+
+ ALA  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -28,15 +28,15 @@ CHARGE cc-pvtz esp iterated
    .0530  -.0159   .0271   .0271   .0271
    .6024  -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-GLYCINE                                                       
-                                                              
- GLY  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+GLYCINE
+
+ GLY  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -51,21 +51,21 @@ GLYCINE
   12  O     O     B   11   8   4     1.229   120.500     0.000
   13  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   14  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.0583
    .0814   .0814   .6024  -.2823  -.1294
   -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-SERINE                                                        
-                                                              
- SER  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+SERINE
+
+ SER  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -86,22 +86,22 @@ SERINE
   18  O     O     B   15   8   4     1.229   120.500     0.000
   19  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   20  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .0409
    .0416   .0803   .0525   .0525  -.2491
   -.1213  -.1213   .3284   .6024  -.2823
-  -.1294  -.1294 
+  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-THREONINE                                                     
-                                                              
- THR  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+THREONINE
+
+ THR  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -132,15 +132,15 @@ CHARGE cc-pvtz esp iterated
    .0606   .0606  -.1846  -.1716  -.1716
    .3620   .6024  -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-LEUCINE                                                       
-                                                              
- LEU  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+LEUCINE
+
+ LEU  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -167,23 +167,23 @@ LEUCINE
   24  O     O     B   23   8   4     1.229   120.500     0.000
   25  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   26  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.0382
    .0589  -.1650   .0540   .0540   .4083
   -.0521  -.3960   .0961   .0961   .0961
   -.3960   .0961   .0961   .0961   .6024
-  -.2823  -.1294  -.1294 
+  -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-ISOLEUCINE                                                    
-                                                              
- ILE  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+ISOLEUCINE
+
+ ILE  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -210,7 +210,7 @@ ISOLEUCINE
   24  O     O     B   23   8   4     1.229   120.500     0.000
   25  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   26  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.0817
    .0901   .0955   .0226  -.2711   .0734
@@ -218,15 +218,15 @@ CHARGE cc-pvtz esp iterated
   -.0776   .0261   .0261   .0261   .6024
   -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-VALINE                                                        
-                                                              
- VAL  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+VALINE
+
+ VAL  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -250,22 +250,22 @@ VALINE
   21  O     O     B   20   8   4     1.229   120.500     0.000
   22  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   23  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.0531
    .0412   .3320  -.0050  -.3312   .0753
    .0753   .0753  -.3312   .0753   .0753
    .0753   .6024  -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-ASPARAGINE                                                    
-                                                              
- ASN  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+ASPARAGINE
+
+ ASN  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -289,24 +289,24 @@ ASPARAGINE
   21  O     O     B   18   8   4     1.229   120.500     0.000
   22  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   23  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .0110
    .0805  -.1309   .1003   .1003   .3371
   -.0194  -.2138  -.2138  -.6340   .3436
    .3436   .6024  -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
- CB   ND2  CG   OD1                                           
- CG   HD21 ND2  HD22                                          
-                                                              
-DONE                                                          
-GLUTAMINE                                                     
-                                                              
- GLN  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+ CB   ND2  CG   OD1
+ CG   HD21 ND2  HD22
+
+DONE
+GLUTAMINE
+
+ GLN  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -333,25 +333,25 @@ GLUTAMINE
   24  O     O     B   21   8   4     1.229   120.500     0.000
   25  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   26  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.1026
    .0869   .1182   .0301   .0301  -.3174
    .1447   .1447   .4858  -.0504  -.2277
   -.2277  -.6874   .3386   .3386   .6024
-  -.2823  -.1294  -.1294 
+  -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
- CG   NE2  CD   OE1                                           
- CD   HE21 NE2  HE22                                          
-                                                              
-DONE                                                          
-ARGININE                                                      
-                                                              
- ARG  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+ CG   NE2  CD   OE1
+ CD   HE21 NE2  HE22
+
+DONE
+ARGININE
+
+ ARG  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -383,7 +383,7 @@ ARGININE
   29  O     O     B   28   8   4     1.229   120.500     0.000
   30  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   31  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.1728
    .1195   .3520  -.0351  -.0351  -.0786
@@ -392,19 +392,19 @@ CHARGE cc-pvtz esp iterated
    .4264  -.8585   .4264   .4264   .6024
   -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
- NE   NH1  CZ   NH2                                           
- CD   CZ   NE   HE                                            
- CZ   HH11 NH1  HH12                                          
- CZ   HH21 NH2  HH22                                          
-                                                              
-DONE                                                          
-HISTIDINE DELTAH                                              
-                                                              
- HID  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+ NE   NH1  CZ   NH2
+ CD   CZ   NE   HE
+ CZ   HH11 NH1  HH12
+ CZ   HH21 NH2  HH22
+
+DONE
+HISTIDINE DELTAH
+
+ HID  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -438,22 +438,22 @@ CHARGE cc-pvtz esp iterated
   -.4288  -.1671   .1565   .6024  -.2823
   -.1294  -.1294
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- CA   +M   C    O                                             
- CG   CE1  ND1  HD1                                           
- CG   NE2  CD2  HD2                                           
- ND1  NE2  CE1  HE1                                           
- ND1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-HISTIDINE EPSILONH                                            
-                                                              
- HIE  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CG   CE1  ND1  HD1
+ CG   NE2  CD2  HD2
+ ND1  NE2  CE1  HE1
+ ND1  CD2  CG   CB
+
+DONE
+HISTIDINE EPSILONH
+
+ HIE  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -479,7 +479,7 @@ HISTIDINE EPSILONH
   23  O     O     B   21   8   4     1.229   120.500     0.000
   24  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   25  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .0382
    .0387   .0535   .0477   .0477  -.0393
@@ -487,22 +487,22 @@ CHARGE cc-pvtz esp iterated
    .3147  -.2131   .1824   .6024  -.2823
   -.1294  -.1294
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- CA   +M   C    O                                             
- CE1  CD2  NE2  HE2                                           
- CG   NE2  CD2  HD2                                           
- ND1  NE2  CE1  HE1                                           
- ND1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-HISTIDINE PLUS                                                
-                                                              
- HIP  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CE1  CD2  NE2  HE2
+ CG   NE2  CD2  HD2
+ ND1  NE2  CE1  HE1
+ ND1  CD2  CG   CB
+
+DONE
+HISTIDINE PLUS
+
+ HIP  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -528,7 +528,7 @@ HISTIDINE PLUS
   23  O     O     B   22   8   4     1.229   120.500     0.000
   24  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   25  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .1933
   -.0198   .0011   .0629   .0629   .0431
@@ -536,23 +536,23 @@ CHARGE cc-pvtz esp iterated
    .3173  -.1102   .1743   .6024  -.2823
   -.1294  -.1294
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- CA   +M   C    O                                             
- CG   CE1  ND1  HD1                                           
- CE1  CD2  NE2  HE2                                           
- CG   NE2  CD2  HD2                                           
- ND1  NE2  CE1  HE1                                           
- ND1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-TRYPTOPHAN                                                    
-                                                              
- TRP  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CG   CE1  ND1  HD1
+ CE1  CD2  NE2  HE2
+ CG   NE2  CD2  HD2
+ ND1  NE2  CE1  HE1
+ ND1  CD2  CG   CB
+
+DONE
+TRYPTOPHAN
+
+ TRP  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -584,35 +584,35 @@ TRYPTOPHAN
   29  O     O     B   28   8   4     1.229   120.500     0.000
   30  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   31  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .0007
    .0634  -.0399   .0404   .0404  -.0931
   -.0588   .1439  -.3884   .3461   .1996
   -.2363   .1399  -.1114   .1075  -.1410
    .1077  -.2306   .1607   .0537   .6024
-  -.2823  -.1294  -.1294 
+  -.2823  -.1294  -.1294
 
-LOOP                                                          
- CG   CD2                                                     
- CE2  CD2                                                     
-                                                              
-IMPROPER                                                      
- CA   +M   C    O                                             
- CD1  CE2  NE1  HE1                                           
- CE2  CH2  CZ2  HZ2                                           
- CZ2  CZ3  CH2  HH2                                           
- CH2  CE3  CZ3  HZ3                                           
- CZ3  CD2  CE3  HE3                                           
- CG   NE1  CD1  HD1                                           
- CD1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-PHENYLALANINE                                                 
-                                                              
- PHE  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+ CE2  CD2
+
+IMPROPER
+ CA   +M   C    O
+ CD1  CE2  NE1  HE1
+ CE2  CH2  CZ2  HZ2
+ CZ2  CZ3  CH2  HH2
+ CH2  CE3  CZ3  HZ3
+ CZ3  CD2  CE3  HE3
+ CG   NE1  CD1  HD1
+ CD1  CD2  CG   CB
+
+DONE
+PHENYLALANINE
+
+ PHE  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -640,7 +640,7 @@ PHENYLALANINE
   25  O     O     B   24   8   4     1.229   120.500     0.000
   26  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   27  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .0270
    .0399  -.0386   .0386   .0386   .0309
@@ -648,24 +648,24 @@ CHARGE cc-pvtz esp iterated
    .0975  -.1451   .1132  -.1183   .1209
    .6024  -.2823  -.1294  -.1294
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- CA   +M   C    O                                             
- CG   CE2  CD2  HD2                                           
- CD2  CZ   CE2  HE2                                           
- CE1  CE2  CZ   HZ                                            
- CD1  CZ   CE1  HE1                                           
- CG   CE1  CD1  HD1                                           
- CD1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-TYROSINE                                                      
-                                                              
- TYR  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CG   CE2  CD2  HD2
+ CD2  CZ   CE2  HE2
+ CE1  CE2  CZ   HZ
+ CD1  CZ   CE1  HE1
+ CG   CE1  CD1  HD1
+ CD1  CD2  CG   CB
+
+DONE
+TYROSINE
+
+ TYR  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -694,7 +694,7 @@ TYROSINE
   28  O     O     B   25   8   4     1.229   120.500     0.000
   29  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   30  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.0505
    .0874   .0118   .0397   .0397  -.0195
@@ -702,25 +702,25 @@ CHARGE cc-pvtz esp iterated
   -.4768   .3579  -.1755   .1323  -.1576
    .1313   .6024  -.2823  -.1294  -.1294
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- CA   +M   C    O                                             
- CG   CE2  CD2  HD2                                           
- CD2  CZ   CE2  HE2                                           
- CD1  CZ   CE1  HE1                                           
- CG   CE1  CD1  HD1                                           
- CD1  CD2  CG   CB                                            
- CE1  CE2  CZ   OH                                            
-                                                              
-                                                              
-DONE                                                          
-GLUTAMIC ACID                                                 
-                                                              
- GLU  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CG   CE2  CD2  HD2
+ CD2  CZ   CE2  HE2
+ CD1  CZ   CE1  HE1
+ CG   CE1  CD1  HD1
+ CD1  CD2  CG   CB
+ CE1  CE2  CZ   OH
+
+
+DONE
+GLUTAMIC ACID
+
+ GLU  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -743,23 +743,23 @@ GLUTAMIC ACID
   20  O     O     B   19   8   4     1.229   120.500     0.000
   21  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   22  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.2018
    .0985   .2011  -.0512  -.0512  -.1305
    .0215   .0215   .6896  -.7465  -.7465
    .6024  -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
- CG   OE1  CD   OE2                                           
-                                                              
-DONE                                                          
-ASPARTIC ACID                                                 
-                                                              
- ASP  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+ CG   OE1  CD   OE2
+
+DONE
+ASPARTIC ACID
+
+ ASP  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -779,23 +779,23 @@ ASPARTIC ACID
   17  O     O     B   16   8   4     1.229   120.500     0.000
   18  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   19  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.1226
    .0642  -.0575  -.0181  -.0181   .7766
   -.7600  -.7600   .6024  -.2823  -.1294
   -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
- CB   OD1  CG   OD2                                           
-                                                              
-DONE                                                          
-LYSINE                                                        
-                                                              
- LYS  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+ CB   OD1  CG   OD2
+
+DONE
+LYSINE
+
+ LYS  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -825,7 +825,7 @@ LYSINE
   27  O     O     B   26   8   4     1.229   120.500     0.000
   28  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   29  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .0294
    .0405  -.0828   .0481   .0481  -.0442
@@ -834,15 +834,15 @@ CHARGE cc-pvtz esp iterated
    .2814   .2814   .6024  -.2823  -.1294
   -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-PROLINE                                                       
-                                                              
- PRO  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+PROLINE
+
+ PRO  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -864,25 +864,25 @@ PROLINE
   19  O     O     B   18  16   4     1.229   120.500     0.000
   20  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   21  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .0457   .2193   .2193   .0500   .0642
    .0642   .0549   .0186   .0186  -.0699
    .0466   .0466   .1959  -.0353   .6024
   -.2823  -.1294  -.1294
 
-LOOP                                                          
- CB   CA                                                      
-                                                              
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-CYSTEINE                                                      
-                                                              
- CYS  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CB   CA
+
+IMPROPER
+ CA   +M   C    O
+
+DONE
+CYSTEINE
+
+ CYS  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -903,22 +903,22 @@ CYSTEINE
   18  O     O     B   15   8   4     1.229   120.500     0.000
   19  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   20  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .1356
    .0317  -.1079   .0752   .0752   .3889
   -.3292  -.3292   .1642   .6024  -.2823
   -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-CYSTINE(S-S BRIDGE)                                           
-                                                              
- CYX  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+CYSTINE(S-S BRIDGE)
+
+ CYX  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -938,22 +938,22 @@ CYSTINE(S-S BRIDGE)
   17  O     O     B   14   8   4     1.229   120.500     0.000
   18  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   19  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874   .0705
    .0583  -.1360   .0962   .0962   .0879
   -.0843  -.0843   .6024  -.2823  -.1294
   -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-METHIONINE                                                    
-                                                              
- MET  INT     1                                               
- CORR NOMI DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ CA   +M   C    O
+
+DONE
+METHIONINE
+
+ MET  INT     1
+ CORR NOMI DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -980,7 +980,7 @@ METHIONINE
   24  O     O     B   21   8   4     1.229   120.500     0.000
   25  EP+1  EP    E   12   6   4     0.350   120.000     0.000
   26  EP-1  EP    E   12   6   4     0.350   120.000   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
    .2720   .1874   .1874   .1874  -.0047
    .0538   .0132   .0296   .0296   .0087
@@ -988,8 +988,8 @@ CHARGE cc-pvtz esp iterated
   -.0062   .0497   .0497   .0497   .6024
   -.2823  -.1294  -.1294
 
-IMPROPER                                                      
- CA   +M   C    O                                             
-                                                              
-DONE                                                          
-STOP                                                          
+IMPROPER
+ CA   +M   C    O
+
+DONE
+STOP

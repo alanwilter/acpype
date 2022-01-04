@@ -1,7 +1,7 @@
 logFile leap.log
 #
 # ----- leaprc for loading the Weiner et al. united atoms
-#       assumes that any unspecified nucleic acids are RNA 
+#       assumes that any unspecified nucleic acids are RNA
 #
 #	load atom type hybridizations
 #

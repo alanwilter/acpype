@@ -92,7 +92,7 @@ mods = loadamberparams frcmod.ff99SBildn
 #
 loadOff all_nucleic94.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries (i.e. ff94 libs)
 #
 loadOff all_amino94ildn.lib
@@ -100,7 +100,7 @@ loadOff all_aminoct94ildn.lib
 loadOff all_aminont94ildn.lib
 #
 #       Load water and ions
-# 
+#
 loadOff ions94.lib
 loadOff solvents.lib
 HOH = TP3
@@ -142,9 +142,9 @@ addPdbResMap {
   { 0 "A" "RA5"  } { 1 "A" "RA3"  } { "A" "RA" } { "AN" "RAN" }
   { 0 "C" "RC5"  } { 1 "C" "RC3"  } { "C" "RC" } { "CN" "RCN" }
   { 0 "U" "RU5"  } { 1 "U" "RU3"  } { "U" "RU" } { "UN" "RUN" }
-  { 0 "DG" "DG5"  } { 1 "DG" "DG3"  }  
-  { 0 "DA" "DA5"  } { 1 "DA" "DA3"  }  
-  { 0 "DC" "DC5"  } { 1 "DC" "DC3"  }  
+  { 0 "DG" "DG5"  } { 1 "DG" "DG3"  }
+  { 0 "DA" "DA5"  } { 1 "DA" "DA3"  }
+  { 0 "DC" "DC5"  } { 1 "DC" "DC3"  }
   { 0 "DT" "DT5"  } { 1 "DT" "DT3"  }
 
 }

@@ -63,7 +63,7 @@ TYP AN AT   CHARGE     SIGMA    EPSILON
  57 06 C2    0.070     3.905     0.118
  58 06 C     0.550     3.750     0.105     C  in COOR ester
  59 08 O    -0.450     2.960     0.210     O= in COOR ester
- 60 06 CH    0.250     3.800     0.080 
+ 60 06 CH    0.250     3.800     0.080
  61 06 C2    0.250     3.800     0.118
  62 08 OS   -0.400     3.000     0.170     O- in COOR ester
  63 06 C3    0.250     3.800     0.170     CH3 in COOCH3
@@ -120,7 +120,7 @@ TYP AN AT   CHARGE     SIGMA    EPSILON
 114 01 HW    0.520     0.0       0.0       H TIP4P Water      "
 115 00 ??   -1.040     0.0       0.0       M TIP4P Water      "
 116 08 OW   -0.820     3.16557   0.1554    O  SPC  Water
-117 01 HW    0.410     0.0       0.0       H  SPC  Water       
+117 01 HW    0.410     0.0       0.0       H  SPC  Water
 118 06 C2    0.500     3.800     0.118     CH2 Methylenechloride  WLJ
 119 17 ??   -0.250     3.400     0.300     Cl  Methylenechloride  WLJ
 120 06 CH    0.420     3.800     0.080     CH  Chloroform JPC,94,1683 (1990)
@@ -130,10 +130,10 @@ TYP AN AT   CHARGE     SIGMA    EPSILON
 124 09 F-   -1.0       2.73295   0.72000   F-  JACS 106, 903 (1984)
 125 17 ??   -1.0       4.41724   0.11779   Cl- JACS 106, 903 (1984)
 126 35 ??   -1.0       4.62376   0.09000   Br- JACS 107, 7793(1985)
-127 53 I-   -1.0       0.0       0.0       I-    
+127 53 I-   -1.0       0.0       0.0       I-
 128 03 Li    1.0       1.25992   6.25000   Li+ JACS 106, 903 (1984)
 129 11 Na    1.0       1.89744   1.60714   Na+ JACS 106, 903 (1984)
-130 19 K+    1.0       0.0       0.0       K+ 
+130 19 K+    1.0       0.0       0.0       K+
 131 37 Rb    1.0       0.0       0.0       Rb+
 132 07 NA   -0.570     3.25      0.17      N     Pyrrole (sat. arom. N)
 133 01 H     0.420     0.0       0.0       H(N)  Pyrrole (H on arom. N)
@@ -143,12 +143,12 @@ TYP AN AT   CHARGE     SIGMA    EPSILON
 137 06 CP    0.410     3.75      0.145     C2H   Imidazole
 138 06 CF    0.100     3.75      0.145     C4H   Imidazole  All atom - see 227.
 139 06 CG    0.130     3.75      0.145     C5H   Imidazole
-140 06 CD    0.230     3.75      0.110     C2H   Pyridine   132-145 are 
+140 06 CD    0.230     3.75      0.110     C2H   Pyridine   132-145 are
 141 06 CD   -0.030     3.75      0.110     C3H   Pyridine   united atom
 142 06 CD    0.090     3.75      0.110     C4H   Pyridine  JPC,94,1683 (1990)
 143 06 CD    0.245     3.75      0.110     CH    Pyrazine & C4H Pyrimidine
 144 06 CI    0.410     3.75      0.110     C2H   Pyrimidine
-145 06 CJ    0.080     3.75      0.110     C5H   Pyrimidine 
+145 06 CJ    0.080     3.75      0.110     C5H   Pyrimidine
 146 06 CT    0.080     3.800     0.050     Cc in CCOOH (quaternary C)
 147 06 C     0.550     3.750     0.105     Co in CCOOH
 148 08 OH   -0.580     3.000     0.170     Oh in CCOOH   carboxylic
@@ -242,7 +242,7 @@ TYP AN AT   CHARGE     SIGMA    EPSILON
 236 06 CT   -0.01      3.50      0.08      1-Me Cytosine C-N1
 237 01 HC    0.13      2.50      0.05      1-Me Cytosine H-CN1
 238 07 NA   -0.64      3.25      0.17      CytH+ N1 Use AT = N* for nucleoside.
-239 06 C     0.65      3.75      0.105     CytH+ C2      
+239 06 C     0.65      3.75      0.105     CytH+ C2
 240 07 NA   -0.74      3.25      0.17      CytH+ N3    Protonated cytosine.
 241 06 CA    0.66      3.50      0.08      CytH+ C4
 242 06 CM   -0.06      3.50      0.08      CytH+ C5
@@ -258,9 +258,9 @@ TYP AN AT   CHARGE     SIGMA    EPSILON
 252 06 CT    0.01      3.50      0.08      1-Me CytH+ C-N1
 253 01 HC    0.16      2.50      0.05      1-Me CytH+ H-CN1
 254 15 P     0.780     3.740     0.200     P    dimethylphosphate anion
-255 08 O2   -0.660     2.960     0.210     O(=)          "  
-256 08 OS   -0.430     3.000     0.170     O(-)          "  
-257 06 C3    0.200     3.800     0.170     CH3           "  
+255 08 O2   -0.660     2.960     0.210     O(=)          "
+256 08 OS   -0.430     3.000     0.170     O(-)          "
+257 06 C3    0.200     3.800     0.170     CH3           "
 258 06 CT    0.50      3.800     0.050     C1' adenosine and guanosine
 259 06 CT    0.56      3.800     0.050     C1' uridine   and thymidine
 260 06 CT    0.53      3.800     0.050     C1' cytidine
@@ -317,8 +317,8 @@ TYP AN AT   CHARGE     SIGMA    EPSILON
 311 06 C     0.292     3.750     0.105     C(=O)  methyl vinyl ketone
 312 08 O    -0.422     2.960     0.210     O      mvk  Unpub. - give good
 313 06 C3    0.060     3.910     0.160     CH3    mvk  Hvap, d for liq.
-314 06 ??    0.000     3.800     0.115     CH=    mvk & acrolein  
-315 06 ??    0.070     3.850     0.140     CH2=   mvk 
+314 06 ??    0.000     3.800     0.115     CH=    mvk & acrolein
+315 06 ??    0.070     3.850     0.140     CH2=   mvk
 316 06 C     0.281     3.750     0.105     C(=O)  acrolein
 317 08 O    -0.391     2.960     0.210     O      acrolein
 318 01 HC    0.040     1.300     0.030     H(C=O) acrolein
@@ -365,7 +365,7 @@ Type    V0        V1    f   V2    f   V3    f      Description
 033
 034
 035
-036  
+036
 037   0.0       2.042    -1.207     3.223      O-C-C-O        Ethers        MM2
 038   0.0       0.0       2.200     0.0        C=C-O-C      Anisole JPC 4483(90)
 039   0.0       0.0       2.200     0.0        C=C-O-C        Ph-O-CH2CH3  "

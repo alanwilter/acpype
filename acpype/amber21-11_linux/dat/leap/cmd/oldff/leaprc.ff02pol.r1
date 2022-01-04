@@ -1,7 +1,7 @@
 logFile leap.log
 #
 # ----- leaprc for loading the 2002 pol. force field, no lone pairs
-#       assumes that any unspecified nucleic acids are DNA 
+#       assumes that any unspecified nucleic acids are DNA
 #
 # ----- leaprc for loading the modified mainchain torsion parameters
 #       as described in
@@ -95,7 +95,7 @@ parmpol= loadamberparams frcmod.ff02pol.r1
 #
 loadOff all_nucleic02.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_amino02.r1.lib

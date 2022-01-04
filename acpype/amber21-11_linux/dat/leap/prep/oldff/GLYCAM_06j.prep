@@ -49202,8 +49202,8 @@ DONE
 
 
 0AE INT 0
-CORRECT OMIT DU BEG  
-0.1940  
+CORRECT OMIT DU BEG
+0.1940
  1 DUMM DU   M  0 -1 -2  0.000     0.0       0.0     0.0000
  2 DUMM DU   M  1  0 -1  1.000     0.0       0.0     0.0000
  3 DUMM DU   M  2  1  0  1.000     0.0       0.0     0.0000
@@ -49265,10 +49265,10 @@ O5 C1
 
 DONE
 4-[ALPHA-D-ABEQUOSE] terminal, RESP 0.010 HF/6-31G*//HF/6-31G*
-4AE.dat 
+4AE.dat
 4AE INT 0
 CORRECT OMIT DU BEG
-0.0000  
+0.0000
  1 DUMM DU   M  0 -1 -2  0.000     0.0       0.0     0.0000
  2 DUMM DU   M  1  0 -1  1.000     0.0       0.0     0.0000
  3 DUMM DU   M  2  1  0  1.000     0.0       0.0     0.0000
@@ -49328,9 +49328,9 @@ O5 C1
 
 DONE
 0-[BETA-D-ABEQUOSE] terminal, RESP 0.010 HF/6-31G*//HF/6-31G*
-0AF.dat 
+0AF.dat
 0AF INT 0
-CORRECT OMIT DU BEG  
+CORRECT OMIT DU BEG
 0.1940
  1 DUMM DU   M  0 -1 -2  0.000     0.0       0.0     0.0000
  2 DUMM DU   M  1  0 -1  1.522     0.0       0.0     0.0000
@@ -49361,9 +49361,9 @@ C2 C1
 
 DONE
 2-[BETA-D-ABEQUOSE] terminal, RESP 0.010 HF/6-31G*//HF/6-31G*
-2AF.dat 
+2AF.dat
 2AF INT 0
-CORRECT OMIT DU BEG  
+CORRECT OMIT DU BEG
 0.0000
  1 DUMM DU   M  0 -1 -2  0.000     0.0       0.0     0.0000
  2 DUMM DU   M  1  0 -1  1.522     0.0       0.0     0.0000
@@ -49393,9 +49393,9 @@ C2 C1
 
 DONE
 4-[BETA-D-ABEQUOSE] terminal, RESP 0.010 HF/6-31G*//HF/6-31G*
-4AF.dat 
+4AF.dat
 4AF INT 0
-CORRECT OMIT DU BEG  
+CORRECT OMIT DU BEG
 0.0000
  1 DUMM DU   M  0 -1 -2  0.000     0.0       0.0     0.0000
  2 DUMM DU   M  1  0 -1  1.522     0.0       0.0     0.0000
@@ -49425,9 +49425,9 @@ C2 C1
 
 DONE
 2,4-[BETA-D-ABEQUOSE] terminal, RESP 0.010 HF/6-31G*//HF/6-31G*
-YAF.dat 
+YAF.dat
 YAF INT 0
-CORRECT OMIT DU BEG  
+CORRECT OMIT DU BEG
 -0.194
  1 DUMM DU   M  0 -1 -2  0.000     0.0       0.0     0.0000
  2 DUMM DU   M  1  0 -1  1.522     0.0       0.0     0.0000

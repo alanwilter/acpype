@@ -1,5 +1,5 @@
 !!index array str
- "AS2"      
+ "AS2"
  "GL2"
 !entry.AS2.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
  "N" "N" 0 1 131072 1 7 -0.415700
@@ -15,7 +15,7 @@
  "HD2" "HO" 0 1 131072 11 1 0.474700
  "C" "C" 0 1 131072 12 6 0.597300
  "O" "O" 0 1 131072 13 8 -0.567900
- "HD1" "HO" 0 1 131072 14 1 0.0 
+ "HD1" "HO" 0 1 131072 14 1 0.0
 !entry.AS2.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
  "N" "N" 0 -1 0.0
  "H" "H" 0 -1 0.0

@@ -1,6 +1,6 @@
 AMBER Lipid14 Force Field, C. Dickson, B. Madej, A.Skjevik, K. Teigen, I.R. Gould, R.C. Walker*
 cA 12.01                             sp3 carbon (GAFF c3-head,glycerol)
-cB 12.01                             aliphatic sp2 carbon (GAFF c2-tail)  
+cB 12.01                             aliphatic sp2 carbon (GAFF c2-tail)
 cC 12.01                             carbonyl sp2 carbon (GAFF c -head,glycerol)
 cD 12.010                            sp3 carbon (GAFFlipid a3-tail)
 hA 1.008                             H bonded to aliphatic carbon without electrwd. group (GAFF hc-)
@@ -60,7 +60,7 @@ cA-cD-hL   46.370     110.050   Lipid14  v2.14(GAFF c3-c3-hc)
 cA-nA-cA   62.840     110.640   Lipid11  v1.0 (GAFF c3-n4-c3)
 cA-nA-hN   46.190     110.110   Lipid11  v1.0 (GAFF c3-n4-hn)
 cA-oH-hO   47.090     108.160   Lipid11  v1.0 (GAFF c3-oh-ho)
-cA-oS-cC   63.630     115.140   Lipid11  v1.0 (GAFF c3-os-c ) 
+cA-oS-cC   63.630     115.140   Lipid11  v1.0 (GAFF c3-os-c )
 cA-oT-pA   78.480     118.000   Lipid11  v1.0 (GAFF c3-os-p5)
 cB-cA-hA   47.030     110.490   Lipid11  v1.0 (GAFF c2-c3-hc)
 cB-cB-cD   64.330     123.420   Lipid14  v2.0 (GAFF c2-c2-c3)
@@ -100,7 +100,7 @@ cA-cA-cA-cD   1   -0.2199        0.000          -4.000     SCEE=1.2 SCNB=2.0 Lip
 cA-cA-cA-cD   1    0.2170        0.000           5.000     SCEE=1.2 SCNB=2.0 Lipid14 v2.14(Lipid14 cD-cD-cD-cD)
 cA-cA-cA-hA   1    0.16          0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid11 v1.0 (GAFF c3-c3-c3-hc)
 cA-cA-cA-hE   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid11 v1.0 (GAFF X -c3-c3-X )
-cA-cA-cA-oH   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid11 v1.0 (GAFF X -c3-c3-X )    
+cA-cA-cA-oH   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid11 v1.0 (GAFF X -c3-c3-X )
 cA-cA-cA-oS   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid11 v1.0 (GAFF X -c3-c3-X )
 cA-cA-cA-oT   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid11 v1.0 (GAFF X -c3-c3-X )
 cA-cA-cB-cA   1    0.000         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid11 v1.0 (GAFF X -c3-c2-X )
@@ -238,7 +238,7 @@ MOD4      RE
   oP          1.6500  0.1400             Lipid14 v2.10
   oS          1.6500  0.1200             Lipid14 v2.10
   oT          1.6500  0.1200             Lipid14 v2.10
-  pA          2.1000  0.2000             JCC,7,(1986),230; 
+  pA          2.1000  0.2000             JCC,7,(1986),230;
 
 END
 
@@ -247,7 +247,7 @@ END
 
 *** AMBER Lipid14 Force Field, C. Dickson, B. Madej, A.Skjevik, K. Teigen, I.R. Gould, R.C. Walker ***
 
-Citation is: 
+Citation is:
 
 Dickson, C.J., Madej, B.D., Skjevik, A.A., Betz, R.M., Teigen, K., Gould, I.R., Walker, R.C., "Lipid14: The Amber Lipid Force Field", J. Chem. Theory Comput., 2014, in press, DOI: 10.1021/ct4010307
 
@@ -301,10 +301,10 @@ Version 2.9 (June 2013)
 - Updated Lennard-Jones for related atoms
 
 Version 2.10 (September 2013)
-- Updated dihedrals with completely new fit: cD-cD-cD-cD, cD-cB-cB-cD, cB-cD-cD-cD, cB-cB-cD-cD, cD-cD-cC-oC, cD-cD-cC-oS 
+- Updated dihedrals with completely new fit: cD-cD-cD-cD, cD-cB-cB-cD, cB-cD-cD-cD, cB-cB-cD-cD, cD-cD-cC-oC, cD-cD-cC-oS
 - Updated Lennard-Jones: cC, oS, oC, oT, oP, hL, hB
 - Clarified Lennard-Jones for cD is from GAFF (OPLS)
-- Version published as Dickson, C.J., Madej, B.D., Skjevik, A.A., Betz, R.M., Teigen, K., Gould, I.R., Walker, R.C., 
+- Version published as Dickson, C.J., Madej, B.D., Skjevik, A.A., Betz, R.M., Teigen, K., Gould, I.R., Walker, R.C.,
   J. Chem. Theory Comput., 2014, in press, DOI: 10.1021/ct4010307
 
 Version 2.11 (February 2014)
@@ -334,7 +334,7 @@ GAFF     Lipid14    Description
  hn        hN       H bonded to nitrogen
  ho        hO       H in Hydroxyl group
  hx        hX       H bonded to C next to positively charged group
- n4        nA       sp3 N with four connected atoms 
+ n4        nA       sp3 N with four connected atoms
  o         oC       sp2 oxygen with one connected atom (e.g C=O, COO-)
  o         oP       sp2 oxygen with one connected atom (e.g P-O) in phosphate group
  oh        oH       sp3 oxygen in hydroxyl group

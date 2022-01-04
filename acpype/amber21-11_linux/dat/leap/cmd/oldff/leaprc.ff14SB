@@ -106,7 +106,7 @@ loadOff aminont12.lib
 loadOff nucleic12.lib
 #
 #       Load water and ions
-# 
+#
 loadOff atomic_ions.lib
 loadOff solvents.lib
 HOH = TP3
@@ -141,14 +141,14 @@ addPdbResMap {
   { 0 "TYR" "NTYR" } { 1 "TYR" "CTYR" }
   { 0 "VAL" "NVAL" } { 1 "VAL" "CVAL" }
   { 0 "HIS" "NHIS" } { 1 "HIS" "CHIS" }
-  { 0 "G" "G5"  } { 1 "G" "G3"  } 
-  { 0 "A" "A5"  } { 1 "A" "A3"  } 
-  { 0 "C" "C5"  } { 1 "C" "C3"  } 
-  { 0 "U" "U5"  } { 1 "U" "U3"  } 
-  { 0 "DG" "DG5"  } { 1 "DG" "DG3"  }  
-  { 0 "DA" "DA5"  } { 1 "DA" "DA3"  }  
-  { 0 "DC" "DC5"  } { 1 "DC" "DC3"  }  
-  { 0 "DT" "DT5"  } { 1 "DT" "DT3"  }  
+  { 0 "G" "G5"  } { 1 "G" "G3"  }
+  { 0 "A" "A5"  } { 1 "A" "A3"  }
+  { 0 "C" "C5"  } { 1 "C" "C3"  }
+  { 0 "U" "U5"  } { 1 "U" "U3"  }
+  { 0 "DG" "DG5"  } { 1 "DG" "DG3"  }
+  { 0 "DA" "DA5"  } { 1 "DA" "DA3"  }
+  { 0 "DC" "DC5"  } { 1 "DC" "DC3"  }
+  { 0 "DT" "DT5"  } { 1 "DT" "DT3"  }
 #  some old Amber residue names for RNA:
   { 0  "RA5" "A5" } { 1 "RA3" "A3"} {"RA" "A" }
   { 0  "RC5" "C5" } { 1 "RC3" "C3"} {"RC" "C" }

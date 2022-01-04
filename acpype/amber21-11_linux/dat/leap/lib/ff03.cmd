@@ -103,35 +103,35 @@ clearVariables
 #
 # Extract the amino acids from all_amino03.in
 #
-loadAmberPrep all_amino03.in 
+loadAmberPrep all_amino03.in
 
-a = { 
-      ALA GLY SER THR LEU ILE VAL ASN GLN ARG 
+a = {
+      ALA GLY SER THR LEU ILE VAL ASN GLN ARG
       HID HIE HIP TRP PHE TYR GLU ASP LYS LYN
       PRO CYS CYX MET ASH GLH CYM
     }
 
 set a       restype     protein
 set CYX.1   disulphide  CYX.1.SG
-saveOff a   ./all_amino03.lib 
+saveOff a   ./all_amino03.lib
 
 set NME     restype     protein
 set NME     tail        null
 set NME     head        NME.1.N
 set NME.1   connect0    NME.1.N
-saveOff NME ./all_aminoct03.lib 
+saveOff NME ./all_aminoct03.lib
 
 set NHE     restype     protein
 set NHE     tail        null
 set NHE     head        NHE.1.N
 set NHE.1   connect0    NHE.1.N
-saveOff NHE ./all_aminoct03.lib 
+saveOff NHE ./all_aminoct03.lib
 
 set ACE     restype     protein
 set ACE     head        null
 set ACE     tail        ACE.1.C
 set ACE.1   connect1    ACE.1.C
-saveOff ACE ./all_aminont03.lib 
+saveOff ACE ./all_aminont03.lib
 
 #
 # Extract the N terminus residues
@@ -141,10 +141,10 @@ clearVariables
 
 loadAmberPrep all_aminont03.in
 
-a = { 
-      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG 
-      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO 
-      NCYS NMET 
+a = {
+      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG
+      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO
+      NCYS NMET
     }
 
 set a        head      null
@@ -172,7 +172,7 @@ set NCYS.1   nend      null
 set NMET.1   nend      null
 
 set a        restype   protein
-saveOff a ./all_aminont03.lib 
+saveOff a ./all_aminont03.lib
 
 #
 # Extract the C terminus residues
@@ -180,10 +180,10 @@ saveOff a ./all_aminont03.lib
 
 loadAmberPrep all_aminoct03.in
 
-a = { 
-      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG 
-      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO 
-      CCYS CMET 
+a = {
+      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG
+      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO
+      CCYS CMET
     }
 
 set a        tail      null
@@ -211,7 +211,7 @@ set CCYS.1   cend      null
 set CMET.1   cend      null
 
 set a        restype   protein
-saveOff a ./all_aminoct03.lib 
+saveOff a ./all_aminoct03.lib
 
 #
 # DONE ff03

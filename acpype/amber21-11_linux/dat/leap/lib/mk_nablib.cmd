@@ -82,10 +82,10 @@ addAtomTypes {
 #
 loadOff nucleic12.lib
 #
-a = { DA5  DT5  DG5  DC5  } 
-b = { DA3  DT3  DG3  DC3  } 
-c = { A5  U5  G5  C5  } 
-d = { A3  U3  G3  C3  } 
+a = { DA5  DT5  DG5  DC5  }
+b = { DA3  DT3  DG3  DC3  }
+c = { A5  U5  G5  C5  }
+d = { A3  U3  G3  C3  }
 e = { DA   DT   DG   DC   }
 f = { A   U   G   C   }
 g = { DAN  DTN  DGN  DCN  }
@@ -148,17 +148,17 @@ saveOff h ./nab.lib
 clearVariables
 #
 #
-loadOff amino12.lib 
+loadOff amino12.lib
 
-a = { 
-      ALA GLY SER THR LEU ILE VAL ASN GLN ARG 
+a = {
+      ALA GLY SER THR LEU ILE VAL ASN GLN ARG
       HID HIE HIP TRP PHE TYR GLU ASP LYS LYN
       PRO CYS CYX MET ASH GLH CYM HYP
     }
 
 set a       restype     protein
 set CYX.1   disulphide  CYX.1.SG
-saveOff a   ./nab.lib 
+saveOff a   ./nab.lib
 
 #
 # Extract the N terminus residues
@@ -168,10 +168,10 @@ clearVariables
 
 loadOff aminont12.lib
 
-a = { 
-      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG 
-      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO 
-      NCYS NCYX NMET 
+a = {
+      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG
+      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO
+      NCYS NCYX NMET
     }
 
 set a        head      null
@@ -201,14 +201,14 @@ set NMET.1   nend      null
 
 set a        restype   protein
 set NCYX.1   disulphide  NCYX.1.SG
-saveOff a ./nab.lib 
+saveOff a ./nab.lib
 
 set ACE     restype     protein
 set ACE     head        null
 set ACE.1   nend        null
 set ACE     tail        ACE.1.C
 set ACE.1   connect1    ACE.1.C
-saveOff ACE ./nab.lib 
+saveOff ACE ./nab.lib
 
 #
 # Extract the C terminus residues
@@ -216,10 +216,10 @@ saveOff ACE ./nab.lib
 
 loadOff aminoct12.lib
 
-a = { 
-      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG 
-      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO 
-      CCYS CCYX CMET 
+a = {
+      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG
+      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO
+      CCYS CCYX CMET
     }
 
 set a        tail      null
@@ -249,20 +249,20 @@ set CMET.1   cend      null
 
 set a        restype   protein
 set CCYX.1   disulphide  CCYX.1.SG
-saveOff a ./nab.lib 
+saveOff a ./nab.lib
 
 set NME     restype     protein
 set NME     tail        null
 set NME.1   cend        null
 set NME     head        NME.1.N
 set NME.1   connect0    NME.1.N
-saveOff NME ./nab.lib 
+saveOff NME ./nab.lib
 
 set NHE     restype     protein
 set NHE     tail        null
 set NHE.1   cend        null
 set NHE     head        NHE.1.N
 set NHE.1   connect0    NHE.1.N
-saveOff NHE ./nab.lib 
+saveOff NHE ./nab.lib
 
 quit

@@ -4,7 +4,7 @@ logFile leap.log
 # ----- NOTE: this is designed for PDB format 3!
 #       Version 10.3, solvated:
 #         Charges fit with H sigma=1.3 and SPC/Eb, backbone charges held equal
-#        
+#
 #         vdw (LJEDITs removed, H sigma=1.3, ARG side chain TH sigma=1.5)
 #         torsions generation 6 (0 ff14ipq, ALAPROALA,
 #                                1 dipeptides,
@@ -117,7 +117,7 @@ loadOff aminoct19ipq_0.9.lib
 loadOff aminont19ipq_0.9.lib
 
 #
-#	Define the PDB name map for the amino acids 
+#	Define the PDB name map for the amino acids
 #
 addPdbResMap {
   { 0 "ALA" "NALA" } { 1 "ALA" "CALA" }

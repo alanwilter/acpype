@@ -4,19 +4,19 @@
 # 	also contains atom types for lipids
 #
 #################  PLEASE NOTE ########################
-##      
-##      Updated copies of the GLYCAM parameter and 
+##
+##      Updated copies of the GLYCAM parameter and
 ##      prep files can be downloaded from the GLYCAM
 ##      web site's Documentation page:
-##      
+##
 ##      http://www.glycam.org/params
-##      
+##
 #######################################################
 #
 #       load atom type hybridizations
 #       (includes atom types relevant to lipids)
 #
-addAtomTypes{ 
+addAtomTypes{
         { "C"   "C" "sp2" }
         { "CG"  "C" "sp3" }
         { "CY"  "C" "sp3" }

@@ -652,7 +652,7 @@ IMPROPER
 
 DONE
 MG  PREP
-MG  
+MG
 MG   INT    1
 CORR     OMIT DU   BEG
   0.000000
@@ -660,10 +660,10 @@ CORR     OMIT DU   BEG
     2 DUMM   DU    M    1    0   -1    1.0000    0.0000    0.0000 0.000
     3 DUMM   DU    M    2    1    0    1.0000   90.0000    0.0000 0.000
     4 MG     MG    M    3    2    1    1.0000   90.0000  180.0000 2.000
-    
+
 DONE
 K   PREP
-K   
+K
 K    INT    1
 CORR     OMIT DU   BEG
   0.000000
@@ -671,10 +671,10 @@ CORR     OMIT DU   BEG
     2 DUMM   DU    M    1    0   -1    1.0000    0.0000    0.0000 0.000
     3 DUMM   DU    M    2    1    0    1.0000   90.0000    0.0000 0.000
     4 K      SO    M    3    2    1    1.0000   90.0000  180.0000 1.000
-    
+
 DONE
 NA  PREP
-NA  
+NA
 NA   INT    1
 CORR     OMIT DU   BEG
   0.000000
@@ -682,10 +682,10 @@ CORR     OMIT DU   BEG
     2 DUMM   DU    M    1    0   -1    1.0000    0.0000    0.0000 0.000
     3 DUMM   DU    M    2    1    0    1.0000   90.0000    0.0000 0.000
     4 NA     SO    M    3    2    1    1.0000   90.0000  180.0000 1.000
-    
+
 DONE
 CL  PREP
-CL  
+CL
 CL   INT    1
 CORR     OMIT DU   BEG
   0.000000
@@ -693,6 +693,6 @@ CORR     OMIT DU   BEG
     2 DUMM   DU    M    1    0   -1    1.0000    0.0000    0.0000 0.000
     3 DUMM   DU    M    2    1    0    1.0000   90.0000    0.0000 0.000
     4 CL     CL    M    3    2    1    1.0000   90.0000  180.0000 -1.000
-    
+
 DONE
 STOP

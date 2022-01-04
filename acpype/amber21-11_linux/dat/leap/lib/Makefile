@@ -1,34 +1,34 @@
 all:  ff91 ff94 ff02 ff02EP ff03ua ff03 ff10 ions91 ions94 ions08 solvents
 
-ff91: 
+ff91:
 	/bin/rm -f ff91.log
 	../../../bin/teLeap -s -f ff91.cmd
 
-ff94: 
+ff94:
 	/bin/rm -f ff94.log
 	../../../bin/teLeap -s -f ff94.cmd
 
-ff02: 
+ff02:
 	/bin/rm -f ff02.log
 	../../../bin/teLeap -s -f ff02.cmd
 
-ff02EP: 
+ff02EP:
 	/bin/rm -f ff02EP.log
 	../../../bin/teLeap -s -f ff02EP.cmd
 
-ff03ua: 
+ff03ua:
 	/bin/rm -f ff03ua.log
 	../../../bin/teLeap -s -f ff03ua.cmd
 
-ions91: 
+ions91:
 	/bin/rm -f ions91.log
 	../../../bin/teLeap -s -f ions91.cmd
 
-ions94: 
+ions94:
 	/bin/rm -f ions91.log
 	../../../bin/teLeap -s -f ions94.cmd
 
-ions08: 
+ions08:
 	/bin/rm -f ions08.log
 	../../../bin/teLeap -s -f ions08.cmd
 

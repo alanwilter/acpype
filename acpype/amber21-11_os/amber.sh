@@ -22,7 +22,7 @@ export AMBERHOME=$(cd "$(dirname "$this_script")"; pwd)
 export PATH="$AMBERHOME/bin:$PATH"
 
 # Add Amber lib folder to LD_LIBRARY_PATH (if your platform supports it)
-# Note that LD_LIBRARY_PATH is only necessary to help Amber's Python programs find their dynamic libraries, 
+# Note that LD_LIBRARY_PATH is only necessary to help Amber's Python programs find their dynamic libraries,
 # unless Amber has been moved from where it was installed.
 if [ 0 = 1 ]; then
 	if [ -z "$UNUSED" ]; then

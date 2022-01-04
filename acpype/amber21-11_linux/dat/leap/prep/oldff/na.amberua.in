@@ -41,7 +41,7 @@ LOOP
  C5   C4
 
 DONE
-D-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DA   INT     1
  CORRECT OMIT DU   BEG
@@ -173,7 +173,7 @@ LOOP
  C5   C4
 
 DONE
-R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RA   INT     1
  CORRECT OMIT DU   BEG
@@ -307,7 +307,7 @@ LOOP
  N1   C2
 
 DONE
-D-THYMINE - with 5' - phosphate group and 3' - O(minus) group 
+D-THYMINE - with 5' - phosphate group and 3' - O(minus) group
 
  DT   INT     1
  CORRECT OMIT DU   BEG
@@ -437,7 +437,7 @@ LOOP
  N1   C2
 
 DONE
-R-URACIL - with 5' - phosphate group and 3' - O(minus) group 
+R-URACIL - with 5' - phosphate group and 3' - O(minus) group
 
  RU   INT     1
  CORRECT OMIT DU   BEG
@@ -573,7 +573,7 @@ LOOP
  C5   C4
 
 DONE
-D-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DG   INT     1
  CORRECT OMIT DU   BEG
@@ -620,7 +620,7 @@ LOOP
  C5   C4
 
 DONE
-D-GUANOSINE - with 5' - phosphate group and 3' - OH group 
+D-GUANOSINE - with 5' - phosphate group and 3' - OH group
 
  DG3  INT     1
  CORRECT OMIT DU   BEG
@@ -716,7 +716,7 @@ LOOP
  C5   C4
 
 DONE
-R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RG   INT     1
  CORRECT OMIT DU   BEG
@@ -856,7 +856,7 @@ LOOP
  N1   C2
 
 DONE
-D-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DC   INT     1
  CORRECT OMIT DU   BEG
@@ -981,7 +981,7 @@ LOOP
  N1   C2
 
 DONE
-R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RC   INT     1
  CORRECT OMIT DU   BEG

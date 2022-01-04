@@ -3,7 +3,7 @@ General Public License, version 3.  A copy of this license is given later
 in this file.
 
 * The Amber programs, including all variants of the "pmemd" executable, are
-  made available under the Amber proprietary license available here: 
+  made available under the Amber proprietary license available here:
   http://ambermd.org/LicenseAmber18.pdf
 
 * The netcdf codes are made available in accordance with the copyright
@@ -18,10 +18,10 @@ in this file.
 * The arpack code is released under a BSD license.  See the licenses/arpack/LICENSE
   file for more information.
 
-* The preprocessor (ucpp) was written by Thomas Pornin, and is distributed 
+* The preprocessor (ucpp) was written by Thomas Pornin, and is distributed
   under a separate, BSD-style license. See licenses/ucpp-1.3/README for details.
 
-* The force field parameter files in the "../dat/leap" subdirectory have 
+* The force field parameter files in the "../dat/leap" subdirectory have
   been placed in the public domain by their authors.
 
 * The "BLEND" code used by 3D-RISM is provided under the GNU Lesser
@@ -41,7 +41,7 @@ in this file.
   for details.
 
 * The DFTB "slko" files in dat/slko are distributed under the Creative
-  Commons Attribution-ShareAlike License, 
+  Commons Attribution-ShareAlike License,
   http://creativecommons.org/licenses/by-sa/4.0/
 
 * The cusplibrary codes are distributed by the Apache License 2.0

@@ -1,13 +1,13 @@
 # ----- leaprc for loading the glycam04 force field
 #
 #################  PLEASE NOTE ########################
-##      
-##      Updated copies of the GLYCAM parameter and 
+##
+##      Updated copies of the GLYCAM parameter and
 ##      prep files can be downloaded from the GLYCAM
 ##      web site's Documentation page:
-##      
+##
 ##      http://www.glycam.org/params
-##      
+##
 #######################################################
 #
 #       load atom type hybridizations
@@ -32,11 +32,11 @@ addAtomTypes {
 #
 #       load the main paramter set
 #
-glycam04 = loadamberparams GLYCAM_04l.dat 
+glycam04 = loadamberparams GLYCAM_04l.dat
 #
 #       load all prep files for polysaccharides
 #
-loadamberprep GLYCAM_04.prep 
+loadamberprep GLYCAM_04.prep
 #
 #       load water and ions
 #       assumes most users want to use tip3p as the explicit solvent model

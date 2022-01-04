@@ -1,7 +1,7 @@
 #
 #  Load TIP4P-FB water model and ions for TIP4P-FB + Li/Merz ion parameters
 #  (-1 to +4, 12-6 normal usage set)
-# 
+#
 addAtomTypes {
 	{ "F-"   "F" "sp3" }
 	{ "Cl-"  "Cl" "sp3" }

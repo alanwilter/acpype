@@ -86,10 +86,10 @@ loadOff terminalphos.LJbb-RNA.lib
 #	Define the PDB name map for the nucleic acids
 #
 addPdbResMap {
-  { 0 "G" "G5"  } { 1 "G" "G3"  } 
-  { 0 "A" "A5"  } { 1 "A" "A3"  } 
-  { 0 "C" "C5"  } { 1 "C" "C3"  } 
-  { 0 "U" "U5"  } { 1 "U" "U3"  } 
+  { 0 "G" "G5"  } { 1 "G" "G3"  }
+  { 0 "A" "A5"  } { 1 "A" "A3"  }
+  { 0 "C" "C5"  } { 1 "C" "C3"  }
+  { 0 "U" "U5"  } { 1 "U" "U3"  }
 #  some old Amber residue names for RNA:
   { 0  "RA5" "A5" } { 1 "RA3" "A3"} {"RA" "A" }
   { 0  "RC5" "C5" } { 1 "RC3" "C3"} {"RC" "C" }

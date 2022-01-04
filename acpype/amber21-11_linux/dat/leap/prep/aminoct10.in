@@ -1,10 +1,10 @@
-    1    1  201                                                 
-db94.dat                                                         
-ALANINE COO- ANION                                              
-                                                                
- ALA  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+    1    1  201
+db94.dat
+ALANINE COO- ANION
+
+ ALA  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -20,16 +20,16 @@ ALANINE COO- ANION
   13  O     O2    E   12   6   4     1.229   120.500     0.000  -0.80550
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.80550
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-GLYCINE COO- ANION                                              
-                                                                
- GLY  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+GLYCINE COO- ANION
+
+ GLY  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -42,16 +42,16 @@ GLYCINE COO- ANION
   10  O     O2    E    9   6   4     1.229   120.500     0.000  -0.78550
   11  OXT   O2    E    9   6   4     1.229   120.500   180.000  -0.78550
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-SERINE  COO- ANION                                              
-                                                                
- SER  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+SERINE  COO- ANION
+
+ SER  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -68,16 +68,16 @@ SERINE  COO- ANION
   14  O     O2    E   13   6   4     1.229   120.500     0.000  -0.81320
   15  OXT   O2    E   13   6   4     1.229   120.500   180.000  -0.81320
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-THREONINE     COO- ANION                                        
-                                                                
- THR  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+THREONINE     COO- ANION
+
+ THR  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -97,16 +97,16 @@ THREONINE     COO- ANION
   17  O     O2    E   16   6   4     1.229   120.500     0.000  -0.80440
   18  OXT   O2    E   16   6   4     1.229   120.500   180.000  -0.80440
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-LEUCINE  COO- ANION                                             
-                                                                
- LEU  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+LEUCINE  COO- ANION
+
+ LEU  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -131,16 +131,16 @@ LEUCINE  COO- ANION
   22  O     O2    E   21   6   4     1.229   120.500     0.000  -0.81990
   23  OXT   O2    E   21   6   4     1.229   120.500   180.000  -0.81990
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-ISOLEUCINE    COO- ANION                                        
-                                                                
- ILE  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+ISOLEUCINE    COO- ANION
+
+ ILE  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -165,16 +165,16 @@ ISOLEUCINE    COO- ANION
   22  O     O2    E   21   6   4     1.229   120.500     0.000  -0.81900
   23  OXT   O2    E   21   6   4     1.229   120.500   180.000  -0.81900
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-VALINE  COO- ANION                                              
-                                                                
- VAL  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+VALINE  COO- ANION
+
+ VAL  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -196,16 +196,16 @@ VALINE  COO- ANION
   19  O     O2    E   18   6   4     1.229   120.500     0.000  -0.81730
   20  OXT   O2    E   18   6   4     1.229   120.500   180.000  -0.81730
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-ASPARAGINE    COO- ANION                                        
-                                                                
- ASN  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+ASPARAGINE    COO- ANION
+
+ ASN  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -225,18 +225,18 @@ ASPARAGINE    COO- ANION
   17  O     O2    E   16   6   4     1.229   120.500     0.000  -0.81470
   18  OXT   O2    E   16   6   4     1.229   120.500   180.000  -0.81470
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CB   ND2  CG   OD1                                             
- CG   HD21 ND2  HD22                                            
-                                                                
-DONE                                                            
-GLUTAMINE     COO- ANION                                        
-                                                                
- GLN  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CB   ND2  CG   OD1
+ CG   HD21 ND2  HD22
+
+DONE
+GLUTAMINE     COO- ANION
+
+ GLN  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -259,18 +259,18 @@ GLUTAMINE     COO- ANION
   20  O     O2    E   19   6   4     1.229   120.500     0.000  -0.80420
   21  OXT   O2    E   19   6   4     1.229   120.500   180.000  -0.80420
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CG   NE2  CD   OE1                                             
- CD   HE21 NE2  HE22                                            
-                                                                
-DONE                                                            
-ARGININE  COO- ANION                                            
-                                                                
- ARG  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   NE2  CD   OE1
+ CD   HE21 NE2  HE22
+
+DONE
+ARGININE  COO- ANION
+
+ ARG  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -300,20 +300,20 @@ ARGININE  COO- ANION
   27  O     O2    E   26   6   4     1.229   120.500     0.000  -0.82660
   28  OXT   O2    E   26   6   4     1.229   120.500   180.000  -0.82660
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- NE   NH1  CZ   NH2                                             
- CD   CZ   NE   HE                                              
- CZ   HH11 NH1  HH12                                            
- CZ   HH21 NH2  HH22                                            
-                                                                
-DONE                                                            
-HISTIDINE DELTAH COO- ANION                                     
-                                                                
- HID  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ NE   NH1  CZ   NH2
+ CD   CZ   NE   HE
+ CZ   HH11 NH1  HH12
+ CZ   HH21 NH2  HH22
+
+DONE
+HISTIDINE DELTAH COO- ANION
+
+ HID  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -336,23 +336,23 @@ HISTIDINE DELTAH COO- ANION
   20  O     O2    E   19   6   4     1.229   120.500     0.000  -0.80160
   21  OXT   O2    E   19   6   4     1.229   120.500   180.000  -0.80160
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CG   CE1  ND1  HD1                                             
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   CE1  ND1  HD1
  CG   NE2  CD2  HD2
  ND1  NE2  CE1  HE1
  ND1  CD2  CG   CB
-                                                                
-DONE                                                            
-HISTIDINE EPSILON-H   COO- ANION                                
-                                                                
- HIE  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+
+DONE
+HISTIDINE EPSILON-H   COO- ANION
+
+ HIE  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -375,23 +375,23 @@ HISTIDINE EPSILON-H   COO- ANION
   20  O     O2    E   19   6   4     1.229   120.500     0.000  -0.80650
   21  OXT   O2    E   19   6   4     1.229   120.500   180.000  -0.80650
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CE1  CD2  NE2  HE2                                             
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CE1  CD2  NE2  HE2
  CG   NE2  CD2  HD2
  ND1  NE2  CE1  HE1
  ND1  CD2  CG   CB
-                                                                
-DONE                                                            
-HISTIDINE PLUS COO-                                             
-                                                                
- HIP  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+
+DONE
+HISTIDINE PLUS COO-
+
+ HIP  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -415,24 +415,24 @@ HISTIDINE PLUS COO-
   21  O     O2    E   20   6   4     1.229   120.500     0.000  -0.81770
   22  OXT   O2    E   20   6   4     1.229   120.500   180.000  -0.81770
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CG   CE1  ND1  HD1                                             
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   CE1  ND1  HD1
  CE1  CD2  NE2  HE2
  CG   NE2  CD2  HD2
  ND1  NE2  CE1  HE1
  ND1  CD2  CG   CB
-                                                                
-DONE                                                            
-TRYPTOPHAN    COO- ANION                                        
-                                                                
- TRP  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+
+DONE
+TRYPTOPHAN    COO- ANION
+
+ TRP  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -462,27 +462,27 @@ TRYPTOPHAN    COO- ANION
   27  O     O2    E   26   6   4     1.229   120.500     0.000  -0.80110
   28  OXT   O2    E   26   6   4     1.229   120.500   180.000  -0.80110
 
-LOOP                                                            
- CG   CD2                                                       
- CE2  CD2                                                       
-                                                                
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CD1  CE2  NE1  HE1                                             
- CE2  CH2  CZ2  HZ2                                             
- CZ2  CZ3  CH2  HH2                                             
- CH2  CE3  CZ3  HZ3                                             
- CZ3  CD2  CE3  HE3                                             
+LOOP
+ CG   CD2
+ CE2  CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CD1  CE2  NE1  HE1
+ CE2  CH2  CZ2  HZ2
+ CZ2  CZ3  CH2  HH2
+ CH2  CE3  CZ3  HZ3
+ CZ3  CD2  CE3  HE3
  CG   NE1  CD1  HD1
  CD1  CD2  CG   CB
-                                                                
-DONE                                                            
-PHENYLALANINE COO- ANION                                        
-                                                                
- PHE  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+
+DONE
+PHENYLALANINE COO- ANION
+
+ PHE  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -508,25 +508,25 @@ PHENYLALANINE COO- ANION
   23  O     O2    E   22   6   4     1.229   120.500     0.000  -0.80260
   24  OXT   O2    E   22   6   4     1.229   120.500   180.000  -0.80260
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
  CG   CE2  CD2  HD2
  CD2  CZ   CE2  HE2
  CE1  CE2  CZ   HZ
  CD1  CZ   CE1  HE1
  CG   CE1  CD1  HD1
  CD1  CD2  CG   CB
-                                                                
-DONE                                                            
-TYROSINE  COO- ANION                                            
-                                                                
- TYR  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+
+DONE
+TYROSINE  COO- ANION
+
+ TYR  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -553,25 +553,25 @@ TYROSINE  COO- ANION
   24  O     O2    E   23   6   4     1.229   120.500     0.000  -0.80700
   25  OXT   O2    E   23   6   4     1.229   120.500   180.000  -0.80700
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
  CG   CE2  CD2  HD2
  CD2  CZ   CE2  HE2
  CD1  CZ   CE1  HE1
  CG   CE1  CD1  HD1
  CD1  CD2  CG   CB
  CE1  CE2  CZ   OH
-                                                                
-DONE                                                            
-GLUTAMIC ACID COO- ANION                                        
-                                                                
- GLU  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+
+DONE
+GLUTAMIC ACID COO- ANION
+
+ GLU  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -592,17 +592,17 @@ GLUTAMIC ACID COO- ANION
   18  O     O2    E   17   6   4     1.229   120.500     0.000  -0.79300
   19  OXT   O2    E   17   6   4     1.229   120.500   180.000  -0.79300
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CG   OE1  CD   OE2                                             
-                                                                
-DONE                                                            
-ASPARTIC ACID COO- ANION                                        
-                                                                
- ASP  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   OE1  CD   OE2
+
+DONE
+ASPARTIC ACID COO- ANION
+
+ ASP  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -620,17 +620,17 @@ ASPARTIC ACID COO- ANION
   15  O     O2    E   14   6   4     1.229   120.500     0.000  -0.78870
   16  OXT   O2    E   14   6   4     1.229   120.500   180.000  -0.78870
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
- CB   OD1  CG   OD2                                             
-                                                                
-DONE                                                            
-LYSINE  COO- ANION                                              
-                                                                
- LYS  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CB   OD1  CG   OD2
+
+DONE
+LYSINE  COO- ANION
+
+ LYS  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -657,17 +657,17 @@ LYSINE  COO- ANION
   24  C     C     M    6   4   3     1.522   111.100   180.000   0.84880
   25  O     O2    E   24   6   4     1.229   120.500     0.000  -0.82520
   26  OXT   O2    E   24   6   4     1.229   120.500   180.000  -0.82520
-                                                                
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-PROLINE COO- ANION                                              
-                                                                
- PRO  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+PROLINE COO- ANION
+
+ PRO  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -687,19 +687,19 @@ PROLINE COO- ANION
   17  O     O2    E   16  14   4     1.229   120.500     0.000  -0.76970
   18  OXT   O2    E   16  14   4     1.229   120.500   180.000  -0.76970
 
-LOOP                                                            
- CA   CB                                                        
-                                                                
-IMPROPER                                                        
- CA   OXT  C    O                                               
- -M   CD   N    CA                                              
-                                                                
-DONE                                                            
-CYSTEINE  COO- ANION                                            
-                                                                
- CYS  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+LOOP
+ CA   CB
+
+IMPROPER
+ CA   OXT  C    O
+ -M   CD   N    CA
+
+DONE
+CYSTEINE  COO- ANION
+
+ CYS  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -716,16 +716,16 @@ CYSTEINE  COO- ANION
   14  O     O2    E   13   6   4     1.229   120.500     0.000  -0.79810
   15  OXT   O2    E   13   6   4     1.229   120.500   180.000  -0.79810
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-CYSTINE(S-S BRIDGE)     COO- ANION                              
-                                                                
- CYX  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+CYSTINE(S-S BRIDGE)     COO- ANION
+
+ CYX  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -741,16 +741,16 @@ CYSTINE(S-S BRIDGE)     COO- ANION
   13  O     O2    E   12   6   4     1.229   120.500     0.000  -0.80410
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.80410
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-METHIONINE    COO- ANION                                        
-                                                                
- MET  INT     1                                                 
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+METHIONINE    COO- ANION
+
+ MET  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -773,9 +773,9 @@ METHIONINE    COO- ANION
   20  O     O2    E   19   6   4     1.229   120.500     0.000  -0.81050
   21  OXT   O2    E   19   6   4     1.229   120.500   180.000  -0.81050
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
-DONE                                                            
-STOP                                                            
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+STOP

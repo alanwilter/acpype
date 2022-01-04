@@ -1,11 +1,11 @@
 AMBER General Force Field for organic molecules (Version 1.81, May 2017)
-c  12.01         0.616               Sp2 C carbonyl group 
+c  12.01         0.616               Sp2 C carbonyl group
 c1 12.01         0.360               Sp C
-c2 12.01         0.360               Sp2 C  
+c2 12.01         0.360               Sp2 C
 c3 12.01         0.878               Sp3 C
 ca 12.01         0.360               Sp2 C in pure aromatic systems
-cp 12.01         0.360               Head Sp2 C that connect two rings in biphenyl sys. 
-cq 12.01         0.360               Head Sp2 C that connect two rings in biphenyl sys. identical to cp 
+cp 12.01         0.360               Head Sp2 C that connect two rings in biphenyl sys.
+cq 12.01         0.360               Head Sp2 C that connect two rings in biphenyl sys. identical to cp
 cc 12.01         0.360               Sp2 carbons in non-pure aromatic systems
 cd 12.01         0.360               Sp2 carbons in non-pure aromatic systems, identical to cc
 ce 12.01         0.360               Inner Sp2 carbons in conjugated systems
@@ -17,36 +17,36 @@ cy 12.01         0.360               Sp3 carbons in square systems
 cu 12.01         0.360               Sp2 carbons in triangle systems
 cv 12.01         0.360               Sp2 carbons in square systems
 cz 12.01         0.360               Sp2 carbon in guanidine group
-h1 1.008         0.135               H bonded to aliphatic carbon with 1 electrwd. group  
-h2 1.008         0.135               H bonded to aliphatic carbon with 2 electrwd. group 
-h3 1.008         0.135               H bonded to aliphatic carbon with 3 electrwd. group 
-h4 1.008         0.135               H bonded to non-sp3 carbon with 1 electrwd. group 
-h5 1.008         0.135               H bonded to non-sp3 carbon with 2 electrwd. group 
-ha 1.008         0.135               H bonded to aromatic carbon  
-hc 1.008         0.135               H bonded to aliphatic carbon without electrwd. group 
+h1 1.008         0.135               H bonded to aliphatic carbon with 1 electrwd. group
+h2 1.008         0.135               H bonded to aliphatic carbon with 2 electrwd. group
+h3 1.008         0.135               H bonded to aliphatic carbon with 3 electrwd. group
+h4 1.008         0.135               H bonded to non-sp3 carbon with 1 electrwd. group
+h5 1.008         0.135               H bonded to non-sp3 carbon with 2 electrwd. group
+ha 1.008         0.135               H bonded to aromatic carbon
+hc 1.008         0.135               H bonded to aliphatic carbon without electrwd. group
 hn 1.008         0.161               H bonded to nitrogen atoms
 ho 1.008         0.135               Hydroxyl group
-hp 1.008         0.135               H bonded to phosphate 
-hs 1.008         0.135               Hydrogen bonded to sulphur 
-hw 1.008         0.135               Hydrogen in water 
-hx 1.008         0.135               H bonded to C next to positively charged group  
+hp 1.008         0.135               H bonded to phosphate
+hs 1.008         0.135               Hydrogen bonded to sulphur
+hw 1.008         0.135               Hydrogen in water
+hx 1.008         0.135               H bonded to C next to positively charged group
 f  19.00         0.320               Fluorine
-cl 35.45         1.910               Chlorine 
-br 79.90         2.880               Bromine 
-i  126.9         4.690               Iodine 
+cl 35.45         1.910               Chlorine
+br 79.90         2.880               Bromine
+i  126.9         4.690               Iodine
 n  14.01         0.530               Sp2 nitrogen in amide groups
-n1 14.01         0.530               Sp N  
-n2 14.01         0.530               aliphatic Sp2 N with two connected atoms 
+n1 14.01         0.530               Sp N
+n2 14.01         0.530               aliphatic Sp2 N with two connected atoms
 n3 14.01         0.530               Sp3 N with three connected atoms
-n4 14.01         0.530               Sp3 N with four connected atoms 
-na 14.01         0.530               Sp2 N with three connected atoms 
-nb 14.01         0.530               Sp2 N in pure aromatic systems 
+n4 14.01         0.530               Sp3 N with four connected atoms
+na 14.01         0.530               Sp2 N with three connected atoms
+nb 14.01         0.530               Sp2 N in pure aromatic systems
 nc 14.01         0.530               Sp2 N in non-pure aromatic systems
 nd 14.01         0.530               Sp2 N in non-pure aromatic systems, identical to nc
 ne 14.01         0.530               Inner Sp2 N in conjugated systems
 nf 14.01         0.530               Inner Sp2 N in conjugated systems, identical to ne
-nh 14.01         0.530               Amine N connected one or more aromatic rings 
-no 14.01         0.530               Nitro N  
+nh 14.01         0.530               Amine N connected one or more aromatic rings
+no 14.01         0.530               Nitro N
 ni 14.01         0.530               n in 3-memberred rings
 nj 14.01         0.530               n in 4-memberred rings
 nk 14.01         0.530               n4 in 3-memberred rings
@@ -60,23 +60,23 @@ oh 16.00         0.465               Oxygen in hydroxyl group
 os 16.00         0.465               Ether and ester oxygen
 op 16.00         0.465               os in 3-memberred rings
 oq 16.00         0.465               os in 4-memberred rings
-ow 16.00         0.465               Oxygen in water 
-p2 30.97         1.538               Phosphate with two connected atoms 
+ow 16.00         0.465               Oxygen in water
+p2 30.97         1.538               Phosphate with two connected atoms
 p3 30.97         1.538               Phosphate with three connected atoms, such as PH3
 p4 30.97         1.538               Phosphate with three connected atoms, such as O=P(CH3)2
 p5 30.97         1.538               Phosphate with four connected atoms, such as O=P(OH)3
-pb 30.97         1.538               Sp2 P in pure aromatic systems 
+pb 30.97         1.538               Sp2 P in pure aromatic systems
 pc 30.97         1.538               Sp2 P in non-pure aromatic systems
 pd 30.97         1.538               Sp2 P in non-pure aromatic systems, identical to pc
 pe 30.97         1.538               Inner Sp2 P in conjugated systems
 pf 30.97         1.538               Inner Sp2 P in conjugated systems, identical to pe
 px 30.97         1.538               Special p4 in conjugated systems
 py 30.97         1.538               Special p5 in conjugated systems
-s  32.06         2.900               S with one connected atom 
-s2 32.06         2.900               S with two connected atom, involved at least one double bond  
-s4 32.06         2.900               S with three connected atoms 
-s6 32.06         2.900               S with four connected atoms 
-sh 32.06         2.900               Sp3 S connected with hydrogen 
+s  32.06         2.900               S with one connected atom
+s2 32.06         2.900               S with two connected atom, involved at least one double bond
+s4 32.06         2.900               S with three connected atoms
+s6 32.06         2.900               S with four connected atoms
+sh 32.06         2.900               Sp3 S connected with hydrogen
 ss 32.06         2.900               Sp3 S in thio-ester and thio-ether
 sp 32.06         2.900               ss in 3-memberred rings
 sq 32.06         2.900               ss in 4-memberred rings
@@ -84,9 +84,9 @@ sx 32.06         2.900               Special s4 in conjugated systems
 sy 32.06         2.900               Special s6 in conjugated systems
 
 hn  ho  hs  n   na  nc  nd  ne  nf  n2  n3  n4  o   oh  os  ow  sh  ss
-ow-hw  553.0    0.9572          TIP3P_Water       1	
-hw-hw  553.0    1.5136          TIP3P_Water       1	
-br-br  123.2    2.5420              SOURCE1       4	
+ow-hw  553.0    0.9572          TIP3P_Water       1
+hw-hw  553.0    1.5136          TIP3P_Water       1
+br-br  123.2    2.5420              SOURCE1       4
 br-c1  352.7    1.7870              SOURCE2       4	 0.0024
 br-c2  272.3    1.8928      SOURCE1_SOURCE5      25	 0.0078
 br-c   240.3    1.9460              SOURCE2       2	 0.0285
@@ -95,30 +95,30 @@ br-ca  262.7    1.9079      SOURCE1_SOURCE5     462	 0.0052
 br-cc  277.4    1.8850      SOURCE4_SOURCE5     128	 0.0078
 br-cx  245.4    1.9370               5/2017      11	 0.0019
 br-i     0.0    2.6710              SOURCE1       2	 0.0245
-br-n1  330.4    1.8600              SOUECE3       1	
+br-n1  330.4    1.8600              SOUECE3       1
 br-n2  219.0    2.0380              SOURCE3       5	 0.1082
 br-n   320.2    1.8730              SOURCE3       4	 0.0046
-br-n3  265.9    1.9520              SOURCE3       2	
+br-n3  265.9    1.9520              SOURCE3       2
 br-n4  282.4    1.9260              SOURCE3       3	 0.0013
 br-na  237.3    2.0020              SOURCE3       7	 0.2156
-br-nh  270.9    1.9440              SOURCE3       1	
-br-no  191.0    2.1010              SOURCE3       1	
-br-o   278.9    1.8000              SOUECE3       1	
-br-oh  237.2    1.8660              SOURCE3       1	
-br-os  225.6    1.8870              SOURCE3       2	
+br-nh  270.9    1.9440              SOURCE3       1
+br-no  191.0    2.1010              SOURCE3       1
+br-o   278.9    1.8000              SOUECE3       1
+br-oh  237.2    1.8660              SOURCE3       1
+br-os  225.6    1.8870              SOURCE3       2
 br-p2  174.3    2.2100              SOURCE3       9	 0.0510
 br-p3  167.0    2.2310              SOURCE3       3	 0.0101
-br-p4  188.8    2.1710              SOUECE3       1	
+br-p4  188.8    2.1710              SOUECE3       1
 br-p5  179.3    2.1960              SOURCE3       3	 0.0099
-br-s   170.6    2.2200              SOUECE3       1	
-br-s4  134.3    2.3410              SOURCE3       1	
+br-s   170.6    2.2200              SOUECE3       1
+br-s4  134.3    2.3410              SOURCE3       1
 br-s6  172.7    2.2140              SOURCE3       3	 0.0443
-br-sh  174.4    2.2090              SOURCE3       1	
+br-sh  174.4    2.2090              SOURCE3       1
 br-ss  176.6    2.2030              SOURCE3       3	 0.0035
 c1-c1  923.7    1.1983      SOURCE1_SOURCE5     659	 0.0039
-c1-c2  625.0    1.3070              SOURCE1      18	
+c1-c2  625.0    1.3070              SOURCE1      18
 c1-c3  371.6    1.4671      SOURCE1_SOURCE5     795	 0.0034
-c1-ca  404.1    1.4400              SOUECE3       1	
+c1-ca  404.1    1.4400              SOUECE3       1
 c1-ce  607.4    1.3153              SOURCE4       6	 0.0086
 c1-cg  865.1    1.2159      SOURCE3_SOURCE5     179	 0.0036
 c1-ch  854.0    1.2194      SOURCE3_SOURCE5      13	 0.0016
@@ -126,30 +126,30 @@ c1-cl  419.7    1.6310              SOURCE2       6	 0.0050
 c1-cx  398.0    1.4450               5/2017      24	 0.0043
 c1-f   469.4    1.2700              SOURCE2       2	 0.0085
 c1-ha  374.7    1.0668      SOURCE3_SOURCE5     343	 0.0013
-c1-hc  385.6    1.0600              SOUECE3       1	
+c1-hc  385.6    1.0600              SOUECE3       1
 c1-i   318.8    1.9890              SOURCE2       4	 0.0032
 c1-n1  954.6    1.1535      SOURCE1_SOURCE5     481	 0.0035
 c1-n2  807.8    1.1971      SOURCE3_SOURCE5      36	 0.0076
 c1-n3  474.3    1.3475      SOURCE2_SOURCE5      10	 0.0093
 c1-n4  378.2    1.4170              SOURCE3       3	 0.0032
-c1-n   503.0    1.3300              SOUECE3       1	
+c1-n   503.0    1.3300              SOUECE3       1
 c1-na  452.0    1.3620              SOURCE3       8	 0.0034
 c1-ne  792.2    1.2023      SOURCE4_SOURCE5      31	 0.0124
 c1-nf  792.2    1.2023      SOURCE4_SOURCE5      21	 0.0141
 c1-nh  482.6    1.3423      SOURCE4_SOURCE5      33	 0.0061
 c1-no  393.0    1.4050              SOURCE3       3	 0.0005
 c1-o   758.1    1.1724      SOURCE2_SOURCE5      31	 0.0068
-c1-oh  435.6    1.3260              SOURCE3       1	
+c1-oh  435.6    1.3260              SOURCE3       1
 c1-os  447.5    1.3181      SOURCE3_SOURCE5       8	 0.0079
-c1-p2  289.3    1.7700              SOUECE3       1	
-c1-p3  275.1    1.7900              SOUECE3       1	
-c1-p4  275.1    1.7900              SOUECE3       1	
-c1-p5  302.2    1.7530              SOURCE3       2	
-c1-s2  410.0    1.5950              SOURCE3       1	
+c1-p2  289.3    1.7700              SOUECE3       1
+c1-p3  275.1    1.7900              SOUECE3       1
+c1-p4  275.1    1.7900              SOUECE3       1
+c1-p5  302.2    1.7530              SOURCE3       2
+c1-s2  410.0    1.5950              SOURCE3       1
 c1-s   400.6    1.6032      SOURCE1_SOURCE5      37	 0.0043
-c1-s4  272.9    1.7460              SOURCE3       2	
-c1-s6  290.4    1.7220              SOURCE3       2	
-c1-sh  324.5    1.6800              SOUECE3       1	
+c1-s4  272.9    1.7460              SOURCE3       2
+c1-s6  290.4    1.7220              SOURCE3       2
+c1-sh  324.5    1.6800              SOUECE3       1
 c1-ss  316.2    1.6898      SOURCE1_SOURCE5      49	 0.0113
 c2-c2  569.4    1.3343      SOURCE1_SOURCE5    3727	 0.0053
 c2-c3  326.8    1.5095      SOURCE1_SOURCE5   10204	 0.0042
@@ -171,12 +171,12 @@ c2-hx  350.1    1.0830              SOURCE3       3	 0.0008
 c2-i   215.4    2.1701      SOURCE3_SOURCE5       7	 0.0194
 c2-n1  546.0    1.3060              SOURCE3       4	 0.0161
 c2-n2  594.1    1.2817      SOURCE1_SOURCE5    1004	 0.0051
-c2-n3  486.3    1.3400              SOUECE3       1	
+c2-n3  486.3    1.3400              SOUECE3       1
 c2-n   400.1    1.3994      SOURCE3_SOURCE5     174	 0.0100
 c2-n4  282.0    1.5125      SOURCE3_SOURCE5      21	 0.0133
 c2-na  397.4    1.4015      SOURCE3_SOURCE5      65	 0.0179
 c2-nc  533.0    1.3130              SOURCE1      99	 0.0095
-c2-nd  533.0    1.3130              SOURCE1      99	
+c2-nd  533.0    1.3130              SOURCE1      99
 c2-ne  574.1    1.2915      SOURCE3_SOURCE5     310	 0.0099
 c2-nf  574.1    1.2915      SOURCE3_SOURCE5     273	 0.0098
 c2-nh  416.2    1.3872      SOURCE3_SOURCE5    1559	 0.0120
@@ -186,14 +186,14 @@ c2-oh  417.6    1.3385      SOURCE1_SOURCE5      85	 0.0126
 c2-os  389.2    1.3596      SOURCE1_SOURCE5     548	 0.0107
 c2-p2  377.3    1.6686      SOURCE3_SOURCE5      87	 0.0126
 c2-p3  246.6    1.8340              SOURCE3       5	 0.0042
-c2-p4  254.0    1.8220              SOUECE3       1	
+c2-p4  254.0    1.8220              SOUECE3       1
 c2-p5  230.0    1.8626      SOURCE4_SOURCE5      15	 0.0083
 c2-pe  357.6    1.6886      SOURCE3_SOURCE5      60	 0.0472
 c2-pf  357.6    1.6886      SOURCE3_SOURCE5       8	 0.0019
-c2-s2  393.1    1.6100              SOURCE2       1	
+c2-s2  393.1    1.6100              SOURCE2       1
 c2-s   281.5    1.7340              SOURCE3       4	 0.0034
-c2-s4  263.2    1.7600              SOUECE3       1	
-c2-s6  263.2    1.7600              SOUECE3       1	
+c2-s4  263.2    1.7600              SOUECE3       1
+c2-s6  263.2    1.7600              SOUECE3       1
 c2-sh  248.9    1.7820      SOURCE4_SOURCE5      13	 0.0077
 c2-ss  280.0    1.7360              SOURCE1     209	 0.0155
 c3-c3  300.9    1.5375      SOURCE1_SOURCE5   88072	 0.0058
@@ -203,8 +203,8 @@ c3-cd  334.8    1.5015      SOURCE3_SOURCE5    3926	 0.0049
 c3-ce  320.7    1.5159      SOURCE3_SOURCE5    1210	 0.0060
 c3-cf  320.9    1.5157      SOURCE3_SOURCE5     345	 0.0071
 c3-cl  266.3    1.8045      SOURCE1_SOURCE5    1173	 0.0119
-c3-cu  353.1    1.4840               5/2017       2	
-c3-cv  335.4    1.5010               5/2017       1	
+c3-cu  353.1    1.4840               5/2017       2
+c3-cv  335.4    1.5010               5/2017       1
 c3-cx  315.1    1.5220               5/2017     849	 0.0062
 c3-cy  304.2    1.5340               5/2017     522	 0.0055
 c3-f   356.9    1.3497      SOURCE1_SOURCE5    2188	 0.0139
@@ -221,7 +221,7 @@ c3-n3  325.9    1.4647      SOURCE1_SOURCE5   15206	 0.0039
 c3-n4  283.3    1.5110      SOURCE1_SOURCE5    2375	 0.0125
 c3-na  327.7    1.4629      SOURCE3_SOURCE5    1732	 0.0077
 c3-nc  334.7    1.4560              SOURCE3       9	 0.0109
-c3-nd  334.7    1.4560              SOURCE3       9	
+c3-nd  334.7    1.4560              SOURCE3       9
 c3-nh  326.6    1.4640      SOURCE3_SOURCE5    3492	 0.0064
 c3-no  265.1    1.5334      SOURCE1_SOURCE5     150	 0.0187
 c3-o   449.9    1.3165              SOURCE4       8	 0.0193
@@ -272,22 +272,22 @@ ca-no  321.7    1.4689      SOURCE1_SOURCE5     454	 0.0049
 ca-o   598.1    1.2358      SOURCE4_SOURCE5      17	 0.0088
 ca-oh  384.0    1.3637      SOURCE1_SOURCE5    3637	 0.0062
 ca-os  376.6    1.3696      SOURCE1_SOURCE5    6900	 0.0064
-ca-p2  243.0    1.8400              SOUECE3       1	
+ca-p2  243.0    1.8400              SOUECE3       1
 ca-p3  251.7    1.8257      SOURCE1_SOURCE5     156	 0.0180
-ca-p4  264.3    1.8060              SOUECE3       1	
+ca-p4  264.3    1.8060              SOUECE3       1
 ca-p5  271.5    1.7952      SOURCE1_SOURCE5     577	 0.0028
 ca-pe  249.6    1.8290              SOURCE3      10	 0.0042
 ca-pf  249.6    1.8290              SOURCE3      10	 0.0042
 ca-px  252.1    1.8250              SOURCE3       5	 0.0168
 ca-py  257.7    1.8162      SOURCE4_SOURCE5      34	 0.0098
-ca-s   277.9    1.7390              SOURCE3       2	
+ca-s   277.9    1.7390              SOURCE3       2
 ca-s4  245.2    1.7880              SOURCE1      51	 0.0048
 ca-s6  258.7    1.7669      SOURCE1_SOURCE5     258	 0.0041
 ca-sh  249.6    1.7809      SOURCE4_SOURCE5      40	 0.0053
 ca-ss  249.8    1.7806      SOURCE1_SOURCE5    1016	 0.0068
 ca-sx  223.6    1.8251      SOURCE4_SOURCE5      90	 0.0050
 ca-sy  243.4    1.7909      SOURCE3_SOURCE5     703	 0.0076
-c -c1  379.8    1.4600              SOUECE3       1	
+c -c1  379.8    1.4600              SOUECE3       1
 c -c2  449.9    1.4060              SOURCE3       2	 0.0370
 c -c   291.7    1.5482      SOURCE1_SOURCE5     254	 0.0090
 c -c3  313.0    1.5241      SOURCE1_SOURCE5   12697	 0.0077
@@ -298,7 +298,7 @@ cc-cd  500.9    1.3729      SOURCE3_SOURCE5    8451	 0.0091
 cc-ce  386.9    1.4540         CORR_SOURCE5     396	 0.0089
 cc-cf  513.0    1.3656         CORR_SOURCE5     156	 0.0107
 cc-cg  422.6    1.4257      SOURCE1_SOURCE5     109	 0.0049
-cc-ch  420.9    1.4270              SOURCE1     560	
+cc-ch  420.9    1.4270              SOURCE1     560
 cc-cl  317.5    1.7354         CORR_SOURCE5     137	 0.0076
 cc-cx  369.6    1.4690               5/2017      24	 0.0036
 c -cd  371.0    1.4676      SOURCE3_SOURCE5    1864	 0.0130
@@ -328,13 +328,13 @@ cc-sh  257.1    1.7693      SOURCE4_SOURCE5      22	 0.0030
 cc-ss  265.8    1.7562      SOURCE3_SOURCE5    2011	 0.0134
 cc-sx  231.7    1.8107      SOURCE4_SOURCE5      44	 0.0033
 cc-sy  247.7    1.7839         CORR_SOURCE5      73	 0.0082
-c -cu  441.4    1.4120              SOURCE2       1	
+c -cu  441.4    1.4120              SOURCE2       1
 c -cx  333.4    1.5030               5/2017     246	 0.0109
 c -cy  288.6    1.5520               5/2017     374	 0.0059
 cd-cd  419.8    1.4278      SOURCE1_SOURCE5    4559	 0.0096
 cd-ce  513.0    1.3656         CORR_SOURCE5     156	 0.0107
 cd-cf  386.9    1.4540         CORR_SOURCE5     396	 0.0089
-cd-cg  420.9    1.4270              SOURCE1     560	
+cd-cg  420.9    1.4270              SOURCE1     560
 cd-ch  422.6    1.4257      SOURCE1_SOURCE5     109	 0.0049
 cd-cl  317.5    1.7354         CORR_SOURCE5     137	 0.0076
 cd-cx  357.4    1.4800               5/2017      13	 0.0034
@@ -351,13 +351,13 @@ cd-ne  560.3    1.2985         CORR_SOURCE5      41	 0.0113
 cd-nh  435.2    1.3735      SOURCE3_SOURCE5     976	 0.0106
 cd-oh  405.9    1.3470         CORR_SOURCE5     248	 0.0073
 cd-os  386.1    1.3620      SOURCE3_SOURCE5    1859	 0.0083
-cd-pc  318.2    1.7330              SOURCE3      84	
+cd-pc  318.2    1.7330              SOURCE3      84
 cd-ss  265.8    1.7562      SOURCE3_SOURCE5    2011	 0.0134
 cd-sy  247.7    1.7839         CORR_SOURCE5      73	 0.0082
 ce-ce  382.8    1.4574      SOURCE1_SOURCE5    1000	 0.0092
 ce-cf  538.6    1.3509      SOURCE1_SOURCE5    1908	 0.0059
 ce-cg  420.9    1.4270      SOURCE1_SOURCE5     238	 0.0053
-ce-ch  415.6    1.4310              SOURCE1      22	
+ce-ch  415.6    1.4310              SOURCE1      22
 ce-cl  294.9    1.7641      SOURCE4_SOURCE5      90	 0.0111
 ce-cx  333.4    1.5030               5/2017      26	 0.0077
 ce-cy  319.8    1.5170               5/2017      36	 0.0052
@@ -372,17 +372,17 @@ ce-nf  564.4    1.2964         CORR_SOURCE5     101	 0.0097
 ce-nh  412.3    1.3901         CORR_SOURCE5     300	 0.0133
 ce-oh  401.6    1.3502         CORR_SOURCE5      58	 0.0102
 ce-os  374.9    1.3710         CORR_SOURCE5      96	 0.0128
-ce-p2  259.1    1.8140              SOUECE3       1	
+ce-p2  259.1    1.8140              SOUECE3       1
 ce-pe  256.5    1.8180              SOURCE3       8	 0.0108
 ce-px  254.6    1.8210              SOURCE3       6	 0.0046
 ce-py  264.5    1.8056      SOURCE3_SOURCE5      22	 0.0142
-ce-s   324.5    1.6800              SOUECE3       1	
+ce-s   324.5    1.6800              SOUECE3       1
 ce-ss  249.3    1.7814      SOURCE4_SOURCE5      56	 0.0098
 ce-sx  227.2    1.8185      SOURCE3_SOURCE5      30	 0.0101
 ce-sy  245.1    1.7881      SOURCE3_SOURCE5      41	 0.0169
 c -f   387.9    1.3250              SOURCE2       6	 0.0147
 cf-cf  382.8    1.4574      SOURCE1_SOURCE5    1000	 0.0092
-cf-cg  415.6    1.4310              SOURCE1      22	
+cf-cg  415.6    1.4310              SOURCE1      22
 cf-ch  420.9    1.4270      SOURCE1_SOURCE5     238	 0.0053
 cf-h4  337.8    1.0916         CORR_SOURCE5     315	 0.0033
 cf-ha  342.5    1.0883      SOURCE3_SOURCE5    2751	 0.0014
@@ -394,11 +394,11 @@ cf-nf  406.9    1.3942      SOURCE3_SOURCE5      62	 0.0156
 cf-nh  412.3    1.3901         CORR_SOURCE5     300	 0.0133
 cf-oh  401.6    1.3502         CORR_SOURCE5      58	 0.0102
 cf-os  374.9    1.3710         CORR_SOURCE5      96	 0.0128
-cf-p2  259.1    1.8140              SOUECE3       1	
-cf-pf  256.5    1.8180              SOURCE3       8	
-cf-px  254.6    1.8210              SOURCE3       6	
+cf-p2  259.1    1.8140              SOUECE3       1
+cf-pf  256.5    1.8180              SOURCE3       8
+cf-px  254.6    1.8210              SOURCE3       6
 cf-py  264.5    1.8056      SOURCE3_SOURCE5      17	 0.0171
-cf-s   324.5    1.6800              SOUECE3       1	
+cf-s   324.5    1.6800              SOUECE3       1
 cf-sx  227.2    1.8185      SOURCE3_SOURCE5      25	 0.0105
 cf-sy  245.1    1.7881      SOURCE3_SOURCE5      36	 0.0177
 cg-cg  506.8    1.3693      SOURCE1_SOURCE5      62	 0.0025
@@ -412,71 +412,71 @@ c -ha  325.1    1.1010              SOURCE3      53	 0.0102
 ch-ch  506.8    1.3693      SOURCE1_SOURCE5      62	 0.0025
 ch-n1  943.1    1.1566      SOURCE1_SOURCE5     879	 0.0015
 ch-nf  509.7    1.3261      SOURCE4_SOURCE5      51	 0.0014
-ch-pf  429.8    1.6210              SOURCE3      11	
+ch-pf  429.8    1.6210              SOURCE3      11
 c -i   198.9    2.2090              SOURCE3       4	 0.0365
 cl-cl  143.3    2.2670              SOURCE1       2	 0.0395
 cl-cx  277.6    1.7880               5/2017      42	 0.0071
 cl-cy  273.4    1.7940               5/2017      26	 0.0106
 cl-f     0.1    1.6480              SOURCE2       2	 0.0500
 cl-i     0.0    2.5500              SOURCE1       6	 0.0893
-cl-n1  431.6    1.6300              SOUECE3       1	
+cl-n1  431.6    1.6300              SOUECE3       1
 cl-n2  263.4    1.8190              SOURCE3       6	 0.1020
 cl-n3  292.5    1.7772      SOURCE4_SOURCE5      16	 0.0044
 cl-n   342.3    1.7161      SOURCE4_SOURCE5      17	 0.0049
 cl-n4  311.1    1.7530              SOURCE3       4	 0.0098
 cl-na  253.2    1.8350              SOURCE3       7	 0.2083
-cl-nh  303.2    1.7630              SOURCE3       1	
-cl-no  250.1    1.8400              SOURCE2       1	
-cl-o   557.6    1.4830              SOURCE3       4	
-cl-oh  309.7    1.6900              SOURCE2       1	
-cl-os  278.8    1.7300              SOURCE3       4	
+cl-nh  303.2    1.7630              SOURCE3       1
+cl-no  250.1    1.8400              SOURCE2       1
+cl-o   557.6    1.4830              SOURCE3       4
+cl-oh  309.7    1.6900              SOURCE2       1
+cl-os  278.8    1.7300              SOURCE3       4
 cl-p2  217.5    2.0700              SOURCE3       6	 0.0108
-cl-p3  249.4    2.0080              SOURCE1     111	
-cl-p4  249.4    2.0080              SOURCE1     111	
-cl-p5  249.4    2.0080              SOURCE1     111	
-cl-pb  255.6    1.9970              SOURCE1      46	
-cl-s   208.7    2.0720              SOURCE1       6	
-cl-s2  172.7    2.1610              SOURCE2       1	
-cl-s4  208.7    2.0720              SOURCE1       6	
-cl-s6  208.7    2.0720              SOURCE1       6	
-cl-sh  208.7    2.0720              SOURCE1       6	
-cl-ss  208.7    2.0720              SOURCE1       6	
-cl-sx  208.7    2.0720              SOURCE1       6	
-cl-sy  208.7    2.0720              SOURCE1       6	
-c -n2  374.6    1.4200              SOUECE3       1	
+cl-p3  249.4    2.0080              SOURCE1     111
+cl-p4  249.4    2.0080              SOURCE1     111
+cl-p5  249.4    2.0080              SOURCE1     111
+cl-pb  255.6    1.9970              SOURCE1      46
+cl-s   208.7    2.0720              SOURCE1       6
+cl-s2  172.7    2.1610              SOURCE2       1
+cl-s4  208.7    2.0720              SOURCE1       6
+cl-s6  208.7    2.0720              SOURCE1       6
+cl-sh  208.7    2.0720              SOURCE1       6
+cl-ss  208.7    2.0720              SOURCE1       6
+cl-sx  208.7    2.0720              SOURCE1       6
+cl-sy  208.7    2.0720              SOURCE1       6
+c -n2  374.6    1.4200              SOUECE3       1
 c -n4  255.5    1.5460              SOURCE3       4	 0.0388
 c -n   427.6    1.3789      SOURCE1_SOURCE5    9463	 0.0137
 c -nc  416.9    1.3867         CORR_SOURCE5     179	 0.0121
 c -nd  416.9    1.3867         CORR_SOURCE5     179	 0.0121
 c -ne  411.2    1.3909         CORR_SOURCE5      87	 0.0140
 c -nf  411.2    1.3909         CORR_SOURCE5      87	 0.0140
-c -no  260.1    1.5400              SOUECE3       1	
+c -no  260.1    1.5400              SOUECE3       1
 c -o   637.7    1.2183      SOURCE1_SOURCE5   27083	 0.0110
 c -oh  400.1    1.3513      SOURCE1_SOURCE5    3610	 0.0055
 c -os  390.8    1.3584      SOURCE1_SOURCE5    5555	 0.0163
-c -p2  210.3    1.9000              SOUECE3       1	
+c -p2  210.3    1.9000              SOUECE3       1
 c -p3  219.0    1.8830              SOURCE3       6	 0.0129
-c -p4  220.6    1.8800              SOUECE3       1	
+c -p4  220.6    1.8800              SOUECE3       1
 c -p5  219.6    1.8818      SOURCE4_SOURCE5      25	 0.0081
 cp-cp  351.4    1.4854      SOURCE1_SOURCE5     728	 0.0059
 cp-cq  386.6    1.4542      SOURCE4_SOURCE5      34	 0.0159
 c -pe  204.9    1.9110              SOURCE3       3	 0.0025
-c -pf  204.9    1.9110              SOURCE3       3	
+c -pf  204.9    1.9110              SOURCE3       3
 cp-na  420.5    1.3840              SOURCE4       7	 0.0181
 cp-nb  488.5    1.3387      SOURCE4_SOURCE5     190	 0.0068
-c -px  208.3    1.9040              SOURCE3       1	
+c -px  208.3    1.9040              SOURCE3       1
 c -py  227.6    1.8670      SOURCE3_SOURCE5      17	 0.0103
 cq-cq  351.4    1.4854      SOURCE1_SOURCE5     728	 0.0059
 c -s   331.3    1.6723      SOURCE1_SOURCE5     875	 0.0114
-c -s4  200.4    1.8700              SOUECE3       1	
-c -s6  200.4    1.8700              SOUECE3       1	
+c -s4  200.4    1.8700              SOUECE3       1
+c -s6  200.4    1.8700              SOUECE3       1
 c -sh  239.7    1.7971      SOURCE3_SOURCE5      39	 0.0097
 c -ss  237.9    1.8000      SOURCE1_SOURCE5     249	 0.0157
 c -sx  193.3    1.8850              SOURCE3       5	 0.0088
 c -sy  202.8    1.8650              SOURCE3       5	 0.0085
 cu-cu  640.6    1.3000               5/2017       2	 0.0001
 cu-cx  368.5    1.4700               5/2017      31	 0.0066
-cu-ha  356.0    1.0790               5/2017       1	
+cu-ha  356.0    1.0790               5/2017       1
 cv-cv  557.0    1.3410               5/2017       3	 0.0026
 cv-cy  316.0    1.5210               5/2017      19	 0.0057
 cv-ha  342.9    1.0880               5/2017       3	 0.0001
@@ -495,7 +495,7 @@ cx-na  329.6    1.4610               5/2017      38	 0.0029
 cx-nh  358.5    1.4340               5/2017      16	 0.0017
 cx-oh  344.3    1.3970               5/2017       3	 0.0035
 cx-os  335.6    1.4050               5/2017      13	 0.0116
-cx-p3  205.4    1.9100               5/2017       1	
+cx-p3  205.4    1.9100               5/2017       1
 cx-s4  194.7    1.8820               5/2017       2	 0.0203
 cx-s6  210.8    1.8490               5/2017       2	 0.0016
 cx-ss  217.6    1.8360               5/2017       5	 0.0011
@@ -511,96 +511,96 @@ cy-os  317.9    1.4220               5/2017      28	 0.0080
 cy-s6  209.8    1.8510               5/2017      30	 0.0135
 cy-ss  210.3    1.8500               5/2017     100	 0.0087
 cz-nh  488.0    1.3390      SOURCE4_SOURCE5      85	 0.0046
-f -n1  375.7    1.4100              SOUECE3       1	
+f -n1  375.7    1.4100              SOUECE3       1
 f -n2  337.5    1.4440              SOURCE3       5	 0.0377
-f -n3  380.6    1.4060              SOURCE1       9	
+f -n3  380.6    1.4060              SOURCE1       9
 f -n   391.7    1.3970              SOURCE3       3	 0.0112
-f -n4  526.8    1.3080              SOURCE3       2	
+f -n4  526.8    1.3080              SOURCE3       2
 f -na  374.5    1.4110              SOURCE3       7	 0.0611
 f -nh  357.1    1.4260              SOURCE3       3	 0.0085
-f -no  314.4    1.4670              SOURCE2       1	
-f -o   442.2    1.3300              SOUECE3       1	
-f -oh  305.4    1.4440              SOURCE3       1	
-f -os  326.2    1.4230              SOURCE3       2	
+f -no  314.4    1.4670              SOURCE2       1
+f -o   442.2    1.3300              SOUECE3       1
+f -oh  305.4    1.4440              SOURCE3       1
+f -os  326.2    1.4230              SOURCE3       2
 f -p2  287.3    1.5360              SOURCE3       7	 0.2054
 f -p3  254.5    1.5780              SOURCE2       8	 0.0103
-f -p4  246.0    1.5900              SOUECE3       1	
+f -p4  246.0    1.5900              SOUECE3       1
 f -p5  248.6    1.5862      SOURCE1_SOURCE5      18	 0.0161
-f -s2  244.4    1.6430              SOURCE2       1	
-f -s   233.3    1.6600              SOUECE3       1	
+f -s2  244.4    1.6430              SOURCE2       1
+f -s   233.3    1.6600              SOUECE3       1
 f -s4  282.4    1.5910              SOURCE2       4	 0.0065
 f -s6  266.2    1.6120      SOURCE2_SOURCE5      15	 0.0133
-f -sh  240.4    1.6490              SOURCE3       1	
+f -sh  240.4    1.6490              SOURCE3       1
 f -ss  250.5    1.6340              SOURCE3       3	 0.0156
-hn-n1  455.1    0.9860              SOURCE2       1	
+hn-n1  455.1    0.9860              SOURCE2       1
 hn-n2  385.6    1.0230      SOURCE3_SOURCE5     732	 0.0030
 hn-n3  392.4    1.0190      SOURCE3_SOURCE5    5944	 0.0012
 hn-n   403.2    1.0129      SOURCE3_SOURCE5    7593	 0.0034
 hn-n4  373.2    1.0304      SOURCE3_SOURCE5     756	 0.0122
 hn-na  408.4    1.0100      SOURCE3_SOURCE5    1755	 0.0019
 hn-nh  404.6    1.0121      SOURCE3_SOURCE5    7230	 0.0022
-hn-no  385.6    1.0230              SOURCE3       1	
-ho-o   357.9    0.9810              SOURCE3       1	
+hn-no  385.6    1.0230              SOURCE3       1
+ho-o   357.9    0.9810              SOURCE3       1
 ho-oh  371.4    0.9730      SOURCE3_SOURCE5   21237	 0.0034
 hp-p2  385.1    1.3360              SOURCE3      87	 0.1706
 hp-p3  300.2    1.4120      SOURCE3_SOURCE5     123	 0.0510
 hp-p4  368.7    1.3490              SOURCE3      17	 0.1577
 hp-p5  294.7    1.4178      SOURCE3_SOURCE5      31	 0.0077
-hs-s   286.4    1.3530              SOURCE3       1	
+hs-s   286.4    1.3530              SOURCE3       1
 hs-s4  266.4    1.3750              SOURCE3       5	 0.0004
 hs-s6  280.8    1.3590              SOURCE3       5	 0.0015
 hs-sh  291.9    1.3473      SOURCE3_SOURCE5     477	 0.0118
-i -i   109.2    2.9170              SOURCE1       1	
-i -n1  302.1    2.0600              SOUECE3       1	
+i -i   109.2    2.9170              SOURCE1       1
+i -n1  302.1    2.0600              SOUECE3       1
 i -n2  182.6    2.3040              SOURCE3       6	 0.1186
 i -n   278.3    2.0980              SOURCE3       5	 0.0156
 i -n3  231.8    2.1850              SOURCE3       3	 0.0437
 i -n4  246.6    2.1550              SOURCE3       3	 0.0168
 i -na  260.5    2.1290              SOURCE3       8	 0.1276
-i -nh  249.2    2.1500              SOURCE3       1	
-i -no  211.0    2.2310              SOURCE3       1	
-i -o   323.8    1.9800              SOUECE3       1	
-i -oh  247.9    2.1010              SOURCE3       2	
+i -nh  249.2    2.1500              SOURCE3       1
+i -no  211.0    2.2310              SOURCE3       1
+i -o   323.8    1.9800              SOUECE3       1
+i -oh  247.9    2.1010              SOURCE3       2
 i -os  233.6    2.1290              SOURCE3       3	 0.0146
 i -p2  108.2    2.6430              SOURCE3       6	 0.0297
 i -p3  123.6    2.5660              SOURCE3       3	 0.0016
 i -p4  183.0    2.3520              SOURCE3       4	 0.2600
 i -p5  117.3    2.5960              SOURCE3       3	 0.0143
-i -s   175.1    2.4300              SOUECE3       1	
-i -s4   82.8    2.8700              SOUECE3       1	
-i -s6   82.8    2.8700              SOURCE3       1	
-i -sh  138.5    2.5600              SOUECE3       1	
+i -s   175.1    2.4300              SOUECE3       1
+i -s4   82.8    2.8700              SOUECE3       1
+i -s6   82.8    2.8700              SOURCE3       1
+i -sh  138.5    2.5600              SOUECE3       1
 i -ss  135.9    2.5710              SOURCE3       3	 0.0065
 n1-n1 1171.6    1.1345      SOURCE1_SOURCE5      78	 0.0044
 n1-n2  813.2    1.2304      SOURCE1_SOURCE5      36	 0.0029
-n1-n3  535.7    1.3500              SOUECE3       1	
-n1-n4  518.2    1.3600              SOUECE3       1	
-n1-na  535.7    1.3500              SOUECE3       1	
-n1-nc  857.4    1.2160              SOURCE1      38	
-n1-nd  857.4    1.2160              SOURCE1      38	
-n1-ne  751.9    1.2520              SOURCE2       1	
-n1-nf  751.9    1.2520              SOURCE2       1	
-n1-nh  553.9    1.3400              SOUECE3       1	
-n1-no  454.8    1.4000              SOUECE3       1	
+n1-n3  535.7    1.3500              SOUECE3       1
+n1-n4  518.2    1.3600              SOUECE3       1
+n1-na  535.7    1.3500              SOUECE3       1
+n1-nc  857.4    1.2160              SOURCE1      38
+n1-nd  857.4    1.2160              SOURCE1      38
+n1-ne  751.9    1.2520              SOURCE2       1
+n1-nf  751.9    1.2520              SOURCE2       1
+n1-nh  553.9    1.3400              SOUECE3       1
+n1-no  454.8    1.4000              SOUECE3       1
 n1-o   617.5    1.2770              SOURCE3       5	 0.0438
-n1-oh  569.8    1.3000              SOUECE3       1	
-n1-os  550.5    1.3100              SOUECE3       1	
+n1-oh  569.8    1.3000              SOUECE3       1
+n1-os  550.5    1.3100              SOUECE3       1
 n1-p2  358.8    1.6780              SOURCE3       2	 0.0282
-n1-p3  376.7    1.6600              SOUECE3       1	
-n1-p4  356.9    1.6800              SOURCE3       0	
-n1-p5  482.7    1.5710              SOURCE1     132	
+n1-p3  376.7    1.6600              SOUECE3       1
+n1-p4  356.9    1.6800              SOURCE3       0
+n1-p5  482.7    1.5710              SOURCE1     132
 n1-s2  604.3    1.4490              SOURCE2       2	 0.0010
 n1-s   328.7    1.6590              SOURCE3       6	 0.0789
-n1-s4  336.8    1.6500              SOUECE3       1	
-n1-s6  670.3    1.4160              SOURCE2       2	
-n1-sh  376.1    1.6100              SOUECE3       1	
-n1-ss  376.1    1.6100              SOUECE3       1	
+n1-s4  336.8    1.6500              SOUECE3       1
+n1-s6  670.3    1.4160              SOURCE2       2
+n1-sh  376.1    1.6100              SOUECE3       1
+n1-ss  376.1    1.6100              SOUECE3       1
 n2-n2  713.2    1.2668      SOURCE3_SOURCE5      40	 0.0268
-n2-n3  574.8    1.3290              SOURCE2       1	
+n2-n3  574.8    1.3290              SOURCE2       1
 n2-n4  200.8    1.6790              SOURCE3       7	 0.3138
 n2-na  505.3    1.3676      SOURCE4_SOURCE5      49	 0.0087
-n2-nc  743.9    1.2550              SOURCE1      13	
-n2-nd  743.9    1.2550              SOURCE1      13	
+n2-nc  743.9    1.2550              SOURCE1      13
+n2-nd  743.9    1.2550              SOURCE1      13
 n2-ne  701.7    1.2714      SOURCE3_SOURCE5      57	 0.0194
 n2-nf  701.7    1.2714      SOURCE3_SOURCE5      27	 0.0074
 n2-nh  531.4    1.3524      SOURCE3_SOURCE5     210	 0.0159
@@ -610,27 +610,27 @@ n2-oh  420.0    1.3912      SOURCE1_SOURCE5     149	 0.0171
 n2-os  406.3    1.4015      SOURCE3_SOURCE5     108	 0.0101
 n2-p2  438.3    1.6050              SOURCE3      35	 0.0737
 n2-p3  286.5    1.7640              SOURCE3       7	 0.0374
-n2-p4  317.7    1.7240              SOUECE3       1	
-n2-p5  445.8    1.5990              SOURCE1       7	
+n2-p4  317.7    1.7240              SOUECE3       1
+n2-p5  445.8    1.5990              SOURCE1       7
 n2-pe  527.9    1.5400              SOURCE3      20	 0.1392
-n2-pf  527.9    1.5400              SOURCE3      20	
+n2-pf  527.9    1.5400              SOURCE3      20
 n2-s2  454.0    1.5441      SOURCE2_SOURCE5      11	 0.0086
-n2-s4  376.1    1.6100              SOUECE3       1	
-n2-s   458.1    1.5410              SOURCE1      37	
+n2-s4  376.1    1.6100              SOUECE3       1
+n2-s   458.1    1.5410              SOURCE1      37
 n2-s6  441.3    1.5538      SOURCE4_SOURCE5      16	 0.0041
 n2-sh  266.6    1.7380              SOURCE3       5	 0.0511
-n2-ss  331.4    1.6560              SOURCE1      36	
+n2-ss  331.4    1.6560              SOURCE1      36
 n3-n3  398.8    1.4415      SOURCE1_SOURCE5      48	 0.0063
 n3-n4  413.4    1.4300      SOURCE1_SOURCE5       9	 0.0040
-n3-na  426.7    1.4200              SOURCE1      68	
+n3-na  426.7    1.4200              SOURCE1      68
 n3-nh  432.7    1.4156      SOURCE1_SOURCE5      66	 0.0085
 n3-no  458.0    1.3978      SOURCE3_SOURCE5      19	 0.0132
 n3-o   564.0    1.3030              SOURCE3       4	 0.1217
 n3-oh  389.3    1.4149      SOURCE1_SOURCE5      17	 0.0055
 n3-os  359.0    1.4406      SOURCE1_SOURCE5      84	 0.0191
-n3-p2  366.6    1.6700              SOUECE3       1	
-n3-p3  312.8    1.7300              SOURCE1      40	
-n3-p4  341.1    1.6970              SOURCE1      88	
+n3-p2  366.6    1.6700              SOUECE3       1
+n3-p3  312.8    1.7300              SOURCE1      40
+n3-p4  341.1    1.6970              SOURCE1      88
 n3-p5  367.0    1.6696      SOURCE1_SOURCE5     680	 0.0109
 n3-py  343.9    1.6939      SOURCE4_SOURCE5      16	 0.0080
 n3-s   232.3    1.7920              SOURCE3       3	 0.0178
@@ -642,21 +642,21 @@ n3-sy  297.4    1.6962      SOURCE4_SOURCE5     511	 0.0083
 n4-n4  349.9    1.4840              SOURCE3       4	 0.0089
 n4-na  407.0    1.4350              SOURCE3       9	 0.0390
 n4-nh  369.7    1.4660              SOURCE3       5	 0.0108
-n4-no  354.2    1.4800              SOUECE3       1	
+n4-no  354.2    1.4800              SOUECE3       1
 n4-o   463.6    1.3610              SOURCE3       3	 0.0041
 n4-oh  408.2    1.4000              SOURCE3       3	 0.0115
 n4-os  381.8    1.4210              SOURCE3       5	 0.0249
 n4-p2  185.9    1.9420              SOURCE3      10	 0.0643
 n4-p3  215.1    1.8800              SOURCE3       5	 0.0146
-n4-p4  187.6    1.9380              SOURCE3       1	
+n4-p4  187.6    1.9380              SOURCE3       1
 n4-p5  242.9    1.8300              SOURCE3       5	 0.0087
-n4-py  204.2    1.9020              SOURCE3       4	
+n4-py  204.2    1.9020              SOURCE3       4
 n4-s   210.3    1.8320              SOURCE3       3	 0.0004
 n4-s4  151.0    1.9720              SOURCE3       3	 0.0198
 n4-s6  172.7    1.9140              SOURCE3       5	 0.0432
 n4-sh  221.5    1.8110              SOURCE3       3	 0.0027
 n4-ss  221.0    1.8120              SOURCE3       5	 0.0064
-na-na  453.3    1.4010              SOURCE1      40	
+na-na  453.3    1.4010              SOURCE1      40
 na-nb  540.7    1.3472      SOURCE4_SOURCE5      26	 0.0093
 na-nc  525.4    1.3558      SOURCE3_SOURCE5     899	 0.0083
 na-nd  528.4    1.3541      SOURCE3_SOURCE5     362	 0.0113
@@ -670,25 +670,25 @@ na-p3  288.0    1.7620              SOURCE3       8	 0.0113
 na-p4  492.4    1.5640              SOURCE3       5	 0.2161
 na-p5  325.3    1.7150              SOURCE3      11	 0.0238
 na-pc  311.1    1.7320              SOURCE3      81	 0.0207
-na-pd  311.1    1.7320              SOURCE3      81	
-na-py  327.8    1.7120              SOURCE3       2	
+na-pd  311.1    1.7320              SOURCE3      81
+na-py  327.8    1.7120              SOURCE3       2
 na-s   248.7    1.7650              SOURCE3       8	 0.0095
 na-s4  231.7    1.7930              SOURCE3      10	 0.0421
 na-s6  277.4    1.7227      SOURCE3_SOURCE5      15	 0.0153
 na-sh  278.6    1.7210              SOURCE3       9	 0.0113
 na-ss  270.4    1.7325      SOURCE3_SOURCE5      50	 0.0325
-na-sy  274.3    1.7270              SOURCE3       1	
+na-sy  274.3    1.7270              SOURCE3       1
 nb-nb  566.2    1.3335      SOURCE1_SOURCE5      98	 0.0106
 nb-pb  461.1    1.5870              SOURCE1     162	 0.0091
 nc-nc  510.4    1.3646      SOURCE3_SOURCE5     271	 0.0065
 nc-nd  637.5    1.2988      SOURCE3_SOURCE5     185	 0.0074
 nc-os  406.5    1.4013      SOURCE1_SOURCE5     243	 0.0096
 nc-ss  359.8    1.6260      SOURCE1_SOURCE5     114	 0.0148
-nc-sy  439.8    1.5550              SOURCE3       2	
+nc-sy  439.8    1.5550              SOURCE3       2
 nd-nd  510.4    1.3646      SOURCE3_SOURCE5     271	 0.0065
 nd-os  406.5    1.4013      SOURCE1_SOURCE5     243	 0.0096
 nd-ss  359.8    1.6260      SOURCE1_SOURCE5     114	 0.0148
-nd-sy  439.8    1.5550              SOURCE3       2	
+nd-sy  439.8    1.5550              SOURCE3       2
 ne-ne  423.7    1.4222      SOURCE3_SOURCE5      47	 0.0776
 ne-nf  722.4    1.2632      SOURCE4_SOURCE5      78	 0.0037
 ne-o   729.1    1.2307      SOURCE3_SOURCE5      55	 0.0223
@@ -701,12 +701,12 @@ ne-sx  207.3    1.8380              SOURCE3       7	 0.1060
 ne-sy  317.1    1.6723      SOURCE3_SOURCE5      49	 0.0285
 nf-nf  423.7    1.4222      SOURCE3_SOURCE5      28	 0.0146
 nf-o   729.1    1.2307      SOURCE3_SOURCE5      15	 0.0138
-nf-p2  493.9    1.5630              SOURCE3      14	
-nf-pf  327.8    1.7120              SOURCE3      28	
-nf-px  336.6    1.7020              SOURCE3      11	
+nf-p2  493.9    1.5630              SOURCE3      14
+nf-pf  327.8    1.7120              SOURCE3      28
+nf-px  336.6    1.7020              SOURCE3      11
 nf-py  438.4    1.6049      SOURCE4_SOURCE5      84	 0.0113
-nf-s   463.5    1.5370              SOURCE3      22	
-nf-sx  207.3    1.8380              SOURCE3       7	
+nf-s   463.5    1.5370              SOURCE3      22
+nf-sx  207.3    1.8380              SOURCE3       7
 nf-sy  317.1    1.6723      SOURCE3_SOURCE5      42	 0.0197
 nh-nh  451.6    1.4022      SOURCE1_SOURCE5       8	 0.0109
 nh-no  475.2    1.3864      SOURCE4_SOURCE5      22	 0.0046
@@ -720,10 +720,10 @@ nh-p5  365.6    1.6710              SOURCE3       3	 0.0007
 nh-s   237.0    1.7840              SOURCE3       3	 0.0076
 nh-s4  259.1    1.7490              SOURCE3       3	 0.0203
 nh-s6  296.4    1.6975      SOURCE4_SOURCE5      93	 0.0076
-nh-sh  288.3    1.7080              SOURCE3       1	
+nh-sh  288.3    1.7080              SOURCE3       1
 nh-ss  287.5    1.7091      SOURCE1_SOURCE5      58	 0.0020
 nh-sy  283.7    1.7141      SOURCE4_SOURCE5     239	 0.0099
-n -n1  553.9    1.3400              SOUECE3       1	
+n -n1  553.9    1.3400              SOUECE3       1
 n -n2  517.5    1.3604      SOURCE3_SOURCE5     272	 0.0114
 n -n3  448.7    1.4042      SOURCE3_SOURCE5      87	 0.0076
 n -n4  410.8    1.4320              SOURCE3       5	 0.0098
@@ -735,63 +735,63 @@ n -nh  452.5    1.4016      SOURCE4_SOURCE5      51	 0.0075
 n -no  381.2    1.4560              SOURCE3       4	 0.0327
 n -o   697.2    1.2430      SOURCE3_SOURCE5      16	 0.0255
 n -oh  400.2    1.4062      SOURCE3_SOURCE5     119	 0.0062
-no-no  138.3    1.8240              SOURCE3       1	
+no-no  138.3    1.8240              SOURCE3       1
 no-o   741.8    1.2260      SOURCE1_SOURCE5    4403	 0.0099
-no-oh  400.5    1.4060              SOURCE2       1	
+no-oh  400.5    1.4060              SOURCE2       1
 no-os  381.7    1.4211      SOURCE4_SOURCE5     138	 0.0070
 no-p2  306.3    1.7380              SOURCE3      10	 0.2231
 no-p3  234.7    1.8440              SOURCE3       3	 0.0005
 no-p4  220.4    1.8700              SOURCE3       3	 0.0006
 no-p5  240.5    1.8340              SOURCE3       4	 0.0020
-no-s   263.8    1.7420              SOURCE3       2	
+no-s   263.8    1.7420              SOURCE3       2
 n -os  396.8    1.4089      SOURCE4_SOURCE5      73	 0.0121
 no-s4  143.0    1.9960              SOURCE3       3	 0.0313
 no-s6  149.6    1.9760              SOURCE3       3	 0.0520
-no-sh  225.4    1.8040              SOURCE3       1	
+no-sh  225.4    1.8040              SOURCE3       1
 no-ss  212.4    1.8280              SOURCE3       3	 0.0244
 n -p2  310.3    1.7330              SOURCE3       8	 0.0217
 n -p3  282.2    1.7700              SOURCE3       9	 0.0118
-n -p4  309.5    1.7340              SOURCE3       1	
+n -p4  309.5    1.7340              SOURCE3       1
 n -p5  323.5    1.7171      SOURCE4_SOURCE5      25	 0.0133
 n -pc  304.8    1.7400              SOURCE3       3	 0.0010
-n -pd  304.8    1.7400              SOURCE3       3	
+n -pd  304.8    1.7400              SOURCE3       3
 n -s   247.5    1.7670              SOURCE3       3	 0.0011
 n -s4  246.8    1.7681      SOURCE3_SOURCE5       9	 0.0163
 n -s6  280.4    1.7186      SOURCE4_SOURCE5      45	 0.0154
 n -sh  273.6    1.7280              SOURCE3       4	 0.0128
 n -ss  275.1    1.7259      SOURCE3_SOURCE5      22	 0.0103
 n -sy  282.1    1.7163      SOURCE4_SOURCE5     126	 0.0086
-oh-oh  340.5    1.4690              SOURCE3       1	
+oh-oh  340.5    1.4690              SOURCE3       1
 oh-os  354.9    1.4555      SOURCE4_SOURCE5      49	 0.0046
 oh-p2  316.8    1.6300              SOURCE3       8	 0.0916
 oh-p3  278.8    1.6770              SOURCE3       3	 0.0148
 oh-p4  307.4    1.6410              SOURCE3       4	 0.0092
 oh-p5  330.4    1.6149      SOURCE3_SOURCE5    1121	 0.0129
 oh-py  329.2    1.6162      SOURCE3_SOURCE5     112	 0.0110
-oh-s   190.0    1.8120              SOURCE3       2	
+oh-s   190.0    1.8120              SOURCE3       2
 oh-s4  256.0    1.6958      SOURCE4_SOURCE5      29	 0.0100
 oh-s6  302.1    1.6346      SOURCE3_SOURCE5     193	 0.0162
 oh-sh  258.6    1.6920              SOURCE3       2	 0.0003
 oh-ss  261.4    1.6880      SOURCE3_SOURCE5      12	 0.0167
 oh-sy  289.8    1.6497      SOURCE4_SOURCE5     123	 0.0037
 o -o   384.3    1.4300              SOURCE3       2	 0.0500
-o -oh  294.6    1.5170              SOURCE3       2	
+o -oh  294.6    1.5170              SOURCE3       2
 o -os  306.3    1.5040              SOURCE3       3	 0.0117
 o -p2  449.7    1.5080              SOURCE3      17	 0.0306
 o -p3  440.4    1.5150              SOURCE3      35	 0.0297
 o -p4  455.2    1.5039      SOURCE3_SOURCE5      60	 0.0565
 o -p5  479.5    1.4866      SOURCE1_SOURCE5    1318	 0.0133
 o -pe  432.6    1.5210              SOURCE3      20	 0.0171
-o -pf  432.6    1.5210              SOURCE3      20	
+o -pf  432.6    1.5210              SOURCE3      20
 o -px  455.7    1.5035      SOURCE3_SOURCE5      45	 0.0136
 o -py  478.2    1.4875      SOURCE3_SOURCE5     119	 0.0072
-o -s   194.8    1.8020              SOURCE3       2	
+o -s   194.8    1.8020              SOURCE3       2
 o -s2  333.6    1.5990              SOURCE3       3	 0.0707
 o -s4  439.1    1.5042      SOURCE1_SOURCE5     137	 0.0127
 o -s6  512.7    1.4533      SOURCE1_SOURCE5    2456	 0.0105
-o -sh  328.0    1.6050              SOURCE3       2	
+o -sh  328.0    1.6050              SOURCE3       2
 os-os  344.4    1.4653      SOURCE1_SOURCE5      69	 0.0090
-os-p2  371.9    1.5730              SOURCE1      16	
+os-p2  371.9    1.5730              SOURCE1      16
 os-p3  280.7    1.6744      SOURCE3_SOURCE5      22	 0.0105
 os-p4  311.6    1.6360              SOURCE3       4	 0.0057
 os-p5  330.6    1.6147      SOURCE1_SOURCE5    1200	 0.0218
@@ -802,94 +802,94 @@ os-s4  258.5    1.6922      SOURCE3_SOURCE5      25	 0.0189
 os-s6  312.4    1.6225      SOURCE1_SOURCE5     242	 0.0147
 os-sh  273.6    1.6710              SOURCE3       3	 0.0106
 os-ss  250.5    1.7040              SOURCE3       9	 0.0277
-os-sy  253.9    1.6990              SOURCE3       1	
+os-sy  253.9    1.6990              SOURCE3       1
 o -sx  427.9    1.5129      SOURCE3_SOURCE5     136	 0.0072
 o -sy  493.0    1.4660      SOURCE3_SOURCE5    2007	 0.0061
 p2-p2  490.3    1.7860              SOURCE3      25	 0.3488
 p2-p3  211.9    2.1520              SOURCE3       9	 0.1777
-p2-p4  200.4    2.1790              SOUECE3       1	
-p2-p5  199.9    2.1800              SOUECE3       1	
+p2-p4  200.4    2.1790              SOUECE3       1
+p2-p5  199.9    2.1800              SOUECE3       1
 p2-pe  401.6    1.8670              SOURCE3      16	 0.3571
-p2-pf  401.6    1.8670              SOURCE3      16	
+p2-pf  401.6    1.8670              SOURCE3      16
 p2-s   361.6    1.7720              SOURCE3      26	 0.3014
-p2-s4  139.4    2.1900              SOUECE3       1	
-p2-s6  142.3    2.1800              SOUECE3       1	
+p2-s4  139.4    2.1900              SOUECE3       1
+p2-s6  142.3    2.1800              SOUECE3       1
 p2-sh  224.0    1.9710              SOURCE3      10	 0.2829
 p2-ss  226.6    1.9660              SOURCE3      10	 0.2739
-p3-p3  186.5    2.2140              SOURCE1      41	
+p3-p3  186.5    2.2140              SOURCE1      41
 p3-p4  185.7    2.2160              SOURCE3       3	 0.0011
 p3-p5  186.9    2.2130              SOURCE3       9	 0.0265
-p3-s   179.7    2.0700              SOUECE3       1	
+p3-s   179.7    2.0700              SOUECE3       1
 p3-s4  173.2    2.0870              SOURCE3       8	 0.2235
 p3-s6  176.9    2.0770              SOURCE3      11	 0.1420
 p3-sh  157.3    2.1320              SOURCE3       3	 0.0078
 p3-ss  161.0    2.1210              SOURCE3       3	 0.0059
-p4-p4  273.1    2.0340              SOURCE1       1	
-p4-p5  178.0    2.2370              SOUECE3       1	
+p4-p4  273.1    2.0340              SOURCE1       1
+p4-p5  178.0    2.2370              SOUECE3       1
 p4-s   152.7    2.1460              SOURCE3       5	 0.0601
-p4-s4  123.2    2.2510              SOUECE3       1	
-p4-s6  118.9    2.2690              SOUECE3       1	
+p4-s4  123.2    2.2510              SOUECE3       1
+p4-s6  118.9    2.2690              SOUECE3       1
 p4-sh  163.1    2.1150              SOURCE3       4	 0.0008
 p4-ss  167.0    2.1040              SOURCE3       4	 0.0044
-p5-p5  261.4    2.0540              SOURCE1       1	
+p5-p5  261.4    2.0540              SOURCE1       1
 p5-s   243.9    1.9341      SOURCE1_SOURCE5     173	 0.0138
-p5-s4  191.9    2.0400              SOUECE3       1	
-p5-s6  191.9    2.0400              SOUECE3       1	
+p5-s4  191.9    2.0400              SOUECE3       1
+p5-s6  191.9    2.0400              SOUECE3       1
 p5-sh  175.0    2.0820              SOURCE3       3	 0.0035
 p5-ss  162.2    2.1176      SOURCE4_SOURCE5      70	 0.0117
 pe-pe  240.7    2.0920              SOURCE3       7	 0.1369
-pe-pf  260.8    2.0550              SOURCE3       1	
+pe-pf  260.8    2.0550              SOURCE3       1
 pe-px  291.4    2.0050              SOURCE3      12	 0.2609
 pe-py  278.6    2.0250              SOURCE3      12	 0.2617
 pe-s   374.7    1.7580              SOURCE3      31	 0.3197
 pe-sx  145.9    2.1680              SOURCE3       9	 0.1743
 pe-sy  133.0    2.2130              SOURCE3       6	 0.0127
-pf-pf  240.7    2.0920              SOURCE3       7	
-pf-px  291.4    2.0050              SOURCE3      12	
-pf-py  278.6    2.0250              SOURCE3      12	
-pf-s   374.7    1.7580              SOURCE3      31	
-pf-sx  145.9    2.1680              SOURCE3       9	
-pf-sy  133.0    2.2130              SOURCE3       6	
+pf-pf  240.7    2.0920              SOURCE3       7
+pf-px  291.4    2.0050              SOURCE3      12
+pf-py  278.6    2.0250              SOURCE3      12
+pf-s   374.7    1.7580              SOURCE3      31
+pf-sx  145.9    2.1680              SOURCE3       9
+pf-sy  133.0    2.2130              SOURCE3       6
 px-py  192.3    2.1990              SOURCE3       5	 0.0238
 px-sx  125.4    2.2420              SOURCE3       3	 0.0119
 px-sy  123.7    2.2490              SOURCE3       3	 0.0272
 py-py  197.5    2.1860              SOURCE3       8	 0.0132
 py-sx  121.2    2.2590              SOURCE3       7	 0.0603
 py-sy  141.7    2.1820              SOURCE3       5	 0.0047
-s4-s4  151.5    2.0800              SOUECE3       1	
-s4-s6  151.5    2.0800              SOUECE3       1	
+s4-s4  151.5    2.0800              SOUECE3       1
+s4-s6  151.5    2.0800              SOUECE3       1
 s4-sh  125.7    2.1680              SOURCE3       3	 0.0227
 s4-ss  126.2    2.1660              SOURCE3       5	 0.0247
-s6-s6  151.5    2.0800              SOUECE3       1	
+s6-s6  151.5    2.0800              SOUECE3       1
 s6-sh  142.6    2.1080              SOURCE3       3	 0.0144
 s6-ss  139.6    2.1180              SOURCE3       5	 0.0209
-sh-sh  158.9    2.0580              SOURCE2       1	
+sh-sh  158.9    2.0580              SOURCE2       1
 sh-ss  155.8    2.0670              SOURCE3       3	 0.0029
-s -s   169.0    2.0300              SOURCE3       1	
-s -s2  229.2    1.8970              SOURCE1       5	
+s -s   169.0    2.0300              SOURCE3       1
+s -s2  229.2    1.8970              SOURCE1       5
 s -s4  152.8    2.0760              SOURCE3       4	 0.0345
 s -s6  166.0    2.0380              SOURCE3       3	 0.0311
-s -sh  142.0    2.1100              SOURCE3       2	
-s -ss  148.5    2.0890              SOURCE3       1	
+s -sh  142.0    2.1100              SOURCE3       2
+s -ss  148.5    2.0890              SOURCE3       1
 ss-ss  153.8    2.0728      SOURCE1_SOURCE5     457	 0.0074
 sx-sx   80.9    2.3910              SOURCE3       3	 0.0185
 sx-sy  105.3    2.2550              SOURCE3       5	 0.0737
 sy-sy  106.4    2.2500              SOURCE3       3	 0.0289
 br-cd  277.4    1.8850      SOURCE4_SOURCE5      89	 0.0082
-c1-cf  607.4    1.3153              SOURCE4       6	
+c1-cf  607.4    1.3153              SOURCE4       6
 cd-f   367.8    1.3407      SOURCE4_SOURCE5      46	 0.0041
-cd-n4  299.0    1.4930              SOURCE4       7	
+cd-n4  299.0    1.4930              SOURCE4       7
 cd-nf  428.0    1.3786      SOURCE4_SOURCE5      52	 0.0115
 cd-no  364.2    1.4289      SOURCE4_SOURCE5     253	 0.0081
 cd-sh  257.1    1.7693      SOURCE4_SOURCE5      14	 0.0031
 cd-sx  231.7    1.8107      SOURCE4_SOURCE5      28	 0.0024
-cc-cy  342.6    1.4940               5/2017       1	
+cc-cy  342.6    1.4940               5/2017       1
 cf-cl  294.9    1.7641      SOURCE4_SOURCE5      66	 0.0129
 cf-cx  336.4    1.5000               5/2017       2	 0.0008
 cf-cy  320.7    1.5159      SOURCE4_SOURCE5      36	 0.0052
 cf-na  373.6    1.4209      SOURCE4_SOURCE5       6	 0.0049
 cf-ss  249.3    1.7814      SOURCE4_SOURCE5      46	 0.0106
-cq-na  420.5    1.3840              SOURCE4       7	
+cq-na  420.5    1.3840              SOURCE4       7
 cq-nb  488.5    1.3387      SOURCE4_SOURCE5     120	 0.0071
 cl-py  229.7    2.0450              SOURCE5      45	 0.0072
 f -py  255.2    1.5770              SOURCE5      25	 0.0035
@@ -901,9 +901,9 @@ cc-i   239.3    2.1200              SOURCE5      11	 0.0086
 cy-n4  279.1    1.5160               5/2017       3	 0.0058
 cy-p3  206.4    1.9080               5/2017      10	 0.0056
 cy-na  345.3    1.4460               5/2017       8	 0.0049
-cx-n4  288.4    1.5050               5/2017       1	
+cx-n4  288.4    1.5050               5/2017       1
 ne-s4  327.8    1.6600              SOURCE5       6	 0.0027
-cv-ss  288.9    1.7240               5/2017       1	
+cv-ss  288.9    1.7240               5/2017       1
 cy-no  276.6    1.5190               5/2017       7	 0.0035
 ce-cv  522.9    1.3600               5/2017       6	 0.0111
 cd-i   241.8    2.1150              SOURCE5       7	 0.0138
@@ -956,62 +956,62 @@ cy-n2  370.0    1.4240               5/2017       3	 0.0008
 op-p5  327.6    1.6180               5/2017       3	 0.0012
 cx-sp  224.2    1.8240               5/2017       3	 0.0172
 hn-nl  345.9    1.0480               5/2017       3	 0.0410
-nn-p5  371.6    1.6650               5/2017       2	
+nn-p5  371.6    1.6650               5/2017       2
 nj-p5  287.3    1.7630               5/2017       2	 0.0519
 cc-sq  252.1    1.7770               5/2017       3	 0.0006
 c2-cv  572.2    1.3330               5/2017       2	 0.0002
 c1-cy  375.3    1.4640               5/2017       3	 0.0061
 cy-i   206.3    2.1910               5/2017       3	 0.0116
 oq-p5  266.4    1.6940               5/2017       4	 0.0003
-cy-py  192.8    1.9370               5/2017       4	
+cy-py  192.8    1.9370               5/2017       4
 nj-os  410.9    1.3980               5/2017       2	 0.0028
 op-op  233.8    1.5970               5/2017       2	 0.0081
-cy-p5  214.9    1.8910               5/2017       2	
-cy-sx  204.3    1.8620               5/2017       1	
+cy-p5  214.9    1.8910               5/2017       2
+cy-sx  204.3    1.8620               5/2017       1
 cx-i   208.0    2.1870               5/2017       2	 0.0025
-cx-no  293.7    1.4990               5/2017       1	
+cx-no  293.7    1.4990               5/2017       1
 ce-cu  625.3    1.3070               5/2017       2	 0.0055
 np-sy  269.4    1.7340               5/2017       2	 0.0135
-cl-nj  334.4    1.7250               5/2017       2	
+cl-nj  334.4    1.7250               5/2017       2
 np-s6  230.6    1.7950               5/2017       2	 0.0042
 np-op  317.0    1.4810               5/2017       2	 0.0016
 cl-np  280.3    1.7940               5/2017       2	 0.0014
 cx-p5  244.8    1.8370               5/2017       2	 0.0063
 cl-cv  315.4    1.7380               5/2017       2	 0.0089
 cv-nh  441.7    1.3690               5/2017       2	 0.0397
-nq-s4  269.4    1.7340               5/2017       2	
+nq-s4  269.4    1.7340               5/2017       2
 c3-nl  285.9    1.5080               5/2017       2	 0.0085
-np-p3  291.7    1.7570               5/2017       1	
-cu-f   402.7    1.3140               5/2017       2	
-c -sq  223.6    1.8250               5/2017       1	
-cu-os  423.8    1.3340               5/2017       1	
-cy-sh  217.1    1.8370               5/2017       1	
-cv-oq  294.8    1.4460               5/2017       1	
-cu-cv  618.9    1.3100               5/2017       1	
-c1-nj  476.7    1.3460               5/2017       1	
-cu-ne  619.2    1.2700               5/2017       1	
-cu-op  442.9    1.3210               5/2017       1	
-s6-sp  152.1    2.0780               5/2017       1	
-sp-sp  137.8    2.1240               5/2017       1	
-cv-ne  653.2    1.2550               5/2017       1	
-op-s6  314.5    1.6200               5/2017       1	
-op-sp  168.1    1.8620               5/2017       1	
-c1-cv  627.4    1.3060               5/2017       1	
-n2-nj  486.8    1.3790               5/2017       1	
-nq-nq  339.5    1.4940               5/2017       1	
-cv-p3  263.0    1.8080               5/2017       1	
-cv-p5  364.9    1.6810               5/2017       1	
-np-os  365.3    1.4350               5/2017       1	
-nj-nq  377.7    1.4590               5/2017       1	
-no-nq  530.4    1.3530               5/2017       1	
-cy-sy  210.3    1.8500               5/2017       1	
-ce-nm  400.6    1.3990               5/2017       1	
-cv-os  378.4    1.3680               5/2017       1	
-cy-n1  366.5    1.4270               5/2017       1	
-c -op  436.9    1.3250               5/2017       1	
-cv-n2  614.8    1.2720               5/2017       1	
-cx-oq  304.2    1.4360               5/2017       1	
-cx-n1  409.8    1.3920               5/2017       1	
+np-p3  291.7    1.7570               5/2017       1
+cu-f   402.7    1.3140               5/2017       2
+c -sq  223.6    1.8250               5/2017       1
+cu-os  423.8    1.3340               5/2017       1
+cy-sh  217.1    1.8370               5/2017       1
+cv-oq  294.8    1.4460               5/2017       1
+cu-cv  618.9    1.3100               5/2017       1
+c1-nj  476.7    1.3460               5/2017       1
+cu-ne  619.2    1.2700               5/2017       1
+cu-op  442.9    1.3210               5/2017       1
+s6-sp  152.1    2.0780               5/2017       1
+sp-sp  137.8    2.1240               5/2017       1
+cv-ne  653.2    1.2550               5/2017       1
+op-s6  314.5    1.6200               5/2017       1
+op-sp  168.1    1.8620               5/2017       1
+c1-cv  627.4    1.3060               5/2017       1
+n2-nj  486.8    1.3790               5/2017       1
+nq-nq  339.5    1.4940               5/2017       1
+cv-p3  263.0    1.8080               5/2017       1
+cv-p5  364.9    1.6810               5/2017       1
+np-os  365.3    1.4350               5/2017       1
+nj-nq  377.7    1.4590               5/2017       1
+no-nq  530.4    1.3530               5/2017       1
+cy-sy  210.3    1.8500               5/2017       1
+ce-nm  400.6    1.3990               5/2017       1
+cv-os  378.4    1.3680               5/2017       1
+cy-n1  366.5    1.4270               5/2017       1
+c -op  436.9    1.3250               5/2017       1
+cv-n2  614.8    1.2720               5/2017       1
+cx-oq  304.2    1.4360               5/2017       1
+cx-n1  409.8    1.3920               5/2017       1
 
 hw-ow-hw   100.0      104.52                AMBER            1
 hw-hw-ow     0.0      127.74                AMBER            1
@@ -6330,9 +6330,9 @@ c3-cx-s4    58.9      115.92               5/2017            1
 ca-os-cx    66.3      106.92               5/2017            1
 
 X -c -c -X    4    1.200       180.000           2.000
-X -c -c1-X    2    0.000       180.000           2.000     
-X -c -cg-X    2    0.000       180.000           2.000      same as X-c-c1-X 
-X -c -ch-X    2    0.000       180.000           2.000     
+X -c -c1-X    2    0.000       180.000           2.000
+X -c -cg-X    2    0.000       180.000           2.000      same as X-c-c1-X
+X -c -ch-X    2    0.000       180.000           2.000
 X -c -c2-X    4    8.700       180.000           2.000      intrpol.bsd.on C6H6
 X -c -cu-X    4    8.700       180.000           2.000      intrpol.bsd.on C6H6
 X -c -cv-X    4    8.700       180.000           2.000      intrpol.bsd.on C6H6
@@ -6342,90 +6342,90 @@ X -c -c3-X    6    0.000       180.000           2.000      JCC, 7, (1986), 230
 X -c -cx-X    6    0.000       180.000           2.000      JCC, 7, (1986), 230
 X -c -cy-X    6    0.000       180.000           2.000      JCC, 7, (1986), 230
 X -c -ca-X    4    4.000       180.000           2.000      optimized by Junmei Wang, Jan-2013
-X -c -cc-X    4   11.500       180.000           2.000      statistic value 
-X -c -cd-X    4   11.500       180.000           2.000      statistic value 
+X -c -cc-X    4   11.500       180.000           2.000      statistic value
+X -c -cd-X    4   11.500       180.000           2.000      statistic value
 X -c -n -X    4   10.000       180.000           2.000      AA,NMA (no c-n3, c-n4, c-nh)
 X -c -n2-X    2    8.300       180.000           2.000      double bond, same as X-c2-n2-X
-X -c -nc-X    2    8.00        180.000           2.000      same as X-C-NC-X 
-X -c -nd-X    2    8.00        180.000           2.000      same as X-C-NC-X 
+X -c -nc-X    2    8.00        180.000           2.000      same as X-C-NC-X
+X -c -nd-X    2    8.00        180.000           2.000      same as X-C-NC-X
 X -c -ne-X    2    0.400       180.000           2.000      single bond
 X -c -nf-X    2    0.400       180.000           2.000      single bond
 X -c -na-X    4    5.800       180.000          -2.000
 X -c -na-X    4    1.400       180.000           4.000
-X -c -no-X    4    1.800       180.000           2.000      
+X -c -no-X    4    1.800       180.000           2.000
 X -c -oh-X    2    4.600       180.000           2.000      Junmei et al, 1999
 X -c -os-X    2    5.400       180.000           2.000      Junmei et al, 1999
-X -c -p2-X    2   13.300       180.000           2.000      double bond, same as X-c2-p2-X 
-X -c -pc-X    2    4.000       180.000           2.000      estimated   
-X -c -pd-X    2    4.000       180.000           2.000      estimated 
+X -c -p2-X    2   13.300       180.000           2.000      double bond, same as X-c2-p2-X
+X -c -pc-X    2    4.000       180.000           2.000      estimated
+X -c -pd-X    2    4.000       180.000           2.000      estimated
 X -c -pe-X    2    0.000       180.000           2.000      single bond
 X -c -pf-X    2    0.000       180.000           2.000      single bond
 X -c -p3-X    4    6.200       180.000           2.000
 X -c -p4-X    4    5.400       180.000           2.000
-X -c -px-X    4    5.400       180.000           2.000     
+X -c -px-X    4    5.400       180.000           2.000
 X -c -p5-X    4    4.000         0.000           2.000
-X -c -py-X    4    4.000         0.000           2.000      
+X -c -py-X    4    4.000         0.000           2.000
 X -c -sh-X    2    4.500       180.000           2.000
 X -c -ss-X    2    6.200       180.000           2.000
 X -c -s4-X    4    0.800       180.000           2.000
-X -c -sx-X    4    0.800       180.000           2.000     
+X -c -sx-X    4    0.800       180.000           2.000
 X -c -s6-X    6    3.000         0.000           2.000
-X -c -sy-X    6    3.000         0.000           2.000    
+X -c -sy-X    6    3.000         0.000           2.000
 X -c1-c1-X    1    0.000       180.000           2.000      for both triple and single bonds
 X -c1-cg-X    1    0.000       180.000           2.000      for both triple and single bonds
 X -c1-ch-X    1    0.000       180.000           2.000      for both triple and single bonds
 X -cg-cg-X    1    0.000       180.000           2.000      for both triple and single bonds
 X -ch-ch-X    1    0.000       180.000           2.000      for both triple and single bonds
 X -cg-ch-X    1    0.000       180.000           2.000      for both triple and single bonds
-X -c1-c2-X    2    0.000       180.000           2.000     
-X -c1-c3-X    3    0.000       180.000           2.000     
-X -c1-ca-X    2    0.000       180.000           2.000     
-X -c1-cc-X    2    0.000       180.000           2.000     
-X -c1-cd-X    2    0.000       180.000           2.000     
-X -c1-ce-X    2    0.000       180.000           2.000     
-X -c1-cf-X    2    0.000       180.000           2.000     
-X -c1-cu-X    2    0.000       180.000           2.000     
-X -c1-cv-X    2    0.000       180.000           2.000     
-X -c1-cx-X    3    0.000       180.000           2.000     
-X -c1-cy-X    3    0.000       180.000           2.000     
-X -c1-n -X    2    0.000       180.000           2.000     
-X -c1-n2-X    1    0.000       180.000           2.000     
-X -c1-n3-X    2    0.000       180.000           2.000     
-X -c1-n4-X    3    0.000       180.000           2.000     
-X -c1-na-X    2    0.000       180.000           2.000     
-X -c1-nb-X    2    0.000       180.000           2.000     
-X -c1-nc-X    2    0.000       180.000           2.000     
-X -c1-nd-X    2    0.000       180.000           2.000     
-X -c1-ne-X    2    0.000       180.000           2.000     
-X -c1-nf-X    2    0.000       180.000           2.000     
-X -c1-nh-X    2    0.000       180.000           2.000     
-X -c1-no-X    2    0.000       180.000           2.000     
-X -c1-oh-X    1    0.000       180.000           2.000     
-X -c1-os-X    1    0.000       180.000           2.000     
-X -c1-p2-X    1    0.000       180.000           2.000     
-X -c1-pb-X    1    0.000       180.000           2.000     
-X -c1-pc-X    1    0.000       180.000           2.000     
-X -c1-pd-X    1    0.000       180.000           2.000     
-X -c1-pe-X    1    0.000       180.000           2.000     
-X -c1-pf-X    1    0.000       180.000           2.000     
-X -c1-p3-X    2    0.000       180.000           2.000     
-X -c1-p4-X    2    0.000       180.000           2.000     
-X -c1-px-X    2    0.000       180.000           2.000     
-X -c1-p5-X    3    0.000       180.000           2.000     
-X -c1-py-X    3    0.000       180.000           2.000     
-X -c1-s2-X    1    0.000       180.000           2.000     
-X -c1-sh-X    1    0.000       180.000           2.000     
-X -c1-ss-X    1    0.000       180.000           2.000     
-X -c1-s4-X    2    0.000       180.000           2.000     
-X -c1-sx-X    2    0.000       180.000           2.000     
-X -c1-s6-X    3    0.000       180.000           2.000     
-X -c1-sy-X    3    0.000       180.000           2.000     
+X -c1-c2-X    2    0.000       180.000           2.000
+X -c1-c3-X    3    0.000       180.000           2.000
+X -c1-ca-X    2    0.000       180.000           2.000
+X -c1-cc-X    2    0.000       180.000           2.000
+X -c1-cd-X    2    0.000       180.000           2.000
+X -c1-ce-X    2    0.000       180.000           2.000
+X -c1-cf-X    2    0.000       180.000           2.000
+X -c1-cu-X    2    0.000       180.000           2.000
+X -c1-cv-X    2    0.000       180.000           2.000
+X -c1-cx-X    3    0.000       180.000           2.000
+X -c1-cy-X    3    0.000       180.000           2.000
+X -c1-n -X    2    0.000       180.000           2.000
+X -c1-n2-X    1    0.000       180.000           2.000
+X -c1-n3-X    2    0.000       180.000           2.000
+X -c1-n4-X    3    0.000       180.000           2.000
+X -c1-na-X    2    0.000       180.000           2.000
+X -c1-nb-X    2    0.000       180.000           2.000
+X -c1-nc-X    2    0.000       180.000           2.000
+X -c1-nd-X    2    0.000       180.000           2.000
+X -c1-ne-X    2    0.000       180.000           2.000
+X -c1-nf-X    2    0.000       180.000           2.000
+X -c1-nh-X    2    0.000       180.000           2.000
+X -c1-no-X    2    0.000       180.000           2.000
+X -c1-oh-X    1    0.000       180.000           2.000
+X -c1-os-X    1    0.000       180.000           2.000
+X -c1-p2-X    1    0.000       180.000           2.000
+X -c1-pb-X    1    0.000       180.000           2.000
+X -c1-pc-X    1    0.000       180.000           2.000
+X -c1-pd-X    1    0.000       180.000           2.000
+X -c1-pe-X    1    0.000       180.000           2.000
+X -c1-pf-X    1    0.000       180.000           2.000
+X -c1-p3-X    2    0.000       180.000           2.000
+X -c1-p4-X    2    0.000       180.000           2.000
+X -c1-px-X    2    0.000       180.000           2.000
+X -c1-p5-X    3    0.000       180.000           2.000
+X -c1-py-X    3    0.000       180.000           2.000
+X -c1-s2-X    1    0.000       180.000           2.000
+X -c1-sh-X    1    0.000       180.000           2.000
+X -c1-ss-X    1    0.000       180.000           2.000
+X -c1-s4-X    2    0.000       180.000           2.000
+X -c1-sx-X    2    0.000       180.000           2.000
+X -c1-s6-X    3    0.000       180.000           2.000
+X -c1-sy-X    3    0.000       180.000           2.000
 X -c2-c2-X    4   26.600       180.000           2.000      c2=c2 double bond, intrpol.bsd.on C6H6
 X -c2-ce-X    4   26.600       180.000           2.000      c2=c2 double bond, intrpol.bsd.on C6H6
 X -c2-cf-X    4   26.600       180.000           2.000      c2=c2 double bond, intrpol.bsd.on C6H6
 X -ce-cf-X    4   26.600       180.000           2.000      c2=c2 double bond, intrpol.bsd.on C6H6
-X -ce-ce-X    4    4.000       180.000           2.000      c2-c2 single bond, parm99 
-X -cf-cf-X    4    4.000       180.000           2.000      c2-c2 single bond, parm99 
+X -ce-ce-X    4    4.000       180.000           2.000      c2-c2 single bond, parm99
+X -cf-cf-X    4    4.000       180.000           2.000      c2-c2 single bond, parm99
 X -cc-cd-X    4   16.000       180.000           2.000      statistic value of parm94
 X -cc-cc-X    4   16.000       180.000           2.000      statistic value of parm94
 X -cd-cd-X    4   16.000       180.000           2.000      statistic value of parm94
@@ -6443,31 +6443,31 @@ X -cc-nd-X    2    9.500       180.000           2.000      statistic value from
 X -cd-nc-X    2    9.500       180.000           2.000      statistiv value from parm94
 X -cc-nc-X    2    9.500       180.000           2.000      statistic value from parm94
 X -cd-nd-X    2    9.500       180.000           2.000      statistiv value from parm94
-X -c2-n3-X    4    1.200       180.000           2.000      intrpol.  
-X -c2-n4-X    6    0.000       180.000           3.000      intrpol. 
+X -c2-n3-X    4    1.200       180.000           2.000      intrpol.
+X -c2-n4-X    6    0.000       180.000           3.000      intrpol.
 X -c2-na-X    4    2.500       180.000           2.000
 X -cc-na-X    4    6.800       180.000           2.000      statistic value from parm94
 X -cd-na-X    4    6.800       180.000           2.000      statistic value from parm94
 X -c2-nh-X    4    2.700       180.000           2.000
 X -c2-no-X    4    3.000       180.000           2.000
-X -c2-oh-X    2    2.100       180.000           2.000      parm99 
-X -c2-os-X    2    2.100       180.000           2.000      parm99 
+X -c2-oh-X    2    2.100       180.000           2.000      parm99
+X -c2-os-X    2    2.100       180.000           2.000      parm99
 X -c2-p2-X    2   13.300       180.000           2.000      double bond
 X -c2-pe-X    2   13.300       180.000           2.000      double bond
 X -c2-pf-X    2   13.300       180.000           2.000      double bond
 X -ce-pf-X    2   13.300       180.000           2.000      double bond
 X -ce-pe-X    2    1.900       180.000           2.000      single bond
 X -cf-pf-X    2    1.900       180.000           2.000      single bond
-X -c2-pc-X    2    9.500       180.000           2.000      estimated 
-X -c2-pd-X    2    9.500       180.000           2.000      estimated 
-X -cc-pc-X    2    9.500       180.000           2.000      estimated 
-X -cc-pd-X    2    9.500       180.000           2.000      estimated 
-X -cd-pc-X    2    9.500       180.000           2.000      estimated 
+X -c2-pc-X    2    9.500       180.000           2.000      estimated
+X -c2-pd-X    2    9.500       180.000           2.000      estimated
+X -cc-pc-X    2    9.500       180.000           2.000      estimated
+X -cc-pd-X    2    9.500       180.000           2.000      estimated
+X -cd-pc-X    2    9.500       180.000           2.000      estimated
 X -cd-pd-X    2    9.500       180.000           2.000      estimated
 X -c2-p3-X    4    1.800       180.000           2.000
-X -c2-p4-X    4   26.600       180.000           2.000      c2=p4 double bond !!!  
-X -ce-p4-X    4   26.600       180.000           2.000      c2=p4 double bond !!!  
-X -cf-p4-X    4   26.600       180.000           2.000      c2=p4 double bond !!!  
+X -c2-p4-X    4   26.600       180.000           2.000      c2=p4 double bond !!!
+X -ce-p4-X    4   26.600       180.000           2.000      c2=p4 double bond !!!
+X -cf-p4-X    4   26.600       180.000           2.000      c2=p4 double bond !!!
 X -c2-px-X    4    1.300         0.000           2.000
 X -ce-px-X    4    1.300         0.000           2.000
 X -cf-px-X    4    1.300         0.000           2.000
@@ -6492,16 +6492,16 @@ X -c2-sy-X    6    7.600       180.000           2.000
 X -ce-sy-X    6    7.600       180.000           2.000
 X -cf-sy-X    6    7.600       180.000           2.000
 X -c3-c3-X    9    1.400         0.000           3.000      JCC,7,(1986),230
-X -cx-cx-X    9    1.400         0.000           3.000      same as X-c3-c3-X 
-X -cy-cy-X    9    1.400         0.000           3.000      same as X-c3-c3-X 
+X -cx-cx-X    9    1.400         0.000           3.000      same as X-c3-c3-X
+X -cy-cy-X    9    1.400         0.000           3.000      same as X-c3-c3-X
 X -c3-ca-X    6    0.000         0.000           2.000      JCC,7,(1986),230
 X -c3-n -X    6    0.000         0.000           2.000      JCC,7,(1986),230
-X -cx-n -X    6    0.000         0.000           2.000      same as X-c3-n-X 
+X -cx-n -X    6    0.000         0.000           2.000      same as X-c3-n-X
 X -cy-n -X    6    0.000         0.000           2.000      same as X-c3-n-X
 X -c3-n2-X    6    0.000         0.000           3.000      JCC,7,(1986),230
 X -c3-ne-X    6    0.000         0.000           3.000      JCC,7,(1986),230
 X -c3-nf-X    6    0.000         0.000           3.000      JCC,7,(1986),230
-X -c3-n3-X    6    1.800         0.000           3.000      Junmei et al, 1999 
+X -c3-n3-X    6    1.800         0.000           3.000      Junmei et al, 1999
 X -c3-n4-X    9    1.400         0.000           3.000      JCC,7,(1986),230
 X -c3-na-X    6    0.000         0.000           2.000      JCC,7,(1986),230
 X -c3-nh-X    6    0.000         0.000           2.000      JCC,7,(1986),230
@@ -6518,17 +6518,17 @@ X -c3-p5-X    9    0.200         0.000           3.000
 X -c3-py-X    9    0.200         0.000           3.000
 X -c3-sh-X    3    0.750         0.000           3.000      JCC,7,(1986),230
 X -c3-ss-X    3    1.000         0.000           3.000      JCC,7,(1986),230
-X -c3-s4-X    6    1.200         0.000           3.000      
-X -c3-sx-X    6    1.200         0.000           3.000      
-X -c3-s6-X    9    1.300         0.000           3.000     
-X -c3-sy-X    9    1.300         0.000           3.000     
+X -c3-s4-X    6    1.200         0.000           3.000
+X -c3-sx-X    6    1.200         0.000           3.000
+X -c3-s6-X    9    1.300         0.000           3.000
+X -c3-sy-X    9    1.300         0.000           3.000
 X -c3-cc-X    6    0.000         0.000           3.000      same as X-c3-ca-X
 X -c3-cd-X    6    0.000         0.000           3.000      same as X-c3-ca-X
 X -ca-ca-X    4   14.500       180.000           2.000      intrpol.bsd.on C6H6
 X -ca-cp-X    4   14.500       180.000           2.000      intrpol.bsd.on C6H6
 X -ca-cq-X    4   14.500       180.000           2.000      intrpol.bsd.on C6H6
-X -cp-cp-X    4    4.000       180.000           2.000      estimated, intrpol. 
-X -cq-cq-X    4    4.000       180.000           2.000      estimated, intrpol. 
+X -cp-cp-X    4    4.000       180.000           2.000      estimated, intrpol.
+X -cq-cq-X    4    4.000       180.000           2.000      estimated, intrpol.
 X -ca-n -X    4    1.800       180.000           2.000
 X -ca-n2-X    2    0.000       180.000           3.000
 X -ca-ne-X    2    0.000       180.000           3.000
@@ -6543,12 +6543,12 @@ X -cc-nh-X    4    4.200       180.000           2.000      same as X-ca-nh-X
 X -cd-nh-X    4    4.200       180.000           2.000      same as X-ca-nh-X
 X -ca-no-X    4    2.400       180.000           2.000
 X -ca-oh-X    2    1.800       180.000           2.000      Junmei et al, 99
-X -ca-os-X    2    1.800       180.000           2.000      same as X-ca-oh-X 
+X -ca-os-X    2    1.800       180.000           2.000      same as X-ca-oh-X
 X -ca-p2-X    2    1.200       180.000           2.000
 X -ca-pe-X    2    1.200       180.000           2.000      same as X-ca-p2-X
 X -ca-pf-X    2    1.200       180.000           2.000      same as X-ca-p2-X
-X -ca-pc-X    2    9.600       180.000           2.000      estimated, intrpol 
-X -ca-pd-X    2    9.600       180.000           2.000      estimated, intrpol 
+X -ca-pc-X    2    9.600       180.000           2.000      estimated, intrpol
+X -ca-pd-X    2    9.600       180.000           2.000      estimated, intrpol
 X -ca-p3-X    4    0.000       180.000           2.000
 X -ca-p4-X    4    2.100       180.000           2.000
 X -ca-px-X    4    2.100       180.000           2.000      estimated, same as X-ca-p4-X
@@ -6591,50 +6591,50 @@ X -n -s4-X    4    6.000         0.000           3.000
 X -n -sx-X    4    6.000         0.000           3.000
 X -n -s6-X    6    6.600       180.000           2.000
 X -n -sy-X    6    6.600       180.000           2.000
-X -n1-c2-X    2    0.000       180.000           2.000     
-X -n1-c3-X    3    0.000       180.000           2.000     
-X -n1-ca-X    2    0.000       180.000           2.000     
-X -n1-cc-X    2    0.000       180.000           2.000     
-X -n1-cd-X    2    0.000       180.000           2.000     
-X -n1-ce-X    2    0.000       180.000           2.000     
-X -n1-cf-X    2    0.000       180.000           2.000     
-X -n1-cu-X    2    0.000       180.000           2.000     
-X -n1-cv-X    2    0.000       180.000           2.000     
-X -n1-cx-X    3    0.000       180.000           2.000     
-X -n1-cy-X    3    0.000       180.000           2.000     
-X -n1-n -X    2    0.000       180.000           2.000     
-X -n1-n1-X    1    0.000       180.000           2.000     
-X -n1-n2-X    1    0.000       180.000           2.000     
-X -n1-n3-X    2    0.000       180.000           2.000     
-X -n1-n4-X    3    0.000       180.000           2.000     
-X -n1-na-X    2    0.000       180.000           2.000     
-X -n1-nb-X    2    0.000       180.000           2.000     
-X -n1-nc-X    2    0.000       180.000           2.000     
-X -n1-nd-X    2    0.000       180.000           2.000     
-X -n1-ne-X    2    0.000       180.000           2.000     
-X -n1-nf-X    2    0.000       180.000           2.000     
-X -n1-nh-X    2    0.000       180.000           2.000     
-X -n1-no-X    2    0.000       180.000           2.000     
-X -n1-oh-X    1    0.000       180.000           2.000     
-X -n1-os-X    1    0.000       180.000           2.000     
-X -n1-p2-X    1    0.000       180.000           2.000     
-X -n1-pb-X    1    0.000       180.000           2.000     
-X -n1-pc-X    1    0.000       180.000           2.000     
-X -n1-pd-X    1    0.000       180.000           2.000     
-X -n1-pe-X    1    0.000       180.000           2.000     
-X -n1-pf-X    1    0.000       180.000           2.000     
-X -n1-p3-X    2    0.000       180.000           2.000     
-X -n1-p4-X    2    0.000       180.000           2.000     
-X -n1-px-X    2    0.000       180.000           2.000     
-X -n1-p5-X    3    0.000       180.000           2.000     
-X -n1-py-X    3    0.000       180.000           2.000     
-X -n1-s2-X    1    0.000       180.000           2.000     
-X -n1-sh-X    1    0.000       180.000           2.000     
-X -n1-ss-X    1    0.000       180.000           2.000     
-X -n1-s4-X    2    0.000       180.000           2.000     
-X -n1-sx-X    2    0.000       180.000           2.000     
-X -n1-s6-X    3    0.000       180.000           2.000     
-X -n1-sy-X    3    0.000       180.000           2.000     
+X -n1-c2-X    2    0.000       180.000           2.000
+X -n1-c3-X    3    0.000       180.000           2.000
+X -n1-ca-X    2    0.000       180.000           2.000
+X -n1-cc-X    2    0.000       180.000           2.000
+X -n1-cd-X    2    0.000       180.000           2.000
+X -n1-ce-X    2    0.000       180.000           2.000
+X -n1-cf-X    2    0.000       180.000           2.000
+X -n1-cu-X    2    0.000       180.000           2.000
+X -n1-cv-X    2    0.000       180.000           2.000
+X -n1-cx-X    3    0.000       180.000           2.000
+X -n1-cy-X    3    0.000       180.000           2.000
+X -n1-n -X    2    0.000       180.000           2.000
+X -n1-n1-X    1    0.000       180.000           2.000
+X -n1-n2-X    1    0.000       180.000           2.000
+X -n1-n3-X    2    0.000       180.000           2.000
+X -n1-n4-X    3    0.000       180.000           2.000
+X -n1-na-X    2    0.000       180.000           2.000
+X -n1-nb-X    2    0.000       180.000           2.000
+X -n1-nc-X    2    0.000       180.000           2.000
+X -n1-nd-X    2    0.000       180.000           2.000
+X -n1-ne-X    2    0.000       180.000           2.000
+X -n1-nf-X    2    0.000       180.000           2.000
+X -n1-nh-X    2    0.000       180.000           2.000
+X -n1-no-X    2    0.000       180.000           2.000
+X -n1-oh-X    1    0.000       180.000           2.000
+X -n1-os-X    1    0.000       180.000           2.000
+X -n1-p2-X    1    0.000       180.000           2.000
+X -n1-pb-X    1    0.000       180.000           2.000
+X -n1-pc-X    1    0.000       180.000           2.000
+X -n1-pd-X    1    0.000       180.000           2.000
+X -n1-pe-X    1    0.000       180.000           2.000
+X -n1-pf-X    1    0.000       180.000           2.000
+X -n1-p3-X    2    0.000       180.000           2.000
+X -n1-p4-X    2    0.000       180.000           2.000
+X -n1-px-X    2    0.000       180.000           2.000
+X -n1-p5-X    3    0.000       180.000           2.000
+X -n1-py-X    3    0.000       180.000           2.000
+X -n1-s2-X    1    0.000       180.000           2.000
+X -n1-sh-X    1    0.000       180.000           2.000
+X -n1-ss-X    1    0.000       180.000           2.000
+X -n1-s4-X    2    0.000       180.000           2.000
+X -n1-sx-X    2    0.000       180.000           2.000
+X -n1-s6-X    3    0.000       180.000           2.000
+X -n1-sy-X    3    0.000       180.000           2.000
 X -n2-n2-X    1    3.000       180.000          -2.000      double bond
 X -n2-n2-X    1    2.800         0.000           1.000      double bond
 X -n2-ne-X    1    3.000       180.000          -2.000      double bond
@@ -6645,13 +6645,13 @@ X -ne-nf-X    1    3.000       180.000          -2.000      double bond
 X -ne-nf-X    1    2.800         0.000           1.000      double bond
 X -ne-ne-X    1    1.200       180.000           2.000      single bond, intrpol
 X -nf-nf-X    1    1.200       180.000           2.000      single bond, intrpol
-X -nc-nc-X    1    4.000       180.000           2.000      estimated, intrpol 
-X -nd-nd-X    1    4.000       180.000           2.000      estimated, intrpol  
-X -nc-nd-X    1    4.000       180.000           2.000      estimated, intrpol 
+X -nc-nc-X    1    4.000       180.000           2.000      estimated, intrpol
+X -nd-nd-X    1    4.000       180.000           2.000      estimated, intrpol
+X -nc-nd-X    1    4.000       180.000           2.000      estimated, intrpol
 X -n2-nc-X    1    3.000       180.000          -2.000      same as X-n2-n2-X
-X -n2-nc-X    1    2.800         0.000           1.000      
-X -n2-nd-X    1    3.000       180.000          -2.000      same as X-n2-n2-X 
-X -n2-nd-X    1    2.800         0.000           1.000      
+X -n2-nc-X    1    2.800         0.000           1.000
+X -n2-nd-X    1    3.000       180.000          -2.000      same as X-n2-n2-X
+X -n2-nd-X    1    2.800         0.000           1.000
 X -n2-n3-X    2   12.200       180.000           2.000
 X -ne-n3-X    2   12.200       180.000           2.000
 X -nf-n3-X    2   12.200       180.000           2.000
@@ -6687,8 +6687,8 @@ X -nc-p2-X    1    5.400       180.000           2.000      estimated, intrpol.
 X -nd-p2-X    1    5.400       180.000           2.000      estimated, intrpol.
 X -nc-pc-X    1    6.600       180.000           2.000      estimated, intrpol.
 X -nd-pd-X    1    6.600       180.000           2.000      estimated, intrpol.
-X -nd-pc-X    1    6.600       180.000           2.000      estimated, intrpol. 
-X -nc-pd-X    1    6.600       180.000           2.000      estimated, intrpol. 
+X -nd-pc-X    1    6.600       180.000           2.000      estimated, intrpol.
+X -nc-pd-X    1    6.600       180.000           2.000      estimated, intrpol.
 X -ne-pe-X    1    0.600         0.000           1.000      single bond
 X -nf-pf-X    1    0.600         0.000           1.000      single bond
 X -n2-p3-X    2    4.200       180.000           2.000
@@ -6858,9 +6858,9 @@ X -p2-pc-X    1    6.600       180.000           2.000      estimated, intrpol.
 X -p2-pd-X    1    6.600       180.000           2.000      estimated, intrpol.
 X -pe-pe-X    1    1.200       180.000           2.000      single bond
 X -pf-pf-X    1    1.200       180.000           2.000      single bond
-X -pc-pc-X    1    7.200       180.000           2.000      estimated, intrpol. 
-X -pd-pd-X    1    7.200       180.000           2.000      estimated, intrpol.  
-X -pc-pd-X    1    7.200       180.000           2.000      estimated, intrpol. 
+X -pc-pc-X    1    7.200       180.000           2.000      estimated, intrpol.
+X -pd-pd-X    1    7.200       180.000           2.000      estimated, intrpol.
+X -pc-pd-X    1    7.200       180.000           2.000      estimated, intrpol.
 X -p2-p3-X    2    2.400         0.000           1.000
 X -pe-p3-X    2    2.400         0.000           1.000
 X -pf-p3-X    2    2.400         0.000           1.000
@@ -6954,18 +6954,18 @@ c3-c3-n -c    1    0.00          0.0            -2.         phi,psi,parm94
 c3-c3-n -c    1    0.53          0.0             1.         phi,psi,parm94
 c3-c3-c -n    1    0.100         0.0            -4.         phi,psi,parm94
 c3-c3-c -n    1    0.07          0.0             2.         phi,psi,parm94
-c2-ne-p5-o    1    0.00          0.0            -3.        
-c2-ne-p5-o    1    2.30          0.0             1.        
-c2-nf-p5-o    1    0.00          0.0            -3.        
-c2-nf-p5-o    1    2.30          0.0             1.       
-ce-ne-p5-o    1    0.00          0.0            -3.        
-ce-ne-p5-o    1    2.30          0.0             1.      
-ce-nf-p5-o    1    0.00          0.0            -3.        
-ce-nf-p5-o    1    2.30          0.0             1.     
-cf-ne-p5-o    1    0.00          0.0            -3.        
-cf-ne-p5-o    1    2.30          0.0             1.    
-cf-nf-p5-o    1    0.00          0.0            -3.        
-cf-nf-p5-o    1    2.30          0.0             1.   
+c2-ne-p5-o    1    0.00          0.0            -3.
+c2-ne-p5-o    1    2.30          0.0             1.
+c2-nf-p5-o    1    0.00          0.0            -3.
+c2-nf-p5-o    1    2.30          0.0             1.
+ce-ne-p5-o    1    0.00          0.0            -3.
+ce-ne-p5-o    1    2.30          0.0             1.
+ce-nf-p5-o    1    0.00          0.0            -3.
+ce-nf-p5-o    1    2.30          0.0             1.
+cf-ne-p5-o    1    0.00          0.0            -3.
+cf-ne-p5-o    1    2.30          0.0             1.
+cf-nf-p5-o    1    0.00          0.0            -3.
+cf-nf-p5-o    1    2.30          0.0             1.
 hn-n -c -o    1    2.50        180.0            -2.         JCC,7,(1986),230
 hn-n -c -o    1    2.00          0.0             1.         J.C.cistrans-NMA DE
 c3-ss-ss-c3   1    3.50          0.0            -2.         JCC,7,(1986),230
@@ -7086,8 +7086,8 @@ c -c2-c2-c3         1.1          180.          2.           dac guess, 9/94
 c -ca-ca-c3         1.1          180.          2.           dac guess, 9/94
 c -c3-n -hn         1.1          180.          2.           Junmei et al.1999
 c -c3-n -o          1.1          180.          2.           Junmei et al.1999
-c2-c2-na-c3         1.1          180.          2. 
-c2-c -c2-c3         1.1          180.          2. 
+c2-c2-na-c3         1.1          180.          2.
+c2-c -c2-c3         1.1          180.          2.
 c2-c3-c2-hc         1.1          180.          2.           Junmei et al.1999
 c2-c3-ca-hc         1.1          180.          2.           Junmei et al.1999
 c2-hc-c -o          1.1          180.          2.           Junmei et al.1999
@@ -7096,19 +7096,19 @@ c3-c2-c2-n2         1.1          180.          2.
 c3-c2-c2-na         1.1          180.          2.
 c3-ca-ca-n2         1.1          180.          2.
 c3-ca-ca-na         1.1          180.          2.
-ca-ca-ca-c2         1.1          180.          2. 
-ca-ca-ca-c3         1.1          180.          2. 
+ca-ca-ca-c2         1.1          180.          2.
+ca-ca-ca-c3         1.1          180.          2.
 ca-ca-ca-f          1.1          180.          2.           Junmei et al.1999
 ca-ca-ca-cl         1.1          180.          2.           Junmei et al.1999
 ca-ca-ca-br         1.1          180.          2.           Junmei et al.1999
 ca-ca-ca-i          1.1          180.          2.           Junmei et al.1999
 ca-ca-c -oh         1.1          180.          2.           (not used in tyr!)
 ca-ca-na-c3         1.1          180.          2.
-ca-c -ca-c3         1.1          180.          2. 
+ca-c -ca-c3         1.1          180.          2.
 ca-hc-c -o          1.1          180.          2.           Junmei et al.1999
 ca-n2-ca-n2         1.1          180.          2.           dac, 10/94
 hc-o -c -oh         1.1          180.          2.           Junmei et al.1999
-hc-o -c -os         1.1          180.          2.           
+hc-o -c -os         1.1          180.          2.
 n2-c2-ca-n2         1.1          180.          2.           dac guess, 9/94
 n2-ca-ca-n2         1.1          180.          2.           dac guess, 9/94
 na-n2-ca-n2         1.1          180.          2.           dac, 10/94
@@ -7117,21 +7117,21 @@ na-n2-ca-n2         1.1          180.          2.           dac, 10/94
 
 
 MOD4      RE
-  h1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963 
-  h2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963 
-  h3          1.1870  0.0157             Veenstra et al JCC,8,(1992),963 
+  h1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963
+  h2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963
+  h3          1.1870  0.0157             Veenstra et al JCC,8,(1992),963
   h4          1.4090  0.0150             Spellmeyer, one electrowithdr. neighbor
   h5          1.3590  0.0150             Spellmeyer, two electrowithdr. neighbor
-  ha          1.4590  0.0150             Spellmeyer 
+  ha          1.4590  0.0150             Spellmeyer
   hc          1.4870  0.0157             OPLS
   hn          0.6000  0.0157            !Ferguson base pair geom.
   ho          0.0000  0.0000             OPLS Jorgensen, JACS,110,(1988),1657
-  hp          0.6000  0.0157             same to hs (be careful !) 
+  hp          0.6000  0.0157             same to hs (be careful !)
   hs          0.6000  0.0157             W. Cornell CH3SH --> CH3OH FEP
   hw          0.0000  0.0000             OPLS Jorgensen, JACS,110,(1988),1657
   hx          1.1000  0.0157             Veenstra et al JCC,8,(1992),963
   o           1.6612  0.2100             OPLS
-  oh          1.7210  0.2104             OPLS 
+  oh          1.7210  0.2104             OPLS
   os          1.6837  0.1700             OPLS ether
   op          1.6837  0.1700             OPLS ether
   oq          1.6837  0.1700             OPLS ether
@@ -7185,17 +7185,17 @@ MOD4      RE
   ss          2.0000  0.2500             W. Cornell CH3SH and CH3SCH3 FEP's
   sp          2.0000  0.2500             W. Cornell CH3SH and CH3SCH3 FEP's
   sq          2.0000  0.2500             W. Cornell CH3SH and CH3SCH3 FEP's
-  p2          2.1000  0.2000             JCC,7,(1986),230; 
-  p3          2.1000  0.2000             JCC,7,(1986),230; 
-  p4          2.1000  0.2000             JCC,7,(1986),230; 
-  p5          2.1000  0.2000             JCC,7,(1986),230; 
-  pb          2.1000  0.2000             JCC,7,(1986),230; 
-  pc          2.1000  0.2000             JCC,7,(1986),230; 
-  pd          2.1000  0.2000             JCC,7,(1986),230; 
-  pe          2.1000  0.2000             JCC,7,(1986),230; 
-  pf          2.1000  0.2000             JCC,7,(1986),230; 
-  px          2.1000  0.2000             JCC,7,(1986),230; 
-  py          2.1000  0.2000             JCC,7,(1986),230; 
+  p2          2.1000  0.2000             JCC,7,(1986),230;
+  p3          2.1000  0.2000             JCC,7,(1986),230;
+  p4          2.1000  0.2000             JCC,7,(1986),230;
+  p5          2.1000  0.2000             JCC,7,(1986),230;
+  pb          2.1000  0.2000             JCC,7,(1986),230;
+  pc          2.1000  0.2000             JCC,7,(1986),230;
+  pd          2.1000  0.2000             JCC,7,(1986),230;
+  pe          2.1000  0.2000             JCC,7,(1986),230;
+  pf          2.1000  0.2000             JCC,7,(1986),230;
+  px          2.1000  0.2000             JCC,7,(1986),230;
+  py          2.1000  0.2000             JCC,7,(1986),230;
   f           1.75    0.061              Gough et al. JCC 13,(1992),963.
   cl          1.948   0.265              Fox, JPCB,102,8070,(98),flex.mdl CHCl3
   br          2.02    0.420              Junmei, 2010
@@ -7204,12 +7204,12 @@ MOD4      RE
 END
 
 ---------------------------------------------------------------------------------------------------------------------------
-This is an improved version of gaff 1.0. We have modified some parameters 
-according to users' feedback. We would like to thank users who provide    
-nice feedback/suggestion, especially David Mobley and Gabriel Rocklin. We 
-are in a process of developing a new generation of general amber force    
-field (gaff2). This version is a meta-version between gaff1 and gaff2.    
-!!!Suggestions/criticisms/comments are always welcome !!! 
+This is an improved version of gaff 1.0. We have modified some parameters
+according to users' feedback. We would like to thank users who provide
+nice feedback/suggestion, especially David Mobley and Gabriel Rocklin. We
+are in a process of developing a new generation of general amber force
+field (gaff2). This version is a meta-version between gaff1 and gaff2.
+!!!Suggestions/criticisms/comments are always welcome !!!
 ---------------------------------------------------------------------------
 
 Equilibrium  Sources
@@ -7235,7 +7235,7 @@ Optimized geometries at B3LYP/6-31G* level
 SOURCE5
 Optimized geometries at B3LYP/6-31G* level (30 thousand molecules)
 
-CORR 
+CORR
 re-corrected to maintain the integrity of the force field for the equivalent atom types
 
 NEW

@@ -1,10 +1,10 @@
-    1    1  201                                               
-db2000_lp035_EP.dat                                                      
-ALANINE COO- ANION                                            
-                                                              
- ALA  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+    1    1  201
+db2000_lp035_EP.dat
+ALANINE COO- ANION
+
+ ALA  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -19,22 +19,22 @@ ALANINE COO- ANION
   12  C     C     M    6   4   3     1.522   111.100   180.000
   13  O     O2    E   12   6   4     1.229   120.500     0.000
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0333   .0910  -.0588
    .0433   .0433   .0433   .4408  -.7120
   -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-GLYCINE COO- ANION                                            
-                                                              
- GLY  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+GLYCINE COO- ANION
+
+ GLY  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -46,21 +46,21 @@ GLYCINE COO- ANION
    9  C     C     M    6   4   3     1.522   110.400   180.000
   10  O     O2    E    9   6   4     1.229   120.500     0.000
   11  OXT   O2    E    9   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0764   .1026   .1026
    .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-SERINE  COO- ANION                                            
-                                                              
- SER  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+SERINE  COO- ANION
+
+ SER  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -78,22 +78,22 @@ SERINE  COO- ANION
   15  C     C     M    6   4   3     1.522   111.100   180.000
   16  O     O2    E   13   6   4     1.229   120.500     0.000
   17  OXT   O2    E   13   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .0047   .0950   .0324
    .0606   .0606  -.1504  -.1472  -.1472
    .3203   .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-THREONINE     COO- ANION                                      
-                                                              
- THR  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+THREONINE     COO- ANION
+
+ THR  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -114,23 +114,23 @@ THREONINE     COO- ANION
   18  C     C     M    6   4   3     1.522   111.100   180.000
   19  O     O2    E   16   6   4     1.229   120.500     0.000
   20  OXT   O2    E   16   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .0216   .0518   .3576
   -.0723  -.2059   .0464   .0464   .0464
   -.2048  -.1619  -.1619   .3654   .4408
   -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-LEUCINE  COO- ANION                                           
-                                                              
- LEU  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+LEUCINE  COO- ANION
+
+ LEU  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -154,23 +154,23 @@ LEUCINE  COO- ANION
   21  C     C     M    6   4   3     1.522   111.100   180.000
   22  O     O2    E   21   6   4     1.229   120.500     0.000
   23  OXT   O2    E   21   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0410   .0800  -.1953
    .0756   .0756   .3751  -.0426  -.3561
    .0856   .0856   .0856  -.3561   .0856
    .0856   .0856   .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-ISOLEUCINE    COO- ANION                                      
-                                                              
- ILE  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+ISOLEUCINE    COO- ANION
+
+ ILE  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -194,23 +194,23 @@ ISOLEUCINE    COO- ANION
   21  C     C     M    6   4   3     1.522   111.100   180.000
   22  O     O2    E   21   6   4     1.229   120.500     0.000
   23  OXT   O2    E   21   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0956   .1110   .0988
    .0297  -.2455   .0705   .0705   .0705
   -.0348   .0267   .0267  -.0672   .0225
    .0225   .0225   .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-VALINE  COO- ANION                                            
-                                                              
- VAL  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+VALINE  COO- ANION
+
+ VAL  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -231,23 +231,23 @@ VALINE  COO- ANION
   18  C     C     M    6   4   3     1.522   111.100   180.000
   19  O     O2    E   18   6   4     1.229   120.500     0.000
   20  OXT   O2    E   18   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0722   .0958   .2374
    .0070  -.2415   .0573   .0573   .0573
   -.2415   .0573   .0573   .0573   .4408
   -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-ASPARAGINE    COO- ANION                                      
-                                                              
- ASN  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+ASPARAGINE    COO- ANION
+
+ ASN  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -268,25 +268,25 @@ ASPARAGINE    COO- ANION
   18  C     C     M    6   4   3     1.522   111.100   180.000
   19  O     O2    E   16   6   4     1.229   120.500     0.000
   20  OXT   O2    E   16   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0037   .1078  -.1540
    .1163   .1163   .3546  -.0025  -.2209
   -.2209  -.6546   .3452   .3452   .4408
   -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CB   ND2  CG   OD1                                           
- CG   HD21 ND2  HD22                                          
-                                                              
-DONE                                                          
-GLUTAMINE     COO- ANION                                      
-                                                              
- GLN  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CB   ND2  CG   OD1
+ CG   HD21 ND2  HD22
+
+DONE
+GLUTAMINE     COO- ANION
+
+ GLN  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -310,25 +310,25 @@ GLUTAMINE     COO- ANION
   21  C     C     M    6   4   3     1.522   111.100   180.000
   22  O     O2    E   19   6   4     1.229   120.500     0.000
   23  OXT   O2    E   19   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0767   .1028   .0523
    .0459   .0459  -.2577   .1255   .1255
    .4741  -.0488  -.2269  -.2269  -.6970
    .3454   .3454   .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CG   NE2  CD   OE1                                           
- CD   HE21 NE2  HE22                                          
-                                                              
-DONE                                                          
-ARGININE  COO- ANION                                          
-                                                              
- ARG  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   NE2  CD   OE1
+ CD   HE21 NE2  HE22
+
+DONE
+ARGININE  COO- ANION
+
+ ARG  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -357,7 +357,7 @@ ARGININE  COO- ANION
   26  C     C     M    6   4   3     1.522   111.100   180.000
   27  O     O2    E   26   6   4     1.229   120.500     0.000
   28  OXT   O2    E   26   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0036   .0928  -.0175
    .0380   .0380  -.0025   .0310   .0310
@@ -365,20 +365,20 @@ CHARGE cc-pvtz esp iterated
    .8798  -.8375   .4206   .4206  -.8375
    .4206   .4206   .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- NE   NH1  CZ   NH2                                           
- CD   CZ   NE   HE                                            
- CZ   HH11 NH1  HH12                                          
- CZ   HH21 NH2  HH22                                          
-                                                              
-DONE                                                          
-HISTIDINE DELTAH COO- ANION                                   
-                                                              
- HID  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ NE   NH1  CZ   NH2
+ CD   CZ   NE   HE
+ CZ   HH11 NH1  HH12
+ CZ   HH21 NH2  HH22
+
+DONE
+HISTIDINE DELTAH COO- ANION
+
+ HID  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -401,30 +401,30 @@ HISTIDINE DELTAH COO- ANION
   20  C     C     M    6   4   3     1.522   111.100   180.000
   21  O     O2    E   19   6   4     1.229   120.500     0.000
   22  OXT   O2    E   19   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .0309   .0675  -.0031
    .0378   .0378   .0433  -.1583   .3060
   -.0909   .1660   .1228  -.4255  -.1595
    .1540   .4408  -.7120  -.7120
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CG   CE1  ND1  HD1                                           
- CG   NE2  CD2  HD2                                           
- ND1  NE2  CE1  HE1                                           
- ND1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-HISTIDINE EPSILON-H   COO- ANION                              
-                                                              
- HIE  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   CE1  ND1  HD1
+ CG   NE2  CD2  HD2
+ ND1  NE2  CE1  HE1
+ ND1  CD2  CG   CB
+
+DONE
+HISTIDINE EPSILON-H   COO- ANION
+
+ HIE  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -447,30 +447,30 @@ HISTIDINE EPSILON-H   COO- ANION
   20  C     C     M    6   4   3     1.522   111.100   180.000
   21  O     O2    E   19   6   4     1.229   120.500     0.000
   22  OXT   O2    E   19   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .0242   .0668   .0316
    .0649   .0649  -.0515   .2018  -.5239
   -.0208   .1457  -.1822   .3170  -.1756
    .1659   .4408  -.7120  -.7120
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CE1  CD2  NE2  HE2                                           
- CG   NE2  CD2  HD2                                           
- ND1  NE2  CE1  HE1                                           
- ND1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-HISTIDINE PLUS COO-                                           
-                                                              
- HIP  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CE1  CD2  NE2  HE2
+ CG   NE2  CD2  HD2
+ ND1  NE2  CE1  HE1
+ ND1  CD2  CG   CB
+
+DONE
+HISTIDINE PLUS COO-
+
+ HIP  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -493,31 +493,31 @@ HISTIDINE PLUS COO-
   20  C     C     M    6   4   3     1.522   111.100   180.000
   21  O     O2    E   20   6   4     1.229   120.500     0.000
   22  OXT   O2    E   20   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .1296   .0638  -.0263
    .0610   .0610   .0816  -.0265   .2971
   -.0538   .2100  -.0580   .3197  -.1000
    .1696   .4408  -.7120  -.7120
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CG   CE1  ND1  HD1                                           
- CE1  CD2  NE2  HE2                                           
- CG   NE2  CD2  HD2                                           
- ND1  NE2  CE1  HE1                                           
- ND1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-TRYPTOPHAN    COO- ANION                                      
-                                                              
- TRP  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   CE1  ND1  HD1
+ CE1  CD2  NE2  HE2
+ CG   NE2  CD2  HD2
+ ND1  NE2  CE1  HE1
+ ND1  CD2  CG   CB
+
+DONE
+TRYPTOPHAN    COO- ANION
+
+ TRP  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -546,7 +546,7 @@ TRYPTOPHAN    COO- ANION
   26  C     C     M    6   4   3     1.522   111.100   180.000
   27  O     O2    E   26   6   4     1.229   120.500     0.000
   28  OXT   O2    E   26   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .0038   .0751  -.0294
    .0433   .0433  -.1010  -.0613   .1459
@@ -554,27 +554,27 @@ CHARGE cc-pvtz esp iterated
   -.1112   .1073  -.1400   .1072  -.2296
    .1579   .0559   .4408  -.7120  -.7120
 
-LOOP                                                          
- CG   CD2                                                     
- CE2  CD2                                                     
-                                                              
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CD1  CE2  NE1  HE1                                           
- CE2  CH2  CZ2  HZ2                                           
- CZ2  CZ3  CH2  HH2                                           
- CH2  CE3  CZ3  HZ3                                           
- CZ3  CD2  CE3  HE3                                           
- CG   NE1  CD1  HD1                                           
- CD1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-PHENYLALANINE COO- ANION                                      
-                                                              
- PHE  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+ CE2  CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CD1  CE2  NE1  HE1
+ CE2  CH2  CZ2  HZ2
+ CZ2  CZ3  CH2  HH2
+ CH2  CE3  CZ3  HZ3
+ CZ3  CD2  CE3  HE3
+ CG   NE1  CD1  HD1
+ CD1  CD2  CG   CB
+
+DONE
+PHENYLALANINE COO- ANION
+
+ PHE  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -599,7 +599,7 @@ PHENYLALANINE COO- ANION
   22  C     C     M    6   4   3     1.522   111.100   180.000
   23  O     O2    E   22   6   4     1.229   120.500     0.000
   24  OXT   O2    E   22   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .0267   .0532  -.0303
    .0439   .0439   .0207  -.1197   .1208
@@ -607,25 +607,25 @@ CHARGE cc-pvtz esp iterated
    .1109  -.1197   .1208   .4408  -.7120
   -.7120
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CG   CE2  CD2  HD2                                           
- CD2  CZ   CE2  HE2                                           
- CE1  CE2  CZ   HZ                                            
- CD1  CZ   CE1  HE1                                           
- CG   CE1  CD1  HD1                                           
- CD1  CD2  CG   CB                                            
-                                                              
-DONE                                                          
-TYROSINE  COO- ANION                                          
-                                                              
- TYR  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   CE2  CD2  HD2
+ CD2  CZ   CE2  HE2
+ CE1  CE2  CZ   HZ
+ CD1  CZ   CE1  HE1
+ CG   CE1  CD1  HD1
+ CD1  CD2  CG   CB
+
+DONE
+TYROSINE  COO- ANION
+
+ TYR  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -651,7 +651,7 @@ TYROSINE  COO- ANION
   25  C     C     M    6   4   3     1.522   111.100   180.000
   26  O     O2    E   23   6   4     1.229   120.500     0.000
   27  OXT   O2    E   23   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0504   .1059  -.0271
    .0602   .0602  -.0227  -.1519   .1295
@@ -659,25 +659,25 @@ CHARGE cc-pvtz esp iterated
   -.1745   .1315  -.1519   .1295   .4408
   -.7120  -.7120
 
-LOOP                                                          
- CG   CD2                                                     
-                                                              
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CG   CE2  CD2  HD2                                           
- CD2  CZ   CE2  HE2                                           
- CD1  CZ   CE1  HE1                                           
- CG   CE1  CD1  HD1                                           
- CD1  CD2  CG   CB                                            
- CE1  CE2  CZ   OH                                            
-                                                              
-DONE                                                          
-GLUTAMIC ACID COO- ANION                                      
-                                                              
- GLU  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CG   CD2
+
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   CE2  CD2  HD2
+ CD2  CZ   CE2  HE2
+ CD1  CZ   CE1  HE1
+ CG   CE1  CD1  HD1
+ CD1  CD2  CG   CB
+ CE1  CE2  CZ   OH
+
+DONE
+GLUTAMIC ACID COO- ANION
+
+ GLU  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -697,24 +697,24 @@ GLUTAMIC ACID COO- ANION
   17  C     C     M    6   4   3     1.522   111.100   180.000
   18  O     O2    E   17   6   4     1.229   120.500     0.000
   19  OXT   O2    E   17   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.3015   .1701   .1941
   -.0222  -.0222  -.1433   .0284   .0284
    .6832  -.7431  -.7431   .4408  -.7120
   -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CG   OE1  CD   OE2                                           
-                                                              
-DONE                                                          
-ASPARTIC ACID COO- ANION                                      
-                                                              
- ASP  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CG   OE1  CD   OE2
+
+DONE
+ASPARTIC ACID COO- ANION
+
+ ASP  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -731,23 +731,23 @@ ASPARTIC ACID COO- ANION
   14  C     C     M    6   4   3     1.522   111.100   180.000
   15  O     O2    E   14   6   4     1.229   120.500     0.000
   16  OXT   O2    E   14   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.1534   .0893  -.0328
   -.0093  -.0093   .7785  -.7671  -.7671
    .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
- CB   OD1  CG   OD2                                           
-                                                              
-DONE                                                          
-LYSINE  COO- ANION                                            
-                                                              
- LYS  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+ CB   OD1  CG   OD2
+
+DONE
+LYSINE  COO- ANION
+
+ LYS  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -774,7 +774,7 @@ LYSINE  COO- ANION
   24  C     C     M    6   4   3     1.522   111.100   180.000
   25  O     O2    E   24   6   4     1.229   120.500     0.000
   26  OXT   O2    E   24   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0117   .1012  -.0895
    .0492   .0492  -.0153   .0442   .0442
@@ -782,16 +782,16 @@ CHARGE cc-pvtz esp iterated
    .0530  -.2032   .2848   .2848   .2848
    .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-PROLINE COO- ANION                                            
-                                                              
- PRO  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+PROLINE COO- ANION
+
+ PRO  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -810,25 +810,25 @@ PROLINE COO- ANION
   16  C     C     M   14   4   3     1.522   109.500   300.000
   17  O     O2    E   16  14   4     1.229   120.500     0.000
   18  OXT   O2    E   16  14   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.2926   .0485   .0409   .0409   .0866
    .0022   .0022   .0562   .0171   .0171
   -.1421   .1062   .4408  -.7120  -.7120
 
-LOOP                                                          
- CA   CB                                                      
-                                                              
-IMPROPER                                                      
- CA   OXT  C    O                                             
- -M   CD   N    CA                                            
-                                                              
-DONE                                                          
-CYSTEINE  COO- ANION                                          
-                                                              
- CYS  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+LOOP
+ CA   CB
+
+IMPROPER
+ CA   OXT  C    O
+ -M   CD   N    CA
+
+DONE
+CYSTEINE  COO- ANION
+
+ CYS  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -846,22 +846,22 @@ CYSTEINE  COO- ANION
   15  C     C     M    6   4   3     1.522   111.100   180.000
   16  O     O2    E   13   6   4     1.229   120.500     0.000
   17  OXT   O2    E   13   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .1414   .0405  -.0991
    .0777   .0777   .3867  -.3289  -.3289
    .1617   .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-CYSTINE(S-S BRIDGE)     COO- ANION                            
-                                                              
- CYX  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+CYSTINE(S-S BRIDGE)     COO- ANION
+
+ CYX  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -878,22 +878,22 @@ CYSTINE(S-S BRIDGE)     COO- ANION
   14  C     C     M    6   4   3     1.522   111.100   180.000
   15  O     O2    E   12   6   4     1.229   120.500     0.000
   16  OXT   O2    E   12   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424   .0679   .0739  -.1322
    .1045   .1045   .0994  -.0946  -.0946
    .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-METHIONINE    COO- ANION                                      
-                                                              
- MET  INT     1                                               
- CORR OMIT DU   BEG                                           
-   0.00000                                                    
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+METHIONINE    COO- ANION
+
+ MET  INT     1
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000
@@ -917,16 +917,16 @@ METHIONINE    COO- ANION
   21  C     C     M    6   4   3     1.522   111.100   180.000
   22  O     O2    E   19   6   4     1.229   120.500     0.000
   23  OXT   O2    E   19   6   4     1.229   120.500   180.000
-                                                              
+
 CHARGE cc-pvtz esp iterated
   -.4880   .3424  -.0073   .0749  -.0138
    .0506   .0506  -.0098   .0718   .0718
    .0507  -.1779  -.1779  -.0016   .0489
    .0489   .0489   .4408  -.7120  -.7120
 
-IMPROPER                                                      
- -M   CA   N    H                                             
- CA   OXT  C    O                                             
-                                                              
-DONE                                                          
-STOP                                                          
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
+DONE
+STOP

@@ -4,7 +4,7 @@
 logFile leap.log
 #
 # leaprc for loading the Lipid17 v1.1 force field
-#       
+#
 # Load atom type hybridizations
 #
 addAtomTypes {
@@ -37,7 +37,7 @@ addAtomTypes {
 #
 # Load the Lipid17 parameter set.
 #
-lipid17 = loadamberparams lipid17.dat 
+lipid17 = loadamberparams lipid17.dat
 #
 # Load the Lipid17 master lib file.
 #

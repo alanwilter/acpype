@@ -1,4 +1,4 @@
-# force field modification accoding to Tan et al. Proc. Natl. Acad. Sci. 2018 and N*->NR (purines), NC->ND (Ade(N3,N1)), CB->CE (Ade(C4,C5)), CA->CF (Ade(C6)); and according to Steinbrecher et al. J. Chem. Theory Comput. 2012 and OS->OR (O3' and O5') and O2->OQ (O1P and O2P) 
+# force field modification accoding to Tan et al. Proc. Natl. Acad. Sci. 2018 and N*->NR (purines), NC->ND (Ade(N3,N1)), CB->CE (Ade(C4,C5)), CA->CF (Ade(C6)); and according to Steinbrecher et al. J. Chem. Theory Comput. 2012 and OS->OR (O3' and O5') and O2->OQ (O1P and O2P)
 MASS
 CE 12.01         0.360               replacing CB in ADE
 CF 12.01         0.360               replacing CA in ADE
@@ -40,7 +40,7 @@ OR-CI  320.0    1.410       based on OS-CI
 CT-OR  320.0    1.410       based on CT-OS
 
 ANGLE
-CE-CF-N2    70.0      123.50    based on CB-CA-N2 
+CE-CF-N2    70.0      123.50    based on CB-CA-N2
 CE-CF-ND    70.0      117.30    based on CB-CA-NC
 N2-CF-ND    70.0      119.30    based on N2-CA-NC
 CF-CE-CE    63.0      117.30    based on CA-CB-CB
@@ -79,7 +79,7 @@ OR-CI-CT    50.0      109.50    based on OS-CI-CT
 P -OR-CI   100.0      120.50    based on P -OS-CI
 CT-CT-OR    50.0      109.50    based on CT-CT-OS
 H1-CT-OR    50.0      109.50    based on H1-CT-OS
-H2-CT-NR    50.0      109.50    based on H2-CT-N*           
+H2-CT-NR    50.0      109.50    based on H2-CT-N*
 
 DIHE
 X -CF-CE-X    4   14.00        180.0             2.         based on X -CA-CB-X

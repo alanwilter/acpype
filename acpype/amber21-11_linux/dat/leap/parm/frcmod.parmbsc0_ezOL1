@@ -2,15 +2,15 @@ original
 MASS
 C3 12.01         0.878               sp3 aliphatic C
 
-BOND 
+BOND
 C3-CT  310.0    1.526       JCC,7,(1986),230; AA, SUGARS
 C3-H1  340.0    1.090       changed from 331 bsd on NMA nmodes; AA, RIBOSE
 C3-OH  320.0    1.410       JCC,7,(1986),230; SUGARS
 C3-OS  320.0    1.410       JCC,7,(1986),230; NUCLEIC ACIDS
 
 ANGLE
-H1-C3-OH    50.0      109.50    changed based on NMA nmodes 
-H1-C3-OS    50.0      109.50    changed based on NMA nmodes 
+H1-C3-OH    50.0      109.50    changed based on NMA nmodes
+H1-C3-OS    50.0      109.50    changed based on NMA nmodes
 C3-CT-CT    40.0      109.50
 CT-C3-CT    40.0      109.50
 C3-CT-HC    50.0      109.50    changed based on NMA nmodes
@@ -50,7 +50,7 @@ CT-CT-C3-CT   1    0.20        180.0             1.         Junmei et al, 1999
 C3-CT-OS-CT   1    0.383         0.0            -3.
 C3-CT-OS-CT   1    0.1         180.0             2.
 OS-C3-CT-OS   1    0.144         0.0            -3.         parm98, TC,PC,PAK
-OS-C3-CT-OS   1    1.175         0.0             2.         Piotr et al.     
+OS-C3-CT-OS   1    1.175         0.0             2.         Piotr et al.
 OS-C3-CT-OH   1    0.144         0.0            -3.         parm98, TC,PC,PAK
 OS-C3-CT-OH   1    1.175         0.0             2.         Piotr et al.
 OS-CT-C3-OH   1    0.144         0.0            -3.         parm98, TC,PC,PAK
@@ -81,4 +81,3 @@ C3-CT-CI-OH   1    0.962830    348.09535         3.0  gamma
 
 NONBOND
 C3          1.9080  0.1094             Spellmeyer
- 

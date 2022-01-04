@@ -1,7 +1,7 @@
 !Force field modifications for continuous phmd simulations (Feb 2018)
 
 BOND
-O2-HO       553.0    0.960 ! copied from HO-OH 
+O2-HO       553.0    0.960 ! copied from HO-OH
 
 ANGLE
 CO-O2-HO     50.0     113.00 ! copied from C -OH-HO

@@ -1,7 +1,7 @@
 logFile leap.log
 #
 # ----- leaprc for loading the Cornell et al. 1994 force field.
-#       assumes that any unspecified nucleic acids are RNA 
+#       assumes that any unspecified nucleic acids are RNA
 #       uses reduced charges for nucleic acid phosphates and amino
 #          acid side chains (e.g. for nmr refinement)
 #
@@ -86,7 +86,7 @@ parm94 = loadamberparams parm94.dat
 #
 loadOff all_nucleic94.nmr.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_amino94.nmr.lib

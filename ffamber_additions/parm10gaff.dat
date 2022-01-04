@@ -134,7 +134,7 @@ ss 32.06         2.900               Sp3 S in thio-ester and thio-ether
 sx 32.06         2.900               Special s4 in conjugated systems
 sy 32.06         2.900               Special s6 in conjugated systems
 
-C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2 hn  ho  hs  n   na  nc  nd  ne  nf  n2  n3  n4  o   oh  os  ow  sh  ss 
+C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2 hn  ho  hs  n   na  nc  nd  ne  nf  n2  n3  n4  o   oh  os  ow  sh  ss
 OW-HW  553.0    0.9572    ! TIP3P water
 HW-HW  553.0    1.5136      TIP3P water
 C -C   310.0    1.525       Junmei et al, 1999

@@ -39,7 +39,7 @@ D-ADENOSINE
   32  O3'   OS    M   27   8   5     1.420   116.520  -203.470  -0.50900
 
 IMPROPER
- C6   H61  N6   H62 
+ C6   H61  N6   H62
 
 LOOP
  C1'  C2'
@@ -86,7 +86,7 @@ DONE
   32  O3'   OS    M   27   8   5     1.420   116.520  -203.470  -0.50900
 
 IMPROPER
- C2   H21  N2   H22 
+ C2   H21  N2   H22
 
 LOOP
  C1'  C2'
@@ -134,7 +134,7 @@ R-ADENOSINE
   33  O3'   OS    M   27   8   5     1.420   116.520  -203.470  -0.50900
 
 IMPROPER
- C6   H61  N6   H62 
+ C6   H61  N6   H62
 
 LOOP
  C1'  C2'
@@ -278,7 +278,7 @@ D-GUANOSINE
 IMPROPER
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
 
 LOOP
  C1'  C2'
@@ -329,7 +329,7 @@ R-GUANOSINE
 IMPROPER
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
 
 LOOP
  C1'  C2'
@@ -375,7 +375,7 @@ D-CYTOSINE
 
 IMPROPER
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
 
 LOOP
  C1'  C2'
@@ -421,7 +421,7 @@ R-CYTOSINE
 
 IMPROPER
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
 
 LOOP
  C1'  C2'
@@ -544,7 +544,7 @@ ALANINE
   13  O     O     E   12   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -565,7 +565,7 @@ GLYCINE
   10  O     O     E    9   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -590,7 +590,7 @@ SERINE
   14  O     O     E   13   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -618,7 +618,7 @@ THREONINE
   17  O     O     E   16   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -651,7 +651,7 @@ LEUCINE
   22  O     O     E   21   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -684,7 +684,7 @@ ISOLEUCINE
   22  O     O     E   21   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -714,7 +714,7 @@ VALINE
   19  O     O     E   18   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -742,7 +742,7 @@ ASPARAGINE
   17  O     O     E   16   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CB   ND2  CG   OD1
  CG   HD21 ND2  HD22
@@ -775,7 +775,7 @@ GLUTAMINE
   20  O     O     E   19   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CG   NE2  CD   OE1
  CD   HE21 NE2  HE22
@@ -815,10 +815,10 @@ ARGININE
   27  O     O     E   26   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  NE   NH1  CZ   NH2
- CD   CZ   NE   HE 
+ CD   CZ   NE   HE
  CZ   HH12 NH1  HH11
  CZ   HH22 NH2  HH21
 
@@ -853,7 +853,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CG   CE1  ND1  HD1
 
@@ -888,7 +888,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CE1  CD2  NE2  HE2
 
@@ -924,7 +924,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CG   CE1  ND1  HD1
  CE1  CD2  NE2  HE2
@@ -968,7 +968,7 @@ LOOP
  CE2  CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CD1  CE2  NE1  HE1
  CE2  CH2  CZ2  HZ2
@@ -1010,7 +1010,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -1048,7 +1048,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -1077,7 +1077,7 @@ GLUTAMIC ACID
   18  O     O     E   17   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CG   OE1  CD   OE2
 
@@ -1104,7 +1104,7 @@ ASPARTIC ACID
   15  O     O     E   14   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CB   OD1  CG   OD2
 
@@ -1142,7 +1142,7 @@ LYSINE
 
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -1200,7 +1200,7 @@ CYSTEINE
   16  O     O     E   15   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -1226,7 +1226,7 @@ CYSTINE(S-S BRIDGE)
   15  O     O     E   14   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -1259,7 +1259,7 @@ METHIONINE
   22  O     O     E   21   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE
@@ -1283,7 +1283,7 @@ IMPROPER
 
 DONE
   NH2 ENDING GROUP
-        
+
  NHE  INT     1
  CORRECT OMIT DU  BEG
    0.00000
@@ -1293,12 +1293,12 @@ DONE
    4   N     N     M      3   2   1       1.3350    116.6000    180.0000
    5   HN1   H     E      4   3   2       1.0100    119.8000      0.0000
    6   HN2   H     E      4   3   2       1.0100    119.8000    180.0000
-    
+
 CHARGE
-  -0.46300   0.23150   0.23150 
-    
+  -0.46300   0.23150   0.23150
+
 IMPROPER
- -M   HN1  N    HN2 
+ -M   HN1  N    HN2
 
 DONE
 N-methyl all atom
@@ -1356,7 +1356,7 @@ ASH
   16  O     O     E   15   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CB   OD1  CG   OD2
 
@@ -1387,7 +1387,7 @@ GLH
   19  O     O     E   18   6   4     1.229   120.500     0.000  -0.50400
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
  CG   OE1  CD   OE2
 
@@ -1424,7 +1424,7 @@ LYSINE
 
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   +M   C    O
 
 DONE

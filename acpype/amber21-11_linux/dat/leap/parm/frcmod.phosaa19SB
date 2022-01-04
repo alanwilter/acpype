@@ -18,13 +18,13 @@ OR-P    230.0   1.610   from OS-P
 C -OR   450.0   1.323   from C -OS
 CT-OR   320.0   1.410   from CT-OS
 OT-P    525.0   1.480   # repeat parameters for TYR 2-
-OV-P    230.0   1.610   
-C -OV   450.0   1.323   
-CT-OV   320.0   1.410   
+OV-P    230.0   1.610
+C -OV   450.0   1.323
+CT-OV   320.0   1.410
 OX-P    525.0   1.480   # repeat parameters for SER/THR 2-
-OZ-P    230.0   1.610   
-C -OZ   450.0   1.323   
-CT-OZ   320.0   1.410  
+OZ-P    230.0   1.610
+C -OZ   450.0   1.323
+CT-OZ   320.0   1.410
 CG-CT   317.0   1.510   Y1P/PTR C Gamma (CA) from parm99.dat
 CG-CA   469.0   1.400   Y1P/PTR C Gamma (CA) from parm99.dat
 3C-OZ   320.0   1.410   from CT-OS
@@ -39,28 +39,28 @@ OQ-P -OR        90.0    108.23  "" ""
 OQ-P -OQ        90.0    108.23  "" ""
 OR-P -OR        90.0    102.60  from OS-P -OS ! raised to prevent simulation instabilities
 OR-P -OP        100.0   108.23  from O2-P -OS
-HO-OQ-P         100.0   113.28  from HO-OH-P  ! raised to prevent simulation instabilities, equilibrium from G03 calculations   
+HO-OQ-P         100.0   113.28  from HO-OH-P  ! raised to prevent simulation instabilities, equilibrium from G03 calculations
 C -OR-P         100.0   120.50  from Sticht et al. (frcmod.y1p)
 CA-C -OR        70.0    120.00  "" ""
 CT-OR-P         100.0   120.50  from CT-OS-P
 CT-CT-OR        50.0    109.50  from CT-CT-OS
 H1-CT-OR        50.0    109.50  from H1-CT-OS
 OT-P -OT        140.0   119.90  # repeat parameters for TYR 2-
-OV-P -OV        90.0    102.60  
-OV-P -OT        100.0   108.23  
-C -OV-P         100.0   120.50  
-CA-C -OV        70.0    120.00  
-CT-OV-P         100.0   120.50  
-CT-CT-OV        50.0    109.50  
-H1-CT-OV        50.0    109.50  
+OV-P -OV        90.0    102.60
+OV-P -OT        100.0   108.23
+C -OV-P         100.0   120.50
+CA-C -OV        70.0    120.00
+CT-OV-P         100.0   120.50
+CT-CT-OV        50.0    109.50
+H1-CT-OV        50.0    109.50
 OX-P -OX        140.0   119.90  # repeat parameters for SER/THR 2-
-OZ-P -OZ        90.0    102.60  
-OZ-P -OX        100.0   108.23  
-C -OZ-P         100.0   120.50  
-CA-C -OZ        70.0    120.00  
-CT-OZ-P         100.0   120.50  
-CT-CT-OZ        50.0    109.50  
-H1-CT-OZ        50.0    109.50  
+OZ-P -OZ        90.0    102.60
+OZ-P -OX        100.0   108.23
+C -OZ-P         100.0   120.50
+CA-C -OZ        70.0    120.00
+CT-OZ-P         100.0   120.50
+CT-CT-OZ        50.0    109.50
+H1-CT-OZ        50.0    109.50
 CA-CG-CT        70.0    120.00 Y1P/PTR C Gamma (CA) from parm99.dat
 CA-CA-CG        63.0    120.00 Y1P/PTR C Gamma (CA) from parm99.dat
 CA-CG-CA        63.0    120.00 Y1P/PTR C Gamma (CA) from parm99.dat
@@ -70,15 +70,15 @@ XC-CT-CG        63.0    114.00 Y1P/PTR C Gamma (CA) from parm14ipq.dat
 CW-NA-P         76.7    125.10 FRCMOD H1D
 NA-P -OQ        42.9    102.38 FRCMOD H1D
 CT-3C-OR        50.0    109.50  from CT-CT-OS
-CT-3C-OZ        50.0    109.50  from CT-CT-OS 
+CT-3C-OZ        50.0    109.50  from CT-CT-OS
 H1-3C-OR        50.0    109.50  from H1-CT-OZ
 H1-3C-OZ        50.0    109.50  from H1-CT-OZ
 H1-2C-OR        50.0    109.50  from H1-CT-OZ
-H1-2C-OZ        50.0    109.50  from H1-CT-OZ  
-2C-OZ-P         100.0   120.50  from CT-OZ-P  
-2C-OR-P         100.0   120.50  from CT-OZ-P  
-3C-OR-P         100.0   120.50  from CT-OZ-P  
-3C-OZ-P         100.0   120.50  from CT-OZ-P 
+H1-2C-OZ        50.0    109.50  from H1-CT-OZ
+2C-OZ-P         100.0   120.50  from CT-OZ-P
+2C-OR-P         100.0   120.50  from CT-OZ-P
+3C-OR-P         100.0   120.50  from CT-OZ-P
+3C-OZ-P         100.0   120.50  from CT-OZ-P
 XC-3C-OZ        50.0    109.50  from CT-CT-OZ
 XC-3C-OR        50.0    109.50  from CT-CT-OZ
 XC-2C-OZ        50.0    109.50  from CT-CT-OZ
@@ -213,7 +213,7 @@ CA-CG-CA-HA     1.100  180   2
 NONB
 OP      1.7493  0.2100          modified acc. to FEP solvation energies for phosphate monoanions
 OQ      1.8091  0.2100          a uniform radius increase of 0.0881 A was applied
-OR      1.7718  0.1700          
+OR      1.7718  0.1700
 OT      1.6337  0.2100          modified acc. to FEP solvation energies for TYR 2-
 OV      1.6562  0.1700          a uniform radius increase of -0.0275 A was applied
 OX      1.8401  0.2100          modified acc. to FEP solvation energies for SER/THR 2-

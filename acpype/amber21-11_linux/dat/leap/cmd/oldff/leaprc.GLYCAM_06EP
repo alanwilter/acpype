@@ -3,15 +3,15 @@ logFile leap.log
 # ----- leaprc for loading the glycam06EP force field, with lone pairs
 #       with sp2 lone pairs of 0.45A and sp3 lone pairs 0.70A
 #       no lone pairs on carboxyalate groups
-#       
+#
 #################  PLEASE NOTE ########################
-##      
-##      Updated copies of the GLYCAM parameter and 
+##
+##      Updated copies of the GLYCAM parameter and
 ##      prep files can be downloaded from the GLYCAM
 ##      web site's Documentation page:
-##      
+##
 ##      http://www.glycam.org/params
-##      
+##
 #######################################################
 #
 #       load atom type hybridizations
@@ -35,11 +35,11 @@ addAtomTypes {
 #
 #       load the main paramter set
 #
-glycam06EP = loadamberparams GLYCAM_06EPa.dat 
+glycam06EP = loadamberparams GLYCAM_06EPa.dat
 #
 #       load all prep files for polysaccharides including lone pairs
 #
-loadamberprep GLYCAM_06EPa.prep 
+loadamberprep GLYCAM_06EPa.prep
 #
 #	load water and ions
 #       assumes most users want to use tip3p as the explicit solvent model

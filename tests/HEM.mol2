@@ -2,7 +2,7 @@
 # Dioxygen bound heme coordinates and atomic charges
 @<TRIPOS>MOLECULE
 HEM-O2
-   75    82    1     0     1 
+   75    82    1     0     1
 SMALL
 USER_CHARGES
 @<TRIPOS>ATOM
@@ -86,7 +86,7 @@ USER_CHARGES
     2     1     3 1
     3     1    28 1
     4     2     4 1
-    5     2    26 1   
+    5     2    26 1
     6     3     5 1
     7     3     6 1
     8     4     5 1

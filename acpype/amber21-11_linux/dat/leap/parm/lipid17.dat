@@ -73,7 +73,7 @@ cA-nA-hN     46.19    110.11    Lipid11 v1.0  (GAFF c3-n4-hn)
 cA-nN-cC     63.92    121.35    Lipid17 v1.0  (GAFF c -n -c3)
 cA-nN-hN     46.04    116.78    Lipid17 v1.0  (GAFF c3-n -hn)
 cA-oH-hO     47.09    108.16    Lipid11 v1.0  (GAFF c3-oh-ho)
-cA-oS-cC     63.63    115.14    Lipid11 v1.0  (GAFF c3-os-c ) 
+cA-oS-cC     63.63    115.14    Lipid11 v1.0  (GAFF c3-os-c )
 cA-oT-pA    100.00    120.50    Lipid17 v1.0  (parm99 CT-OS-P)
 cB-cA-hA     47.03    110.49    Lipid11 v1.0  (GAFF c2-c3-hc)
 cB-cA-hE     47.03    110.46    Lipid17 v1.0  (GAFF c2-c3-h1)
@@ -126,7 +126,7 @@ cA-cA-cA-cD   1        -0.2199           0.00          -4.00    SCEE=1.2 SCNB=2.
 cA-cA-cA-cD   1         0.2170           0.00           5.00    SCEE=1.2 SCNB=2.0    Lipid14 v1.14 (Lipid14 cD-cD-cD-cD)
 cA-cA-cA-hA   1         0.1600           0.00           3.00    SCEE=1.2 SCNB=2.0    Lipid11 v1.0  (GAFF c3-c3-c3-hc)
 cA-cA-cA-hE   1         0.1556           0.00           3.00    SCEE=1.2 SCNB=2.0    Lipid11 v1.0  (GAFF X -c3-c3-X )
-cA-cA-cA-oH   1         0.1556           0.00           3.00    SCEE=1.2 SCNB=2.0    Lipid11 v1.0  (GAFF X -c3-c3-X )    
+cA-cA-cA-oH   1         0.1556           0.00           3.00    SCEE=1.2 SCNB=2.0    Lipid11 v1.0  (GAFF X -c3-c3-X )
 cA-cA-cA-oS   1         0.1556           0.00           3.00    SCEE=1.2 SCNB=2.0    Lipid11 v1.0  (GAFF X -c3-c3-X )
 cA-cA-cA-oT   1         0.1556           0.00           3.00    SCEE=1.2 SCNB=2.0    Lipid11 v1.0  (GAFF X -c3-c3-X )
 cA-cA-cB-cA   1         0.0000           0.00           2.00    SCEE=1.2 SCNB=2.0    Lipid11 v1.0  (GAFF X -c3-c2-X )
@@ -219,11 +219,11 @@ cD-cC-nN-hN   4        10.0000         180.00           2.00    SCEE=1.2 SCNB=2.
 cD-cD-cA-hA   1         0.1600           0.00           3.00    SCEE=1.2 SCNB=2.0    Lipid14 v1.14 (GAFF c3-c3-c3-hc)
 cD-cD-cB-hB   1         0.0000           0.00           2.00    SCEE=1.2 SCNB=2.0    Lipid14 v1.0  (GAFF X -c3-c2-X )
 cD-cD-cC-nN   6         0.0000         180.00           2.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (GAFF X -c -c3-X )
-cD-cD-cC-oC   1        -1.4023         180.00          -1.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit) 
-cD-cD-cC-oC   1         0.1933         180.00          -2.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit) 
-cD-cD-cC-oC   1         0.9638           0.00          -3.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit) 
-cD-cD-cC-oC   1        -0.1353           0.00          -4.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit) 
-cD-cD-cC-oC   1        -0.0108           0.00           5.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit) 
+cD-cD-cC-oC   1        -1.4023         180.00          -1.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
+cD-cD-cC-oC   1         0.1933         180.00          -2.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
+cD-cD-cC-oC   1         0.9638           0.00          -3.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
+cD-cD-cC-oC   1        -0.1353           0.00          -4.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
+cD-cD-cC-oC   1        -0.0108           0.00           5.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
 cD-cD-cC-oS   1        -0.5379         180.00          -1.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
 cD-cD-cC-oS   1         0.2361         180.00          -2.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
 cD-cD-cC-oS   1         0.8176           0.00          -3.00    SCEE=1.2 SCNB=2.0    Lipid17 v1.0  (paramfit)
@@ -428,7 +428,7 @@ Version history
   - Partial charges for head groups now use RESP B3LYP/cc-pvtz with water polarizable continuum model.
 
 - Lipid17 Version 1.1 (August 2016)
-  - Reverted oH van der Waals parameters back to Lipid14 oS. 
+  - Reverted oH van der Waals parameters back to Lipid14 oS.
   - Fixed cD-cB-hB force constant typo (44.66 -> 45.66) so that the force constant matches paramfit result.
   - Changed phosphatidic acid parameters (oH-pA, hO-oH-pA, oH-pA-oP, oH-pA-oT, hO-oH-pA-oP and hO-oH-pA-oT) from GAFF to parm99, in order to be consistent with the use of parm99 parameters for the phosphate group in all the other phospholipid head groups.
   - Replaced parm99 wildcard dihedral parameters (X -OS-P -X) with specific parameters (parm99 OS-P -OS-CT/OH-P -OS-CT) for the cA-oT-pA-oT and cA-oT-pA-oH dihedrals. It is worth noting that GAFF uses the same parameters as parm99 for corresponding dihedrals (os-p5-os-c3/oh-p5-os-c3).

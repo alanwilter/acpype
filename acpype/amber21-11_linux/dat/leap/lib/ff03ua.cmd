@@ -106,28 +106,28 @@ addAtomTypes {
 #
 clearVariables
 
-loadAmberPrep uni_amino03.in 
+loadAmberPrep uni_amino03.in
 
-a = { 
-      ALA GLY SER THR LEU ILE VAL ASN GLN ARG 
+a = {
+      ALA GLY SER THR LEU ILE VAL ASN GLN ARG
       HID HIE HIP TRP PHE TYR GLU ASP LYS PRO
       CYS CYX MET
     }
 
 set a       restype     protein
-saveOff a   ./uni_amino03.lib 
+saveOff a   ./uni_amino03.lib
 
 set NME     restype     protein
 set NME     tail        null
 set NME     head        NME.1.N
 set NME.1   connect0    NME.1.N
-saveOff NME ./uni_amino03.lib 
+saveOff NME ./uni_amino03.lib
 
 set ACE     restype     protein
 set ACE     head        null
 set ACE     tail        ACE.1.C
 set ACE.1   connect1    ACE.1.C
-saveOff ACE ./uni_amino03.lib 
+saveOff ACE ./uni_amino03.lib
 
 #
 # Extract the N terminus residues
@@ -136,9 +136,9 @@ clearVariables
 
 loadAmberPrep uni_aminont03.in
 
-a = { 
-      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG 
-      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO 
+a = {
+      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG
+      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO
       NCYS NMET
     }
 
@@ -167,7 +167,7 @@ set NCYS.1   nend      null
 set NMET.1   nend      null
 
 set a        restype   protein
-saveOff a ./uni_aminont03.lib 
+saveOff a ./uni_aminont03.lib
 
 #
 # Extract the C terminus residues
@@ -176,10 +176,10 @@ clearVariables
 
 loadAmberPrep uni_aminoct03.in
 
-a = { 
-      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG 
-      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO 
-      CCYS CMET 
+a = {
+      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG
+      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO
+      CCYS CMET
     }
 
 set a        tail      null
@@ -207,7 +207,7 @@ set CCYS.1   cend      null
 set CMET.1   cend      null
 
 set a        restype   protein
-saveOff a ./uni_aminoct03.lib 
+saveOff a ./uni_aminoct03.lib
 
 #
 # DONE ff03ua

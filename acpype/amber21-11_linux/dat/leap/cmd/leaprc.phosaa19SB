@@ -5,10 +5,10 @@ logFile leap.log
 # This file contains optimized parameters for phosphorylated amino acids:
 #
 # PTR:   phosphotyrosine with a -2 net charge
-# SEP:   phosphoserine with a -2 net charge  
+# SEP:   phosphoserine with a -2 net charge
 # TPO:   phosphothreonine with a -2 net charge
 # Y1P:   phosphotyrosine with a -1 net charge
-# S1P:   phosphoserine with a -1 net charge  
+# S1P:   phosphoserine with a -1 net charge
 # T1P:   phosphothreonine with a -1 net charge
 # H1D:   phosphohistidine (ND1) with a 0 net charge
 # H2D:   phosphohistidine (ND1) with a -1 net charge

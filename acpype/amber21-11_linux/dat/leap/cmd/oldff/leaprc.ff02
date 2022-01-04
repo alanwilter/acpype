@@ -1,7 +1,7 @@
 logFile leap.log
 #
 # ----- leaprc for loading the 2002 pol. force field, no lone pairs
-#       assumes that any unspecified nucleic acids are DNA 
+#       assumes that any unspecified nucleic acids are DNA
 #
 #	load atom type hybridizations
 #
@@ -79,7 +79,7 @@ parm99 = loadamberparams parm99.dat
 #
 loadOff all_nucleic02.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_amino02.lib

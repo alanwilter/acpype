@@ -5,7 +5,7 @@ C2 12.01         0.360               sp2 C 5 memb.ring in purines
 C1 12.01         0.360               sp2 C  pyrimidines in pos. 5 & 6
 CJ 12.01
 
-BOND 
+BOND
 C7-CT  310.0    1.526       JCC,7,(1986),230; AA, SUGARS
 C7-H1  340.0    1.090       changed from 331 bsd on NMA nmodes; AA, RIBOSE
 C7-OH  320.0    1.410       JCC,7,(1986),230; SUGARS
@@ -26,8 +26,8 @@ OS-CJ  320.0    1.410
 OH-CJ  320.0    1.410
 
 ANGLE
-H1-C7-OH    50.0      109.50    changed based on NMA nmodes 
-H1-C7-OS    50.0      109.50    changed based on NMA nmodes 
+H1-C7-OH    50.0      109.50    changed based on NMA nmodes
+H1-C7-OS    50.0      109.50    changed based on NMA nmodes
 C7-CT-CT    40.0      109.50
 CT-C7-CT    40.0      109.50
 C7-CT-HC    50.0      109.50    changed based on NMA nmodes
@@ -79,12 +79,12 @@ OH-CJ-CT    50.0      109.50
 HO-OH-CJ    55.0      108.50
 
 DIHEDRAL
-CJ-OS-P-O2    3    0.75          0.0             3.         to alpha 
+CJ-OS-P-O2    3    0.75          0.0             3.         to alpha
 C7-OS-P-O2    1    0.29407     358.284           3.         zet OL1
 X -C7-OH-X    3    0.50          0.0             3.         JCC,7,(1986),230
 X -C7-OS-X    3    1.15          0.0             3.         JCC,7,(1986),230
 X -C7-CT-X    9    1.40          0.0             3.         JCC,7,(1986),230
-CT-C7-OS-P    1    0.15259     162.4967         -3.         eps OL1 
+CT-C7-OS-P    1    0.15259     162.4967         -3.         eps OL1
 CT-C7-OS-P    1    0.64681     139.8342         -2.         eps OL1
 CT-C7-OS-P    1    1.77488     205.9192          1.         eps OL1
 OH-P -OS-C7   1    0.29407     358.284          -3.         zet OL1
@@ -102,7 +102,7 @@ CT-CT-C7-CT   1    0.20        180.0             1.         Junmei et al, 1999
 C7-CT-OS-CT   1    0.383         0.0            -3.
 C7-CT-OS-CT   1    0.1         180.0             2.
 OS-C7-CT-OS   1    0.144         0.0            -3.         parm98, TC,PC,PAK
-OS-C7-CT-OS   1    1.175         0.0             2.         Piotr et al.     
+OS-C7-CT-OS   1    1.175         0.0             2.         Piotr et al.
 OS-C7-CT-OH   1    0.144         0.0            -3.         parm98, TC,PC,PAK
 OS-C7-CT-OH   1    1.175         0.0             2.         Piotr et al.
 OS-CT-C7-OH   1    0.144         0.0            -3.         parm98, TC,PC,PAK
@@ -192,9 +192,9 @@ X -X -C1-HA         1.1          180.          2.
 C -C1-N*-CT         1.0          180.          2.           dac guess, 9/94
 C -C1-C1-CT         1.1          180.          2.           dac guess, 9/94
 C1-N2-CA-NC         1.1          180.          2.           dac guess, 9/94
- 
+
 NONBOND
 C7          1.9080  0.1094             Spellmeyer
 C2          1.9080  0.0860             Spellmeyer
 C1          1.9080  0.0860             Spellmeyer
-CJ          1.9080  0.1094 
+CJ          1.9080  0.1094

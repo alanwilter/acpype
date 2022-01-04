@@ -30,11 +30,11 @@ S  32.06                             sulphur in sulphates
 Sm 32.06                             sulfane carbohydrate linkage (-CH2-S-CH2-)
 P  30.97                             phosphate in phosphates
 
-C   H   Ho  Ng  NT  N3  O   Oh  Os  P   O2 
+C   H   Ho  Ng  NT  N3  O   Oh  Os  P   O2
 Cg-N   337.0    1.450       Copy of Cg-Ng from GLYCAM06
 CT-Os  320.0    1.410       Copy of CT-OS from parm10.dat
 2C-Os  320.0    1.410       Copy of CT-OS from parm10.dat
-3C-Os  320.0    1.410       Copy of CT-OS from parm10.dat 
+3C-Os  320.0    1.410       Copy of CT-OS from parm10.dat
 S -Ng  238.0    1.675       N-Sulfate - Using avg value from ZULPIF and ZULPIF01 (CSD 1.638 A)
 Cg-Sm  237.0    1.810       Changed from 222.0 based on methanethiol nmodes
 N3-H   434.0    1.010       Parm10
@@ -309,7 +309,7 @@ Oh-Cg-Cg-Cj   1   -0.11          0.0            -3          SCEE=1.0 SCNB=1.0 Li
 Os-Cj-Cj-Cg   1  -13.00          0.0             2          SCEE=1.0 SCNB=1.0 copy of Os-Ck-Ck-Cg
 Os-Ck-Ck-Cg   1  -13.00          0.0             2          SCEE=1.0 SCNB=1.0 Lipids, from 1-propenylmethylether
 Ck-Cj-Cj-Ha   1  -15.00          0.0             2          SCEE=1.0 SCNB=1.0 copy of Cj-Ck-Ck-Ha
-Cj-Ck-Ck-Ha   1  -15.00          0.0             2          SCEE=1.0 SCNB=1.0  
+Cj-Ck-Ck-Ha   1  -15.00          0.0             2          SCEE=1.0 SCNB=1.0
 Cg-Os-Cj-Ha   1    0.08          0.0            -3          SCEE=1.0 SCNB=1.0 copy of Cg-Os-Ck-Ha, coupled to Cg-Os-Cj-Cj
               1    0.22          0.0            -2          SCEE=1.0 SCNB=1.0
               1    0.40          0.0             1          SCEE=1.0 SCNB=1.0
@@ -329,11 +329,11 @@ Cg-Cg-Os-Ck   1   -0.01          0.0            -3          SCEE=1.0 SCNB=1.0 Li
 Cg-Os-Cj-Cj   1   -0.87          0.0            -3          SCEE=1.0 SCNB=1.0 copy of Cg-Os-Ck-Ck
               1   -3.99          0.0            -2          SCEE=1.0 SCNB=1.0
               1   -0.25          0.0             1          SCEE=1.0 SCNB=1.0
-Cg-Os-Ck-Ck   1   -0.87          0.0            -3          SCEE=1.0 SCNB=1.0  
+Cg-Os-Ck-Ck   1   -0.87          0.0            -3          SCEE=1.0 SCNB=1.0
               1   -3.99          0.0            -2          SCEE=1.0 SCNB=1.0
               1   -0.25          0.0             1          SCEE=1.0 SCNB=1.0
-Cj-Ck-Ck-Cj   1   -2.00          0.0             2          SCEE=1.0 SCNB=1.0  
-Ck-Cj-Cj-Ck   1   -2.00          0.0             2          SCEE=1.0 SCNB=1.0  
+Cj-Ck-Ck-Cj   1   -2.00          0.0             2          SCEE=1.0 SCNB=1.0
+Ck-Cj-Cj-Ck   1   -2.00          0.0             2          SCEE=1.0 SCNB=1.0
 Ck-Cg-Ck-Ck   1   -0.04          0.0            -3          SCEE=1.0 SCNB=1.0 Lipids, from 1,4-Pentadiene
               1   -0.68          0.0            -2          SCEE=1.0 SCNB=1.0
               1   -0.21          0.0             1          SCEE=1.0 SCNB=1.0
@@ -733,23 +733,23 @@ S -H -Ng-H           5.5         180.          2.           GLYCAM 06 Sulfamates
 Cg-S -Ng-H           5.5         180.          2.           GLYCAM 06 Sulfamates
 
   HW  OW  0000.     0000.                                4.  flag for fast water
- 
-Ng  N3  
-C   Ck  
+
+Ng  N3
+C   Ck
 
 MOD4      RE
   H           0.6000  0.0157            !Ferguson base pair geom.
   Ho          0.2000  0.0300             M.B. Tessier 2011
   Hc          1.4870  0.0157             OPLS
-  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963 
-  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963 
+  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963
+  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963
   HW          0.0000  0.0000             TIP3P water model
   Ha          1.4590  0.0150             Spellmeyer
   Hp          1.1000  0.0157             Veenstra et al JCC,8,(1992),963
   O           1.6612  0.2100             OPLS
   O2          1.6612  0.2100             OPLS
   OW          1.7683  0.1520             TIP3P water model
-  Oh          1.7210  0.2104             OPLS 
+  Oh          1.7210  0.2104             OPLS
   Os          1.6837  0.1700             OPLS ether
   Oy          1.6837  0.1700             OPLS ether - sialic acid only
   Cg          1.9080  0.1094             Spellmeyer
@@ -768,16 +768,16 @@ MOD4      RE
 END
 END
 
-Notes:  
+Notes:
 
 1.  This force field my be employed independently for simulating carbohydrtes.
 
-2.  It may be used in conjunction with ff99 and ff99SB.  
-    Known conflicts: 
+2.  It may be used in conjunction with ff99 and ff99SB.
+    Known conflicts:
 
-        The atom type Cy conflicts.  
-                -- 99, 99SB:  nitrile carbon 
-                -- Glycam_06:  used in sialic acid 
+        The atom type Cy conflicts.
+                -- 99, 99SB:  nitrile carbon
+                -- Glycam_06:  used in sialic acid
 
         The angle Os-P-Os has a different equilibrium value.
                 -- The Glycam value is recommended.
@@ -785,18 +785,18 @@ Notes:
     See leaprc.GLYCAM06-99SB for usage details
 
 
-3.  Correct rotational behavior for O-C-C-O fragments requires SCEE=SCNB=1.0.  
-    This is in contrast to "standard" AMBER, in which it is normal to set 
+3.  Correct rotational behavior for O-C-C-O fragments requires SCEE=SCNB=1.0.
+    This is in contrast to "standard" AMBER, in which it is normal to set
     SCEE=1.2 and SCNB=2.0.  Unless you are attempting to generate rotamer
-    populations, it is OK to use the "standard" values.  Using non-standard 
+    populations, it is OK to use the "standard" values.  Using non-standard
     values (SCEE=SCNB=1.0) may be unacceptable when a protein is also present.
 
-    Beginning with late versions of AMBER 10, mixed scaling of SCEE and SCNB 
-    is supported.  This file will set them appropriately. 
+    Beginning with late versions of AMBER 10, mixed scaling of SCEE and SCNB
+    is supported.  This file will set them appropriately.
 
-4.  To obtain the current version of this force field and/or carbohydrate 
+4.  To obtain the current version of this force field and/or carbohydrate
     prep files go to the website http://www.glycam.ccrc.uga.edu.
 
 GLYCAM contributors include:
-Karl N. Kirschner, Austin Yongye, Matthew Tessier, Sarah Tschampel, 
+Karl N. Kirschner, Austin Yongye, Matthew Tessier, Sarah Tschampel,
 Sameer Kawatkar, B. Lachele Foley, Robert Woods

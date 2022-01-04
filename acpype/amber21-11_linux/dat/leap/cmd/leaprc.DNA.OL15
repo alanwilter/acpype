@@ -143,10 +143,10 @@ addAtomTypes {
 #	Define the PDB name map for the nucleic acids
 #
 addPdbResMap {
-  { 0 "DG" "DG5"  } { 1 "DG" "DG3"  }  
-  { 0 "DA" "DA5"  } { 1 "DA" "DA3"  }  
-  { 0 "DC" "DC5"  } { 1 "DC" "DC3"  }  
-  { 0 "DT" "DT5"  } { 1 "DT" "DT3"  }  
+  { 0 "DG" "DG5"  } { 1 "DG" "DG3"  }
+  { 0 "DA" "DA5"  } { 1 "DA" "DA3"  }
+  { 0 "DC" "DC5"  } { 1 "DC" "DC3"  }
+  { 0 "DT" "DT5"  } { 1 "DT" "DT3"  }
 #  some really old Amber residue names, assuming DNA:
   { 0 "GUA" "DG5"  } { 1 "GUA" "DG3"  } { "GUA" "DG" }
   { 0 "ADE" "DA5"  } { 1 "ADE" "DA3"  } { "ADE" "DA" }
@@ -192,7 +192,7 @@ addPdbAtomMap {
 
 #
 # Load the OL15 force field for DNA
-# 
+#
 
 addAtomTypes {
     { "CJ"  "C" "sp3" }
@@ -201,6 +201,6 @@ addAtomTypes {
     { "C7"  "C" "sp3" }
 }
 
-loadoff DNA.OL15.lib 
+loadoff DNA.OL15.lib
 parm10 = loadamberparams parm10.dat
 loadamberparams frcmod.DNA.OL15

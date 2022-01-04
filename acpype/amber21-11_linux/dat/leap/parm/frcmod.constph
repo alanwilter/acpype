@@ -1,7 +1,7 @@
 Force field modifcations for titrations
 
 ANGLE
-HO-OH-HO    60.000   134.000 
+HO-OH-HO    60.000   134.000
 OH-C-OH     80.0     120.0
 
 IMPROPER

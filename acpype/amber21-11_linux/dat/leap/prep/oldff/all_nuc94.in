@@ -49,7 +49,7 @@ CHARGE  A5E
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -60,7 +60,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-D-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DA   INT     1
  CORRECT OMIT DU   BEG
@@ -112,7 +112,7 @@ CHARGE deoxy -resp charges A
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -176,7 +176,7 @@ CHARGE A3E
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -238,7 +238,7 @@ CHARGE  ADE resp
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -300,7 +300,7 @@ CHARGE RA5E
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -311,7 +311,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RA   INT     1
  CORRECT OMIT DU   BEG
@@ -360,11 +360,11 @@ CHARGE RA
  -0.6073  0.0515  0.7009 -0.9019  0.4115
   0.4115 -0.7615  0.5875  0.0473 -0.6997
   0.3053  0.2022  0.0615  0.0670  0.0972
- -0.6139  0.4186 -0.5246 
+ -0.6139  0.4186 -0.5246
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -425,11 +425,11 @@ CHARGE RA3E
  -0.6073  0.0515  0.7009 -0.9019  0.4115
   0.4115 -0.7615  0.5875  0.0473 -0.6997
   0.3053  0.2022  0.0615  0.0670  0.0972
- -0.6139  0.4186 -0.6541  0.4376  
+ -0.6139  0.4186 -0.6541  0.4376
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -488,11 +488,11 @@ CHARGE  resp RADE
   0.7009 -0.9019  0.4115  0.4115 -0.7615
   0.5875  0.0473 -0.6997  0.3053  0.2022
   0.0615  0.0670  0.0972 -0.6139  0.4186
- -0.6541  0.4376  
+ -0.6541  0.4376
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -563,7 +563,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-D-THYMINE - with 5' - phosphate group and 3' - O(minus) group 
+D-THYMINE - with 5' - phosphate group and 3' - O(minus) group
 
  DT   INT     1
  CORRECT OMIT DU   BEG
@@ -730,7 +730,7 @@ D-THYMINE - with 5' - OH group and 3' - OH group
   33   O3'   OH    M   28   9   6    1.42    116.52   -203.47      -0.6549
   34   H3T   HO    M   33  28   9    0.96    114.97    180.00       0.4396
 
-CHARGE  deoxy-THY-B: 
+CHARGE  deoxy-THY-B:
   0.4422 -0.6318 -0.0069  0.0754  0.0754
   0.1629  0.1176 -0.3691  0.0680  0.1804
  -0.0239 -0.2209  0.2607  0.0025 -0.2269
@@ -810,7 +810,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-R-URACIL - with 5' - phosphate group and 3' - O(minus) group 
+R-URACIL - with 5' - phosphate group and 3' - O(minus) group
 
  RU   INT     1
  CORRECT OMIT DU   BEG
@@ -1035,7 +1035,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1045,7 +1045,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-D-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DG   INT     1
  CORRECT OMIT DU   BEG
@@ -1091,7 +1091,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1101,7 +1101,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-D-GUANOSINE - with 5' - phosphate group and 3' - OH group 
+D-GUANOSINE - with 5' - phosphate group and 3' - OH group
 
  DG3  INT     1
  CORRECT OMIT DU   BEG
@@ -1148,7 +1148,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1212,7 +1212,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1276,7 +1276,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1286,7 +1286,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RG   INT     1
  CORRECT OMIT DU   BEG
@@ -1342,7 +1342,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1409,7 +1409,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1474,7 +1474,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1532,7 +1532,7 @@ CHARGE C5E
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1542,7 +1542,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-D-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DC   INT     1
  CORRECT OMIT DU   BEG
@@ -1592,7 +1592,7 @@ CHARGE deoxy -resp  C
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1654,7 +1654,7 @@ CHARGE C3E
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1713,7 +1713,7 @@ CHARGE deoxy-CYT-B: CYT
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1772,7 +1772,7 @@ CHARGE RC5E
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1782,7 +1782,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RC   INT     1
  CORRECT OMIT DU   BEG
@@ -1834,7 +1834,7 @@ CHARGE RC
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1892,12 +1892,12 @@ CHARGE RC3E
  -0.5215  0.1928  0.8185 -0.9530  0.4234
   0.4234 -0.7584  0.7538 -0.6252  0.2022
   0.0615  0.0670  0.0972 -0.6139  0.4186
- -0.6541  0.4376  
+ -0.6541  0.4376
 
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1952,12 +1952,12 @@ CHARGE  resp RCYT
  -0.0484  0.0053  0.1958 -0.5215  0.1928
   0.8185 -0.9530  0.4234  0.4234 -0.7584
   0.7538 -0.6252  0.2022  0.0615  0.0670
-  0.0972 -0.6139  0.4186 -0.6541  0.4376  
+  0.0972 -0.6139  0.4186 -0.6541  0.4376
 
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4

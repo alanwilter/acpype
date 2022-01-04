@@ -33,12 +33,12 @@
  HW    H
  HP    H
  HZ    H
-  F    F  
- Cl    Cl 
- Br    Br 
-  I    I  
+  F    F
+ Cl    Cl
+ Br    Br
+  I    I
  IM    Cl-
- MG    Mg 
+ MG    Mg
   N    N.am
  NA    N.pl3
  NB    N.2
@@ -56,16 +56,16 @@
   P    P.3
   S    S.3
  SH    S.3
- CU    Cu 
- FE    Fe 
- Li    Li 
+ CU    Cu
+ FE    Fe
+ Li    Li
  IP    Na+
  Na    Na+
-  K    K  
- Rb    Rb 
- Cs    Cs 
- Zn    Zn 
- LP    LP 
+  K    K
+ Rb    Rb
+ Cs    Cs
+ Zn    Zn
+ LP    LP
   c    C.2
  c1    C.1
  c2    C.2
@@ -83,23 +83,23 @@
  cz    C.2
  cu    C.2
  cv    C.2
- h1    H  
- h2    H  
- h3    H  
- h4    H  
- h5    H  
- ha    H  
- hc    H  
- hn    H  
- ho    H  
- hp    H  
- hs    H  
- hw    H  
- hx    H  
-  f    F  
- cl    Cl 
- br    Br 
-  i    I  
+ h1    H
+ h2    H
+ h3    H
+ h4    H
+ h5    H
+ ha    H
+ hc    H
+ hn    H
+ ho    H
+ hp    H
+ hs    H
+ hw    H
+ hx    H
+  f    F
+ cl    Cl
+ br    Br
+  i    I
  ni    N.am
  nj    N.am
  ns    N.am
@@ -161,4 +161,4 @@
  ss    S.3
  sx    S.O
  sy    S.O2
- lp    LP 
+ lp    LP

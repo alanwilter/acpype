@@ -1,4 +1,4 @@
-# Please go to the end to see rules of defining an atom  
+# Please go to the end to see rules of defining an atom
 
 ============================================================================================
                         Defination begin
@@ -9,9 +9,9 @@ WILDATOM XA O S
 WILDATOM XB N P
 WILDATOM XC F Cl Br I
 WILDATOM XD S P
--------------------------------------------------------------------------------------------- 
- f1  f2    f3  f4  f5  f6  f7  f8      		f9          
--------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------
+ f1  f2    f3  f4  f5  f6  f7  f8      		f9
+--------------------------------------------------------------------------------------------
 //3-membered ring atom
 ATD  cx    *   6   4   *   *   [RG3]            &
 //4-membered ring atom
@@ -22,20 +22,20 @@ ATD  c3    *   6   4   &
 ATD  cs    *   6   3   *   *   [2DL]   		(S1) 	&
 ATD  cs    *   6   3   *   *   [1DB,0DL]  	(S1)	&
 ATD  cs    *   6   3   *   *   [3sb]   		(S1)	&
-//C=O 
+//C=O
 ATD  c     *   6   3   *   *   [2DL]   		(XA1) 	&
 ATD  c     *   6   3   *   *   [1DB,0DL]  	(XA1)	&
 ATD  c     *   6   3   *   *   [3sb]   		(XA1)	&
 ATD  cz    *   6   3   *   *   *                (N3,N3,N3)  &
-//pure aromatic atom that can form an aromatic single bond 
+//pure aromatic atom that can form an aromatic single bond
 ATD  cp    *   6   3   *   *   [AR1,1RG6]       (XX[AR1],XX[AR1],XX[AR1]) &
-//pure aromatic atom 
+//pure aromatic atom
 ATD  ca    *   6   3   *   *   [AR1]    &
 // sp2 C of conjugated ring systems
 ATD  cc    *   6   3   *   *   [sb,db,AR2]       (C3(C3))	&
 ATD  cc    *   6   3   *   *   [sb,db,AR2]       (C3(C2))	&
 ATD  cc    *   6   3   *   *   [sb,db,AR2]       (C3(XB2))	&
-ATD  cc    *   6   3   *   *   [sb,db,AR2]       (XB2(XB2))	& 
+ATD  cc    *   6   3   *   *   [sb,db,AR2]       (XB2(XB2))	&
 ATD  cc    *   6   3   *   *   [sb,db,AR2]       (XB2(C2))	&
 ATD  cc    *   6   3   *   *   [sb,db,AR2]       (XB2(C3))	&
 ATD  cc    *   6   3   *   *   [sb,db,AR2]       (C3[sb'])	&
@@ -71,26 +71,26 @@ ATD  cg    *   6   2   *   *   [sb,tb]          (C2[SB'])	&
 ATD  cg    *   6   2   *   *   [sb,tb]          (C3[SB'])	&
 ATD  cg    *   6   2   *   *   [sb,tb]          (N1[SB'])	&
 ATD  cg    *   6   2   *   *   [sb,tb]          (XB2[SB'])	&
-// other sp C 
+// other sp C
 ATD  c1    *   6   2   &
 ATD  c1    *   6   1   &
-ATD  hn    *   1   1   *   *   *       		(N)         	& 
+ATD  hn    *   1   1   *   *   *       		(N)         	&
 ATD  ho    *   1   1   *   *   *       		(O)         	&
-ATD  hs    *   1   1   *   *   *       		(S)     	& 
-ATD  hp    *   1   1   *   *   *       		(P)     	& 
-ATD  hx    *   1   1   *   *   *       		(C(N4)) 	& 
+ATD  hs    *   1   1   *   *   *       		(S)     	&
+ATD  hp    *   1   1   *   *   *       		(P)     	&
+ATD  hx    *   1   1   *   *   *       		(C(N4)) 	&
 ATD  hw    *   1   1   *   *   *       		(O(H1))  	&
 ATD  h3    *   1   1   *   3   *       		(C4)     	&
 ATD  h2    *   1   1   *   2   *       		(C4)     	&
-ATD  h1    *   1   1   *   1   *       		(C4)     	& 
-ATD  hc    *   1   1   *   *   *       		(C4)    	& 
-ATD  h5    *   1   1   *   2   *       		(C3)	&     
-ATD  h4    *   1   1   *   1   *       		(C3)   	& 
+ATD  h1    *   1   1   *   1   *       		(C4)     	&
+ATD  hc    *   1   1   *   *   *       		(C4)    	&
+ATD  h5    *   1   1   *   2   *       		(C3)	&
+ATD  h4    *   1   1   *   1   *       		(C3)   	&
 ATD  ha    *   1   1   &
 ATD  f     *   9   &
 ATD  cl    *   17  &
-ATD  br    *   35  &      
-ATD  i     *   53  & 
+ATD  br    *   35  &
+ATD  i     *   53  &
 // sp2 P of conjugated ring systems
 ATD  pc    *   15  2   *   *   [sb,db,AR2]       (C3(C3))	&
 ATD  pc    *   15  2   *   *   [sb,db,AR2]       (C3(C2))	&
@@ -122,55 +122,55 @@ ATD  pe    *   15  2   *   *   [sb,db]          (XA1[SB'])	&
 ATD  pe    *   15  2   *   *   [sb,db]          (XB2[SB'])	&
 ATD  pe    *   15  2   *   *   [sb,db]          (XD3[SB',DB])	&
 ATD  pe    *   15  2   *   *   [sb,db]          (XD4[SB',DB])	&
-ATD  p2    *   15  2   &  
-ATD  p2    *   15  1   &  
-ATD  px    *   15  3   *   *   [db]    		(XB2[sb'])      & 
+ATD  p2    *   15  2   &
+ATD  p2    *   15  1   &
+ATD  px    *   15  3   *   *   [db]    		(XB2[sb'])      &
 ATD  px    *   15  3   *   *   [db]    		(C3[sb'])       &
-ATD  px    *   15  3   *   *   [db]    		(XD3[sb',db])   &    
-ATD  px    *   15  3   *   *   [db]    		(XD4[sb',db])   &    
-ATD  p4    *   15  3   *   *   [db]    		(XA1)      	& 
-ATD  p3    *   15  3   &  
+ATD  px    *   15  3   *   *   [db]    		(XD3[sb',db])   &
+ATD  px    *   15  3   *   *   [db]    		(XD4[sb',db])   &
+ATD  p4    *   15  3   *   *   [db]    		(XA1)      	&
+ATD  p3    *   15  3   &
 ATD  py    *   15  4   *   *   [db]    		(XB2[sb'])      &
 ATD  py    *   15  4   *   *   [db]    		(C3[sb'])      	&
-ATD  py    *   15  4   *   *   [db]    		(XD3[sb',db])  	&    
-ATD  py    *   15  4   *   *   [db]    		(XD4[sb',db])  	&    
-ATD  p5    *   15  4   &  
-ATD  p5    *   15  5   &  
-ATD  p5    *   15  6   &  
-ATD  ns    *   7   3   1   *   *       		(C3(XA1))  	& 
-ATD  nt    *   7   3   2   *   *       		(C3(XA1))  	& 
-ATD  ni    *   7   3   *   *   [RG3]            (C3(XA1))       & 
-ATD  nj    *   7   3   *   *   [RG4]            (C3(XA1))       & 
-ATD  n     *   7   3   *   *   *       		(C3(XA1))  	& 
-ATD  nk    *   7   4   *   *   [RG3]            & 
-ATD  nl    *   7   4   *   *   [RG4]            & 
+ATD  py    *   15  4   *   *   [db]    		(XD3[sb',db])  	&
+ATD  py    *   15  4   *   *   [db]    		(XD4[sb',db])  	&
+ATD  p5    *   15  4   &
+ATD  p5    *   15  5   &
+ATD  p5    *   15  6   &
+ATD  ns    *   7   3   1   *   *       		(C3(XA1))  	&
+ATD  nt    *   7   3   2   *   *       		(C3(XA1))  	&
+ATD  ni    *   7   3   *   *   [RG3]            (C3(XA1))       &
+ATD  nj    *   7   3   *   *   [RG4]            (C3(XA1))       &
+ATD  n     *   7   3   *   *   *       		(C3(XA1))  	&
+ATD  nk    *   7   4   *   *   [RG3]            &
+ATD  nl    *   7   4   *   *   [RG4]            &
 ATD  nx    *   7   4   1   &
 ATD  ny    *   7   4   2   &
 ATD  nz    *   7   4   3   &
 ATD  n+    *   7   4   4   &
 ATD  n4    *   7   4   &
-ATD  no    *   7   3   *   *   *       		(O1,O1)		& 
+ATD  no    *   7   3   *   *   *       		(O1,O1)		&
 ATD  na    *   7   3   *   *   [AR1.AR2.AR3]    &
-ATD  nu    *   7   3   1   *   *       		(XX[AR1.AR2.AR3]) & 
-ATD  nu    *   7   3   1   *   *       		(C3[DB]) 	& 
-ATD  nu    *   7   3   1   *   *       		(N2[DB])	& 
-ATD  nu    *   7   3   1   *   *       		(P2[DB])	& 
-ATD  nv    *   7   3   2   *   *       		(XX[AR1.AR2.AR3]) & 
-ATD  nv    *   7   3   2   *   *       		(C3[DB]) 	& 
-ATD  nv    *   7   3   2   *   *       		(N2[DB])	& 
-ATD  nv    *   7   3   2   *   *       		(P2[DB])	& 
-ATD  nm    *   7   3   *   *   [RG3]            (XX[AR1.AR2.AR3]) & 
-ATD  nm    *   7   3   *   *   [RG3]            (C3[DB])        & 
-ATD  nm    *   7   3   *   *   [RG3]            (N2[DB])        & 
-ATD  nm    *   7   3   *   *   [RG3]            (P2[DB])        & 
-ATD  nn    *   7   3   *   *   [RG4]            (XX[AR1.AR2.AR3]) & 
-ATD  nn    *   7   3   *   *   [RG4]            (C3[DB])        & 
-ATD  nn    *   7   3   *   *   [RG4]            (N2[DB])        & 
-ATD  nn    *   7   3   *   *   [RG4]            (P2[DB])        & 
-ATD  nh    *   7   3   *   *   *       		(XX[AR1.AR2.AR3]) & 
-ATD  nh    *   7   3   *   *   *       		(C3[DB]) 	& 
-ATD  nh    *   7   3   *   *   *       		(N2[DB])	& 
-ATD  nh    *   7   3   *   *   *       		(P2[DB])	& 
+ATD  nu    *   7   3   1   *   *       		(XX[AR1.AR2.AR3]) &
+ATD  nu    *   7   3   1   *   *       		(C3[DB]) 	&
+ATD  nu    *   7   3   1   *   *       		(N2[DB])	&
+ATD  nu    *   7   3   1   *   *       		(P2[DB])	&
+ATD  nv    *   7   3   2   *   *       		(XX[AR1.AR2.AR3]) &
+ATD  nv    *   7   3   2   *   *       		(C3[DB]) 	&
+ATD  nv    *   7   3   2   *   *       		(N2[DB])	&
+ATD  nv    *   7   3   2   *   *       		(P2[DB])	&
+ATD  nm    *   7   3   *   *   [RG3]            (XX[AR1.AR2.AR3]) &
+ATD  nm    *   7   3   *   *   [RG3]            (C3[DB])        &
+ATD  nm    *   7   3   *   *   [RG3]            (N2[DB])        &
+ATD  nm    *   7   3   *   *   [RG3]            (P2[DB])        &
+ATD  nn    *   7   3   *   *   [RG4]            (XX[AR1.AR2.AR3]) &
+ATD  nn    *   7   3   *   *   [RG4]            (C3[DB])        &
+ATD  nn    *   7   3   *   *   [RG4]            (N2[DB])        &
+ATD  nn    *   7   3   *   *   [RG4]            (P2[DB])        &
+ATD  nh    *   7   3   *   *   *       		(XX[AR1.AR2.AR3]) &
+ATD  nh    *   7   3   *   *   *       		(C3[DB]) 	&
+ATD  nh    *   7   3   *   *   *       		(N2[DB])	&
+ATD  nh    *   7   3   *   *   *       		(P2[DB])	&
 ATD  np    *   7   3   0   *   [RG3]            &
 ATD  nq    *   7   3   0   *   [RG4]            &
 ATD  n5    *   7   3   1   *   [RG3]            &
@@ -212,7 +212,7 @@ ATD  n1    *   7   2   *   *   [2db]             &
 ATD  n1    *   7   2   *   *   [tb,sb]           &
 ATD  n2    *   7   2   &
 ATD  n1    *   7   1   &
-ATD  o     *   8   1   & 
+ATD  o     *   8   1   &
 ATD  oh    *   8   2   1   &
 ATD  oh    *   8   2   2   &
 ATD  oh    *   8   3   1   &
@@ -220,29 +220,29 @@ ATD  oh    *   8   3   2   &
 ATD  oh    *   8   3   3   &
 ATD  op    *   8   2   *   *   [RG3]  &
 ATD  oq    *   8   2   *   *   [RG4]  &
-ATD  os    *   8   2   & 
-ATD  os    *   8   3   & 
-ATD  os    *   8   & 
-ATD  s     *   16  1   & 
-ATD  s2    *   16  2   *   *   [DB]              & 
-ATD  s2    *   16  2   *   *   [TB]              & 
+ATD  os    *   8   2   &
+ATD  os    *   8   3   &
+ATD  os    *   8   &
+ATD  s     *   16  1   &
+ATD  s2    *   16  2   *   *   [DB]              &
+ATD  s2    *   16  2   *   *   [TB]              &
 ATD  sh    *   16  2   1   &
 ATD  sh    *   16  2   2   &
 ATD  sp    *   16  2   *   *   [RG3]  &
 ATD  sq    *   16  2   *   *   [RG4]  &
-ATD  ss    *   16  2   & 
-ATD  sx    *   16  3   *   *   [db]    		(XB2[sb'])  	&     
+ATD  ss    *   16  2   &
+ATD  sx    *   16  3   *   *   [db]    		(XB2[sb'])  	&
 ATD  sx    *   16  3   *   *   [db]    		(C3[sb'])       &
-ATD  sx    *   16  3   *   *   [db]    		(XD3[sb',db])   &   
-ATD  sx    *   16  3   *   *   [db]    		(XD4[sb',db])   &   
-ATD  s4    *   16  3   & 
+ATD  sx    *   16  3   *   *   [db]    		(XD3[sb',db])   &
+ATD  sx    *   16  3   *   *   [db]    		(XD4[sb',db])   &
+ATD  s4    *   16  3   &
 ATD  sy    *   16  4   *   *   [db]    		(XB2[sb'])      &
 ATD  sy    *   16  4   *   *   [db]    		(C3[sb'])       &
-ATD  sy    *   16  4   *   *   [db]    		(XD3[sb',db])   &    
-ATD  sy    *   16  4   *   *   [db]    		(XD4[sb',db])   &    
-ATD  s6    *   16  4   & 
-ATD  s6    *   16  5   & 
-ATD  s6    *   16  6   & 
+ATD  sy    *   16  4   *   *   [db]    		(XD3[sb',db])   &
+ATD  sy    *   16  4   *   *   [db]    		(XD4[sb',db])   &
+ATD  s6    *   16  4   &
+ATD  s6    *   16  5   &
+ATD  s6    *   16  6   &
 ATD  He    *   2   &
 ATD  Li    *   3   &
 ATD  Be    *   4   &
@@ -345,7 +345,7 @@ ATD  Mt    *   109   &
 ATD  Ds    *   103   &
 ATD  LP    *   0   1   &
 ATD  lp    *   0   1   &
-ATD  DU    &   
+ATD  DU    &
 --------------------------------------------------------------------------------------------
 ============================================================================================
 
@@ -355,13 +355,13 @@ ATD  DU    &
 ============================================================================================
 			Field descriptions
 ============================================================================================
-f1  ATD, which stands for atom type defination, ATD should always in the first three columns 
-f2  Atom type name, can be letters or numbers   
+f1  ATD, which stands for atom type defination, ATD should always in the first three columns
+f2  Atom type name, can be letters or numbers
 f3  Residue names, which means this description is only applied to atoms in special residues
-f4  Atomic number 
-f5  Number of attached atoms 
+f4  Atomic number
+f5  Number of attached atoms
 f6  Number of attached hydrogen atoms
-f7  For hydrogen, number of the electron-withdrawal atoms connected to the atom that the 
+f7  For hydrogen, number of the electron-withdrawal atoms connected to the atom that the
     hydrogen attached
 f8  atomic property
 f9  Chemical enviornment definations
@@ -371,8 +371,8 @@ f9  Chemical enviornment definations
 			Specific symbols
 ============================================================================================
 *  Ignore this field
-&  End of defination 
-.  "or" operation in the ring and aromatity descriptions 
+&  End of defination
+.  "or" operation in the ring and aromatity descriptions
 
 
 ============================================================================================
@@ -384,21 +384,21 @@ NA   Nucleric acid
 BIO  AA + NA
 
 AR1  Pure aromatic atom (such as benzene and pyridine)
-AR2  Atom in a planar ring, usually the ring has two continous single bonds and at least two 
+AR2  Atom in a planar ring, usually the ring has two continous single bonds and at least two
      double bonds
 AR3  Atom in a planar ring, which has one or several double bonds formed between non-ring atoms
      and the ring atoms
-AR4  Atom other than AR1, AR2, AR3 and AR5. 
+AR4  Atom other than AR1, AR2, AR3 and AR5.
 AR5  Pure aliphatic atom in a ring, which is made of sp3 carbon
 
 RG   Ring (from 3-membered to nine-membered)
-RG3  3-membered ring 
-RG4  4-membered ring 
-RG5  5-membered ring 
-RG6  6-membered ring 
-RG7  7-membered ring 
-RG8  8-membered ring 
-RG9  9-membered ring 
+RG3  3-membered ring
+RG4  4-membered ring
+RG5  5-membered ring
+RG6  6-membered ring
+RG7  7-membered ring
+RG8  8-membered ring
+RG9  9-membered ring
 NR   non-ring atom
 
 SB   Single bond
@@ -406,22 +406,22 @@ DB   Double bond
 TB   Triple bond
 AB   Aromatic bond
 DL   Delocalized bond (9 in AM1-BCC)
-sb   Single bond, including aromtaic single, delocalized bond (9 in AM1-BCC) 
+sb   Single bond, including aromtaic single, delocalized bond (9 in AM1-BCC)
 db   Double bond, including aromatic double
 tb   Triple bond
- 
-'    Bond type (SB sb etc) followed by ' means the current atom forms this kind of bond with the 
+
+'    Bond type (SB sb etc) followed by ' means the current atom forms this kind of bond with the
      immediately precessor in a chain of atoms
-     For example, (XD3[SB',db]) means the current atom XD3 has a double bond with the atom in 
-     defination 
-''   Bond type (SB sb etc) followed by '' means the current atom does not form this kind of bond 
+     For example, (XD3[SB',db]) means the current atom XD3 has a double bond with the atom in
+     defination
+''   Bond type (SB sb etc) followed by '' means the current atom does not form this kind of bond
      with the immediately precessor in a chain of atoms
 ============================================================================================
 			Miscellaneous
 ============================================================================================
 1. maximum line length is 500 characters
 2. no space in the atomic property string
-3. no space in the chemical environment string 
+3. no space in the chemical environment string
 4. no filed missing before &
-5. the defination order is crucial, special atom types should defined before the more general 
+5. the defination order is crucial, special atom types should defined before the more general
    ones
