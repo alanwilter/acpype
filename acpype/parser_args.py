@@ -51,7 +51,7 @@ def get_option_parser():
         type=int,
         default=None,
         dest="net_charge",
-        help="net molecular charge (int), for gas default is 0",
+        help="net molecular charge (int), it tries to guess it if not not declared",
     )
     parser.add_argument(
         "-m",
