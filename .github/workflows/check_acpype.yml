@@ -81,7 +81,7 @@ jobs:
         if: matrix.python-version == 3.6
         uses: codecov/codecov-action@v2
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
 
   release:
     needs: check-test
