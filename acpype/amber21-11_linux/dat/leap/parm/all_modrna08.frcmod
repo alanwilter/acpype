@@ -11,8 +11,8 @@ CQ 12.010
 CR 12.010
 CT 12.010
 CZ 12.010
-H  1.008 
-H1 1.008 
+H  1.008
+H1 1.008
 H2 1.008
 H4 1.008
 H5 1.008
@@ -477,10 +477,10 @@ C -CM-CM-N*   1    6.650       180.000           2.000      same as X -c2-c2-X
 C -CM-CM-NA   1    6.650       180.000           2.000      same as X -c2-c2-X
 C -CM-CM-NA   1    6.650       180.000           2.000      same as X -c2-c2-X
 C -CM-CM-NA   1    6.650       180.000           2.000      same as X -c2-c2-X
-C -CM-CT-C    1    0.300         0.000           3.000      same as X -c2-c3-X 
-C -CM-CT-H1   1    0.156         0.000           3.000      same as X -c2-c3-X 
-C -CM-CT-HC   1    0.156         0.000           3.000      same as X -c2-c3-X 
-C -CM-CT-NT   1    0.300         0.000           3.000      same as X -c2-c3-X 
+C -CM-CT-C    1    0.300         0.000           3.000      same as X -c2-c3-X
+C -CM-CT-H1   1    0.156         0.000           3.000      same as X -c2-c3-X
+C -CM-CT-HC   1    0.156         0.000           3.000      same as X -c2-c3-X
+C -CM-CT-NT   1    0.300         0.000           3.000      same as X -c2-c3-X
 C -CM-CT-OH   1    0.000         0.000           2.000      same as X -c2-c3-X
 C -CM-OH-HO   1    1.050       180.000           2.000      same as X -c2-oh-X
 C -CM-OS-CT   1    1.050       180.000           2.000      same as X -c2-os-X
@@ -489,16 +489,16 @@ C -CT-CT-CT   1    0.156         0.000           3.000      same as X -c3-c3-X
 C -CT-CT-H1   1    0.156         0.000           3.000      same as X -c3-c3-X
 C -CT-CT-HC   1    0.156         0.000           3.000      same as X -c3-c3-X
 C -CT-CT-OH   1    0.156         0.000           3.000      same as X -c3-c3-X
-C -CT-N -C    1    0.300         0.000           3.000      same as X -c3-n -X 
-C -CT-N -H    1    0.156         0.000           3.000      same as X -c3-n -X 
+C -CT-N -C    1    0.300         0.000           3.000      same as X -c3-n -X
+C -CT-N -H    1    0.156         0.000           3.000      same as X -c3-n -X
 C -CT-NT-H    1    0.300         0.000           3.000      same as X -c3-n3-X
 C -CT-OH-HO   1    0.167         0.000           3.000      same as X -c3-oh-X
 C -N -C -CT   1    2.500       180.000           2.000      same as X -c -n -X
 C -N -C -O    1    2.500       180.000           2.000      same as X -c -n -X
 C -N -CT-C    1    0.000         0.000           2.000      same as X -c3-n -X
 C -N -CT-CT   1    0.000         0.000           2.000      same as X -c3-n -X
-C -N -CT-H1   1    0.156         0.000           3.000      same as X -c3-n -X 
-C -N -CT-H2   1    0.156         0.000           3.000      same as X -c3-n -X 
+C -N -CT-H1   1    0.156         0.000           3.000      same as X -c3-n -X
+C -N -CT-H2   1    0.156         0.000           3.000      same as X -c3-n -X
 C -N*-C -CM   1    1.450       180.000           2.000      same as X -c -na-X
 C -N*-C -N*   1    0.350       180.000           4.000      same as X -c -na-X
 C -N*-C -NA   1    0.350       180.000           4.000      same as X -c -na-X
@@ -510,20 +510,20 @@ C -N*-CA-H4   1    0.625       180.000           2.000      same as X -c2-na-X
 C -N*-CA-H5   1    0.625       180.000           2.000      same as X -c2-na-X
 C -N*-CA-N2   1    0.625       180.000           2.000      same as X -c2-na-X
 C -N*-CA-NC   1    0.625       180.000           2.000      same as X -c2-na-X
-C -N*-CB-N2   1    2.000       180.000           2.000      same as X -c2-na-X 
+C -N*-CB-N2   1    2.000       180.000           2.000      same as X -c2-na-X
 C -N*-CB-NA   1    0.625       180.000           2.000      same as X -c2-na-X
-C -N*-CB-NB   1    2.000       180.000           2.000      same as X -c2-na-X 
+C -N*-CB-NB   1    2.000       180.000           2.000      same as X -c2-na-X
 C -N*-CM-CM   1    0.625       180.000           2.000      same as X -c2-na-X
 C -N*-CM-H4   1    0.625       180.000           2.000      same as X -c2-na-X
 C -N*-CM-N2   1    0.625       180.000           2.000      same as X -c2-na-X
 C -N*-CT-CT   1    0.000         0.000           2.000      same as X -c3-na-X
 C -N*-CT-H1   1    0.000         0.000           2.000      same as X -c3-na-X
-C -N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X 
+C -N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X
 C -N*-CZ-CM   1    0.000       180.000           2.000      same as X -c1-na-X
-C -NA-C -CM   1    2.000       180.000           2.000      same as X -c -na-X 
+C -NA-C -CM   1    2.000       180.000           2.000      same as X -c -na-X
 C -NA-C -N*   1    0.350       180.000           4.000      same as X -c -na-X
-C -NA-C -NA   1    2.000       180.000           2.000      same as X -c -na-X 
-C -NA-C -O    1    2.000       180.000           2.000      same as X -c -na-X 
+C -NA-C -NA   1    2.000       180.000           2.000      same as X -c -na-X
+C -NA-C -O    1    2.000       180.000           2.000      same as X -c -na-X
 C -NA-CA-H5   1    0.625       180.000           2.000      same as X -c2-na-X
 C -NA-CA-N2   1    0.625       180.000           2.000      same as X -c2-na-X
 C -NA-CA-NC   1    0.625       180.000           2.000      same as X -c2-na-X
@@ -554,7 +554,7 @@ CA-CM-C -H4   1    2.175       180.000           2.000      same as X -c -c2-X
 CA-CM-C -O    1    2.175       180.000           2.000      same as X -c -c2-X
 CA-CM-CM-H4   1    4.000       180.000           2.000      same as X -cc-cc-X
 CA-CM-CT-H1   1    0.000         0.000           2.000      same as X -c2-c3-X
-CA-CM-CT-HC   1    0.156         0.000           3.000      same as X -c2-c3-X 
+CA-CM-CT-HC   1    0.156         0.000           3.000      same as X -c2-c3-X
 CA-CM-CT-OH   1    0.000         0.000           2.000      same as X -c2-c3-X
 CA-CT-CT-C    1    0.156         0.000           3.000      same as X -c3-c3-X
 CA-CT-CT-CT   1    0.156         0.000           3.000      same as X -c3-c3-X
@@ -572,7 +572,7 @@ CA-N*-CM-CM   1    0.625       180.000           2.000      same as X -c2-na-X
 CA-N*-CM-H4   1    0.625       180.000           2.000      same as X -c2-na-X
 CA-N*-CT-H1   1    0.000         0.000           2.000      same as X -c3-na-X
 CA-N*-CT-H2   1    0.000         0.000           2.000      same as X -c3-na-X
-CA-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X 
+CA-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X
 CA-N*-CZ-CM   1    0.000       180.000           2.000      same as X -c1-na-X
 CA-N2-CM-CM   1    1.050       180.000           2.000      same as X -cc-nh-X
 CA-N2-CM-CT   1    0.300       180.000           2.000      same as X -c2-n3-X
@@ -581,8 +581,8 @@ CA-N2-CM-H4   1    1.050       180.000           2.000      same as X -cc-nh-X
 CA-N2-CT-CM   1    0.300         0.000           3.000      same as X -c3-n3-X
 CA-N2-CT-H1   1    0.300         0.000           3.000      same as X -c3-n3-X
 CA-N2-CT-H2   1    0.300         0.000           3.000      same as X -c3-n3-X
-CA-NA-C -CM   1    2.000       180.000           2.000      same as X -c -na-X 
-CA-NA-C -O    1    2.000       180.000           2.000      same as X -c -na-X 
+CA-NA-C -CM   1    2.000       180.000           2.000      same as X -c -na-X
+CA-NA-C -O    1    2.000       180.000           2.000      same as X -c -na-X
 CA-NC-CA-CM   1    4.800       180.000           2.000      same as X -ca-nc-X
 CA-NC-CA-N2   1    4.800       180.000           2.000      same as X -ca-nc-X
 CA-NC-CM-CM   1    4.750       180.000           2.000      same as X -cc-nc-X
@@ -591,12 +591,12 @@ CA-NC-CQ-CT   1    4.150       180.000           2.000      same as X -c2-n2-X
 CA-NC-CQ-H5   1    4.750       180.000           2.000      same as X -cc-nc-X
 CA-NC-CQ-NC   1    4.750       180.000           2.000      same as X -cc-nc-X
 CA-NC-CQ-S    1    4.150       180.000           2.000      same as X -c2-n2-X
-CB-C -N*-CA   1    2.000       180.000           2.000      same as X -c -na-X 
-CB-C -N*-CB   1    2.000       180.000           2.000      same as X -c -na-X  
+CB-C -N*-CA   1    2.000       180.000           2.000      same as X -c -na-X
+CB-C -N*-CB   1    2.000       180.000           2.000      same as X -c -na-X
 CB-C -N*-CT   1    0.350       180.000           4.000      same as X -c -na-X
 CB-C -N*-CZ   1    1.450       180.000           2.000      same as X -c -na-X
-CB-C -NA-CA   1    2.000       180.000           2.000      same as X -c -na-X 
-CB-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X 
+CB-C -NA-CA   1    2.000       180.000           2.000      same as X -c -na-X
+CB-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X
 CB-C*-CA-H4   1    4.000       180.000           2.000      same as X -cc-cc-X
 CB-C*-CM-N    1    6.650       180.000           2.000      same as X -c2-c2-X
 CB-C*-CM-NT   1    6.650       180.000           2.000      same as X -c2-c2-X
@@ -612,7 +612,7 @@ CB-CA-NC-CQ   1    4.800       180.000           2.000      same as X -ca-nc-X
 CB-CB-C*-CM   1    4.000       180.000           2.000      same as X -cc-cc-X
 CB-CB-C*-CT   1    6.650       180.000           2.000      same as X -c2-c2-X
 CB-CB-N2-CA   1    1.050       180.000           2.000      same as X -cc-nh-X
-CB-CB-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X 
+CB-CB-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X
 CB-CB-NA-CB   1    0.625       180.000           2.000      same as X -c2-na-X
 CB-CB-NA-H    1    0.625       180.000           2.000      same as X -c2-na-X
 CB-CB-NC-CA   1    4.750       180.000           2.000      same as X -cc-nc-X
@@ -620,15 +620,15 @@ CB-CB-NC-CQ   1    4.750       180.000           2.000      same as X -cc-nc-X
 CB-CM-N2-CA   1    1.050       180.000           2.000      same as X -cc-nh-X
 CB-CM-N2-CT   1    0.300       180.000           2.000      same as X -c2-n3-X
 CB-CM-N2-H    1    0.300       180.000           2.000      same as X -c2-n3-X
-CB-N*-CA-CC   1    2.000       180.000           2.000      same as X -c2-na-X 
+CB-N*-CA-CC   1    2.000       180.000           2.000      same as X -c2-na-X
 CB-N*-CA-CT   1    0.625       180.000           2.000      same as X -c2-na-X
 CB-N*-CA-H4   1    0.625       180.000           2.000      same as X -c2-na-X
 CB-N*-CK-H5   1    0.625       180.000           2.000      same as X -c2-na-X
-CB-N*-CT-H1   1    0.156         0.000           3.000      same as X -c3-na-X 
-CB-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X 
-CB-N2-CK-H5   1    2.000       180.000           2.000      same as X -cc-nh-X 
+CB-N*-CT-H1   1    0.156         0.000           3.000      same as X -c3-na-X
+CB-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X
+CB-N2-CK-H5   1    2.000       180.000           2.000      same as X -cc-nh-X
 CB-N2-CR-H5   1    1.050       180.000           2.000      same as X -cc-nh-X
-CB-N2-CT-H1   1    0.156         0.000           3.000      same as X -c3-n3-X 
+CB-N2-CT-H1   1    0.156         0.000           3.000      same as X -c3-n3-X
 CB-N2-CT-H2   1    0.300         0.000           3.000      same as X -c3-n3-X
 CB-NB-CC-CA   1    4.750       180.000           2.000      same as X -cc-nc-X
 CB-NB-CC-CT   1    4.150       180.000           2.000      same as X -c2-n2-X
@@ -637,15 +637,15 @@ CB-NC-CA-H5   1    4.800       180.000           2.000      same as X -ca-nc-X
 CB-NC-CQ-CT   1    4.150       180.000           2.000      same as X -c2-n2-X
 CB-NC-CQ-H5   1    4.750       180.000           2.000      same as X -cc-nc-X
 CB-NC-CQ-S    1    4.150       180.000           2.000      same as X -c2-n2-X
-CC-CA-CT-CT   1    0.300         0.000           3.000      same as X -c2-c3-X 
-CC-CA-CT-HC   1    0.156         0.000           3.000      same as X -c2-c3-X 
+CC-CA-CT-CT   1    0.300         0.000           3.000      same as X -c2-c3-X
+CC-CA-CT-HC   1    0.156         0.000           3.000      same as X -c2-c3-X
 CC-NB-CB-N2   1    4.750       180.000           2.000      same as X -cc-nc-X
 CC-NB-CB-NA   1    4.150       180.000           2.000      same as X -c2-n2-X
 CK-N*-CB-CB   1    0.625       180.000           2.000      same as X -c2-na-X
 CK-N*-CB-NC   1    0.625       180.000           2.000      same as X -c2-na-X
-CK-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X 
-CK-N2-CB-CB   1    2.000       180.000           2.000      same as X -cc-nh-X 
-CK-N2-CB-N2   1    2.000       180.000           2.000      same as X -cc-nh-X 
+CK-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X
+CK-N2-CB-CB   1    2.000       180.000           2.000      same as X -cc-nh-X
+CK-N2-CB-N2   1    2.000       180.000           2.000      same as X -cc-nh-X
 CK-N2-CB-NA   1    0.300       180.000           2.000      same as X -c2-n3-X
 CK-N2-CT-H2   1    0.300         0.000           3.000      same as X -c3-n3-X
 CK-NB-CB-C    1    4.150       180.000           2.000      same as X -c2-n2-X
@@ -654,17 +654,17 @@ CK-NB-CB-CB   1    4.750       180.000           2.000      same as X -cc-nc-X
 CK-NB-CB-CM   1    4.750       180.000           2.000      same as X -cc-nc-X
 CM-C -N*-C    1    0.350       180.000           4.000      same as X -c -na-X
 CM-C -N*-CT   1    1.450       180.000           2.000      same as X -c -na-X
-CM-C -NA-C    1    2.000       180.000           2.000      same as X -c -na-X 
-CM-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X 
+CM-C -NA-C    1    2.000       180.000           2.000      same as X -c -na-X
+CM-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X
 CM-C*-CA-H4   1    4.000       180.000           2.000      same as X -cc-cc-X
 CM-CB-CB-NC   1    4.000       180.000           2.000      same as X -cc-cc-X
 CM-CM-C -H4   1    2.175       180.000           2.000      same as X -c -c2-X
 CM-CM-C -O    1    2.175       180.000           2.000      same as X -c -c2-X
 CM-CM-CM-H4   1    4.000       180.000           2.000      same as X -cc-cc-X
-CM-CM-CT-C    1    0.300         0.000           3.000      same as X -c2-c3-X 
-CM-CM-CT-H1   1    0.156         0.000           3.000      same as X -c2-c3-X 
-CM-CM-CT-HC   1    0.300         0.000           3.000      same as X -c2-c3-X 
-CM-CM-CT-NT   1    0.300         0.000           3.000      same as X -c2-c3-X 
+CM-CM-CT-C    1    0.300         0.000           3.000      same as X -c2-c3-X
+CM-CM-CT-H1   1    0.156         0.000           3.000      same as X -c2-c3-X
+CM-CM-CT-HC   1    0.300         0.000           3.000      same as X -c2-c3-X
+CM-CM-CT-NT   1    0.300         0.000           3.000      same as X -c2-c3-X
 CM-CM-CT-OH   1    0.000         0.000           2.000      same as X -c2-c3-X
 CM-CM-N*-C    1    0.625       180.000           2.000      same as X -c2-na-X
 CM-CM-N*-CT   1    0.625       180.000           2.000      same as X -c2-na-X
@@ -673,15 +673,15 @@ CM-CM-NA-H    1    0.625       180.000           2.000      same as X -c2-na-X
 CM-CM-OH-HO   1    1.050       180.000           2.000      same as X -c2-oh-X
 CM-CM-OS-CT   1    1.050       180.000           2.000      same as X -c2-os-X
 CM-CT-C -N    1    0.000       180.000           2.000      same as X -c -c3-X
-CM-CT-C -O    1    0.300         0.000           3.000      same as X -c -c3-X 
-CM-CT-C -OS   1    0.300         0.000           3.000      same as X -c -c3-X 
+CM-CT-C -O    1    0.300         0.000           3.000      same as X -c -c3-X
+CM-CT-C -OS   1    0.300         0.000           3.000      same as X -c -c3-X
 CM-CT-CT-CT   1    0.156         0.000           3.000      same as X -c3-c3-X
 CM-CT-CT-H1   1    0.156         0.000           3.000      same as X -c3-c3-X
 CM-CT-NT-CT   1    0.300         0.000           3.000      same as X -c3-n3-X
 CM-CT-NT-H    1    0.300         0.000           3.000      same as X -c3-n3-X
 CM-CT-OH-HO   1    0.167         0.000           3.000      same as X -c3-oh-X
 CM-N*-CT-H1   1    0.000         0.000           2.000      same as X -c3-na-X
-CM-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X 
+CM-N*-CT-H2   1    0.156         0.000           3.000      same as X -c3-na-X
 CM-N2-CA-H5   1    1.050       180.000           2.000      same as X -ca-nh-X
 CM-N2-CA-N2   1    1.050       180.000           2.000      same as X -ca-nh-X
 CM-N2-CA-NC   1    1.050       180.000           2.000      same as X -ca-nh-X
@@ -692,7 +692,7 @@ CM-OS-CT-H1   1    0.383         0.000           3.000      same as X -c3-os-X
 CQ-S -CT-H1   1    0.333         0.000           3.000      same as X -c3-ss-X
 CR-N*-CB-C    1    0.625       180.000           2.000      same as X -c2-na-X
 CR-N*-CB-CB   1    0.625       180.000           2.000      same as X -c2-na-X
-CR-N*-CT-H1   1    0.156         0.000           3.000      same as X -c3-na-X 
+CR-N*-CT-H1   1    0.156         0.000           3.000      same as X -c3-na-X
 CR-N2-CB-CB   1    1.050       180.000           2.000      same as X -cc-nh-X
 CR-N2-CB-NC   1    1.050       180.000           2.000      same as X -cc-nh-X
 CR-N2-CT-H2   1    0.300         0.000           3.000      same as X -c3-n3-X
@@ -715,8 +715,8 @@ CT-CM-CT-HC   1    0.000         0.000           2.000      same as X -c2-c3-X
 CT-CM-CT-OH   1    0.000         0.000           2.000      same as X -c2-c3-X
 CT-CT-C -O    1    0.000       180.000           2.000      same as X -c -c3-X
 CT-CT-C -OS   1    0.000       180.000           2.000      same as X -c -c3-X
-CT-CT-CM-C    1    0.300         0.000           3.000      same as X -c2-c3-X 
-CT-CT-CM-CM   1    0.300         0.000           3.000      same as X -c2-c3-X 
+CT-CT-CM-C    1    0.300         0.000           3.000      same as X -c2-c3-X
+CT-CT-CM-CM   1    0.300         0.000           3.000      same as X -c2-c3-X
 CT-CT-CM-HA   1    0.000         0.000           2.000      same as X -c2-c3-X
 CT-CT-CT-C    1    0.156         0.000           3.000      same as X -c3-c3-X
 CT-CT-CT-CM   1    0.156         0.000           3.000      same as X -c3-c3-X
@@ -730,13 +730,13 @@ CT-CT-CT-N3   1    0.156         0.000           3.000      same as X -c3-c3-X
 CT-CT-CT-NT   1    0.156         0.000           3.000      same as X -c3-c3-X
 CT-CT-CT-O    1    0.156         0.000           3.000      same as X -c3-c3-X
 CT-CT-CT-OH   1    0.156         0.000           3.000      same as X -c3-c3-X
-CT-CT-N -C    1    0.300         0.000           3.000      same as X -c3-n -X 
-CT-CT-N -H    1    0.156         0.000           3.000      same as X -c3-n -X 
-CT-CT-N*-C    1    0.300         0.000           3.000      same as X -c3-na-X 
-CT-CT-N*-CA   1    0.300         0.000           3.000      same as X -c3-na-X 
-CT-CT-N*-CB   1    0.300         0.000           3.000      same as X -c3-na-X 
-CT-CT-N*-CK   1    0.300         0.000           3.000      same as X -c3-na-X 
-CT-CT-N*-CM   1    0.300         0.000           3.000      same as X -c3-na-X 
+CT-CT-N -C    1    0.300         0.000           3.000      same as X -c3-n -X
+CT-CT-N -H    1    0.156         0.000           3.000      same as X -c3-n -X
+CT-CT-N*-C    1    0.300         0.000           3.000      same as X -c3-na-X
+CT-CT-N*-CA   1    0.300         0.000           3.000      same as X -c3-na-X
+CT-CT-N*-CB   1    0.300         0.000           3.000      same as X -c3-na-X
+CT-CT-N*-CK   1    0.300         0.000           3.000      same as X -c3-na-X
+CT-CT-N*-CM   1    0.300         0.000           3.000      same as X -c3-na-X
 CT-CT-N2-CA   1    0.300         0.000           3.000      same as X -c3-n3-X
 CT-CT-N2-CB   1    0.300         0.000           3.000      same as X -c3-n3-X
 CT-CT-N2-CK   1    0.300         0.000           3.000      same as X -c3-n3-X
@@ -750,13 +750,13 @@ CT-CT-SO-O    1    0.333         0.000           3.000      same as X -c3-ss-X
 CT-N -C -N    1    2.500       180.000           2.000      same as X -c -n -X
 CT-N -C -O    1    2.500       180.000           2.000      same as X -c -n -X
 CT-N -C -OS   1    2.500       180.000           2.000      same as X -c -n -X
-CT-N -CT-CT   1    0.300         0.000           3.000      same as X -c3-n -X 
-CT-N -CT-H1   1    0.156         0.000           3.000      same as X -c3-n -X 
-CT-N -CT-H2   1    0.156         0.000           3.000      same as X -c3-n -X 
+CT-N -CT-CT   1    0.300         0.000           3.000      same as X -c3-n -X
+CT-N -CT-H1   1    0.156         0.000           3.000      same as X -c3-n -X
+CT-N -CT-H2   1    0.156         0.000           3.000      same as X -c3-n -X
 CT-N*-C -N*   1    0.350       180.000           4.000      same as X -c -na-X
-CT-N*-C -NA   1    2.000       180.000           2.000      same as X -c -na-X 
-CT-N*-C -NC   1    2.000       180.000           2.000      same as X -c -na-X 
-CT-N*-C -O    1    2.000       180.000           2.000      same as X -c -na-X 
+CT-N*-C -NA   1    2.000       180.000           2.000      same as X -c -na-X
+CT-N*-C -NC   1    2.000       180.000           2.000      same as X -c -na-X
+CT-N*-C -O    1    2.000       180.000           2.000      same as X -c -na-X
 CT-N*-CA-C*   1    0.625       180.000           2.000      same as X -c2-na-X
 CT-N*-CA-H4   1    0.625       180.000           2.000      same as X -c2-na-X
 CT-N*-CA-NA   1    0.625       180.000           2.000      same as X -c2-na-X
@@ -772,12 +772,12 @@ CT-N*-CR-H5   1    0.625       180.000           2.000      same as X -c2-na-X
 CT-N2-CA-CM   1    0.300       180.000           2.000      same as X -c2-n3-X
 CT-N2-CA-N2   1    0.300       180.000           2.000      same as X -c2-n3-X
 CT-N2-CA-NC   1    0.300       180.000           2.000      same as X -c2-n3-X
-CT-N2-CB-CB   1    2.000       180.000           2.000      same as X -c2-n3-X  
-CT-N2-CB-N2   1    2.000       180.000           2.000      same as X -c2-n3-X  
+CT-N2-CB-CB   1    2.000       180.000           2.000      same as X -c2-n3-X
+CT-N2-CB-N2   1    2.000       180.000           2.000      same as X -c2-n3-X
 CT-N2-CB-NA   1    0.300       180.000           2.000      same as X -c2-n3-X
 CT-N2-CB-NC   1    0.300       180.000           2.000      same as X -c2-n3-X
-CT-N2-CK-H5   1    2.000       180.000           2.000      same as X -c2-n3-X  
-CT-N2-CK-NB   1    2.000       180.000           2.000      same as X -c2-n3-X 
+CT-N2-CK-H5   1    2.000       180.000           2.000      same as X -c2-n3-X
+CT-N2-CK-NB   1    2.000       180.000           2.000      same as X -c2-n3-X
 CT-N2-CM-CM   1    0.300       180.000           2.000      same as X -c2-n3-X
 CT-N2-CM-H4   1    0.300       180.000           2.000      same as X -c2-n3-X
 CT-N2-CR-H5   1    0.300       180.000           2.000      same as X -c2-n3-X
@@ -801,7 +801,7 @@ CZ-CM-CT-HC   1    0.000         0.000           2.000      same as X -c2-c3-X
 H -N -C -O    1    2.500       180.000           2.000      same as X -c -n -X
 H -N -CT-C    1    0.000         0.000           2.000      same as X -c3-n -X
 H -N -CT-CT   1    0.000         0.000           2.000      same as X -c3-n -X
-H -N -CT-H1   1    0.156         0.000           3.000      same as X -c3-n -X 
+H -N -CT-H1   1    0.156         0.000           3.000      same as X -c3-n -X
 H -N*-C -CT   1    0.350       180.000           4.000      same as X -c -na-X
 H -N*-C -N    1    1.450       180.000           2.000      same as X -c -na-X
 H -N*-C -O    1    0.350       180.000           4.000      same as X -c -na-X
@@ -821,7 +821,7 @@ H -N3-CT-C    1    0.156         0.000           3.000      same as X -c3-n4-X
 H -NT-CM-N    1    0.300       180.000           2.000      same as X -c2-n3-X
 H -NT-CT-C    1    0.300         0.000           3.000      same as X -c3-n3-X
 H -NT-CT-H1   1    0.300         0.000           3.000      same as X -c3-n3-X
-H1-CT-C -O    1    0.156       180.000           3.000      same as X -c -c3-X 
+H1-CT-C -O    1    0.156       180.000           3.000      same as X -c -c3-X
 H1-CT-C -OS   1    0.000       180.000           2.000      same as X -c -c3-X
 H1-CT-CM-CM   1    0.000         0.000           2.000      same as X -c2-c3-X
 H1-CT-CM-HA   1    0.000         0.000           2.000      same as X -c2-c3-X
@@ -854,7 +854,7 @@ HA-CM-CT-H1   1    0.000         0.000           2.000      same as X -c2-c3-X
 HC-CT-C -N    1    0.000       180.000           2.000      same as X -c -c3-X
 HC-CT-C -O    1    0.000       180.000           2.000      same as X -c -c3-X
 HC-CT-C -OS   1    0.000       180.000           2.000      same as X -c -c3-X
-HC-CT-CC-CA   1    0.156         0.000           3.000      same as X -c2-c3-X 
+HC-CT-CC-CA   1    0.156         0.000           3.000      same as X -c2-c3-X
 HC-CT-CM-CT   1    0.000         0.000           2.000      same as X -c2-c3-X
 HC-CT-CT-C    1    0.156         0.000           3.000      same as X -c3-c3-X
 HC-CT-CT-H1   1    0.156         0.000           3.000      same as X -c3-c3-X
@@ -869,8 +869,8 @@ HO-OH-P -O2   1    0.700         0.000           1.000      same as X -oh-p4-X
 HP-CT-C -O    1    0.000       180.000           2.000      same as X -c -c3-X
 HP-CT-CT-HC   1    0.156         0.000           3.000      same as X -c3-c3-X
 HP-CT-N3-H    1    0.156         0.000           3.000      same as X -c3-n4-X
-N -C -CT-CT   1    0.300         0.000           3.000      same as X -c -c3-X 
-N -C -CT-HC   1    0.156         0.000           3.000      same as X -c -c3-X 
+N -C -CT-CT   1    0.300         0.000           3.000      same as X -c -c3-X
+N -C -CT-HC   1    0.156         0.000           3.000      same as X -c -c3-X
 N -C -N -C    1    2.500       180.000           2.000      same as X -c -n -X
 N -C -N -H    1    2.500       180.000           2.000      same as X -c -n -X
 N -C -N*-CT   1    0.350       180.000           4.000      same as X -c -na-X
@@ -893,9 +893,9 @@ N*-C -N -H    1    2.500       180.000           2.000      same as X -c -n -X
 N*-C -N*-C    1    1.450       180.000           2.000      same as X -c -na-X
 N*-C -N*-CM   1    0.350       180.000           4.000      same as X -c -na-X
 N*-C -N*-CT   1    1.450       180.000           2.000      same as X -c -na-X
-N*-C -NA-C    1    2.000       180.000           2.000      same as X -c -na-X 
-N*-C -NA-CM   1    2.000       180.000           2.000      same as X -c -na-X 
-N*-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X 
+N*-C -NA-C    1    2.000       180.000           2.000      same as X -c -na-X
+N*-C -NA-CM   1    2.000       180.000           2.000      same as X -c -na-X
+N*-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X
 N*-C -NC-CA   1    4.150       180.000           2.000      same as X -c -n2-X
 N*-CA-C*-CB   1    6.650       180.000           2.000      same as X -c2-c2-X
 N*-CA-C*-CM   1    6.650       180.000           2.000      same as X -c2-c2-X
@@ -906,8 +906,8 @@ N*-CA-CC-CT   1    6.650       180.000           2.000      same as X -c2-c2-X
 N*-CA-CC-NB   1    6.650       180.000           2.000      same as X -c2-c2-X
 N*-CA-CM-CM   1    6.650       180.000           2.000      same as X -c2-c2-X
 N*-CA-CM-HA   1    6.650       180.000           2.000      same as X -c2-c2-X
-N*-CA-CT-CT   1    0.300         0.000           3.000      same as X -c2-c3-X 
-N*-CA-CT-HC   1    0.300         0.000           3.000      same as X -c2-c3-X 
+N*-CA-CT-CT   1    0.300         0.000           3.000      same as X -c2-c3-X
+N*-CA-CT-HC   1    0.300         0.000           3.000      same as X -c2-c3-X
 N*-CA-N2-CB   1    0.300       180.000           2.000      same as X -c2-n3-X
 N*-CA-N2-CM   1    0.300       180.000           2.000      same as X -c2-n3-X
 N*-CA-N2-CT   1    0.300       180.000           2.000      same as X -c2-n3-X
@@ -924,8 +924,8 @@ N*-CB-CB-C*   1    6.650       180.000           2.000      same as X -c2-c2-X
 N*-CB-CB-CA   1    6.650       180.000           2.000      same as X -c2-c2-X
 N*-CB-CB-CM   1    6.650       180.000           2.000      same as X -c2-c2-X
 N*-CB-CB-NB   1    6.650       180.000           2.000      same as X -c2-c2-X
-N*-CB-N2-CB   1    2.000       180.000           2.000      same as X -c2-n3-X 
-N*-CB-N2-CT   1    2.000       180.000           2.000      same as X -c2-n3-X 
+N*-CB-N2-CB   1    2.000       180.000           2.000      same as X -c2-n3-X
+N*-CB-N2-CT   1    2.000       180.000           2.000      same as X -c2-n3-X
 N*-CB-NA-CB   1    0.625       180.000           2.000      same as X -c2-na-X
 N*-CB-NA-H    1    0.625       180.000           2.000      same as X -c2-na-X
 N*-CB-NB-CC   1    4.150       180.000           2.000      same as X -c2-n2-X
@@ -963,7 +963,7 @@ N2-CB-CB-C    1    6.650       180.000           2.000      same as X -c2-c2-X
 N2-CB-CB-N*   1    6.650       180.000           2.000      same as X -c2-c2-X
 N2-CB-CB-NB   1    4.000       180.000           2.000      same as X -cc-cc-X
 N2-CB-N2-CA   1    1.050       180.000           2.000      same as X -cc-nh-X
-N2-CB-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X 
+N2-CB-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X
 N2-CB-NA-CB   1    0.625       180.000           2.000      same as X -c2-na-X
 N2-CB-NA-H    1    0.625       180.000           2.000      same as X -c2-na-X
 N2-CB-NC-CA   1    4.750       180.000           2.000      same as X -cc-nc-X
@@ -990,10 +990,10 @@ NA-C -CM-CT   1    2.175       180.000           2.000      same as X -c -c2-X
 NA-C -CM-HA   1    2.175       180.000           2.000      same as X -c -c2-X
 NA-C -CM-OH   1    2.175       180.000           2.000      same as X -c -c2-X
 NA-C -CM-OS   1    2.175       180.000           2.000      same as X -c -c2-X
-NA-C -N*-CM   1    2.000       180.000           2.000      same as X -c -na-X 
+NA-C -N*-CM   1    2.000       180.000           2.000      same as X -c -na-X
 NA-C -N*-CT   1    0.350       180.000           4.000      same as X -c -na-X
-NA-C -NA-CM   1    2.000       180.000           2.000      same as X -c -na-X 
-NA-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X 
+NA-C -NA-CM   1    2.000       180.000           2.000      same as X -c -na-X
+NA-C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X
 NA-CA-N*-CM   1    0.625       180.000           2.000      same as X -c2-na-X
 NA-CA-N2-CT   1    0.300       180.000           2.000      same as X -c2-n3-X
 NA-CA-N2-H    1    0.300       180.000           2.000      same as X -c2-n3-X
@@ -1009,17 +1009,17 @@ NB-CB-CA-NC   1    4.000       180.000           2.000      same as X -cc-cc-X
 NB-CB-CB-NA   1    6.650       180.000           2.000      same as X -c2-c2-X
 NB-CB-CB-NC   1    4.000       180.000           2.000      same as X -cc-cc-X
 NB-CB-CM-N2   1    4.000       180.000           2.000      same as X -cc-cc-X
-NB-CB-N*-CA   1    2.000       180.000           2.000      same as X -c2-na-X 
-NB-CB-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X 
-NB-CB-N2-CT   1    2.000       180.000           2.000      same as X -c2-n3-X 
+NB-CB-N*-CA   1    2.000       180.000           2.000      same as X -c2-na-X
+NB-CB-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X
+NB-CB-N2-CT   1    2.000       180.000           2.000      same as X -c2-n3-X
 NB-CB-NA-CB   1    0.625       180.000           2.000      same as X -c2-na-X
 NB-CB-NA-H    1    0.625       180.000           2.000      same as X -c2-na-X
 NB-CC-CA-CT   1    6.650       180.000           2.000      same as X -c2-c2-X
 NB-CC-CA-H4   1    4.000       180.000           2.000      same as X -cc-cc-X
-NB-CC-CT-HC   1    0.300         0.000           3.000      same as X -c2-c3-X 
+NB-CC-CT-HC   1    0.300         0.000           3.000      same as X -c2-c3-X
 NB-CK-N*-CB   1    0.625       180.000           2.000      same as X -c2-na-X
-NB-CK-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X 
-NC-C -N*-CM   1    2.000       180.000           2.000      same as X -c -na-X 
+NB-CK-N2-CB   1    2.000       180.000           2.000      same as X -cc-nh-X
+NC-C -N*-CM   1    2.000       180.000           2.000      same as X -c -na-X
 NC-CA-CB-CB   1    4.000       180.000           2.000      same as X -cc-cc-X
 NC-CA-CM-C    1    6.650       180.000           2.000      same as X -c2-c2-X
 NC-CA-CM-CM   1    4.000       180.000           2.000      same as X -cc-cc-X
@@ -1056,21 +1056,21 @@ O -C -CM-HA   1    2.175       180.000           2.000      same as X -c -c2-X
 O -C -CM-OH   1    2.175       180.000           2.000      same as X -c -c2-X
 O -C -CM-OS   1    2.175       180.000           2.000      same as X -c -c2-X
 O -C -CT-CT   1    0.000       180.000           2.000      same as X -c -c3-X
-O -C -CT-H1   1    0.156         0.000           3.000      same as X -c -c3-X 
-O -C -CT-HC   1    0.156         0.000           3.000      same as X -c -c3-X 
-O -C -CT-N    1    0.300         0.000           3.000      same as X -c -c3-X 
+O -C -CT-H1   1    0.156         0.000           3.000      same as X -c -c3-X
+O -C -CT-HC   1    0.156         0.000           3.000      same as X -c -c3-X
+O -C -CT-N    1    0.300         0.000           3.000      same as X -c -c3-X
 O -C -CT-NT   1    0.000       180.000           2.000      same as X -c -c3-X
 O -C -CT-OH   1    0.000       180.000           2.000      same as X -c -c3-X
 O -C -N -CT   1    2.500       180.000           2.000      same as X -c -n -X
 O -C -N -H    1    2.500       180.000           2.000      same as X -c -n -X
-O -C -N*-CA   1    2.000       180.000           2.000      same as X -c -na-X  
-O -C -N*-CB   1    2.000       180.000           2.000      same as X -c -na-X  
-O -C -N*-CM   1    2.000       180.000           2.000      same as X -c -na-X 
+O -C -N*-CA   1    2.000       180.000           2.000      same as X -c -na-X
+O -C -N*-CB   1    2.000       180.000           2.000      same as X -c -na-X
+O -C -N*-CM   1    2.000       180.000           2.000      same as X -c -na-X
 O -C -N*-CT   1    0.350       180.000           4.000      same as X -c -na-X
 O -C -N*-CZ   1    1.450       180.000           2.000      same as X -c -na-X
-O -C -NA-CA   1    2.000       180.000           2.000      same as X -c -na-X 
-O -C -NA-CM   1    2.000       180.000           2.000      same as X -c -na-X 
-O -C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X 
+O -C -NA-CA   1    2.000       180.000           2.000      same as X -c -na-X
+O -C -NA-CM   1    2.000       180.000           2.000      same as X -c -na-X
+O -C -NA-H    1    2.000       180.000           2.000      same as X -c -na-X
 O -C -NC-CA   1    4.150       180.000           2.000      same as X -c -n2-X
 O -C -OS-CT   1    2.700       180.000           2.000      same as X -c -os-X
 O -P -OS-CT   1    1.050       180.000           2.000      same as X -os-p4-X
@@ -1089,15 +1089,15 @@ OH-CT-CT-N    1    0.156         0.000           3.000      same as X -c3-c3-X
 OH-CT-CT-N*   1    0.156         0.000           3.000      same as X -c3-c3-X
 OH-CT-CT-N2   1    0.156         0.000           3.000      same as X -c3-c3-X
 OH-CT-CT-OH   1    0.156         0.000           3.000      same as X -c3-c3-X
-OS-C -CT-H1   1    0.156         0.000           3.000      same as X -c -c3-X 
-OS-C -CT-HC   1    0.156         0.000           3.000      same as X -c -c3-X 
-OS-C -CT-N    1    0.300         0.000           3.000      same as X -c -c3-X 
+OS-C -CT-H1   1    0.156         0.000           3.000      same as X -c -c3-X
+OS-C -CT-HC   1    0.156         0.000           3.000      same as X -c -c3-X
+OS-C -CT-N    1    0.300         0.000           3.000      same as X -c -c3-X
 OS-C -CT-OH   1    0.000       180.000           2.000      same as X -c -c3-X
 OS-C -N -H    1    2.500       180.000           2.000      same as X -c -n -X
-OS-CT-C -O    1    0.300       180.000           3.000      same as X -c -c3-X 
+OS-CT-C -O    1    0.300       180.000           3.000      same as X -c -c3-X
 OS-CT-C -OS   1    0.000       180.000           2.000      same as X -c -c3-X
-OS-CT-CM-C    1    0.300         0.000           3.000      same as X -c2-c3-X 
-OS-CT-CM-CM   1    0.300         0.000           3.000      same as X -c2-c3-X 
+OS-CT-CM-C    1    0.300         0.000           3.000      same as X -c2-c3-X
+OS-CT-CM-CM   1    0.300         0.000           3.000      same as X -c2-c3-X
 OS-CT-CT-CM   1    0.156         0.000           3.000      same as X -c3-c3-X
 OS-CT-CT-CT   1    0.156         0.000           3.000      same as X -c3-c3-X
 OS-CT-CT-H1   1    0.156         0.000           3.000      same as X -c3-c3-X
@@ -1106,13 +1106,13 @@ OS-CT-CT-N*   1    0.156         0.000           3.000      same as X -c3-c3-X
 OS-CT-CT-O    1    0.156         0.000           3.000      same as X -c3-c3-X
 OS-CT-CT-OH   1    0.156         0.000           3.000      same as X -c3-c3-X
 OS-CT-CT-OS   1    0.156         0.000           3.000      same as X -c3-c3-X
-OS-CT-N -C    1    0.300         0.000           3.000      same as X -c3-n -X 
-OS-CT-N -CT   1    0.300         0.000           3.000      same as X -c3-n -X 
-OS-CT-N*-C    1    0.300         0.000           3.000      same as X -c3-na-X 
-OS-CT-N*-CA   1    0.300         0.000           3.000      same as X -c3-na-X 
-OS-CT-N*-CB   1    0.300         0.000           3.000      same as X -c3-na-X 
-OS-CT-N*-CK   1    0.300         0.000           3.000      same as X -c3-na-X 
-OS-CT-N*-CM   1    0.300         0.000           3.000      same as X -c3-na-X 
+OS-CT-N -C    1    0.300         0.000           3.000      same as X -c3-n -X
+OS-CT-N -CT   1    0.300         0.000           3.000      same as X -c3-n -X
+OS-CT-N*-C    1    0.300         0.000           3.000      same as X -c3-na-X
+OS-CT-N*-CA   1    0.300         0.000           3.000      same as X -c3-na-X
+OS-CT-N*-CB   1    0.300         0.000           3.000      same as X -c3-na-X
+OS-CT-N*-CK   1    0.300         0.000           3.000      same as X -c3-na-X
+OS-CT-N*-CM   1    0.300         0.000           3.000      same as X -c3-na-X
 OS-CT-N2-CA   1    0.300         0.000           3.000      same as X -c3-n3-X
 OS-CT-N2-CB   1    0.300         0.000           3.000      same as X -c3-n3-X
 OS-CT-N2-CK   1    0.300         0.000           3.000      same as X -c3-n3-X

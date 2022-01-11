@@ -1,6 +1,6 @@
 PARM94 for DNA, RNA and proteins with TIP3P Water. USE SCEE=1.2 in energy progs
 BR 79.90                !            bromine
-C  12.01                             sp2 C carbonyl group 
+C  12.01                             sp2 C carbonyl group
 CA 12.01                             sp2 C pure aromatic (benzene)
 CB 12.01                             sp2 aromatic C, 5&6 membered ring junction
 CC 12.01                             sp2 aromatic C, 5 memb. ring HIS
@@ -38,7 +38,7 @@ NB 14.01                             sp2 N in 5 memb.ring w/LP (HIS,ADE,GUA)
 NC 14.01                             sp2 N in 6 memb.ring w/LP (ADE,GUA)
 N2 14.01                             sp2 N in amino groups
 N3 14.01                             sp3 N for charged amino groups (Lys, etc)
-N* 14.01                             sp2 N 
+N* 14.01                             sp2 N
 O  16.00                             carbonyl group oxygen
 OW 16.00                             oxygen in TIP3P water
 OH 16.00                             oxygen in hydroxyl group
@@ -55,7 +55,7 @@ Rb 85.47                             rubidium
 Cs 132.91                            cesium
 EP  3.0                              "extra point" (mass is ignored)
 
-C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2 
+C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2
 OW-HW  553.0    0.9572      TIP3P water
 HW-HW  553.0    1.5136      TIP3P water
 C -CA  469.0    1.409       JCC,7,(1986),230; TYR
@@ -135,7 +135,7 @@ CV-NB  410.0    1.394       JCC,7,(1986),230; HIS
 CW-H4  367.0    1.080       changed from 340. bsd on C6H6 nmodes;HIS(epsilon,+)
 CW-NA  427.0    1.381       JCC,7,(1986),230; HIS,TRP
 H -N   434.0    1.010       JCC,7,(1986),230; AA
-H -N3  434.0    1.010       JCC,7,(1986),230; LYS    
+H -N3  434.0    1.010       JCC,7,(1986),230; LYS
 HS-SH  274.0    1.336       JCC,7,(1986),230; CYS
 S -S   166.0    2.038       JCC,7,(1986),230; CYX   (SCHERAGA)
 CT-F   367.0    1.380       JCC,13,(1992),963;CF4; R0=1.332 FOR CHF3
@@ -183,7 +183,7 @@ CA-CA-CN    63.0      120.00    changed from 85.0  bsd on C6H6 nmodes; AA trp
 C -CB-CB    63.0      119.20    changed from 85.0  bsd on C6H6 nmodes; NA gua
 C -CB-NB    70.0      130.00
 CA-CB-CB    63.0      117.30    changed from 85.0  bsd on C6H6 nmodes; NA ade
-CA-CB-NB    70.0      132.40    
+CA-CB-NB    70.0      132.40
 CB-CB-N*    70.0      106.20
 CB-CB-NB    70.0      110.40
 CB-CB-NC    70.0      127.70
@@ -222,8 +222,8 @@ H1-CT-H1    35.0      109.50
 HP-CT-HP    35.0      109.50    AA lys, ch3nh4+
 H2-CT-N*    50.0      109.50    changed based on NMA nmodes
 H1-CT-N*    50.0      109.50    changed based on NMA nmodes
-H1-CT-OH    50.0      109.50    changed based on NMA nmodes 
-H1-CT-OS    50.0      109.50    changed based on NMA nmodes 
+H1-CT-OH    50.0      109.50    changed based on NMA nmodes
+H1-CT-OS    50.0      109.50    changed based on NMA nmodes
 H2-CT-OS    50.0      109.50    changed based on NMA nmodes
 N*-CT-OS    50.0      109.50
 H1-CT-N     50.0      109.50    AA general  changed based on NMA nmodes
@@ -289,8 +289,8 @@ CK-N*-CT    70.0      128.80
 CK-N*-H     30.0      128.80    for unmethylated n.a. bases,chngd bsd NMA nmodes
 CM-N*-CT    70.0      121.20
 CM-N*-H     30.0      121.20    for unmethylated n.a. bases,chngd bsd NMA nmodes
-CA-N2-H     35.0      120.00    
-H -N2-H     35.0      120.00    
+CA-N2-H     35.0      120.00
+H -N2-H     35.0      120.00
 CT-N2-H     35.0      118.40    AA arg
 CA-N2-CT    50.0      123.20    AA arg
 CT-N3-H     50.0      109.50    AA lys,     changed based on NMA nmodes
@@ -429,22 +429,22 @@ X -X -CQ-H5         1.1          180.          2.
 X -X -CK-H5         1.1          180.          2.
 X -X -CM-H4         1.1          180.          2.
 X -X -CM-HA         1.1          180.          2.
-X -X -CA-H4         1.1          180.          2.           bsd.on C6H6 nmodes 
+X -X -CA-H4         1.1          180.          2.           bsd.on C6H6 nmodes
 X -X -CA-H5         1.1          180.          2.           bsd.on C6H6 nmodes
 CB-CK-N*-CT         1.0          180.          2.
 C -CM-N*-CT         1.0          180.          2.           dac guess, 9/94
-C -CM-CM-CT         1.1          180.          2. 
+C -CM-CM-CT         1.1          180.          2.
 CT-O -C -OH         10.5         180.          2.
-CT-CV-CC-NA         1.1          180.          2. 
-CT-CW-CC-NB         1.1          180.          2. 
-CT-CW-CC-NA         1.1          180.          2. 
-CB-CT-C*-CW         1.1          180.          2. 
-CA-CA-CA-CT         1.1          180.          2. 
+CT-CV-CC-NA         1.1          180.          2.
+CT-CW-CC-NB         1.1          180.          2.
+CT-CW-CC-NA         1.1          180.          2.
+CB-CT-C*-CW         1.1          180.          2.
+CA-CA-CA-CT         1.1          180.          2.
 C -CM-CM-CT         1.1          180.          2.           dac guess, 9/94
 CM-N2-CA-NC         1.1          180.          2.           dac guess, 9/94
 CB-N2-CA-NC         1.1          180.          2.           dac, 10/94
 N2-NA-CA-NC         1.1          180.          2.           dac, 10/94
-CA-CA-C -OH         1.1          180.          2. 
+CA-CA-C -OH         1.1          180.          2.
 
   HW  OW  0000.     0000.                                4.  flag for fast water
 
@@ -456,18 +456,18 @@ MOD4      RE
   HO          0.0000  0.0000             OPLS Jorgensen, JACS,110,(1988),1657
   HS          0.6000  0.0157             W. Cornell CH3SH --> CH3OH FEP
   HC          1.4870  0.0157             OPLS
-  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963 
-  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963 
-  H3          1.1870  0.0157             Veenstra et al JCC,8,(1992),963 
+  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963
+  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963
+  H3          1.1870  0.0157             Veenstra et al JCC,8,(1992),963
   HP          1.1000  0.0157             Veenstra et al JCC,8,(1992),963
-  HA          1.4590  0.0150             Spellmeyer 
+  HA          1.4590  0.0150             Spellmeyer
   H4          1.4090  0.0150             Spellmeyer, one electrowithdr. neighbor
   H5          1.3590  0.0150             Spellmeyer, two electrowithdr. neighbor
   HW          0.0000  0.0000             TIP3P water model
   O           1.6612  0.2100             OPLS
   O2          1.6612  0.2100             OPLS
   OW          1.7682  0.1521             TIP3P water model
-  OH          1.7210  0.2104             OPLS 
+  OH          1.7210  0.2104             OPLS
   OS          1.6837  0.1700             OPLS ether
   CT          1.9080  0.1094             Spellmeyer
   C           1.9080  0.0860             OPLS
@@ -475,17 +475,17 @@ MOD4      RE
   N3          1.8240  0.1700             OPLS
   S           2.0000  0.2500             W. Cornell CH3SH and CH3SCH3 FEP's
   SH          2.0000  0.2500             W. Cornell CH3SH and CH3SCH3 FEP's
-  P           2.1000  0.2000             JCC,7,(1986),230; 
+  P           2.1000  0.2000             JCC,7,(1986),230;
   IM          2.47    0.1                Cl- Smith & Dang, JCP 1994,100:5,3757
   Li          1.1370  0.0183             Li+ Aqvist JPC 1990,94,8021. (adapted)
   IP          1.8680  0.00277            Na+ Aqvist JPC 1990,94,8021. (adapted)
   K           2.6580  0.000328           K+  Aqvist JPC 1990,94,8021. (adapted)
   Rb          2.9560  0.00017            Rb+ Aqvist JPC 1990,94,8021. (adapted)
   Cs          3.3950  0.0000806          Cs+ Aqvist JPC 1990,94,8021. (adapted)
-  I           2.35    0.40               JCC,7,(1986),230;  
+  I           2.35    0.40               JCC,7,(1986),230;
   F           1.75    0.061              Gough et al. JCC 13,(1992),963.
   IB          5.0     0.1                solvated ion for vacuum approximation
   EP          0.0     0.0                generic "extra point"
- 
+
 END
 END

@@ -1,55 +1,55 @@
-%VERSION  VERSION_STAMP = V0001.000  DATE = 11/20/21  20:56:59                  
-%FLAG TITLE                                                                     
-%FORMAT(20a4)                                                                   
-default_name                                                                    
-%FLAG POINTERS                                                                  
-%FORMAT(10I8)                                                                   
+%VERSION  VERSION_STAMP = V0001.000  DATE = 11/20/21  20:56:59
+%FLAG TITLE
+%FORMAT(20a4)
+default_name
+%FLAG POINTERS
+%FORMAT(10I8)
      758      15     272     544     640     836    1294    1520       0       0
     4210      24     544     836    1520      41      86      48      26       0
        0       0       0       0       0       0       0       0      34       0
        0
-%FLAG ATOM_NAME                                                                 
-%FORMAT(20a4)                                                                   
-H5T O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  
-C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' 
+%FLAG ATOM_NAME
+%FORMAT(20a4)
+H5T O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3
+C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1'
 N9  C8  H8  N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2
-O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  
-H41 H42 N3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' 
-O4' C1' H1' N9  C8  H8  N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' 
-C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  
-C5  C6  N6  H61 H62 N1  C2  H2  N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' 
-C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6  N6  H61 H62 N1  C2  H2  
-N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' 
-N1  C6  H6  C5  C7  H71 H72 H73 C4  O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3' 
-P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  C7  H71 H72 H73 
-C4  O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' 
+O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4
+H41 H42 N3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4'
+O4' C1' H1' N9  C8  H8  N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3'
+C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7
+C5  C6  N6  H61 H62 N1  C2  H2  N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5'
+C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6  N6  H61 H62 N1  C2  H2
+N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1'
+N1  C6  H6  C5  C7  H71 H72 H73 C4  O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3'
+P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  C7  H71 H72 H73
+C4  O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4'
 H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2  O2  C3' H3' C2' H2'1
-H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6  
-O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' 
-H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2  O2  C3' 
-H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  
-N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T H5T 
-O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2  
-O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  
-C8  H8  N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' 
-P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 
-H42 N3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' 
-C1' H1' N9  C8  H8  N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' 
-H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  
-C6  N6  H61 H62 N1  C2  H2  N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' 
-H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6  N6  H61 H62 N1  C2  H2  N3  
-C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  
-C6  H6  C5  C7  H71 H72 H73 C4  O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   
-O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  C7  H71 H72 H73 C4  
-O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' 
+H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6
+O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5'
+H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2  O2  C3'
+H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8
+N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T H5T
+O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2
+O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9
+C8  H8  N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3'
+P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41
+H42 N3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4'
+C1' H1' N9  C8  H8  N7  C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2'
+H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5
+C6  N6  H61 H62 N1  C2  H2  N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5'
+H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6  N6  H61 H62 N1  C2  H2  N3
+C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1
+C6  H6  C5  C7  H71 H72 H73 C4  O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3' P
+O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  C7  H71 H72 H73 C4
+O4  N3  H3  C2  O2  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4'
 O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2  O2  C3' H3' C2' H2'1H2'2
-O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6  O6  
+O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  C5  C6  O6
 N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1
-H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2  O2  C3' H3' 
-C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7  
-C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T 
-%FLAG CHARGE                                                                    
-%FORMAT(5E16.8)                                                                 
+H5'2C4' H4' O4' C1' H1' N1  C6  H6  C5  H5  C4  N4  H41 H42 N3  C2  O2  C3' H3'
+C2' H2'1H2'2O3' P   O1P O2P O5' C5' H5'1H5'2C4' H4' O4' C1' H1' N9  C8  H8  N7
+C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T
+%FLAG CHARGE
+%FORMAT(5E16.8)
   8.05790106E+00 -1.15128491E+01 -1.25733870E-01  1.37396142E+00  1.37396142E+00
   2.96841267E+00  2.14294248E+00 -6.72585093E+00 -2.11378680E-01  3.57703749E+00
  -6.17735970E-01 -3.33468090E-01  4.17837339E+00 -9.51568506E+00  3.39481449E+00
@@ -202,8 +202,8 @@ C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T
   1.35428134E+01 -1.68191829E+01  7.71714405E+00  7.71714405E+00 -1.20923183E+01
   3.30552522E+00  1.29924999E+00  1.79489655E+00 -1.55618442E+00  1.30836114E+00
   1.30836114E+00 -1.19337843E+01  8.01052308E+00
-%FLAG ATOMIC_NUMBER                                                             
-%FORMAT(10I8)                                                                   
+%FLAG ATOMIC_NUMBER
+%FORMAT(10I8)
        1       8       6       1       1       6       1       8       6       1
        7       6       1       6       1       6       7       1       1       7
        6       8       6       1       6       1       1       8      15       8
@@ -280,8 +280,8 @@ C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T
        1       6       1       8       6       1       7       6       1       7
        6       6       8       7       1       6       7       1       1       7
        6       6       1       6       1       1       8       1
-%FLAG MASS                                                                      
-%FORMAT(5E16.8)                                                                 
+%FLAG MASS
+%FORMAT(5E16.8)
   1.00800000E+00  1.60000000E+01  1.20100000E+01  1.00800000E+00  1.00800000E+00
   1.20100000E+01  1.00800000E+00  1.60000000E+01  1.20100000E+01  1.00800000E+00
   1.40100000E+01  1.20100000E+01  1.00800000E+00  1.20100000E+01  1.00800000E+00
@@ -434,8 +434,8 @@ C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T
   1.20100000E+01  1.40100000E+01  1.00800000E+00  1.00800000E+00  1.40100000E+01
   1.20100000E+01  1.20100000E+01  1.00800000E+00  1.20100000E+01  1.00800000E+00
   1.00800000E+00  1.60000000E+01  1.00800000E+00
-%FLAG ATOM_TYPE_INDEX                                                           
-%FORMAT(10I8)                                                                   
+%FLAG ATOM_TYPE_INDEX
+%FORMAT(10I8)
        1       2       3       4       4       3       4       5       3       6
        7       8       9       8      10       8       7      11      11       7
        8      12       3       4       3      13      13       5      14      12
@@ -512,8 +512,8 @@ C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T
        4       3       4       5       3       6       7       8      15       7
        8       8      12       7      11       8       7      11      11       7
        8       3       4       3      13      13       2       1
-%FLAG NUMBER_EXCLUDED_ATOMS                                                     
-%FORMAT(10I8)                                                                   
+%FLAG NUMBER_EXCLUDED_ATOMS
+%FORMAT(10I8)
        5       7      10       5       4      12       6      11      14       7
       12       9       4       7       3       6       4       2       1       2
        2       1       9       5       4       2       1       5       7       3
@@ -590,8 +590,8 @@ C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T
        4      12       6      11      14       7      12       7       3       6
        7       7       4       7       3       5       4       2       1       1
        1       6       5       4       2       1       1       1
-%FLAG NONBONDED_PARM_INDEX                                                      
-%FORMAT(10I8)                                                                   
+%FLAG NONBONDED_PARM_INDEX
+%FORMAT(10I8)
        1       2       4       7      11      16      22      29      37      46
       56      67      79      92     106       2       3       5       8      12
       17      23      30      38      47      57      68      80      93     107
@@ -615,17 +615,17 @@ C5  C6  O6  N1  H1  C2  N2  H21 H22 N3  C4  C3' H3' C2' H2'1H2'2O3' H3T
       97      98      99     100     101     102     103     104     105     119
      106     107     108     109     110     111     112     113     114     115
      116     117     118     119     120
-%FLAG RESIDUE_LABEL                                                             
-%FORMAT(20a4)                                                                   
-DC5 DG  DC  DG  DA  DA  DT  DT  DC  DG  DC  DG3 DC5 DG  DC  DG  DA  DA  DT  DT  
-DC  DG  DC  DG3 
-%FLAG RESIDUE_POINTER                                                           
-%FORMAT(10I8)                                                                   
+%FLAG RESIDUE_LABEL
+%FORMAT(20a4)
+DC5 DG  DC  DG  DA  DA  DT  DT  DC  DG  DC  DG3 DC5 DG  DC  DG  DA  DA  DT  DT
+DC  DG  DC  DG3
+%FLAG RESIDUE_POINTER
+%FORMAT(10I8)
        1      29      62      92     125     157     189     221     253     283
      316     346     380     408     441     471     504     536     568     600
      632     662     695     725
-%FLAG BOND_FORCE_CONSTANT                                                       
-%FORMAT(5E16.8)                                                                 
+%FLAG BOND_FORCE_CONSTANT
+%FORMAT(5E16.8)
   2.30000000E+02  3.40000000E+02  3.40000000E+02  3.10000000E+02  3.20000000E+02
   5.70000000E+02  4.57000000E+02  4.34000000E+02  4.81000000E+02  4.83000000E+02
   3.67000000E+02  4.27000000E+02  3.67000000E+02  5.49000000E+02  4.48000000E+02
@@ -635,8 +635,8 @@ DC  DG  DC  DG3
   5.29000000E+02  4.40000000E+02  4.36000000E+02  3.20000000E+02  5.25000000E+02
   3.67000000E+02  5.02000000E+02  4.69000000E+02  3.17000000E+02  4.10000000E+02
   3.20000000E+02
-%FLAG BOND_EQUIL_VALUE                                                          
-%FORMAT(5E16.8)                                                                 
+%FLAG BOND_EQUIL_VALUE
+%FORMAT(5E16.8)
   1.61000000E+00  1.09000000E+00  1.09000000E+00  1.52600000E+00  1.41000000E+00
   1.22900000E+00  1.35800000E+00  1.01000000E+00  1.34000000E+00  1.33900000E+00
   1.08000000E+00  1.43300000E+00  1.08000000E+00  1.35000000E+00  1.36500000E+00
@@ -646,8 +646,8 @@ DC  DG  DC  DG3
   1.30400000E+00  1.37100000E+00  1.37400000E+00  1.41000000E+00  1.48000000E+00
   1.08000000E+00  1.32400000E+00  1.40400000E+00  1.51000000E+00  1.44400000E+00
   1.41000000E+00
-%FLAG ANGLE_FORCE_CONSTANT                                                      
-%FORMAT(5E16.8)                                                                 
+%FLAG ANGLE_FORCE_CONSTANT
+%FORMAT(5E16.8)
   1.00000000E+02  4.50000000E+01  3.50000000E+01  5.00000000E+01  5.00000000E+01
   5.00000000E+01  5.00000000E+01  1.00000000E+02  8.00000000E+01  3.50000000E+01
   7.00000000E+01  5.00000000E+01  7.00000000E+01  5.00000000E+01  7.00000000E+01
@@ -666,8 +666,8 @@ DC  DG  DC  DG3
   7.00000000E+01  7.00000000E+01  5.00000000E+01  8.00000000E+01  7.00000000E+01
   7.00000000E+01  6.30000000E+01  7.00000000E+01  5.00000000E+01  5.00000000E+01
   5.50000000E+01
-%FLAG ANGLE_EQUIL_VALUE                                                         
-%FORMAT(5E16.8)                                                                 
+%FLAG ANGLE_EQUIL_VALUE
+%FORMAT(5E16.8)
   1.88897066E+00  1.79070858E+00  1.91113635E+00  1.91113635E+00  1.91113635E+00
   1.91113635E+00  1.91113635E+00  2.10312265E+00  2.13802925E+00  2.09439600E+00
   2.08217869E+00  2.09439600E+00  2.10312265E+00  2.15199189E+00  2.09614133E+00
@@ -686,8 +686,8 @@ DC  DG  DC  DG3
   2.20609712E+00  2.08916001E+00  1.91113635E+00  2.18689849E+00  1.99142153E+00
   2.08916001E+00  2.10661331E+00  2.01411082E+00  1.91113635E+00  1.91113635E+00
   1.89368305E+00
-%FLAG DIHEDRAL_FORCE_CONSTANT                                                   
-%FORMAT(5E16.8)                                                                 
+%FLAG DIHEDRAL_FORCE_CONSTANT
+%FORMAT(5E16.8)
   1.85181000E-01  1.25653100E+00  3.54858000E-01  2.50000000E-01  0.00000000E+00
   3.83333333E-01  1.55555556E-01  2.50000000E-01  1.20000000E+00  0.00000000E+00
   2.40000000E+00  4.80000000E+00  4.00000000E+00  2.55000000E+00  1.85000000E+00
@@ -698,8 +698,8 @@ DC  DG  DC  DG3
   4.15000000E+00  1.70000000E+00  1.00000000E+01  1.65000000E+00  6.80000000E+00
   3.50000000E+00  2.17500000E+00  1.15000000E+00  3.80000000E-01  3.00000000E-01
   1.05000000E+01  1.00000000E+00  1.10000000E+00
-%FLAG DIHEDRAL_PERIODICITY                                                      
-%FORMAT(5E16.8)                                                                 
+%FLAG DIHEDRAL_PERIODICITY
+%FORMAT(5E16.8)
   1.00000000E+00  2.00000000E+00  3.00000000E+00  1.00000000E+00  3.00000000E+00
   3.00000000E+00  3.00000000E+00  3.00000000E+00  2.00000000E+00  2.00000000E+00
   2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00
@@ -710,8 +710,8 @@ DC  DG  DC  DG3
   2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00
   2.00000000E+00  2.00000000E+00  1.00000000E+00  3.00000000E+00  3.00000000E+00
   2.00000000E+00  2.00000000E+00  2.00000000E+00
-%FLAG DIHEDRAL_PHASE                                                            
-%FORMAT(5E16.8)                                                                 
+%FLAG DIHEDRAL_PHASE
+%FORMAT(5E16.8)
   5.54929070E-01  6.14285649E+00  6.23514744E+00  0.00000000E+00  0.00000000E+00
   0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
   3.14159400E+00  3.14159400E+00  3.14159400E+00  3.14159400E+00  3.14159400E+00
@@ -722,8 +722,8 @@ DC  DG  DC  DG3
   3.14159400E+00  3.14159400E+00  3.14159400E+00  3.14159400E+00  3.14159400E+00
   3.14159400E+00  3.14159400E+00  0.00000000E+00  3.14159400E+00  0.00000000E+00
   3.14159400E+00  3.14159400E+00  3.14159400E+00
-%FLAG SCEE_SCALE_FACTOR                                                         
-%FORMAT(5E16.8)                                                                 
+%FLAG SCEE_SCALE_FACTOR
+%FORMAT(5E16.8)
   1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00
   1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00
   1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00
@@ -734,8 +734,8 @@ DC  DG  DC  DG3
   1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00
   1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00  1.20000000E+00
   0.00000000E+00  0.00000000E+00  0.00000000E+00
-%FLAG SCNB_SCALE_FACTOR                                                         
-%FORMAT(5E16.8)                                                                 
+%FLAG SCNB_SCALE_FACTOR
+%FORMAT(5E16.8)
   2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00
   2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00
   2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00
@@ -746,16 +746,16 @@ DC  DG  DC  DG3
   2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00
   2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00  2.00000000E+00
   0.00000000E+00  0.00000000E+00  0.00000000E+00
-%FLAG SOLTY                                                                     
-%FORMAT(5E16.8)                                                                 
+%FLAG SOLTY
+%FORMAT(5E16.8)
   0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
   0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
   0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
   0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
   0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
   0.00000000E+00
-%FLAG LENNARD_JONES_ACOEF                                                       
-%FORMAT(5E16.8)                                                                 
+%FLAG LENNARD_JONES_ACOEF
+%FORMAT(5E16.8)
   0.00000000E+00  0.00000000E+00  5.81803229E+05  0.00000000E+00  7.91544157E+05
   1.04308023E+06  0.00000000E+00  4.66922514E+04  6.78771368E+04  3.25969625E+03
   0.00000000E+00  4.58874091E+05  6.28541240E+05  3.63097246E+04  3.61397723E+05
@@ -780,8 +780,8 @@ DC  DG  DC  DG3
   0.00000000E+00  4.09427581E+04  5.98885646E+04  2.82099197E+03  3.17965283E+04
   1.80748014E+03  5.46147253E+04  5.30987710E+04  3.03448006E+03  3.76169105E+03
   4.90239937E+01  3.23283631E+04  4.33325458E+03  1.60682053E+05  2.43828624E+03
-%FLAG LENNARD_JONES_BCOEF                                                       
-%FORMAT(5E16.8)                                                                 
+%FLAG LENNARD_JONES_BCOEF
+%FORMAT(5E16.8)
   0.00000000E+00  0.00000000E+00  6.99746810E+02  0.00000000E+00  6.93079947E+02
   6.75612247E+02  0.00000000E+00  1.03606917E+02  1.06076943E+02  1.43076527E+01
   0.00000000E+00  5.89183300E+02  5.85549272E+02  8.66220817E+01  4.95732238E+02
@@ -806,8 +806,8 @@ DC  DG  DC  DG3
   0.00000000E+00  9.59185913E+01  9.85097219E+01  1.31591746E+01  8.01410250E+01
   1.05333009E+01  1.05031585E+02  8.73413012E+01  1.34932874E+01  1.50233639E+01
   1.73473071E+00  8.51921330E+01  1.63092814E+01  1.87626421E+02  1.20953369E+01
-%FLAG BONDS_INC_HYDROGEN                                                        
-%FORMAT(10I8)                                                                   
+%FLAG BONDS_INC_HYDROGEN
+%FORMAT(10I8)
       72      75       2      72      78       2      66      69       3      48
       51       8      48      54       8      39      42      11      33      36
       13      24      27      17      15      18       3       6       9      19
@@ -890,8 +890,8 @@ DC  DG  DC  DG3
     2256       3    2238    2241       8    2238    2244       8    2229    2232
       24    2211    2214      30    2202    2205      17    2193    2196       3
     2184    2187      19    2184    2190      19
-%FLAG BONDS_WITHOUT_HYDROGEN                                                    
-%FORMAT(10I8)                                                                   
+%FLAG BONDS_WITHOUT_HYDROGEN
+%FORMAT(10I8)
       81      84       1      66      72       4      66      81       5      60
       63       6      57      60       7      45      48       9      45      57
       10      39      45      12      33      39      14      30      33      15
@@ -1056,8 +1056,8 @@ DC  DG  DC  DG3
        5    2193    2199       5    2193    2253       4    2184    2193      20
     2181    2184      34    2172    2175      35    2172    2178      35    2172
     2181       1
-%FLAG ANGLES_INC_HYDROGEN                                                       
-%FORMAT(10I8)                                                                   
+%FLAG ANGLES_INC_HYDROGEN
+%FORMAT(10I8)
       75      72      78       3      69      66      72       5      69      66
       81       6      66      72      75       7      66      72      78       7
       51      48      54      10      45      48      51      12      45      48
@@ -1314,8 +1314,8 @@ DC  DG  DC  DG3
     2253       5    2193    2253    2256       5    2190    2184    2193      34
     2187    2184    2190      35    2187    2184    2193      34    2184    2193
     2196      36    2181    2184    2187      64    2181    2184    2190      64
-%FLAG ANGLES_WITHOUT_HYDROGEN                                                   
-%FORMAT(10I8)                                                                   
+%FLAG ANGLES_WITHOUT_HYDROGEN
+%FORMAT(10I8)
       81      84      87       1      81      84      90       1      81      84
       93       2      72      66      81       4      66      81      84       8
       57      60      63       9      48      45      57      11      45      57
@@ -1651,8 +1651,8 @@ DC  DG  DC  DG3
     2184    2193    2253      38    2181    2184    2193      65    2178    2172
     2181       1    2175    2172    2178      66    2175    2172    2181       1
     2172    2181    2184      67
-%FLAG DIHEDRALS_INC_HYDROGEN                                                    
-%FORMAT(10I8)                                                                   
+%FLAG DIHEDRALS_INC_HYDROGEN
+%FORMAT(10I8)
       78      72      66      81       4      78      72     -66      81       5
       75      72      66      81       4      75      72     -66      81       5
       69      66      72      75       7      69      66      72      78       7
@@ -2300,8 +2300,8 @@ DC  DG  DC  DG3
     2133    2139   -2136   -2142      47    2121    2133   -2127   -2130      48
     2118    2127   -2121   -2124      48    2235    2241   -2238   -2244      47
     2223    2235   -2229   -2232      47    2208    2217   -2211   -2214      48
-%FLAG DIHEDRALS_WITHOUT_HYDROGEN                                                
-%FORMAT(10I8)                                                                   
+%FLAG DIHEDRALS_WITHOUT_HYDROGEN
+%FORMAT(10I8)
       81      84      93      96       1      81      84     -93      96       2
       81      84     -93      96       3      72      66      81      84       6
       66      81      84      87       8      66      81      84      90       8
@@ -3062,8 +3062,8 @@ DC  DG  DC  DG3
     2118    2145   -2148   -2151      46    2127    2136   -2133   -2145      48
     2148    2121   -2118   -2112      47    2238    2229   -2235   -2247      48
     2220    2229   -2223   -2226      46    2250    2211   -2208   -2202      47
-%FLAG EXCLUDED_ATOMS_LIST                                                       
-%FORMAT(10I8)                                                                   
+%FLAG EXCLUDED_ATOMS_LIST
+%FORMAT(10I8)
        2       3       4       5       6       3       4       5       6       7
        8      23       4       5       6       7       8       9      23      24
       25      28       5       6       7       8      23       6       7       8
@@ -3485,97 +3485,97 @@ DC  DG  DC  DG3
      751     748     749     750     751     749     750     750     751     754
      753     754     755     756     757     758     754     755     756     757
      758     755     756     757     758     756     757     757     758       0
-%FLAG HBOND_ACOEF                                                               
-%FORMAT(5E16.8)                                                                 
+%FLAG HBOND_ACOEF
+%FORMAT(5E16.8)
 
-%FLAG HBOND_BCOEF                                                               
-%FORMAT(5E16.8)                                                                 
+%FLAG HBOND_BCOEF
+%FORMAT(5E16.8)
 
-%FLAG HBCUT                                                                     
-%FORMAT(5E16.8)                                                                 
+%FLAG HBCUT
+%FORMAT(5E16.8)
 
-%FLAG AMBER_ATOM_TYPE                                                           
-%FORMAT(20a4)                                                                   
-HO  OH  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  
-C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  
-N*  CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  
-OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  
-H   H   NC  C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  
-OS  CT  H2  N*  CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  
-CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  
-CB  CA  N2  H   H   NC  CQ  H5  NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  
-CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  CA  N2  H   H   NC  CQ  H5  
-NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  
-N*  CM  H4  CM  CT  HC  HC  HC  C   O   NA  H   C   O   CT  H1  CT  HC  HC  OS  
-P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  CT  HC  HC  HC  
-C   O   NA  H   C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  
-H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT  H1  CT  HC  
-HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  C   
-O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  
-H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT  
-H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  
-NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OH  HO  HO  
-OH  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   
-O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  
-CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OS  
-P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   
-H   NC  C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  
-CT  H2  N*  CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  
-HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  
-CA  N2  H   H   NC  CQ  H5  NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  
-H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  CA  N2  H   H   NC  CQ  H5  NC  
-CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  
-CM  H4  CM  CT  HC  HC  HC  C   O   NA  H   C   O   CT  H1  CT  HC  HC  OS  P   
-O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  CT  HC  HC  HC  C   
-O   NA  H   C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  
-OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT  H1  CT  HC  HC  
-OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  C   O   
-NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  
-H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT  H1  
-CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  
-CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OH  HO  
-%FLAG TREE_CHAIN_CLASSIFICATION                                                 
-%FORMAT(20a4)                                                                   
-M   M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S   
-B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   
-B   S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   
-M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B   
-E   E   S   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   
-S   3   E   B   S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E   
-B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   
-B   B   B   E   E   S   S   E   E   B   M   E   B   E   E   M   M   E   E   M   
-M   E   E   M   E   S   3   E   B   S   E   E   B   B   B   E   E   S   S   E   
-E   B   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   
-B   S   E   S   3   E   E   E   B   E   B   E   B   E   M   E   B   E   E   M   
-M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   3   E   E   E   
-B   E   B   E   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   
-E   S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M   E   B   E   
-E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   B   B   
-E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M   E   E   M   M   
-E   E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M   
-E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   
-E   B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M   M   
-M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S   B   
-E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   
-S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   
-M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B   E   
-E   S   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   
-3   E   B   S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E   B   
-E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   B   
-B   B   E   E   S   S   E   E   B   M   E   B   E   E   M   M   E   E   M   M   
-E   E   M   E   S   3   E   B   S   E   E   B   B   B   E   E   S   S   E   E   
-B   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   
-S   E   S   3   E   E   E   B   E   B   E   B   E   M   E   B   E   E   M   M   
-E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   3   E   E   E   B   
-E   B   E   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   
-S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M   E   B   E   E   
-M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   B   B   E   
-B   E   S   B   E   E   E   B   M   E   B   E   E   M   M   E   E   M   M   E   
-E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M   E   
-B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   
-B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M   
-%FLAG JOIN_ARRAY                                                                
-%FORMAT(10I8)                                                                   
+%FLAG AMBER_ATOM_TYPE
+%FORMAT(20a4)
+HO  OH  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC
+C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2
+N*  CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC
+OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2
+H   H   NC  C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1
+OS  CT  H2  N*  CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1
+CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB
+CB  CA  N2  H   H   NC  CQ  H5  NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS
+CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  CA  N2  H   H   NC  CQ  H5
+NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2
+N*  CM  H4  CM  CT  HC  HC  HC  C   O   NA  H   C   O   CT  H1  CT  HC  HC  OS
+P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  CT  HC  HC  HC
+C   O   NA  H   C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT
+H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT  H1  CT  HC
+HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  C
+O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI
+H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT
+H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5
+NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OH  HO  HO
+OH  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C
+O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*
+CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OS
+P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H
+H   NC  C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS
+CT  H2  N*  CK  H5  NB  CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT
+HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB
+CA  N2  H   H   NC  CQ  H5  NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI
+H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  CA  N2  H   H   NC  CQ  H5  NC
+CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*
+CM  H4  CM  CT  HC  HC  HC  C   O   NA  H   C   O   CT  H1  CT  HC  HC  OS  P
+O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  CT  HC  HC  HC  C
+O   NA  H   C   O   CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1
+OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT  H1  CT  HC  HC
+OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB  CB  C   O
+NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OS  P   O2  O2  OS  CI  H1
+H1  CT  H1  OS  CT  H2  N*  CM  H4  CM  HA  CA  N2  H   H   NC  C   O   CT  H1
+CT  HC  HC  OS  P   O2  O2  OS  CI  H1  H1  CT  H1  OS  CT  H2  N*  CK  H5  NB
+CB  C   O   NA  H   CA  N2  H   H   NC  CB  CT  H1  CT  HC  HC  OH  HO
+%FLAG TREE_CHAIN_CLASSIFICATION
+%FORMAT(20a4)
+M   M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S
+B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E
+B   S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E
+M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B
+E   E   S   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E
+S   3   E   B   S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E
+B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E
+B   B   B   E   E   S   S   E   E   B   M   E   B   E   E   M   M   E   E   M
+M   E   E   M   E   S   3   E   B   S   E   E   B   B   B   E   E   S   S   E
+E   B   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E
+B   S   E   S   3   E   E   E   B   E   B   E   B   E   M   E   B   E   E   M
+M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   3   E   E   E
+B   E   B   E   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M
+E   S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M   E   B   E
+E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   B   B
+E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M   E   E   M   M
+E   E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M
+E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E
+E   B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M   M
+M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S   B
+E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B
+S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M
+M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   E   B   B   E
+E   S   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S
+3   E   B   S   E   E   B   B   E   B   E   S   B   E   E   E   B   M   E   B
+E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   B
+B   B   E   E   S   S   E   E   B   M   E   B   E   E   M   M   E   E   M   M
+E   E   M   E   S   3   E   B   S   E   E   B   B   B   E   E   S   S   E   E
+B   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B
+S   E   S   3   E   E   E   B   E   B   E   B   E   M   E   B   E   E   M   M
+E   E   M   M   E   E   M   E   S   3   E   B   S   E   S   3   E   E   E   B
+E   B   E   B   E   M   E   B   E   E   M   M   E   E   M   M   E   E   M   E
+S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M   E   B   E   E
+M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E   B   B   E
+B   E   S   B   E   E   E   B   M   E   B   E   E   M   M   E   E   M   M   E
+E   M   E   S   3   E   B   S   E   S   E   B   B   E   E   S   B   E   M   E
+B   E   E   M   M   E   E   M   M   E   E   M   E   S   3   E   B   S   E   E
+B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M
+%FLAG JOIN_ARRAY
+%FORMAT(10I8)
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0       0       0
@@ -3652,8 +3652,8 @@ B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0
-%FLAG IROTAT                                                                    
-%FORMAT(10I8)                                                                   
+%FLAG IROTAT
+%FORMAT(10I8)
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0       0       0
@@ -3730,11 +3730,11 @@ B   B   E   B   E   S   B   E   E   E   B   M   E   B   E   E   M   M
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0       0       0
        0       0       0       0       0       0       0       0
-%FLAG RADIUS_SET                                                                
-%FORMAT(1a80)                                                                   
-modified Bondi radii (mbondi)                                                   
-%FLAG RADII                                                                     
-%FORMAT(5E16.8)                                                                 
+%FLAG RADIUS_SET
+%FORMAT(1a80)
+modified Bondi radii (mbondi)
+%FLAG RADII
+%FORMAT(5E16.8)
   8.00000000E-01  1.50000000E+00  1.70000000E+00  1.30000000E+00  1.30000000E+00
   1.70000000E+00  1.30000000E+00  1.50000000E+00  1.70000000E+00  1.30000000E+00
   1.55000000E+00  1.70000000E+00  1.30000000E+00  1.70000000E+00  1.30000000E+00
@@ -3887,8 +3887,8 @@ modified Bondi radii (mbondi)
   1.70000000E+00  1.55000000E+00  1.30000000E+00  1.30000000E+00  1.55000000E+00
   1.70000000E+00  1.70000000E+00  1.30000000E+00  1.70000000E+00  1.30000000E+00
   1.30000000E+00  1.50000000E+00  8.00000000E-01
-%FLAG SCREEN                                                                    
-%FORMAT(5E16.8)                                                                 
+%FLAG SCREEN
+%FORMAT(5E16.8)
   8.50000000E-01  8.50000000E-01  7.20000000E-01  8.50000000E-01  8.50000000E-01
   7.20000000E-01  8.50000000E-01  8.50000000E-01  7.20000000E-01  8.50000000E-01
   7.90000000E-01  7.20000000E-01  8.50000000E-01  7.20000000E-01  8.50000000E-01
@@ -4041,6 +4041,6 @@ modified Bondi radii (mbondi)
   7.20000000E-01  7.90000000E-01  8.50000000E-01  8.50000000E-01  7.90000000E-01
   7.20000000E-01  7.20000000E-01  8.50000000E-01  7.20000000E-01  8.50000000E-01
   8.50000000E-01  8.50000000E-01  8.50000000E-01
-%FLAG IPOL                                                                      
-%FORMAT(1I8)                                                                    
+%FLAG IPOL
+%FORMAT(1I8)
        0

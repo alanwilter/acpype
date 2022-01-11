@@ -4,15 +4,15 @@ logFile leap.log
 #	contains EPs to model lone pairs on oxygen atoms
 #       with sp2 lone pairs of 0.45A and sp3 lone pairs 0.70A
 #       no lone pairs on carboxyalate groups
-#       
+#
 #################  PLEASE NOTE ########################
-##      
-##      Updated copies of the GLYCAM parameter and 
+##
+##      Updated copies of the GLYCAM parameter and
 ##      prep files can be downloaded from the GLYCAM
 ##      web site's Documentation page:
-##      
+##
 ##      http://www.glycam.org/params
-##      
+##
 #######################################################
 #
 #       load atom type hybridizations
@@ -37,11 +37,11 @@ addAtomTypes {
 #
 #       load the main paramter set
 #
-glycam_06EP = loadamberparams GLYCAM_06EPb.dat 
+glycam_06EP = loadamberparams GLYCAM_06EPb.dat
 #
 #       load all prep files for polysaccharides including lone pairs
 #
-loadamberprep GLYCAM_06EPb.prep 
+loadamberprep GLYCAM_06EPb.prep
 #
 #	load water and ions
 #       assumes most users want to use tip3p as the explicit solvent model

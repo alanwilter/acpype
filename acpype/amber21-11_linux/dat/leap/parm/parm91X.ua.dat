@@ -110,7 +110,7 @@ C2-CH 260.       1.526        AA,SUG
 C2-N  337.       1.449        GLY(OL)
 C2-N2 337.       1.463        ARG(OL)
 C2-N3 367.       1.471        LYS(OL)
-CH-N3 367.       1.471       
+CH-N3 367.       1.471
 C2-NT 367.       1.471        GLY
 C2-OH 386.       1.425         SUG(OL),SER
 C2-OS 320.       1.425         SUG(OL)
@@ -856,7 +856,7 @@ OS-C2-CH-N*         14.0         180.          3.                 !nuc
 
 N   NA  N2  N*  NP  NC  NO
 C   C*  CA  CB  CC  CN  CM  CK  CQ  CD  CE  CF  CG  CP  CI  CJ  CW  CV  CR  CA
-C   CX  CY  
+C   CX  CY
 
 STUB      RE
   H        1.00       0.020

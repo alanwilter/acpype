@@ -259,7 +259,7 @@ OS-P  230.       1.61         SUG(OL)
 O2-P  525.       1.48         SUG(OL)
 OH-P  230.       1.61         SUG(OL)
 S -S  166.       2.038        CYX(OL)  SCHERAGA
-                                               
+
 CP-NB-FE    130.        124.8       HEME
 NB-FE-W      30.        180.0       HEME
 NP-FE-W      30.         90.0       HEME
@@ -869,7 +869,7 @@ CA-OH-HO    35.       113.0      TYR(PHENOL)  OPLS (JTR 10-25-86)
 CK-OH-HO    35.       113.0      TYR(PHENOL)  OPLS (JTR 9-13-91)
 NA-CK-HK    35.       120.0      HIS, OPLS (JTR 10-22-90)
 NB-CK-HK    35.       120.0      HIS, OPLS (JTR 10-22-90)
-                                                                 
+
 X -FE-NB-X    1    0.0        0.0               2.
 X -FE-NP-X    1    0.0        0.                2.
 X -FE-NO-X    1    0.0        0.                2.
@@ -1328,7 +1328,7 @@ OS-P -OS-CW   1     .25         0.               -3.
 OS-P -OS-CW   1     .75         0.               2.
 OH-P -OS-CW   1     .25         0.               -3.
 OH-P -OS-CW   1     .75         0.               2.
-                                                   
+
 X -CC-CC-X          0.0          180.          2.
 X -X -NT-H2         1.0          180.          2.
 X -X -CK-HK         2.           180.          2.
@@ -1387,9 +1387,9 @@ X -CH-N -C2         1.0          180.          2.
 X -CH-N -CQ         1.0          180.          2.
 X -CZ-N -C2         1.0          180.          2.
 X -CZ-N -CQ         1.0          180.          2.
-                                                 
+
   HT  OT  0000.     0000.                                4.
-                                                 
+
 C2  CX
 C   CM
 CD  CE  CI  CJ  CY
@@ -1397,7 +1397,7 @@ HO  H2  H3
 N   N2  N*  NT  NP  NO
 OH  W
 S   SH  FE
-          
+
 STDU      RE
   H        1.00       .020
   HC       1.375      .038
@@ -1444,7 +1444,7 @@ STDU      RE
   I        2.35       0.40
   LP       1.2        0.016
   ZN       1.85       0.06
-                          
+
 STUB      RE
   H        1.00       .020
   HC       1.375      .038
@@ -1490,7 +1490,7 @@ STUB      RE
   I        2.35       0.40
   LP       1.2        0.016
   ZN       1.85       0.06
-                          
+
 OPLS      AC
   H        0.00       0.00
   HO       0.00       0.00
@@ -1534,5 +1534,5 @@ OPLS      AC
   M4            0.0     0.0
   ZN       395000.0   307.9
   CL      26000420.3 3500.0511
-                           
+
 END

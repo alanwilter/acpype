@@ -107,7 +107,7 @@ zMatrix SPC  {
 }
 
 #       OPC3 water
-#       Izadi and Onufriev. 
+#       Izadi and Onufriev.
 #       J. Chem. Phys. 145, 074501 (2016)
 
 h1 = createAtom  H1   HW  0.447585
@@ -140,13 +140,13 @@ zMatrix OP3  {
 
 #
 #	TIP3P-FB water
-#       Wang, Martinez, Pande. 
+#       Wang, Martinez, Pande.
 #       J. Phys. Chem. Lett., 2014, 5 (11), pp 1885–1891
 #
 
 h1 = createAtom  H1   HW   0.424224
 h2 = createAtom  H2   HW   0.424224
-o  = createAtom  O    OW  -0.848448 
+o  = createAtom  O    OW  -0.848448
 
 set h1   element   H
 set h2   element   H
@@ -346,7 +346,7 @@ zMatrix T4E  {
 
 #
 #	TIP4P-FB water
-#       Wang, Martinez, Pande. 
+#       Wang, Martinez, Pande.
 #       J. Phys. Chem. Lett., 2014, 5 (11), pp 1885–1891
 #
 

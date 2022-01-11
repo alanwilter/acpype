@@ -1,4 +1,4 @@
-source leaprc.ff14SB 
+source leaprc.ff14SB
 
 addAtomTypes {
 	{ "C3"  "C" "sp3" }

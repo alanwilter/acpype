@@ -102,32 +102,32 @@ addAtomTypes {
 #
 # Extract the amino acids from all.in
 #
-loadAmberPrep  all.in 
-a = { ALA GLY SER THR LEU ILE VAL ASN GLN ARG 
+loadAmberPrep  all.in
+a = { ALA GLY SER THR LEU ILE VAL ASN GLN ARG
 	HID HIE HIP TRP PHE TYR GLU ASP LYS PRO CYS CYX MET }
 set a   restype   protein
 
 set CYX.1   disulphide  CYX.1.SG
 
-saveOff a   ./all_amino91.lib 
+saveOff a   ./all_amino91.lib
 
 set NME   restype   protein
 set NME   tail  null
 set NME   head  NME.1.N
 set NME.1   connect0  NME.1.N
-saveOff NME   ./all_aminoct91.lib 
+saveOff NME   ./all_aminoct91.lib
 
 set NHE   restype   protein
 set NHE   tail  null
 set NHE   head  NHE.1.N
 set NHE.1   connect0  NHE.1.N
-saveOff NHE   ./all_aminoct91.lib 
+saveOff NHE   ./all_aminoct91.lib
 
 set ACE   restype   protein
 set ACE   head  null
 set ACE   tail  ACE.1.C
 set ACE.1   connect1  ACE.1.C
-saveOff ACE   ./all_aminont91.lib 
+saveOff ACE   ./all_aminont91.lib
 
 #
 # Save the DNA and RNA residues
@@ -135,10 +135,10 @@ saveOff ACE   ./all_aminont91.lib
 
 a = { RADE RCYT RGUA ROHE RPOM RURA }
 set a   restype   nucleic
-saveOff a   ./all_nucleic91.lib 
+saveOff a   ./all_nucleic91.lib
 a = { DADE DCYT DGUA DOHE DPOM DTHY }
 set a   restype   nucleic
-saveOff a   ./all_nucleic91.lib 
+saveOff a   ./all_nucleic91.lib
 
 set HB   head  null
 set HB.1   connect0  null
@@ -147,7 +147,7 @@ set HE.1   connect1  null
 
 a = { HB HE }
 set a   restype   nucleic
-saveOff a   ./all_nucleic91.lib 
+saveOff a   ./all_nucleic91.lib
 
 #
 # Extract the N terminus residues
@@ -155,7 +155,7 @@ saveOff a   ./all_nucleic91.lib
 clearVariables
 
 loadAmberPrep  allnt.in    N
-a = { NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG 
+a = { NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG
 NHID NHIE NHIP NTRP NPHE
 NTYR NGLU NASP NLYS NPRO NCYS NCYX NMET }
 set a   head  null
@@ -188,13 +188,13 @@ set a   restype   protein
 
 set NCYX.1   disulphide  NCYX.1.SG
 
-saveOff a   ./all_aminont91.lib 
+saveOff a   ./all_aminont91.lib
 
 #
 # Extract the C terminus residues
 #
 loadAmberPrep  allct.in    C
-a = { CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG 
+a = { CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG
 CHID CHIE CHIP CTRP CPHE
 CTYR CGLU CASP CLYS CPRO CCYS CCYX CMET }
 set a   tail  null
@@ -227,5 +227,5 @@ set a   restype   protein
 
 set CCYX.1   disulphide  CCYX.1.SG
 
-saveOff a   ./all_aminoct91.lib 
+saveOff a   ./all_aminoct91.lib
 quit

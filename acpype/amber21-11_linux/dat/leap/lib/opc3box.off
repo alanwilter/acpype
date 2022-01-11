@@ -1301,9 +1301,9 @@
 !entry.OPC3BOX.unit.boundbox array dbl
  1.000000
  90.000000
- 18.682111  
- 18.750048  
- 18.541964  
+ 18.682111
+ 18.750048
+ 18.541964
 !entry.OPC3BOX.unit.childsequence single int
  217
 !entry.OPC3BOX.unit.connect array int

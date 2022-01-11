@@ -525,7 +525,7 @@ set D3T.1.H6 charge 0.2251
 set D3T.1.C5 charge -0.1092
 set D3T.1.C7 charge -0.2602
 set D3T.1.H71 charge 0.0589
-set D3T.1.H72 charge 0.0589 
+set D3T.1.H72 charge 0.0589
 set D3T.1.H73 charge 0.0589
 set D3T.1.C4 charge 0.8263
 set D3T.1.O4 charge -0.7396
@@ -550,7 +550,7 @@ set D5T.1.H6 charge 0.2251
 set D5T.1.C5 charge -0.1092
 set D5T.1.C7 charge -0.2602
 set D5T.1.H71 charge 0.0589
-set D5T.1.H72 charge 0.0589 
+set D5T.1.H72 charge 0.0589
 set D5T.1.H73 charge 0.0589
 set D5T.1.C4 charge 0.8263
 set D5T.1.O4 charge -0.7396
@@ -575,7 +575,7 @@ set DTD.1.H6 charge 0.2251
 set DTD.1.C5 charge -0.1092
 set DTD.1.C7 charge -0.2602
 set DTD.1.H71 charge 0.0589
-set DTD.1.H72 charge 0.0589 
+set DTD.1.H72 charge 0.0589
 set DTD.1.H73 charge 0.0589
 set DTD.1.C4 charge 0.8263
 set DTD.1.O4 charge -0.7396

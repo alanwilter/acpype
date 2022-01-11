@@ -1,7 +1,7 @@
 logFile leap.log
 #
 # ----- leaprc for loading the "r1" revision 2002 pol. extra-point force field
-#       assumes that any unspecified nucleic acids are DNA 
+#       assumes that any unspecified nucleic acids are DNA
 #
 #	load atom type hybridizations
 #
@@ -80,7 +80,7 @@ pol3wat=loadamberparams frcmod.pol3
 #
 loadOff all_nucleic02EP.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_amino02EP.lib

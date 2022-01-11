@@ -1,5 +1,5 @@
 PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA + ff19SB
-C  12.01         0.616  !            sp2 C carbonyl group 
+C  12.01         0.616  !            sp2 C carbonyl group
 CA 12.01         0.360               sp2 C pure aromatic (benzene)
 CB 12.01         0.360               sp2 aromatic C, 5&6 membered ring junction
 CC 12.01         0.360               sp2 aromatic C, 5 memb. ring HIS
@@ -46,8 +46,8 @@ NB 14.01         0.530               sp2 N in 5 memb.ring w/LP (HIS,ADE,GUA)
 NC 14.01         0.530               sp2 N in 6 memb.ring w/LP (ADE,GUA)
 N2 14.01         0.530               sp2 N in amino groups
 N3 14.01         0.530               sp3 N for charged amino groups (Lys, etc)
-NT 14.01         0.530               sp3 N for amino groups amino groups 
-N* 14.01         0.530               sp2 N 
+NT 14.01         0.530               sp3 N for amino groups amino groups
+N* 14.01         0.530               sp2 N
 NY 14.01         0.530               nitrile N (Howard et al.JCC,16,243,1995)
 O  16.00         0.434               carbonyl group oxygen
 O2 16.00         0.434               carboxyl and phosphate group oxygen
@@ -59,10 +59,10 @@ S  32.06         2.900               S in disulfide linkage,pol:JPC,102,2399,98
 SH 32.06         2.900               S in cystine
 CU 63.55                             copper
 FE 55.00                             iron
-Zn  65.4                             Zn2+ 
+Zn  65.4                             Zn2+
 EP  0.00         0.000               extra point
 
-C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2 
+C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2
 C -C   310.0    1.525       Junmei et al, 1999
 C -CA  469.0    1.409       JCC,7,(1986),230; (not used any more in TYR)
 C -CB  447.0    1.419       JCC,7,(1986),230; GUA
@@ -77,7 +77,7 @@ C -NA  418.0    1.388       JCC,7,(1986),230; GUA.URA
 C -NC  457.0    1.358       JCC,7,(1986),230; CYT
 C -O   570.0    1.229       JCC,7,(1986),230; AA,CYT,GUA,THY,URA
 C -O2  656.0    1.250       JCC,7,(1986),230; GLU,ASP
-C -OH  450.0    1.364       JCC,7,(1986),230; (not used any more for TYR) 
+C -OH  450.0    1.364       JCC,7,(1986),230; (not used any more for TYR)
 C -OS  450.0    1.323       Junmei et al, 1999
 C -H4  367.0    1.080       Junmei et al, 1999
 C -H5  367.0    1.080       Junmei et al, 1999
@@ -92,12 +92,12 @@ CA-H4  367.0    1.080       changed from 340. bsd on C6H6 nmodes; no assigned
 CA-N2  481.0    1.340       JCC,7,(1986),230; ARG,CYT,GUA
 CA-NA  427.0    1.381       JCC,7,(1986),230; GUA
 CA-NC  483.0    1.339       JCC,7,(1986),230; ADE,CYT,GUA
-CA-OH  450.0    1.364       substituted for C-OH in tyr 
+CA-OH  450.0    1.364       substituted for C-OH in tyr
 CB-CB  520.0    1.370       JCC,7,(1986),230; ADE,GUA
 CB-N*  436.0    1.374       JCC,7,(1986),230; ADE,GUA
 CB-NB  414.0    1.391       JCC,7,(1986),230; ADE,GUA
 CB-NC  461.0    1.354       JCC,7,(1986),230; ADE,GUA
-CD-HA  367.0    1.080       Junmei et al, 1999 
+CD-HA  367.0    1.080       Junmei et al, 1999
 CD-CD  469.0    1.400       Junmei et al, 1999
 CD-CM  549.0    1.350       Junmei et al, 1999
 CD-CS  549.0    1.350       Junmei et al, 1999
@@ -160,7 +160,7 @@ XC-N   337.0    1.449       JCC,7,(1986),230; AA  (was CT-N)
 CT-N3  367.0    1.471       JCC,7,(1986),230; LYS
 CX-N3  367.0    1.471       JCC,7,(1986),230; LYS (was CT-N3)
 XC-N3  367.0    1.471       JCC,7,(1986),230; LYS (was CT-N3)
-CT-NT  367.0    1.471       for neutral amines 
+CT-NT  367.0    1.471       for neutral amines
 CT-S   227.0    1.810       changed from 222.0 based on dimethylS nmodes
 CT-SH  237.0    1.810       changed from 222.0 based on methanethiol nmodes
 CT-CY  400.0    1.458       Howard et al JCC.16,243,1995
@@ -181,19 +181,19 @@ H -N2  434.0    1.010       JCC,7,(1986),230; ADE,CYT,GUA,ARG
 H -N*  434.0    1.010       for plain unmethylated bases ADE,CYT,GUA,ARG
 H -NA  434.0    1.010       JCC,7,(1986),230; GUA,URA,HIS
 H -N   434.0    1.010       JCC,7,(1986),230; AA
-H -N3  434.0    1.010       JCC,7,(1986),230; LYS    
-H -NT  434.0    1.010       for neutral amines 
+H -N3  434.0    1.010       JCC,7,(1986),230; LYS
+H -NT  434.0    1.010       for neutral amines
 HO-OH  553.0    0.960       JCC,7,(1986),230; SUGARS,SER,TYR
 HO-OS  553.0    0.960       JCC,7,(1986),230; NUCLEOTIDE ENDS
 HS-SH  274.0    1.336       JCC,7,(1986),230; CYS
 S -S   166.0    2.038       JCC,7,(1986),230; CYX   (SCHERAGA)
 F -CT  367.0    1.380       JCC,13,(1992),963;CF4; R0=1.332 FOR CHF3
 Cl-CT  232.0    1.766       6-31g* opt
-Br-CT  159.0    1.944       Junmei et al,99 
-I -CT  148.0    2.166       Junmei et al,99 
-F -CA  386.0    1.359       Junmei et al,99 
-Cl-CA  193.0    1.727       Junmei et al,99 
-I -CA  171.0    2.075       Junmei et al,99 
+Br-CT  159.0    1.944       Junmei et al,99
+I -CT  148.0    2.166       Junmei et al,99
+F -CA  386.0    1.359       Junmei et al,99
+Cl-CA  193.0    1.727       Junmei et al,99
+I -CA  171.0    2.075       Junmei et al,99
 Br-CA  172.0    1.890       Junmei et al,99
 EP-O   600.0    0.200       or 0.35
 EP-OH  600.0    0.200       or 0.35
@@ -257,9 +257,9 @@ O -C -O     80.0      126.00    AA COO- terminal residues
 O -C -OH    80.0      120.00    (check with Junmei for: theta0:120.0?)
 O -C -OS    80.0      125.00    Junmei et al, 1999
 O2-C -O2    80.0      126.00    AA GLU            (SCH JPC 79,2379)
-H4-C -C     50.0      120.00    Junmei et al, 1999 
-H4-C -CM    50.0      115.00    Junmei et al, 1999 
-H4-C -CS    50.0      115.00    Junmei et al, 1999 
+H4-C -C     50.0      120.00    Junmei et al, 1999
+H4-C -CM    50.0      115.00    Junmei et al, 1999
+H4-C -CS    50.0      115.00    Junmei et al, 1999
 H4-C -CT    50.0      115.00    Junmei et al, 1999
 H4-C -O     50.0      120.00    Junmei et al, 1999
 H4-C -OH    50.0      120.00    Junmei et al, 1999
@@ -289,14 +289,14 @@ NA-CA-NC    70.0      123.30
 N2-CA-NA    70.0      116.00
 N2-CA-NC    70.0      119.30
 N2-CA-N2    70.0      120.00    AA arg
-F -CA-CA    70.0      121.00    Junmei et al,99 
-Cl-CA-CA    70.0      118.80    Junmei et al,99 
+F -CA-CA    70.0      121.00    Junmei et al,99
+Cl-CA-CA    70.0      118.80    Junmei et al,99
 Br-CA-CA    70.0      118.80    Junmei et al,99
-I -CA-CA    70.0      118.80    Junmei et al,99 
+I -CA-CA    70.0      118.80    Junmei et al,99
 C -CB-CB    63.0      119.20    changed from 85.0  bsd on C6H6 nmodes; NA gua
 C -CB-NB    70.0      130.00
 CA-CB-CB    63.0      117.30    changed from 85.0  bsd on C6H6 nmodes; NA ade
-CA-CB-NB    70.0      132.40    
+CA-CB-NB    70.0      132.40
 CB-CB-N*    70.0      106.20
 CB-CB-NB    70.0      110.40
 CB-CB-NC    70.0      127.70
@@ -359,10 +359,10 @@ H1-CT-H1    35.0      109.50
 H1-CX-H1    35.0      109.50    (was H1-CT-H1)
 H1-XC-H1    35.0      109.50    (was H1-CT-H1)
 H1-CT-N*    50.0      109.50    changed based on NMA nmodes
-H1-CT-OH    50.0      109.50    changed based on NMA nmodes 
-H1-CT-OS    50.0      109.50    changed based on NMA nmodes 
-H1-CT-CM    50.0      109.50    Junmei et al, 1999 
-H1-CT-CS    50.0      109.50    Junmei et al, 1999 
+H1-CT-OH    50.0      109.50    changed based on NMA nmodes
+H1-CT-OS    50.0      109.50    changed based on NMA nmodes
+H1-CT-CM    50.0      109.50    Junmei et al, 1999
+H1-CT-CS    50.0      109.50    Junmei et al, 1999
 H1-CT-CY    50.0      110.00    Junmei et al, 1999
 H1-CT-CZ    50.0      110.00    Junmei et al, 1999
 H1-CT-N     50.0      109.50    AA general  changed based on NMA nmodes
@@ -371,7 +371,7 @@ H1-XC-N     50.0      109.50    AA general  (was H1-CT-N)
 H1-CT-S     50.0      109.50    AA cys     changed based on NMA nmodes
 H1-CT-SH    50.0      109.50    AA cyx     changed based on NMA nmodes
 H1-CT-N2    50.0      109.50    AA arg     changed based on NMA nmodes
-H1-CT-NT    50.0      109.50    neutral amines 
+H1-CT-NT    50.0      109.50    neutral amines
 H2-CT-H2    35.0      109.50    AA lys
 H2-CT-N*    50.0      109.50    changed based on NMA nmodes
 H2-CT-OS    50.0      109.50    changed based on NMA nmodes
@@ -450,8 +450,8 @@ CT-XC-N     80.0      109.70    AA ala, general    (was CT-CT-N)
 CT-CT-N3    80.0      111.20    AA lys             (JCP 76, 1439)
 CT-CX-N3    80.0      111.20    AA lys             (JCP 76, 1439) (was CT-CT-N3)
 CT-XC-N3    80.0      111.20    AA lys             (JCP 76, 1439) (was CT-CT-N3)
-CT-CT-NT    80.0      111.20    neutral amines 
-CT-CT-CY    63.0      110.00    Junmei et al, 1999    
+CT-CT-NT    80.0      111.20    neutral amines
+CT-CT-CY    63.0      110.00    Junmei et al, 1999
 CT-CT-CZ    63.0      110.00    Junmei et al, 1999
 C*-CT-CT    63.0      115.60    AA trp
 C*-CT-CX    63.0      115.60    AA trp (was C*-CT-CT)
@@ -463,13 +463,13 @@ OS-CT-CZ    50.0      110.00    Junmei et al, 1999
 OS-CT-N*    50.0      109.50
 F -CT-F     77.0      109.10    JCC,13,(1992),963;
 F -CT-H1    50.0      109.50    JCC,13,(1992),963;
-F -CT-CT    50.0      109.00    
-F -CT-H2    50.0      109.50  
+F -CT-CT    50.0      109.00
+F -CT-H2    50.0      109.50
 Cl-CT-CT    50.0      108.50    (6-31g* opt value)
-Cl-CT-H1    50.0      108.50    (6-31g* opt value)  
-Br-CT-CT    50.0      108.00    Junmei et al 99 
-Br-CT-H1    50.0      106.50    Junmei et al 99 
-I -CT-CT    50.0      106.00    Junmei et al,99 
+Cl-CT-H1    50.0      108.50    (6-31g* opt value)
+Br-CT-CT    50.0      108.00    Junmei et al 99
+Br-CT-H1    50.0      106.50    Junmei et al 99
+I -CT-CT    50.0      106.00    Junmei et al,99
 CT-CC-NA    70.0      120.00    AA his
 CT-CC-CV    70.0      120.00    AA his
 CT-CC-NB    70.0      120.00    AA his
@@ -525,10 +525,10 @@ CM-N*-CT    70.0      121.20
 CM-N*-H     50.0      121.20    for unmethylated n.a. bases,chngd bsd NMA nmodes
 CS-N*-CT    70.0      121.20
 CS-N*-H     50.0      121.20    for unmethylated n.a. bases,chngd bsd NMA nmodes
-CA-N2-H     50.0      120.00    
+CA-N2-H     50.0      120.00
 CA-N2-CT    50.0      123.20    AA arg
 CT-N2-H     50.0      118.40    AA arg
-H -N2-H     35.0      120.00    
+H -N2-H     35.0      120.00
 CT-N3-H     50.0      109.50    AA lys,     changed based on NMA nmodes
 CX-N3-H     50.0      109.50    AA lys,     changed based on NMA nmodes (was CT-N3-H )
 XC-N3-H     50.0      109.50    AA lys,     changed based on NMA nmodes (was CT-N3-H )
@@ -536,9 +536,9 @@ CT-N3-CT    50.0      109.50    AA pro/nt
 CT-N3-CX    50.0      109.50    AA pro/nt (was CT-N3-CT)
 CT-N3-XC    50.0      109.50    AA pro/nt (was CT-N3-CT)
 H -N3-H     35.0      109.50    AA lys, AA(end)
-CT-NT-H     50.0      109.50    neutral amines 
-CT-NT-CT    50.0      109.50    neutral amines 
-H -NT-H     35.0      109.50    neutral amines 
+CT-NT-H     50.0      109.50    neutral amines
+CT-NT-CT    50.0      109.50    neutral amines
+H -NT-H     35.0      109.50    neutral amines
 C -NA-C     70.0      126.40
 C -NA-CA    70.0      125.20
 C -NA-H     50.0      116.80    changed based on NMA nmodes
@@ -600,7 +600,7 @@ C -OH-EP   150.0       120.0
 CT-OH-EP   150.0       109.5
 HO-OH-EP   150.0       109.5
 EP-OH-EP   150.0       109.5
-C -OS-EP   150.0       109.5 
+C -OS-EP   150.0       109.5
 CM-OS-EP   150.0       109.5    methyl vinyl ether
 CS-OS-EP   150.0       109.5    methyl vinyl ether
 CT-OS-EP   150.0       109.5
@@ -610,7 +610,7 @@ CT-SH-EP   150.0        90.0    cys,cyx,met
 P -OS-EP   150.0       109.5    NA
 EP-S -EP   150.0       180.0    cys,cyx,met
 EP-SH-EP   150.0       180.0    cys,cyx,met
-HS-SH-EP   150.0        90.0    cys  
+HS-SH-EP   150.0        90.0    cys
 H1-CI-CT    50.0      109.50    parmbsc0
 H1-CI-H1    35.0      109.50    parmbsc0
 CI-CT-H1    50.0      109.50    parmbsc0
@@ -644,7 +644,7 @@ C4-C4-HA    50.0      119.70
 C4-C4-H4    50.0      119.70
 C4-C4-N*    70.0      121.20
 H4-C4-N*    50.0      119.10
-H1-CT-C4    50.0      109.50    Junmei et al, 1999 
+H1-CT-C4    50.0      109.50    Junmei et al, 1999
 HC-CT-C4    50.0      109.50    changed based on NMA nmodes
 C -N*-C4    70.0      121.60
 C4-N*-CT    70.0      121.20
@@ -906,11 +906,11 @@ OS-CT-N*-CK   1    2.50          0.0             1.         parm98, TC,PC,PAK
 OS-CT-N*-CM   1    0.00        000.0            -2.         parm98, TC,PC,PAK
 OS-CT-N*-CM   1    2.50          0.0             1.         parm98, TC,PC,PAK
 OS-CT-CT-OS   1    0.144         0.0            -3.         parm98, TC,PC,PAK
-OS-CT-CT-OS   1    1.175         0.0             2.         Piotr et al.     
+OS-CT-CT-OS   1    1.175         0.0             2.         Piotr et al.
 OS-CT-CT-OH   1    0.144         0.0            -3.         parm98, TC,PC,PAK
 OS-CT-CT-OH   1    1.175         0.0             2.         parm98, TC,PC,PAK
 OH-CT-CT-OH   1    0.144         0.0            -3.         parm98, TC,PC,PAK
-OH-CT-CT-OH   1    1.175         0.0             2.         parm98, TC,PC,PAK 
+OH-CT-CT-OH   1    1.175         0.0             2.         parm98, TC,PC,PAK
 F -CT-CT-F    1    0.000         0.0            -3.         JCC,7,(1986),230
 F -CT-CT-F    1    1.20        180.0             1.         Junmei et al, 1999
 Cl-CT-CT-Cl   1    0.000         0.0            -3.         JCC,7,(1986),230
@@ -983,19 +983,19 @@ X -X -CM-H4         1.1          180.          2.
 X -X -CM-HA         1.1          180.          2.
 X -X -CS-H4         1.1          180.          2.
 X -X -CS-HA         1.1          180.          2.
-X -X -CA-H4         1.1          180.          2.           bsd.on C6H6 nmodes 
+X -X -CA-H4         1.1          180.          2.           bsd.on C6H6 nmodes
 X -X -CA-H5         1.1          180.          2.           bsd.on C6H6 nmodes
 CB-CK-N*-CT         1.0          180.          2.
 CB-CP-N*-CT         1.0          180.          2.
 C -CM-N*-CT         1.0          180.          2.           dac guess, 9/94
 C -CS-N*-CT         1.0          180.          2.           dac guess, 9/94
-C -CS-CM-CT         1.1          180.          2. 
+C -CS-CM-CT         1.1          180.          2.
 CT-O -C -OH         10.5         180.          2.
 CT-CV-CC-NA         1.1          180.          2.
 CT-CW-CC-NB         1.1          180.          2.
 CT-CW-CC-NA         1.1          180.          2.
 CB-CT-C*-CW         1.1          180.          2.
-CA-CA-CA-CT         1.1          180.          2. 
+CA-CA-CA-CT         1.1          180.          2.
 C -CM-CM-CT         1.1          180.          2.           dac guess, 9/94
 C -CS-CS-CT         1.1          180.          2.           dac guess, 9/94
 CM-N2-CA-NC         1.1          180.          2.           dac guess, 9/94
@@ -1005,7 +1005,7 @@ N2-NA-CA-NC         1.1          180.          2.           dac, 10/94
 CA-CA-C -OH         1.1          180.          2.           (not used in tyr!)
 CA-CA-CA-OH         1.1          180.          2.           in tyr
 H5-O -C -OH         1.1          180.          2.           Junmei et al.1999
-H5-O -C -OS         1.1          180.          2.           
+H5-O -C -OS         1.1          180.          2.
 CM-CT-CM-HA         1.1          180.          2.           Junmei et al.1999
 CS-CT-CS-HA         1.1          180.          2.           Junmei et al.1999
 Br-CA-CA-CA         1.1          180.          2.           Junmei et al.1999
@@ -1034,7 +1034,7 @@ OH-H1-CJ-CT         0.0          180.          2.
 H1-H1-CJ-CT         0.0          180.          2.
 OS-H1-CJ-H1         0.0          180.          2.
 OS-H1-CJ-CT         0.0          180.          2.
- 
+
 
 N   NA  N2  N*  NC  NB  NT  NY
 C*  CA  CB  CC  CD  CK  CM  CN  CQ  CR  CV  CW  CY  CZ  CP  CS
@@ -1044,17 +1044,17 @@ MOD4      RE
   HO          0.0000  0.0000             OPLS Jorgensen, JACS,110,(1988),1657
   HS          0.6000  0.0157             W. Cornell CH3SH --> CH3OH FEP
   HC          1.4870  0.0157             OPLS
-  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963 
-  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963 
-  H3          1.1870  0.0157             Veenstra et al JCC,8,(1992),963 
+  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963
+  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963
+  H3          1.1870  0.0157             Veenstra et al JCC,8,(1992),963
   HP          1.1000  0.0157             Veenstra et al JCC,8,(1992),963
-  HA          1.4590  0.0150             Spellmeyer 
+  HA          1.4590  0.0150             Spellmeyer
   H4          1.4090  0.0150             Spellmeyer, one electrowithdr. neighbor
   H5          1.3590  0.0150             Spellmeyer, two electrowithdr. neighbor
   HZ          1.4590  0.0150             H bonded to sp C (Howard et al JCC 16)
   O           1.6612  0.2100             OPLS
   O2          1.6612  0.2100             OPLS
-  OH          1.7210  0.2104             OPLS 
+  OH          1.7210  0.2104             OPLS
   OS          1.6837  0.1700             OPLS ether
   OP          1.8500  0.1700             Steinbrecher/Latzer for 2- phosphate
   C*          1.9080  0.0860             Spellmeyer
@@ -1069,14 +1069,14 @@ MOD4      RE
   N3          1.8240  0.1700             OPLS
   S           2.0000  0.2500             W. Cornell CH3SH and CH3SCH3 FEP's
   SH          2.0000  0.2500             W. Cornell CH3SH and CH3SCH3 FEP's
-  P           2.1000  0.2000             JCC,7,(1986),230; 
+  P           2.1000  0.2000             JCC,7,(1986),230;
   MG          0.7926  0.8947             Mg2+ Aqvist JPC 1990,94,8021.(adapted)
   C0          1.7131  0.459789           Ca2+ Aqvist JPC 1990,94,8021.(adapted)
-  Zn          1.10    0.0125             Zn2+, Merz,PAK, JACS,113,8262,(1991) 
+  Zn          1.10    0.0125             Zn2+, Merz,PAK, JACS,113,8262,(1991)
   F           1.75    0.061              Gough et al. JCC 13,(1992),963.
   Cl          1.948   0.265              Fox, JPCB,102,8070,(98),flex.mdl CHCl3
   Br          2.22    0.320              Junmei(?)
-  I           2.35    0.40               JCC,7,(1986),230;  
+  I           2.35    0.40               JCC,7,(1986),230;
   EP          0.00    0.0000             lone pair
- 
+
 END

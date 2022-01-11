@@ -1,10 +1,10 @@
 #   Each atom type definition starts with "PARM" index in the first
 #   four columns. Each atom types may have multiple "EQUA" atom types
-#   and multiple "CORR" atom types. For the "CORR" lines, if no penalty 
+#   and multiple "CORR" atom types. For the "CORR" lines, if no penalty
 #   parameter presents, the default value will be used
-#   equivalent_flag:  1 for cc/ce/cg/nc/ne/pc/pe 
-#                     2 for cd/cf/ch/nd/nf/pd/pf 
-#                     0 for others 
+#   equivalent_flag:  1 for cc/ce/cg/nc/ne/pc/pe
+#                     2 for cd/cf/ch/nd/nf/pd/pf
+#                     0 for others
 -------------------------------------------------------------------------
 #   atomtype    improper_flag group_id  mass	equivalent_flag  atomic_num
 PARM 	C	1		0	12.01	0	6
@@ -19,7 +19,7 @@ CORR    ce   3.6  16.1   4.6   1.8   3.1   2.4 126.9  -1.0  39.9
 CORR    cf   3.6  16.1   4.6   1.8   3.1   2.4 126.9  -1.0  39.9
 #
 PARM 	CA 	1 		0	12.01	0	6
-EQUA 	ca 
+EQUA 	ca
 CORR    CB   1.2   4.9   4.7   0.1   7.0   0.1  19.9  -1.0  19.8
 CORR    CC   0.3   0.6  -1.0  -1.0   0.8   0.1   3.4  -1.0  17.8
 CORR    CD   2.0   8.3  -1.0  -1.0   1.4   0.1  44.6  -1.0  26.3
@@ -139,7 +139,7 @@ CORR    cd   1.9   8.6   2.8   1.9   2.4   1.7  35.5  -1.0  22.9
 CORR    ce   2.6  11.5   2.7   1.9   2.6   1.7  79.4  -1.0  30.8
 CORR    cf   2.6  11.5   2.7   1.9   2.6   1.7  79.4  -1.0  30.8
 #
-PARM	CN	1		0	12.01	0	6	
+PARM	CN	1		0	12.01	0	6
 EUQA    ca
 CORR    CA   0.4   1.7   2.2   0.1   6.4   0.1   5.7  -1.0  16.5
 CORR    CB   1.9   7.5   4.5   0.1   0.3   0.1  30.7  -1.0  21.6
@@ -203,10 +203,10 @@ CORR    ce   1.3   5.6   3.7   1.9   2.7   1.6   9.2  -1.0  18.0
 CORR    cf   2.5  11.2   3.8   2.2   3.0   1.9   9.2  -1.0  19.2
 #
 PARM	CT	0		0	12.01	0	6
-EQUA	c3	
+EQUA	c3
 #
 PARM	CX	0		0	12.01	0	6
-EQUA	c3	
+EQUA	c3
 #
 PARM	CV	1		0	12.01	0	6
 EQUA	cc
@@ -459,7 +459,7 @@ CORR    cl   9.3  21.2  -1.0  -1.0   1.0   1.7  -1.0  -1.0  33.1
 CORR     i  12.0  19.0  -1.0  -1.0   2.1  10.9  -1.0  -1.0  34.1
 #
 PARM	I	0		0	126.9	0	53
-EQUA	i	
+EQUA	i
 CORR     F  43.0  81.1  -1.0  -1.0   2.3   0.1  -1.0  -1.0  48.7
 CORR    Cl  19.3  28.1  -1.0  -1.0   1.2   0.1  -1.0  -1.0  35.9
 CORR    Br  10.1   3.9  -1.0  -1.0   0.9   0.1  -1.0  -1.0  30.2
@@ -468,7 +468,7 @@ CORR    cl  21.2  36.5  -1.0  -1.0   1.7  11.1  -1.0  -1.0  38.5
 CORR    br  12.0  19.0  -1.0  -1.0   2.1  10.9  -1.0  -1.0  34.1
 #
 PARM	N	1		0	14.01	0	7
-EQUA	n	
+EQUA	n
 CORR    NA   1.9   7.9   2.7   0.1   1.9   0.1  59.7  -1.0  26.5
 CORR    N2   0.5   0.1   0.2   0.1   0.7   0.1  -1.0  -1.0  25.5
 CORR    na   1.4   6.3   4.4   2.6   2.8   1.6  39.4  -1.0  23.3
@@ -547,11 +547,11 @@ PARM	N1	0		0	14.01	0	7
 EQUA	n1
 #
 PARM	O	0		0	16.00	0	8
-EQUA	o	
+EQUA	o
 CORR    O2   1.7  14.0  -1.0  -1.0   2.9  13.3  -1.0  -1.0  31.8
 #
 PARM	O2	0		0	16.00	0	8
-EQUA	o	
+EQUA	o
 CORR     O   1.7  14.0  -1.0  -1.0   2.9  13.3  -1.0  -1.0  31.8
 #
 PARM	OW	0		0	16.00	0	8
@@ -596,7 +596,7 @@ PARM	SO	0		0	32.06	0	16
 EQUA	s6
 #
 PARM	S1	0		0	32.06	0	16
-EQUA	s 
+EQUA	s
 #
 PARM	hc	0		0	1.008	0	1
 CORR    h1   0.2   0.7  -1.0  -1.0   1.1   0.5  -1.0  -1.0  28.1
@@ -908,7 +908,7 @@ PARM	oh	0		0	16.00	0	8
 CORR     o   7.9  35.2  -1.0  -1.0   7.5   2.8  -1.0  -1.0  35.9
 CORR    os   1.4   6.3  -1.0  -1.0   2.6   1.4  26.1   0.1   8.5
 CORR    ow  -1.0  -1.0  -1.0  -1.0  -1.0  -1.0  -1.0  -1.0  37.8
- 
+
 PARM	os	0		0	16.00	0	8
 CORR     o   8.7  38.5  -1.0  -1.0   8.1   3.0  -1.0  -1.0  36.6
 CORR    oh   1.4   6.3  -1.0  -1.0   2.6   1.4  26.1   0.1   8.5
@@ -1073,10 +1073,10 @@ PARM	nv	1		0	14.01	0	7
 EQUA    nh
 #
 PARM	ni	1		1	14.01	0	7
-EQUA    n 
+EQUA    n
 #
 PARM	nj	1		2	14.01	0	7
-EQUA    n 
+EQUA    n
 #
 PARM	nk	0		1	14.01	0	7
 EQUA    nx
@@ -1123,7 +1123,7 @@ EQUA	ss
 PARM	sq	0		2	32.06	0	16
 EQUA	ss
 #
-PARM	As	0		0	74.92 	0	33	
+PARM	As	0		0	74.92 	0	33
 EQUA    p4
 #
 PARM	HX	0		0	1.008	0	1
@@ -1145,35 +1145,35 @@ EQUA    c3
 #
 PARM 	Cu	1		0	63.01	0	29
 # For example:
-PARM     B      0                0       10.81   0       5 
+PARM     B      0                0       10.81   0       5
 EQUA     c2
-PARM     Al     0                0       26.982  0      13 
+PARM     Al     0                0       26.982  0      13
 EQUA     c2
-PARM     Ga     0                0       69.723  0      31 
+PARM     Ga     0                0       69.723  0      31
 EQUA     c2
-PARM     In     0                0      114.820  0      49 
+PARM     In     0                0      114.820  0      49
 EQUA     c2
-PARM     Tl     0                0      204.380  0      81 
+PARM     Tl     0                0      204.380  0      81
 EQUA     c2
-PARM     Si     0                0       28.085  0      14 
+PARM     Si     0                0       28.085  0      14
 EQUA     c3
-PARM     Ge     0                0       72.63   0      32 
+PARM     Ge     0                0       72.63   0      32
 EQUA     c3
-PARM     Sn     0                0      118.71   0      50 
+PARM     Sn     0                0      118.71   0      50
 EQUA     c3
-PARM     Pb     0                0      207.20   0      82 
+PARM     Pb     0                0      207.20   0      82
 EQUA     c3
-PARM     As     0                0       74.922  0      33 
+PARM     As     0                0       74.922  0      33
 EQUA     n3
-PARM     Sb     0                0      121.76   0      51 
+PARM     Sb     0                0      121.76   0      51
 EQUA     n3
-PARM     Bi     0                0      208.98   0      83 
+PARM     Bi     0                0      208.98   0      83
 EQUA     n3
-PARM     Se     0                0       78.971  0      34 
+PARM     Se     0                0       78.971  0      34
 EQUA     ss
-PARM     Te     0                0      127.60   0      52 
+PARM     Te     0                0      127.60   0      52
 EQUA     ss
-PARM     Zn     0                0       65.38   0      30 
+PARM     Zn     0                0       65.38   0      30
 PARM     Cd     0                0      112.41   0      48
 PARM     Hg     0                0      200.59   0      80
 PARM      V     0                0       50.942  0      23
@@ -1186,13 +1186,13 @@ WEIGHT_BA	 0.5	/*penalty weight for bond angle*/
 WEIGHT_BAF	 0.5	/*penalty weight for bond angle bending*/
 WEIGHT_X	 10	/*penalty for X in 1,2 and 4 th positions of improper parameters*/
 WEIGHT_X3	 30	/*penalty for X in the third place of improper parameters*/
-WEIGHT_BA_CTR	 10	/*additional penalty weight of replacing angle central atom: 
+WEIGHT_BA_CTR	 10	/*additional penalty weight of replacing angle central atom:
 			  penalty of the center atom = (WT_BA or WT_BAF) * WT_ANGLE_CENTER*/
-WEIGHT_TOR_CTR	 10	/*additional penalty weight of replacing torsional central atoms: 
+WEIGHT_TOR_CTR	 10	/*additional penalty weight of replacing torsional central atoms:
                           penalty of the center atoms = WT_TOR * WT_TOR_CENTER*/
-WEIGHT_IMPROPER  10     /*additional penalty weight of replacing the third atom type 
+WEIGHT_IMPROPER  10     /*additional penalty weight of replacing the third atom type
                           of an improper dihedral ange */
-WEIGHT_GROUP	 100	/*additional penalty of different atom type groups: 
+WEIGHT_GROUP	 100	/*additional penalty of different atom type groups:
                           total weight = total weight + WT_GROUP*/
 WEIGHT_EQUTYPE	 20	/*additional penalty of replacing equivalent atom types*/
 -------------------------------------------------------------------------
@@ -1210,6 +1210,6 @@ DEFAULT_TOR	 87	/*default penalty for outside atoms of torsional angle*/
 DEFAULT_TOR_CTR	 65	/*default penalty for center atoms of torsional angle*/
 DEFAULT_FRACT1   0.5    /*contribution of the default value*/
 DEFAULT_FRACT2   0.5    /*contribution of the default value*/
-THRESHOLD_BA	 20	/*threshold of bond angle score triggling 
+THRESHOLD_BA	 20	/*threshold of bond angle score triggling
                           emprical bond angle calculations*/
 -------------------------------------------------------------------------

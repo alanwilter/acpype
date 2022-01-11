@@ -1,13 +1,13 @@
     1    1    2
 db94.dat
-ALANINE                                                         
-                                                                
+ALANINE
+
 NALA  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
-   1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000  0.00000 
-   2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000  0.00000 
-   3  DUMM  DU    M    2   1   0     1.522   111.100     0.000  0.00000 
+ CORR OMIT DU   BEG
+   0.00000
+   1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000  0.00000
+   2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000  0.00000
+   3  DUMM  DU    M    2   1   0     1.522   111.100     0.000  0.00000
    4  N     N     M    3   2   1     1.335   116.600   180.000  -0.589266
    5  H1    H     E    4   3   2     1.010   119.800     0.000   0.446422
    6  H2    H     E    4   3   2     1.010    60.000    90.000   0.446422
@@ -18,15 +18,15 @@ NALA  INT     1
   11  C     C     M    8   4   3     1.522   111.100   180.000   0.676687
   12  O     O     E   11   8   4     1.229   120.500     0.000  -0.592764
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-GLYCINE                                                         
-                                                                
+GLYCINE
+
 NGLY  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -40,15 +40,15 @@ NGLY  INT     1
   11  C     C     M    8   4   3     1.522   110.400   180.000   0.648768
   12  O     O     E   11   8   4     1.229   120.500     0.000  -0.599357
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-SERINE                                                          
-                                                                
+SERINE
+
 NSER  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -64,15 +64,15 @@ NSER  INT     1
   13  C     C     M    8   4   3     1.522   111.100   180.000   0.592480
   14  O     O     E   13   8   4     1.229   120.500     0.000  -0.578162
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-THREONINE                                                       
-                                                                
+THREONINE
+
 NTHR  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -89,15 +89,15 @@ NTHR  INT     1
   14  C     C     M    8   4   3     1.522   111.100   180.000   0.709968
   15  O     O     E   14   8   4     1.229   120.500     0.000  -0.611797
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-LEUCINE                                                         
-                                                                
+LEUCINE
+
 NLEU  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -114,15 +114,15 @@ NLEU  INT     1
   14  C     C     M    8   4   3     1.522   111.100   180.000   0.656583
   15  O     O     E   14   8   4     1.229   120.500     0.000  -0.593318
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-ISOLEUCINE                                                      
-                                                                
+ISOLEUCINE
+
 NILE  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -139,15 +139,15 @@ NILE  INT     1
   14  C     C     M    8   4   3     1.522   111.100   180.000   0.733445
   15  O     O     E   14   8   4     1.229   120.500     0.000  -0.628820
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-VALINE                                                          
-                                                                
+VALINE
+
 NVAL  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -163,15 +163,15 @@ NVAL  INT     1
   13  C     C     M    8   4   3     1.522   111.100   180.000   0.890641
   14  O     O     E   13   8   4     1.229   120.500     0.000  -0.621511
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-ASPARAGINE                                                      
-                                                                
+ASPARAGINE
+
 NASN  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -190,17 +190,17 @@ NASN  INT     1
   16  C     C     M    8   4   3     1.522   111.100   180.000   0.602554
   17  O     O     E   16   8   4     1.229   120.500     0.000  -0.583293
 
-IMPROPER                                                        
- CA   +M   C    O                                               
- CB   ND2  CG   OD1                                             
- CG   HD21 ND2  HD22                                            
-                                                                
+IMPROPER
+ CA   +M   C    O
+ CB   ND2  CG   OD1
+ CG   HD21 ND2  HD22
+
 DONE
-GLUTAMINE                                                       
-                                                                
+GLUTAMINE
+
 NGLN  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -220,17 +220,17 @@ NGLN  INT     1
   17  C     C     M    8   4   3     1.522   111.100   180.000   0.606634
   18  O     O     E   17   8   4     1.229   120.500     0.000  -0.584415
 
-IMPROPER                                                        
- CA   +M   C    O                                               
- CG   NE2  CD   OE1                                             
- CD   HE21 NE2  HE22                                            
-                                                                
+IMPROPER
+ CA   +M   C    O
+ CG   NE2  CD   OE1
+ CD   HE21 NE2  HE22
+
 DONE
-ARGININE                                                        
-                                                                
+ARGININE
+
 NARG  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -255,19 +255,19 @@ NARG  INT     1
   22  C     C     M    8   4   3     1.522   111.100   180.000   0.770284
   23  O     O     E   22   8   4     1.229   120.500     0.000  -0.647234
 
-IMPROPER                                                        
- CA   +M   C    O                                               
- NE   NH1  CZ   NH2                                             
- CD   CZ   NE   HE                                              
- CZ   HH11 NH1  HH12                                            
- CZ   HH21 NH2  HH22                                            
-                                                                
+IMPROPER
+ CA   +M   C    O
+ NE   NH1  CZ   NH2
+ CD   CZ   NE   HE
+ CZ   HH11 NH1  HH12
+ CZ   HH21 NH2  HH22
+
 DONE
-HISTIDINE DELTAH                                                
-                                                                
+HISTIDINE DELTAH
+
 NHID  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -289,22 +289,22 @@ NHID  INT     1
   19  C     C     M    8   4   3     1.522   111.100   180.000   0.590651
   20  O     O     E   19   8   4     1.229   120.500     0.000  -0.579809
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- CA   +M   C    O                                               
- CG   CE1  ND1  HD1                                             
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CG   CE1  ND1  HD1
  CG   NE2  CD2  HD2
  ND1  NE2  CE1  HE1
  ND1  CD2  CG   CB
-                                                                
+
 DONE
-HISTIDINE EPSILONH                                              
-                                                                
+HISTIDINE EPSILONH
+
 NHIE  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -326,22 +326,22 @@ NHIE  INT     1
   19  C     C     M    8   4   3     1.522   111.100   180.000   0.601906
   20  O     O     E   19   8   4     1.229   120.500     0.000  -0.586694
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- CA   +M   C    O                                               
- CE1  CD2  NE2  HE2                                             
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CE1  CD2  NE2  HE2
  CG   NE2  CD2  HD2
  ND1  NE2  CE1  HE1
  ND1  CD2  CG   CB
-                                                                
+
 DONE
-HISTIDINE PLUS                                                  
-                                                                
+HISTIDINE PLUS
+
 NHIP  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -364,23 +364,23 @@ NHIP  INT     1
   20  C     C     M    8   4   3     1.522   111.100   180.000   0.737512
   21  O     O     E   20   8   4     1.229   120.500     0.000  -0.621000
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- CA   +M   C    O                                               
- CG   CE1  ND1  HD1                                             
- CE1  CD2  NE2  HE2                                             
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
+ CG   CE1  ND1  HD1
+ CE1  CD2  NE2  HE2
  CG   NE2  CD2  HD2
  ND1  NE2  CE1  HE1
  ND1  CD2  CG   CB
-                                                                
+
 DONE
-TRYPTOPHAN                                                      
-                                                                
+TRYPTOPHAN
+
 NTRP  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -409,26 +409,26 @@ NTRP  INT     1
   26  C     C     M    8   4   3     1.522   111.100   180.000   0.626460
   27  O     O     E   26   8   4     1.229   120.500     0.000  -0.570557
 
-LOOP                                                            
- CG   CD2                                                       
- CE2  CD2                                                       
-                                                                
-IMPROPER                                                        
- CA   +M   C    O                                               
- CD1  CE2  NE1  HE1                                             
- CE2  CH2  CZ2  HZ2                                             
- CZ2  CZ3  CH2  HH2                                             
- CH2  CE3  CZ3  HZ3                                             
- CZ3  CD2  CE3  HE3                                             
+LOOP
+ CG   CD2
+ CE2  CD2
+
+IMPROPER
+ CA   +M   C    O
+ CD1  CE2  NE1  HE1
+ CE2  CH2  CZ2  HZ2
+ CZ2  CZ3  CH2  HH2
+ CH2  CE3  CZ3  HZ3
+ CZ3  CD2  CE3  HE3
  CG   NE1  CD1  HD1
  CD1  CD2  CG   CB
-                                                                
+
 DONE
-PHENYLALANINE                                                   
-                                                                
+PHENYLALANINE
+
 NPHE  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -453,24 +453,24 @@ NPHE  INT     1
   22  C     C     M    8   4   3     1.522   111.100   180.000   0.596118
   23  O     O     E   22   8   4     1.229   120.500     0.000  -0.578021
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- CA   +M   C    O                                               
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
  CG   CE2  CD2  HD2
  CD2  CZ   CE2  HE2
  CE1  CE2  CZ   HZ
  CD1  CZ   CE1  HE1
  CG   CE1  CD1  HD1
  CD1  CD2  CG   CB
-                                                                
+
 DONE
-TYROSINE                                                        
-                                                                
+TYROSINE
+
 NTYR  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -496,24 +496,24 @@ NTYR  INT     1
   23  C     C     M    8   4   3     1.522   111.100   180.000   0.620893
   24  O     O     E   23   8   4     1.229   120.500     0.000  -0.574301
 
-LOOP                                                            
- CG   CD2                                                       
-                                                                
-IMPROPER                                                        
- CA   +M   C    O                                               
+LOOP
+ CG   CD2
+
+IMPROPER
+ CA   +M   C    O
  CG   CE2  CD2  HD2
  CD2  CZ   CE2  HE2
  CD1  CZ   CE1  HE1
  CG   CE1  CD1  HD1
  CD1  CD2  CG   CB
  CE1  CE2  CZ   OH
-                                                                
+
 DONE
-GLUTAMIC ACID                                                   
-                                                                
+GLUTAMIC ACID
+
 NGLU  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -531,16 +531,16 @@ NGLU  INT     1
   15  C     C     M    8   4   3     1.522   111.100   180.000   0.552551
   16  O     O     E   15   8   4     1.229   120.500     0.000  -0.598835
 
-IMPROPER                                                        
- CA   +M   C    O                                               
- CG   OE1  CD   OE2                                             
-                                                                
+IMPROPER
+ CA   +M   C    O
+ CG   OE1  CD   OE2
+
 DONE
-ASPARTIC ACID                                                   
-                                                                
+ASPARTIC ACID
+
 NASP  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -557,16 +557,16 @@ NASP  INT     1
   14  C     C     M    8   4   3     1.522   111.100   180.000   0.602072
   15  O     O     E   14   8   4     1.229   120.500     0.000  -0.586206
 
-IMPROPER                                                        
- CA   +M   C    O                                               
- CB   OD1  CG   OD2                                             
-                                                                
+IMPROPER
+ CA   +M   C    O
+ CB   OD1  CG   OD2
+
 DONE
-LYSINE                                                          
-                                                                
+LYSINE
+
 NLYS  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -587,15 +587,15 @@ NLYS  INT     1
   18  C     C     M    8   4   3     1.522   111.100   180.000   0.633667
   19  O     O     E   18   8   4     1.229   120.500     0.000  -0.596645
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-PROLINE                                                         
-                                                                
+PROLINE
+
 NPRO  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -610,18 +610,18 @@ NPRO  INT     1
   12  C     C     M   10   4   3     1.522   109.500   300.000   0.680470
   13  O     O     E   12  10   4     1.229   120.500     0.000  -0.599226
 
-LOOP                                                            
- CB    CA                                                        
-                                                                
-IMPROPER                                                        
- CA   +M   C    O                                               
- 
+LOOP
+ CB    CA
+
+IMPROPER
+ CA   +M   C    O
+
 DONE
-CYSTEINE                                                        
-                                                                
+CYSTEINE
+
 NCYS  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -637,15 +637,15 @@ NCYS  INT     1
   13  C     C     M    8   4   3     1.522   111.100   180.000   0.747857
   14  O     O     E   13   8   4     1.229   120.500     0.000  -0.622908
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
-METHIONINE                                                      
-                                                                
+METHIONINE
+
 NMET  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -662,8 +662,8 @@ NMET  INT     1
   14  C     C     M    8   4   3     1.522   111.100   180.000   0.683639
   15  O     O     E   14   8   4     1.229   120.500     0.000  -0.599042
 
-IMPROPER                                                        
- CA   +M   C    O                                               
-                                                                
+IMPROPER
+ CA   +M   C    O
+
 DONE
 STOP

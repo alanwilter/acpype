@@ -1,7 +1,7 @@
 Metal atoms
 MASS
 Pt 195.084 0.0000           Platinum surface atoms
-VS 195.000 0.000            Virtual Platinum surface atoms 
+VS 195.000 0.000            Virtual Platinum surface atoms
 Ic 0.5 0.000           Fictitious atom
 qR 2.0 0.000           Fictitious atom
 Ib 0.5 0.000

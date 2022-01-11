@@ -15,14 +15,14 @@ from acpype.topol import AbstractTopol, ACTopol, MolTopol, header
 from acpype.utils import elapsedTime, set_for_pip, while_replace
 
 
-def chk_py_ver():
+def _chk_py_ver():
     if sys.version_info < (3, 6):
         msg = "Sorry, you need python 3.6 or higher"
         logger().error(msg)
         raise Exception(msg)
 
 
-def handle_exception(level):
+def _handle_exception(level):
     _exceptionType, exceptionValue, _exceptionTraceback = sys.exc_info()
     logger(level).exception(f"ACPYPE FAILED: {exceptionValue}")
     return True
@@ -40,7 +40,7 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
     Returns:
         SystemExit(status): 0 or 19 (failed)
     """
-    chk_py_ver()
+    _chk_py_ver()
     set_for_pip(binaries)
     if argv is None:
         argv = sys.argv[1:]
@@ -96,13 +96,13 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
                 chiral=args.chiral,
             )
         except Exception:
-            acpypeFailed = handle_exception(level)
+            acpypeFailed = _handle_exception(level)
         if not acpypeFailed:
             try:
                 molecule.writeGromacsTopolFiles()
                 molecule.printDebug("prmtop and inpcrd files parsed")
             except Exception:
-                acpypeFailed = handle_exception(level)
+                acpypeFailed = _handle_exception(level)
 
     else:
         try:
@@ -130,17 +130,17 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
                 amb2gmx=False,
             )
         except Exception:
-            acpypeFailed = handle_exception(level)
+            acpypeFailed = _handle_exception(level)
         if not acpypeFailed:
             try:
                 molecule.createACTopol()
             except Exception:
-                acpypeFailed = handle_exception(level)
+                acpypeFailed = _handle_exception(level)
         if not acpypeFailed:
             try:
                 molecule.createMolTopol()
             except Exception:
-                acpypeFailed = handle_exception(level)
+                acpypeFailed = _handle_exception(level)
 
     execTime = int(round(time.time() - at0))
     if execTime == 0:

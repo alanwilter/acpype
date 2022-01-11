@@ -60,7 +60,7 @@ BONDS
 CST  OST   937.96      1.1600 ! JES
 !Heme to Sulfate (PSUL) link
 SS   FE    250.0       2.3200 !force constant a guess
-           !equilbrium bond length optimized to reproduce 
+           !equilbrium bond length optimized to reproduce
            !CSD survey values of
            !2.341pm0.01 (mean, standard error)
            !adm jr., 7/01
@@ -68,15 +68,15 @@ C    C     600.000     1.3350 ! ALLOW ARO HEM
                 ! Heme vinyl substituent (KK, from propene (JCS))
 CA   CA    305.000     1.3750 ! ALLOW   ARO
                 ! benzene, JES 8/25/89
-CE1  CE1   440.000     1.3400   ! 
+CE1  CE1   440.000     1.3400   !
 		! for butene; from propene, yin/adm jr., 12/95
-CE1  CE2   500.000     1.3420   ! 
+CE1  CE2   500.000     1.3420   !
 		! for propene, yin/adm jr., 12/95
-CE1  CT2   365.000     1.5020   ! 
+CE1  CT2   365.000     1.5020   !
 		! for butene; from propene, yin/adm jr., 12/95
-CE1  CT3   383.000     1.5040   ! 
+CE1  CT3   383.000     1.5040   !
 		! for butene, yin/adm jr., 12/95
-CE2  CE2   510.000     1.3300   ! 
+CE2  CE2   510.000     1.3300   !
 		! for ethene, yin/adm jr., 12/95
 CP1  C     250.000     1.4900 ! ALLOW PRO
                 ! 6-31g* AcProNH2, ProNH2, 6-31g*//3-21g AcProNHCH3 RLD 4/23/93
@@ -182,9 +182,9 @@ HA   CT3   322.000     1.1110 ! ALLOW   ALI
                 ! alkane update, adm jr., 3/2/92
 HA   CY    330.000     1.0800 ! ALLOW   ARO
                 ! JWK 05/14/91 new r0 from indole
-HE1  CE1   360.500     1.1000   ! 
+HE1  CE1   360.500     1.1000   !
 		! for propene, yin/adm jr., 12/95
-HE2  CE2   365.000     1.1000   ! 
+HE2  CE2   365.000     1.1000   !
 		! for ethene, yin/adm jr., 12/95
 HB   CP1   330.000     1.0800 ! ALLOW PRO
                 ! 6-31g* AcProNH2, ProNH2, 6-31g*//3-21g AcProNHCH3 RLD 4/23/93
@@ -347,7 +347,7 @@ NN6  HN1    403.000     1.040   ! methylammonium
 !abasic deoxynucleoside
 ON6  CN8B   260.0       1.420   ! susil
 CN8  CN8B   222.50      1.528   ! Alkanes, sacred
-! 
+!
 !NICH parameters to maintain back compatibility following
 !atom type switch from HN3 to HN6
 CN3C HN6    374.0       1.09    !nadh/ppi, jjp1/adm jr. 7/95
@@ -372,8 +372,8 @@ CN2  CN3    320.0       1.406   !C, adm jr. 11/97
 CN2  CN3D   260.0       1.405   !5mc, adm jr. 9/9/93, from cn2 cn3
 CN2  CN5    360.0       1.358   !A, adm jr. 11/97
 CN2  NN1    360.0       1.366   !C,A,G JWK, adm jr. 10/2/91
-CN2  NN2G   400.0       1.392   !G  
-CN2  NN3    450.0       1.343   !C  
+CN2  NN2G   400.0       1.392   !G
+CN2  NN3    450.0       1.343   !C
 CN2  NN3A   400.0       1.342   !A, adm jr. 11/97
 CN2  NN3G   320.0       1.326   !G, adm jr. 11/97
 CN3  CN3    500.0       1.326   !C,U adm jr. 11/97
@@ -425,7 +425,7 @@ HN2  NN2U   474.0       1.01    !U, JWK, adm jr. 7/24/91
 HN4  ON4    545.0       0.960   !MP_1, ADM Jr.
 !HT   HT       0.0       1.5139  ! from TIPS3P geometry (for SHAKE w/PARAM)
 !HT   OT     450.0       0.9572  ! from TIPS3P geometry
-ON2  P      270.0       1.60    !DMP, ADM Jr. 
+ON2  P      270.0       1.60    !DMP, ADM Jr.
 ON3  P      580.0       1.48    !DMP, ADM Jr.
 ON4  P      237.0       1.58    !MP_1, ADM Jr.
 ON2  P2     300.0       1.68    !nad/ppi, jjp1/adm jr. 7/95
@@ -435,11 +435,11 @@ ON3  P3     480.0       1.53    !PPI2, from nad/ppi, adm jr. 7/01
 ON4  P3     237.0       1.58    !PPI2, from MP_1, ADM Jr.
 NN5  HN1    460.0       1.01    !sugar model, adm jr.
 !@@@@@@@@@ Begining of endocyclic bonds for deoxy-ribose @@@@@@@@@
-CN7B ON6    260.0       1.420   ! From exp  
-CN7B CN8    200.0       1.518   ! From exp 
+CN7B ON6    260.0       1.420   ! From exp
+CN7B CN8    200.0       1.518   ! From exp
 CN7  ON6    240.0       1.446   ! Fom exp.
-CN7  CN7    222.5       1.529  	! From exp 
-CN7  CN8    222.5       1.516  	! From exp. 
+CN7  CN7    222.5       1.529  	! From exp
+CN7  CN8    222.5       1.516  	! From exp.
 CN7  CN9    222.5       1.516  	! for 5MET, From alkanes
 CN7  HN7    309.0       1.111   !Alkanes, sacred
 CN8  HN8    309.0       1.111   !Alkanes, sacred
@@ -448,8 +448,8 @@ CN7B HN7    309.0       1.111   ! From CN8  HN7 (NF)
 !@@@@@@@@@ Begining of endocyclic bonds for ribose @@@@@@@@@
 CN7B ON6B   260.0       1.420   ! From CN7B ON6
 CN7  ON6B   240.0       1.480   ! From CN7  ON6
-CN7B CN7B   200.0       1.450   ! 
-CN7  CN7B   222.5       1.460   ! Specific to RNA 
+CN7B CN7B   200.0       1.450   !
+CN7  CN7B   222.5       1.460   ! Specific to RNA
 !@@@@@@@@@ End of endocyclic bonds for ribose @@@@@@@@@
 
 !@@@@@@@@@ Begining of endocyclic bonds for arabinose @@@@@@@@@
@@ -460,7 +460,7 @@ CN7C HN7    309.0       1.111   ! From CN8  HN7
 !@@@@@@@@@ End of endocyclic bonds for arabinose @@@@@@@@@
 
 !@@@@@@@@@ Begining of exocyclic bonds for deoxy-ribose @@@@@@@@@
-CN7  CN8B   222.5       1.512   ! From exp. 
+CN7  CN8B   222.5       1.512   ! From exp.
 CN8B ON2    320.0       1.44    ! From exp
 !CN8B ON5    250.0       1.44    ! From CN8B ON2
 CN8B ON5    428.0       1.42    !From CN8 ON2, adm jr., 8/30/98
@@ -481,7 +481,7 @@ ON5   HN5    545.0       0.960  !RIBOSE, MeOH
 
 !@@@@@@@@@ Begining of exocyclic bonds for ribose @@@@@@@@@
 !CN7B ON5    250.0       1.400   ! From CN7  ON5
-CN7B ON5    428.0       1.400   ! check adm jr., 
+CN7B ON5    428.0       1.400   ! check adm jr.,
 !FC should be 428.000 based on Meoh
 !@@@@@@@@@ End of exocyclic bonds for ribose @@@@@@@@@
 
@@ -533,13 +533,13 @@ CA   CA   CA    40.000    120.00   35.00   2.41620 ! ALLOW   ARO
                 ! JES 8/25/89
 CE1  CE1  CT2    48.00    123.50   !
                 ! for 2-butene, yin/adm jr., 12/95
-CE1  CE1  CT3    48.00    123.50   ! 
+CE1  CE1  CT3    48.00    123.50   !
 		! for 2-butene, yin/adm jr., 12/95
-CE1  CT2  CT3    32.00    112.20   ! 
+CE1  CT2  CT3    32.00    112.20   !
 		! for 1-butene; from propene, yin/adm jr., 12/95
-CE2  CE1  CT2    48.00    126.00   ! 
+CE2  CE1  CT2    48.00    126.00   !
 		! for 1-butene; from propene, yin/adm jr., 12/95
-CE2  CE1  CT3    47.00    125.20   ! 
+CE2  CE1  CT3    47.00    125.20   !
 		! for propene, yin/adm jr., 12/95
 CP1  N    C      60.000   117.0000 ! ALLOW PRO
                 ! 6-31g* AcProNH2, ProNH2, 6-31g*//3-21g AcProNHCH3 RLD 4/23/93
@@ -781,7 +781,7 @@ HA   CT2  CC    33.000    109.50   30.00   2.16300 ! ALLOW   ALI PEP POL ARO
                 ! adm jr. 4/05/91, for asn,asp,gln,glu and cters
 HA   CT2  CD    33.000    109.50   30.00   2.16300 ! ALLOW   ALI PEP POL ARO
                 ! adm jr. 5/02/91, acetic acid pure solvent
-HA   CT2  CE1    45.00    111.50   ! 
+HA   CT2  CE1    45.00    111.50   !
 		! for 1-butene; from propene, yin/adm jr., 12/95
 HA   CT2  CPB    50.000   109.5000 ! ALLOW HEM
                 ! Heme (6-liganded): substituents (KK 05/13/91)
@@ -805,7 +805,7 @@ HA   CT3  CC    33.000    109.50   30.00   2.16300 ! ALLOW   ALI PEP POL ARO
                 ! adm jr. 4/05/91, for asn,asp,gln,glu and cters
 HA   CT3  CD    33.000    109.50   30.00   2.16300 ! ALLOW   ALI PEP POL ARO
                 ! adm jr. 5/02/91, acetic acid pure solvent
-HA   CT3  CE1    42.00    111.50   ! 
+HA   CT3  CE1    42.00    111.50   !
 		! for 2-butene, yin/adm jr., 12/95
 HA   CT3  CPB    50.000   109.5000 ! ALLOW HEM
                 ! Heme (6-liganded): substituents (KK 05/13/91)
@@ -825,21 +825,21 @@ HA   CY   CA    20.000    126.40   25.00   2.18600 ! ALLOW   ARO
                 ! JWK 05/14/91 new theta0 and r0UB from indole
 HA   CY   CPT   32.000    126.40   25.00   2.25500 ! ALLOW   ARO
                 ! JWK 05/14/91 new theta0 and r0UB from indole
-HE1  CE1  CE1    52.00    119.50   ! 
+HE1  CE1  CE1    52.00    119.50   !
 		! for 2-butene, yin/adm jr., 12/95
-HE1  CE1  CE2    42.00    118.00   ! 
+HE1  CE1  CE2    42.00    118.00   !
 		! for propene, yin/adm jr., 12/95
-HE1  CE1  CT2    40.00    116.00   ! 
+HE1  CE1  CT2    40.00    116.00   !
 		! for 1-butene; from propene, yin/adm jr., 12/95
-HE1  CE1  CT3    22.00    117.00   ! 
+HE1  CE1  CT3    22.00    117.00   !
 		! for propene, yin/adm jr., 12/95
 HE1  CE1  CPB    50.000   120.0000 ! ALLOW HEM
                 ! Heme (6-liganded): substituents (KK 05/13/91)
-HE2  CE2  CE1    45.00    120.50   ! 
+HE2  CE2  CE1    45.00    120.50   !
 		! for propene, yin/adm jr., 12/95
-HE2  CE2  CE2    55.50    120.50   ! 
+HE2  CE2  CE2    55.50    120.50   !
 		! for ethene, yin/adm jr., 12/95
-HE2  CE2  HE2    19.00    119.00   ! 
+HE2  CE2  HE2    19.00    119.00   !
 		! for propene, yin/adm jr., 12/95
 HB   CP1  C      50.000   112.0000 ! ALLOW PEP PRO
                 ! 6-31g* AcProNH2, ProNH2, 6-31g*//3-21g AcProNHCH3 RLD 4/23/93
@@ -1287,7 +1287,7 @@ NN2B CN5  NN3G   140.0     125.5  ! bridgeC4
 CN1  CN5G NN4    125.0     129.0  ! bridgeC5
 CN1  NN2G HN2     45.0     113.3  ! h1
 CN2  NN2G HN2     45.0     115.6  !
-NN1  CN2  NN2G    95.0     115.4  ! n2 
+NN1  CN2  NN2G    95.0     115.4  ! n2
 NN1  CN2  NN3G    95.0     122.4  !
 NN2G CN1  ON1     50.0     127.5  ! o6
 CN5G CN1  ON1     50.0     124.7  !
@@ -1326,7 +1326,7 @@ NN2U CN1T ON1    100.0     124.4  !U
 CN1T NN2U HN2     40.5     114.4  !U, h3
 CN1  NN2U HN2     40.5     115.4  !U
 NN2U CN1  ON1    100.0     121.9  !U, o4
-CN3  CN1  ON1    100.0     125.5  !U, 
+CN3  CN1  ON1    100.0     125.5  !U,
 CN1  CN3  HN3     30.0     120.3  !U, h5
 HN3  CN3  NN2B    30.0     114.3  !U, h6
 ! thymine 6-mem ring (unique from ura)
@@ -1346,10 +1346,10 @@ NN2B CN5  NN3I   140.0     128.4  !c4, r5
 CN1  NN2G CN4    125.0     129.7  !n1
 CN4  NN2G HN2     40.5     117.0  !n1
 CN4  NN3I CN5     90.0     108.4  !n3
-! base to methyl connection 
-CN1T NN2B CN9     70.0     116.0  !1-M-T/U, adm jr. 
+! base to methyl connection
+CN1T NN2B CN9     70.0     116.0  !1-M-T/U, adm jr.
 CN3  NN2B CN9     70.0     122.0  !1-M-T/U, adm jr. 7/24/91
-CN1  NN2  CN9     70.0     115.4  !1-M-C, adm jr. 
+CN1  NN2  CN9     70.0     115.4  !1-M-C, adm jr.
 CN3  NN2  CN9     70.0     120.5  !1-M-C, adm jr. 7/24/91
 CN5  NN2  CN9     70.0     125.9  !9-M-A, adm jr.
 CN4  NN2  CN9     70.0     127.8  !9-M-A, adm jr.
@@ -1375,9 +1375,9 @@ CN7B CN7B NN2    110.0     111.0  !C/A, RNA
 CN7C CN7B NN2    110.0     111.0  !C/A, Arabinose (NF)
 ON6  CN7B NN2B   110.0     108.0  !T/U/G (DNA) FC from A
 ON6B CN7B NN2B   110.0     112.0  !T/U/G (RNA) FC from A
-CN8  CN7B NN2B   110.0     113.7  !T/U/G 
+CN8  CN7B NN2B   110.0     113.7  !T/U/G
 CN7  CN7B NN2B   110.0     111.0  !T/U/G, RNA, 25P1
-CN7B CN7B NN2B   110.0     111.0  !T/U/G, RNA 
+CN7B CN7B NN2B   110.0     111.0  !T/U/G, RNA
 CN7C CN7B NN2B   110.0     111.0  !T/U/G, Arabinose (NF)
 HN7  CN7B NN2     43.0     111.0  !
 HN7  CN7B NN2B    43.0     111.0  !From HN7  CN7B NN2
@@ -1442,7 +1442,7 @@ P    ON2  P       15.0     140.0 -40.0  2.80 !nad/ppi, jjp1/adm jr. 7/95
 P2   ON2  P       15.0     140.0 -40.0  2.80 !nad/ppi, jjp1/adm jr. 7/95
 P3   ON2  P       45.0     140.0  40.0  3.15 !PPI2, from nad/ppi, adm jr., 7/01
 P2   ON2  P2      15.0     140.0 -40.0  2.80 !nad/ppi, jjp1/adm jr. 7/95
-HN4  ON4  P       30.0     115.0  40.0  2.35 !MP_1, ADM Jr. 
+HN4  ON4  P       30.0     115.0  40.0  2.35 !MP_1, ADM Jr.
 HN4  ON4  P3      30.0     120.0  40.0  2.35 !PPI2, from MP_1, adm jr., 7/01
 HN5  ON5  CN8     57.5     106.0  !RIBOSE, Adm Jr. MeOH
 HN5  ON5  CN9     57.5     106.0  !RIBOSE, Adm Jr. MeOH
@@ -1461,21 +1461,21 @@ CN7  CN8  ON5     75.7     110.10 !RIBOSE, adm jr. MeOH
 HN9  CN9  HN9     35.500   108.40  5.40 1.802 !alkane update, adm jr. 3/2/92
 !@@@@@@@@@ Beginning of endocyclic valence angles for regular DNA @@@@@@@
 CN7  ON6  CN7B    110.0    108.0   ! NF, 11/97, C4'O4'C1'
-ON6  CN7B CN8      90.0    102.0   ! NF, 11/97, C4'O4'C1' 
+ON6  CN7B CN8      90.0    102.0   ! NF, 11/97, C4'O4'C1'
 CN7B CN8  CN7      80.00   100.0   ! NF, 11/97, C1'C2'C3'
 CN8  CN7  CN7      60.00   102.0   8.0   2.561  !NF, 11/97, C2'C3'C4'
 CN9  CN7  CN7      60.00   102.0   8.0   2.561  !for 5MET, adm jr.
 CN7  CN7  ON6     100.0    104.0   ! NF, 11/97, C3'C4'O4'
 CN8  CN7  ON6     100.0    104.0   ! NF, 11/97, C3'C4'O4', 25P1
-HN7  CN7  ON6      45.2    107.24  ! 
-HN7  CN7B ON6      45.2    107.24  ! 
+HN7  CN7  ON6      45.2    107.24  !
+HN7  CN7B ON6      45.2    107.24  !
 HN7  CN7  CN7      40.0    108.00  !
 CN7B CN8  HN8      33.4    110.10  22.53   2.179 ! following terms directly
 CN8  CN7B HN7      33.4    110.10  22.53   2.179 ! from alkanes
-HN7  CN7  CN8      34.5    110.1   22.53   2.179 ! 
-HN8  CN8  CN7      34.53   110.10  22.53   2.179 ! 
-HN8  CN8  CN8      34.53   110.10  22.53   2.179 ! 
-HN8  CN8  HN8      35.5    109.00   5.40   1.802 ! 
+HN7  CN7  CN8      34.5    110.1   22.53   2.179 !
+HN8  CN8  CN7      34.53   110.10  22.53   2.179 !
+HN8  CN8  CN8      34.53   110.10  22.53   2.179 !
+HN8  CN8  HN8      35.5    109.00   5.40   1.802 !
 HN7  CN7  HN7      35.5    109.00   5.40   1.802 !
 !@@@@@@@@@ End of endocyclic valence angles for regular DNA @@@@@@@
 
@@ -1483,8 +1483,8 @@ HN7  CN7  HN7      35.5    109.00   5.40   1.802 !
 CN7  ON6B CN7B    110.0    115.0   ! From CN7  ON6  CN7B
 CN7  CN7  ON6B    100.0    110.0   ! From CN7  CN7  ON6
 CN8  CN7  ON6B    100.0    110.0   ! From CN7  CN7  ON6, 25P1
-ON6B CN7B CN7B     90.0    106.0   ! 030998 
-CN7B CN7B CN7     110.0     96.0   ! 
+ON6B CN7B CN7B     90.0    106.0   ! 030998
+CN7B CN7B CN7     110.0     96.0   !
 CN7B CN7B CN8     110.0     96.0   ! 25P1
 CN7B CN7  CN7      60.0    100.0    8.00   2.561  !NF, 11/97, C2'C3'C4'
 !CN7  CN8  CN7      60.0    100.0    8.00   2.561  !NF, 11/97, C2'C3'C4', 25P1
@@ -1533,22 +1533,22 @@ CN8B CN7  ON5      90.0    108.2  ! phosphoramidate, carbocyclic
 HN8  CN8B ON5      45.9    108.89 ! From HN7  CN8  ON5
 !===== For 3ter patch:
 ON5  CN7  CN8      75.7    110.0  ! from CHARMM22
-ON5  CN7  CN7      75.7    110.1  ! 
-HN7  CN7  ON5      60.0    109.5  ! 
-HN5  ON5  CN7      57.5    109.0  ! 
+ON5  CN7  CN7      75.7    110.1  !
+HN7  CN7  ON5      60.0    109.5  !
+HN5  ON5  CN7      57.5    109.0  !
 !@@@@@@@@@ End of exocyclic valence angles for regular DNA @@@@@@@
 
 !@@@@@@@@@ Beginning of exocyclic valence angles for regular RNA @@@@@@@
 !O4'-C4'-C5'
-ON6B CN7  CN8B     90.0    108.2  ! 
+ON6B CN7  CN8B     90.0    108.2  !
 ON6B CN7  CN9      90.0    108.2  ! for 5MET patch, adm jr.
 !O3'-C3'-C2'
 ON2  CN7  CN7B     90.0    110.0  !
 ON5  CN7  CN7B     90.0    110.0  ! From ON5  CN7  CN8
 !O2'-C2'-C1'
-ON5  CN7B CN7B     80.0    108.4  ! 
+ON5  CN7B CN7B     80.0    108.4  !
 !O2'-C2'-C3'
-ON5  CN7B CN7      90.0    108.0  ! 
+ON5  CN7B CN7      90.0    108.0  !
 HN7  CN7B ON5      60.0    109.5  !
 HN5  ON5  CN7B     57.5    109.0  !
 HN7  CN7B CN7      34.53   110.10  22.53   2.179
@@ -1561,7 +1561,7 @@ CN7C CN7  ON2     115.0    109.7  !NF, 11/97, C2'C3'O3'
 !From DNA:
 ON5  CN7  CN7C     75.7    110.0  ! from CHARMM22
 !From RNA:
-ON5  CN7C CN7B     80.0    108.4  ! From ON5  CN7B CN7B 
+ON5  CN7C CN7B     80.0    108.4  ! From ON5  CN7B CN7B
 !O2'-C2'-C3'
 ON5  CN7C CN7      90.0    108.0  ! From ON5  CN7B CN7
 HN7  CN7C ON5      60.0    109.5  !
@@ -1600,8 +1600,8 @@ HN7  CN7B NR1      30.0    106.3  ! k guessed, theta from ai (NF)
 !HT   OT   HT       55.0    104.52 		! FROM TIPS3P GEOMETRY
 !------------------------ added for arao -----------------------
 !------------------------ added for araim ----------------------
-ON6  CN7B CN7     120.0     106.25   ! 
-CN7B CN7  CN8      58.35    113.6   11.16 2.561 ! 
+ON6  CN7B CN7     120.0     106.25   !
+CN7B CN7  CN8      58.35    113.6   11.16 2.561 !
 
 DIHEDRALS
 !
@@ -1650,15 +1650,15 @@ CD   CT1  NH1  C        0.2000  1   180.00 ! ALLOW PEP POL
                 ! ala dipeptide update for new C VDW Rmin, adm jr., 3/3/93c
 CD   CT2  NH1  C        0.2000  1   180.00 ! ALLOW PEP POL
                 ! Alanine dipeptide; NMA; acetate; etc. backbon adm jr., 3/3/93c
-CE1  CE1  CT3  HA       0.0300  3     0.00 ! 
+CE1  CE1  CT3  HA       0.0300  3     0.00 !
 		! for butene, yin/adm jr., 12/95
 CE2  CE1  CT2  CT3      0.5000  1   180.00 !
                 ! 1-butene, adm jr., 2/00 update
 CE2  CE1  CT2  CT3      1.3000  3   180.00 !
 		! 1-butene, adm jr., 2/00 update
-CE2  CE1  CT2  HA       0.1200  3     0.00 ! 
+CE2  CE1  CT2  HA       0.1200  3     0.00 !
 		! for butene, yin/adm jr., 12/95
-CE2  CE1  CT3  HA       0.0500  3   180.00 ! 
+CE2  CE1  CT3  HA       0.0500  3   180.00 !
 		! for propene, yin/adm jr., 12/95
 CP1  C    N    CP1      2.7500  2   180.00 ! ALLOW PRO
                 ! 6-31g* AcProNH2, ProNH2, 6-31g*//3-21g AcProNHCH3 RLD 4/23/93
@@ -1810,7 +1810,7 @@ CT3  C    NH1  CT3      2.5000  2   180.00 !  ALLOW PEP
                 ! Gives appropriate NMA cis/trans barrier. (LK)
 CT3  CA   CA   CA       3.1000  2   180.00 ! ALLOW   ARO
                 ! toluene, adm jr., 3/7/92
-CT3  CE1  CE2  HE2      5.2000  2   180.00 ! 
+CT3  CE1  CE2  HE2      5.2000  2   180.00 !
 		! for propene, yin/adm jr., 12/95
 CT3  CPH1 NR1  CPH2     3.0000  2   180.00 ! ALLOW ARO
                 ! his, ADM JR., 7/22/89, FROM HA CPH1 NR1 CPH2
@@ -2008,19 +2008,19 @@ HA   CY   CPT  CA       3.0000  2   180.00 ! ALLOW   ARO
                 ! JWK 09/05/89
 HA   CY   CPT  CPT      3.0000  2   180.00 ! ALLOW   ARO
                 ! JWK 09/05/89
-HE1  CE1  CE1  HE1      1.0000  2   180.00 ! 
+HE1  CE1  CE1  HE1      1.0000  2   180.00 !
                 ! 2-butene, adm jr., 8/98 update
 CT3  CE1  CE1  HE1      1.0000  2   180.00 !
                 ! 2-butene, adm jr., 8/98 update
-HE1  CE1  CE2  HE2      5.2000  2   180.00 ! 
+HE1  CE1  CE2  HE2      5.2000  2   180.00 !
 		! for propene, yin/adm jr., 12/95
 HE1  CE1  CT2  HA       0.0000  3     0.00
 		! butene, adm jr., 2/00 update
-HE1  CE1  CT2  CT3      0.1200  3     0.00 ! 
+HE1  CE1  CT2  CT3      0.1200  3     0.00 !
 		! for butene, yin/adm jr., 12/95
 HE1  CE1  CT3  HA       0.0000  3     0.00
 		! butene, adm jr., 2/00 update
-HE2  CE2  CE1  CT2      5.2000  2   180.00 ! 
+HE2  CE2  CE1  CT2      5.2000  2   180.00 !
 		! for butene, yin/adm jr., 12/95
 HE2  CE2  CE1  CPB      5.2000  2   180.00 !
                 ! for vinyl, from butene, yin/adm jr., 12/95
@@ -2432,7 +2432,7 @@ X    CE1  CE1  X        0.1500  1     0.00
                 ! 2-butene, adm jr., 2/00 update
 X    CE1  CE1  X        8.5000  2   180.00
                 ! 2-butene, adm jr., 2/00 update
-X    CE2  CE2  X        4.9000  2   180.00 ! 
+X    CE2  CE2  X        4.9000  2   180.00 !
 		! for ethene, yin/adm jr., 12/95
 X    CP1  C    X        0.0000  6   180.00 ! ALLOW   POL PEP PRO
                 ! 6-31g* AcProNH2, ProNH2, 6-31g*//3-21g AcProNHCH3 RLD 4/23/93
@@ -2607,12 +2607,12 @@ P    ON2  CN9  HN9      0.000   3     0.0  !dmp
 ! butane gauche terms
 cn9  cn8  cn8  cn9      0.15    1     0.0
 cn9  cn8  cn8  cn8      0.15    1     0.0
-! BASES                     
-! Uracil 
+! BASES
+! Uracil
 NN2B CN1T NN2U CN1      1.5     2   180.0  ! adm jr. 11/97
 CN1T NN2U CN1  CN3      1.5     2   180.0  ! adm jr. 11/97
 NN2U CN1  CN3  CN3      1.5     2   180.0  ! adm jr. 11/97
-CN1  CN3  CN3  NN2B     6.0     2   180.0  ! adm jr. 11/97 
+CN1  CN3  CN3  NN2B     6.0     2   180.0  ! adm jr. 11/97
 CN3  CN3  NN2B CN1T     1.5     2   180.0  ! adm jr. 11/97
 CN3  NN2B CN1T NN2U     1.5     2   180.0  ! adm jr. 11/97
 HN3  CN3  CN3  HN3      3.0     2   180.0  ! adm jr. 11/97
@@ -2634,7 +2634,7 @@ NN2B CN3  CN3T CN9      5.6     2   180.0  ! adm jr. 11/97
 CN1  CN3T CN9  HN9      0.46    3     0.0  ! adm jr. 11/97
 CN3  CN3T CN9  HN9      0.46    3     0.0  ! adm jr. 11/97
 CN3T CN1  NN2U HN2      4.8     2   180.0  ! adm jr. 11/97
-! Cytosine 
+! Cytosine
 CN3  NN2  CN1  NN3      0.6     2   180.0  ! adm jr. 11/97
 NN2  CN1  NN3  CN2      0.6     2   180.0  ! adm jr. 11/97
 CN1  NN3  CN2  CN3      6.0     2   180.0  ! adm jr. 11/97
@@ -2668,16 +2668,16 @@ CN3  CN3D CN9  HN9      0.0     3     0.0  !5mc, adm jr. 9/9/93
 CN2  CN3D CN9  HN9      0.35    3     0.0  !5mc, adm jr. 9/9/93
 CN2  CN3D CN3  HN3      4.0     2   180.0  !5mc, adm jr. 9/9/93
 CN9  CN3D CN3  HN3      4.0     2   180.0  !5mc, adm jr. 9/9/93
-! Adenine  
+! Adenine
 CN2  NN3A CN4  NN3A     1.8     2   180.0  ! adm jr. 11/97, 6-mem
-NN3A CN4  NN3A CN5      2.0     2   180.0  ! 
-CN4  NN3A CN5  CN5      1.8     2   180.0  ! 
+NN3A CN4  NN3A CN5      2.0     2   180.0  !
+CN4  NN3A CN5  CN5      1.8     2   180.0  !
 NN3A CN5  CN5  CN2      2.0     2   180.0  ! treated 2x
-CN5  CN5  CN2  NN3A     1.8     2   180.0  ! 
-CN5  CN2  NN3A CN4     10.0     2   180.0  ! 
+CN5  CN5  CN2  NN3A     1.8     2   180.0  !
+CN5  CN2  NN3A CN4     10.0     2   180.0  !
 CN5  CN5  NN4  CN4      6.0     2   180.0  ! 5-mem
-CN5  NN4  CN4  NN2     14.0     2   180.0  ! 
-NN4  CN4  NN2  CN5      6.0     2   180.0  ! 
+CN5  NN4  CN4  NN2     14.0     2   180.0  !
+NN4  CN4  NN2  CN5      6.0     2   180.0  !
 CN4  NN2  CN5  CN5      6.0     2   180.0  !
 NN2  CN5  CN5  NN4     14.0     2   180.0  ! treated 2x
 CN2  NN3A CN4  HN3      8.5     2   180.0  ! H2
@@ -2691,7 +2691,7 @@ CN4  NN3A CN2  NN1      4.0     2   180.0  ! N6
 CN5  CN5  CN2  NN1      4.0     2   180.0  ! N6
 NN4  CN5  CN2  NN1      0.0     2   180.0  ! N6
 CN5  CN2  NN1  HN1      0.5     2   180.0  ! 6-NH2
-NN3A CN2  NN1  HN1      0.5     2   180.0  ! 
+NN3A CN2  NN1  HN1      0.5     2   180.0  !
 ! Butterfly motion
 NN3A CN5  CN5  NN4      7.0     2   180.0  !A, adm jr. 11/97
 CN2  CN5  CN5  NN2      7.0     2   180.0  !A
@@ -2699,7 +2699,7 @@ NN3A CN2  CN5  NN4      2.0     2   180.0  !A
 CN2  CN5  NN4  CN4      2.0     2   180.0  !A
 CN4  NN3A CN5  NN2      2.0     2   180.0  !A
 NN3A CN5  NN2  CN4      2.0     2   180.0  !A
-! Guanine 
+! Guanine
 CN1  NN2G CN2  NN3G     0.2     2   180.0  !adm jr. 11/97, 6-mem
 NN2G CN2  NN3G CN5      2.0     2   180.0  !
 CN2  NN3G CN5  CN5G     0.2     2   180.0  !
@@ -2749,7 +2749,7 @@ X    CN5  NN3I X        1.0     2   180.0
 ! Wild cards for uracil, thymine and cytosine
 X    CN1  NN3  X        1.0     2   180.0  ! c22
 X    CN1  NN2  X        0.9     2   180.0  ! c22
-X    CN1T NN2B X        0.9     2   180.0  ! From X CN1 NN2 X, for thymines 
+X    CN1T NN2B X        0.9     2   180.0  ! From X CN1 NN2 X, for thymines
 X    CN1  NN2G X        0.9     2   180.0  ! c22
 X    CN1  NN2U X        0.9     2   180.0  ! c22
 X    CN1T NN2U X        0.9     2   180.0  ! c22
@@ -2762,11 +2762,11 @@ X    CN1  CN3T X        1.0     2   180.0  !T, adm jr. 11/97
 X    CN2  CN3  X        0.8     2   180.0  ! c22
 ! Wild cards for adenine and guanine
 X    CN1  CN5G X        1.0     2   180.0  ! adm jr. 11/97
-X    CN2  NN2G X        1.0     2   180.0  ! 
-X    CN2  CN5  X        1.0     2   180.0  ! 
-X    CN4  NN2  X        1.5     2   180.0  ! 
+X    CN2  NN2G X        1.0     2   180.0  !
+X    CN2  CN5  X        1.0     2   180.0  !
+X    CN4  NN2  X        1.5     2   180.0  !
 X    CN4  NN2B X        1.5     2   180.0  ! From X CN4 NN2 X
-X    CN4  NN3A X        3.5     2   180.0  ! 
+X    CN4  NN3A X        3.5     2   180.0  !
 X    CN4  NN4  X        2.0     2   180.0  ! A,G
 X    CN5  CN5  X        0.0     2   180.0  !
 X    CN5G CN5  X        0.0     2   180.0  ! adm jr. 11/97
@@ -2778,7 +2778,7 @@ X    CN5  NN4  X        1.0     2   180.0  !
 X    CN5G NN4  X        1.0     2   180.0  ! adm jr. 11/97
 X    CN2  NN3A X        1.0     2   180.0  !
 X    CN2  NN3G X        1.0     2   180.0  ! adm jr. 11/97
-! MISC.          
+! MISC.
 CN1  NN2  CN9  HN9      0.19    3     0.0 ! 1-M-C
 CN3  NN2  CN9  HN9      0.00    3     0.0 ! 1-M-C
 CN4  NN2  CN9  HN9      0.00    3     0.0 ! 9-M-A
@@ -2904,7 +2904,7 @@ ON2  CN7B CN7B NN2B      0.0     3         0.0 ! 25P1
 ON5  CN7  CN7B NN2       0.0     3         0.0
 
 ! sugar, replace with ribose terms 021998
-CN7  CN7B ON6  CN7       0.6     6       180.0 
+CN7  CN7B ON6  CN7       0.6     6       180.0
 CN7B CN7  CN7  CN7       0.4     6         0.0 ! good for amplitudes
 CN7B CN7  CN7  CN9       0.4     6         0.0 ! good for amplitudes, 5MET
 CN7  CN7  CN7  ON6       0.6     6         0.0
@@ -2925,8 +2925,8 @@ ON2  CN7B CN8  CN7       2.0     3       180.0 !
 ON5  CN7  CN7  CN7       0.8     6         0.0 !
 ON5  CN7  CN7  CN7       0.4     5         0.0 ! Moves the barrier right
 ON5  CN7  CN7  CN7       2.0     3       180.0 !
-ON5  CN7  CN7  ON5       0.0     3         0.0 ! 
-ON5  CN7  CN7  ON2       0.0     3         0.0 ! 
+ON5  CN7  CN7  ON5       0.0     3         0.0 !
+ON5  CN7  CN7  ON2       0.0     3         0.0 !
 ON2  CN7  CN7B ON6       0.5     6         0.0 !good for amplitudes
 ON2  CN7  CN7B ON6       0.3     5         0.0 !impact on amplitudes
 ON2  CN7  CN7B ON6       0.6     4       180.0 !increases c2'endo
@@ -2941,7 +2941,7 @@ CN7B NR1  CPH1 CPH1     0.0     1     0.0  !
 CN7B NR1  CPH2 HR1      0.0     2   180.0  !
 CN7B NR1  CPH2 NR2      0.0     2   180.0  !
 !-- For chi:
-ON6  CN7B NR1  CPH1     0.2     3     0.0  ! 
+ON6  CN7B NR1  CPH1     0.2     3     0.0  !
 ON6  CN7B NR1  CPH1     0.5     2   -70.0  !
 ON6  CN7B NR1  CPH1     0.6     1   180.0  !
 ON6  CN7B NR1  CPH2     0.3     1     0.0  !
@@ -2951,7 +2951,7 @@ ON6B CN7B NR1  CPH1     0.5     2   -70.0  ! RNUS
 ON6B CN7B NR1  CPH1     0.6     1   180.0  ! RNUS
 ON6B CN7B NR1  CPH2     0.3     1     0.0  ! RNUS
 
-CN8  CN7B NR1  CPH1     0.2     4     0.0  ! 
+CN8  CN7B NR1  CPH1     0.2     4     0.0  !
 CN8  CN7B NR1  CPH2     0.1     3   180.0  !
 CN8  CN7B NR1  CPH2     0.3     2     0.0  !
 CN8  CN7B NR1  CPH2     0.0     1   180.0  !
@@ -3003,7 +3003,7 @@ CN7B NN2  CN4  NN3A     11.0     2       180.0 ! adm jr.
 !For chi itself:
 	!DNA:
 ON6  CN7B NN2  CN5       1.1     1       180.0 !
-ON6  CN7B NN2  CN4       1.1     1         0.0 ! NF 
+ON6  CN7B NN2  CN4       1.1     1         0.0 ! NF
         !RNA:
 ON6B CN7B NN2  CN5       1.1     1       180.0 !
 ON6B CN7B NN2  CN4       1.1     1         0.0 !
@@ -3014,27 +3014,27 @@ CN8  CN7B NN2  CN4       0.0     3       180.0 ! NF
 CN7B CN7B NN2  CN5       0.3     3         0.0 ! NF
 CN7B CN7B NN2  CN4       0.0     3       180.0 ! NF
 	!Arabinose:
-CN7C CN7B NN2  CN5       0.3     3         0.0 ! 
+CN7C CN7B NN2  CN5       0.3     3         0.0 !
 CN7C CN7B NN2  CN4       0.0     3       180.0 !
 
 HN7  CN7B NN2  CN5       0.0     3         0.0 ! NF
 HN7  CN7B NN2  CN4       0.195   3         0.0 ! NF
-!@@@@@@ End of chi in adenines 
+!@@@@@@ End of chi in adenines
 
 !============== terms for torsion about chi in cytosines ===========
 CN7B NN2  CN3  HN3       0.3     2       180.0 ! NF
 CN7B NN2  CN1  ON1C     11.0     2       180.0 ! adm jr. from A
-CN7B NN2  CN1  NN3      11.0     2       180.0 ! adm jr. 
+CN7B NN2  CN1  NN3      11.0     2       180.0 ! adm jr.
 CN7B NN2  CN3  CN3      11.0     2       180.0 ! adm jr.
 	!DNA:
-ON6  CN7B NN2  CN1       0.0     3         0.0 ! 
-ON6  CN7B NN2  CN3       1.0     1         0.0 ! NF 
+ON6  CN7B NN2  CN1       0.0     3         0.0 !
+ON6  CN7B NN2  CN3       1.0     1         0.0 ! NF
         !RNA:
 ON6B CN7B NN2  CN1       0.0     3         0.0 !
 ON6B CN7B NN2  CN3       1.0     1         0.0 !
         !DNA:
 CN7  CN7B NN2  CN1       1.0     3         0.0 ! 25P1
-CN8  CN7B NN2  CN1       1.0     3         0.0 ! 
+CN8  CN7B NN2  CN1       1.0     3         0.0 !
 CN7  CN7B NN2  CN3       0.0     3       180.0 ! NF 030697, 25P1
 CN8  CN7B NN2  CN3       0.0     3       180.0 ! NF 030697
         !RNA:
@@ -3046,7 +3046,7 @@ CN7C CN7B NN2  CN3       0.0     3       180.0 !
 
 HN7  CN7B NN2  CN1       0.0     3         0.0 ! NF
 HN7  CN7B NN2  CN3       0.195   3         0.0 ! NF
-!@@@@@@ End of chi in cytosines 
+!@@@@@@ End of chi in cytosines
 
 !=========== terms for torsion about chi in uracils/thymines ===========
 CN7B NN2B CN3  HN3       0.3     2       180.0 ! NF
@@ -3054,17 +3054,17 @@ CN7B NN2B CN1T ON1      11.0     2       180.0 ! adm jr. from A
 CN7B NN2B CN1T NN2U     11.0     2       180.0 ! adm jr.
 CN7B NN2B CN3  CN3T     11.0     2       180.0 ! adm jr.
 	!DNA:
-ON6  CN7B NN2B CN1       0.0     3         0.0 ! 
-ON6  CN7B NN2B CN1T      0.7     3         0.0 ! 
-ON6  CN7B NN2B CN1T      0.8     1       180.0 ! 
-ON6  CN7B NN2B CN3       0.9     1         0.0 ! NF 
+ON6  CN7B NN2B CN1       0.0     3         0.0 !
+ON6  CN7B NN2B CN1T      0.7     3         0.0 !
+ON6  CN7B NN2B CN1T      0.8     1       180.0 !
+ON6  CN7B NN2B CN3       0.9     1         0.0 ! NF
         !RNA:
 ON6B CN7B NN2B CN1       0.0     3         0.0 !
 ON6B CN7B NN2B CN1T      0.7     3         0.0 !
 ON6B CN7B NN2B CN1T      0.8     1       180.0 !
 ON6B CN7B NN2B CN3       0.9     1         0.0 !
         !DNA:
-CN8  CN7B NN2B CN1T      0.2     3       180.0 ! 
+CN8  CN7B NN2B CN1T      0.2     3       180.0 !
 CN8  CN7B NN2B CN3       0.0     3       180.0 ! NF
         !RNA:
 CN7B CN7B NN2B CN1T      0.2     3       180.0 !
@@ -3075,7 +3075,7 @@ CN7C CN7B NN2B CN3       0.0     3       180.0 !
 
 HN7  CN7B NN2B CN1T      0.0     3         0.0 ! NF
 HN7  CN7B NN2B CN3       0.195   3         0.0 ! NF
-!@@@@@@ End of chi in thymines 
+!@@@@@@ End of chi in thymines
 
 !============= added for torsion about chi in guanine ============
 CN7B NN2B CN4  HN3       0.3     2       180.0 ! NF
@@ -3085,7 +3085,7 @@ CN7B NN2B CN5  NN3G     11.0     2       180.0 ! adm jr.
 	!DNA:
 ON6  CN7B NN2B CN5       0.2     3         0.0 !
 ON6  CN7B NN2B CN5       1.1     1       180.0 !
-ON6  CN7B NN2B CN4       1.4     1         0.0 ! NF 
+ON6  CN7B NN2B CN4       1.4     1         0.0 ! NF
         !RNA:
 ON6B CN7B NN2B CN5       0.2     3         0.0 !
 ON6B CN7B NN2B CN5       1.1     1       180.0 !
@@ -3102,7 +3102,7 @@ CN7C CN7B NN2B CN4       0.0     3       180.0 !
 
 HN7  CN7B NN2B CN5       0.0     3         0.0 ! NF
 HN7  CN7B NN2B CN4       0.195   3         0.0 ! NF
-!@@@@@@ End of chi in guanines 
+!@@@@@@ End of chi in guanines
 !@@@@@@ link (not chi) between base and sugar for both purines and pyrimidines:
 	!DNA:
 CN7  ON6  CN7B NN2       0.0     3         0.0
@@ -3131,12 +3131,12 @@ HN7  CN7C CN7B NN2       0.0     3         0.0
 HN7  CN7C CN7B NN2B      0.0     3         0.0
 
 !@@@@@@ Begining of torsions involving exocyclic sugar atoms:
-!======= CN7  CN8B  ON2  P = C4'-C5'-O5'-P 
+!======= CN7  CN8B  ON2  P = C4'-C5'-O5'-P
 CN7  CN8B ON2  P        0.2     1       120.0 !bet C4'-C5'-O5'-P, adm jr.
 ! the following differ significantly from the alcohols
 ! in the protein (based on ethanol), they also differ from other
 ! NA C-C-OH-H parameters (see below)
-! The two following terms have been replaced by their ethanol 
+! The two following terms have been replaced by their ethanol
 ! counterpart (NF, 083098)
 CN7  CN8B ON5  HN5      1.3300  1         0.00
 CN7  CN8B ON5  HN5      0.1800  2         0.00
@@ -3187,21 +3187,21 @@ ON2  CN7  CN7  CN9      0.8     3       180.0 !cn8b -> cn9
 CN8  CN7  CN7  CN9      0.5     4       180.0 !cn8b -> cn9
 
 !======== CN8 CN7 CN7 CN8B = C2'-C3'-C4'-C5'
-! This term is well suited to modify the puckering surfaces, in 
-! particular because it is present in THF5P 
-CN8  CN7  CN7  CN8B     0.5     4       180.0 !del lowers 180 deg. 
+! This term is well suited to modify the puckering surfaces, in
+! particular because it is present in THF5P
+CN8  CN7  CN7  CN8B     0.5     4       180.0 !del lowers 180 deg.
 CN7B CN7  CN7  CN8B     0.2     4       180.0 !del, RNA
 CN7C CN7  CN7  CN8B     0.5     4       180.0 !del, arabinose
-!======== CN8B CN7 CN7 ON2 = C5'-C4'-C3'-O3' 
+!======== CN8B CN7 CN7 ON2 = C5'-C4'-C3'-O3'
 ! These terms affect the c2endo/c3endo energy difference
 ! When O3' is ON2 (3'-5' phosphodiester linkage)
 ON2  CN7  CN7  CN8B      0.2      4       0.0 !del
 ! the following term controls the location of the barrier at ~75 deg.
 ON2  CN7  CN7  CN8B      0.8      3     180.0 !del,decreases P [100,250]
-! When O3' is ON5 (patch 3TER) 
+! When O3' is ON5 (patch 3TER)
 ON5  CN7  CN7  CN8B      0.2      4       0.0 !
 ON5  CN7  CN7  CN8B      0.8      3     180.0 !
-!======== ON6 CN7 CN7 ON2 = O4'-C4'-C3'-O3' 
+!======== ON6 CN7 CN7 ON2 = O4'-C4'-C3'-O3'
 ! These terms contribute to delta
 ! These terms are present in THF3P and THFM3P but not in THF5P
 ! When O3' is ON2 (3'-5' phosphodiester linkage)
@@ -3219,33 +3219,33 @@ ON2  CN7B CN7B ON6B      0.0     5        0.0 !del, RNA, impact on amplitudes
 ON2  CN7B CN7B ON6B      0.0     4      180.0 !del, RNA, increases c2'endo
 ON2  CN7B CN7B ON6B      1.6     3        0.0 !del, RNA, increases C2'endo
 ! When O3' is ON5 (patch 3TER)
-ON5  CN7  CN7  ON6       0.5     6        0.0 !  
-ON5  CN7  CN7  ON6       0.3     5        0.0 !  
-ON5  CN7  CN7  ON6       0.6     4      180.0 !  
-ON5  CN7  CN7  ON6       0.2     3        0.0 ! 
+ON5  CN7  CN7  ON6       0.5     6        0.0 !
+ON5  CN7  CN7  ON6       0.3     5        0.0 !
+ON5  CN7  CN7  ON6       0.6     4      180.0 !
+ON5  CN7  CN7  ON6       0.2     3        0.0 !
 ON5  CN7  CN7  ON6B      0.4     6        0.0 !RNA
 ON5  CN7  CN7  ON6B      0.0     5        0.0 !RNA
 ON5  CN7  CN7  ON6B      0.0     4      180.0 !RNA
 ON5  CN7  CN7  ON6B      1.6     3        0.0 !RNA. increases c2'endo
 
-!======== CN8B CN7 ON6 CN7B = C5'-C4'-O4'-C1' 
-! This term can be used to adjust the c2'endo/c3'endo  
+!======== CN8B CN7 ON6 CN7B = C5'-C4'-O4'-C1'
+! This term can be used to adjust the c2'endo/c3'endo
 ! energy difference in THF5P
-CN7B ON6  CN7  CN8B      0.8     3         0.0 ! P [30,80] 
+CN7B ON6  CN7  CN8B      0.8     3         0.0 ! P [30,80]
 CN7B ON6B CN7  CN8B      2.0     3         0.0 ! To lower barrier in RNA
 CN7B ON6B CN7  CN8       2.0     3         0.0 ! To lower barrier in RNA, 25P1
 CN7B ON6B CN7  CN9       2.0     3         0.0 ! To lower barrier in RNA, 5MET
-!======== ON2 CN7 CN8 CN7B = O3'-C3'-C2'-C1' 
+!======== ON2 CN7 CN8 CN7B = O3'-C3'-C2'-C1'
 ! This term can be used to adjust the c2'endo/c3'endo
-! When O3' is ON2 
-ON2  CN7  CN8  CN7B      0.8     6         0.0 !  
-ON2  CN7  CN8  CN7B      0.4     5         0.0 ! Moves the barrier right 
-ON2  CN7  CN8  CN7B      2.0     3       180.0 !  
+! When O3' is ON2
+ON2  CN7  CN8  CN7B      0.8     6         0.0 !
+ON2  CN7  CN8  CN7B      0.4     5         0.0 ! Moves the barrier right
+ON2  CN7  CN8  CN7B      2.0     3       180.0 !
 ON2  CN7  CN7B CN7B      0.6     6         0.0 ! RNA
-ON2  CN7  CN7B CN7B      0.0     5         0.0 ! RNA c2/c3 endo in RNA 
+ON2  CN7  CN7B CN7B      0.0     5         0.0 ! RNA c2/c3 endo in RNA
 ON2  CN7  CN7B CN7B      1.6     3       180.0 !
 ON2  CN7  CN7C CN7B      0.8     6         0.0 ! Arabinose (from DNA)
-ON2  CN7  CN7C CN7B      0.4     5         0.0 ! 
+ON2  CN7  CN7C CN7B      0.4     5         0.0 !
 ON2  CN7  CN7C CN7B      2.0     3       180.0 !
 !When O3' is ON5 (patch 3TER)
 ON5  CN7  CN8  CN7B      0.8     6         0.0 !
@@ -3257,26 +3257,26 @@ ON5  CN7  CN7B CN7B      1.6     3       180.0 ! RNA
 ON5  CN7  CN7C CN7B      0.8     6         0.0 ! Arabinose (from DNA)
 ON5  CN7  CN7C CN7B      0.4     5         0.0 ! Arabinose (from DNA)
 ON5  CN7  CN7C CN7B      2.0     3       180.0 ! Arabinose (from DNA)
-!======== ON2 CN7 CN8 HN8 = O3'-C3'-C2'-H 
-ON2  CN7  CN8  HN8       0.195   3         0.0 ! 
+!======== ON2 CN7 CN8 HN8 = O3'-C3'-C2'-H
+ON2  CN7  CN8  HN8       0.195   3         0.0 !
 ON5  CN7  CN8  HN8       0.195   3       180.0 !
 ON2  CN7  CN7B HN7       0.195   3         0.0 ! RNA
 ON5  CN7  CN7B HN7       0.195   3       180.0 ! RNA
 ON2  CN7  CN7C HN7       0.195   3         0.0 ! Arabinose (from DNA)
 ON5  CN7  CN7C HN7       0.195   3       180.0 ! Arabinose (from DNA)
-!======== HN7 CN7 CN7 ON2 = H-C4'-C3'-O3' 
+!======== HN7 CN7 CN7 ON2 = H-C4'-C3'-O3'
 HN7  CN7  CN7  ON2       0.195   3         0.0
 HN7  CN7  CN7  ON5       0.195   3         0.0
-!======== CN7 CN7 ON2 P = C4'-C3'-O3'-P 
+!======== CN7 CN7 ON2 P = C4'-C3'-O3'-P
 CN7  CN7  ON2  P         0.6     5         0.0 !eps
 CN7  CN7  ON2  P         0.2     4         0.0 !eps, locat of 200 mimima
 CN7  CN7  ON2  P         0.0     3       180.0 !eps, barE beteen minima
 CN7  CN7  ON2  P         0.4     2         0.0 !eps, relE of 200 vs 275 min
 CN7  CN7  ON2  P         1.9     1       180.0 !eps
-!======== CN8 CN7 ON2 P = C2'-C3'-O3'-P 
+!======== CN8 CN7 ON2 P = C2'-C3'-O3'-P
 ! This term is involved in epsilon
 CN8  CN7  ON2  P         2.5     1       180.0 !eps
-CN7B CN7  ON2  P         2.5     1       180.0 !eps, RNA 
+CN7B CN7  ON2  P         2.5     1       180.0 !eps, RNA
 CN7B CN7B ON2  P         2.5     1       180.0 !eps, NADPH
 CN7  CN7B ON2  P         2.5     1       180.0 !eps, NADPH
 CN8  CN7B ON2  P         2.5     1       180.0 !eps, 25P1
@@ -3331,7 +3331,7 @@ HN7  CN7B CN8  CN7       0.195    3       0.0 !H-C1'-C2'-C3'
 HN7  CN7  CN7  ON6       0.195    3     180.0 ! useful
 HN8  CN8  CN7B ON6       0.195    3       0.0 !H-C2'-C1'-O4'
 HN7  CN7  CN7  HN7       0.195    3       0.0 !H-C4'-C3'-H
-HN7  CN7B CN8  HN8       0.195    3       0.0 !H-C1'-C2'-H 
+HN7  CN7B CN8  HN8       0.195    3       0.0 !H-C1'-C2'-H
 HN7  CN7  CN8  HN8       0.195    3       0.0 !H-C3'-C2'-H
 HN8  CN8  CN7  CN7       0.195    3       0.0 ! useful *cccc*
 HN7  CN7  ON6  CN7B      0.195    3       0.0 !H-C3'-C2'-C1'
@@ -3358,8 +3358,8 @@ HN7  CN7C CN7  CN7       0.195    3       0.0 !Arabinose (from DNA), useful *ccc
 ! N9-C1'-C2'-O2':
 NN2  CN7B CN7B ON5       0.000    3       0.0 ! Adenine and cytosine
 NN2B CN7B CN7B ON5       0.000    3       0.0 ! Guanine and uracil
-ON5  CN7B CN7B HN7       0.000    3       0.0 ! 
-HN7  CN7B CN7B HN7       0.000    3       0.0 ! 
+ON5  CN7B CN7B HN7       0.000    3       0.0 !
+HN7  CN7B CN7B HN7       0.000    3       0.0 !
 CN7  CN7  CN7B ON5       0.000    3       0.0
 ON6B CN7B CN7B ON5       0.000    3       0.0
 ON5  CN7B CN7  ON2       0.000    3       0.0
@@ -3416,7 +3416,7 @@ HA   CPA  CPA  CPM    29.4000         0      0.0000 ! ALLOW HEM
                 ! Heme (6-liganded): substituents (KK 05/13/91)
 !HA   HA   C    C      20.0000         0    180.0000 ! ALLOW   PEP POL ARO
                 ! Heme vinyl substituent (KK, from propene (JCS))
-HE2  HE2  CE2  CE2     3.0            0      0.00   ! 
+HE2  HE2  CE2  CE2     3.0            0      0.00   !
 		! for ethene, yin/adm jr., 12/95
 HR1  NR1  NR2  CPH2    0.5000         0      0.0000 ! ALLOW ARO
                 ! his, adm jr., 7/05/90
@@ -3504,13 +3504,13 @@ CN1  NN2G CN5G ON1     90.0     0     0.0     !G
 CN1T NN2B NN2U ON1    110.0     0     0.0     !T/O2, adm jr. 11/97
 CN1  NN2U CN3T ON1     90.0     0     0.0     !T/O4, adm jr. 11/97
 CN1  X    X    ON1C    80.0     0     0.0     !C, par_32, adm jr. 10/2/91
-CN2  X    X    NN1     90.0     0     0.0     !C, 
+CN2  X    X    NN1     90.0     0     0.0     !C,
 CN2  NN3G NN2G NN1     40.0     0     0.0     !G
 CN2  NN3A CN5  NN1     40.0     0     0.0     !A
-CN2  NN3  CN3  NN1     60.0     0     0.0     !C, 
+CN2  NN3  CN3  NN1     60.0     0     0.0     !C,
 CN4  NN2G NN3I HN3     39.0     0     0.0     !Inosine, adm jr. 2/94
 CN9  X    X    CN3T    14.0     0     0.0     !T, adm jr. 11/97
-! nicotinamide adenine dinucleotide                                             
+! nicotinamide adenine dinucleotide
 CN3  CN3C CN8  HN6     15.0     0     0.0  !nich, jjp1/adm jr.
 HN3B X    X    CN3     15.0     0     0.0  !nad/ppi, jjp1/adm jr.
 HN3B X    X    CN3A    13.0     0     0.0  !nad/ppi, jjp1/adm jr.
@@ -3544,7 +3544,7 @@ CMAP
 !Protein Backbone Conformational Energetics in Empirical Force Fields, Submitted
 !for publication.
 
-!MacKerell, A.D., Jr., Feig, M., Brooks, C.L., III, Improved Treatment of the 
+!MacKerell, A.D., Jr., Feig, M., Brooks, C.L., III, Improved Treatment of the
 !Protein Backbone in Empirical Force Fields, Journal of the American Chemical
 !Society, In Press.
 
@@ -4579,7 +4579,7 @@ C    NH1  CT2  C    NH1  CT2  C    N   24
 -0.940260 -1.319240 -0.990850 -0.896700
 
 NONBONDED nbxmod  5 atom cdiel shift vatom vdistance vswitch -
-cutnb 14.0 ctofnb 12.0 ctonnb 10.0 eps 1.0 e14fac 1.0 wmin 1.5 
+cutnb 14.0 ctofnb 12.0 ctonnb 10.0 eps 1.0 e14fac 1.0 wmin 1.5
                 !adm jr., 5/08/91, suggested cutoff scheme
 !
 !V(Lennard-Jones) = Eps,i,j[(Rmin,i,j/ri,j)**12 - 2(Rmin,i,j/ri,j)**6]
@@ -4598,9 +4598,9 @@ CC     0.000000  -0.070000     2.000000 ! ALLOW   PEP POL ARO
                 ! adm jr. 3/3/92, acetic acid heat of solvation
 CD     0.000000  -0.070000     2.000000 ! ALLOW  POL
                 ! adm jr. 3/19/92, acetate a.i. and dH of solvation
-CE1    0.000000  -0.068000     2.090000 ! 
+CE1    0.000000  -0.068000     2.090000 !
 		! for propene, yin/adm jr., 12/95
-CE2    0.000000  -0.064000     2.080000 ! 
+CE2    0.000000  -0.064000     2.080000 !
 		! for ethene, yin/adm jr., 12/95
 CM     0.000000  -0.110000     2.100000 ! ALLOW HEM
                 ! Heme (6-liganded): CO ligand carbon (KK 05/13/91)
@@ -4624,7 +4624,7 @@ CPT    0.000000  -0.090000     1.800000   0.000000  -0.090000     1.900000 ! ALL
                 ! benzene (JES)
 CS     0.000000  -0.110000     2.200000 ! ALLOW SUL
                 ! methylthiolate to water and F.E. of solvation, adm jr. 6/1/92
-CST    0.000000  -0.058000     1.563000 ! 
+CST    0.000000  -0.058000     1.563000 !
                 ! carbon dioxide, JES
 CT1    0.000000  -0.020000     2.275000   0.000000  -0.010000     1.900000 ! ALLOW   ALI
                 ! isobutane pure solvent properties, adm jr, 2/3/92
@@ -4644,9 +4644,9 @@ H      0.000000  -0.046000     0.224500 ! ALLOW PEP POL SUL ARO ALC
                 ! same as TIP3P hydrogen, adm jr., 7/20/89
 HA     0.000000  -0.022000     1.320000 ! ALLOW PEP ALI POL SUL ARO PRO ALC
                 ! methane/ethane a.i. and ethane pure solvent, adm jr, 2/3/92
-HE1    0.000000  -0.031000     1.250000 ! 
+HE1    0.000000  -0.031000     1.250000 !
 		! for propene, yin/adm jr., 12/95
-HE2    0.000000  -0.026000     1.260000 ! 
+HE2    0.000000  -0.026000     1.260000 !
 		! for ethene, yin/adm jr., 12/95
 HB     0.000000  -0.022000     1.320000 ! ALLOW PEP ALI POL SUL ARO PRO ALC
                 ! methane/ethane a.i. and ethane pure solvent, adm jr, 2/3/92
@@ -4704,7 +4704,7 @@ OM     0.000000  -0.120000     1.700000 ! ALLOW HEM
                 ! Heme (6-liganded): CO ligand oxygen (KK 05/13/91)
 OS     0.000000  -0.152100     1.770000 ! ALLOW   ALC ARO
                 ! adm jr. 9/17/90, avoid O* wildcard
-OST    0.000000  -0.165000     1.692000 ! 
+OST    0.000000  -0.165000     1.692000 !
                 ! carbon dioxide, JES
 OT     0.000000  -0.152100     1.768200 ! ALLOW   WAT
                 !TIP3P OXYGEN PARAMETERS, adm jr., NBFIX obsolete
@@ -4771,9 +4771,9 @@ NS1    0.000000  -0.200000     1.850000 !N for deprotonated Schiff's base
 NS2    0.000000  -0.200000     1.850000 !N for protonated Schiff's base
 !NA section
 !HT       0.0       -0.0460    0.2245 ! TIP3P
-HN1      0.0       -0.0460    0.2245 
-HN2      0.0       -0.0460    0.2245 
-HN3      0.0       -0.046     1.1000 !adm jr. aromatic Hvdw 
+HN1      0.0       -0.0460    0.2245
+HN2      0.0       -0.0460    0.2245
+HN3      0.0       -0.046     1.1000 !adm jr. aromatic Hvdw
 HNP      0.0       -0.03      1.3582 !JES 8/25/89 values from Jorgensen fit to hydration energy
 HN3B     0.0       -0.046     0.9000 !nad/ppi, jjp1/adm jr.
 HN3C     0.0       -0.03      1.3582 !check
@@ -4794,22 +4794,22 @@ NN2C     0.0        -0.20     1.85 !
 NN2G     0.0        -0.20     1.85
 NN2U     0.0        -0.20     1.85
 NN3      0.0        -0.20     1.85
-NN3A     0.0        -0.20     1.85 
-NN3G     0.0        -0.20     1.85 
-NN3I     0.0        -0.20     1.85 
+NN3A     0.0        -0.20     1.85
+NN3G     0.0        -0.20     1.85
+NN3I     0.0        -0.20     1.85
 NN4      0.0        -0.20     1.85
 NN5      0.0        -0.20     1.85
 NN6      0.0        -0.20     1.85
 !
-ON1      0.0       -0.1200    1.70  
-ON1C     0.0       -0.1200    1.70 
-ON2      0.0       -0.1521    1.77   
+ON1      0.0       -0.1200    1.70
+ON1C     0.0       -0.1200    1.70
+ON2      0.0       -0.1521    1.77
 ON2B     0.0       -0.1521    1.77   !(see toppar_tyr_ser_thr_phosphate.str)
-ON3      0.0       -0.1200    1.70  
-ON4      0.0       -0.1521    1.77  
-ON5      0.0       -0.1521    1.77  
-ON6      0.0       -0.1521    1.77  
-ON6B     0.0       -0.1521    1.77  
+ON3      0.0       -0.1200    1.70
+ON4      0.0       -0.1521    1.77
+ON5      0.0       -0.1521    1.77
+ON6      0.0       -0.1521    1.77
+ON6B     0.0       -0.1521    1.77
 !OT       0.0       -0.1521    1.7682 ! TIP3P
 !
 ! base ring C vdw param, 11/14/97, adm jr
@@ -4848,7 +4848,7 @@ FN1      0.0       -0.09      1.70  !aliphatic F preliminary from Yin Thesis
                                     !see toppar_all22_prot_fluoro_alkane.str for better parameters
 FNA      0.0       -0.12      1.70  !aromatic F, 1,3-difluorobenzene pure solvent
 !
-P        0.0       -0.585     2.15  
+P        0.0       -0.585     2.15
 P2       0.0       -0.585     2.15  ! nad/ppi, jjp1/adm jr. (see toppar_all27_na_nad_ppi.str)
 P3       0.0       -0.585     2.15  ! for PPI2, adm jr. (see toppar_all27_na_nad_ppi.str)
 !
@@ -4873,7 +4873,7 @@ P3       0.0       -0.585     2.15  ! for PPI2, adm jr. (see toppar_all27_na_nad
                    ! B. Roux dA = -441.65
 !CES    0.0       -0.1900    2.100
                    ! Cesium, so far untested.
-!ZN     0.0       -0.250000   1.090000  ! 
+!ZN     0.0       -0.250000   1.090000  !
                    ! RHS March 18, 1990
 !DUM    0.0       -0.000     1.00  ! dummy atom
 

@@ -39,7 +39,7 @@ addatomtypes {
 #
 # Load the AmberDyes parameter set
 #
-dyeparams = loadamberparams amberdyes.dat 
+dyeparams = loadamberparams amberdyes.dat
 
 #
 # Load the AmberDyes lib files

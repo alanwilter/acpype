@@ -87,7 +87,7 @@ parm99 = loadamberparams parm99.dat
 frcmod03 = loadamberparams frcmod.ff03
 
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_aminoct03.lib

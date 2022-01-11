@@ -1,13 +1,13 @@
     1    1    2
 db94.dat
 ALANINE COO- ANION
-                                                                
+
 CALA  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
-   1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000  0.00000 
-   2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000  0.00000 
-   3  DUMM  DU    M    2   1   0     1.522   111.100     0.000  0.00000 
+ CORR OMIT DU   BEG
+   0.00000
+   1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000  0.00000
+   2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000  0.00000
+   3  DUMM  DU    M    2   1   0     1.522   111.100     0.000  0.00000
    4  N     N     M    3   2   1     1.335   116.600   180.000  -0.622202
    5  H     H     E    4   3   2     1.010   119.800     0.000   0.359784
    6  CA    CT    M    4   3   2     1.449   121.900   180.000  -0.112138
@@ -17,16 +17,16 @@ CALA  INT     1
   10  O     O2    E    9   6   4     1.229   120.500     0.000  -0.747007
   11  OXT   O2    E    9   6   4     1.229   120.500   180.000  -0.747007
 
-IMPROPER                                                        
- -M   CA   N    H                                               
- CA   OXT  C    O                                               
-                                                                
+IMPROPER
+ -M   CA   N    H
+ CA   OXT  C    O
+
 DONE
-GLYCINE COO- ANION 
+GLYCINE COO- ANION
 
 CGLY  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -40,15 +40,15 @@ CGLY  INT     1
   11  OXT   O2    E    9   6   4     1.229   120.500   180.000  -0.745899
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-SERINE COO- ANION 
+SERINE COO- ANION
 
 CSER  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -64,15 +64,15 @@ CSER  INT     1
   13  OXT   O2    E   11   6   4     1.229   120.500   180.000  -0.712184
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-THREONINE COO- ANION 
+THREONINE COO- ANION
 
 CTHR  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -89,15 +89,15 @@ CTHR  INT     1
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.755835
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-LEUCINE COO- ANION 
+LEUCINE COO- ANION
 
 CLEU  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -114,15 +114,15 @@ CLEU  INT     1
   23  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.714214
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
 ISOLEUCINE COO- ANION
 
 CILE  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -139,15 +139,15 @@ CILE  INT     1
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.750517
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-VALINE COO- ANION 
+VALINE COO- ANION
 
 CVAL  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -163,15 +163,15 @@ CVAL  INT     1
   13  OXT   O2    E   11   6   4     1.229   120.500   180.000  -0.677808
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-ASPARAGINE COO- ANION 
-                                                         
+ASPARAGINE COO- ANION
+
 CASN  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -190,17 +190,17 @@ CASN  INT     1
   16  OXT   O2    E   14   6   4     1.229   120.500   180.000  -0.718691
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CB   ND2  CG   OD1
  CG   HD21 ND2  HD22
-                                                                
+
 DONE
-GLUTAMINE COO- ANION 
-                                                                
+GLUTAMINE COO- ANION
+
 CGLN  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -220,17 +220,17 @@ CGLN  INT     1
   17  OXT   O2    E   15   6   4     1.229   120.500   180.000  -0.715224
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   NE2  CD   OE1
  CD   HE21 NE2  HE22
-                                                                
+
 DONE
-ARGININE COO- ANION 
-                                                               
+ARGININE COO- ANION
+
 CARG  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -255,19 +255,19 @@ CARG  INT     1
   22  OXT   O2    E   20   6   4     1.229   120.500   180.000  -0.739382
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  NE   NH1  CZ   NH2
  CD   CZ   NE   HE
  CZ   HH12 NH1  HH11
  CZ   HH22 NH2  HH21
-                                                                
+
 DONE
-HISTIDINE DELTAH COO- ANION 
-                                                                
+HISTIDINE DELTAH COO- ANION
+
 CHID  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -292,16 +292,16 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   CE1  ND1  HD1
 
 DONE
-HISTIDINE EPSILONH COO- ANION 
-                                                                
+HISTIDINE EPSILONH COO- ANION
+
 CHIE  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -326,16 +326,16 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CE1  CD2  NE2  HE2
-                                                                
+
 DONE
-HISTIDINE PLUS COO- ANION 
-                                                               
+HISTIDINE PLUS COO- ANION
+
 CHIP  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -361,17 +361,17 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   CE1  ND1  HD1
  CE1  CD2  NE2  HE2
-                                                                
+
 DONE
-TRYPTOPHAN COO- ANION 
-                                                                
+TRYPTOPHAN COO- ANION
+
 CTRP  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -404,20 +404,20 @@ LOOP
  CE2  CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CD1  CE2  NE1  HE1
  CE2  CH2  CZ2  HZ2
  CZ2  CZ3  CH2  HH2
  CH2  CE3  CZ3  HZ3
  CZ3  CD2  CE3  HE3
-                                                                
+
 DONE
-PHENYLALANINE COO- ANION 
-                                                                
+PHENYLALANINE COO- ANION
+
 CPHE  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -445,15 +445,15 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-TYROSINE COO- ANION 
-                                                                
+TYROSINE COO- ANION
+
 CTYR  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -482,15 +482,15 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-GLUTAMIC ACID COO- ANION 
-                                                                
+GLUTAMIC ACID COO- ANION
+
 CGLU  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -508,16 +508,16 @@ CGLU  INT     1
   15  OXT   O2    E   13   6   4     1.229   120.500   180.000  -0.780593
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   OE1  CD   OE2
-                                                                
+
 DONE
-ASPARTIC ACID COO- ANION 
-                                                                
+ASPARTIC ACID COO- ANION
+
 CASP  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -534,16 +534,16 @@ CASP  INT     1
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.781175
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CB   OD1  CG   OD2
-                                                                
+
 DONE
-LYSINE COO- ANION 
-                                                                
+LYSINE COO- ANION
+
 CLYS  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -564,15 +564,15 @@ CLYS  INT     1
   18  OXT   O2    E   16   6   4     1.229   120.500   180.000  -0.685909
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-PROLINE COO- ANION 
-                                                                
+PROLINE COO- ANION
+
 CPRO  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -592,13 +592,13 @@ LOOP
 IMPROPER
  CA   OXT  C    O
  -M   CA   N    CD
-                                                                
+
 DONE
-CYSTEINE COO- ANION 
-                                                                
+CYSTEINE COO- ANION
+
 CCYS  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -614,15 +614,15 @@ CCYS  INT     1
   13  OXT   O2    E   11   6   4     1.229   120.500   180.000  -0.750971
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
-METHIONINE COO- ANION 
-                                                                
+METHIONINE COO- ANION
+
 CMET  INT     1
- CORR OMIT DU   BEG                                             
-   0.00000                                                      
+ CORR OMIT DU   BEG
+   0.00000
    1  DUMM  DU    M    0  -1  -2     0.000     0.000     0.000   0.00000
    2  DUMM  DU    M    1   0  -1     1.449     0.000     0.000   0.00000
    3  DUMM  DU    M    2   1   0     1.522   111.100     0.000   0.00000
@@ -639,8 +639,8 @@ CMET  INT     1
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.747459
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
-                                                                
+
 DONE
 STOP

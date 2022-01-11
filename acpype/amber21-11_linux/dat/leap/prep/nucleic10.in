@@ -41,7 +41,7 @@ D-ADENOSINE - with 5' - OH end group and 3' - O(minus)
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -52,7 +52,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-D-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DA   INT     1
  CORRECT OMIT DU   BEG
@@ -95,7 +95,7 @@ D-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -150,7 +150,7 @@ D-ADENOSINE - with 5' - phosphate group and 3' - OH group
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -203,7 +203,7 @@ D-ADENOSINE - with 5' - OH group and 3' - OH group
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -256,7 +256,7 @@ R-ADENOSINE - with 5' - OH end group and 3' - O(minus)
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -267,7 +267,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  A   INT     1
  CORRECT OMIT DU   BEG
@@ -311,7 +311,7 @@ R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -367,7 +367,7 @@ R-ADENOSINE - with 5' - phosphate group and 3' - OH group
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -421,7 +421,7 @@ R-ADENOSINE - with 5' - OH group and 3' - OH group
 
 IMPROPER
  C8   C4   N9   C1'
- C6   H61  N6   H62 
+ C6   H61  N6   H62
  N7   N9   C8   H8
  N1   N3   C2   H2
  C5   N1   C6   N6
@@ -484,7 +484,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-D-THYMINE - with 5' - phosphate group and 3' - O(minus) group 
+D-THYMINE - with 5' - phosphate group and 3' - O(minus) group
 
  DT   INT     1
  CORRECT OMIT DU   BEG
@@ -696,7 +696,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-R-URACIL - with 5' - phosphate group and 3' - O(minus) group 
+R-URACIL - with 5' - phosphate group and 3' - O(minus) group
 
  U   INT     1
  CORRECT OMIT DU   BEG
@@ -896,7 +896,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -906,7 +906,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-D-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DG   INT     1
  CORRECT OMIT DU   BEG
@@ -952,7 +952,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -962,7 +962,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-D-GUANOSINE - with 5' - phosphate group and 3' - OH group 
+D-GUANOSINE - with 5' - phosphate group and 3' - OH group
 
  DG3  INT     1
  CORRECT OMIT DU   BEG
@@ -1009,7 +1009,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1064,7 +1064,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1119,7 +1119,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1129,7 +1129,7 @@ LOOP CLOSING EXPLICIT
  C4   N9
 
 DONE
-R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  G   INT     1
  CORRECT OMIT DU   BEG
@@ -1176,7 +1176,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1234,7 +1234,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1290,7 +1290,7 @@ IMPROPER
  C8   C4   N9   C1'
  C5   N1   C6   O6
  C6   C2   N1   H1
- C2   H21  N2   H22 
+ C2   H21  N2   H22
  N7   N9   C8   H8
  N1   N3   C2   N2
 
@@ -1340,7 +1340,7 @@ D-CYTOSINE - with 5' - OH end group and 3' - O(minus) group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1350,7 +1350,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-D-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group 
+D-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  DC   INT     1
  CORRECT OMIT DU   BEG
@@ -1392,7 +1392,7 @@ D-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1445,7 +1445,7 @@ D-CYTOSINE - with 5' - phosphate group and 3' - OH group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1496,7 +1496,7 @@ D-CYTOSINE - with 5' - OH group and 3' - OH group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1547,7 +1547,7 @@ R-CYTOSINE - with 5' - OH end group and 3' - O(minus) group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1557,7 +1557,7 @@ LOOP CLOSING EXPLICIT
  C2   N1
 
 DONE
-R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  C   INT     1
  CORRECT OMIT DU   BEG
@@ -1600,7 +1600,7 @@ R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1654,7 +1654,7 @@ R-CYTOSINE - with 5' - phosphate group and 3' - OH group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4
@@ -1706,7 +1706,7 @@ R-CYTOSINE - with 5' - OH group and 3' - OH group
 IMPROPER
  C6   C2   N1   C1'
  N1   N3   C2   O2
- C4   H41  N4   H42 
+ C4   H41  N4   H42
  N1   C5   C6   H6
  C6   C4   C5   H5
  N3   C5   C4   N4

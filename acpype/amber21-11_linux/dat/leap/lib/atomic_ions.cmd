@@ -198,7 +198,7 @@ Be = createUnit Be
 add Be r
 saveOff Be ./atomic_ions.lib
 
-#CU  
+#CU
 i = createAtom CU Cu2+ 2.0
 set i element "Cu"
 set i position { 0 0 0 }
@@ -207,7 +207,7 @@ add r i
 CU = createUnit CU
 add CU r
 saveOff CU ./atomic_ions.lib
- 
+
 #NI
 i = createAtom NI Ni2+ 2.0
 set i element "Ni"
@@ -228,7 +228,7 @@ PT = createUnit PT
 add PT r
 saveOff PT ./atomic_ions.lib
 
-#ZN  
+#ZN
 i = createAtom ZN Zn2+ 2.0
 set i element "Zn"
 set i position { 0 0 0 }
@@ -238,7 +238,7 @@ ZN = createUnit ZN
 add ZN r
 saveOff ZN ./atomic_ions.lib
 
-#CO 
+#CO
 i = createAtom CO Co2+ 2.0
 set i element "Co"
 set i position { 0 0 0 }
@@ -248,7 +248,7 @@ CO = createUnit CO
 add CO r
 saveOff CO ./atomic_ions.lib
 
-#PD  
+#PD
 i = createAtom PD Pd2+ 2.0
 set i element "Pd"
 set i position { 0 0 0 }
@@ -288,7 +288,7 @@ FE2 = createUnit FE2
 add FE2 r
 saveOff FE2 ./atomic_ions.lib
 
-#MG  
+#MG
 i = createAtom MG Mg2+ 2.0
 set i element "Mg"
 set i position { 0 0 0 }
@@ -297,7 +297,7 @@ add r i
 MG = createUnit MG
 add MG r
 saveOff MG ./atomic_ions.lib
- 
+
 #V2+
 i = createAtom V2+ V2+ 2.0
 set i element "V"
@@ -328,7 +328,7 @@ HG = createUnit HG
 add HG r
 saveOff HG ./atomic_ions.lib
 
-#CD  
+#CD
 i = createAtom CD Cd2+ 2.0
 set i element "Cd"
 set i position { 0 0 0 }
@@ -338,7 +338,7 @@ CD = createUnit CD
 add CD r
 saveOff CD ./atomic_ions.lib
 
-#YB2  
+#YB2
 i = createAtom YB2 Yb2+ 2.0
 set i element "Yb"
 set i position { 0 0 0 }
@@ -348,7 +348,7 @@ YB2 = createUnit YB2
 add YB2 r
 saveOff YB2 ./atomic_ions.lib
 
-#CA  
+#CA
 i = createAtom CA Ca2+ 2.0
 set i element "Ca"
 set i position { 0 0 0 }
@@ -368,7 +368,7 @@ Sn = createUnit Sn
 add Sn r
 saveOff Sn ./atomic_ions.lib
 
-#PB  
+#PB
 i = createAtom PB Pb2+ 2.0
 set i element "Pb"
 set i position { 0 0 0 }
@@ -378,7 +378,7 @@ PB = createUnit PB
 add PB r
 saveOff PB ./atomic_ions.lib
 
-#EU  
+#EU
 i = createAtom EU Eu2+ 2.0
 set i element "Eu"
 set i position { 0 0 0 }
@@ -388,7 +388,7 @@ EU = createUnit EU
 add EU r
 saveOff EU ./atomic_ions.lib
 
-#SR  
+#SR
 i = createAtom SR Sr2+ 2.0
 set i element "Sr"
 set i position { 0 0 0 }
@@ -408,7 +408,7 @@ Sm = createUnit Sm
 add Sm r
 saveOff Sm ./atomic_ions.lib
 
-#BA  
+#BA
 i = createAtom BA Ba2+ 2.0
 set i element "Ba"
 set i position { 0 0 0 }

@@ -1,7 +1,7 @@
 logFile leap.log
 #
 # ----- leaprc for loading the 2002 pol. extra-point force field
-#       assumes that any unspecified nucleic acids are RNA 
+#       assumes that any unspecified nucleic acids are RNA
 #
 #	load atom type hybridizations
 #
@@ -80,7 +80,7 @@ parm99EP = loadamberparams parm99EP.dat
 #
 loadOff all_nucleic02EP.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_amino02.lib

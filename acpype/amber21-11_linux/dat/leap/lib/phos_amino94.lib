@@ -1,9 +1,9 @@
 !!index array str
  "PTR"
- "S1P" 
- "SEP" 
- "T1P" 
- "TPO" 
+ "S1P"
+ "SEP"
+ "T1P"
+ "TPO"
  "Y1P"
 !entry.PTR.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
  "N" "N" 0 1 131072 1 7 -0.516300

@@ -17,10 +17,10 @@ R-ADENOSINE - with 5' - OH end group and 3' - O(minus)
   26   N3    A3    E   24  23  19    1.32    129.17      0.00       0.0000
 
 LOOP CLOSING EXPLICIT
- N3   N9 
+ N3   N9
 
 DONE
-R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RA   INT     1
  CORRECT OMIT DU   BEG
@@ -38,7 +38,7 @@ R-ADENOSINE - with 5' - phosphate group and 3' - O(minus) group
   28   N3    A3    E   26  25  21    1.32    129.17      0.00       0.0000
 
 LOOP CLOSING EXPLICIT
- N3   N9 
+ N3   N9
 
 DONE
 R-ADENOSINE - with 5' - phosphate group and 3' - OH group
@@ -59,7 +59,7 @@ R-ADENOSINE - with 5' - phosphate group and 3' - OH group
   28   N3    A3    E   26  25  21    1.32    129.17      0.00       0.0000
 
 LOOP CLOSING EXPLICIT
- N3   N9 
+ N3   N9
 
 DONE
 R-URACIL - with 5' - OH end group and 3' - O(minus)
@@ -81,7 +81,7 @@ LOOP CLOSING EXPLICIT
  O2   N1
 
 DONE
-R-URACIL - with 5' - phosphate group and 3' - O(minus) group 
+R-URACIL - with 5' - phosphate group and 3' - O(minus) group
 
  RU   INT     1
  CORRECT OMIT DU   BEG
@@ -139,7 +139,7 @@ LOOP CLOSING EXPLICIT
  N3   N9
 
 DONE
-R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-GUANOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RG   INT     1
  CORRECT OMIT DU   BEG
@@ -202,7 +202,7 @@ LOOP CLOSING EXPLICIT
  O2   N1
 
 DONE
-R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group 
+R-CYTOSINE - with 5' - phosphate group and 3' - O(minus) group
 
  RC   INT     1
  CORRECT OMIT DU   BEG

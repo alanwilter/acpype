@@ -77,7 +77,7 @@ TM                  12.0100      0.3600  ASP/CYM/GLU backbone CA
 TH                   1.0080      0.1610  ARG nitrogen-attached H
 TA                  12.0100      0.3600  HID/HIE/PHE/TRP/TYR CB
 
-C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2  
+C   H   HO  N   NA  NB  NC  N2  NT  N2  N3  N*  O   OH  OS  P   O2
 C -C               310.0000      1.5250  Junmei et al, 1999
 C -CB              447.0000      1.4190  JCC,7,(1986),230; GUA
 C -CM              410.0000      1.4440  JCC,7,(1986),230; THY,URA
@@ -184,8 +184,8 @@ C4-CT              317.0000      1.5100  JCC,7,(1986),230; THY
 C4-HA              367.0000      1.0800  changed from 340. bsd on C6H6 nmodes; CYT,URA
 C4-H4              367.0000      1.0800  changed from 340. bsd on C6H6 nmodes; CYT,URA
 C4-N*              448.0000      1.3650  JCC,7,(1986),230; CYT,THY,URA
-CO-O2              656.0000      1.2500  
-N2-H               434.0000      1.0100  
+CO-O2              656.0000      1.2500
+N2-H               434.0000      1.0100
 C -N               490.0000      1.3350  >!PRO
 C -TN              490.0000      1.3350  >PRO
 H -N               434.0000      1.0100  !PRO
@@ -302,21 +302,21 @@ CC-NA-P             76.7000      125.10  phosphohistidine
 CR-NA-P             76.7000      125.10  phosphohistidine
 NA-P -OP            42.9000      102.38  phosphohistidine
 CB-C -NA            70.0000      111.30  NA
-CB-C -O             80.0000      128.80  
-CM-C -NA            70.0000      114.10  
-CM-C -O             80.0000      125.30  
-CS-C -NA            70.0000      114.10  
-CS-C -O             80.0000      125.30  
-CT-C -O             80.0000      120.40  
-CT-C -O2            70.0000      117.00  
+CB-C -O             80.0000      128.80
+CM-C -NA            70.0000      114.10
+CM-C -O             80.0000      125.30
+CS-C -NA            70.0000      114.10
+CS-C -O             80.0000      125.30
+CT-C -O             80.0000      120.40
+CT-C -O2            70.0000      117.00
 CT-C -CT            63.0000      117.00  Junmei et al, 1999
 CT-C -OS            80.0000      115.00  Junmei et al, 1999
 CT-C -OH            80.0000      110.00  Junmei et al, 1999
-N*-C -NA            70.0000      115.40  
-N*-C -NC            70.0000      118.60  
-N*-C -O             80.0000      120.90  
-NA-C -O             80.0000      120.60  
-NC-C -O             80.0000      122.50  
+N*-C -NA            70.0000      115.40
+N*-C -NC            70.0000      118.60
+N*-C -O             80.0000      120.90
+NA-C -O             80.0000      120.60
+NC-C -O             80.0000      122.50
 N -C -O             80.0000      122.90  AA general
 O -C -O             80.0000      126.00  AA COO- terminal residues
 O -C -OH            80.0000      120.00  (check with Junmei for: theta0:120.0?)
@@ -332,30 +332,30 @@ H5-C -N             50.0000      120.00  Junmei et al, 1999
 H5-C -O             50.0000      119.00  Junmei et al, 1999
 H5-C -OH            50.0000      107.00  Junmei et al, 1999
 H5-C -OS            50.0000      107.00  Junmei et al, 1999
-CA-CA-H4            50.0000      120.00  
+CA-CA-H4            50.0000      120.00
 CA-CA-OH            70.0000      120.00  replacement in tyr
-CB-CA-H4            50.0000      120.00  
-CB-CA-N2            70.0000      123.50  
-CB-CA-NC            70.0000      117.30  
-CM-CA-N2            70.0000      120.10  
-CM-CA-NC            70.0000      121.50  
-CS-CA-N2            70.0000      120.10  
-CS-CA-NC            70.0000      121.50  
-NA-CA-NC            70.0000      123.30  
-N2-CA-NA            70.0000      116.00  
-N2-CA-NC            70.0000      119.30  
+CB-CA-H4            50.0000      120.00
+CB-CA-N2            70.0000      123.50
+CB-CA-NC            70.0000      117.30
+CM-CA-N2            70.0000      120.10
+CM-CA-NC            70.0000      121.50
+CS-CA-N2            70.0000      120.10
+CS-CA-NC            70.0000      121.50
+NA-CA-NC            70.0000      123.30
+N2-CA-NA            70.0000      116.00
+N2-CA-NC            70.0000      119.30
 F -CA-CA            70.0000      121.00  Junmei et al,99
 Cl-CA-CA            70.0000      118.80  Junmei et al,99
 Br-CA-CA            70.0000      118.80  Junmei et al,99
 I -CA-CA            70.0000      118.80  Junmei et al,99
 C -CB-CB            63.0000      119.20  changed from 85.0 bsd on C6H6 nmodes; NA gua
-C -CB-NB            70.0000      130.00  
+C -CB-NB            70.0000      130.00
 CA-CB-CB            63.0000      117.30  changed from 85.0 bsd on C6H6 nmodes; NA ade
-CA-CB-NB            70.0000      132.40  
-CB-CB-N*            70.0000      106.20  
-CB-CB-NB            70.0000      110.40  
-CB-CB-NC            70.0000      127.70  
-N*-CB-NC            70.0000      126.20  
+CA-CB-NB            70.0000      132.40
+CB-CB-N*            70.0000      106.20
+CB-CB-NB            70.0000      110.40
+CB-CB-NC            70.0000      127.70
+N*-CB-NC            70.0000      126.20
 CD-CD-CM            63.0000      120.00  Junmei et al, 1999
 CD-CD-CS            63.0000      120.00  Junmei et al, 1999
 CD-CD-CT            70.0000      120.00  Junmei et al, 1999
@@ -365,48 +365,48 @@ HA-CD-HA            35.0000      119.00  Junmei et al, 1999
 HA-CD-CD            50.0000      120.00  Junmei et al, 1999
 HA-CD-CM            50.0000      120.00  Junmei et al, 1999
 HA-CD-CS            50.0000      120.00  Junmei et al, 1999
-H5-CK-N*            50.0000      123.05  
-H5-CK-NB            50.0000      123.05  
-N*-CK-NB            70.0000      113.90  
-H5-CP-N*            50.0000      123.05  
-H5-CP-NB            50.0000      123.05  
-N*-CP-NB            70.0000      113.90  
+H5-CK-N*            50.0000      123.05
+H5-CK-NB            50.0000      123.05
+N*-CK-NB            70.0000      113.90
+H5-CP-N*            50.0000      123.05
+H5-CP-NB            50.0000      123.05
+N*-CP-NB            70.0000      113.90
 C -CM-CM            63.0000      120.70  changed from 85.0 bsd on C6H6 nmodes; NA thy
-C -CM-CT            70.0000      119.70  
-C -CM-HA            50.0000      119.70  
-C -CM-H4            50.0000      119.70  
+C -CM-CT            70.0000      119.70
+C -CM-HA            50.0000      119.70
+C -CM-H4            50.0000      119.70
 CA-CM-CM            63.0000      117.00  changed from 85.0 bsd on C6H6 nmodes; NA cyt
-CA-CM-HA            50.0000      123.30  
-CA-CM-H4            50.0000      123.30  
-CM-CM-CT            70.0000      119.70  
-CM-CM-HA            50.0000      119.70  
-CM-CM-H4            50.0000      119.70  
-CM-CM-N*            70.0000      121.20  
+CA-CM-HA            50.0000      123.30
+CA-CM-H4            50.0000      123.30
+CM-CM-CT            70.0000      119.70
+CM-CM-HA            50.0000      119.70
+CM-CM-H4            50.0000      119.70
+CM-CM-N*            70.0000      121.20
 CM-CM-OS            80.0000      125.00  Junmei et al, 1999
-H4-CM-N*            50.0000      119.10  
+H4-CM-N*            50.0000      119.10
 H4-CM-OS            50.0000      113.00  Junmei et al, 1999
 HA-CM-HA            35.0000      120.00  Junmei et al, 1999
 HA-CM-CD            50.0000      120.00  Junmei et al, 1999
 HA-CM-CT            50.0000      120.00  Junmei et al, 1999
 C -CS-CS            63.0000      120.70  changed from 85.0 bsd on C6H6 nmodes; NA thy
-C -CS-CT            70.0000      119.70  
-C -CS-HA            50.0000      119.70  
-C -CS-H4            50.0000      119.70  
+C -CS-CT            70.0000      119.70
+C -CS-HA            50.0000      119.70
+C -CS-H4            50.0000      119.70
 CA-CS-CS            63.0000      117.00  changed from 85.0 bsd on C6H6 nmodes; NA cyt
-CA-CS-HA            50.0000      123.30  
-CA-CS-H4            50.0000      123.30  
-CM-CS-CT            70.0000      119.70  
-CS-CS-HA            50.0000      119.70  
-CS-CS-H4            50.0000      119.70  
-CS-CS-N*            70.0000      121.20  
+CA-CS-HA            50.0000      123.30
+CA-CS-H4            50.0000      123.30
+CM-CS-CT            70.0000      119.70
+CS-CS-HA            50.0000      119.70
+CS-CS-H4            50.0000      119.70
+CS-CS-N*            70.0000      121.20
 CS-CS-OS            80.0000      125.00  Junmei et al, 1999
-H4-CS-N*            50.0000      119.10  
+H4-CS-N*            50.0000      119.10
 H4-CS-OS            50.0000      113.00  Junmei et al, 1999
 HA-CS-HA            35.0000      120.00  Junmei et al, 1999
 HA-CS-CD            50.0000      120.00  Junmei et al, 1999
 HA-CS-CT            50.0000      120.00  Junmei et al, 1999
-NC-CQ-NC            70.0000      129.10  
-H5-CQ-NC            50.0000      115.45  
+NC-CQ-NC            70.0000      129.10
+H5-CQ-NC            50.0000      115.45
 H1-CT-N*            50.0000      109.50  changed based on NMA nmodes
 H1-CT-OH            50.0000      109.50  changed based on NMA nmodes
 H1-CT-OS            50.0000      109.50  changed based on NMA nmodes
@@ -438,14 +438,14 @@ CM-CT-CT            63.0000      111.00  Junmei et al, 1999 (last change: Mar24,
 CM-CT-OS            50.0000      109.50  Junmei et al, 1999
 CS-CT-CT            63.0000      111.00  Junmei et al, 1999 (last change: Mar24,99)
 CS-CT-OS            50.0000      109.50  Junmei et al, 1999
-CT-CT-CT            40.0000      109.50  
+CT-CT-CT            40.0000      109.50
 CT-CT-HC            50.0000      109.50  changed based on NMA nmodes
 CT-CT-H1            50.0000      109.50  changed based on NMA nmodes
 CT-CT-H2            50.0000      109.50  changed based on NMA nmodes
 CT-CT-HP            50.0000      109.50  changed based on NMA nmodes
-CT-CT-N*            50.0000      109.50  
-CT-CT-OH            50.0000      109.50  
-CT-CT-OS            50.0000      109.50  
+CT-CT-N*            50.0000      109.50
+CT-CT-OH            50.0000      109.50
+CT-CT-OS            50.0000      109.50
 CT-CT-S             50.0000      114.70  AA cyx (SCHERAGA JPC 79,1428)
 CT-CT-SH            50.0000      108.60  AA cys
 CT-CT-CA            63.0000      114.00  AA phe tyr (SCH JPC 79,2379)
@@ -459,11 +459,11 @@ C*-CT-CT            63.0000      115.60  AA trp
 OS-CT-OS           160.0000      101.00  Junmei et al, 1999
 OS-CT-CY            50.0000      110.00  Junmei et al, 1999
 OS-CT-CZ            50.0000      110.00  Junmei et al, 1999
-OS-CT-N*            50.0000      109.50  
+OS-CT-N*            50.0000      109.50
 F -CT-F             77.0000      109.10  JCC,13,(1992),963;
 F -CT-H1            50.0000      109.50  JCC,13,(1992),963;
-F -CT-CT            50.0000      109.00  
-F -CT-H2            50.0000      109.50  
+F -CT-CT            50.0000      109.00
+F -CT-H2            50.0000      109.50
 Cl-CT-CT            50.0000      108.50  (6-31g* opt value)
 Cl-CT-H1            50.0000      108.50  (6-31g* opt value)
 Br-CT-CT            50.0000      108.00  Junmei et al 99
@@ -476,60 +476,60 @@ C -N -CT            50.0000      121.90  AA general
 CT-N -H             50.0000      118.04  AA general, changed based on NMA nmodes
 CT-N -CT            50.0000      118.00  AA pro (DETAR JACS 99,1232)
 H -N -H             35.0000      120.00  ade,cyt,gua,gln,asn **
-C -N*-CM            70.0000      121.60  
-C -N*-CS            70.0000      121.60  
-C -N*-CT            70.0000      117.60  
+C -N*-CM            70.0000      121.60
+C -N*-CS            70.0000      121.60
+C -N*-CT            70.0000      117.60
 C -N*-H             50.0000      119.20  changed based on NMA nmodes
-CB-N*-CK            70.0000      105.40  
-CB-N*-CP            70.0000      105.40  
-CB-N*-CT            70.0000      125.80  
+CB-N*-CK            70.0000      105.40
+CB-N*-CP            70.0000      105.40
+CB-N*-CT            70.0000      125.80
 CB-N*-H             50.0000      125.80  for unmethylated n.a. bases,chngd bsd NMA nmodes
-CK-N*-CT            70.0000      128.80  
+CK-N*-CT            70.0000      128.80
 CK-N*-H             50.0000      128.80  for unmethylated n.a. bases,chngd bsd NMA nmodes
-CP-N*-CT            70.0000      128.80  
+CP-N*-CT            70.0000      128.80
 CP-N*-H             50.0000      128.80  for unmethylated n.a. bases,chngd bsd NMA nmodes
-CM-N*-CT            70.0000      121.20  
+CM-N*-CT            70.0000      121.20
 CM-N*-H             50.0000      121.20  for unmethylated n.a. bases,chngd bsd NMA nmodes
-CS-N*-CT            70.0000      121.20  
+CS-N*-CT            70.0000      121.20
 CS-N*-H             50.0000      121.20  for unmethylated n.a. bases,chngd bsd NMA nmodes
-CA-N2-H             50.0000      120.00  
+CA-N2-H             50.0000      120.00
 CA-N2-CT            50.0000      123.20  AA arg
 CT-N2-H             50.0000      118.40  AA arg
-H -N2-H             35.0000      120.00  
+H -N2-H             35.0000      120.00
 CT-N3-H             50.0000      109.50  AA lys, changed based on NMA nmodes
 CT-N3-CT            50.0000      109.50  AA pro/nt
 H -N3-H             35.0000      109.50  AA lys, AA(end)
 CT-NT-H             50.0000      109.50  neutral amines
 CT-NT-CT            50.0000      109.50  neutral amines
 H -NT-H             35.0000      109.50  neutral amines
-C -NA-C             70.0000      126.40  
-C -NA-CA            70.0000      125.20  
+C -NA-C             70.0000      126.40
+C -NA-CA            70.0000      125.20
 C -NA-H             50.0000      116.80  changed based on NMA nmodes
 CA-NA-H             50.0000      118.00  changed based on NMA nmodes
-CB-NB-CK            70.0000      103.80  
-CB-NB-CP            70.0000      103.80  
-C -NC-CA            70.0000      120.50  
-CA-NC-CB            70.0000      112.20  
-CA-NC-CQ            70.0000      118.60  
-CB-NC-CQ            70.0000      111.00  
+CB-NB-CK            70.0000      103.80
+CB-NB-CP            70.0000      103.80
+C -NC-CA            70.0000      120.50
+CA-NC-CB            70.0000      112.20
+CA-NC-CQ            70.0000      118.60
+CB-NC-CQ            70.0000      111.00
 C -OH-HO            50.0000      113.00  (not used in tyr anymore)
 CA-OH-HO            50.0000      113.00  replacement in tyr
-CT-OH-HO            55.0000      108.50  
-HO-OH-P             45.0000      108.50  
+CT-OH-HO            55.0000      108.50
+HO-OH-P             45.0000      108.50
 C -OS-CT            60.0000      117.00  Junmei et al, 1999
 CM-OS-CT            60.0000      117.00  Junmei et al, 1999
 CS-OS-CT            60.0000      117.00  Junmei et al, 1999
-CT-OS-CT            60.0000      109.50  
-CT-OS-P            100.0000      120.50  
+CT-OS-CT            60.0000      109.50
+CT-OS-P            100.0000      120.50
 C -OS-P            100.0000      120.50  phosphotyrosine
-P -OS-P            100.0000      120.50  
-O2-P -OH            45.0000      108.23  
-O2-P -O2           140.0000      119.90  
-OP-P -OP           140.0000      119.90  
-OP-P -OS           100.0000      108.23  
-O2-P -OS           100.0000      108.23  
-OH-P -OS            45.0000      102.60  
-OS-P -OS            45.0000      102.60  
+P -OS-P            100.0000      120.50
+O2-P -OH            45.0000      108.23
+O2-P -O2           140.0000      119.90
+OP-P -OP           140.0000      119.90
+OP-P -OS           100.0000      108.23
+O2-P -OS           100.0000      108.23
+OH-P -OS            45.0000      102.60
+OS-P -OS            45.0000      102.60
 CT-S -CT            62.0000       98.90  AA met
 CT-S -S             68.0000      103.70  AA cyx (SCHERAGA JPC 79,1428)
 CT-SH-HS            43.0000       96.00  changed from 44.0 based on methanethiol nmodes
@@ -546,19 +546,19 @@ CB-NC-EP           150.0000      120.00  NA
 CQ-NC-EP           150.0000      120.00  NA
 CT-N3-EP           150.0000      109.50  in neutral lysine
 H -N3-EP           150.0000      109.50  in neutral lysine
-CT-NT-EP           150.0000      109.50  
-H -NT-EP           150.0000      109.50  
-C -O -EP           150.0000      120.00  
-EP-O -EP           150.0000      120.00  
-C -OH-EP           150.0000      120.00  
-CT-OH-EP           150.0000      109.50  
-HO-OH-EP           150.0000      109.50  
-EP-OH-EP           150.0000      109.50  
-C -OS-EP           150.0000      109.50  
+CT-NT-EP           150.0000      109.50
+H -NT-EP           150.0000      109.50
+C -O -EP           150.0000      120.00
+EP-O -EP           150.0000      120.00
+C -OH-EP           150.0000      120.00
+CT-OH-EP           150.0000      109.50
+HO-OH-EP           150.0000      109.50
+EP-OH-EP           150.0000      109.50
+C -OS-EP           150.0000      109.50
 CM-OS-EP           150.0000      109.50  methyl vinyl ether
 CS-OS-EP           150.0000      109.50  methyl vinyl ether
-CT-OS-EP           150.0000      109.50  
-EP-OS-EP           150.0000      109.50  
+CT-OS-EP           150.0000      109.50
+EP-OS-EP           150.0000      109.50
 CT-S -EP           150.0000       90.00  cys,cyx,met
 CT-SH-EP           150.0000       90.00  cys,cyx,met
 P -OS-EP           150.0000      109.50  NA
@@ -576,77 +576,77 @@ P -OS-CI           100.0000      120.50  parmbsc0
 OH-CI-H1            50.0000      109.50  parmbsc0
 OH-CI-CT            50.0000      109.50  parmbsc0
 HO-OH-CI            55.0000      108.50  parmbsc0
-H5-C5-N*            50.0000      123.05  
-H5-C5-NB            50.0000      123.05  
-N*-C5-NB            70.0000      113.90  
-CB-N*-C5            70.0000      105.40  
-C5-N*-CT            70.0000      128.80  
-CB-NB-C5            70.0000      103.80  
-C4-C -NA            70.0000      114.10  
-C4-C -O             80.0000      125.30  
-C4-CA-N2            70.0000      120.10  
-C4-CA-NC            70.0000      121.50  
+H5-C5-N*            50.0000      123.05
+H5-C5-NB            50.0000      123.05
+N*-C5-NB            70.0000      113.90
+CB-N*-C5            70.0000      105.40
+C5-N*-CT            70.0000      128.80
+CB-NB-C5            70.0000      103.80
+C4-C -NA            70.0000      114.10
+C4-C -O             80.0000      125.30
+C4-CA-N2            70.0000      120.10
+C4-CA-NC            70.0000      121.50
 C -C4-C4            63.0000      120.70  changed from 85.0 bsd on C6H6 nmodes; NA thy
-C -C4-CT            70.0000      119.70  
-C -C4-HA            50.0000      119.70  
-C -C4-H4            50.0000      119.70  
+C -C4-CT            70.0000      119.70
+C -C4-HA            50.0000      119.70
+C -C4-H4            50.0000      119.70
 CA-C4-C4            63.0000      117.00  changed from 85.0 bsd on C6H6 nmodes; NA cyt
-CA-C4-HA            50.0000      123.30  
-CA-C4-H4            50.0000      123.30  
-C4-C4-CT            70.0000      119.70  
-C4-C4-HA            50.0000      119.70  
-C4-C4-H4            50.0000      119.70  
-C4-C4-N*            70.0000      121.20  
-H4-C4-N*            50.0000      119.10  
+CA-C4-HA            50.0000      123.30
+CA-C4-H4            50.0000      123.30
+C4-C4-CT            70.0000      119.70
+C4-C4-HA            50.0000      119.70
+C4-C4-H4            50.0000      119.70
+C4-C4-N*            70.0000      121.20
+H4-C4-N*            50.0000      119.10
 H1-CT-C4            50.0000      109.50  Junmei et al, 1999
 HC-CT-C4            50.0000      109.50  changed based on NMA nmodes
-C -N*-C4            70.0000      121.60  
-C4-N*-CT            70.0000      121.20  
+C -N*-C4            70.0000      121.60
+C4-N*-CT            70.0000      121.20
 EP-S -S            150.0000       96.70  AA cyx (dac, from parm91 LP-S-S)
-N -C -2C            70.0000      116.60  
-O -C -2C            80.0000      120.40  
-OH-C -2C            80.0000      110.00  
-CB-C*-2C            70.0000      128.60  
-CW-C*-2C            70.0000      125.00  
-CA-CA-2C            70.0000      120.00  
-CV-CC-2C            70.0000      120.00  
-CW-CC-2C            70.0000      120.00  
-NA-CC-2C            70.0000      120.00  
-NB-CC-2C            70.0000      120.00  
-O2-CO-O2            80.0000      126.00  
-O2-CO-2C            70.0000      117.00  
-HC-CT-2C            50.0000      109.50  
-HC-CT-3C            50.0000      109.50  
-HO-OH-2C            55.0000      108.50  
-HO-OH-3C            55.0000      108.50  
-CT-S -2C            62.0000       98.90  
-2C-S -S             68.0000      103.70  
-HS-SH-2C            43.0000       96.00  
-C -2C-HC            50.0000      109.50  
-C -2C-2C            63.0000      111.10  
-C*-2C-HC            50.0000      109.50  
-CA-2C-HC            50.0000      109.50  
-CC-2C-HC            50.0000      109.50  
-CO-2C-HC            50.0000      109.50  
-CO-2C-2C            63.0000      111.10  
-CT-2C-HC            50.0000      109.50  
-CT-2C-3C            40.0000      109.50  
-H1-2C-H1            35.0000      109.50  
-H1-2C-OH            50.0000      109.50  
-H1-2C-S             50.0000      109.50  
-H1-2C-SH            50.0000      109.50  
-H1-2C-2C            50.0000      109.50  
-HC-2C-HC            35.0000      109.50  
-HC-2C-2C            50.0000      109.50  
-HC-2C-3C            50.0000      109.50  
-S -2C-2C            50.0000      114.70  
-CT-3C-CT            40.0000      109.50  
-CT-3C-H1            50.0000      109.50  
-CT-3C-HC            50.0000      109.50  
-CT-3C-OH            50.0000      109.50  
-CT-3C-2C            40.0000      109.50  
-H1-3C-OH            50.0000      109.50  
-HC-3C-2C            50.0000      109.50  
+N -C -2C            70.0000      116.60
+O -C -2C            80.0000      120.40
+OH-C -2C            80.0000      110.00
+CB-C*-2C            70.0000      128.60
+CW-C*-2C            70.0000      125.00
+CA-CA-2C            70.0000      120.00
+CV-CC-2C            70.0000      120.00
+CW-CC-2C            70.0000      120.00
+NA-CC-2C            70.0000      120.00
+NB-CC-2C            70.0000      120.00
+O2-CO-O2            80.0000      126.00
+O2-CO-2C            70.0000      117.00
+HC-CT-2C            50.0000      109.50
+HC-CT-3C            50.0000      109.50
+HO-OH-2C            55.0000      108.50
+HO-OH-3C            55.0000      108.50
+CT-S -2C            62.0000       98.90
+2C-S -S             68.0000      103.70
+HS-SH-2C            43.0000       96.00
+C -2C-HC            50.0000      109.50
+C -2C-2C            63.0000      111.10
+C*-2C-HC            50.0000      109.50
+CA-2C-HC            50.0000      109.50
+CC-2C-HC            50.0000      109.50
+CO-2C-HC            50.0000      109.50
+CO-2C-2C            63.0000      111.10
+CT-2C-HC            50.0000      109.50
+CT-2C-3C            40.0000      109.50
+H1-2C-H1            35.0000      109.50
+H1-2C-OH            50.0000      109.50
+H1-2C-S             50.0000      109.50
+H1-2C-SH            50.0000      109.50
+H1-2C-2C            50.0000      109.50
+HC-2C-HC            35.0000      109.50
+HC-2C-2C            50.0000      109.50
+HC-2C-3C            50.0000      109.50
+S -2C-2C            50.0000      114.70
+CT-3C-CT            40.0000      109.50
+CT-3C-H1            50.0000      109.50
+CT-3C-HC            50.0000      109.50
+CT-3C-OH            50.0000      109.50
+CT-3C-2C            40.0000      109.50
+H1-3C-OH            50.0000      109.50
+HC-3C-2C            50.0000      109.50
 OD-C -N             79.7662      124.74  Fit by mdgx
 OD-C -TN            80.0000      122.90  ALL>PRO
 OD-C -ND            80.0000      122.90  ALL>NHE, ASN/GLN side chain
@@ -958,9 +958,9 @@ X -CT-OS-X    1     0.38333    0.0  3.0  JCC,7,(1986),230
 X -CT-SH-X    1     0.25000    0.0  3.0  JCC,7,(1986),230
 X -OH-P -X    1     0.25000    0.0  3.0  JCC,7,(1986),230
 X -OS-P -X    1     0.25000    0.0  3.0  JCC,7,(1986),230
-X -CI-OS-X    1     0.38333    0.0  3.0  
-X -CI-OH-X    1     0.16667    0.0  3.0  
-X -CI-CT-X    1     0.15556    0.0  3.0  
+X -CI-OS-X    1     0.38333    0.0  3.0
+X -CI-OH-X    1     0.16667    0.0  3.0
+X -CI-CT-X    1     0.15556    0.0  3.0
 X -C5-N*-X    1     1.70000  180.0  2.0  JCC,7,(1986),230
 X -C5-NB-X    1    10.00000  180.0  2.0  JCC,7,(1986),230
 X -C -C4-X    1     2.17500  180.0  2.0  intrpol.bsd.on C6H6
@@ -1038,15 +1038,15 @@ X -CC-CV-H4   1     5.87192  180.0  2.0  HID side chain, Fit by mdgx
 X -CC-CW-H4   1     5.17993  180.0  2.0  HIE/HIP side chain, Fit by mdgx
 X -CC-CV-NB   1     9.07767  180.0  2.0  HID chi3(2), Fit by mdgx
 X -CC-CW-NA   1     5.23741  180.0  2.0  HIE/HIP chi3(2), Fit by mdgx
-CT-OS-CT-CI   1     0.38300    0.0 -3.0  
-CT-OS-CT-CI   1     0.10000  180.0  2.0  
-H1-CI-CT-OS   1     0.25000    0.0  1.0  
-H1-CI-CT-OH   1     0.25000    0.0  1.0  
-H1-CT-CI-OS   1     0.25000    0.0  1.0  
-H1-CT-CI-OH   1     0.25000    0.0  1.0  
-CI-CT-CT-CT   1     0.18000    0.0 -3.0  
-CI-CT-CT-CT   1     0.25000  180.0 -2.0  
-CI-CT-CT-CT   1     0.20000  180.0  1.0  
+CT-OS-CT-CI   1     0.38300    0.0 -3.0
+CT-OS-CT-CI   1     0.10000  180.0  2.0
+H1-CI-CT-OS   1     0.25000    0.0  1.0
+H1-CI-CT-OH   1     0.25000    0.0  1.0
+H1-CT-CI-OS   1     0.25000    0.0  1.0
+H1-CT-CI-OH   1     0.25000    0.0  1.0
+CI-CT-CT-CT   1     0.18000    0.0 -3.0
+CI-CT-CT-CT   1     0.25000  180.0 -2.0
+CI-CT-CT-CT   1     0.20000  180.0  1.0
 OP-P -OS-CA   1     0.00000  180.0  1.0  phosphotyrosine
 CC-NA-P -OP   1     0.24000    0.0  3.0  phosphohistidine
 CR-NA-P -OP   1     0.00000    0.0  3.0  phosphohistidine
@@ -1123,8 +1123,8 @@ CT-CT-CT-CT   1     0.25000  180.0 -2.0  Junmei et al, 1999
 CT-CT-CT-CT   1     0.20000  180.0  1.0  Junmei et al, 1999
 CT-CT-NT-CT   1     0.30000    0.0 -3.0  Junmei et al, 1999
 CT-CT-NT-CT   1     0.48000  180.0  2.0  Junmei et al, 1999
-CT-CT-OS-CT   1     0.38300    0.0 -3.0  
-CT-CT-OS-CT   1     0.10000  180.0  2.0  
+CT-CT-OS-CT   1     0.38300    0.0 -3.0
+CT-CT-OS-CT   1     0.10000  180.0  2.0
 CT-CT-OS-C    1     0.38300    0.0 -3.0  Junmei et al, 1999
 CT-CT-OS-C    1     0.80000  180.0  1.0  Junmei et al, 1999
 CT-OS-CT-OS   1     0.10000    0.0 -3.0  Junmei et al, 1999
@@ -1171,21 +1171,21 @@ HC-CT-CT-Cl   1     0.00000    0.0 -3.0  JCC,7,(1986),230
 HC-CT-CT-Cl   1     0.25000    0.0  1.0  Junmei et al, 1999
 HC-CT-CT-Br   1     0.00000    0.0 -3.0  JCC,7,(1986),230
 HC-CT-CT-Br   1     0.55000    0.0  1.0  Junmei et al, 1999
-H1-CT-NT-EP   1     0.00000    0.0  3.0  
-CT-CT-NT-EP   1     0.00000    0.0  3.0  
-CT-C -N -EP   1     0.00000  180.0  2.0  
-O -C -N -EP   1     0.00000  180.0  2.0  
-H1-CT-OH-EP   1     0.00000    0.0  3.0  
-CT-CT-OH-EP   1     0.00000    0.0  3.0  
-H1-CT-OS-EP   1     0.00000    0.0  3.0  
-H2-CT-OS-EP   1     0.00000    0.0  3.0  
-CT-CT-OS-EP   1     0.00000    0.0  3.0  
-CM-CM-OS-EP   1     0.00000  180.0  2.0  
-HA-CM-OS-EP   1     0.00000  180.0  2.0  
-H4-CM-OS-EP   1     0.00000  180.0  2.0  
-CS-CS-OS-EP   1     0.00000  180.0  2.0  
-HA-CS-OS-EP   1     0.00000  180.0  2.0  
-H4-CS-OS-EP   1     0.00000  180.0  2.0  
+H1-CT-NT-EP   1     0.00000    0.0  3.0
+CT-CT-NT-EP   1     0.00000    0.0  3.0
+CT-C -N -EP   1     0.00000  180.0  2.0
+O -C -N -EP   1     0.00000  180.0  2.0
+H1-CT-OH-EP   1     0.00000    0.0  3.0
+CT-CT-OH-EP   1     0.00000    0.0  3.0
+H1-CT-OS-EP   1     0.00000    0.0  3.0
+H2-CT-OS-EP   1     0.00000    0.0  3.0
+CT-CT-OS-EP   1     0.00000    0.0  3.0
+CM-CM-OS-EP   1     0.00000  180.0  2.0
+HA-CM-OS-EP   1     0.00000  180.0  2.0
+H4-CM-OS-EP   1     0.00000  180.0  2.0
+CS-CS-OS-EP   1     0.00000  180.0  2.0
+HA-CS-OS-EP   1     0.00000  180.0  2.0
+H4-CS-OS-EP   1     0.00000  180.0  2.0
 N -CT-CT-OH   1     0.00000    0.0 -1.0  HYP
 N -CT-CT-OH   1     1.49000    0.0 -2.0  HYP (JCC 26:1612,2005)
 N -CT-CT-OH   1     0.15600    0.0 -3.0  HYP
@@ -2007,22 +2007,22 @@ X -N2-CA-N2        10.50000  180.0  2.0  JCC,7,(1986),230
 X -CT-N -CT         1.00000  180.0  2.0  JCC,7,(1986),230
 X -CT-N -CX         1.00000  180.0  2.0  JCC,7,(1986),230 (was X CT N CT)
 X -X -CA-HA         1.10000  180.0  2.0  bsd.on C6H6 nmodes
-X -X -CW-H4         1.10000  180.0  2.0  
-X -X -CR-H5         1.10000  180.0  2.0  
-X -X -CV-H4         1.10000  180.0  2.0  
-X -X -CQ-H5         1.10000  180.0  2.0  
-X -X -CK-H5         1.10000  180.0  2.0  
-X -X -CP-H5         1.10000  180.0  2.0  
-X -X -CM-H4         1.10000  180.0  2.0  
-X -X -CM-HA         1.10000  180.0  2.0  
-X -X -CS-H4         1.10000  180.0  2.0  
-X -X -CS-HA         1.10000  180.0  2.0  
+X -X -CW-H4         1.10000  180.0  2.0
+X -X -CR-H5         1.10000  180.0  2.0
+X -X -CV-H4         1.10000  180.0  2.0
+X -X -CQ-H5         1.10000  180.0  2.0
+X -X -CK-H5         1.10000  180.0  2.0
+X -X -CP-H5         1.10000  180.0  2.0
+X -X -CM-H4         1.10000  180.0  2.0
+X -X -CM-HA         1.10000  180.0  2.0
+X -X -CS-H4         1.10000  180.0  2.0
+X -X -CS-HA         1.10000  180.0  2.0
 X -X -CA-H4         1.10000  180.0  2.0  bsd.on C6H6 nmodes
 X -X -CA-H5         1.10000  180.0  2.0  bsd.on C6H6 nmodes
-X -X -C5-H5         1.10000  180.0  2.0  
-X -X -C4-H4         1.10000  180.0  2.0  
-X -X -C4-HA         1.10000  180.0  2.0  
-X -O2-CO-O2        10.50000  180.0  2.0  
+X -X -C5-H5         1.10000  180.0  2.0
+X -X -C4-H4         1.10000  180.0  2.0
+X -X -C4-HA         1.10000  180.0  2.0
+X -O2-CO-O2        10.50000  180.0  2.0
 X -O3-CO-O3        10.50000  180.0  2.0  Branched from X O2 CO O2
 X -X -C -OD        10.50000  180.0  2.0  Branched from X X C O
 X -X -ND-H          1.00000  180.0  2.0  Branched from X X N H
@@ -2038,18 +2038,18 @@ X -CT-N -TP         1.00000  180.0  2.0  Branched from X CT N CX
 X -CT-ND-TP         1.00000  180.0  2.0  Branched from X CT ND CX
 X -CT-TN-TP         1.00000  180.0  2.0  Branched from X CT TN CX
 X -X -N2-TH         1.00000  180.0  2.0  ARG, from X X N2 H , ktd 6/15
-CB-CK-N*-CT         1.00000  180.0  2.0  
-CB-CP-N*-CT         1.00000  180.0  2.0  
+CB-CK-N*-CT         1.00000  180.0  2.0
+CB-CP-N*-CT         1.00000  180.0  2.0
 C -CM-N*-CT         1.00000  180.0  2.0  dac guess, 9/94
 C -CS-N*-CT         1.00000  180.0  2.0  dac guess, 9/94
-C -CS-CM-CT         1.10000  180.0  2.0  
-CT-O -C -OH        10.50000  180.0  2.0  
+C -CS-CM-CT         1.10000  180.0  2.0
+CT-O -C -OH        10.50000  180.0  2.0
 CT-CV-CC-NA         1.10000  180.0  2.0  HID
 CT-CW-CC-NB         1.10000  180.0  2.0  HID
 C8-CW-CC-NA         1.10000  180.0  2.0  HIP
 CT-CW-CC-NA         1.10000  180.0  2.0  old HIP
-CB-CT-C*-CW         1.10000  180.0  2.0  
-CA-CA-CA-CT         1.10000  180.0  2.0  
+CB-CT-C*-CW         1.10000  180.0  2.0
+CA-CA-CA-CT         1.10000  180.0  2.0
 C -CM-CM-CT         1.10000  180.0  2.0  dac guess, 9/94
 C -CS-CS-CT         1.10000  180.0  2.0  dac guess, 9/94
 CM-N2-CA-NC         1.10000  180.0  2.0  dac guess, 9/94
@@ -2059,7 +2059,7 @@ N2-NA-CA-NC         1.10000  180.0  2.0  dac, 10/94
 CA-CA-C -OH         1.10000  180.0  2.0  (not used in tyr!)
 CA-CA-CA-OH         1.10000  180.0  2.0  in tyr
 H5-O -C -OH         1.10000  180.0  2.0  Junmei et al.1999
-H5-O -C -OS         1.10000  180.0  2.0  
+H5-O -C -OS         1.10000  180.0  2.0
 CM-CT-CM-HA         1.10000  180.0  2.0  Junmei et al.1999
 CS-CT-CS-HA         1.10000  180.0  2.0  Junmei et al.1999
 Br-CA-CA-CA         1.10000  180.0  2.0  Junmei et al.1999
@@ -2068,14 +2068,14 @@ CS-H4-C -O          1.10000  180.0  2.0  Junmei et al.1999
 C -CT-N -H          1.10000  180.0  2.0  Junmei et al.1999
 C -CX-N -H          1.10000  180.0  2.0  Junmei et al.1999 (was C CT N H )
 C -CT-N -O          1.10000  180.0  2.0  Junmei et al.1999
-C5-CB-N*-CT         1.00000  180.0  2.0  
+C5-CB-N*-CT         1.00000  180.0  2.0
 C -C4-N*-CT         1.00000  180.0  2.0  dac guess, 9/94
 C -C4-C4-CT         1.10000  180.0  2.0  dac guess, 9/94
 C4-N2-CA-NC         1.10000  180.0  2.0  dac guess, 9/94
 CA-CA-C -OS         1.10000  180.0  2.0  phosphotyrosine
 CC-CR-NA-P          1.10000  180.0  2.0  phosphohistine
-2C-O -C -OH        10.50000  180.0  2.0  
-2C-CA-CA-CA         1.10000  180.0  2.0  
+2C-O -C -OH        10.50000  180.0  2.0
+2C-CA-CA-CA         1.10000  180.0  2.0
 CT-OD-C -OH        10.50000  180.0  2.0  Branched from CT O C OH
 H5-OD-C -OH         1.10000  180.0  2.0  Branched from H5 O C OH
 H5-OD-C -OS         1.10000  180.0  2.0  Branched from H5 O C OS
@@ -2116,8 +2116,8 @@ CA-CA-CA-TA         1.10000  180.0  2.0  PHE/TYR CG
 CB-CW-C*-TA         1.10000  180.0  2.0  TRP CG
 
 
-N   NA  N2  N*  NC  NB  NT  NY  
-C*  CA  CB  CC  CD  CK  CM  CN  CQ  CR  CV  CW  CY  CZ  CP  CS  
+N   NA  N2  N*  NC  NB  NT  NY
+C*  CA  CB  CC  CD  CK  CM  CN  CQ  CR  CV  CW  CY  CZ  CP  CS
 
 MOD4      RE
   C                1.908000    0.086000  ! sp2 C carbonyl group

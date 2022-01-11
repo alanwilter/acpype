@@ -8,7 +8,7 @@ logFile leap.log
 #
 addAtomTypes {
         { "MC"  "C" "sp2" }  # CNX
-        { "YC"  "C" "sp3" }  #  ^ 
+        { "YC"  "C" "sp3" }  #  ^
         { "NR"  "N" "sp2" }  #  |
         { "RO"  "O" "sp2" }  #  |
         { "SX"  "S" "sp3" }  #  |

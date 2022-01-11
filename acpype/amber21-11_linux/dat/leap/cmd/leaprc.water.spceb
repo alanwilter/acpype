@@ -1,6 +1,6 @@
 #
 #       Load water and ions for SPC/E + Joung-Chetham monovalent ions
-# 
+#
 addAtomTypes {
 	{ "F-"   "F" "sp3" }
 	{ "Cl-"  "Cl" "sp3" }

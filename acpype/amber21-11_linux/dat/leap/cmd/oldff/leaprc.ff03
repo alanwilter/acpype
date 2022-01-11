@@ -102,7 +102,7 @@ WAT = TP3
 #
 loadOff all_nucleic94.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_aminoct94.lib

@@ -1,6 +1,6 @@
 ff12SB protein backbone and sidechain parameters
 MASS
-CO 12.01         0.616  !            sp2 C carboxylate group 
+CO 12.01         0.616  !            sp2 C carboxylate group
 2C 12.01         0.878               sp3 aliphatic C with two (duo) heavy atoms
 3C 12.01         0.878               sp3 aliphatic C with three (tres) heavy atoms
 C8 12.01         0.878               sp3 aliphatic C basic AA side chain

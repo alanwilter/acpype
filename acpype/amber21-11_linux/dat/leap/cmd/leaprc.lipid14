@@ -2,7 +2,7 @@ logFile leap.log
 #
 # ----- leaprc for loading the Lipid14 force field
 #       of Skjevik, Madej, Dickson, Gould, Teigen, and Walker.
-#       
+#
 #       Note this file is designed to be used in addition
 #       to one of the standard protein force field leaprc files
 #       even if you are running a pure lipid.

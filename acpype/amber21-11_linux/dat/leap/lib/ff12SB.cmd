@@ -91,10 +91,10 @@ addAtomTypes {
 #
 loadAmberPrep nucleic10.in
 #
-a = { DA5  DT5  DG5  DC5  } 
-b = { DA3  DT3  DG3  DC3  } 
-c = { A5  U5  G5  C5  } 
-d = { A3  U3  G3  C3  } 
+a = { DA5  DT5  DG5  DC5  }
+b = { DA3  DT3  DG3  DC3  }
+c = { A5  U5  G5  C5  }
+d = { A3  U3  G3  C3  }
 e = { DA   DT   DG   DC   }
 f = { A   U   G   C   }
 g = { DAN  DTN  DGN  DCN  }
@@ -157,35 +157,35 @@ clearVariables
 #
 # Extract the amino acids from amino12.in
 #
-loadAmberPrep amino12.in 
+loadAmberPrep amino12.in
 
-a = { 
-      ALA GLY SER THR LEU ILE VAL ASN GLN ARG 
+a = {
+      ALA GLY SER THR LEU ILE VAL ASN GLN ARG
       HID HIE HIP TRP PHE TYR GLU ASP LYS LYN
       PRO CYS CYX MET ASH GLH CYM HYP
     }
 
 set a       restype     protein
 set CYX.1   disulphide  CYX.1.SG
-saveOff a   ./amino12.lib 
+saveOff a   ./amino12.lib
 
 set NME     restype     protein
 set NME     tail        null
 set NME     head        NME.1.N
 set NME.1   connect0    NME.1.N
-saveOff NME ./aminoct12.lib 
+saveOff NME ./aminoct12.lib
 
 set NHE     restype     protein
 set NHE     tail        null
 set NHE     head        NHE.1.N
 set NHE.1   connect0    NHE.1.N
-saveOff NHE ./aminoct12.lib 
+saveOff NHE ./aminoct12.lib
 
 set ACE     restype     protein
 set ACE     head        null
 set ACE     tail        ACE.1.C
 set ACE.1   connect1    ACE.1.C
-saveOff ACE ./aminont12.lib 
+saveOff ACE ./aminont12.lib
 
 #
 # Extract the N terminus residues
@@ -195,10 +195,10 @@ clearVariables
 
 loadAmberPrep aminont12.in N
 
-a = { 
-      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG 
-      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO 
-      NCYS NCYX NMET 
+a = {
+      NALA NGLY NSER NTHR NLEU NILE NVAL NASN NGLN NARG
+      NHID NHIE NHIP NTRP NPHE NTYR NGLU NASP NLYS NPRO
+      NCYS NCYX NMET
     }
 
 set a        head      null
@@ -228,7 +228,7 @@ set NMET.1   nend      null
 
 set a        restype   protein
 set NCYX.1   disulphide  NCYX.1.SG
-saveOff a ./aminont12.lib 
+saveOff a ./aminont12.lib
 
 #
 # Extract the C terminus residues
@@ -236,9 +236,9 @@ saveOff a ./aminont12.lib
 
 loadAmberPrep aminoct12.in C
 
-a = { 
-      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG 
-      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO 
+a = {
+      CALA CGLY CSER CTHR CLEU CILE CVAL CASN CGLN CARG
+      CHID CHIE CHIP CTRP CPHE CTYR CGLU CASP CLYS CPRO
       CCYS CCYX CMET CHYP
     }
 
@@ -270,7 +270,7 @@ set CHYP.1   cend      null
 
 set a        restype   protein
 set CCYX.1   disulphide  CCYX.1.SG
-saveOff a ./aminoct12.lib 
+saveOff a ./aminoct12.lib
 
 #
 # DONE ff12SB

@@ -1,4 +1,4 @@
-Yang revised from parm99 and frcmod.ff03  
+Yang revised from parm99 and frcmod.ff03
 MASS
 C1 13.018        0.878               sp3 aliphatic C(UA model CH )
 C2 14.026        0.878               sp3 aliphatic C(UA model CH2)
@@ -82,7 +82,7 @@ C -N -C3    50.0      121.90    AA general
 C3-N -H     50.0      118.04    AA general,     changed based on NMA nmodes
 C3-C -O     80.0      120.40
 C3-C -N     70.0      116.60    AA general
-C2-S -S     68.0      103.70    AA cyx 
+C2-S -S     68.0      103.70    AA cyx
 CT-C2-S     50.0      114.70    AA cyx            (SCHERAGA  JPC 79,1428)
 
 DIHE
@@ -139,10 +139,10 @@ C2-S -S -C2   1    0.60          0.0             3.         JCC,7,(1986),230
 
 
 IMPROPER
-CA-CA-CA-C2         1.1          180.          2. 
-CW-CB-C*-C2         1.1          180.          2. 
-NB-CW-CC-C2         1.1          180.          2. 
-NA-CW-CC-C2         1.1          180.          2. 
+CA-CA-CA-C2         1.1          180.          2.
+CW-CB-C*-C2         1.1          180.          2.
+NB-CW-CC-C2         1.1          180.          2.
+NA-CW-CC-C2         1.1          180.          2.
 X -CT-N -C          1.0          180.          2.           JCC,7,(1986),230
 
 NONBON

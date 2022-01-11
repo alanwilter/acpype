@@ -113,7 +113,7 @@ addAtomTypes {
 parm99 = loadamberparams parm99.dat
 mods = loadamberparams frcmod.fb15
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries (modified from ff94)
 #
 loadOff all_aminofb15.lib
@@ -121,7 +121,7 @@ loadOff all_aminoctfb15.lib
 loadOff all_aminontfb15.lib
 #
 #  Note: also load a leaprc.water.fb{3,4} file to choose a water model
-# 
+#
 #
 #	Define the PDB name map for the amino acids
 #

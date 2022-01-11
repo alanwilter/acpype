@@ -3,13 +3,13 @@ C.2 C 	3
 C.1 C 	2
 C.ar C 	3
 C.cat C	3
-N.3 N	3	
+N.3 N	3
 N.2 N	2
 N.1 N	1
 N.ar N	2
 N.pl3 N	3
 N.4 N	4
-O.3 O	2	
+O.3 O	2
 O.2 O	1
 O.co2 O	1
 O.spc O	2
@@ -28,9 +28,9 @@ Br Br	1
 I I	1
 Si Si	4
 LP LP	0
-du du	-1	
-Du Du	-1	
-DU DU	-1	
+du du	-1
+Du Du	-1
+DU DU	-1
 Na Na	0
 K K	0
 Ca Ca	0
@@ -78,7 +78,7 @@ cz C	3
 ns N	3
 nt N	3
 n  N	3
-n1 N	-1 (1 or 2)	
+n1 N	-1 (1 or 2)
 n2 N	2
 n7 N	3
 n8 N	3
@@ -140,23 +140,23 @@ C  C	3
 CA C	3
 CB C	3
 CC C	3
-CD C 	3	
+CD C 	3
 CK C 	3
 CM C 	3
 CN C 	3
 CQ C 	3
 CR C 	3
-CT C 	4	
+CT C 	4
 CV C 	3
 CW C 	3
 C* C 	3
 CY C 	2
 CZ C 	2
 C1 C 	2
-H  H	1 
-HO H	1 
-HS H	1 
-HP H	1 
+H  H	1
+HO H	1
+HS H	1
+HP H	1
 HA H	1
 HC H	1
 H1 H	1
@@ -165,7 +165,7 @@ H3 H	1
 H4 H	1
 H5 H	1
 N  N	3
-NA N	3	
+NA N	3
 NB N	2
 NC N	2
 N1 N	1

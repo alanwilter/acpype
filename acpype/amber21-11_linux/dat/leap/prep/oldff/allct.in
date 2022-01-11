@@ -21,7 +21,7 @@ ALANINE COO- ANION
   14  OXT   O2    E   12   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -43,7 +43,7 @@ GLYCINE COO- ANION
   11  OXT   O2    E    9   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -69,7 +69,7 @@ SERINE  COO- ANION
   15  OXT   O2    E   13   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -98,7 +98,7 @@ THREONINE     COO- ANION
   18  OXT   O2    E   16   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -132,7 +132,7 @@ LEUCINE  COO- ANION
   23  OXT   O2    E   21   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -166,7 +166,7 @@ ISOLEUCINE    COO- ANION
   23  OXT   O2    E   21   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -197,7 +197,7 @@ VALINE  COO- ANION
   20  OXT   O2    E   18   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -226,7 +226,7 @@ ASPARAGINE    COO- ANION
   18  OXT   O2    E   16   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CB   ND2  CG   OD1
  CG   HD21 ND2  HD22
@@ -260,7 +260,7 @@ GLUTAMINE     COO- ANION
   21  OXT   O2    E   19   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   NE2  CD   OE1
  CD   HE21 NE2  HE22
@@ -301,7 +301,7 @@ ARGININE  COO- ANION
   28  OXT   O2    E   26   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  NE   NH1  CZ   NH2
  CD   CZ   NE   HE
@@ -340,7 +340,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   CE1  ND1  HD1
 
@@ -376,7 +376,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CE1  CD2  NE2  HE2
 
@@ -413,7 +413,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   CE1  ND1  HD1
  CE1  CD2  NE2  HE2
@@ -458,7 +458,7 @@ LOOP
  CE2  CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CD1  CE2  NE1  HE1
  CE2  CH2  CZ2  HZ2
@@ -501,7 +501,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -540,7 +540,7 @@ LOOP
  CG   CD2
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -570,7 +570,7 @@ GLUTAMIC ACID COO- ANION
   19  OXT   O2    E   17   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CG   OE1  CD   OE2
 
@@ -598,7 +598,7 @@ ASPARTIC ACID COO- ANION
   16  OXT   O2    E   14   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
  CB   OD1  CG   OD2
 
@@ -637,7 +637,7 @@ LYSINE  COO- ANION
 
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -697,7 +697,7 @@ CYSTEINE  COO- ANION
   17  OXT   O2    E   15   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -724,7 +724,7 @@ CYSTINE(S-S BRIDGE)     COO- ANION
   16  OXT   O2    E   14   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE
@@ -758,7 +758,7 @@ METHIONINE    COO- ANION
   23  OXT   O2    E   21   6   4     1.229   120.500   180.000  -0.70600
 
 IMPROPER
- -M   CA   N    H 
+ -M   CA   N    H
  CA   OXT  C    O
 
 DONE

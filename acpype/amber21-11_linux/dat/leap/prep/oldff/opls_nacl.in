@@ -9,7 +9,7 @@ CORR     OMIT DU   BEG
     2 DUMM   DU    M    1    0   -1    1.0000    0.0000    0.0000 0.000
     3 DUMM   DU    M    2    1    0    1.0000   90.0000    0.0000 0.000
     4 NA     SO    M    3    2    1    1.0000   90.0000  180.0000 1.000
-                                                                       
+
 DONE
 Chloride Ion
 CL
@@ -20,6 +20,6 @@ CORR     OMIT DU   BEG
     2 DUMM   DU    M    1    0   -1    1.0000    0.0000    0.0000 0.000
     3 DUMM   DU    M    2    1    0    1.0000   90.0000    0.0000 0.000
     4 CL     CL    M    3    2    1    1.0000   90.0000  180.0000 -1.000
-                                                                        
+
 DONE
 STOP

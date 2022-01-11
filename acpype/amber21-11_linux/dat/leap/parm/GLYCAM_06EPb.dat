@@ -34,14 +34,14 @@ Cg-CL    232.40     1.758      Cg-CL for CH2CL2 from J.Phys.Chem.(1998)8070.
 Cg-Os    320.0      1.410      Parm94 (JCC,7,(1986),230; NUCLEIC ACIDS)
 OW-HW    553.0      0.9572     TIP3P water
 HW-HW    553.0      1.5136     TIP3P water
-EP-Oh    553.0      0.7000     
+EP-Oh    553.0      0.7000
 EP-Os    553.0      0.700
 EP-O     553.0      0.450
 
 Hc-Cg-Hc     40.00    109.50   Methane, Ethane KNK
 H1-Cg-H1     45.00    109.50   Methanol, Propanol KNK
 H2-Cg-H2     45.00    109.50   Methanol, Propanol KNK
-Cg-Cg-Hc     45.00    112.60   Ethane KNK 
+Cg-Cg-Hc     45.00    112.60   Ethane KNK
 Cg-Cg-H1     45.00    111.00   Propanol KNK
 Cg-Cg-H2     45.00    111.00   Propanol KNK
 Cg-Cg-Cg     45.00    113.50   Propane KNK
@@ -121,7 +121,7 @@ H2-Cg-Os-Cg   1           0.00           0.00          -1.  SCEE=1.0 SCNB=1.0 Di
               1           0.60           0.00          -2.  SCEE=1.0 SCNB=1.0
               1           0.20           0.00           3.  SCEE=1.0 SCNB=1.0
 Hc-Cg-Cg-Os   1           0.05           0.00           3.  SCEE=1.0 SCNB=1.0 Ethyl Methyl ether KNK
-H -Ng-C -O    1           2.00           0.00          -1.  SCEE=1.0 SCNB=1.0 ff99SB protein backbone JAH 
+H -Ng-C -O    1           2.00           0.00          -1.  SCEE=1.0 SCNB=1.0 ff99SB protein backbone JAH
               1          -2.50           0.00           2.  SCEE=1.0 SCNB=1.0 Coupled with H -Ng-C -Cg Ethanamide plus Cg-N-C-O N-Methylthanamide KNK
 H -Ng-C -H1   4         -10.00           0.00           2.  SCEE=1.0 SCNB=1.0 Parm94 - Corrected to remove phase shift
 H -Ng-C -Cg   1           0.00           0.00           1.  SCEE=1.0 SCNB=1.0 Coupled with H -Ng-C -O Ethanamide and N-Methylthanamide KNK
@@ -171,13 +171,13 @@ MOD4      RE
   H           0.6000  0.0157            !Ferguson base pair geom.
   Ho          0.0000  0.0000             OPLS Jorgensen, JACS,110,(1988),1657
   Hc          1.4870  0.0157             OPLS
-  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963 
-  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963 
+  H1          1.3870  0.0157             Veenstra et al JCC,8,(1992),963
+  H2          1.2870  0.0157             Veenstra et al JCC,8,(1992),963
   HW          0.0000  0.0000             TIP3P water model
   O           1.6612  0.2100             OPLS
   O2          1.6612  0.2100             OPLS
   OW          1.7683  0.1520             TIP3P water model
-  Oh          1.7210  0.2104             OPLS 
+  Oh          1.7210  0.2104             OPLS
   Os          1.6837  0.1700             OPLS ether
   Cg          1.9080  0.1094             Spellmeyer
   C           1.9080  0.0860             OPLS

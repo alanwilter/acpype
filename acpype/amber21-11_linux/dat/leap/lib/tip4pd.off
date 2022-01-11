@@ -4,7 +4,7 @@
 !entry.T4D.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
  "O" "OW" 0 1 131072 1 8 0.0
  "H1" "HW" 0 1 131072 2 1 0.5800
- "H2" "HW" 0 1 131072 3 1 0.5800  
+ "H2" "HW" 0 1 131072 3 1 0.5800
  "EPW" "EP" 0 1 131072 4 0 -1.1600
 !entry.T4D.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
  "O" "OW" 0 -1 0.0

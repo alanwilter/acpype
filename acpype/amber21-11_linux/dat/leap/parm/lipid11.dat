@@ -1,6 +1,6 @@
 ** Warning: Lipid11 is deprecated. Please refer to Amber Lipid14 for more information ** AMBER Lipid 2011 Force Field (v1.0), A.Skjevik, B. Madej, K.Teigen & R.C.Walker
 cC 12.01                             carbonyl sp2 carbon (GAFF c -)
-cB 12.01                             aliphatic sp2 carbon (GAFF c2-)  
+cB 12.01                             aliphatic sp2 carbon (GAFF c2-)
 cA 12.01                             sp3 carbon (GAFF c3-)
 oC 16.00                             sp2 oxygen with one connected atom (e.g C=O, COO-) (GAFF o -)
 oS 16.00                             sp3 oxygen in ethers and esters (GAFF os-)
@@ -22,7 +22,7 @@ hR 1.008                             H hydroxyl group - in Inositol Ring (GLYCAM
 hS 1.008                             H aliph. bond. to C with 1 electrwd. groups - in Inositol Ring (GLYCAM H1-)
 oO 16.00                             sp2 oxygen with one connected atom (e.g COO-) in head group (GAFF o -)
 
-hN  hO  nA  oC  oH  oS  oR  hR   
+hN  hO  nA  oC  oH  oS  oR  hR
 cA-cA  303.1    1.5350       Lipid 11 v1.0 (GAFF c3-c3)
 cA-cB  328.3    1.5080       Lipid 11 v1.0 (GAFF c3-c2)
 cA-cC  328.3    1.5080       Lipid 11 v1.0 (GAFF c3-c )
@@ -75,7 +75,7 @@ cA-cB-cB   64.330     123.420   Lipid 11 v1.0 (GAFF c3-c2-c2)
 cA-cB-hB   45.660     117.300   Lipid 11 v1.0 (GAFF c3-c2-ha)
 cA-cC-oS   69.260     111.960   Lipid 11 v1.0 (GAFF c3-c -os)
 cA-oH-hO   47.090     108.160   Lipid 11 v1.0 (GAFF c3-oh-ho)
-cA-oS-cC   63.630     115.140   Lipid 11 v1.0 (GAFF c3-os-c ) 
+cA-oS-cC   63.630     115.140   Lipid 11 v1.0 (GAFF c3-os-c )
 cB-cA-cB   63.930     112.080   Lipid 11 v1.0 (GAFF c2-c3-c2)
 cB-cA-hA   47.030     110.490   Lipid 11 v1.0 (GAFF c2-c3-hc)
 cB-cB-hB   50.040     120.940   Lipid 11 v1.0 (GAFF c2-c2-ha)
@@ -124,12 +124,12 @@ oT-pA-oT   72.510     101.770   Lipid 11 v1.0 (GAFF os-p5-os)
 cA-cA-cA-cA   1    0.18          0.0            -3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF c3-c3-c3-c3)
 cA-cA-cA-cA   1    0.25        180.0            -2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF c3-c3-c3-c3)
 cA-cA-cA-cA   1    0.20        180.0             1.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF c3-c3-c3-c3)
-cA-cA-cA-cC   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )  
+cA-cA-cA-cC   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
 cA-cA-cA-oS   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
 cA-cA-cA-oT   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
 cA-cA-cA-hA   1    0.16          0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF c3-c3-c3-hc)
 cA-cA-cA-hE   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
-cA-cA-cA-oH   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )  
+cA-cA-cA-oH   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
 cA-cA-cB-cA   1    0.000         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c2-X )
 cA-cA-cB-cB   1    0.000         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c2-X )
 cA-cA-cB-hB   1    0.000         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c2-X )
@@ -170,12 +170,12 @@ cB-cA-cA-hE   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lip
 cB-cA-cA-oH   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
 cB-cA-cB-cB   1    0.000         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c2-X )
 cB-cA-cB-hB   1    0.000         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c2-X )
-cC-cA-cA-cB   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X ) 
-cC-cA-cA-hA   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )   
-cC-cA-cA-hE   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )   
-cC-cA-cA-oS   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )   
-cC-cA-cA-oT   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )   
-cC-cA-nA-hN   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-n4-X )  
+cC-cA-cA-cB   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
+cC-cA-cA-hA   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
+cC-cA-cA-hE   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
+cC-cA-cA-oS   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
+cC-cA-cA-oT   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-c3-X )
+cC-cA-nA-hN   1    0.1556        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-n4-X )
 cC-oS-cA-hE   1    0.3833        0.0             3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF X -c3-os-X )
 cP-oS-pA-oC   1    0.10          0.0            -3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CP-OS-P -O2)
 cP-oS-pA-oC   1   -0.50          0.0            -2.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CP-OS-P -O2)
@@ -189,7 +189,7 @@ cP-oT-pA-oT   1    0.50          0.0            -3.000     SCEE=1.0 SCNB=1.0 Lip
 cP-oT-pA-oT   1    0.70          0.0             2.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CP-OS-P -OS)
 cP-cR-cR-cR   1    0.45          0.0             1.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CP-CG-CG-CG)
 cP-cR-cR-hS   1    0.15          0.0             3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CP-CG-CG-H1)
-cP-cR-cR-oR   1    0.10          0.0             3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CP-CG-CG-OH) 
+cP-cR-cR-oR   1    0.10          0.0             3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CP-CG-CG-OH)
 cP-cR-oR-hR   1    0.18          0.0             3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g Copied from CG-CG-OH-HO)
 cR-cR-cR-cR   1    0.45          0.0             1.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CG-CG-CG-CG)
 cR-cR-cR-oR   1    0.10          0.0             3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g CG-CG-CG-OR)
@@ -259,7 +259,7 @@ oH-cA-cA-oS   1    0.144         0.0            -3.000     SCEE=1.2 SCNB=2.0 Lip
 oH-cA-cA-oS   1    1.175         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF os-c3-c3-oh)
 oH-cA-cA-oT   1    0.144         0.0            -3.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF os-c3-c3-oh)
 oH-cA-cA-oT   1    1.175         0.0             2.000     SCEE=1.2 SCNB=2.0 Lipid 11 v1.0 (GAFF os-c3-c3-oh)
-oR-cR-cR-oR   1   -0.10          0.0            -1.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g OH-CG-CG-OH) 
+oR-cR-cR-oR   1   -0.10          0.0            -1.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g OH-CG-CG-OH)
 oR-cR-cR-oR   1    0.95          0.0            -2.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g OH-CG-CG-OH)
 oR-cR-cR-oR   1    0.55          0.0             3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g OH-CG-CG-OH)
 oR-cR-cP-hS   1    0.05          0.0             3.000     SCEE=1.0 SCNB=1.0 Lipid 11 v1.0 (GLYCAM06g Copied from OH-CG-CG-H1)
@@ -286,16 +286,16 @@ MOD4      RE
   cC          1.9080  0.0860             OPLS
   oC          1.6612  0.2100             OPLS
   oS          1.6837  0.1700             OPLS ether
-  oH          1.7210  0.2104             OPLS 
+  oH          1.7210  0.2104             OPLS
   oT          1.6837  0.1700             OPLS ether
   oP          1.6612  0.2100             OPLS
   oO          1.6612  0.2100             OPLS
   nA          1.8240  0.1700             OPLS
-  pA          2.1000  0.2000             JCC,7,(1986),230; 
+  pA          2.1000  0.2000             JCC,7,(1986),230;
   hA          1.4870  0.0157             OPLS
-  hE          1.3870  0.0157             Veenstra et al JCC,8,(1992),963 
+  hE          1.3870  0.0157             Veenstra et al JCC,8,(1992),963
   hX          1.1000  0.0157             Veenstra et al JCC,8,(1992),963
-  hB          1.4590  0.0150             Spellmeyer 
+  hB          1.4590  0.0150             Spellmeyer
   hN          0.6000  0.0157            !Ferguson base pair geom.
   hO          0.0000  0.0000             OPLS Jorgensen, JACS,110,(1988),1657 (RCW Needs fixing give radii)
   cR          1.9080  0.1094             Spellmeyer
@@ -326,13 +326,13 @@ GAFF     LIPID11    Description
  o         oC       sp2 oxygen with one connected atom (e.g C=O, COO-)
  os        oS       sp3 oxygen in ethers and esters
  oh        oH       sp3 oxygen in hydroxyl group
- n4        nA       sp3 N with four connected atoms 
+ n4        nA       sp3 N with four connected atoms
  p5        pA       phosphorus with four connected atoms, such as O=P(OH)3
- hc        hA       H bonded to aliphatic carbon without electrwd. group 
- h1        hE       H bonded to aliphatic carbon with 1 electrwd. group  
- hx        hX       H bonded to C next to positively charged group  
- ha        hB       H bonded to aromatic carbon  
- hn        hN       H bonded to nitrogen 
+ hc        hA       H bonded to aliphatic carbon without electrwd. group
+ h1        hE       H bonded to aliphatic carbon with 1 electrwd. group
+ hx        hX       H bonded to C next to positively charged group
+ ha        hB       H bonded to aromatic carbon
+ hn        hN       H bonded to nitrogen
  ho        hO       H in Hydroxyl group
  o         oP       sp2 oxygen with one connected atom (e.g P-O) in phosphate group
  os        oT       sp3 oxygen bonded to carbon in phosphate group

@@ -2,7 +2,7 @@ logFile leap.log
 #
 # ----- leaprc for loading the Cornell et al. 1994 topologies
 #       with parm99
-#       assumes that any unspecified nucleic acids are RNA 
+#       assumes that any unspecified nucleic acids are RNA
 #
 #	load atom type hybridizations
 #
@@ -86,7 +86,7 @@ parm99 = loadamberparams parm99.dat
 #
 loadOff all_nucleic94.lib
 #
-#	Load main chain and terminating 
+#	Load main chain and terminating
 #	amino acid libraries.
 #
 loadOff all_amino94.lib
