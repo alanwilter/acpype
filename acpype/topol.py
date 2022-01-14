@@ -1957,7 +1957,7 @@ class AbstractTopol(abc.ABC):
         headDefault = """
 [ defaults ]
 ; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
-1               2               yes             0.5     0.8333
+1               2               yes             0.5     0.8333333333
 """
         headItp = """
 ; Include %s topology
