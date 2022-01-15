@@ -16,7 +16,7 @@
 [![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2022.1.3/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
 [![Documentation Status](https://readthedocs.org/projects/acpype/badge/?version=latest&style=plastic)](https://acpype.readthedocs.io/en/latest/?badge=latest)
-[![Citations](https://img.shields.io/static/v1?label=Citations&message=1050&color=orange&style=plastic)](https://scholar.google.com/scholar?hl=en&as_sdt=2005&sciodt=0%2C5&cites=15065215520855508960&scipsc=&q=ACPYPE-Antechamber+python+parser+interface&btnG=)
+[![Citations](https://img.shields.io/static/v1?label=Citations&message=1408&color=orange&style=plastic)](https://scholar.google.com/citations?user=c68TiIUAAAAJ)
 <!-- [![DOI:doi.org/10.1186/1756-0500-5-367](https://img.shields.io/badge/DOI-10.1186%2F1756--0500--5--367-blue?style=plastic)](https://doi.org/10.1186/1756-0500-5-367) -->
 <!-- [![Google Scholar Citations](https://openbabel.org/citations.svg?maxAge=86400)](https://scholar.google.com/scholar?cites=15065215520855508960&as_sdt=2005&sciodt=0,5&hl=en) -->
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5601736.svg)](https://doi.org/10.1186/1756-0500-5-367)
