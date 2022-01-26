@@ -17,10 +17,6 @@
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
 [![Documentation Status](https://readthedocs.org/projects/acpype/badge/?version=latest&style=plastic)](https://acpype.readthedocs.io/en/latest/?badge=latest)
 [![Citations](https://img.shields.io/endpoint?label=citations&logo=googlescholar&style=plastic&url=https%3A%2F%2Fcitations-acpype-1g51xat28cdv.runkit.sh%2F)](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=c68TiIUAAAAJ&citation_for_view=c68TiIUAAAAJ:UeHWp8X0CEIC)
-<!-- [![DOI:doi.org/10.1186/1756-0500-5-367](https://img.shields.io/badge/DOI-10.1186%2F1756--0500--5--367-blue?style=plastic)](https://doi.org/10.1186/1756-0500-5-367) -->
-<!-- [![Google Scholar Citations](https://openbabel.org/citations.svg?maxAge=86400)](https://scholar.google.com/scholar?cites=15065215520855508960&as_sdt=2005&sciodt=0,5&hl=en) -->
-<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5601736.svg)](https://doi.org/10.1186/1756-0500-5-367)
-![DOI](https://doi.org/10.1186/1756-0500-5-367) -->
 <!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
 <!-- ![Scrutinizer coverage (GitHub/BitBucket)](https://img.shields.io/scrutinizer/coverage/g/alanwilter/acpype) -->
 
@@ -39,7 +35,7 @@ its variant.
 
 Several flavours of AMBER FF are ported already for GROMACS (see [ffamber](http://ffamber.cnsm.csulb.edu/)) as well as to XPLOR/CNS (see [`xplor-nih`](http://ambermd.org/xplor-nih.html)) and [CHARMM](https://www.charmm.org/).
 
-This code is released under **[GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.en.html)**.
+This code is released under **[GNU General Public Licence V3](https://www.gnu.org/licenses/gpl-3.0.en.html)**.
 
 See online [documentation](https://acpype.readthedocs.io/) for more.
 
@@ -60,30 +56,30 @@ For Non-uniform 1-4 scale factor conversion (e.g. if using **GLYCAM06**), please
 
 > BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for
 nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBER
-to GROMACS. SoftwareX 10 (2019), 100241. doi: [10.1016/j.softx.2019.100241](https://doi.org/10.1016/j.softx.2019.100241)
+to GROMACS. SoftwareX 10 (2019), 100241. Doi: [10.1016/j.softx.2019.100241](https://doi.org/10.1016/j.softx.2019.100241)
 
 For `Antechamber`, please cite:
 >
 > 1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
      bond type perception in molecular mechanical calculations. Journal of Molecular
-     Graphics and Modelling 25, 2 (2006), 247–260. doi: [10.1016/j.jmgm.2005.12.005](https://doi.org/10.1016/j.jmgm.2005.12.005)
+     Graphics and Modelling 25, 2 (2006), 247–260. Doi: [10.1016/j.jmgm.2005.12.005](https://doi.org/10.1016/j.jmgm.2005.12.005)
 > 2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
      Development and testing of a General Amber Force Field. Journal of Computational
-     Chemistry 25, 9 (2004), 1157–1174. doi: [10.1002/jcc.20035](https://doi.org/10.1002/jcc.20035)
+     Chemistry 25, 9 (2004), 1157–1174. Doi: [10.1002/jcc.20035](https://doi.org/10.1002/jcc.20035)
 
 If you use this code, I am glad if you cite:
 
 > SOUSA DA SILVA, A. W. & VRANKEN, W. F.
 ACPYPE - AnteChamber PYthon Parser interfacE.
-BMC Research Notes 5 (2012), 367 doi: [10.1186/1756-0500-5-367](https://doi.org/10.1186/1756-0500-5-367)
+BMC Research Notes 5 (2012), 367 Doi: [10.1186/1756-0500-5-367](https://doi.org/10.1186/1756-0500-5-367)
 
 and (optionally)
 
 > BATISTA, P. R.; WILTER, A.; DURHAM, E. H. A. B. & PASCUTTI, P. G. Molecular
 Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
-Cell Biochemistry and Biophysics 44 (2006), 395-404. doi: [10.1385/CBB:44:3:395](https://doi.org/10.1385/CBB:44:3:395)
+Cell Biochemistry and Biophysics 44 (2006), 395-404. Doi: [10.1385/CBB:44:3:395](https://doi.org/10.1385/CBB:44:3:395)
 
-Alan Silva, D.Sc.
+Alan Silva, DSc
 
 alanwilter _at_ gmail _dot_ com
 
@@ -91,7 +87,7 @@ alanwilter _at_ gmail _dot_ com
 
 ##### Introduction
 
-We now have an up to date *webservice* at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` functionality).
+We now have an up-to-date *web service* at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` functionality).
 
 To run `acpype`, locally, with its all functionalities, you need **ANTECHAMBER** from package
 [AmberTools](http://ambermd.org/) and
@@ -113,7 +109,7 @@ There are several ways of obtaining `acpype`:
 
 2. Via **[PyPI](https://pypi.org/project/acpype/)**:
 
-   *(Make sure you  have `AmberTools` and, optionally but highly recommended, `OpenBabel` )*
+   *(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)*
 
    ```bash
    # You can use conda to get the needed 3rd parties for example
@@ -133,7 +129,7 @@ There are several ways of obtaining `acpype`:
 
 3. By downloading it via `git`:
 
-   *(Make sure you  have `AmberTools` and, optionally but highly recommended, `OpenBabel` )*
+   *(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)*
 
    ```bash
    # You can use conda to get the needed 3rd parties for example
@@ -155,7 +151,7 @@ There are several ways of obtaining `acpype`:
 
    NOTE: first time may take some time as it pulls the `acpype` docker image.
 
-   On Linux / MacOS:
+   On Linux / macOS:
 
    ```bash
    ln -fsv "$PWD/acpype_docker.sh" /usr/local/bin/acpype_docker
@@ -195,7 +191,7 @@ At folder `acpype/`, type:
 It'll create a folder called *FFF.acpype*, and inside it one may find topology
 files for GROMACS and CNS/XPLOR.
 
-or using a molecule in [SMILES](https://archive.epa.gov/med/med_archive_03/web/html/smiles.html) notation:
+Or using a molecule in [SMILES](https://archive.epa.gov/med/med_archive_03/web/html/smiles.html) notation:
 
 ```bash
 ./run_acpype.py -i CCCC # smiles for C4H6 1,3-Butadiene compound
