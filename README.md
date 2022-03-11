@@ -25,7 +25,7 @@
 A tool based in **Python** to use **Antechamber** to generate topologies for chemical
 compounds and to interface with others python applications like CCPN and ARIA.
 
-`acpype` is pronounced as _**ace + pipe**_
+`acpype` is pronounced as ***ace + pipe***
 
 Topologies files to be generated so far: CNS/XPLOR, GROMACS, CHARMM and AMBER.
 
@@ -81,7 +81,7 @@ Cell Biochemistry and Biophysics 44 (2006), 395-404. Doi: [10.1385/CBB:44:3:395]
 
 Alan Silva, DSc
 
-alanwilter _at_ gmail _dot_ com
+alanwilter *at* gmail *dot* com
 
 #### How To Use ACPYPE
 
