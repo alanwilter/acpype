@@ -60,8 +60,9 @@ jobs:
 
       - name: Poetry install dependencies
         run: |
-          pip3 install poetry
-          poetry add openbabel-wheel
+          curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local python3 - --preview
+          # poetry add openbabel-wheel
+          poetry run pip3 install openbabel-wheel
           poetry install
 
       - name: Lint with flake8
