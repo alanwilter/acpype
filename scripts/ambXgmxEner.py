@@ -6,6 +6,8 @@ for a given system and compare them
 import re
 import sys
 
+import sander
+
 from acpype.utils import _getoutput
 
 
@@ -64,3 +66,30 @@ for ii in vv:
 # VDW   : LJ_SR, VDWAALS
 # QQ14  : COULOMB-14, 1-4_EEL
 # QQ    : COULOMB_SR, EELEC
+
+
+# Using gas-phase calculations
+inp = sander.gas_input()
+f_amb = e_amb.split(".")[0]
+sander.setup(f"{f_amb}.prmtop", f"{f_amb}.inpcrd", box=None, mm_options=inp)
+e, f = sander.energy_forces()
+
+ll = [
+    ("angle", "ANGLE"),
+    ("bond", "BOND"),
+    ("dihedral", "DIHED"),
+    ("vdw_14", "VDW14"),
+    ("vdw", "VDW"),
+    ("elec_14", "QQ14"),
+    ("elec", "QQ"),
+    ("tot", "EPTOT"),
+]
+
+for pp in ll:
+    v1, v2 = e.__getattribute__(pp[0]), amb_out[pp[1]] / ff
+    print(f"error {pp[0]:<8}: {error(v1,v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")
+
+# with round()
+for pp in ll:
+    v1, v2 = round(e.__getattribute__(pp[0]), 4), amb_out[pp[1]] / ff
+    print(f"error {pp[0]:<8}: {error(v1,v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")

@@ -217,6 +217,10 @@ def test_charge_user(janitor):
             ["-i", "no_res.pdb", "-b", "vir_temp"],
             "No residue name identified, using default resname: 'LIG'",
         ),
+        (
+            ["-i", "drift.mol2", "-c", "user", "-b", "vir_temp"],
+            "Net charge drift '0.02020' bigger than tolerance '0.01000'",
+        ),
     ],
 )
 def test_inputs(janitor, capsys, argv, msg):
@@ -247,11 +251,6 @@ def test_inputs(janitor, capsys, argv, msg):
         (["-i", "too_far.pdb", "-b", "vir_temp"], 19, "Atoms TOO scattered (>"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
         (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
-        (
-            ["-i", "drift.mol2", "-c", "user", "-b", "vir_temp"],
-            19,
-            "Net charge drift '0.02020' bigger than tolerance '0.01000'",
-        ),
         (
             ["-di", "HEM.pdb", "-b", "vir_temp"],
             19,
