@@ -13,10 +13,11 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype?style=plastic)](https://github.com/alanwilter/acpype)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
-[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2022.1.3/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
+[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2022.6.6/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
 [![Documentation Status](https://readthedocs.org/projects/acpype/badge/?version=latest&style=plastic)](https://acpype.readthedocs.io/en/latest/?badge=latest)
 [![Citations](https://img.shields.io/endpoint?label=citations&logo=googlescholar&style=plastic&url=https%3A%2F%2Fcitations-acpype-1g51xat28cdv.runkit.sh%2F)](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=c68TiIUAAAAJ&citation_for_view=c68TiIUAAAAJ:UeHWp8X0CEIC)
+
 <!-- ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/alanwilter/acpype) -->
 <!-- ![Scrutinizer coverage (GitHub/BitBucket)](https://img.shields.io/scrutinizer/coverage/g/alanwilter/acpype) -->
 
@@ -25,7 +26,7 @@
 A tool based in **Python** to use **Antechamber** to generate topologies for chemical
 compounds and to interface with others python applications like CCPN and ARIA.
 
-`acpype` is pronounced as ***ace + pipe***
+`acpype` is pronounced as **_ace + pipe_**
 
 Topologies files to be generated so far: CNS/XPLOR, GROMACS, CHARMM and AMBER.
 
@@ -55,53 +56,56 @@ It was inspired by:
 For Non-uniform 1-4 scale factor conversion (e.g. if using **GLYCAM06**), please cite:
 
 > BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for
-nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBER
-to GROMACS. SoftwareX 10 (2019), 100241. Doi: [10.1016/j.softx.2019.100241](https://doi.org/10.1016/j.softx.2019.100241)
+> nonuniform 1–4 scale factors: Conversion of the GLYCAM06 force field from AMBER
+> to GROMACS. SoftwareX 10 (2019), 100241. Doi: [10.1016/j.softx.2019.100241](https://doi.org/10.1016/j.softx.2019.100241)
 
 For `Antechamber`, please cite:
->
+
 > 1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
+
      bond type perception in molecular mechanical calculations. Journal of Molecular
      Graphics and Modelling 25, 2 (2006), 247–260. Doi: [10.1016/j.jmgm.2005.12.005](https://doi.org/10.1016/j.jmgm.2005.12.005)
+
 > 2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
+
      Development and testing of a General Amber Force Field. Journal of Computational
      Chemistry 25, 9 (2004), 1157–1174. Doi: [10.1002/jcc.20035](https://doi.org/10.1002/jcc.20035)
 
 If you use this code, I am glad if you cite:
 
 > SOUSA DA SILVA, A. W. & VRANKEN, W. F.
-ACPYPE - AnteChamber PYthon Parser interfacE.
-BMC Research Notes 5 (2012), 367 Doi: [10.1186/1756-0500-5-367](https://doi.org/10.1186/1756-0500-5-367)
+> ACPYPE - AnteChamber PYthon Parser interfacE.
+> BMC Research Notes 5 (2012), 367 Doi: [10.1186/1756-0500-5-367](https://doi.org/10.1186/1756-0500-5-367)
 
 and (optionally)
 
 > BATISTA, P. R.; WILTER, A.; DURHAM, E. H. A. B. & PASCUTTI, P. G. Molecular
-Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
-Cell Biochemistry and Biophysics 44 (2006), 395-404. Doi: [10.1385/CBB:44:3:395](https://doi.org/10.1385/CBB:44:3:395)
+> Dynamics Simulations Applied to the Study of Subtypes of HIV-1 Protease.
+> Cell Biochemistry and Biophysics 44 (2006), 395-404. Doi: [10.1385/CBB:44:3:395](https://doi.org/10.1385/CBB:44:3:395)
 
 Alan Silva, DSc
 
-alanwilter *at* gmail *dot* com
+alanwilter _at_ gmail _dot_ com
 
 #### How To Use ACPYPE
 
 ##### Introduction
 
-We now have an up-to-date *web service* at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` functionality).
+We now have an up-to-date _web service_ at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` functionality).
 
 To run `acpype`, locally, with its all functionalities, you need **ANTECHAMBER** from package
 [AmberTools](http://ambermd.org/) and
 [Open Babel](http://openbabel.org/wiki/Main_Page) if your input files are of PDB
 format.
 
-However, if one wants `acpype` just to emulate *amb2gmx.pl*, one needs nothing
-at all but *[Python](http://www.python.org)*.
+However, if one wants `acpype` just to emulate _amb2gmx.pl_, one needs nothing
+at all but _[Python](http://www.python.org)_.
 
 There are several ways of obtaining `acpype`:
 
 1. Via **[CONDA](https://anaconda.org/search?q=acpype)**:
 
-   *(It should be wholesome, fully functional, all batteries included)*
+   _(It should be wholesome, fully functional, all batteries included)_
 
    ```bash
    conda install -c conda-forge acpype
@@ -109,7 +113,7 @@ There are several ways of obtaining `acpype`:
 
 2. Via **[PyPI](https://pypi.org/project/acpype/)**:
 
-   *(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)*
+   _(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)_
 
    ```bash
    # You can use conda to get the needed 3rd parties for example
@@ -125,11 +129,11 @@ There are several ways of obtaining `acpype`:
    pip install git+https://github.com/alanwilter/acpype.git
    ```
 
-   **NB:** If using OpenBabel python module, it's really ***CRITICAL*** to have it installed in the same `Python` environment of `acpype`.
+   **NB:** If using OpenBabel python module, it's really **_CRITICAL_** to have it installed in the same `Python` environment of `acpype`.
 
 3. By downloading it via `git`:
 
-   *(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)*
+   _(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)_
 
    ```bash
    # You can use conda to get the needed 3rd parties for example
@@ -145,7 +149,7 @@ There are several ways of obtaining `acpype`:
 
 4. Via **[Docker](https://hub.docker.com/repository/docker/acpype/acpype/)**:
 
-   *(It should be wholesome, fully functional, all batteries included)*
+   _(It should be wholesome, fully functional, all batteries included)_
 
    If you have Docker installed, you can run `acpype_docker.sh` by:
 
@@ -161,7 +165,7 @@ There are several ways of obtaining `acpype`:
    On Windows:
    Using Command Prompt:
 
-    In the directory where the `acpype_docker.bat` file is found:
+   In the directory where the `acpype_docker.bat` file is found:
 
    ```bash
    setx /M path "%path%;%cd%"
@@ -188,7 +192,7 @@ At folder `acpype/`, type:
 ./run_acpype.py -i tests/FFF.pdb
 ```
 
-It'll create a folder called *FFF.acpype*, and inside it one may find topology
+It'll create a folder called _FFF.acpype_, and inside it one may find topology
 files for GROMACS and CNS/XPLOR.
 
 Or using a molecule in [SMILES](https://archive.epa.gov/med/med_archive_03/web/html/smiles.html) notation:
@@ -197,7 +201,7 @@ Or using a molecule in [SMILES](https://archive.epa.gov/med/med_archive_03/web/h
 ./run_acpype.py -i CCCC # smiles for C4H6 1,3-Butadiene compound
 ```
 
-It'll create a folder called *smiles_molecule.acpype*.
+It'll create a folder called _smiles_molecule.acpype_.
 
 To get help and more information, type:
 
@@ -259,17 +263,17 @@ vmd md.gro md.trr
 
 #### To Emulate `amb2gmx.pl`
 
-For any given *prmtop* and *inpcrd* files (outputs from AMBER LEaP), type:
+For any given _prmtop_ and _inpcrd_ files (outputs from AMBER LEaP), type:
 
 ```bash
 acpype -p FFF_AC.prmtop -x FFF_AC.inpcrd
 ```
 
-The output files `FFF_GMX.gro` and `FFF_GMX.top` will be generated inside folder *FFF_GMX.amb2gmx*
+The output files `FFF_GMX.gro` and `FFF_GMX.top` will be generated inside folder _FFF_GMX.amb2gmx_
 
 #### To Verify with CNS/XPLOR
 
-At folder *FFF.acpype*, type:
+At folder _FFF.acpype_, type:
 
 ```bash
 cns < FFF_CNS.inp
