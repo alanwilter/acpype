@@ -27,7 +27,7 @@ function run_pip() {
 
 function run_docker() {
     echo ">>> Creating docker images"
-    docker build -t acpype/acpype:latest -t acpype/acpype:"$version" .
+    docker buildx build --platform linux/amd64 -t acpype/acpype:latest -t acpype/acpype:"$version" .
     echo ">>> Pushing docker images"
     docker push acpype/acpype --all-tags
     docker image rm acpype/acpype:"$version"

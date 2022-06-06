@@ -39,7 +39,7 @@ exclude = '''
 
 [tool.poetry]
 name = "acpype"
-version = "2022.3.11"
+version = "2022.6.6"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 authors = ["Alan Silva <alanwilter@gmail.com>"]
 license = "GPL-3.0-or-later"

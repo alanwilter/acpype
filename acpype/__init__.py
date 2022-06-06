@@ -55,4 +55,4 @@
 # from https://packaging.python.org/guides/single-sourcing-package-version/
 # using option 2
 # updated automatically via pre-commit git-hook
-__version__ = "2022.3.11"
+__version__ = "2022.6.6"

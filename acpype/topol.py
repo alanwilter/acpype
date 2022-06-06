@@ -446,7 +446,7 @@ class AbstractTopol(abc.ABC):
         charge2 = int(round(charge))
         drift = abs(charge2 - charge)
         self.printDebug(f"Net charge drift '{drift:3.6f}'")
-        if drift > diffTol:
+        if drift > diffTol and self.chargeType != "user":
             self.printError(f"Net charge drift '{drift:3.5f}' bigger than tolerance '{diffTol:3.5f}'")
             if not self.force:
                 msg = "Error with calculated charge"
