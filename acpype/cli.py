@@ -12,7 +12,7 @@ from acpype.logger import tmpLogFile
 from acpype.params import binaries
 from acpype.parser_args import get_option_parser
 from acpype.topol import AbstractTopol, ACTopol, MolTopol, header
-from acpype.utils import elapsedTime, set_for_pip, while_replace
+from acpype.utils import elapsedTime, while_replace
 
 
 def _chk_py_ver():
@@ -41,7 +41,6 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
         SystemExit(status): 0 or 19 (failed)
     """
     _chk_py_ver()
-    set_for_pip(binaries)
     if argv is None:
         argv = sys.argv[1:]
 
