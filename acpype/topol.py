@@ -42,8 +42,8 @@ from acpype.utils import (
     imprDihAngle,
     job_pids_family,
     parmMerge,
-    while_replace,
     set_for_pip,
+    while_replace,
 )
 
 year = datetime.today().year
@@ -305,7 +305,7 @@ class AbstractTopol(abc.ABC):
         self.smiles = None
         self.amb2gmx = None
 
-    set_for_pip(binaries)
+    set_for_pip(binaries)  # check and call environments
 
     def printDebug(self, text=""):
         """Debug log level."""
@@ -2465,32 +2465,40 @@ class AbstractTopol(abc.ABC):
                 oat3 = id2oplsATDict.get(id3)
                 oat4 = id2oplsATDict.get(id4)
                 c0, c1, c2, c3, c4, c5 = dih[1]
-                line = "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
-                    id1,
-                    id2,
-                    id3,
-                    id4,
-                    3,
-                    c0,
-                    c1,
-                    c2,
-                    c3,
-                    c4,
-                    c5,
-                ) + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
-                oline = "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
-                    id1,
-                    id2,
-                    id3,
-                    id4,
-                    3,
-                    c0,
-                    c1,
-                    c2,
-                    c3,
-                    c4,
-                    c5,
-                ) + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
+                line = (
+                    "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
+                    % (
+                        id1,
+                        id2,
+                        id3,
+                        id4,
+                        3,
+                        c0,
+                        c1,
+                        c2,
+                        c3,
+                        c4,
+                        c5,
+                    )
+                    + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
+                )
+                oline = (
+                    "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
+                    % (
+                        id1,
+                        id2,
+                        id3,
+                        id4,
+                        3,
+                        c0,
+                        c1,
+                        c2,
+                        c3,
+                        c4,
+                        c5,
+                    )
+                    + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
+                )
                 temp.append(line)
                 otemp.append(oline)
             temp.sort()
