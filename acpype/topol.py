@@ -42,6 +42,7 @@ from acpype.utils import (
     imprDihAngle,
     job_pids_family,
     parmMerge,
+    set_for_pip,
     while_replace,
 )
 
@@ -303,6 +304,8 @@ class AbstractTopol(abc.ABC):
         self.is_smiles = None
         self.smiles = None
         self.amb2gmx = None
+
+    set_for_pip(binaries)  # check and call environments
 
     def printDebug(self, text=""):
         """Debug log level."""
