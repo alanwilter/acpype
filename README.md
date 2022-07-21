@@ -13,7 +13,7 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype?style=plastic)](https://github.com/alanwilter/acpype)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
-[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2022.6.6/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
+[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2022.7.21/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
 [![Documentation Status](https://readthedocs.org/projects/acpype/badge/?version=latest&style=plastic)](https://acpype.readthedocs.io/en/latest/?badge=latest)
 [![Citations](https://img.shields.io/endpoint?label=citations&logo=googlescholar&style=plastic&url=https%3A%2F%2Fcitations-acpype-1g51xat28cdv.runkit.sh%2F)](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=c68TiIUAAAAJ&citation_for_view=c68TiIUAAAAJ:UeHWp8X0CEIC)
