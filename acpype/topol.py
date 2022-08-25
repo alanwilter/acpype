@@ -2831,7 +2831,7 @@ class AbstractTopol(abc.ABC):
     def writeMdpFiles(self):
         """Write MDP for test with GROMACS."""
         emMdp = f"""; to test
-; echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 1 -c -princ
+; echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 10 -c -princ
 ; gmx grompp -f em.mdp -c out.gro -p {self.baseName}_GMX.top -o em.tpr -v
 ; gmx mdrun -ntmpi 1 -v -deffnm em
 
@@ -2877,7 +2877,7 @@ gen-vel                  = yes
 ; vmd md.gro md.trr
 """
         rungmx = f"""
-echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 1 -c -princ
+echo 0 | gmx editconf -f {self.baseName}_GMX.gro -bt octahedron -d 10 -c -princ
 gmx grompp -f em.mdp -c out.gro -p {self.baseName}_GMX.top -o em.tpr -v
 gmx mdrun -ntmpi 1 -v -deffnm em
 gmx grompp -f md.mdp -c em.gro -p {self.baseName}_GMX.top -o md.tpr -r em.gro
