@@ -829,7 +829,7 @@ if atomicDetailed:
         print("=>Mols have atoms too alone")
         for molLabel in ET3:
             mol, structure = molLabel.split("_")
-            cmd = fr"""grep -e "^\['ATOM" {mol}/*{structure}.out"""
+            cmd = rf"""grep -e "^\['ATOM" {mol}/*{structure}.out"""
             out = _getoutput(cmd)
             print("# %s #" % molLabel)
             print(out, "\n")
