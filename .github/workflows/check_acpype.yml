@@ -83,10 +83,10 @@ jobs:
 
       - name: Test with PyTest
         run: |
-          poetry run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml
+          poetry run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml -k test_pdb
 
       - name: Upload coverage to Codecov
-        if: matrix.python-version == 3.6
+        if: matrix.python-version == 3.7
         uses: codecov/codecov-action@v2
         with:
           fail_ci_if_error: false
