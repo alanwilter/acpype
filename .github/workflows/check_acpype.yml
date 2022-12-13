@@ -18,7 +18,8 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        # python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.10"]
 
     steps:
       - uses: actions/checkout@v2
@@ -64,6 +65,10 @@ jobs:
           # poetry add openbabel-wheel
           poetry run pip3 install openbabel-wheel
           poetry install
+          which obabel
+          ldd $(which obabel)
+          which antechamber
+          ldd $(which antechamber)
 
       - name: Lint with flake8
         run: poetry run flake8 -v --count
