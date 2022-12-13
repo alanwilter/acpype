@@ -60,7 +60,7 @@ def imprDihAngle(a, b, c, d):
 def distanceAA(c1, c2):
     """Distance between two atoms"""
     # print c1, c2
-    dist2 = (c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2 + (c1[0] - c2[0]) ** 2 + (c1[2] - c2[2]) ** 2
+    dist2 = (c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2 + (c1[2] - c2[2]) ** 2
     # dist2 = math.sqrt(dist2)
     return dist2
 
