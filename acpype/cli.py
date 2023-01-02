@@ -16,8 +16,8 @@ from acpype.utils import elapsedTime, while_replace
 
 
 def _chk_py_ver():
-    if sys.version_info < (3, 6):
-        msg = "Sorry, you need python 3.6 or higher"
+    if sys.version_info < (3, 7):
+        msg = "Sorry, you need python 3.7 or higher"
         logger().error(msg)
         raise Exception(msg)
 
@@ -29,7 +29,6 @@ def _handle_exception(level):
 
 
 def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = None):
-
     """
     Orchestrate the command line usage for ACPYPE with its all input arguments.
 

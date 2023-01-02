@@ -22,7 +22,6 @@ class LogFormatter(logging.Formatter):
         super().__init__(fmt="%(levelno)d: %(msg)s", datefmt=None, style="%")
 
     def format(self, record):
-
         # Save the original format configured by the user
         # when the logger formatter was instantiated
         format_orig = self._style._fmt

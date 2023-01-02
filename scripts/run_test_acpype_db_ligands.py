@@ -45,7 +45,6 @@ def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, s
 
 
 def runConversionJobs(chemCompVarFiles, scriptName):
-
     # _timeStamp = time.strftime("%Y_%m_%d_%H_%M_%S")
 
     startCode = "start"
@@ -59,17 +58,14 @@ def runConversionJobs(chemCompVarFiles, scriptName):
     outputHandle = sys.__stdout__
 
     while currentProcesses:
-
         if startCode in currentProcesses.keys():
             del currentProcesses[startCode]
 
         if len(currentProcesses.keys()) < numCpu:
-
             tempIndex = currentIndex + 1
             for _i in range(currentIndex, currentIndex + numCpu - len(currentProcesses.keys())):
                 # Don't start a job if it's at the end!
                 if currentChemCompVarFile != endChemCompVarFile:
-
                     chemCompVarFile = chemCompVarFiles[tempIndex]
 
                     #
@@ -103,7 +99,6 @@ def runConversionJobs(chemCompVarFiles, scriptName):
         #
 
         for chemCompVarFile in currentProcesses.keys():
-
             # Finished...
             if currentProcesses[chemCompVarFile].poll() is not None:
                 del currentProcesses[chemCompVarFile]
@@ -117,7 +112,6 @@ def runConversionJobs(chemCompVarFiles, scriptName):
 
 
 if __name__ == "__main__":
-
     t0 = time.time()
 
     chemCompVarFiles = []

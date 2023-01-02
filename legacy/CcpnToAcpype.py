@@ -203,7 +203,6 @@ class AcpypeForCcpnProject:
     """
 
     def __init__(self, project):
-
         self.project = project
         self.heteroMols = None
         self.acpypeDictFiles = None
@@ -247,7 +246,6 @@ class AcpypeForCcpnProject:
         ekFlag=None,
         outType="mol2",
     ):
-
         ccpnProject = self.project
 
         if chain:

@@ -764,7 +764,6 @@ def calcGmxPotEnerDiff(res):
 
 
 if __name__ == "__main__":
-
     """order: (tleap/EM or pymol) AAA.pdb -f-> _AAA.pdb -f-> aAAA.pdb
     --> (pdb2gmx) agAAA.pdb -f-> agAAA.pdb --> acpype"""
     aNb = nbDict(open(gmxTopDir + "/gromacs/top/amber99sb.ff/ffnonbonded.itp").readlines())

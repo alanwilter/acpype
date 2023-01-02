@@ -705,7 +705,6 @@ class AbstractTopol(abc.ABC):
         return charge
 
     def execAntechamber(self, chargeType=None, atomType=None) -> bool:
-
         r"""
         To call Antechamber and execute it.
 
@@ -1559,7 +1558,7 @@ class AbstractTopol(abc.ABC):
         self.atoms = sorted_atoms
 
         # Renumber atoms in sorted list, starting from 1.
-        for (index, atom) in enumerate(self.atoms):
+        for index, atom in enumerate(self.atoms):
             atom.id = index + 1
 
     def balanceCharges(self, chargeList, FirstNonSoluteId=None):
@@ -2465,40 +2464,32 @@ class AbstractTopol(abc.ABC):
                 oat3 = id2oplsATDict.get(id3)
                 oat4 = id2oplsATDict.get(id4)
                 c0, c1, c2, c3, c4, c5 = dih[1]
-                line = (
-                    "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
-                    % (
-                        id1,
-                        id2,
-                        id3,
-                        id4,
-                        3,
-                        c0,
-                        c1,
-                        c2,
-                        c3,
-                        c4,
-                        c5,
-                    )
-                    + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
-                )
-                oline = (
-                    "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
-                    % (
-                        id1,
-                        id2,
-                        id3,
-                        id4,
-                        3,
-                        c0,
-                        c1,
-                        c2,
-                        c3,
-                        c4,
-                        c5,
-                    )
-                    + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
-                )
+                line = "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
+                    id1,
+                    id2,
+                    id3,
+                    id4,
+                    3,
+                    c0,
+                    c1,
+                    c2,
+                    c3,
+                    c4,
+                    c5,
+                ) + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
+                oline = "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
+                    id1,
+                    id2,
+                    id3,
+                    id4,
+                    3,
+                    c0,
+                    c1,
+                    c2,
+                    c3,
+                    c4,
+                    c5,
+                ) + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
                 temp.append(line)
                 otemp.append(oline)
             temp.sort()

@@ -7,8 +7,8 @@ qConv = 18.2223
 radPi = 57.295780  # 180/Pi
 maxDist = 3.0
 minDist = 0.5
-maxDist2 = maxDist ** 2  # squared Ang.
-minDist2 = minDist ** 2  # squared Ang.
+maxDist2 = maxDist**2  # squared Ang.
+minDist2 = minDist**2  # squared Ang.
 diffTol = 0.01
 
 # List of Topology Formats created by acpype so far:

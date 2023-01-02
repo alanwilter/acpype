@@ -39,7 +39,7 @@ exclude = '''
 
 [tool.poetry]
 name = "acpype"
-version = "2022.12.13"
+version = "2023.1.2"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 authors = ["Alan Silva <alanwilter@gmail.com>"]
 license = "GPL-3.0-or-later"
@@ -64,11 +64,11 @@ classifiers = [
 acpype = "acpype.cli:init_main"
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<4.0"
+python = ">=3.7,<4.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
-black = { extras = ["jupyter"], version = "^21.12b0" }
+black = { extras = ["jupyter"], version = ">=21.12b0" }
 pytest-cov = "^3.0.0"
 mypy = "^0.920"
 pdbpp = "^0.10.3"
