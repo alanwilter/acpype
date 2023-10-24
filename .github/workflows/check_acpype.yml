@@ -116,16 +116,12 @@ jobs:
         # will only create a new release if the commit message is 'new_release' to master branch
         if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release')
         id: create_release
-        # uses: elgohr/Github-Release-Action@v5
         uses: softprops/action-gh-release@v1
-        # uses: actions/create-release@v1
         env:
           # This token is provided by Actions, you do not need to create your own token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # title: ${{ steps.date.outputs.date }}
           tag_name: ${{ steps.vdate.outputs.adate }}
-          # release_name: Release ${{ steps.vdate.outputs.adate }}
           name: Release ${{ steps.vdate.outputs.adate }}
           draft: false
           prerelease: false
