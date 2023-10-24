@@ -95,6 +95,7 @@ def acpype_api(
     chiral=False,
     is_smiles=False,
 ):
+    output = {}
     at0 = time.time()
     print(header)
 
