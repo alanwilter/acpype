@@ -46,8 +46,8 @@ jobs:
         run: |
           echo "PYTEST_ADDOPTS=--random-order" >> $GITHUB_ENV
           echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
-          echo "AMBERHOME=$PWD/acpype/amber21-11_linux" >> $GITHUB_ENV
-          echo "$PWD/acpype/amber21-11_linux/bin" >> $GITHUB_PATH
+          echo "AMBERHOME=$PWD/acpype/amber_linux" >> $GITHUB_ENV
+          echo "$PWD/acpype/amber_linux/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
         run: |
@@ -68,7 +68,7 @@ jobs:
           ldd $(which obabel)
           obabel -:"cccc" -o pdb
           which antechamber
-          ldd /home/runner/work/acpype/acpype/acpype/amber21-11_linux/bin/wrapped_progs/antechamber
+          ldd /home/runner/work/acpype/acpype/acpype/amber_linux/bin/wrapped_progs/antechamber
           antechamber -h
 
       - name: Lint with flake8
