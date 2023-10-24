@@ -21,18 +21,18 @@ jobs:
         python-version: ["3.7", "3.8", "3.9", "3.10"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@main
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@main
         with:
           python-version: ${{ matrix.python-version }}
 
       # - name: Python Poetry Action
-      #   uses: abatilo/actions-poetry@v2.1.3
+      #   uses: abatilo/actions-poetry@main
 
       - name: Cache pip
-        uses: actions/cache@v3
+        uses: actions/cache@main
         with:
           # This path is specific to Ubuntu
           path: ~/.cache/pip
@@ -86,7 +86,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: matrix.python-version == 3.7
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@main
         with:
           fail_ci_if_error: false
 
@@ -102,7 +102,7 @@ jobs:
       - name: Create tag
         # will only create a new release if the commit message is 'new_release' to master branch
         if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_tag')
-        uses: actions/github-script@v6
+        uses: actions/github-script@main
         with:
           # github-token: ${{ github.token }} # optional
           script: |
@@ -117,14 +117,14 @@ jobs:
         # will only create a new release if the commit message is 'new_release' to master branch
         if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release')
         id: create_release
-        uses: elgohr/Github-Release-Action@v5
-        # uses: actions/create-release@v1
+        # uses: elgohr/Github-Release-Action@main
+        uses: actions/create-release@main
         env:
           # This token is provided by Actions, you do not need to create your own token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: ${{ steps.date.outputs.date }}
-          # tag_name: ${{ steps.date.outputs.date }}
-          # release_name: Release ${{ steps.date.outputs.date }}
-          # draft: false
-          # prerelease: false
+          # title: ${{ steps.date.outputs.date }}
+          tag_name: ${{ steps.date.outputs.date }}
+          release_name: Release ${{ steps.date.outputs.date }}
+          draft: false
+          prerelease: false
