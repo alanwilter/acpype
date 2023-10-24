@@ -37,7 +37,14 @@ files=(
     lib/libcifparse.so
     lib/libsff_fortran.so
     lib/libnetcdf.so.19
-
+    lib/libmfhdf.so.0
+    lib/libmfhdf.so.0.0.0
+    lib/libdf.so.0
+    lib/libdf.so.0.0.0*
+    lib/libhdf5_hl.so.310
+    lib/libhdf5_hl.so.310.0.2*
+    lib/libhdf5.so.310
+    lib/libhdf5.so.310.2.0
 )
 
 exclude=(
