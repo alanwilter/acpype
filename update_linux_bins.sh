@@ -46,6 +46,8 @@ files=(
     lib/libhdf5.so.310
     lib/libhdf5.so.310.2.0
     lib/libcrypto.so.3
+    lib/libzip.so.5
+    lib/libzip.so.5.5
 )
 
 exclude=(
@@ -72,6 +74,8 @@ for item in "${files[@]}"; do
 done
 
 tar xvfz charmmgen.tgz
+
+pre-commit run -a
 
 tree -d $destination
 
