@@ -21,10 +21,10 @@ jobs:
         python-version: ["3.7", "3.8", "3.9", "3.10"]
 
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -32,7 +32,7 @@ jobs:
       #   uses: abatilo/actions-poetry@v2.1.3
 
       - name: Cache pip
-        uses: actions/cache
+        uses: actions/cache@v3
         with:
           # This path is specific to Ubuntu
           path: ~/.cache/pip
@@ -86,7 +86,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: matrix.python-version == 3.7
-        uses: codecov/codecov-action
+        uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: false
 
@@ -101,7 +101,7 @@ jobs:
       - name: Create tag
         # will only create a new release if the commit message is 'new_release' to master branch
         if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_tag')
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           # github-token: ${{ github.token }} # optional
           script: |
