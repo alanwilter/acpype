@@ -159,7 +159,6 @@ There are several ways of obtaining `acpype`:
 
    ```bash
    ln -fsv "$PWD/acpype_docker.sh" /usr/local/bin/acpype_docker
-
    ```
 
    On Windows:

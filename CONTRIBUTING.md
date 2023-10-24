@@ -38,21 +38,21 @@ pytest --cov=tests --cov=acpype --cov-report=term-missing:skip-covered --cov-rep
 
 If using `VSCode`:
 
-- Enable `enableCommitSigning` in `settings.json` (***Workspace*** recommended):
+- Enable `enableCommitSigning` in `settings.json` (**_Workspace_** recommended):
 
-    ```yml
-    "git.enableCommitSigning": true,
-    ```
+  ```yml
+  "git.enableCommitSigning": true,
+  ```
 
 - Another `VSCode` nuisance, if using its graphic buttons for commit etc.: its environment won't necessarily recognise the dependencies installed via `poetry` under `conda` environment named `acpype` (unless you have started `VSCode` from folder repository with command `code .`). To avoid troubles do:
 
-    ```bash
-    conda deactivate
-    poetry install # it will create its own virtualenv
-    ```
+  ```bash
+  conda deactivate
+  poetry install # it will create its own virtualenv
+  ```
 
-    You could use this `poetry virtualenv` as the `Python Interpreter` for `VSCode`, however `ambertools`, `gromacs` and `openbabel` won't be available (unless you've had installed them system wide by other means rather than `conda`).
-    To avoid further troubles, go back to `conda activate acpype` and remember to do the instructions above if you add new dependencies to the project via `poetry`.
+  You could use this `poetry virtualenv` as the `Python Interpreter` for `VSCode`, however `ambertools`, `gromacs` and `openbabel` won't be available (unless you've had installed them system wide by other means rather than `conda`).
+  To avoid further troubles, go back to `conda activate acpype` and remember to do the instructions above if you add new dependencies to the project via `poetry`.
 
 ## For Documenting
 

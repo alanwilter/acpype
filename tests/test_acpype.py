@@ -23,7 +23,7 @@ def test_mol2_sorted(janitor, issorted, charge, msg):
     assert molecule
     assert molecule.molTopol.atomTypes[0].__repr__() == "<AtomType=nz>"
     assert len(molecule.molTopol.atoms) == 33
-    assert len(molecule.molTopol.properDihedrals) == 98
+    assert len(molecule.molTopol.properDihedrals) == 91
     assert len(molecule.molTopol.improperDihedrals) == 5
     assert molecule.molTopol.totalCharge == 0
     assert molecule.molTopol.atoms[0].charge == approx(charge)
@@ -37,7 +37,7 @@ def test_pdb(janitor, capsys):
     molecule.createACTopol()
     molecule.createMolTopol()
     assert len(molecule.molTopol.atoms) == 63
-    assert len(molecule.molTopol.properDihedrals) == 188
+    assert len(molecule.molTopol.properDihedrals) == 181
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
     # check gaff2 and force
@@ -46,7 +46,7 @@ def test_pdb(janitor, capsys):
     molecule.createMolTopol()
     captured = capsys.readouterr()
     assert len(molecule.molTopol.atoms) == 63
-    assert len(molecule.molTopol.properDihedrals) == 188
+    assert len(molecule.molTopol.properDihedrals) == 181
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
     assert "==> Overwriting pickle file FFF.pkl" in captured.out
@@ -63,7 +63,7 @@ def test_pdb(janitor, capsys):
 
 @pytest.mark.parametrize(
     ("force", "at", "ndih"),
-    [(False, "amber", 189), (True, "amber2", 187)],
+    [(False, "amber", 189), (True, "amber2", 197)],
 )
 def test_amber(janitor, force, at, ndih):
     molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force)
@@ -84,7 +84,7 @@ def test_charges_chiral(janitor):
     molecule.createMolTopol()
     assert molecule
     assert len(molecule.molTopol.atoms) == 69
-    assert len(molecule.molTopol.properDihedrals) == 218
+    assert len(molecule.molTopol.properDihedrals) == 205
     assert len(molecule.molTopol.improperDihedrals) == 5
     assert len(molecule.molTopol.chiralGroups) == 3
     assert molecule.chargeVal == "3"
@@ -179,7 +179,7 @@ def test_charge_user(janitor):
     molecule.createMolTopol()
     assert molecule
     assert len(molecule.molTopol.atoms) == 39
-    assert len(molecule.molTopol.properDihedrals) == 128
+    assert len(molecule.molTopol.properDihedrals) == 125
     assert len(molecule.molTopol.improperDihedrals) == 7
     assert molecule.molTopol.atoms[0].charge == 0.1667
     assert molecule.molTopol.atoms[15].charge == -0.517
@@ -254,7 +254,8 @@ def test_inputs(janitor, capsys, argv, msg):
         (
             ["-di", "HEM.pdb", "-b", "vir_temp"],
             19,
-            "Unrecognized case-sensitive atomic symbol ( FE).",  # Only Allowed: C, N, O, S, P, H, F, Cl, Br and I
+            "No Gasteiger parameter for atom (ID: 42, Name: FE, Type: DU)",
+            # Only Allowed: C, N, O, S, P, H, F, Cl, Br and I
         ),
     ],
 )
