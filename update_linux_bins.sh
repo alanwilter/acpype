@@ -40,11 +40,12 @@ files=(
     lib/libmfhdf.so.0
     lib/libmfhdf.so.0.0.0
     lib/libdf.so.0
-    lib/libdf.so.0.0.0*
+    lib/libdf.so.0.0.0
     lib/libhdf5_hl.so.310
-    lib/libhdf5_hl.so.310.0.2*
+    lib/libhdf5_hl.so.310.0.2
     lib/libhdf5.so.310
     lib/libhdf5.so.310.2.0
+    lib/libcrypto.so.3
 )
 
 exclude=(
@@ -74,7 +75,7 @@ tar xvfz charmmgen.tgz
 
 tree -d $destination
 
-find $destination | wc -l # 551 files, 15 dirs
+find $destination | wc -l # 559 files, 15 dirs
 # acpype/amber_linux
 # ├── bin
 # │   └── wrapped_progs
