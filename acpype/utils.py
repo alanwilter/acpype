@@ -150,6 +150,9 @@ def parmMerge(fdat1, fdat2, frcmod=False):
     else:
         name2 = os.path.basename(fdat2).split(".dat")[0]
     mname = "/tmp/" + name1 + name2 + ".dat"
+    if os.path.exists(mname):
+        if os.path.getsize(mname):
+            return mname
     mdatFile = open(mname, "w")
     mdat = [f"merged {name1} {name2}"]
 
