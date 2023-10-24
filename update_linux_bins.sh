@@ -36,6 +36,7 @@ files=(
     dat/leap
     lib/libcifparse.so
     lib/libsff_fortran.so
+    lib/libnetcdf.so.19
 
 )
 
