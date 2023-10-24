@@ -1,0 +1,22 @@
+Set of parameters for fluorinated, aromatic amino acids for use with the ff15ipq force field
+
+MASS
+
+BOND
+3C-CA              317.4204      1.5100  Fit by mdgx
+3C-F               367.0233      1.3800  Fit by mdgx
+
+ANGL
+CB-CA-F            109.3865      133.44  Fit by mdgx
+CN-CA-F             53.6158      118.76  Fit by mdgx
+C -CA-F             55.5980      120.15  Fit by mdgx
+3C-CA-CA            70.9193      119.54  Fit by mdgx
+CA-3C-F             96.9340      111.90  Fit by mdgx
+F -3C-F             98.1332      107.08  Fit by mdgx
+
+DIHE
+F -3C-CA-CA   1     1.91790    0.0  2.0  Fit by mdgx
+
+IMPROPER
+
+NONBON

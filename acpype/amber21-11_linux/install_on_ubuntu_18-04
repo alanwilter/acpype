@@ -1,3 +1,0 @@
-## To run on Ubuntu 18.04
-sudo apt update
-sudo apt-get install libgfortran5 libarpack++2-dev
