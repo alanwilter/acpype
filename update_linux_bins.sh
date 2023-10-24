@@ -81,7 +81,7 @@ pre-commit run -a
 
 tree -d $destination
 
-find $destination | wc -l # 559 files, 15 dirs
+find $destination | wc -l # 565 files, 15 dirs
 # acpype/amber_linux
 # ├── bin
 # │   └── wrapped_progs
