@@ -48,6 +48,8 @@ files=(
     lib/libcrypto.so.3
     lib/libzip.so.5
     lib/libzip.so.5.5
+    lib/libsz.so.2
+    lib/libsz.so.2.0.1
 )
 
 exclude=(
