@@ -64,14 +64,12 @@ For Non-uniform 1-4 scale factor conversion (e.g. if using **GLYCAM06**), please
 For `Antechamber`, please cite:
 
 > 1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
-
-     bond type perception in molecular mechanical calculations. Journal of Molecular
-     Graphics and Modelling 25, 2 (2006), 247–260. Doi: [10.1016/j.jmgm.2005.12.005](https://doi.org/10.1016/j.jmgm.2005.12.005)
+>    bond type perception in molecular mechanical calculations. Journal of Molecular
+>    Graphics and Modelling 25, 2 (2006), 247–260. Doi: [10.1016/j.jmgm.2005.12.005](https://doi.org/10.1016/j.jmgm.2005.12.005)
 
 > 2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
-
-     Development and testing of a General Amber Force Field. Journal of Computational
-     Chemistry 25, 9 (2004), 1157–1174. Doi: [10.1002/jcc.20035](https://doi.org/10.1002/jcc.20035)
+>    Development and testing of a General Amber Force Field. Journal of Computational
+>    Chemistry 25, 9 (2004), 1157–1174. Doi: [10.1002/jcc.20035](https://doi.org/10.1002/jcc.20035)
 
 If you use this code, I am glad if you cite:
 
