@@ -73,7 +73,7 @@ jobs:
           antechamber -h
 
       - name: Run Ruff
-        run: poetry run ruff -v check --output-format=github .
+        run: poetry run ruff check --output-format=github .
 
       - name: Test with PyTest
         run: |
