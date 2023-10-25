@@ -16,7 +16,7 @@ on:
 
 jobs:
   check-test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
@@ -55,25 +55,25 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
 
-      - name: Install OpenBabel
-        run: |
-          sudo apt-get install --no-install-recommends -y openbabel
+      # - name: Install OpenBabel
+      #   run: |
+      #     sudo apt-get install --no-install-recommends -y openbabel
 
       - name: Poetry install dependencies
         run: |
           pip3 install poetry
-          # poetry add openbabel-wheel
-          poetry run pip3 install openbabel-wheel
+          # # poetry add openbabel-wheel
+          # poetry run pip3 install openbabel-wheel
           poetry install
-          which obabel
-          ldd $(which obabel)
-          obabel -:"cccc" -o pdb
+          # which obabel
+          # ldd $(which obabel)
+          # obabel -:"cccc" -o pdb
           which antechamber
           ldd /home/runner/work/acpype/acpype/acpype/amber_linux/bin/wrapped_progs/antechamber
           antechamber -h
 
       - name: Run Ruff
-        run: poetry run ruff check --output-format=github .
+        run: poetry run ruff -v check --output-format=github .
 
       - name: Test with PyTest
         run: |
@@ -87,7 +87,7 @@ jobs:
 
   release:
     needs: check-test
-    runs-on: ubuntu-20.04
+    runs-on: latest
     steps:
       - name: Get current date
         id: vdate

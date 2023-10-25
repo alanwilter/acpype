@@ -902,6 +902,38 @@ files = [
 setuptools = "*"
 
 [[package]]
+name = "openbabel-wheel"
+version = "3.1.1.19"
+description = "An unofficial repository to distribute OpenBabel prebuilt wheels through Pypi.."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "openbabel-wheel-3.1.1.19.tar.gz", hash = "sha256:3f2a04645b462faf34e3f5a3f87d3e09d97ac35390ac15ade3881ce00a4c51fd"},
+    {file = "openbabel_wheel-3.1.1.19-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:bae54253df88f8bf39401f42136d4a2380a4b401a00fbfdcdf6ec8a36fb5be89"},
+    {file = "openbabel_wheel-3.1.1.19-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:49cc7615a4e044261a4ae4de19b8d29178002812f8cecafb645af8c5966301da"},
+    {file = "openbabel_wheel-3.1.1.19-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7b1d59413843427d6f177a37d8d9212bf4c7c8d4d1303d5747780799b45682a6"},
+    {file = "openbabel_wheel-3.1.1.19-cp310-cp310-win_amd64.whl", hash = "sha256:18adbfebfac54d5210fe607bfb605d58b14715848ee090319843878ca14c3df7"},
+    {file = "openbabel_wheel-3.1.1.19-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:450f2de91788f34758743f7adfd0316087da11a0a2e8e612cb15859ced1a985d"},
+    {file = "openbabel_wheel-3.1.1.19-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:4728f46777e4c929da6dd8e65b0510208252c7a46fd6bad0c6a4e0bbc0dbaed2"},
+    {file = "openbabel_wheel-3.1.1.19-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4ac9082ee53a98c2474e9eb238d6d158af1b3c428dcc5fd169e3f6e7ad706542"},
+    {file = "openbabel_wheel-3.1.1.19-cp311-cp311-win_amd64.whl", hash = "sha256:a75b6244c5af3053fa7e9e0d1343fdd6fd73eee88578d31566773da03cd3803d"},
+    {file = "openbabel_wheel-3.1.1.19-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:1d72e43d934e24a59d3c17195fb1ae9dd31603fa56d7c0b86dff68696efb9182"},
+    {file = "openbabel_wheel-3.1.1.19-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:522585417376163b7d068c57f235cb8a517151f6f4a0179287fad93d981ccb33"},
+    {file = "openbabel_wheel-3.1.1.19-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f3d6ba16154f9d2d374e7fe4b445fd347d180dc2995d8e6973a84aed162d12d1"},
+    {file = "openbabel_wheel-3.1.1.19-cp312-cp312-win_amd64.whl", hash = "sha256:213a5c8b75ff75273c33a5107809d815b87a70cb4b8a9c68630375313e35d47c"},
+    {file = "openbabel_wheel-3.1.1.19-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:f2a37a7ede01eea75cd59cdd5baf4a00f970d15e88dee209f21a6d6e06b75bf6"},
+    {file = "openbabel_wheel-3.1.1.19-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:17c8703999cc29bffd37504b2c8952fb01513d9a38a3aeb7dded15789efdc478"},
+    {file = "openbabel_wheel-3.1.1.19-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:1acab4d33dc2d127b5c372e55609ede654ca524d2afcdb9e201044b976466137"},
+    {file = "openbabel_wheel-3.1.1.19-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:f613e59c960a39eb084ba018b1d3b7fbe98b6646f375165607b08e611d7c9c83"},
+    {file = "openbabel_wheel-3.1.1.19-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4fb7bf067c322034c4079729c7b21388e42d0f6e020afd78ae8aec2a6805ae17"},
+    {file = "openbabel_wheel-3.1.1.19-cp38-cp38-win_amd64.whl", hash = "sha256:2b3c16352a42f80ad9f5da3b65772a7488774a46099d8d6285eed62e70b0ed41"},
+    {file = "openbabel_wheel-3.1.1.19-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:a4c76ab1cb90cf87e6ab8efc4234ef285877cfaefae92a106aea265b70de5d0b"},
+    {file = "openbabel_wheel-3.1.1.19-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:ef95e80a55afae7b7152d3bca4e3278c3fe08ad3c6e14173b11e70b18630432d"},
+    {file = "openbabel_wheel-3.1.1.19-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:116935fd63351f1766a304b896cc00a125549ad526da6fca7157ad0ed19ee889"},
+    {file = "openbabel_wheel-3.1.1.19-cp39-cp39-win_amd64.whl", hash = "sha256:e707de3d6a6e79483864ecb5458c5a3aa418b4d535532698646a51a8092cd444"},
+]
+
+[[package]]
 name = "packaging"
 version = "23.2"
 description = "Core utilities for Python packages"
@@ -1784,4 +1816,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4.0"
-content-hash = "4468ad339b0122cac77c163bdc191d92e2b1ae33a0d916da06151643722a90e7"
+content-hash = "593f994e2aa4eb89a2ccb6cd15c6493e007def2fddecaa281b58efd4c7fc1571"
