@@ -388,8 +388,8 @@ def checkTopAcpype(res):
         ent = [ffDictAtom[x] for x in item[:ll]]  # convert atomtypes ids to atomtypes names
         rent = ent[:]
         rent.reverse()
-        entries.append(ent + [lNum])
-        entries.append(rent + [lNum])
+        entries.append([*ent, lNum])
+        entries.append([*rent, lNum])
         if ll == 4:
             if len(item) == 6:
                 par = ffBon[1][item[5]]
@@ -398,26 +398,26 @@ def checkTopAcpype(res):
             rtent = rent[:]
             if lNum in [3, 9]:  # dih proper
                 tent[0] = "X"
-                entries.append(tent + [lNum])
+                entries.append([*tent, lNum])
                 tent.reverse()
-                entries.append(tent + [lNum])
+                entries.append([*tent, lNum])
                 tent[0] = "X"
-                entries.append(tent + [lNum])
+                entries.append([*tent, lNum])
                 tent.reverse()
-                entries.append(tent + [lNum])
+                entries.append([*tent, lNum])
                 rtent[0] = "X"
-                entries.append(rtent + [lNum])
+                entries.append([*rtent, lNum])
                 rtent.reverse()
-                entries.append(rtent + [lNum])
+                entries.append([*rtent, lNum])
             if lNum in [1, 4]:  # dih improp
                 tent[0] = "X"
-                entries.append(tent + [lNum])
+                entries.append([*tent, lNum])
                 tent[1] = "X"
-                entries.append(tent + [lNum])
+                entries.append([*tent, lNum])
                 rtent[0] = "X"
-                entries.append(rtent + [lNum])
+                entries.append([*rtent, lNum])
                 rtent[1] = "X"
-                entries.append(rtent + [lNum])
+                entries.append([*rtent, lNum])
         found = False
         for e in entries:
             try:
@@ -467,18 +467,18 @@ def checkTopAcpype(res):
         ("dihedrals", 4),
     ]  # , ['dihedraltypes', 'angletypes', 'bondtypes']
 
-    for flag, l in flags:
+    for flag, ll in flags:
         print("    ==> Comparing %s" % flag)
         if flag != flags[0][0] and compareParameters:  # not 'pairs'
             agres = []
             tAgRes = ffgRes[0][flag]  # e.g. dic 'bonds' from gmx top file
             for item in tAgRes:
                 if flag == flags[1][0]:  # 'bonds'
-                    par = addParam(l, item)
+                    par = addParam(ll, item)
                 elif flag == flags[2][0]:  # 'angles'
-                    par = addParam(l, item)
+                    par = addParam(ll, item)
                 elif flag == flags[3][0]:  # 'dihedrals', e.g. item = [2, 1, 5, 6, 9]
-                    par = addParam(l, item)
+                    par = addParam(ll, item)
                     if len(item) == 6:
                         item.pop()
                 agres.append(item + par)
@@ -486,13 +486,13 @@ def checkTopAcpype(res):
                 acres = acRes[0][flag]
         else:
             if flag == flags[3][0]:
-                agres = [x[: l + 1] for x in ffgRes[0][flag]]
+                agres = [x[: ll + 1] for x in ffgRes[0][flag]]
             else:
                 agres = ffgRes[0][flag]
             if compareParameters:
                 acres = acRes[0][flag]
             else:
-                acres = [x[: l + 1] for x in acRes[0][flag]]
+                acres = [x[: ll + 1] for x in acRes[0][flag]]
 
         act = acres[:]
         agt = agres[:]
@@ -500,8 +500,8 @@ def checkTopAcpype(res):
         if compareParameters:
             if flag != flags[0][0]:
                 # round parameters
-                act = roundAllFloats(act, l)
-                agt = roundAllFloats(agt, l)
+                act = roundAllFloats(act, ll)
+                agt = roundAllFloats(agt, ll)
                 act2 = act[:]
                 agt2 = agt[:]
 
@@ -516,7 +516,7 @@ def checkTopAcpype(res):
             else:
                 t = ac[:-1]
                 t.reverse()
-                acr = t + [ac[-1]]
+                acr = [*t, ac[-1]]
                 if str(acr) in str(agt):
                     act2.remove(ac)
                     agt2.remove(acr)
@@ -530,12 +530,12 @@ def checkTopAcpype(res):
             for ag in agt3:
                 t = ag[:-1]
                 t.sort()
-                ags = t + [ag[-1]]
+                ags = [*t, ag[-1]]
                 agl[str(ags)] = ag
             for ac in act2:
                 t = ac[:-1]
                 t.sort()
-                acs = t + [ac[-1]]
+                acs = [*t, ac[-1]]
                 if str(acs) in str(agl.keys()):
                     act3.remove(ac)
                     agt3.remove(agl[str(acs)])
@@ -738,9 +738,9 @@ def calcGmxPotEnerDiff(res):
         else:
             print("%15s   %.3f" % (k, rerror))
 
-    cmd = "%(gmxdump)s -s a%(res)s.tpr" % cmdDict
+    cmd = "{gmxdump} -s a{res}.tpr".format(**cmdDict)
     amb = _getoutput(cmd)
-    cmd = "%(gmxdump)s -s ag%(res)s.tpr" % cmdDict
+    cmd = "{gmxdump} -s ag{res}.tpr".format(**cmdDict)
     acp = _getoutput(cmd)
 
     # dihAmb = [x.split(']=')[-1] for x in amb.splitlines() if ('PIDIHS' in x or 'PDIHS' in x) and 'functype' in x ]

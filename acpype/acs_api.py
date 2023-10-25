@@ -159,7 +159,7 @@ def acpype_api(
         print("ACPYPE FAILED: %s" % exceptionValue)
         if debug:
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
-            output = {"file_name": f"ERROR: {str(exceptionValue)}"}
+            output = {"file_name": f"ERROR: {exceptionValue!s}"}
 
     execTime = int(round(time.time() - at0))
     if execTime == 0:

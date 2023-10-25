@@ -528,16 +528,16 @@ def myComp(vx, vy):
 
 
 def sortList(lista, typeMess):
-    for mol, l in list(mapResults[typeMess].items()):
-        if len(l) == 2:
+    for mol, ll in list(mapResults[typeMess].items()):
+        if len(ll) == 2:
             lista[0].append(mol)
-        elif len(l) == 1:
-            if l[0] == "pdb":
+        elif len(ll) == 1:
+            if ll[0] == "pdb":
                 lista[1].append(mol)
-            elif l[0] == "ideal":
+            elif ll[0] == "ideal":
                 lista[2].append(mol)
         else:
-            print("problem with", typeMess, mol, l)
+            print("problem with", typeMess, mol, ll)
     return lista
 
 

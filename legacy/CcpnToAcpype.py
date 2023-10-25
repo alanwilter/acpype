@@ -217,7 +217,7 @@ class AcpypeForCcpnProject:
             if chain.molecule.molType == "other":
                 numRes = len(chain.residues)
                 if numRes == 1:
-                    numberAtoms = [len(x.atoms) for x in chain.residues][0]
+                    numberAtoms = next(len(x.atoms) for x in chain.residues)
                     if numberAtoms > maxNumberAtoms:
                         print("molecule with %i (> %i) atoms; skipped by acpype" % (numberAtoms, maxNumberAtoms))
                     else:

@@ -4,11 +4,10 @@ import os
 import sys
 import time
 from shutil import rmtree
-from typing import Optional
+from typing import Dict, List, Optional
 
-from acpype.logger import copy_log
+from acpype.logger import copy_log, tmpLogFile
 from acpype.logger import set_logging_conf as logger
-from acpype.logger import tmpLogFile
 from acpype.params import binaries
 from acpype.parser_args import get_option_parser
 from acpype.topol import AbstractTopol, ACTopol, MolTopol, header
@@ -16,8 +15,8 @@ from acpype.utils import elapsedTime, while_replace
 
 
 def _chk_py_ver():
-    if sys.version_info < (3, 9):
-        msg = "Sorry, you need python 3.9 or higher"
+    if sys.version_info < (3, 8):
+        msg = "Sorry, you need python 3.8 or higher"
         logger().error(msg)
         raise Exception(msg)
 
@@ -28,7 +27,7 @@ def _handle_exception(level):
     return True
 
 
-def init_main(binaries: dict[str, str] = binaries, argv: Optional[list[str]] = None):
+def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = None):
     """
     Orchestrate the command line usage for ACPYPE with its all input arguments.
 

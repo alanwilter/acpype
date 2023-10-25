@@ -112,7 +112,7 @@ def get_option_parser():
     parser.add_argument(
         "-o",
         "--outtop",
-        choices=["all"] + outTopols,
+        choices=["all", *outTopols],
         action="store",
         default="all",
         dest="outtop",
