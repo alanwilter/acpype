@@ -86,7 +86,7 @@ jobs:
 
   release:
     needs: check-test
-    runs-on: latest
+    runs-on: ubuntu-latest
     steps:
       - name: Get current date
         id: vdate
