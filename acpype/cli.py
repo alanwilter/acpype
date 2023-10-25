@@ -6,9 +6,8 @@ import time
 from shutil import rmtree
 from typing import Dict, List, Optional
 
-from acpype.logger import copy_log
+from acpype.logger import copy_log, tmpLogFile
 from acpype.logger import set_logging_conf as logger
-from acpype.logger import tmpLogFile
 from acpype.params import binaries
 from acpype.parser_args import get_option_parser
 from acpype.topol import AbstractTopol, ACTopol, MolTopol, header

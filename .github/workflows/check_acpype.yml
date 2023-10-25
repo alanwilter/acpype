@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - master
-      - ruff
   pull_request:
     branches:
       - master
