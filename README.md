@@ -11,7 +11,7 @@
 [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)](https://anaconda.org/conda-forge/acpype/files)<!-- ![Conda](https://img.shields.io/conda/pn/conda-forge/acpype?logo=conda-forge&style=plastic) -->
 [![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alanwilter/acpype/check_acpype?style=plastic)](https://github.com/alanwilter/acpype)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/alanwilter/acpype/.github%2Fworkflows%2Fcheck_acpype.yml?style=plastic)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
 [![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2023.10.24/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
