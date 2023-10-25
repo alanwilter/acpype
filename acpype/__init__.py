@@ -2,7 +2,7 @@
     The Package
 
     Requirements:
-        - ``Python 3.7`` or higher
+        - ``Python 3.9`` or higher
         - ``Antechamber`` (from ``AmberTools`` preferably)
         - ``OpenBabel`` (optional, but strongly recommended)
 
@@ -55,4 +55,4 @@
 # from https://packaging.python.org/guides/single-sourcing-package-version/
 # using option 2
 # updated automatically via pre-commit git-hook
-__version__ = "2023.10.24"
+__version__ = "2023.10.25"

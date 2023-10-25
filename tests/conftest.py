@@ -22,7 +22,7 @@ def pytest_report_header(config):
 
 @pytest.fixture
 def janitor():
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(os.path.dirname(__file__))
     to_delete = []
     yield to_delete
     for item in to_delete:

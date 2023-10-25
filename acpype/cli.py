@@ -4,7 +4,7 @@ import os
 import sys
 import time
 from shutil import rmtree
-from typing import Dict, List, Optional
+from typing import Optional
 
 from acpype.logger import copy_log
 from acpype.logger import set_logging_conf as logger
@@ -16,8 +16,8 @@ from acpype.utils import elapsedTime, while_replace
 
 
 def _chk_py_ver():
-    if sys.version_info < (3, 7):
-        msg = "Sorry, you need python 3.7 or higher"
+    if sys.version_info < (3, 9):
+        msg = "Sorry, you need python 3.9 or higher"
         logger().error(msg)
         raise Exception(msg)
 
@@ -28,7 +28,7 @@ def _handle_exception(level):
     return True
 
 
-def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = None):
+def init_main(binaries: dict[str, str] = binaries, argv: Optional[list[str]] = None):
     """
     Orchestrate the command line usage for ACPYPE with its all input arguments.
 
