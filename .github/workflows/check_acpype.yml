@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - master
+      - ruff
   pull_request:
     branches:
       - master
@@ -71,14 +72,8 @@ jobs:
           ldd /home/runner/work/acpype/acpype/acpype/amber_linux/bin/wrapped_progs/antechamber
           antechamber -h
 
-      - name: Lint with flake8
-        run: poetry run flake8 -v --count
-
-      - name: Check format with black
-        run: poetry run black --diff --check .
-
-      - name: Run isort
-        run: poetry run isort . --check-only --profile black
+      - name: Run Ruff
+        run: ruff check --output-format=github .
 
       - name: Test with PyTest
         run: |
