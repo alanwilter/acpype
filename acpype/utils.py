@@ -91,7 +91,7 @@ def elapsedTime(seconds, add_s=False, separator=" "):
         value = seconds // alength
         if value > 0:
             seconds = seconds % alength
-            atime.append(f'{str(value)}{(suffix, (suffix, suffix + "s")[value > 1])[add_s]}')
+            atime.append(f'{value!s}{(suffix, (suffix, suffix + "s")[value > 1])[add_s]}')
         if seconds < 1:
             break
 

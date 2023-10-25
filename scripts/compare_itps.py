@@ -28,10 +28,10 @@ def parseItpFile(lista):
 def compareDicts(d1, d2):
     flags = [("pairs", 2), ("bonds", 2), ("angles", 3), ("dihedrals", 4)]
 
-    for flag, l in flags:
+    for flag, ll in flags:
         print("    ==> Comparing %s" % flag)
-        flagD1 = [x[: l + 1] for x in d1[flag]]
-        flagD2 = [x[: l + 1] for x in d2[flag]]
+        flagD1 = [x[: ll + 1] for x in d1[flag]]
+        flagD2 = [x[: ll + 1] for x in d2[flag]]
 
         tempD1 = flagD1[:]
         tempD2 = flagD2[:]
@@ -44,24 +44,24 @@ def compareDicts(d1, d2):
                 try:
                     _tempD1.remove(item)
                 except Exception:
-                    print(f"\tDuplicate item {repr(item)} in {flag} itp2")
+                    print(f"\tDuplicate item {item!r} in {flag} itp2")
                 try:
                     _tempD2.remove(item)
                 except Exception:
-                    print(f"\tDuplicate item {repr(item)} in {flag} itp1")
+                    print(f"\tDuplicate item {item!r} in {flag} itp1")
             else:
                 t = item[:-1]
                 t.reverse()
-                itemRev = t + [item[-1]]
+                itemRev = [*t, item[-1]]
                 if str(itemRev) in str(tempD2):
                     try:
                         _tempD1.remove(item)
                     except Exception:
-                        print(f"\tDuplicate item {repr(item)} in {flag} itp2")
+                        print(f"\tDuplicate item {item!r} in {flag} itp2")
                     try:
                         _tempD2.remove(itemRev)
                     except Exception:
-                        print(f"\tDuplicate item {repr(item)} in {flag} itp1")
+                        print(f"\tDuplicate item {item!r} in {flag} itp1")
 
         tD1 = _tempD1[:]
         tD2 = _tempD2[:]
@@ -72,12 +72,12 @@ def compareDicts(d1, d2):
             for i2 in tD2:
                 t = i2[:-1]
                 t.sort()
-                i2s = t + [i2[-1]]
+                i2s = [*t, i2[-1]]
                 i2l[str(i2s)] = i2
             for i1 in tD1:
                 t = i1[:-1]
                 t.sort()
-                i1s = t + [i1[-1]]
+                i1s = [*t, i1[-1]]
                 if str(i1s) in str(list(i2l.keys())):
                     tD1.remove(i1)
                     tD2.remove(i2l[str(i1s)])

@@ -2,6 +2,10 @@
 
 ## For Coding
 
+If using `Linux` with Intel processors, you can skip the `conda` step and directly to [Setting ACPYPE](#setting-acpype). Otherwise:
+
+### Setting `conda`
+
 For `Linux` (Ubuntu 20 recommended) and `macOS`. Anyway, `CONDA` is strongly recommended.
 Also recommended is GPG key, so do accordingly in [GitHub](https://docs.github.com/articles/generating-a-gpg-key/).
 
@@ -12,7 +16,11 @@ conda create -n acpype python=3.9 ambertools openbabel ocl-icd-system ipython gr
 # ocl-icd-system: case you have GPU
 
 conda activate acpype
+```
 
+### Setting ACPYPE
+
+```bash
 git clone https://github.com/alanwilter/acpype.git
 
 cd acpype
@@ -23,9 +31,7 @@ pre-commit install
 
 pre-commit run -a
 
-sys=$(perl -e '`uname` eq "Darwin\n" ? print "os" : print "linux"')
-
-cp ./acpype/amber21-11_${sys}/bin/charmmgen $(dirname $(which antechamber))
+cp ./acpype/amber_linux/bin/charmmgen $(dirname $(which antechamber))
 
 git config user.email _email_ # as seen in 'gpg --list-secret-keys --keyid-format=long'
 

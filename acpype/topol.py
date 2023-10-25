@@ -157,7 +157,7 @@ class Topology_14:
         pair_list.append(pair_buff)
         dihedrals = self.dihedral_yes_H + self.dihedral_no_H
         dih_number = len(dihedrals)
-        j = int(0)
+        j = 0
         while j < dih_number:
             if dihedrals[j + 2] > 0:
                 parm_idx = int(dihedrals[j + 4]) - 1
@@ -504,7 +504,7 @@ class AbstractTopol(abc.ABC):
                     coords[cs] = [at]
 
         if len(residues) > 1:
-            self.printError(f"more than one residue detected '{str(residues)}'")
+            self.printError(f"more than one residue detected '{residues!s}'")
             self.printError(f"verify your input file '{self.inputFile}'. Aborting ...")
             msg = "Only ONE Residue is allowed for ACPYPE to work"
             logger(self.level).error(msg)
@@ -564,7 +564,7 @@ class AbstractTopol(abc.ABC):
                 raise Exception(msg)
 
         # escape resname list index out of range: no RES name in pdb for example
-        resname = list(residues)[0].strip()
+        resname = next(iter(residues)).strip()
         if not resname:
             resname = "LIG"
             self.printWarn("No residue name identified, using default resname: 'LIG'")
@@ -1282,7 +1282,7 @@ class AbstractTopol(abc.ABC):
         self._atomTypeNameList = atomTypeNameList
         massList = self.getFlagData("MASS")
         chargeList = self.getFlagData("CHARGE")
-        resIds = self.getFlagData("RESIDUE_POINTER") + [0]
+        resIds = [*self.getFlagData("RESIDUE_POINTER"), 0]
         coords = self.getCoords()
         ACOEFs, BCOEFs = self.getABCOEFs()
 
@@ -2213,7 +2213,7 @@ class AbstractTopol(abc.ABC):
                 )
                 + f" ; {r0:4.2f}  {epAmber:1.4f}\n"
             )
-            oline = f"; {aTypeName}:{aTypeNameOpls}:opls_{oaCode[0]}: {repr(oaCode[1:])}\n"
+            oline = f"; {aTypeName}:{aTypeNameOpls}:opls_{oaCode[0]}: {oaCode[1:]!r}\n"
             # tmpFile.write(line)
             temp.append(line)
             otemp.append(oline)
@@ -2259,7 +2259,7 @@ class AbstractTopol(abc.ABC):
             resid = atom.resid
             resname = self.residueLabel[resid]
             if not self.direct:
-                if resname in list(ionsDict) + ["WAT"]:
+                if resname in [*list(ionsDict), "WAT"]:
                     break
             aName = atom.atomName
             aType = atom.atomType.atomTypeName

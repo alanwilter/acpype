@@ -2,7 +2,7 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=plastic)](https://GitHub.com/alanwilter/acpype/graphs/commit-activity)<!-- [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103&style=plastic)](https://github.com/ellerbrock/open-source-badges/) -->
 [![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)](https://github.com/alanwilter/acpype)
-[![python](https://img.shields.io/badge/python-3.9%2E%2E%2E3.12-blue.svg?style=plastic&logo=python)](https://github.com/alanwilter/acpype)
+[![python](https://img.shields.io/badge/python-3.8%2E%2E%2E3.12-blue.svg?style=plastic&logo=python)](https://github.com/alanwilter/acpype)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)](https://github.com/alanwilter/acpype)
 [![GitHub Release](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)](https://github.com/alanwilter/acpype)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
 [![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)](https://hub.docker.com/r/acpype/acpype)
@@ -114,6 +114,14 @@ There are several ways of obtaining `acpype`:
    ```
 
 2. Via **[PyPI](https://pypi.org/project/acpype/)**:
+
+   If you're using Linux with Intel processors then
+
+   ```bash
+   pip install acpype
+   ```
+
+   is enough and you should have a complete solution. Oterwise ...
 
    _(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)_
 

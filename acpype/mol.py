@@ -15,6 +15,8 @@
 """
 
 
+from typing import List
+
 from acpype.params import Pi
 
 
@@ -66,7 +68,7 @@ class Atom:
     """
 
     def __init__(
-        self, atomName: str, atomType: AtomType, id_: int, resid: int, mass: float, charge: float, coord: list[float]
+        self, atomName: str, atomType: AtomType, id_: int, resid: int, mass: float, charge: float, coord: List[float]
     ):
         """
         Args:

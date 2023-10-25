@@ -15,10 +15,10 @@ on:
 
 jobs:
   check-test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -54,45 +54,39 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
 
-      - name: Install OpenBabel
-        run: |
-          sudo apt-get install --no-install-recommends -y openbabel
+      # - name: Install OpenBabel
+      #   run: |
+      #     sudo apt-get install --no-install-recommends -y openbabel
 
       - name: Poetry install dependencies
         run: |
           pip3 install poetry
-          # poetry add openbabel-wheel
-          poetry run pip3 install openbabel-wheel
+          # # poetry add openbabel-wheel
+          # poetry run pip3 install openbabel-wheel
           poetry install
-          which obabel
-          ldd $(which obabel)
-          obabel -:"cccc" -o pdb
+          # which obabel
+          # ldd $(which obabel)
+          # obabel -:"cccc" -o pdb
           which antechamber
           ldd /home/runner/work/acpype/acpype/acpype/amber_linux/bin/wrapped_progs/antechamber
           antechamber -h
 
-      - name: Lint with flake8
-        run: poetry run flake8 -v --count
-
-      - name: Check format with black
-        run: poetry run black --diff --check .
-
-      - name: Run isort
-        run: poetry run isort . --check-only --profile black
+      - name: Run Ruff
+        run: poetry run ruff check --output-format=github .
 
       - name: Test with PyTest
         run: |
           poetry run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml
 
       - name: Upload coverage to Codecov
-        if: matrix.python-version == 3.9
+        if: matrix.python-version == 3.8
         uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: false
 
   release:
     needs: check-test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Get current date
         id: vdate
