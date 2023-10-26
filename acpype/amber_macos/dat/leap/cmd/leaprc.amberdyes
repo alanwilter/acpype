@@ -1,0 +1,47 @@
+#
+# Set log file
+#
+logFile leap.log
+#
+# leaprc for loading the AmberDyes force field
+#
+#
+# Load atom type hybridizations
+#
+addatomtypes {
+	{ "c9" "C" "sp2" }
+	{ "cG" "C" "sp2" }
+	{ "sS" "S" "sp2" }
+	{ "c7" "C" "sp2" }
+	{ "c8" "C" "sp2" }
+	{ "h9" "H" "sp2" }
+	{ "cg" "C" "sp2" }
+	{ "og" "O" "sp2" }
+	{ "ng" "N" "sp2" }
+	{ "hC" "H" "sp2" }
+	{ "h7" "H" "sp2" }
+	{ "cW" "C" "sp2" }
+	{ "o8" "O" "sp2" }
+	{ "nH" "N" "sp2" }
+	{ "sG" "S" "sp2" }
+	{ "hG" "H" "sp2" }
+	{ "cE" "C" "sp2" }
+	{ "cF" "C" "sp2" }
+	{ "cT" "C" "sp2" }
+	{ "o9" "O" "sp2" }
+	{ "h8" "H" "sp2" }
+        { "n9" "N" "sp2" }
+        { "nG" "N" "sp2" }
+        { "nT" "N" "sp2" }
+
+}
+
+#
+# Load the AmberDyes parameter set
+#
+dyeparams = loadamberparams amberdyes.dat
+
+#
+# Load the AmberDyes lib files
+#
+loadoff amberdyes.lib

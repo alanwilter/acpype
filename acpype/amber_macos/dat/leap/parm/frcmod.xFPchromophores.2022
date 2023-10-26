@@ -1,0 +1,164 @@
+frcmod file for fluorescent protein chromophores. Intended for use with ff14SB, ff19SB and related force fields. Parameters based on parm10.dat, gaff.dat, and frcmod.ff14SB. Publication by Breyfogle, Blood, Rosnik, and Krueger in preparation.
+
+MASS
+nc 14.01         0.530      gaff nc/nd; Sp2 N in non-pure aromatic systems, identical to nd
+nd 14.01         0.530      gaff nc/nd; Sp2 N in non-pure aromatic systems, identical to nc
+ne 14.01         0.530      gaff ne/nf; Inner Sp2 N in conjugated systems, identical to nf
+nf 14.01         0.530      gaff ne/nf; Inner Sp2 N in conjugated systems, identical to ne
+cc 12.01         0.360      gaff cc/cd; Sp2 carbons in non-pure aromatic systems, identical to cd
+cd 12.01         0.360      gaff cc/cd; Sp2 carbons in non-pure aromatic systems, identical to cc
+cf 12.01         0.360      gaff cf; Inner Sp2 carbons in conjugated systems
+c  12.01         0.616      gaff c; Sp2 C carbonyl group
+ha 1.008         0.135      gaff ha; H bonded to aromatic carbon
+o  16.00         0.434      gaff o; Sp2 O carbonyl group
+
+BOND
+cc-cd  500.9    1.3729   gaff cc-cd
+cd-cd  419.8    1.4278   gaff cd-cd
+cc-nc  441.1    1.3694   gaff cc-nc
+cd-nc  525.4    1.3172   gaff cd-nc
+cd-nd  441.1    1.3694   gaff cd-nd
+cc-c   371.0    1.4676   gaff c -cc
+c -nd  416.9    1.3867   gaff c -nd
+cc-ha  349.1    1.0837   gaff cc-ha
+cd-ha  349.1    1.0837   gaff cd-ha
+cf-cf  382.8    1.4574   gaff cf-cf
+cf-ne  564.4    1.2964   gaff cf-ne
+cf-nf  406.9    1.3942   gaff cf-nf
+c -nf  411.2    1.3909   gaff c -nf
+c -o   637.7    1.2183   gaff c -o
+cd-CX  334.8    1.5015   gaff c3-cd
+nd-CX  334.7    1.4560   gaff c3-nd
+cf-2C  320.9    1.5157   gaff c3-cf
+ne-C   411.2    1.3909   gaff c -ne
+cd-CC  419.8    1.4278   gaff cd-cd
+cd-C*  419.8    1.4278   gaff cd-cd
+cf-nc  525.4    1.3172   gaff cd-nc
+nf-CX  334.7    1.4560   gaff c3-nd
+
+ANGLE
+cc-nc-cd    71.8      105.49    gaff cc-nc-cd
+cc-c -cc    64.6      115.84    gaff cc-c -cc
+cc-c -nd    67.8      116.24    gaff cc-c -nd
+cc-c -nf    69.0      112.22    gaff cc-c -nf
+cc-c -o     69.1      123.93    gaff cc-c -o
+cc-cd-ha    48.5      121.76    gaff cc-cd-ha
+cd-cd-cc    68.2      114.19    gaff cc-cd-cd
+cd-cc-nc    72.2      111.65    gaff cd-cc-nc
+cd-cd-ha    47.1      121.07    gaff cd-cd-ha
+cd-cc-ha    48.5      121.76    gaff cd-cc-ha
+nc-cd-nd    74.0      115.83    gaff nc-cd-nd
+nd-c -o     73.9      123.18    gaff nd-c -o
+nf-c -o     73.0      125.81    gaff nf-c -o
+c -cc-cd    65.1      121.35    gaff c -cc-cd
+c -cc-nc    66.2      123.32    gaff c -cc-nc
+c -cc-ha    46.9      116.64    gaff c -cc-ha
+cf-cf-ne    68.6      120.79    gaff cf-cf-ne
+cf-cf-nf    68.6      120.79    gaff cf-cf-ne
+CX-cd-nd    66.0      120.95    gaff c3-cd-nd
+CX-cd-nc    66.5      122.41    gaff c3-cd-nc
+2C-cf-ne    66.9      120.68    gaff c3-cf-ne
+cf-cf-2C    63.4      117.12    gaff c3-cf-cf
+N -CX-cd    63.0      110.10    parm10 C -CX-N
+C -CX-nd    63.0      110.10    parm10 C -CX-N
+C -CX-nf    63.0      110.10    parm10 C -CX-N
+O -C -ne    80.0      122.90    parm10 N -C -O
+CX-C -ne    70.0      116.60    parm10 CX-C -N
+XC-C -ne    70.0      116.60    parm19 XC-C -N
+H1-CX-cd    50.0      109.50    parm10 C -CX-H1
+H1-CX-nd    50.0      109.50    parm10 H1-CX-N
+H1-CX-nf    50.0      109.50    parm10 H1-CX-N
+3C-CX-cd    63.0      111.10    ff14sb C -CX-3C
+2C-CX-cd    63.0      111.10    ff14sb C -CX-2C
+cf-2C-2C    63.0      111.10    ff14sb C -2C-2C
+cf-2C-HC    50.0      109.50    ff14sb C -2C-HC
+cc-cd-CC    68.2      114.19    gaff cc-cd-cd
+CC-cd-ha    47.1      121.07    gaff cd-cd-ha
+cc-cd-C*    68.2      114.19    gaff cc-cd-cd
+C*-cd-ha    47.1      121.07    gaff cd-cd-ha
+cd-C*-CB    70.0      128.60    parm10 CT-C*-CB
+cd-C*-CW    70.0      125.00    parm10 CT-C*-CW
+cd-CC-NA    70.0      120.00    parm10 CT-CC-NA
+cd-CC-CV    70.0      120.00    parm10 CT-CC-CV
+cd-CC-NB    70.0      120.00    parm10 CT-CC-NB
+cd-CC-CW    70.0      120.00    parm10 CT-CC-CW
+cd-cd-cd    66.6      120.02    gaff ca-ca-ca
+cd-nd-CX    66.7      120.49    gaff c -nd-cc
+cd-nd-c     66.7      120.49    gaff c -nd-cc
+c -nd-CX    66.7      120.49    gaff c -nd-cc
+cf-nf-c     66.5      120.83    gaff c2-nf-ca
+cf-nf-CX    66.5      120.83    gaff c2-nf-ca
+c -nf-CX    66.5      120.83    gaff c2-nf-ca
+cc-nc-cf    71.8      105.49    gaff cc-nc-cd
+nf-cf-nc    70.2      127.96    gaff nf-cf-ne
+cf-cf-nc    68.6      120.79    gaff cf-cf-ne
+C -ne-cf    67.7      118.53    gaff c -ne-c2
+
+DIHEDRAL
+X -cc-cd-X    4   16.000       180.000           2.000      gaff X -cc-cd-X
+X -cc-nc-X    2    9.500       180.000           2.000      gaff X -cc-nc-X
+X -cc-c -X    4   11.500       180.000           2.000      gaff X -c -cc-X
+X -cd-cd-X    4   16.000       180.000           2.000      gaff X -cd-cd-X
+X -cd-nc-X    2    9.500       180.000           2.000      gaff X -cd-nc-X
+X -cd-nd-X    2    9.500       180.000           2.000      gaff X -cd-nd-X
+X -c -nd-X    2    8.00        180.000           2.000      gaff X -c -nd-X
+X -c -nf-X    2    0.400       180.000           2.000      gaff X -c -nf-X
+X -cf-nf-X    2    1.600       180.000           2.000      gaff X -cf-nf-X
+X -cf-cf-X    4    4.000       180.000           2.000      gaff X -cf-cf-X
+X -cd-CC-X    4   16.000       180.000           2.000      gaff X -cd-cd-X
+X -cd-C*-X    4   16.000       180.000           2.000      gaff X -cd-cd-X
+X -C -ne-X    2    0.400       180.000           2.000      gaff X -c -ne-X
+X -CX-cd-X    6    0.000         0.000           3.000      gaff X -c3-cd-X
+X -CX-nf-X    6    0.000         0.000           3.000      gaff X -c3-nf-X and X -c3-n2-X
+X -CX-nd-X    6    0.000         0.000           3.000      gaff X -c3-nf-X and X -c3-n2-X
+X -2C-cf-X    6    0.000         0.000           2.000      gaff X -c3-ca-X and X-c3-cc-X
+X -cf-nc-X    2    9.500       180.000           2.000      gaff X -cd-nc-X
+X -cf-ne-X    2    8.300       180.000           2.000      gaff X -c2-ne-X and gaff X-c2-n2-X
+cd-CX-3C-CT   1    0.112         0.000          -4.000      from ff14SB C -CX-3C-CT
+cd-CX-3C-CT   1    0.148         0.000          -3.000
+cd-CX-3C-CT   1    0.289       180.000          -2.000
+cd-CX-3C-CT   1    0.406       180.000           1.000
+cd-CX-3C-OH   1    0.156         0.000          -4.000      from ff14SB C -CX-3C-OH
+cd-CX-3C-OH   1    0.315         0.000          -3.000
+cd-CX-3C-OH   1    0.119       180.000          -2.000
+cd-CX-3C-OH   1    0.697       180.000           1.000
+cd-CX-2C-OH   1    0.129         0.000          -4.000      from ff14SB C -CX-2C-OH
+cd-CX-2C-OH   1    0.401         0.000          -3.000
+cd-CX-2C-OH   1    0.218       180.000          -2.000
+cd-CX-2C-OH   1    0.661       180.000           1.000
+cf-2C-2C-HC   1    0.160         0.000           3.000      from ff14SB CX-2C-2C-HC
+cf-2C-2C-C    1    0.138         0.000          -4.000      from ff14SB CX-2C-2C-C
+cf-2C-2C-C    1    0.412       180.000          -3.000
+cf-2C-2C-C    1    0.083         0.000          -2.000
+cf-2C-2C-C    1    0.196       180.000           1.000
+cf-2C-2C-S    1    0.028         0.000          -4.000      from ff14SB CX-2C-2C-S
+cf-2C-2C-S    1    0.016         0.000          -3.000
+cf-2C-2C-S    1    0.245         0.000          -2.000
+cf-2C-2C-S    1    0.417         0.000           1.000
+
+IMPROPER
+X -X -c -o          10.5         180.          2.           from gaff X -X -c -o and parm10 X -X -C -O
+X -X -cc-ha          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+X -X -cd-ha          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+c -cd-nd-CX          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+c -cf-nf-CX          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+cf-ne-cf-2C          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+nd-nc-cd-CX          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+nf-nc-cf-cf          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+cd-cd-cd-cd          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+nc-c -cc-cd          1.1         180.          2.           all gaff and most PARM10 with sp2 center atom
+NA-CV-CC-cd          1.1         180.          2.           From parm10 CT-CV-CC-NA
+NB-CW-CC-cd          1.1         180.          2.           From parm10 CT-CW-CC-NB
+CW-CB-C*-cd          1.1         180.          2.           From parm10 CB-CT-C*-CW
+
+NONBON
+nc          1.8240  0.1700             gaff nc
+nd          1.8240  0.1700             gaff nd
+ne          1.8240  0.1700             gaff ne
+nf          1.8240  0.1700             gaff nf
+cc          1.9080  0.0860             gaff cc
+cd          1.9080  0.0860             gaff cd
+cf          1.9080  0.0860             gaff cf
+c           1.9080  0.0860             gaff c
+ha          1.4590  0.0150             gaff ha
+o           1.6612  0.2100             gaff o

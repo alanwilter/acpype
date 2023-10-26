@@ -1,0 +1,375 @@
+ff15ipq-m extended parameter set for artificial residues
+
+MASS
+AB                 12.0100       0.3600  AIB (2019)
+BA                 12.0100       0.3600  general C-alpha for Beta3 (2019)
+BB                 12.0100       0.3600  general C-beta for Beta3 (2019)
+BX                 12.0100       0.3600  C-beta carbon for negative Beta3 (2019)
+BY                 12.0100       0.3600  C-beta for positive Beta3 (2019)
+AG                 12.0100       0.3600  B3G C-alpha (2019)
+BG                 12.0100       0.3600  B3G (2019)
+AP                 12.0100       0.3600  B3P C-alpha (2019)
+BP                 12.0100       0.3600  B3P (2019)
+B1                 12.0100       0.3600  BCY (2019)
+B2                 12.0100       0.3600  APC (2019)
+NY                 14.0100       0.5300  sp3 N in 5 mem ring for APC, Beta3 (2019)
+
+BOND
+C -AB              317.0000      1.5220  AIB (2019)
+AB-CT              310.0000      1.5260  AIB (2019)
+AB-N               337.0000      1.4490  AIB (2019)
+BA-C               317.0000      1.5220  general Beta3 backbone (2019)
+BA-HC              340.0000      1.0900  general Beta3 backbone (2019)
+BA-BB              310.0000      1.5260  general Beta3 backbone (2019)
+BB-N               337.0000      1.4490  general Beta3 backbone (2019)
+BB-H1              340.0000      1.0900  general Beta3 backbone (2019)
+BB-CT              310.0000      1.5260  B3A, two, three (2019)
+BB-3C              310.0000      1.5260  three-branched Beta3 (2019)
+BB-2C              310.0000      1.5260  two-branched Beta3 (2019)
+BB-TA              310.0000      1.5260  aromatic Beta3 (2019)
+BA-BY              310.0000      1.5260  positive charged Beta3 (2019)
+BY-H1              340.0000      1.0900  positive charged Beta3 (2019)
+BY-N               337.0000      1.4490  positive charged Beta3 (2019)
+BY-C8              310.0000      1.5260  positive charged Beta3 (2019)
+BA-BX              310.0000      1.5260  negative charged Beta3 (2019)
+BX-H1              340.0000      1.0900  negative charged Beta3 (2019)
+BX-N               337.0000      1.4490  negative charged Beta3 (2019)
+BX-2C              310.0000      1.5260  negative charged Beta3 (2019)
+AG-C               317.0000      1.5220  B3G (2019)
+AG-HC              340.0000      1.0900  B3G (2019)
+BG-AG              310.0000      1.5260  B3G (2019)
+BG-CT              310.0000      1.5260  B3G (2019)
+BG-N               337.0000      1.4490  B3G (2019)
+BG-H1              340.0000      1.0900  B3G (2019)
+AP-C               317.0000      1.5220  B3P (2019)
+AP-HC              340.0000      1.0900  B3P (2019)
+BP-AP              310.0000      1.5260  B3P (2019)
+BP-CT              310.0000      1.5260  B3P (2019)
+BP-TN              337.0000      1.4490  B3P (2019)
+BP-H1              340.0000      1.0900  B3P (2019)
+B1-B1              310.0000      1.5260  BCY (2019)
+B1-CT              310.0000      1.5260  BCY (2019)
+B1-N               337.0000      1.4490  BCY (2019)
+B1-H1              340.0000      1.0900  BCY (2019)
+B1-C               317.0000      1.5220  BCY (2019)
+B1-HC              340.0000      1.0900  BCY (2019)
+B2-B2              310.0000      1.5260  APC (2019)
+B2-CT              310.0000      1.5260  APC (2019)
+NY-CT              367.0000      1.4710  APC (2019)
+NY-H               434.0000      1.0100  APC (2019)
+B2-N               337.0000      1.4490  APC (2019)
+B2-H1              340.0000      1.0900  APC (2019)
+B2-C               317.0000      1.5220  APC (2019)
+B2-HC              340.0000      1.0900  APC (2019)
+
+ANGLE
+CT-AB-CT            50.0         109.50  AIB (2019)
+AB-CT-HC            50.0         109.50  AIB (2019)
+C -AB-CT            63.0         111.10  AIB (2019)
+CT-AB-N             80.0         109.70  AIB (2019)
+AB-C -OD            80.0         120.40  AIB (2019)
+AB-N -H             50.0         118.04  AIB (2019)
+C -N -AB            50.0         121.90  AIB (2019)
+AB-C -N             70.0         116.60  AIB (2019)
+C -AB-N             63.0         110.10  AIB (2019)
+OD-C -BA            80.0         120.40  general Beta3 backbone (2019)
+C -BA-HC            50.0         109.50  general Beta3 backbone (2019)
+HC-BA-HC            39.0         107.58  general Beta3 backbone (2019)
+BB-N -H             50.0         118.04  general Beta3 backbone (2019)
+N -BB-H1            50.0         109.50  general Beta3 backbone (2019)
+BA-BB-H1            46.9         109.56  general Beta3 backbone (2019)
+C -BA-BB            65.3         111.04  general Beta3 backbone (2019)
+BA-BB-N             83.2         111.61  general Beta3 backbone (2019)
+BB-BA-HC            46.8         109.80  general Beta3 backbone (2019)
+BA-C -N             70.0         116.60  general Beta3 backbone (2019)
+C -N -BB            50.0         121.90  general Beta3 backbone (2019)
+BA-BB-CT            64.9         111.51  B3A, two, three (2019)
+CT-BB-H1            50.0         109.50  B3A, two, three (2019)
+BB-CT-HC            50.0         109.50  B3A, two, three (2019)
+CT-BB-N             80.0         109.70  B3A, two, three (2019)
+BA-BB-3C            64.9         111.51  three-branched Beta3 (2019)
+BB-3C-CT            40.0         109.50  three-branched Beta3 (2019)
+BB-3C-HC            50.0         109.50  three-branched Beta3 (2019)
+BB-3C-OA            50.0         109.50  three-branched Beta3 (2019)
+BB-3C-2C            40.0         109.50  three-branched Beta3 (2019)
+BB-3C-H1            50.0         109.50  three-branched Beta3 (2019)
+N -BB-3C            80.0         109.70  three-branched Beta3 (2019)
+3C-BB-H1            50.0         109.50  three-branched Beta3 (2019)
+BA-BB-2C            64.9         111.51  two-branched Beta3 (2019)
+BB-2C-C             63.0         111.10  two-branched Beta3 (2019)
+BB-2C-SH            50.0         108.60  two-branched Beta3 (2019)
+BB-2C-3C            40.0         109.50  two-branched Beta3 (2019)
+BB-2C-OA            50.0         109.50  two-branched Beta3 (2019)
+BB-2C-2C            40.0         109.50  two-branched Beta3 (2019)
+BB-2C-H1            50.0         109.50  two-branched Beta3 (2019)
+BB-2C-HC            50.0         109.50  two-branched Beta3 (2019)
+N -BB-2C            80.0         109.70  two-branched Beta3 (2019)
+2C-BB-H1            50.0         109.50  two-branched Beta3 (2019)
+BA-BB-TA            64.9         111.51  aromatic Beta3 (2019)
+BB-TA-CC            63.0         113.10  aromatic Beta3 (2019)
+BB-TA-CA            63.0         114.00  aromatic Beta3 (2019)
+BB-TA-C*            63.0         115.60  aromatic Beta3 (2019)
+BB-TA-HC            50.0         109.50  aromatic Beta3 (2019)
+N -BB-TA            80.0         109.70  aromatic Beta3 (2019)
+TA-BB-H1            50.0         109.50  aromatic Beta3 (2019)
+BA-BY-H1            46.9         109.56  positive charged Beta3 (2019)
+C -BA-BY            65.3         111.04  positive charged Beta3 (2019)
+BA-BY-N             83.2         111.61  positive charged Beta3 (2019)
+BY-BA-HC            46.8         109.80  positive charged Beta3 (2019)
+BA-BY-C8            64.9         111.51  positive charged Beta3 (2019)
+BY-N -H             50.0         118.04  positive charged Beta3 (2019)
+N -BY-H1            50.0         109.50  positive charged Beta3 (2019)
+BY-C8-C8            40.0         109.50  postiive charged Beta3 (2019)
+BY-C8-CC            63.0         113.10  postiive charged Beta3 (2019)
+BY-C8-HC            50.0         109.50  postiive charged Beta3 (2019)
+N -BY-C8            80.0         109.70  postiive charged Beta3 (2019)
+C8-BY-H1            50.0         109.50  postiive charged Beta3 (2019)
+C -N -BY            50.0         121.90  negative charged Beta3 (2019)
+BA-BX-H1            46.9         109.56  negative charged Beta3 (2019)
+C -BA-BX            65.3         111.04  negative charged Beta3 (2019)
+BA-BX-N             83.2         111.61  negative charged Beta3 (2019)
+BX-BA-HC            46.8         109.80  negative charged Beta3 (2019)
+BA-BX-2C            64.9         111.51  negative charged Beta3 (2019)
+BX-N -H             50.0         118.04  negative charged Beta3 (2019)
+N -BX-H1            50.0         109.50  negative charged Beta3 (2019)
+BX-2C-2C            40.0         109.50  negative charged Beta3 (2019)
+BX-2C-CO            63.0         111.10  negative charged Beta3 (2019)
+BX-2C-HC            50.0         109.50  negative charged Beta3 (2019)
+N -BX-2C            80.0         109.70  negative charged Beta3 (2019)
+2C-BX-H1            50.0         109.50  negative charged Beta3 (2019)
+C -N -BX            50.0         121.90  negative charged Beta3 (2019)
+AG-C -N             70.0         116.60  B3G (2019)
+OD-C -AG            80.0         120.40  B3G (2019)
+C -AG-HC            50.0         109.50  B3G (2019)
+HC-AG-HC            39.0         107.58  B3G (2019)
+BG-AG-HC            46.8         109.80  B3G (2019)
+C -AG-BG            65.3         111.04  B3G (2019)
+AG-BG-H1            46.9         109.56  B3G (2019)
+AG-BG-N             83.2         111.61  B3G (2019)
+H1-BG-N             50.0         109.50  B3G (2019)
+C -N -BG            50.0         121.90  B3G (2019)
+BG-N -H             50.0         118.04  B3G (2019)
+H1-BG-H1            35.0         109.50  B3G (2019)
+AP-C -N             70.0         116.60  B3P (2019)
+OD-C -AP            80.0         120.40  B3P (2019)
+C -AP-HC            50.0         109.50  B3P (2019)
+HC-AP-HC            39.0         107.58  B3P (2019)
+BP-AP-HC            46.8         109.80  B3P (2019)
+C -AP-BP            65.3         111.04  B3P (2019)
+AP-BP-H1            46.9         109.56  B3P (2019)
+AP-BP-TN            83.2         111.61  B3P (2019)
+H1-BP-TN            50.0         109.50  B3P (2019)
+C -TN-BP            50.0         121.90  B3P (2019)
+BP-TN-CT            50.0         118.00  B3P (2019)
+AP-BP-CT            64.9         111.51  B3P (2019)
+CT-BP-H1            50.0         109.50  B3P (2019)
+BP-CT-HC            50.0         109.50  B3P (2019)
+CT-BP-TN            80.0         109.70  B3P (2019)
+CT-CT-BP            40.0         109.50  B3P (2019)
+B1-B1-HC            46.8         109.80  BCY (2019)
+C -B1-B1            65.3         111.04  BCY (2019)
+B1-B1-H1            46.9         109.56  BCY (2019)
+B1-B1-N             83.2         111.61  BCY (2019)
+HC-B1-CT            39.0         107.58  BCY (2019)
+C -B1-HC            50.0         109.50  BCY (2019)
+B1-C -OD            80.0         120.40  BCY (2019)
+B1-C -N             70.0         116.60  BCY (2019)
+H1-B1-N             50.0         109.50  BCY (2019)
+C -N -B1            50.0         121.90  BCY (2019)
+B1-N -H             50.0         118.00  BCY (2019)
+B1-B1-CT            64.9         111.51  BCY (2019)
+CT-B1-H1            50.0         109.50  BCY (2019)
+B1-CT-HC            50.0         109.50  BCY (2019)
+CT-B1-N             80.0         109.70  BCY (2019)
+C -B1-CT            65.3         111.04  BCY (2019)
+CT-CT-B1            40.0         109.50  BCY (2019)
+B2-B2-HC            46.8         109.80  APC (2019)
+C -B2-B2            65.3         111.04  APC (2019)
+B2-B2-H1            46.9         109.56  APC (2019)
+B2-B2-N             83.2         111.61  APC (2019)
+B2-B2-CT            64.9         111.51  APC (2019)
+HC-B2-CT            39.0         107.58  APC (2019)
+C -B2-HC            50.0         109.50  APC (2019)
+CT-B2-H1            50.0         109.50  APC (2019)
+H1-B2-N             50.0         109.50  APC (2019)
+B2-C -OD            80.0         120.40  APC (2019)
+B2-C -N             70.0         116.60  APC (2019)
+C -N -B2            50.0         121.90  APC (2019)
+B2-N -H             50.0         118.00  APC (2019)
+B2-CT-H1            50.0         109.50  APC (2019)
+CT-B2-N             80.0         109.70  APC (2019)
+C -B2-CT            65.3         111.04  APC (2019)
+H -NY-H             40.0         108.30  APC (2019)
+CT-NY-H             46.2         110.11  APC (2019)
+CT-NY-CT            64.5         109.66  APC (2019)
+H1-CT-NY            60.1         108.01  APC (2019)
+B2-CT-NY            81.0         114.21  APC (2019)
+B2-C -TN            70.0         116.60  APC>PRO from ff15ipq
+AB-C -TN            70.0         116.60  AIB>PRO from ff15ipq
+BA-C -TN            70.0         116.60  General Beta3>PRO from ff15ipq
+
+
+DIHEDRAL
+X -AB-CT-X    1     0.15168    0.0  3.0  AIB (2019), Fit by mdgx
+X -AB-C -X    1    -1.41987    0.0  2.0  AIB (2019), Fit by mdgx
+X -N -AB-X    1     1.80377    0.0  2.0  AIB (2019), Fit by mdgx
+X -BB-N -X    1     0.78505    0.0  2.0  Beta3 (2019), Fit by mdgx
+X -C -BA-X    1     1.54943  180.0  2.0  Beta3 (2019), Fit by mdgx
+X -C -AP-X    1     0.34657  180.0  2.0  B3P (2019), Fit by mdgx
+X -C -AG-X    1     0.48965  180.0  2.0  B3G (2019), Fit by mdgx
+X -BB-BA-X    1     0.12259    0.0  3.0  Beta3 (2019), Fit by mdgx
+X -CT-BB-X    1     0.45915    0.0  3.0  B3A, two, three (2019), Fit by mdgx
+X -2C-BB-X    1     0.24198    0.0  3.0  two-branched, Fit by mdgx
+X -3C-BB-X    1     0.21317    0.0  3.0  three-branched, Fit by mdgx
+X -TA-BB-X    1     0.21707    0.0  3.0  aromatic, Fit by mdgx
+X -BX-N -X    1     0.24736    0.0  2.0  negative, Fit by mdgx
+X -BX-BA-X    1     0.86522    0.0  3.0  negative, Fit by mdgx
+X -2C-BX-X    1     0.15963    0.0  3.0  negative, Fit by mdgx
+X -BY-BA-X    1     0.14922    0.0  3.0  positive, Fit by mdgx
+X -BY-N -X    1     1.05272    0.0  2.0  positive, Fit by mdgx
+X -C8-BY-X    1     0.14383    0.0  3.0  positive, Fit by mdgx
+X -BG-N -X    1     0.41856    0.0  2.0  B3G (2019), Fit by mdgx
+X -BG-AG-X    1     0.20644    0.0  3.0  B3G (2019), Fit by mdgx
+X -BP-TN-X    1    -1.17320    0.0  2.0  B3P (2019), Fit by mdgx
+X -BP-AP-X    1     0.16827    0.0  3.0  B3P (2019), Fit by mdgx
+X -CT-BP-X    1     0.18925    0.0  3.0  B3P (2019), Fit by mdgx
+X -B1-N -X    1     0.75250    0.0  2.0  BCY (2019), Fit by mdgx
+X -C -B1-X    1     0.68198  180.0  2.0  BCY (2019), Fit by mdgx
+X -B1-B1-X    1    -0.13851    0.0  3.0  BCY (2019), Fit by mdgx
+X -CT-B1-X    1     0.30287    0.0  3.0  BCY (2019), Fit by mdgx
+X -CT-NY-X    9     1.400      0.0  3.0  APC (2019), from GAFF
+X -B2-N -X    1    -0.15086    0.0  2.0  APC (2019), Fit by mdgx
+X -C -B2-X    1     0.21189  180.0  2.0  APC (2019), Fit by mdgx
+X -B2-B2-X    1    -0.68524    0.0  3.0  APC (2019), Fit by mdgx
+X -CT-B2-X    1     0.46925    0.0  3.0  APC (2019), Fit by mdgx
+C -N -AB-C    1    -0.04538    0.0 -4.0  AIB (2019), Fit by mdgx
+C -N -AB-C    1    -1.67967    0.0 -3.0  AIB (2019), Fit by mdgx
+C -N -AB-C    1    -0.07668    0.0 -2.0  AIB (2019), Fit by mdgx
+C -N -AB-C    1     1.77872    0.0  1.0  AIB (2019), Fit by mdgx
+N -AB-C -N    1     0.24932    0.0 -4.0  AIB (2019), Fit by mdgx
+N -AB-C -N    1    -0.63779    0.0 -3.0  AIB (2019), Fit by mdgx
+N -AB-C -N    1    -0.99232    0.0 -2.0  AIB (2019), Fit by mdgx
+N -AB-C -N    1    -3.99232    0.0  1.0  AIB (2019), Fit by mdgx
+CT-AB-N -C    1    -0.17513    0.0 -4.0  AIB (2019), Fit by mdgx
+CT-AB-N -C    1     1.03065    0.0 -3.0  AIB (2019), Fit by mdgx
+CT-AB-N -C    1    -0.02627    0.0 -2.0  AIB (2019), Fit by mdgx
+CT-AB-N -C    1    -0.81793    0.0  1.0  AIB (2019), Fit by mdgx
+CT-AB-C -N    1    -0.05675    0.0 -4.0  AIB (2019), Fit by mdgx
+CT-AB-C -N    1     0.12782    0.0 -3.0  AIB (2019), Fit by mdgx
+CT-AB-C -N    1    -0.58911    0.0 -2.0  AIB (2019), Fit by mdgx
+CT-AB-C -N    1    -4.52377    0.0  1.0  AIB (2019), Fit by mdgx
+C -N -BB-BA   1    -0.19859  180.0 -4.0  Beta3, two, three, aromatic (2019) Phi, Fit by mdgx
+C -N -BB-BA   1     0.25770    0.0 -3.0  Beta3, two, three, aromatic (2019) Phi, Fit by mdgx
+C -N -BB-BA   1     0.46363  180.0  1.0  Beta3, two, three, aromatic (2019) Phi, Fit by mdgx
+N -BB-BA-C    1     1.17892    0.0  3.0  Beta3, aromatic, two, three (2019) Theta, Fit by mdgx
+N -C -BA-BB   1    -0.24430  180.0 -4.0  Beta3, aromatic, two, three (2019) Psi, Fit by mdgx
+N -C -BA-BB   1     1.70795  180.0  2.0  Beta3, aromatic, two, three (2019) Psi, Fit by mdgx
+C -BA-BB-CT   1    -0.12551    0.0  3.0  B3A, two, three Theta', Fit by mdgx
+C -N -BB-CT   1    -0.19446  180.0 -4.0  B3A, two, three Phi', Fit by mdgx
+C -N -BB-CT   1     0.12771    0.0 -3.0  B3A, two, three Phi', Fit by mdgx
+C -N -BB-CT   1     0.83077  180.0  1.0  B3A, two, three Phi', Fit by mdgx
+C -N -BB-2C   1    -0.15945  180.0 -4.0  two-branched phi', Fit by mdgx
+C -N -BB-2C   1    -0.27771    0.0 -3.0  two-branched phi', Fit by mdgx
+C -N -BB-2C   1     0.89586  180.0  1.0  two-branched phi', Fit by mdgx
+C -BA-BB-2C   1    -0.15968    0.0  3.0  two-branched theta', Fit by mdgx
+C -N -BB-3C   1    -0.04201  180.0 -4.0  three-branched phi', Fit by mdgx
+C -N -BB-3C   1    -0.17821    0.0 -3.0  three-branched phi', Fit by mdgx
+C -N -BB-3C   1     1.25362  180.0  1.0  three-branched phi', Fit by mdgx
+C -BA-BB-3C   1     0.02638    0.0  3.0  three-branched theta', Fit by mdgx
+C -N -BB-TA   1    -0.19877  180.0 -4.0  aromatic phi', Fit by mdgx
+C -N -BB-TA   1     0.09921    0.0 -3.0  aromatic phi', Fit by mdgx
+C -N -BB-TA   1     0.92486  180.0  1.0  aromatic phi', Fit by mdgx
+C -BA-BB-TA   1     0.06212    0.0  3.0  aromatic theta', Fit by mdgx
+C -N -BX-BA   1    -0.27371  180.0 -4.0  negative phi, Fit by mdgx
+C -N -BX-BA   1     0.76083    0.0 -3.0  negative phi, Fit by mdgx
+C -N -BX-BA   1    -0.45475  180.0  1.0  negative phi, Fit by mdgx
+C -N -BX-2C   1    -0.37467  180.0 -4.0  negative phi', Fit by mdgx
+C -N -BX-2C   1    -0.50929    0.0 -3.0  negative phi', Fit by mdgx
+C -N -BX-2C   1    -0.89899  180.0  1.0  negative phi', Fit by mdgx
+N -C -BA-BX   1    -0.10572  180.0 -4.0  negative psi, Fit by mdgx
+N -C -BA-BX   1     2.08525  180.0  2.0  negative psi, Fit by mdgx
+N -BX-BA-C    1    -1.07644    0.0  3.0  negative theta, Fit by mdgx
+C -BA-BX-2C   1    -3.02633    0.0  3.0  negative theta', Fit by mdgx
+C -N -BY-BA   1    -0.43658  180.0 -4.0  positive phi, Fit by mdgx
+C -N -BY-BA   1     0.13977    0.0 -3.0  positive phi, Fit by mdgx
+C -N -BY-BA   1     0.75471  180.0  1.0  positive phi, Fit by mdgx
+C -N -BY-C8   1    -0.08200  180.0 -4.0  positive phi', Fit by mdgx
+C -N -BY-C8   1    -0.58921    0.0 -3.0  positive phi', Fit by mdgx
+C -N -BY-C8   1     1.18924  180.0  1.0  positive phi', Fit by mdgx
+N -C -BA-BY   1    -0.01313  180.0 -4.0  positive psi, Fit by mdgx
+N -C -BA-BY   1     1.74791  180.0  2.0  positive psi, Fit by mdgx
+N -BY-BA-C    1     1.60717    0.0  3.0  positive theta, Fit by mdgx
+C -BA-BY-C8   1    -0.74559    0.0  3.0  positive theta', Fit by mdgx
+BB-2C-OA-HO   1     0.00700    0.0 -4.0  two-branched
+BB-2C-OA-HO   1     0.26700    0.0 -3.0  two-branched
+BB-2C-OA-HO   1     0.44400    0.0 -2.0  two-branched
+BB-2C-OA-HO   1     0.21100    0.0  1.0  two-branched
+BB-2C-C -OD   1     0.00000    0.0  1.0  two-branched
+BB-2C-C -ND   1     0.00800    0.0 -4.0  two-branched
+BB-2C-C -ND   1     0.30100  180.0 -3.0  two-branched
+BB-2C-C -ND   1     0.48500  180.0 -2.0  two-branched
+BB-2C-C -ND   1     0.82800  180.0  1.0  two-branched
+BB-3C-OA-HO   1     0.00700    0.0 -4.0  three-branched
+BB-3C-OA-HO   1     0.26700    0.0 -3.0  three-branched
+BB-3C-OA-HO   1     0.44400    0.0 -2.0  three-branched
+BB-3C-OA-HO   1     0.21100    0.0  1.0  three-branched
+BX-2C-CO-O3   1     0.03100  180.0 -4.0  negative beta
+BX-2C-CO-O3   1     0.00000    0.0 -3.0  negative beta
+BX-2C-CO-O3   1     0.76900  180.0 -2.0  negative beta
+BX-2C-CO-O3   1     0.00000    0.0  1.0  negative beta
+C -N -BG-AG   1    -0.07393  180.0 -4.0  B3G (2019) Phi, Fit by mdgx
+C -N -BG-AG   1    -0.16536    0.0 -3.0  B3G (2019) Phi, Fit by mdgx
+C -N -BG-AG   1     1.49807  180.0  1.0  B3G (2019) Phi, Fit by mdgx
+N -BG-AG-C    1     0.13084    0.0  3.0  B3G (2019) Theta, Fit by mdgx
+N -C -AG-BG   1     0.09733  180.0 -4.0  B3G (2019) Psi, Fit by mdgx
+N -C -AG-BG   1     1.17914  180.0  2.0  B3G (2019) Psi, Fit by mdgx
+C -TN-BP-AP   1     0.27802  180.0 -4.0  B3P (2019) Phi, Fit by mdgx
+C -TN-BP-AP   1    -0.81116    0.0 -3.0  B3P (2019) Phi, Fit by mdgx
+C -TN-BP-AP   1     0.03499  180.0  1.0  B3P (2019) Phi, Fit by mdgx
+C -TN-BP-CT   1     0.84440  180.0 -4.0  B3P (2019) Phi', Fit by mdgx
+C -TN-BP-CT   1     1.44578    0.0 -3.0  B3P (2019) Phi', Fit by mdgx
+C -TN-BP-CT   1     2.07143  180.0  1.0  B3P (2019) Phi', Fit by mdgx
+TN-BP-AP-C    1     0.11172    0.0  3.0  B3P (2019) Theta, Fit by mdgx
+C -AP-BP-CT   1     0.20682    0.0  3.0  B3P (2019) Theta', Fit by mdgx
+N -C -AP-BP   1     0.18191  180.0 -4.0  B3P (2019) Psi, Fit by mdgx
+N -C -AP-BP   1     1.23503  180.0  2.0  B3P (2019) Psi, Fit by mdgx
+C -N -B1-B1   1    -0.45891  180.0 -4.0  BCY (2019) Phi, Fit by mdgx
+C -N -B1-B1   1    -0.19045    0.0 -3.0  BCY (2019) Phi, Fit by mdgx
+C -N -B1-B1   1     0.18861  180.0  1.0  BCY (2019) Phi, Fit by mdgx
+C -N -B1-CT   1    -0.24791  180.0 -4.0  BCY (2019) Phi', Fit by mdgx
+C -N -B1-CT   1     0.09356    0.0 -3.0  BCY (2019) Phi', Fit by mdgx
+C -N -B1-CT   1     0.96109  180.0  1.0  BCY (2019) Phi', Fit by mdgx
+N -B1-B1-C    1     0.97709    0.0  3.0  BCY (2019) Theta, Fit by mdgx
+C -B1-B1-CT   1    -1.64425    0.0  3.0  BCY (2019) Theta'-1, Fit by mdgx
+N -B1-B1-CT   1     3.64863    0.0  3.0  BCY (2019) Theta'-2, Fit by mdgx
+N -C -B1-B1   1    -0.14169  180.0 -4.0  BCY (2019) Psi, Fit by mdgx
+N -C -B1-B1   1     0.67965  180.0  2.0  BCY (2019) Psi, Fit by mdgx
+N -C -B1-CT   1    -0.01117  180.0 -4.0  BCY (2019) Psi', Fit by mdgx
+N -C -B1-CT   1     0.88976  180.0  2.0  BCY (2019) Psi', Fit by mdgx
+C -N -B2-B2   1     0.08109  180.0 -4.0  APC (2019) Phi, Fit by mdgx
+C -N -B2-B2   1     0.19574    0.0 -3.0  APC (2019) Phi, Fit by mdgx
+C -N -B2-B2   1     1.18040  180.0  1.0  APC (2019) Phi, Fit by mdgx
+C -N -B2-CT   1     0.02975  180.0 -4.0  APC (2019) Phi', Fit by mdgx
+C -N -B2-CT   1     0.39681    0.0 -3.0  APC (2019) Phi', Fit by mdgx
+C -N -B2-CT   1     1.36230  180.0  1.0  APC (2019) Phi', Fit by mdgx
+N -B2-B2-C    1     1.61071    0.0  3.0  APC (2019) Theta, Fit by mdgx
+C -B2-B2-CT   1     1.47680    0.0  3.0  APC (2019) Theta'-1, Fit by mdgx
+N -B2-B2-CT   1     1.79682    0.0  3.0  APC (2019) Theta'-2, Fit by mdgx
+N -C -B2-B2   1     0.41308  180.0 -4.0  APC (2019) Psi, Fit by mdgx
+N -C -B2-B2   1    -0.99015  180.0  2.0  APC (2019) Psi, Fit by mdgx
+N -C -B2-CT   1     0.46050  180.0 -4.0  APC (2019) Psi', Fit by mdgx
+N -C -B2-CT   1    -0.43235  180.0  2.0  APC (2019) Psi', Fit by mdgx
+
+NONB
+AB               1.908000    0.109400  AIB (2019)
+BA               1.908000    0.109400  Beta3 (2019)
+BB               1.908000    0.109400  Beta3 (2019)
+BX               1.908000    0.109400  Negative Beta3 (2019)
+BY               1.908000    0.109400  Positive Beta3 (2019)
+AG               1.908000    0.109400  B3G C-Alpha (2019)
+BG               1.908000    0.109400  B3G C-Beta (2019)
+AP               1.908000    0.109400  B3P C-Alpha (2019)
+BP               1.908000    0.109400  B3P C-Beta (2019)
+B1               1.908000    0.109400  BCY (2019)
+B2               1.908000    0.109400  APC (2019)
+NY               1.824000    0.170000  APC (2019)

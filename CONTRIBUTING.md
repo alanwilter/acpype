@@ -31,7 +31,8 @@ pre-commit install
 
 pre-commit run -a
 
-cp ./acpype/amber_linux/bin/charmmgen $(dirname $(which antechamber))
+sys=$(perl -e '`uname` eq "Darwin\n" ? print "macos" : print "linux"')
+cp ./acpype/amber_${sys}/bin/charmmgen $(dirname $(which antechamber))
 
 git config user.email _email_ # as seen in 'gpg --list-secret-keys --keyid-format=long'
 

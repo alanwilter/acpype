@@ -33,7 +33,7 @@ def test_mol2_sorted(janitor, issorted, charge, msg):
 
 
 def test_pdb(janitor, capsys):
-    molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True)
+    molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, force=False)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert len(molecule.molTopol.atoms) == 63

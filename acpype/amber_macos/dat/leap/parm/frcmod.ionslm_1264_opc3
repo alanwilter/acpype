@@ -1,0 +1,108 @@
+Li/Merz ion parameters of atomic ions for the OPC3 water model (12-6-4 set)
+MASS
+Li+  6.94
+Na+  22.99
+K+   39.10
+Rb+  85.47
+Cs+  132.91
+Tl+  204.38
+Cu+  63.55
+Ag+  107.87
+F-   19.00
+Cl-  35.45
+Br-  79.90
+I-   126.9
+Be2+ 9.01
+Cu2+ 63.55
+Ni2+ 58.69
+Zn2+ 65.4
+Co2+ 58.93
+Cr2+ 52.00
+Fe2+ 55.85
+Mg2+ 24.305
+V2+  50.94
+Mn2+ 54.94
+Hg2+ 200.59
+Cd2+ 112.41
+Ca2+ 40.08
+Sn2+ 118.71
+Sr2+ 87.62
+Ba2+ 137.33
+Al3+ 26.98
+Fe3+ 55.85
+Cr3+ 52.00
+In3+ 114.82
+Tl3+ 204.38
+Y3+  88.91
+La3+ 138.91
+Ce3+ 140.12
+Pr3+ 140.91
+Nd3+ 144.24
+Sm3+ 150.36
+Eu3+ 151.96
+Gd3+ 157.25
+Tb3+ 158.93
+Dy3+ 162.5
+Er3+ 167.26
+Tm3+ 168.93
+Lu3+ 174.97
+Hf4+ 178.49
+Zr4+ 91.22
+Ce4+ 140.12
+U4+  238.03
+Pu4+ 244.06
+Th4+ 232.04
+
+NONBON
+Li+   1.329  0.00708225    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Na+   1.475  0.03171494    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+K+    1.760  0.18150763    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Rb+   1.833  0.24055479    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Cs+   2.002  0.39124724    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Tl+   1.893  0.29273756    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Cu+   1.229  0.00176831    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Ag+   1.519  0.04525501    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+F-    1.739  0.16573832    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Cl-   2.165  0.53403341    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Br-   2.327  0.65680855    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+I-    2.586  0.80119052    12-6-4 set for the OPC3 water model from Sengupta et al., JCIM, 2021, 61, 869
+Be2+  1.211  0.00132548    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Cu2+  1.467  0.02960343    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Ni2+  1.435  0.02215953    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Zn2+  1.441  0.02343735    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Co2+  1.443  0.02387506    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Cr2+  1.416  0.01845160    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Fe2+  1.441  0.02343735    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Mg2+  1.433  0.02174524    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+V2+   1.505  0.04058327    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Mn2+  1.495  0.03745682    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Hg2+  1.625  0.09235154    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Cd2+  1.551  0.05726270    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Ca2+  1.632  0.09620220    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Sn2+  1.770  0.18922704    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Sr2+  1.777  0.19470705    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Ba2+  1.936  0.33132862    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2020, 16, 4429
+Al3+  1.361  0.01031847    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Fe3+  1.455  0.02662782    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Cr3+  1.402  0.01603244    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+In3+  1.487  0.03507938    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Tl3+  1.567  0.06397679    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Y3+   1.626  0.09289608    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+La3+  1.751  0.17467422    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Ce3+  1.781  0.19786584    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Pr3+  1.785  0.20104406    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Nd3+  1.712  0.14640930    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Sm3+  1.690  0.13150785    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Eu3+  1.704  0.14089951    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Gd3+  1.644  0.10301322    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Tb3+  1.657  0.11068733    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Dy3+  1.632  0.09620220    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Er3+  1.630  0.09509276    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Tm3+  1.633  0.09675968    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Lu3+  1.616  0.08753443    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Hf4+  1.563  0.06225334    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Zr4+  1.597  0.07786298    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Ce4+  1.752  0.17542802    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+U4+   1.770  0.18922704    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Pu4+  1.755  0.17769767    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342
+Th4+  1.755  0.17769767    12-6-4 set for the OPC3 water model from Li et al., JCTC, 2021, 17, 2342

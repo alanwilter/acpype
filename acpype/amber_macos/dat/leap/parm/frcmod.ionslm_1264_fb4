@@ -1,0 +1,108 @@
+Li/Merz ion parameters of atomic ions for the TIP4P-FB water model (12-6-4 set)
+MASS
+Li+  6.94
+Na+  22.99
+K+   39.10
+Rb+  85.47
+Cs+  132.91
+Tl+  204.38
+Cu+  63.55
+Ag+  107.87
+F-   19.00
+Cl-  35.45
+Br-  79.90
+I-   126.9
+Be2+ 9.01
+Cu2+ 63.55
+Ni2+ 58.69
+Zn2+ 65.4
+Co2+ 58.93
+Cr2+ 52.00
+Fe2+ 55.85
+Mg2+ 24.305
+V2+  50.94
+Mn2+ 54.94
+Hg2+ 200.59
+Cd2+ 112.41
+Ca2+ 40.08
+Sn2+ 118.71
+Sr2+ 87.62
+Ba2+ 137.33
+Al3+ 26.98
+Fe3+ 55.85
+Cr3+ 52.00
+In3+ 114.82
+Tl3+ 204.38
+Y3+  88.91
+La3+ 138.91
+Ce3+ 140.12
+Pr3+ 140.91
+Nd3+ 144.24
+Sm3+ 150.36
+Eu3+ 151.96
+Gd3+ 157.25
+Tb3+ 158.93
+Dy3+ 162.5
+Er3+ 167.26
+Tm3+ 168.93
+Lu3+ 174.97
+Hf4+ 178.49
+Zr4+ 91.22
+Ce4+ 140.12
+U4+  238.03
+Pu4+ 244.06
+Th4+ 232.04
+
+NONBON
+Li+   1.308  0.00544088    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Na+   1.461  0.02808726    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+K+    1.754  0.17693975    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Rb+   1.811  0.22214904    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Cs+   1.998  0.38761725    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Tl+   1.884  0.28476102    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Cu+   1.228  0.00174080    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Ag+   1.517  0.04456630    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+F-    1.741  0.16721338    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Cl-   2.169  0.53733840    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Br-   2.331  0.65952968    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+I-    2.591  0.80337410    12-6-4 set for the TIP4P-FB water model from Sengupta et al., JCIM, 2021, 61, 869
+Be2+  1.213  0.00136949    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Cu2+  1.469  0.03012160    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Ni2+  1.409  0.01721000    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Zn2+  1.436  0.02236885    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Co2+  1.433  0.02174524    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Cr2+  1.424  0.01995146    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Fe2+  1.451  0.02568588    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Mg2+  1.409  0.01721000    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+V2+   1.497  0.03806827    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Mn2+  1.489  0.03566355    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Hg2+  1.637  0.09900804    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Cd2+  1.539  0.05253984    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Ca2+  1.625  0.09235154    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Sn2+  1.760  0.18150763    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Sr2+  1.755  0.17769767    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Ba2+  1.917  0.31419444    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2020, 16, 4429
+Al3+  1.357  0.00986018    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Fe3+  1.451  0.02568588    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Cr3+  1.403  0.01619682    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+In3+  1.484  0.03421577    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Tl3+  1.565  0.06311131    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Y3+   1.622  0.09072908    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+La3+  1.751  0.17467422    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Ce3+  1.781  0.19786584    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Pr3+  1.777  0.19470705    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Nd3+  1.707  0.14295367    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Sm3+  1.683  0.12693448    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Eu3+  1.699  0.13750834    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Gd3+  1.639  0.10014323    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Tb3+  1.651  0.10710756    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Dy3+  1.627  0.09344247    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Er3+  1.626  0.09289608    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Tm3+  1.628  0.09399072    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Lu3+  1.615  0.08700853    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Hf4+  1.561  0.06140287    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Zr4+  1.603  0.08084383    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Ce4+  1.750  0.17392181    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+U4+   1.787  0.20264033    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Pu4+  1.744  0.16943676    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342
+Th4+  1.761  0.18227365    12-6-4 set for the TIP4P-FB water model from Li et al., JCTC, 2021, 17, 2342

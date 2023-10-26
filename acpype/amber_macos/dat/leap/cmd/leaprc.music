@@ -1,0 +1,19 @@
+logFile leap.log
+#
+# ----- leaprc for loading the general Amber Force field.
+#       This file is mostly for use with Antechamber
+#
+#	load atom type hybridizations
+#
+addAtomTypes {
+	{ "Pt"   "Pt"  "sp3" }
+	{ "VS"   "VS"  "sp3" }
+	{ "Ic"   "R"  "sp3" }
+        { "Ib"  "X"  "sp3" }
+	{ "qT"   "qR"  "sp3" }
+}
+#
+#	Load the general force field parameter set.
+#
+loadOff music.lib
+music = loadamberparams music.dat

@@ -1,0 +1,12 @@
+Ion parameters from CHARMM22. Beglov D & Roux B (1994) J. Chem. Phys. 100, 9050-9063.
+MASS
+Na+  22.99         0.250               sodium
+K+   39.10         1.060               potassium
+Cl-  35.45         1.910               chlorine
+Mg2+ 24.305                            magnesium
+
+NONBON
+  Na+      1.36375   0.0469
+  K+       1.76375   0.0870
+  Cl-      2.27      0.150
+  Mg2+     1.18500   0.0150

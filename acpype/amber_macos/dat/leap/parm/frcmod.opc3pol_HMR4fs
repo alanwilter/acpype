@@ -1,0 +1,22 @@
+This is the special version of the additional/replacement parameter set for OPC3-pol v1.0, use this for 4fs time step & HMR.
+MASS
+OW    7.0
+DR    7.0
+HW    2.008    0.000
+
+BOND
+OW-HW   553.0     1.211027
+OW-DR   500.0     0.001
+HW-HW   553.0     1.977600
+
+ANGLE
+HW-OW-DR      0.0     0.0
+
+DIHE
+X -HW-OW-X    2      0.0        0.0        1.0
+X -DR-OW-X     2      0.0        0.0        1.0
+
+NONBON
+  OW         1.7825      0.2085
+  DR       0.0000    0.0000
+  HW       0.0000    0.0000

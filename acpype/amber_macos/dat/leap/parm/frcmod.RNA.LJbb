@@ -1,0 +1,64 @@
+Steinbrecher-Latzer-Case Phosphate Oxygen parameters (JCTC, 8, 4405-12, 2012)
+
+MASS
+   O2 16.00         0.434               carboxyl and phosphate group oxygen
+   OS 16.00         0.465               ether and ester oxygen
+   OR 16.00	    0.465		ether and ester oxygen - ribose O
+
+BOND
+CT-OR  320.0    1.410       JCC,7,(1986),230; NUCLEIC ACIDS
+
+ANGLE
+OR-CT-CT    50.0      109.50
+OR-CT-N*    50.0      109.50
+CT-OR-CT    60.0      109.50
+CI-CT-OR    50.0      109.50    parmbsc0
+H1-CT-OR    50.0      109.50    changed based on NMA nmodes
+H2-CT-OR    50.0      109.50    changed based on NMA nmodes
+
+DIHE
+X -CT-OR-X     3     1.15          0.0     3.0         JCC,7,(1986),230
+CI-CT-OR-CT    1     0.10000000  180.000  -2.0    SCEE=1.2 SCNB=2.0
+CI-CT-OR-CT    1     0.38300000    0.000   3.0    SCEE=1.2 SCNB=2.0
+CT-OR-CT-CT    1     0.10000000  180.000  -2.0    SCEE=1.2 SCNB=2.0
+CT-OR-CT-CT    1     0.38300000    0.000   3.0    SCEE=1.2 SCNB=2.0
+CT-OR-CT-H2    1     0.38333333    0.000   3.0    SCEE=1.2 SCNB=2.0
+CT-OR-CT-N*    1     0.65000000    0.000  -2.0    SCEE=1.2 SCNB=2.0
+CT-OR-CT-N*    1     0.38300000    0.000   3.0    SCEE=1.2 SCNB=2.0
+H1-CT-CT-OR    1     0.25000000    0.000  -1.0    SCEE=1.2 SCNB=2.0
+H1-CT-CT-OR    1     0.00000000    0.000   3.0    SCEE=1.2 SCNB=2.0
+H1-CT-OR-CT    1     0.38333333    0.000   3.0    SCEE=1.2 SCNB=2.0
+H1-CI-CT-OR    1     0.25000000    0.000  -1.0    SCEE=1.2 SCNB=2.0
+H1-CI-CT-OR    1     0.00000000    0.000   3.0    SCEE=1.2 SCNB=2.0
+OH-CI-CT-OR    1     0.15555556    0.000   3.0    SCEE=1.2 SCNB=2.0
+CT-CT-CT-OR    1     0.15555556    0.000   3.0    SCEE=1.2 SCNB=2.0
+OR-CI-CT-H1    1     0.25000000    0.000  -1.0    SCEE=1.2 SCNB=2.0
+OR-CI-CT-H1    1     0.00000000    0.000   3.0    SCEE=1.2 SCNB=2.0
+OH-CT-CT-OR    1     1.17500000    0.000  -2.0    SCEE=1.2 SCNB=2.0
+OH-CT-CT-OR    1     0.14400000    0.000   3.0    SCEE=1.2 SCNB=2.0
+OR-CT-CT-OS    1     1.17500000    0.000  -2.0    SCEE=1.2 SCNB=2.0
+OR-CT-CT-OS    1     0.14400000    0.000   3.0    SCEE=1.2 SCNB=2.0
+OR-CT-N*-C5    1     0.96561      68.7902 -1.0    ol3 chi ade
+OR-CT-N*-C5    1     1.07403      15.6360 -2.0    ol3 chi ade
+OR-CT-N*-C5    1     0.45754     171.5787 -3.0    ol3 chi ade
+OR-CT-N*-C5    1     0.30917      19.0921  4.0    ol3 chi ade
+OR-CT-N*-CP    1     0.70510      74.7558 -1.0    ol3 chi gua
+OR-CT-N*-CP    1     1.06546       6.2286 -2.0    ol3 chi gua
+OR-CT-N*-CP    1     0.44273     168.6503 -3.0    ol3 chi gua
+OR-CT-N*-CP    1     0.25602       3.9746  4.0    ol3 chi gua
+OR-CT-N*-C4    1     1.22506     146.9892 -1.0    ol3 chi cyt
+OR-CT-N*-C4    1     1.63459      16.4766 -2.0    ol3 chi cyt
+OR-CT-N*-C4    1     0.93747     185.8774 -3.0    ol3 chi cyt
+OR-CT-N*-C4    1     0.31033      32.1590  4.0    ol3 chi cyt
+OR-CT-N*-CS    1     1.02514     149.8583 -1.0    ol3 chi ura
+OR-CT-N*-CS    1     1.74876      16.7648 -2.0    ol3 chi ura
+OR-CT-N*-CS    1     0.58150     179.3474 -3.0    ol3 chi ura
+OR-CT-N*-CS    1     0.35148      16.0016  4.0    ol3 chi ura
+OR-CT-N*-C     1     0.00000000    0.000   2.0    SCEE=1.2 SCNB=2.0
+OS-CI-CT-OR    1     0.15555556    0.000   3.0    SCEE=1.2 SCNB=2.0
+
+
+NONB
+   O2          1.7493  0.2100             OPLS (DAC Mods)
+   OS          1.7718  0.1700             OPLS ether (DAC Mods)
+   OR	       1.6837  0.1700		  OPLS ether (unmodified)

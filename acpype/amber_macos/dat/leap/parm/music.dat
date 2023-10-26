@@ -1,0 +1,54 @@
+Metal atoms
+MASS
+Pt 195.084 0.0000           Platinum surface atoms
+VS 195.000 0.000            Virtual Platinum surface atoms
+Ic 0.5 0.000           Fictitious atom
+qR 2.0 0.000           Fictitious atom
+Ib 0.5 0.000
+qT 2.000   0.000	     Test charge
+
+ANGLE
+Pt-Ic-Ib    0        90.0
+Pt-Ib-Ic    0        90.0
+Ic-Pt-Ib    0        90.0
+Ib-Pt-Ib    0        90.0
+Ib-Ic-Ib    0        90.0
+Ic-Ib-Ic    0        90.0
+Ib-Ib-Ic    0        60.0
+Pt-Ib-Ib    0        45.0
+Ic-Pt-Ic    0        180.0
+
+DIHE
+Ic-Pt-Ic-Ib  1   0   0.0    4
+Ic-Ib-Ic-Ib  1   0   -54.736    4
+Pt-Ic-Ib-Ic  1  10   180.0    2
+Ic-Ib-Ib-Ic  1   0   109.471    4
+Pt-Ic-Ib-Ib  1   0   54.736    4
+Ib-Pt-Ic-Ib  1  10    0.000    2
+Ib-Ic-Pt-Ib  1   0   90.000    4
+Ic-Ib-Pt-Ib  1  10  180.000    4
+Pt-Ib-Ic-Ib  1   0  -54.736    4
+Ic-Ib-Pt-Ic  1  10  180.000    2
+Ic-Pt-Ib-Ic  1   0  180.000    4
+Pt-Ib-Ib-Ic  1   0    0.000    4
+Ic-Pt-Ib-Ib  1  10    0.000    2
+
+BOND
+Ic-Ib    100  0.98994949366116653416
+Pt-Ic    100  0.70
+Pt-qR    100  0.70
+Pt-Ib    100  0.70
+Ib-Ib    100  0.98994949366116653416
+
+NONBON
+  Pt       0.0000    0.00
+  VS       0.0000    0.00
+  Ic       0.0000    0.00
+  qR       0.0000    0.00
+  Ib       0.0000    0.00
+  qT       0.0000    0.00
+
+LJEDIT
+  VS  VS   0.00      0.00
+  Pt  Pt   0.00      0.00
+  Pt  OW   1.136 6.410 1.136 6.410

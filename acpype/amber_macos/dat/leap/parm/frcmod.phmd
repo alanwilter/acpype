@@ -1,0 +1,15 @@
+!Force field modifications for continuous phmd simulations (Feb 2018)
+
+BOND
+O2-HO       553.0    0.960 ! copied from HO-OH
+
+ANGLE
+CO-O2-HO     50.0     113.00 ! copied from C -OH-HO
+
+DIHEDRAL
+HO-O2-CO-O2    1       2.3       180.0         -2 ! modified from HO-OH-C -O    1    2.30        180.0            -2.         Junmei et al, 1999
+HO-O2-CO-O2    1       6.0         0.0          1 ! modified from HO-OH-C -O    1    1.90          0.0             1.         Junmei et al, 1999
+2C-CO-O2-HO   1    0.113         0.0            -4. ! copied from 2C-C -OH-HO in frcmod.ff14s
+2C-CO-O2-HO   1    0.479         0.0            -3. ! copied from 2C-C -OH-HO in frcmod.ff14s
+2C-CO-O2-HO   1    6.000       180.0            -2. ! copied from 2C-C -OH-HO in frcmod.ff14s and increased barrier
+2C-CO-O2-HO   1    0.448       180.0             1. ! copied from 2C-C -OH-HO in frcmod.ff14sb

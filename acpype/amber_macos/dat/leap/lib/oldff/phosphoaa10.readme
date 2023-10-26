@@ -1,0 +1,25 @@
+The "phosphoaa10.lib" file contains preliminary parameters for phosphorylated
+amino acids:
+
+PTR:   phosphotyrosine with a 2- net charge  (using PDB nomenclature)
+SEP:   phosphoserine with a 2- net charge  (using PDB nomenclature)
+TPO:   phosphothreonine with a 2- net charge  (using PDB nomenclature)
+H2D:   phosphohistidine with a 2- net charge  (PDB calls this "HIP", but
+             that conflicts with long-standing Amber usage)
+Y1P:   phosphotyrosine with a 1- net charge  (nonstandard nomenclature)
+S1P:   phosphoserine with a 1- net charge  (nonstandard nomenclature)
+T1P:   phosphothreonine with a 1- net charge  (nonstandard nomenclature)
+
+The charge model comes from:
+
+%A N. Homeyer
+%A A.H.C. Horn
+%A H. Lanig
+%A H. Sticht
+%T AMBER force-field parameters for phosphorylated amino acids in different
+protonation states: phosphoserine, phosphothreonine, phosphotyrosine, and
+phosphohistidine
+%J J. Mol. Model.
+%V 12
+%P 281-289
+%D 2006

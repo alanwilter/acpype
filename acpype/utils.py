@@ -276,7 +276,7 @@ def set_for_pip(binaries):
             os.environ["AMBERHOME"] = LOCAL_PATH + "/amber_linux/"
             os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber_linux/lib/"
         elif sys.platform == "darwin":
-            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber21-11_os/bin"
-            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber21-11_os/"
-            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
-            os.environ["DYLD_LIBRARY_PATH"] = LOCAL_PATH + "/amber21-11_os/lib/"
+            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber_macos/bin"
+            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber_macos/"
+            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber_macos/lib/"
+            os.environ["DYLD_LIBRARY_PATH"] = LOCAL_PATH + "/amber_macos/lib/"

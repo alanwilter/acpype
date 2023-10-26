@@ -1,0 +1,239 @@
+PARM  PC     4.6800
+PARM  BL     H     1     H     1    0.7380    4.8300     0
+PARM  BL     H     1     C     6    1.0900    6.2741     1
+PARM  BL     H     1     N     7    1.0100    6.2217     1
+PARM  BL     H     1     O     8    0.9600    6.1527     1
+PARM  BL     H     1     F     9    0.9200    5.8777     1
+PARM  BL     H     1    Cl    17    1.2800    6.8977     1
+PARM  BL     H     1    Br    35    1.4100    7.0214     1
+PARM  BL     H     1     I    53    1.6000    7.3161     1
+PARM  BL     H     1     P    15    1.4100    7.0026     1
+PARM  BL     H     1     S    16    1.3400    7.0314     1
+PARM  BL     C     6     C     6    1.5260    7.4400     0
+PARM  BL     C     6     N     7    1.4700    7.3240     1
+PARM  BL     C     6     O     8    1.4400    7.3079     1
+PARM  BL     C     6     F     9    1.3700    7.2206     1
+PARM  BL     C     6    Cl    17    1.8000    7.8746     1
+PARM  BL     C     6    Br    35    1.9400    8.0127     1
+PARM  BL     C     6     I    53    2.1600    8.2708     1
+PARM  BL     C     6     P    15    1.8300    8.1581     1
+PARM  BL     C     6     S    16    1.8200    8.0744     1
+PARM  BL     N     7     N     7    1.4410    7.1000     0
+PARM  BL     N     7     O     8    1.4200    6.8639     1
+PARM  BL     N     7     F     9    1.4200    6.7680     1
+PARM  BL     N     7    Cl    17    1.7500    7.7144     1
+PARM  BL     N     7    Br    35    1.9300    7.7859     1
+PARM  BL     N     7     I    53    2.1200    8.1009     1
+PARM  BL     N     7     P    15    1.7200    8.1260     1
+PARM  BL     N     7     S    16    1.6900    8.1667     1
+PARM  BL     O     8     O     8    1.4600    6.7400     0
+PARM  BL     O     8     F     9    1.4100    6.7052     1
+PARM  BL     O     8    Cl    17    1.7000    7.6965     1
+PARM  BL     O     8    Br    35    1.7900    7.9064     1
+PARM  BL     O     8     I    53    2.1100    7.9588     1
+PARM  BL     O     8     P    15    1.6400    8.2125     1
+PARM  BL     O     8     S    16    1.6500    8.2101     1
+PARM  BL     F     9     F     9    1.4060    6.2700     0
+PARM  BL     F     9     P    15    1.5000    8.3614     1
+PARM  BL     F     9     S    16    1.5800    8.1977     1
+PARM  BL    Cl    17    Cl    17    2.0310    8.3900     0
+PARM  BL    Cl    17     P    15    2.0400    8.5935     1
+PARM  BL    Cl    17     S    16    2.0300    8.8700     1
+PARM  BL    Br    35    Br    35    2.3370    8.6100     0
+PARM  BL    Br    35     P    15    2.2400    8.6054     1
+PARM  BL    Br    35     S    16    2.2100    8.7941     1
+PARM  BL     I    53     I    53    2.8360    9.0500     0
+PARM  BL     I    53     P    15    2.4900    8.9041     1
+PARM  BL     I    53     S    16    2.5600    8.9715     1
+PARM  BL     P    15     P    15    2.3240    8.6000     0
+PARM  BL     P    15     S    16    2.1200    8.6946     1
+PARM  BL     S    16     S    16    2.0380    8.9300     0
+PARM  BL    Al    13    Al    13    2.6240    8.7600     0
+PARM  BL    Al    13    Br    35    2.3200    8.7521     1
+PARM  BL    Al    13     C     6    1.9730    8.2226     1
+PARM  BL    Al    13    Cl    17    2.1420    8.6907     1
+PARM  BL    Al    13     H     1    1.5980    6.9680     1
+PARM  BL    Al    13     I    53    2.5500    8.9904     1
+PARM  BL    Al    13     N     7    1.8320    8.2113     1
+PARM  BL    Al    13     O     8    1.7240    8.3019     1
+PARM  BL    Al    13     P    15    2.3480    8.7472     1
+PARM  BL    Al    13     S    16    2.2190    8.8125     1
+PARM  BL    As    33    As    33    2.4470    9.2700     0
+PARM  BL    As    33    Br    35    2.4570    8.6608     1
+PARM  BL    As    33     C     6    1.9800    8.3679     1
+PARM  BL    As    33    Cl    17    2.2350    8.8385     1
+PARM  BL    As    33     F     9    1.7560    8.2614     1
+PARM  BL    As    33     H     1    1.5360    7.1968     1
+PARM  BL    As    33     I    53    2.7100    9.1987     1
+PARM  BL    As    33     N     7    1.8610    8.3640     1
+PARM  BL    As    33     O     8    1.8120    8.3677     1
+PARM  BL    As    33     P    15    2.3820    8.9541     1
+PARM  BL    As    33     S    16    2.2850    9.0647     1
+PARM  BL    As    33    Se    34    2.3630    9.1700     1
+PARM  BL    As    33    Si    14    2.3660    9.2521     1
+PARM  BL     B     5     B     5    1.6860    7.5700     0
+PARM  BL     B     5    Br    35    1.9110    8.2506     1
+PARM  BL     B     5     C     6    1.5840    7.5229     1
+PARM  BL     B     5    Cl    17    1.7600    8.2141     1
+PARM  BL    Be     4    Be     4    2.1020    7.2800     0
+PARM  BL    Be     4     H     1    1.3390    6.2005     1
+PARM  BL    Be     4     C     6    1.6850    7.3242     1
+PARM  BL    Be     4     O     8    1.6240    7.1421     1
+PARM  BL    Be     4     F     9    1.3800    7.2449     1
+PARM  BL     B     5     F     9    1.3230    7.3281     1
+PARM  BL     B     5     H     1    1.1990    6.2376     1
+PARM  BL     B     5     I    53    2.1660    8.4323     1
+PARM  BL    Bi    83    Bi    83    3.0340    9.8700     0
+PARM  BL    Bi    83    Br    35    2.7410    9.1397     1
+PARM  BL    Bi    83     C     6    2.2540    8.6969     1
+PARM  BL    Bi    83    Cl    17    2.5980    9.0333     1
+PARM  BL    Bi    83     H     1    1.7960    7.5476     1
+PARM  BL    Bi    83     N     7    2.1590    8.6215     1
+PARM  BL    Bi    83     O     8    2.0960    8.6053     1
+PARM  BL    Bi    83     P    15    2.7290    9.1456     1
+PARM  BL    Bi    83     S    16    2.6220    9.3188     1
+PARM  BL     B     5     N     7    1.4140    7.5276     1
+PARM  BL     B     5     O     8    1.3750    7.3918     1
+PARM  BL     B     5     P    15    1.9640    8.1512     1
+PARM  BL     B     5     S    16    1.8140    8.4355     1
+PARM  BL     B     5    Sb    51    2.3890    8.4506     1
+PARM  BL    Cd    48     C     6    2.1520    8.3393     1
+PARM  BL    Cd    48    Cd    48    2.7320    9.3100     0
+PARM  BL    Cd    48    Cl    17    2.3420    8.9018     1
+PARM  BL    Cd    48     H     1    1.7370    7.0655     1
+PARM  BL    Ga    31    Br    35    2.2640    8.9133     1
+PARM  BL    Ga    31     C     6    1.9880    8.2235     1
+PARM  BL    Ga    31    Cl    17    2.1320    8.8812     1
+PARM  BL    Ga    31    Ga    31    2.4260    9.0500     0
+PARM  BL    Ga    31     H     1    1.5780    6.9500     1
+PARM  BL    Ga    31     I    53    2.5100    9.0500     1
+PARM  BL    Ga    31     N     7    1.8840    8.1730     1
+PARM  BL    Ga    31     O     8    1.8230    8.1820     1
+PARM  BL    Ga    31     P    15    2.3210    9.0375     1
+PARM  BL    Ga    31     S    16    2.2290    8.9909     1
+PARM  BL    Ge    32    Br    35    2.3060    9.0471     1
+PARM  BL    Ge    32     C     6    1.9550    8.3337     1
+PARM  BL    Ge    32    Cl    17    2.1590    8.9118     1
+PARM  BL    Ge    32    Ge    32    2.4080    9.1800     0
+PARM  BL    Ge    32     H     1    1.5500    7.0649     1
+PARM  BL    Ge    32    Hg    80    2.6300    9.5023     1
+PARM  BL    Ge    32     N     7    1.8520    8.2959     1
+PARM  BL    Ge    32     O     8    1.7890    8.3332     1
+PARM  BL    Ge    32     P    15    2.3580    8.9452     1
+PARM  BL    Ge    32     S    16    2.2480    9.0381     1
+PARM  BL    Ge    32    Si    14    2.3760    9.1233     1
+PARM  BL    Hg    80     C     6    2.1520    8.7935     1
+PARM  BL    Hg    80     H     1    1.7160    7.5935     1
+PARM  BL    Hg    80    Hg    80    2.7220   10.2800     0
+PARM  BL    Hg    80     I    53    2.6680    9.3492     1
+PARM  BL    Hg    80    Si    14    2.5920    9.4661     1
+PARM  BL    Hg    80     S    16    2.4560    9.4550     1
+PARM  BL    In    49    Br    35    2.6410    9.1030     1
+PARM  BL    In    49     C     6    2.1990    8.6102     1
+PARM  BL    In    49     H     1    1.7550    7.4171     1
+PARM  BL    In    49     I    53    2.8510    9.0981     1
+PARM  BL    In    49    In    49    2.8500    9.8200     0
+PARM  BL    In    49     N     7    2.1010    8.5459     1
+PARM  BL    In    49     O     8    2.0370    8.5415     1
+PARM  BL    In    49     P    15    2.5540    9.2865     1
+PARM  BL    In    49     S    16    2.4930    9.3213     1
+PARM  BL    Pb    82     C     6    2.2000    8.7143     1
+PARM  BL    Pb    82     H     1    1.7750    7.4830     1
+PARM  BL    Pb    82     N     7    2.1310    8.5978     1
+PARM  BL    Pb    82     O     8    2.0840    8.5552     1
+PARM  BL    Pb    82     P    15    2.6360    9.1971     1
+PARM  BL    Pb    82    Pb    82    2.8680   10.0000     0
+PARM  BL    Pb    82     S    16    2.5420    9.3503     1
+PARM  BL    Pb    82     F     9    2.0600    8.3315     1
+PARM  BL    Pb    82    Cl    17    2.5030    9.0921     1
+PARM  BL    Pb    82    Br    35    2.6400    9.2068     1
+PARM  BL    Pb    82     I    53    2.8510    9.5547     1
+PARM  BL    Sb    51    Br    35    2.6950    8.9991     1
+PARM  BL    Sb    51     C     6    2.1730    8.6050     1
+PARM  BL    Sb    51    Cl    17    2.5480    8.9029     1
+PARM  BL    Sb    51     H     1    1.7120    7.4792     1
+PARM  BL    Sb    51     I    53    2.9100    9.1337     1
+PARM  BL    Sb    51     N     7    2.0650    8.5532     1
+PARM  BL    Sb    51     O     8    1.9450    8.6586     1
+PARM  BL    Sb    51     P    15    2.6590    9.0451     1
+PARM  BL    Sb    51     S    16    2.5380    9.2258     1
+PARM  BL    Sb    51    Sb    51    2.9230    9.6100     0
+PARM  BL    Se    34    Br    35    2.3320    8.6567     1
+PARM  BL    Se    34     C     6    1.9720    8.0886     1
+PARM  BL    Se    34     F     9    1.8170    7.7284     1
+PARM  BL    Se    34     H     1    1.4860    6.9860     1
+PARM  BL    Se    34     N     7    1.8970    7.9749     1
+PARM  BL    Se    34     O     8    1.8580    7.9098     1
+PARM  BL    Se    34     P    15    2.2670    8.7556     1
+PARM  BL    Se    34     S    16    2.2760    8.9223     1
+PARM  BL    Se    34    Se    34    2.3330    8.8900     0
+PARM  BL    Se    34    Si    14    2.2890    8.9641     1
+PARM  BL    Si    14    Br    35    2.2060    8.8261     1
+PARM  BL    Si    14     C     6    1.8860    8.3323     1
+PARM  BL    Si    14    Cl    17    2.0780    8.9214     1
+PARM  BL    Si    14     F     9    1.5930    8.4729     1
+PARM  BL    Si    14     H     1    1.4900    7.0720     1
+PARM  BL    Si    14     I    53    2.5640    9.0329     1
+PARM  BL    Si    14     N     7    1.7720    8.3221     1
+PARM  BL    Si    14     O     8    1.6800    8.4551     1
+PARM  BL    Si    14     P    15    2.2880    8.8733     1
+PARM  BL    Si    14     S    16    2.1780    8.9752     1
+PARM  BL    Si    14    Si    14    2.3600    9.0100     0
+PARM  BL    Sn    50    Br    35    2.5320    9.2327     1
+PARM  BL    Sn    50     C     6    2.1550    8.5782     1
+PARM  BL    Sn    50    Cl    17    2.4040    9.0566     1
+PARM  BL    Sn    50     F     9    1.9710    8.3023     1
+PARM  BL    Sn    50     H     1    1.7170    7.3868     1
+PARM  BL    Sn    50     I    53    2.7530    9.3245     1
+PARM  BL    Sn    50     N     7    2.0310    8.5614     1
+PARM  BL    Sn    50     O     8    1.9730    8.5547     1
+PARM  BL    Sn    50     P    15    2.6090    9.0503     1
+PARM  BL    Sn    50     S    16    2.5020    9.2244     1
+PARM  BL    Sn    50    Sn    50    2.8230    9.6500     0
+PARM  BL    Te    52     C     6    2.2120    8.5887     1
+PARM  BL    Te    52     H     1    1.6990    7.5516     1
+PARM  BL    Te    52     N     7    2.0770    8.5940     1
+PARM  BL    Te    52     O     8    2.0610    8.4902     1
+PARM  BL    Te    52     P    15    2.6480    9.0714     1
+PARM  BL    Te    52     S    16    2.5970    9.2088     1
+PARM  BL    Te    52    Cl    17    2.5980    8.8324     1
+PARM  BL    Te    52    Te    52    2.8520    9.8200     0
+PARM  BL    Tl    81     C     6    2.2790    8.5680     1
+PARM  BL    Tl    81     H     1    1.7960    7.4372     1
+PARM  BL    Tl    81    Tl    81    2.8640   10.0200     0
+PARM  BL     V    23    Cl    17    2.2060    6.9614     1
+PARM  BL     V    23     H     1    1.6380    5.0862     1
+PARM  BL     V    23     V    23    1.8280    6.3000     0
+PARM  BL    Zn    30     C     6    1.9340    7.3347     1
+PARM  BL    Zn    30    Cl    17    2.0820    7.4190     1
+PARM  BL    Zn    30     H     1    1.5700    5.9867     1
+PARM  BL    Zn    30    Zn    30    2.3440    7.2300     0
+PARM  BA     H     1    0.7200    0.8400
+PARM  BA     C     6    1.0600    1.3000
+PARM  BA     N     7    1.3100    1.3800
+PARM  BA     O     8    1.4600    1.5900
+PARM  BA     F     9    0.0000    1.6100
+PARM  BA    Cl    17    0.0000    1.5100
+PARM  BA    Br    35    0.0000    1.5500
+PARM  BA     I    53    0.0000    1.6500
+PARM  BA     P    15    1.2200    0.9200
+PARM  BA     S    16    1.8500    1.5100
+PARM  BA    Al    13    0.8900    0.9200
+PARM  BA    As    33    1.0300    1.2200
+PARM  BA     B     5    0.8900    0.9700
+PARM  BA    Be     4    1.0500    1.9700
+PARM  BA    Bi    83    1.2600    1.2500
+PARM  BA    Cd    48    1.2000    0.8100
+PARM  BA    Ga    31    0.9700    0.9900
+PARM  BA    Ge    32    0.9900    1.2500
+PARM  BA    Hg    80    0.2600    1.1600
+PARM  BA    In    49    0.9000    1.2400
+PARM  BA    Pb    82    0.7400    1.2300
+PARM  BA    Sb    51    0.6600    1.3500
+PARM  BA    Se    34    0.8700    1.5100
+PARM  BA    Si    14    1.0400    1.0400
+PARM  BA    Sn    50    0.8200    1.3500
+PARM  BA    Te    52    1.8900    1.3500
+PARM  BA    Tl    81    0.4300    0.2700
+PARM  BA     V    23    3.9600    2.9600
+PARM  BA    Zn    30    1.7300    1.4600
