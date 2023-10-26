@@ -4,8 +4,9 @@ will highlight any specific torsions that need additional terms to explicitly
 override generic torsions
 """
 import os
-import parmed as pmd
 import sys
+
+import parmed as pmd
 
 if len(sys.argv) < 2:
     sys.exit("%s <param_file> [<param_file> [<param_file> ...]]" % os.path.split(sys.argv[0])[1])

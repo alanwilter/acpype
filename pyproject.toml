@@ -51,7 +51,7 @@ sphinx = ">=6"
 [tool.ruff]
 target-version = "py38"
 line-length = 120
-extend-select = ["E501", "UP", "RUF"]
+extend-select = ["UP", "RUF", "I"] # "E501"
 ignore = ['UP036']
 
 [tool.pytest.ini_options]

@@ -6,8 +6,10 @@ import time
 import traceback
 from shutil import rmtree
 
-from ccpnmr.format.converters import Mol2Format  # type: ignore
-from ccpnmr.format.converters import PdbFormat  # type: ignore
+from ccpnmr.format.converters import (
+    Mol2Format,  # type: ignore
+    PdbFormat,  # type: ignore
+)
 
 from acpype.cli import ACTopol, elapsedTime, header
 
