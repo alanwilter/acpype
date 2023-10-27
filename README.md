@@ -13,6 +13,7 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/alanwilter/acpype/.github%2Fworkflows%2Fcheck_acpype.yml?style=plastic)
 [![Poetry](https://img.shields.io/endpoint?style=plastic&url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
+[![Ruff](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
 [![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2023.10.27/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
