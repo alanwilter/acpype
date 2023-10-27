@@ -62,7 +62,7 @@ addopts = "tests --cov=tests --cov=acpype --cov-report=term-missing:skip-covered
 # ignore_missing_imports = true #waiting for some stubs
 
 [[tool.mypy.overrides]]
-# module = ["cv2","tensorflow"]
+module = ["setuptools"]
 ignore_missing_imports = true
 
 [build-system]
