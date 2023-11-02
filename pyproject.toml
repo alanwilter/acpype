@@ -4,7 +4,7 @@
 
 [tool.poetry]
 name = "acpype"
-version = "2023.10.27"
+version = "2023.11.2"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 authors = ["Alan Silva <alanwilter@gmail.com>"]
 license = "GPL-3.0-or-later"
