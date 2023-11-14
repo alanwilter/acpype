@@ -117,17 +117,17 @@ def test_smiles(janitor, base, msg):
         (
             "bcc",
             "pdb",
-            "-dr no -i benzene.mol2 -fi mol2 -o benzene_bcc_gaff2.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+            "-dr no -i 'benzene.mol2' -fi mol2 -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
         ),
         (
             "bcc",
             "mol",
-            "-dr no -i benzene.mol -fi mdl -o benzene_bcc_gaff2.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+            "-dr no -i 'benzene.mol' -fi mdl -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
         ),
         (
             "bcc",
             "mdl",
-            "-dr no -i benzene.mdl -fi mdl -o benzene_bcc_gaff2.mol2 -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+            "-dr no -i 'benzene.mdl' -fi mdl -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
         ),
         ("user", "pdb", "cannot read charges from a PDB file"),
     ],

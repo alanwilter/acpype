@@ -1,6 +1,5 @@
 {
   "git.enableCommitSigning": true,
-  "python.envFile": "${workspaceFolder}/.env",
   "python.testing.pytestArgs": ["tests", "-v", "-c", "/dev/null"],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,

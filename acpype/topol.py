@@ -407,7 +407,7 @@ class AbstractTopol(abc.ABC):
             self.printWarn("no charge value given, trying to guess one...")
             mol2FileForGuessCharge = self.inputFile
             if self.ext == ".pdb":
-                cmd = f"{self.obabelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
+                cmd = f"'{self.obabelExe}' -ipdb '{self.inputFile}' -omol2 -O '{self.baseName}.mol2'"
                 self.printDebug(f"guessCharge: {cmd}")
                 out = _getoutput(cmd)
                 self.printDebug(out)
@@ -418,7 +418,7 @@ class AbstractTopol(abc.ABC):
                 if in_mol == "mol":
                     in_mol = "mdl"
 
-            cmd = f"{self.acExe} -dr no -i {mol2FileForGuessCharge} -fi {in_mol} -o tmp -fo mol2 -c gas -pf n"
+            cmd = f"'{self.acExe}' -dr no -i '{mol2FileForGuessCharge}' -fi {in_mol} -o tmp -fo mol2 -c gas -pf n"
 
             logger(self.level).debug(while_replace(cmd))
 
@@ -479,7 +479,7 @@ class AbstractTopol(abc.ABC):
         else:
             if exten == "mol":
                 exten = "mdl"
-            cmd = f"{self.acExe} -dr no -i {self.inputFile} -fi {exten} -o tmp -fo ac -pf y"
+            cmd = f"'{self.acExe}' -dr no -i '{self.inputFile}' -fi {exten} -o tmp -fo ac -pf y"
             self.printDebug(cmd)
             out = _getoutput(cmd)
             if not out.isspace():
@@ -685,7 +685,7 @@ class AbstractTopol(abc.ABC):
         """Reads the charges in given mol2 file and returns the total."""
         charge = 0.0
         ll = []
-        cmd = f"{self.acExe} -dr no -i {mol2File} -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf n"
+        cmd = f"'{self.acExe}' -dr no -i '{mol2File}' -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf n"
 
         self.printDebug(cmd)
 
@@ -840,7 +840,7 @@ class AbstractTopol(abc.ABC):
         if exten == "mol":
             exten = "mdl"
 
-        cmd = "{} -dr no -i {} -fi {} -o {} -fo mol2 {} -nc {} -m {} -s 2 -df {} -at {} -pf n {}".format(
+        cmd = "'{}' -dr no -i '{}' -fi {} -o '{}' -fo mol2 {} -nc {} -m {} -s 2 -df {} -at {} -pf n {}".format(
             self.acExe,
             self.inputFile,
             exten,
@@ -947,7 +947,7 @@ class AbstractTopol(abc.ABC):
         fp.write(tleapScpt)
         fp.close()
 
-        cmd = "%s -f tleap.in" % self.tleapExe
+        cmd = f"'{self.tleapExe}' -f tleap.in"
 
         if self.checkXyzAndTopFiles() and not self.force:
             self.printMess("Topologies files already present... doing nothing")
@@ -1000,7 +1000,7 @@ class AbstractTopol(abc.ABC):
     def execParmchk(self):
         """Execute parmchk."""
         self.makeDir()
-        cmd = f"{self.parmchkExe} -i {self.acMol2FileName} -f mol2 -o {self.acFrcmodFileName}"
+        cmd = f"'{self.parmchkExe}' -i '{self.acMol2FileName}' -f mol2 -o '{self.acFrcmodFileName}'"
 
         if "amber" in self.atomType:
             gaffFile = self.locateDat(self.gaffDatfile)
@@ -1012,7 +1012,7 @@ class AbstractTopol(abc.ABC):
             # parm99gaffff99SBparmbsc0File = parmMerge(parm99gaffff99SBFile, frcmodparmbsc0, frcmod = True)
             # parm10file = self.locateDat('parm10.dat') # PARM99 + frcmod.ff99SB + frcmod.parmbsc0 in AmberTools 1.4
 
-            cmd += f" -p {parmGaffffxxSBFile}"  # Ignoring BSC0
+            cmd += f" -p '{parmGaffffxxSBFile}'"  # Ignoring BSC0
         elif "gaff2" in self.atomType:
             cmd += " -s 2"
 
@@ -1075,7 +1075,7 @@ class AbstractTopol(abc.ABC):
         """Execute obabel."""
         self.makeDir()
 
-        cmd = f"{self.obabelExe} -ipdb {self.inputFile} -omol2 -O {self.baseName}.mol2"
+        cmd = f"'{self.obabelExe}' -ipdb '{self.inputFile}' -omol2 -O '{self.baseName}.mol2'"
         self.printDebug(cmd)
         self.obabelLog = _getoutput(cmd)
         self.ext = ".mol2"
@@ -1698,7 +1698,7 @@ class AbstractTopol(abc.ABC):
         self.getResidueLabel()
         res = self.resName
 
-        cmd = f"{self.acExe} -dr no -i {self.acMol2FileName} -fi mol2 -o {self.charmmBase} \
+        cmd = f"'{self.acExe}' -dr no -i '{self.acMol2FileName}' -fi mol2 -o '{self.charmmBase}' \
             -fo charmm -s 2 -at {at} -pf n -rn {res}"
 
         self.printDebug(cmd)
