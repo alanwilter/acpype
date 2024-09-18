@@ -97,7 +97,7 @@ We now have an up-to-date _web service_ at **[Bio2Byte](http://bio2byte.be/acpyp
 
 To run `acpype`, locally, with its all functionalities, you need **ANTECHAMBER** from package
 [AmberTools](http://ambermd.org/) and
-[Open Babel](http://openbabel.org/wiki/Main_Page) if your input files are of PDB
+[Open Babel](http://openbabel.org) if your input files are of PDB
 format.
 
 However, if one wants `acpype` just to emulate _amb2gmx.pl_, one needs nothing
