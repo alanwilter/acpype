@@ -28,7 +28,7 @@ leapAmberFile = "leaprc.protein.ff14SB"  # 'leaprc.ff14SB'
 # "AM1 ANALYT MMOK GEO-OK PRECISE"
 
 usage = """
-    acpype -i _file_ | _SMILES_string_ [-c _string_] [-n _int_] [-m _int_] [-a _string_] [-f] etc. or
+    acpype -i _file_ | _SMILES_string_ [-c _string_] [-n _int_] [-m _int_] [-r _int_] [-a _string_] [-f] etc. or
     acpype -p _prmtop_ -x _inpcrd_ [-d | -w]"""
 
 epilog = """
