@@ -110,6 +110,7 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
                 chargeVal=args.net_charge,
                 debug=args.debug,
                 multiplicity=args.multiplicity,
+                predIndex=args.predIndex,
                 atomType=args.atom_type,
                 force=args.force,
                 outTopol=args.outtop,
