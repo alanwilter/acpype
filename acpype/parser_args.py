@@ -4,7 +4,7 @@ from acpype.params import MAXTIME, epilog, outTopols, usage
 
 
 def get_option_parser():
-    # not used yet: -e -l -r
+    # not used yet: -e -l
     parser = argparse.ArgumentParser(usage=usage + epilog)
     group = parser.add_mutually_exclusive_group()
     parser.add_argument(
@@ -61,6 +61,16 @@ def get_option_parser():
         default=1,
         dest="multiplicity",
         help="multiplicity (2S+1), default is 1",
+    )
+    parser.add_argument(
+        "-r",
+        "--predindex",
+        action="store",
+        type=int,
+        default=4,
+        dest="predIndex",
+        help="atom type and bond type prediction index: 0-no assignment, 1-atom type, 2-full bond types, \
+        3-part bond types, 4-atom and full bond type (default), 5-atom and part bond type",
     )
     parser.add_argument(
         "-a",
