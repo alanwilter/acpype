@@ -223,7 +223,6 @@ class Topology_14:
 
 
 class AbstractTopol(abc.ABC):
-
     """
     Abstract super class to build topologies
     """
@@ -446,7 +445,7 @@ class AbstractTopol(abc.ABC):
                 self.printErrorQuoted(log)
                 self.printMess("Trying with net charge = 0 ...")
         charge = float(charge)
-        charge2 = int(round(charge))
+        charge2 = round(charge)
         drift = abs(charge2 - charge)
         self.printDebug(f"Net charge drift '{drift:3.6f}'")
         if drift > diffTol:
@@ -840,18 +839,7 @@ class AbstractTopol(abc.ABC):
         if exten == "mol":
             exten = "mdl"
 
-        cmd = "'{}' -dr no -i '{}' -fi {} -o '{}' -fo mol2 {} -nc {} -m {} -s 2 -df {} -at {} -pf n {}".format(
-            self.acExe,
-            self.inputFile,
-            exten,
-            self.acMol2FileName,
-            ct,
-            self.chargeVal,
-            self.multiplicity,
-            self.qFlag,
-            at,
-            self.ekFlag,
-        )
+        cmd = f"'{self.acExe}' -dr no -i '{self.inputFile}' -fi {exten} -o '{self.acMol2FileName}' -fo mol2 {ct} -nc {self.chargeVal} -m {self.multiplicity} -s 2 -df {self.qFlag} -at {at} -pf n {self.ekFlag}"
 
         self.printDebug(cmd)
 
@@ -1330,7 +1318,7 @@ class AbstractTopol(abc.ABC):
             self.atomTypeSystem = "amber"
         self.printDebug("Balanced TotalCharge %13.10f" % float(sum(balanceChargeList) / qConv))
 
-        self.totalCharge = int(round(totalCharge / qConv))
+        self.totalCharge = round(totalCharge / qConv)
 
         self.atoms = atoms
         self.atomTypes = atomTypes
@@ -2780,17 +2768,7 @@ class AbstractTopol(abc.ABC):
                 v12 = f2
                 v13 = -f2
                 v23 = f1 * boxX
-                text = "{:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f} {:11.5f}\n".format(
-                    boxX,
-                    v22,
-                    v33,
-                    v21,
-                    v31,
-                    v12,
-                    v32,
-                    v13,
-                    v23,
-                )
+                text = f"{boxX:11.5f} {v22:11.5f} {v33:11.5f} {v21:11.5f} {v31:11.5f} {v12:11.5f} {v32:11.5f} {v13:11.5f} {v23:11.5f}\n"
         else:
             self.printDebug("Box size estimated")
             X = [a.coords[0] * 0.1 for a in self.atoms]
@@ -3195,7 +3173,6 @@ stop
 
 
 class ACTopol(AbstractTopol):
-
     """
     Class to build the AC topologies (Antechamber AmberTools).
     """

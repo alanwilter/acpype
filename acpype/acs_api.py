@@ -161,7 +161,7 @@ def acpype_api(
             traceback.print_tb(exceptionTraceback, file=sys.stdout)
             output = {"file_name": f"ERROR: {exceptionValue!s}"}
 
-    execTime = int(round(time.time() - at0))
+    execTime = round(time.time() - at0)
     if execTime == 0:
         amsg = "less than a second"
     else:

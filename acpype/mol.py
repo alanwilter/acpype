@@ -1,27 +1,23 @@
 """
-    Constructors to define and store the system's topology
+Constructors to define and store the system's topology
 
-    It will create instances for Atoms, AtomTypes, Bonds, Angles and Dihedrals
-    where the topology (the relationships between atoms) is defined and
-    paramenters are stored.
+It will create instances for Atoms, AtomTypes, Bonds, Angles and Dihedrals
+where the topology (the relationships between atoms) is defined and
+paramenters are stored.
 
-    Example:
+Example:
 
-        >>> atom = acpype.mol.Atom(...) # to be improved
+    >>> atom = acpype.mol.Atom(...) # to be improved
 
-    Attributes:
-        acpype.mol.Atom     : define Atom
-        acpype.mol.AtomType : define AtomType
+Attributes:
+    acpype.mol.Atom     : define Atom
+    acpype.mol.AtomType : define AtomType
 """
-
-
-from typing import List
 
 from acpype.params import Pi
 
 
 class AtomType:
-
     """
     AtomType per atom in gaff or amber.
     """
@@ -68,7 +64,7 @@ class Atom:
     """
 
     def __init__(
-        self, atomName: str, atomType: AtomType, id_: int, resid: int, mass: float, charge: float, coord: List[float]
+        self, atomName: str, atomType: AtomType, id_: int, resid: int, mass: float, charge: float, coord: list[float]
     ):
         """
         Args:
@@ -78,7 +74,7 @@ class Atom:
             resid (int): residues number index
             mass (float): atom mass
             charge (float): atom charge
-            coord (List[float]): atom (x,y,z) coordinates
+            coord (list[float]): atom (x,y,z) coordinates
         """
         self.atomName = atomName
         self.atomType = atomType
@@ -97,7 +93,6 @@ class Atom:
 
 
 class Bond:
-
     """
     attributes: pair of Atoms, spring constant (kcal/mol), dist. eq. (Ang)
     """
@@ -115,7 +110,6 @@ class Bond:
 
 
 class Angle:
-
     """
     attributes: 3 Atoms, spring constant (kcal/mol/rad^2), angle eq. (rad)
     """
@@ -133,7 +127,6 @@ class Angle:
 
 
 class Dihedral:
-
     """
     attributes: 4 Atoms, spring constant (kcal/mol), periodicity,
     phase (rad)

@@ -142,7 +142,7 @@ if __name__ == "__main__":
                 chemCompVarFiles.append(os.path.join(curDir, "other", ccpCode, ccvName))
 
     runConversionJobs(chemCompVarFiles, "acpype")
-    execTime = int(round(time.time() - t0))
+    execTime = round(time.time() - t0)
     msg = elapsedTime(execTime)
     print("Total time of execution: %s" % msg)
     print("ALL DONE")

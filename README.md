@@ -2,7 +2,7 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=plastic)](https://GitHub.com/alanwilter/acpype/graphs/commit-activity)<!-- [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103&style=plastic)](https://github.com/ellerbrock/open-source-badges/) -->
 [![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)](https://github.com/alanwilter/acpype)
-[![python](https://img.shields.io/badge/python-3.8%2E%2E%2E3.12-blue.svg?style=plastic&logo=python)](https://github.com/alanwilter/acpype)
+[![python](https://img.shields.io/badge/python-3.12%2E%2E%2E3.14-blue.svg?style=plastic&logo=python)](https://github.com/alanwilter/acpype)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)](https://github.com/alanwilter/acpype)
 [![GitHub Release](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)](https://github.com/alanwilter/acpype)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
 [![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)](https://hub.docker.com/r/acpype/acpype)
@@ -12,10 +12,10 @@
 [![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/alanwilter/acpype/.github%2Fworkflows%2Fcheck_acpype.yml?style=plastic)
-[![Poetry](https://img.shields.io/endpoint?style=plastic&url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
+[![uv](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
-[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2023.10.27/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
+[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2026.9.1/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
 [![Documentation Status](https://readthedocs.org/projects/acpype/badge/?version=latest&style=plastic)](https://acpype.readthedocs.io/en/latest/?badge=latest)
 [![Citations Badge](https://img.shields.io/endpoint?label=citations&logo=googlescholar&style=plastic&url=https%3A%2F%2Fapi.juleskreuer.eu%2Fcitation-badge.php%3Fshield%26doi%3D10.1186%2F1756-0500-5-367)](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=c68TiIUAAAAJ&citation_for_view=c68TiIUAAAAJ:UeHWp8X0CEIC)

@@ -8,7 +8,6 @@ tmpLogFile = NamedTemporaryFile().name
 
 
 class LogFormatter(logging.Formatter):
-
     """
     Define log formatter
     """

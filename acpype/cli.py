@@ -4,7 +4,6 @@ import os
 import sys
 import time
 from shutil import rmtree
-from typing import Dict, List, Optional
 
 from acpype.logger import copy_log, tmpLogFile
 from acpype.logger import set_logging_conf as logger
@@ -15,8 +14,10 @@ from acpype.utils import elapsedTime, while_replace
 
 
 def _chk_py_ver():
-    if sys.version_info < (3, 8):
-        msg = "Sorry, you need python 3.8 or higher"
+    # `requires-python` already blocks installs below the floor, but acpype is often
+    # run straight from a source checkout, where no such check applies.
+    if sys.version_info < (3, 12):  # noqa: UP036
+        msg = "Sorry, you need python 3.12 or higher"
         logger().error(msg)
         raise Exception(msg)
 
@@ -27,13 +28,13 @@ def _handle_exception(level):
     return True
 
 
-def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = None):
+def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None):
     """
     Orchestrate the command line usage for ACPYPE with its all input arguments.
 
     Args:
-        binaries (Dict[str, str], optional): Mostly used for debug and testing. Defaults to ``acpype.params.binaries``.
-        argv (Optional[List[str]], optional): Mostly used for debug and testing. Defaults to None.
+        binaries (dict[str, str], optional): Mostly used for debug and testing. Defaults to ``acpype.params.binaries``.
+        argv (list[str] | None, optional): Mostly used for debug and testing. Defaults to None.
 
     Returns:
         SystemExit(status): 0 or 19 (failed)
@@ -139,7 +140,7 @@ def init_main(binaries: Dict[str, str] = binaries, argv: Optional[List[str]] = N
             except Exception:
                 acpypeFailed = _handle_exception(level)
 
-    execTime = int(round(time.time() - at0))
+    execTime = round(time.time() - at0)
     if execTime == 0:
         amsg = "less than a second"
     else:

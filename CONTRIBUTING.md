@@ -10,9 +10,9 @@ For `Linux` (Ubuntu 20 recommended) and `macOS`. Anyway, `CONDA` is strongly rec
 Also recommended is GPG key, so do accordingly in [GitHub](https://docs.github.com/articles/generating-a-gpg-key/).
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-conda create -n acpype python=3.9 ambertools openbabel ocl-icd-system ipython gromacs=2019.1 -y
+conda create -n acpype python=3.12 ambertools openbabel ocl-icd-system ipython gromacs=2019.1 -y
 # ocl-icd-system: case you have GPU
 
 conda activate acpype
@@ -25,7 +25,7 @@ git clone https://github.com/alanwilter/acpype.git
 
 cd acpype
 
-poetry install
+uv sync
 
 pre-commit install
 
@@ -51,15 +51,15 @@ If using `VSCode`:
   "git.enableCommitSigning": true,
   ```
 
-- Another `VSCode` nuisance, if using its graphic buttons for commit etc.: its environment won't necessarily recognise the dependencies installed via `poetry` under `conda` environment named `acpype` (unless you have started `VSCode` from folder repository with command `code .`). To avoid troubles do:
+- `uv sync` creates the virtualenv at `.venv` in the repository root, which `VSCode`
+  and `Kiro` pick up automatically as the `Python Interpreter` (it is also set
+  explicitly in `.vscode/settings.json`). No extra configuration is needed.
 
-  ```bash
-  conda deactivate
-  poetry install # it will create its own virtualenv
-  ```
-
-  You could use this `poetry virtualenv` as the `Python Interpreter` for `VSCode`, however `ambertools`, `gromacs` and `openbabel` won't be available (unless you've had installed them system wide by other means rather than `conda`).
-  To avoid further troubles, go back to `conda activate acpype` and remember to do the instructions above if you add new dependencies to the project via `poetry`.
+  Note that `ambertools`, `gromacs` and `openbabel` are **not** installed into `.venv`:
+  `acpype` ships its own `antechamber` under `acpype/amber_${sys}`, and the rest come
+  from the `conda` environment. If you need those on your `PATH`, run the tests from an
+  activated `conda activate acpype` shell -- `uv run` will still use `.venv` for the
+  Python dependencies.
 
 ## For Documenting
 

@@ -59,7 +59,7 @@ for k in list(gmx_out.keys())[:]:
         gmx_out[v] = gmx_out[k]
 
 for ii in vv:
-    print(f"{ii:<10}: {error(gmx_out[ii],amb_out[ii]):-2.5f}%")
+    print(f"{ii:<10}: {error(gmx_out[ii], amb_out[ii]):-2.5f}%")
 
 # DIHED = PROPER_DIH + IMPROPER_DIH + RYCKAERT-BELL.
 # VDW14 : LJ-14, 1-4_NB
@@ -87,9 +87,9 @@ ll = [
 
 for pp in ll:
     v1, v2 = e.__getattribute__(pp[0]), amb_out[pp[1]] / ff
-    print(f"error {pp[0]:<8}: {error(v1,v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")
+    print(f"error {pp[0]:<8}: {error(v1, v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")
 
 # with round()
 for pp in ll:
     v1, v2 = round(e.__getattribute__(pp[0]), 4), amb_out[pp[1]] / ff
-    print(f"error {pp[0]:<8}: {error(v1,v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")
+    print(f"error {pp[0]:<8}: {error(v1, v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")

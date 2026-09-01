@@ -84,4 +84,17 @@ private.env
 # pycharm
 .idea
 
-.vscode/
+# .vscode/settings.json is tracked on purpose (shared editor config); ignore the rest.
+.vscode/*
+!.vscode/settings.json
+
+.venv/
+CLAUDE.md
+scripts/acpype_ligands_results.txt.zip
+
+# build / tooling artefacts
+.coverage
+coverage.xml
+.ruff_cache/
+node_modules/
+.DS_Store
