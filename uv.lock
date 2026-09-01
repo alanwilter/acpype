@@ -8,7 +8,7 @@ resolution-markers = [
 
 [[package]]
 name = "acpype"
-version = "2026.9.1"
+version = "2026.9.2"
 source = { editable = "." }
 dependencies = [
     { name = "openbabel-wheel" },
