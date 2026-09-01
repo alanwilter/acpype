@@ -40,8 +40,35 @@ git config user.signingkey _singing_key_ # as seen in 'gpg --list-secret-keys --
 
 git config commit.gpgsign true
 
-pytest --cov=tests --cov=acpype --cov-report=term-missing:skip-covered --cov-report=xml
+uv run pytest --cov=tests --cov=acpype --cov-report=term-missing:skip-covered --cov-report=xml
 ```
+
+### Linting and type checking
+
+```bash
+uv run ruff check .        # lint
+uv run ruff format .       # format
+uv run ty check            # type check
+```
+
+`ty` runs in CI and as a `pre-commit` hook, and the tree is expected to stay free of
+diagnostics. `acpype/amber_linux`, `acpype/amber_macos`, `legacy` and `recipe` are
+excluded from it (see `[tool.ty.src]` in `pyproject.toml`).
+
+### Refreshing the vendored AmberTools
+
+`acpype` ships a trimmed AmberTools so `antechamber` works out of the box.
+
+```bash
+./update_macos_bins.sh -f   # needs conda/mamba, run on macOS
+./update_linux_bins.sh      # needs Docker, runs a linux/amd64 container
+```
+
+Both call `scripts/vendor_amber.py`, which derives the shared libraries from the
+executables rather than a hand-written list, so a library rename between AmberTools
+releases is picked up automatically. On macOS `scripts/fix_macos_rpaths.py` then
+removes the duplicate `LC_RPATH` entries that conda-forge's arm64 builds carry, which
+dyld refuses to load.
 
 If using `VSCode`:
 

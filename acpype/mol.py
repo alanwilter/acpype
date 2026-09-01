@@ -14,6 +14,8 @@ Attributes:
     acpype.mol.AtomType : define AtomType
 """
 
+from collections.abc import Sequence
+
 from acpype.params import Pi
 
 
@@ -64,7 +66,14 @@ class Atom:
     """
 
     def __init__(
-        self, atomName: str, atomType: AtomType, id_: int, resid: int, mass: float, charge: float, coord: list[float]
+        self,
+        atomName: str,
+        atomType: AtomType,
+        id_: int,
+        resid: int,
+        mass: float,
+        charge: float,
+        coord: Sequence[float],
     ):
         """
         Args:
@@ -74,7 +83,7 @@ class Atom:
             resid (int): residues number index
             mass (float): atom mass
             charge (float): atom charge
-            coord (list[float]): atom (x,y,z) coordinates
+            coord (Sequence[float]): atom (x,y,z) coordinates
         """
         self.atomName = atomName
         self.atomType = atomType

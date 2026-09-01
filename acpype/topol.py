@@ -35,7 +35,6 @@ from acpype.params import (
 )
 from acpype.utils import (
     _getoutput,
-    checkOpenBabelVersion,
     distanceAA,
     elapsedTime,
     find_bin,
@@ -227,82 +226,88 @@ class AbstractTopol(abc.ABC):
     Abstract super class to build topologies
     """
 
+    # Assigned by the concrete subclasses rather than here, but used by methods on
+    # this class, so they are declared for the benefit of type checkers only.
+    level: int
+    binaries: dict[str, str]
+    _parent: "ACTopol"
+
     @abc.abstractmethod
     def __init__(self):
-        self.debug = None
-        self.verbose = None
-        self.chargeVal = None
-        self.tmpDir = None
-        self.absInputFile = None
-        self.chargeType = None
-        self.obabelExe = None
-        self.baseName = None
-        self.acExe = None
-        self.force = None
-        self.acBaseName = None
-        self.atomType = None
-        self.acMol2FileName = None
-        self.multiplicity = None
-        self.qFlag = None
-        self.ekFlag = None
-        self.timeTol = None
-        self.acXyzFileName = None
-        self.acTopFileName = None
-        self.acParDict = None
-        self.tleapExe = None
-        self.parmchkExe = None
-        self.acFrcmodFileName = None
-        self.gaffDatfile = None
-        self.homeDir = None
-        self.rootDir = None
-        self.extOld = None
-        self.direct = None
-        self.merge = None
-        self.gmx4 = None
-        self.sorted = None
-        self.chiral = None
-        self.outTopols = None
-        self.ext = None
-        self.xyzFileData = None
-        self.charmmBase = None
-        self.allhdg = None
-        self.topo14Data = None
-        self.atomPairs = None
-        self.properDihedralsGmx45 = None
-        self.properDihedralsAlphaGamma = None
-        self.properDihedralsCoefRB = None
-        self.resName = None
-        self.acLog = None
-        self.tleapLog = None
-        self.parmchkLog = None
-        self.inputFile = None
-        self.obabelLog = None
-        self.absHomeDir = None
-        self.molTopol = None
-        self.topFileData = None
-        self.residueLabel = None
-        self._atomTypeNameList = None
-        self.atomTypeSystem = None
-        self.totalCharge = None
-        self.atoms = None
-        self.atomTypes = None
-        self.pbc = None
-        self.bonds = None
-        self.angles = None
-        self.properDihedrals = None
-        self.improperDihedrals = None
-        self.condensedProperDihedrals = None
-        self.chiralGroups = None
-        self.excludedAtoms = None
-        self.atomsGromacs = None
-        self.atomTypesGromacs = None
-        self.CnsTopFileName = None
-        self.CnsInpFileName = None
-        self.CnsParFileName = None
-        self.CnsPdbFileName = None
-        self.is_smiles = None
-        self.smiles = None
-        self.amb2gmx = None
+        self.debug: bool = False
+        self.verbose: bool = False
+        self.chargeVal: str | None = None
+        self.tmpDir: str = ""
+        self.absInputFile: str = ""
+        self.chargeType: str = ""
+        self.obabelExe: str = ""
+        self.baseName: str = ""
+        self.acExe: str = ""
+        self.force: bool = False
+        self.acBaseName: str = ""
+        self.atomType: str = ""
+        self.acMol2FileName: str = ""
+        self.multiplicity: str = ""
+        self.qFlag: int = 0
+        self.ekFlag: str = ""
+        self.timeTol: int = 0
+        self.acXyzFileName: str = ""
+        self.acTopFileName: str = ""
+        self.acParDict: dict[str, str] = {}
+        self.tleapExe: str = ""
+        self.parmchkExe: str = ""
+        self.acFrcmodFileName: str = ""
+        self.gaffDatfile: str = ""
+        self.homeDir: str = ""
+        self.rootDir: str = ""
+        self.extOld: str = ""
+        self.direct: bool = False
+        self.merge: bool = False
+        self.gmx4: bool = False
+        self.sorted: bool = False
+        self.chiral: bool = False
+        self.outTopols: list = []
+        self.ext: str = ""
+        self.xyzFileData: list = []
+        self.charmmBase: str = ""
+        self.allhdg: bool = False
+        self.topo14Data: Topology_14 = Topology_14()
+        self.atomPairs: set | list = []
+        self.properDihedralsGmx45: list = []
+        self.properDihedralsAlphaGamma: list = []
+        self.properDihedralsCoefRB: list = []
+        self.resName: str = ""
+        self.acLog: str = ""
+        self.tleapLog: str = ""
+        self.parmchkLog: str = ""
+        self.inputFile: str = ""
+        self.obabelLog: str = ""
+        self.absHomeDir: str = ""
+        self.molTopol: MolTopol | None = None
+        self.topFileData: list = []
+        self.residueLabel: list = []
+        self._atomTypeNameList: list = []
+        self.atomTypeSystem: str = ""
+        self.totalCharge: int = 0
+        self.atoms: list = []
+        self.atomTypes: list = []
+        self.pbc: list = []
+        self.bonds: list = []
+        self.angles: list = []
+        self.properDihedrals: list = []
+        self.improperDihedrals: list = []
+        self.condensedProperDihedrals: list = []
+        self.chiralGroups: list = []
+        self.excludedAtoms: list = []
+        self.atomsGromacs: list = []
+        self.atomTypesGromacs: list = []
+        self.CnsTopFileName: str = ""
+        self.CnsInpFileName: str = ""
+        self.CnsParFileName: str = ""
+        self.CnsPdbFileName: str = ""
+        self.is_smiles: bool = False
+        self.smiles: str = ""
+        self.amb2gmx: bool = False
 
     set_for_pip(binaries)  # check and call environments
 
@@ -334,7 +339,7 @@ class AbstractTopol(abc.ABC):
         logger(self.level).error(while_replace(text))
         logger(self.level).error(10 * "+" + "end_quote" + 61 * "+")
 
-    def search(self, name=None, alist=False):
+    def search(self, name: str = "", alist: bool = False):
         """
         Returns a list with all atomName matching 'name' or just the first case.
         """
@@ -351,17 +356,11 @@ class AbstractTopol(abc.ABC):
             bool: True/False
         """
         if find_bin(self.binaries["obabel_bin"]):
-            if checkOpenBabelVersion() >= 300:
-                from openbabel import openbabel as ob
-                from openbabel import pybel
+            # openbabel-wheel >= 3.1.1.19 is a hard dependency, so only the 3.x API is used.
+            from openbabel import openbabel as ob
+            from openbabel import pybel
 
-                ob.cvar.obErrorLog.StopLogging()
-
-            elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-                import openbabel as ob
-                import pybel  # type: ignore
-
-                ob.cvar.obErrorLog.StopLogging()
+            ob.cvar.obErrorLog.StopLogging()
         else:
             logger(self.level).warning("WARNING: your input may be a SMILES but")
             logger(self.level).warning("         without OpenBabel, this functionality won't work")
@@ -444,6 +443,10 @@ class AbstractTopol(abc.ABC):
                 rmtree(self.tmpDir)
                 self.printErrorQuoted(log)
                 self.printMess("Trying with net charge = 0 ...")
+        if charge is None:
+            msg = "guessCharge failed: no net charge could be determined"
+            self.printError(msg)
+            raise Exception(msg)
         charge = float(charge)
         charge2 = round(charge)
         drift = abs(charge2 - charge)
@@ -1044,11 +1047,7 @@ class AbstractTopol(abc.ABC):
         #     logger(self.level).error(msg)
         #     raise Exception(msg)
 
-        if checkOpenBabelVersion() >= 300:
-            from openbabel import pybel
-
-        elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-            import pybel  # type: ignore
+        from openbabel import pybel
 
         try:
             mymol = pybel.readstring("smi", str(self.smiles))
@@ -1323,7 +1322,7 @@ class AbstractTopol(abc.ABC):
         self.atoms = atoms
         self.atomTypes = atomTypes
 
-        self.pbc = None
+        self.pbc = []
         if len(coords) == len(atoms) + 2 or len(coords) == len(atoms) * 2 + 2:
             self.pbc = [coords[-2], coords[-1]]
         self.printDebug("PBC = %s" % self.pbc)
@@ -1450,13 +1449,8 @@ class AbstractTopol(abc.ABC):
             self.chiralGroups = []
             return
 
-        if checkOpenBabelVersion() >= 300:
-            from openbabel import openbabel as ob
-            from openbabel import pybel
-
-        elif checkOpenBabelVersion() >= 200 and checkOpenBabelVersion() < 300:
-            import openbabel as ob
-            import pybel  # type: ignore
+        from openbabel import openbabel as ob
+        from openbabel import pybel
 
         self.printMess("Using OpenBabel v." + ob.OBReleaseVersion() + "\n")
 
@@ -2255,7 +2249,7 @@ class AbstractTopol(abc.ABC):
             oplsAtName = oplsCode2AtomTypeDict.get(oItem[0], "x")
             id_ = atom.id
             id2oplsATDict[id_] = oplsAtName
-            oaCode = "opls_" + oItem[0]
+            oaCode = "opls_" + str(oItem[0])
             cgnr = id_
             if self.sorted:
                 cgnr = atom.cgnr  # JDC
@@ -3248,7 +3242,7 @@ class ACTopol(AbstractTopol):
                 self.absInputFile = os.path.abspath(self.inputFile)
             else:
                 self.is_smiles = False
-                self.smiles = None
+                self.smiles = ""
         elif not os.path.exists(self.absInputFile):
             msg = f"Input file {inputFile} DOES NOT EXIST"
             logger(self.level).error(msg)
@@ -3339,8 +3333,8 @@ class MolTopol(AbstractTopol):
     def __init__(
         self,
         acTopolObj=None,
-        acFileXyz=None,
-        acFileTop=None,
+        acFileXyz: str = "",
+        acFileTop: str = "",
         debug=False,
         basename=None,
         verbose=True,

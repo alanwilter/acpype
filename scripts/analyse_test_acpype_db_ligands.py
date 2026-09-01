@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import fnmatch
+import functools
 import os
 import sys
 
@@ -24,7 +25,7 @@ results = {}
 ccpCodes = os.listdir("other")
 ccpCodes.sort()
 
-groupResults = [
+groupResults: list[list] = [
     [
         "dirs totally empty or at least missing one *.mol2 input files for either PDB or IDEAL)",
         "Dirs missing *.mol2 input files",
@@ -470,7 +471,7 @@ def parseSummurisedLine(warnTypes, errorTypes):
     wt = list(set(warnTypes.split("_")))
     if wt != [""]:
         wt = wt[1:]
-        wt.sort(cmp=lambda x, y: int(x) - int(y))
+        wt.sort(key=int)
     warnTypes = ""
     for i in wt:
         if i:
@@ -741,7 +742,7 @@ while c < len(groupResults):
 
 keys = list(mapResults.keys())
 keys.sort()
-keys.sort(cmp=myComp)
+keys.sort(key=functools.cmp_to_key(myComp))
 
 # Print messages that was not classified yet
 groupMess = []

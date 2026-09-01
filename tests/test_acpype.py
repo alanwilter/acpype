@@ -20,7 +20,7 @@ def test_mol2_sorted(janitor, issorted, charge, msg):
     molecule = ACTopol("AAA.mol2", chargeType="gas", debug=True, is_sorted=issorted)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert molecule.molTopol.atomTypes[0].__repr__() == "<AtomType=nz>"
     assert len(molecule.molTopol.atoms) == 33
     assert len(molecule.molTopol.properDihedrals) == 91
@@ -36,6 +36,7 @@ def test_pdb(janitor, capsys):
     molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, force=False)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == 181
     assert len(molecule.molTopol.improperDihedrals) == 23
@@ -44,6 +45,7 @@ def test_pdb(janitor, capsys):
     molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     captured = capsys.readouterr()
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == 181
@@ -54,6 +56,7 @@ def test_pdb(janitor, capsys):
     molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     captured = capsys.readouterr()
     assert molecule
     assert "==> Pickle file FFF.pkl already present... doing nothing" in captured.out
@@ -69,7 +72,7 @@ def test_amber(janitor, force, at, ndih):
     molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == ndih
     assert len(molecule.molTopol.improperDihedrals) == 23
@@ -82,7 +85,7 @@ def test_charges_chiral(janitor):
     molecule = ACTopol("KKK.mol2", chargeType="gas", debug=True, chiral=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 69
     assert len(molecule.molTopol.properDihedrals) == 205
     assert len(molecule.molTopol.improperDihedrals) == 5
@@ -103,7 +106,7 @@ def test_smiles(janitor, base, msg):
     molecule = ACTopol(smiles, basename=base, chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert molecule.inputFile == msg
     assert len(molecule.molTopol.atoms) == 29
     janitor.append(molecule.absHomeDir)
@@ -138,6 +141,7 @@ def test_sqm_tleap(janitor, capsys, ct, ft, msg):
     molecule = ACTopol(f"benzene.{ft}", chargeType=ct, debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     captured = capsys.readouterr()
     assert molecule
     assert len(molecule.molTopol.atoms) == 12
@@ -158,7 +162,7 @@ def test_ekFlag(janitor):
     )
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 12
     janitor.append(molecule.absHomeDir)
     janitor.append(molecule.tmpDir)
@@ -177,7 +181,7 @@ def test_charge_user(janitor):
     molecule = ACTopol("ADPMg.mol2", chargeType="user", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 39
     assert len(molecule.molTopol.properDihedrals) == 125
     assert len(molecule.molTopol.improperDihedrals) == 7

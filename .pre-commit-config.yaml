@@ -25,6 +25,12 @@ repos:
         # args: [-v]
   - repo: local
     hooks:
+      - id: ty
+        name: ty
+        entry: uv run ty check
+        language: system
+        types: [python]
+        pass_filenames: false
       - id: ver_today
         name: ver_today
         entry: ./scripts/ver_today.sh

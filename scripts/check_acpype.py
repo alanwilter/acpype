@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import shutil
+import subprocess
 from glob import glob
 
 from acpype.topol import ACTopol
@@ -301,7 +302,7 @@ def createOldPdb2(fpdb):
     for line in aLines:
         res = line[17:20]
         nResCur = int(line[22:26])
-        for item in dictPdb2GmxAtomNames.get(res):
+        for item in dictPdb2GmxAtomNames[res]:
             atAim = item[-1]
             for at in item[:-1]:
                 # print(at, atAim)
@@ -629,7 +630,7 @@ def build_residues_tleap():
     for aai in seqi:
         # if aai != 'H': continue
         aai3 = 3 * aai
-        res = aa_dict.get(aai).upper()
+        res = aa_dict[aai].upper()
         res1 = res
         leapDict = {"amberff": amberff, "res": res, "aai3": aai3, "res1": res1}
         tleapin = genPdbTemplate % leapDict
@@ -678,7 +679,7 @@ def calcGmxPotEnerDiff(res):
                     dictEner["TotalNonBonded"] = dictEner["TotalNonBonded"] + v
                 else:
                     dictEner["TotalNonBonded"] = v
-        dictEner["Total_Bonded"] = dictEner.get("Potential") - dictEner.get("TotalNonBonded")
+        dictEner["Total_Bonded"] = dictEner["Potential"] - dictEner["TotalNonBonded"]
         return dictEner
 
     os.chdir(tmpDir)
@@ -773,7 +774,7 @@ if __name__ == "__main__":
     if not os.path.exists(tmpDir):
         os.mkdir(tmpDir)
     os.chdir(tmpDir)
-    os.system(r"rm -fr \#* *.acpype")
+    subprocess.run(r"rm -fr \#* *.acpype", shell=True, check=False)
     # create res.pdb
     if usePymol:
         ff = open(tmpFile, "w")
@@ -824,5 +825,9 @@ if __name__ == "__main__":
             dihAmb, dihAcp = calcGmxPotEnerDiff(res)
             # calc gmx acpype energies
 
-    os.system(r"rm -f %s/\#* posre.itp tempScript.py" % tmpDir)
-    os.system("find . -name 'ag*GMX*.itp' | xargs grep -v 'created by acpype on' > standard_ag_itp.txt")
+    subprocess.run(r"rm -f %s/\#* posre.itp tempScript.py" % tmpDir, shell=True, check=False)
+    subprocess.run(
+        "find . -name 'ag*GMX*.itp' | xargs grep -v 'created by acpype on' > standard_ag_itp.txt",
+        shell=True,
+        check=False,
+    )

@@ -50,12 +50,12 @@ def runConversionJobs(chemCompVarFiles, scriptName):
     startCode = "start"
 
     currentChemCompVarFile = None
-    currentProcesses = {startCode: None}
+    currentProcesses: dict[str, Popen | None] = {startCode: None}
     currentJobOut = {}
     currentIndex = -1
     endChemCompVarFile = chemCompVarFiles[-1]
 
-    outputHandle = sys.__stdout__
+    outputHandle = sys.stdout
 
     while currentProcesses:
         if startCode in currentProcesses.keys():
@@ -100,7 +100,8 @@ def runConversionJobs(chemCompVarFiles, scriptName):
 
         for chemCompVarFile in currentProcesses.keys():
             # Finished...
-            if currentProcesses[chemCompVarFile].poll() is not None:
+            process = currentProcesses[chemCompVarFile]
+            if process is not None and process.poll() is not None:
                 del currentProcesses[chemCompVarFile]
                 currentJobOut[chemCompVarFile].close()
                 del currentJobOut[chemCompVarFile]

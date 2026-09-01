@@ -15,7 +15,7 @@ def checkOpenBabelVersion():
     "check openbabel version"
     import warnings
 
-    import openbabel as obl
+    from openbabel import openbabel as obl
 
     warnings.filterwarnings("ignore")
     return int(obl.OBReleaseVersion().replace(".", ""))
