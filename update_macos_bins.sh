@@ -28,12 +28,17 @@ fi
 
 python3 scripts/vendor_amber.py --source "$source" --dest "$destination"
 
-# charmmgen is ACPYPE's own build, not part of AmberTools.
+# charmmgen predates modern AmberTools, which dropped it; ACPYPE keeps an old build
+# for legacy compatibility. It is not part of the vendoring closure.
 tar xvfz charmmgen_macos.tgz
 
 # conda-forge's arm64 Mach-O files declare some rpaths twice, which dyld on
 # macOS 13+ refuses to load. Must run after every re-vendoring.
 python3 scripts/fix_macos_rpaths.py "$destination"
+
+# charmmgen comes from an old AmberTools and is outside the vendoring closure, so
+# confirm every executable -- including it -- still loads before committing the bundle.
+python3 scripts/check_amber_bundle.py "$destination"
 
 pre-commit run -a
 

@@ -70,6 +70,18 @@ releases is picked up automatically. On macOS `scripts/fix_macos_rpaths.py` then
 removes the duplicate `LC_RPATH` entries that conda-forge's arm64 builds carry, which
 dyld refuses to load.
 
+`charmmgen` is a special case: modern AmberTools dropped it, so ACPYPE ships a build
+from an old release in `charmmgen_{linux,macos}.tgz` purely for legacy compatibility.
+It is untarred *after* vendoring and is therefore **not** part of the dependency
+closure, so nothing guarantees a re-vendor leaves its libraries in place. The macOS
+binary is also x86_64 and runs under Rosetta 2 on Apple Silicon.
+
+`scripts/check_amber_bundle.py` guards this: it runs every executable in the bundle
+and fails if the dynamic loader rejects any of them. Both update scripts run it, and
+so does CI. On Linux it runs against a stock Ubuntu image carrying only the packages
+documented as host requirements, so a library that should have been bundled cannot
+hide behind conda's copy.
+
 If using `VSCode`:
 
 - Enable `enableCommitSigning` in `settings.json` (**_Workspace_** recommended):

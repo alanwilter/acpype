@@ -40,6 +40,11 @@ PROGRAMS = (
     "bin/wrapped_progs/parmchk2",
 )
 
+# Note: charmmgen is deliberately absent. Modern AmberTools dropped it, so ACPYPE
+# ships an old build from charmmgen_{linux,macos}.tgz for legacy compatibility; the
+# update scripts untar it after this script runs. Because it is outside the closure
+# below, scripts/check_amber_bundle.py exists to confirm it still loads.
+
 #: Data directories and stray files copied verbatim.
 DATA = (
     "dat/antechamber",

@@ -29,8 +29,24 @@ docker run --rm --platform linux/amd64 \
     "$image" \
     python3 scripts/vendor_amber.py --source /opt/amber --dest "$destination"
 
-# charmmgen is ACPYPE's own build, not part of AmberTools.
+# charmmgen predates modern AmberTools, which dropped it; ACPYPE keeps an old build
+# for legacy compatibility. It is not part of the vendoring closure.
 tar xvfz charmmgen_linux.tgz
+
+# Verify against a stock distro carrying only the packages ACPYPE documents as host
+# requirements -- not the conda build image, which would hide a missing bundled
+# library behind conda's own copy. Keep this list in step with the Dockerfile and
+# .github/workflows/check_acpype.yml.
+verify_image="acpype-ambertools-verify:${amber_version}"
+docker build --platform linux/amd64 -t "$verify_image" - <<'EOF'
+FROM ubuntu:24.04
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 libgfortran5 libstdc++6 libgomp1 libblas3 liblapack3 libcurl4 \
+    && rm -rf /var/lib/apt/lists/*
+EOF
+
+docker run --rm --platform linux/amd64 -v "$PWD":/repo -w /repo "$verify_image" \
+    python3 scripts/check_amber_bundle.py "$destination"
 
 pre-commit run -a
 

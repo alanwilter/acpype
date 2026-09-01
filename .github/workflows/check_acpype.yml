@@ -59,10 +59,10 @@ jobs:
       - name: Install project
         run: uv sync --locked --python ${{ matrix.python-version }}
 
-      - name: Check bundled antechamber runs
+      - name: Check the vendored AmberTools bundle loads
         run: |
           which antechamber
-          antechamber -h
+          uv run python scripts/check_amber_bundle.py acpype/amber_linux
 
       - name: Run Ruff
         run: |
