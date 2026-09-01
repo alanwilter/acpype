@@ -97,6 +97,10 @@ done
 
 tar xvfz charmmgen_macos.tgz
 
+# conda-forge's arm64 Mach-O files declare some rpaths twice, which dyld on
+# macOS 13+ refuses to load. Must run after every re-vendoring.
+python3 scripts/fix_macos_rpaths.py "$destination"
+
 pre-commit run -a
 
 tree -d $destination
