@@ -5,7 +5,7 @@ logFile leap.log
 #
 # leaprc for loading the Lipid21 v1.0 force field
 #       of Dickson, Gould and Walker.
-#
+#       
 #       Note this file is designed to be used in addition
 #       to one of the standard protein force field leaprc files
 #       even if you are running a pure lipid.
@@ -13,7 +13,7 @@ logFile leap.log
 #       For example, you would enter in leap:
 #         source leaprc.ff19SB
 #         source leaprc.lipid21
-#
+#       
 # Load atom type hybridizations
 #
 addAtomTypes {
@@ -41,8 +41,9 @@ addAtomTypes {
 #
 # Load the Lipid21 parameter set.
 #
-lipid21 = loadamberparams lipid21.dat
+lipid21 = loadamberparams lipid21.dat 
 #
 # Load the Lipid21 master lib file.
 #
 loadoff lipid21.lib
+

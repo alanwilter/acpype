@@ -21,7 +21,7 @@ Sn2+ 118.71
 Pb2+ 207.2
 Eu2+ 151.96
 Sr2+ 87.62
-Sm2+ 150.36
+Sm2+ 150.36 
 Ba2+ 137.33
 Ra2+ 226.03
 Al3+ 26.98
@@ -98,3 +98,4 @@ Ce4+  1.667  0.11679623    IOD set for TIP4P\EW water from Li et al., JPCB, 2015
 U4+   1.667  0.11679623    IOD set for TIP4P\EW water from Li et al., JPCB, 2015, 119, 883
 Pu4+  1.645  0.10359269    IOD set for TIP4P\EW water from Li et al., JPCB, 2015, 119, 883
 Th4+  1.690  0.13150785    IOD set for TIP4P\EW water from Li et al., JPCB, 2015, 119, 883
+

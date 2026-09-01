@@ -30,6 +30,8 @@ addAtomTypes {
 	{ "c1"  "C" "sp2" }
 	{ "c2"  "C" "sp2" }
 	{ "c3"  "C" "sp3" }
+	{ "c5"  "C" "sp3" }
+	{ "c6"  "C" "sp3" }
 	{ "ca"  "C" "sp2" }
 	{ "cc"  "C" "sp2" }
 	{ "cd"  "C" "sp2" }
@@ -42,8 +44,8 @@ addAtomTypes {
 	{ "cq"  "C" "sp2" }
 	{ "cu"  "C" "sp2" }
 	{ "cv"  "C" "sp2" }
-	{ "cx"  "C" "sp2" }
-	{ "cy"  "C" "sp2" }
+	{ "cx"  "C" "sp3" }
+	{ "cy"  "C" "sp3" }
 	{ "cz"  "C" "sp2" }
 	{ "n"   "N" "sp2" }
 	{ "n1"  "N" "sp2" }

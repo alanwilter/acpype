@@ -1,0 +1,54 @@
+#ParmEd file for LJbb with Rmin=2.7 (HR modification)
+#ParmEd File Usage: $AMBERHOME/bin/parmed topologyfile_LJbb.parm7 -i parmed_LJbb_hr.in
+# On line 49, change the name of the intended newtopologyfile_hr.parm7
+# 
+#parmed_LJbb_hr.in
+#
+# parmed input file to modify off-diagonal Lennard-Jones parameters for RNA LJbb
+# see Raguette et al. J. Phys. Chem. B 2024, 128, 7921–7933,
+# doi.org/10.1021/acs.jpcb.4c01910.
+#
+# IMPORTANT: this assumes that the prmtop was built in Amber using leaprc.RNA.LJbb
+# any other force field may have different atom types and need different atom masks
+# ex: for LJbb, there is an additional atom type OR (in addition to OL3) that 
+# should have modified LJmatrix
+#
+#
+# In RNA FF LJbb, oxygens are atom types O, O2, OS, OR and OH.
+# O and O2 types share LJ param pointer, so only need to change for one and it affects both
+#-----------------
+# H6 is atom type H4
+# copy to new type to modify just H6, in case anything else shared (should not for standard LJbb and
+# standard nucleotides)
+# then modify Rmin for this pair
+addljtype :C,C5,C3,U,U5,U3@H6
+changeljpair :C,C5,C3,U,U5,U3@H6 @%OS 2.7 0.050498
+changeljpair :C,C5,C3,U,U5,U3@H6 @%OR 2.7 0.050498
+changeljpair :C,C5,C3,U,U5,U3@H6 @%O2 2.7 0.050498
+#o-----------------
+# H8 is atom type H5, but so is :A@H2 so we need to split it
+#
+addljtype :A,A5,A3,G,G5,G3@H8
+changeljpair :A,A5,A3,G,G5,G3@H8 @%OS 2.7 0.050498
+changeljpair :A,A5,A3,G,G5,G3@H8 @%OR 2.7 0.050498
+changeljpair :A,A5,A3,G,G5,G3@H8 @%O2 2.7 0.050498
+#-----------------
+# H5 is type HA
+addljtype :C,C5,C3,U,U5,U3@H5
+changeljpair :C,C5,C3,U,U5,U3@H5 @%OS 2.7 0.050498
+changeljpair :C,C5,C3,U,U5,U3@H5 @%OR 2.7 0.050498
+changeljpair :C,C5,C3,U,U5,U3@H5 @%O2 2.7 0.050498
+#-----------------
+# H2' is type H1 (H2',H3',H4',H5',H5'')
+# H2' often close to O4', H3' to OP2, H5' to O2', less common H4' to many
+# modify all atom type H1
+#
+changeljpair @%H1 @%OS 2.7 0.051662
+changeljpair @%H1 @%OR 2.7 0.051662
+changeljpair @%H1 @%O2 2.7 0.051662
+#-----------------
+# the H1’ is not changed because no H1' were found close to O except in cases like 6XRQ with
+# quadruplex, ligands and central K+
+#------------------
+#CHANGE the newtopologyfile to your new name to output a parm7 file with the HR modification
+outparm newtopologyfile_hr.parm7

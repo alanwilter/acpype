@@ -1,0 +1,38 @@
+# LignAmb25 initilization for isolated used (no other biomolecular force fields)
+addAtomTypes {
+	{ "Ca"  "C" "sp3" }
+	{ "Cb"  "C" "sp3" }
+	{ "Cd"  "C" "sp3" }
+	{ "Ce"  "C" "sp3" }
+	{ "Cm"  "C" "sp3" }
+	{ "Co"  "C" "sp3" }
+	{ "Cr"  "C" "sp3" }
+	{ "Ct"  "C" "sp3" }
+	{ "Cv"  "C" "sp3" }
+	{ "Cx"  "C" "sp3" }
+	{ "HR"  "H" "sp3" }
+	{ "Hd"  "H" "sp3" }
+	{ "Hm"  "H" "sp3" }
+	{ "Hq"  "H" "sp3" }
+	{ "Hr"  "H" "sp3" }
+	{ "Hx"  "H" "sp3" }
+	{ "OM"  "O" "sp3" }
+	{ "Oc"  "O" "sp3" }
+	{ "Oe"  "O" "sp3" }
+	{ "Om"  "O" "sp3" }
+	{ "Oz"  "O" "sp3" }
+	{ "cE"  "C" "sp2" }
+	{ "cH"  "C" "sp2" }
+	{ "cM"  "C" "sp2" }
+	{ "cN"  "C" "sp2" }
+	{ "co"  "C" "sp2" }
+}
+# (Solo/cc-pVTZ charges + parameters fitted to Gas-phase PES Scans at wb97x-d4/def2-TZVPP)
+#
+# Load standalone LignAmb25 parameter set
+ligninparm = loadamberparams LignAmb25_SOLO.dat
+#
+# Load standalone LignAmb25 residue library 
+# 
+ligninlib = loadoff LignAmb25_SOLO.lib
+#

@@ -1,12 +1,12 @@
 [project]
 name = "acpype"
-version = "2026.9.1"
+version = "2026.9.2"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
-authors = [{ name = "Alan Silva", email = "alanwilter@gmail.com" }]
-license = "GPL-3.0-or-later"
-license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.12"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Alan Silva", email = "alanwilter@gmail.com" }]
 keywords = ["acpype", "amber", "gromacs"]
 classifiers = [
   "Intended Audience :: Science/Research",
@@ -19,24 +19,19 @@ classifiers = [
 dependencies = ["openbabel-wheel>=3.1.1.19"]
 
 [project.urls]
+"Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
+DOI = "https://doi.org/10.1186/1756-0500-5-367"
+Docs = "https://acpype.readthedocs.io"
 Homepage = "https://alanwilter.github.io/acpype/"
 Repository = "https://github.com/alanwilter/acpype"
-"Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
 Wiki = "https://github.com/alanwilter/acpype/wiki"
-Docs = "https://acpype.readthedocs.io"
-DOI = "https://doi.org/10.1186/1756-0500-5-367"
 
 [project.scripts]
 acpype = "acpype.cli:init_main"
 
-[build-system]
-requires = ["uv_build>=0.9.0,<0.13.0"]
-build-backend = "uv_build"
-
 [dependency-groups]
 dev = [
   "ipdb>=0.13.13",
-  "mypy>=1.14",
   "pdbpp>=0.11.6",
   "pre-commit>=4.1",
   "pytest>=8.3",
@@ -44,6 +39,8 @@ dev = [
   "pytest-random-order>=1.1",
   "pytest-xdist>=3.6",
   "ruff>=0.9",
+  "ty>=0.0.77",
+  "wheel>=0.45",
 ]
 docs = [
   "doc8>=1.1.2",
@@ -53,17 +50,13 @@ docs = [
   "sphinx-rtd-theme>=3.0",
 ]
 
-[tool.uv]
-default-groups = ["dev"]
+[build-system]
+requires = ["uv_build>=0.9.0,<0.13.0"]
+build-backend = "uv_build"
 
-[tool.uv.build-backend]
-# Flat layout: the `acpype` package lives at the repository root, not under src/.
-module-root = ""
-module-name = "acpype"
-# The package ships ~110 MB of AmberTools binaries, so everything under acpype/
-# is included by default. Guard against local tool caches leaking into a release.
-source-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]
-wheel-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]
+[tool.pytest.ini_options]
+addopts = "--durations=5"
+testpaths = ["tests"]
 
 [tool.ruff]
 target-version = "py312"
@@ -81,13 +74,21 @@ select = ["E4", "E7", "E9", "F", "UP", "RUF", "I"]
 # corrupting output, so it is deliberately deferred to its own reviewed change.
 ignore = ["UP031"]
 
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "--durations=5"
+[tool.ty.environment]
+python-version = "3.12"
 
-[tool.mypy]
-python_version = "3.12"
+[tool.ty.src]
+# Vendored AmberTools, the retired CCPN bridge, and the conda recipe are not ours to check.
+exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy", "recipe"]
 
-[[tool.mypy.overrides]]
-module = ["setuptools", "openbabel"]
-ignore_missing_imports = true
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.uv.build-backend]
+# Flat layout: the `acpype` package lives at the repository root, not under src/.
+module-root = ""
+module-name = "acpype"
+# The package ships ~110 MB of AmberTools binaries, so everything under acpype/
+# is included by default. Guard against local tool caches leaking into a release.
+source-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]
+wheel-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]

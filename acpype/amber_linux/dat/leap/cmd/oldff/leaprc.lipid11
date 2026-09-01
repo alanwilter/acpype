@@ -2,7 +2,7 @@ logFile leap.log
 #
 # ----- leaprc for loading the Lipid 11 force field
 #       of Skjevik, Teigen and Walker.
-#
+#       
 #       Note this file is designed to be used in addition
 #       to one of the standard protein force field leaprc files
 #       even if you are running a pure lipid.
@@ -44,3 +44,4 @@ lipid11 = loadamberparams lipid11.dat
 
 #       Load the Lipid 11 master lib file.
 loadoff oldff/lipid11.lib
+

@@ -47,9 +47,14 @@ jobs:
           echo "$PWD/acpype/amber_linux/bin" >> $GITHUB_PATH
 
       - name: Install system dependencies
+        # Libraries the vendored AmberTools bundle deliberately takes from the host
+        # (see SYSTEM_LIBS_LINUX in scripts/vendor_amber.py), plus the X11 bits
+        # openbabel-wheel needs.
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
+          sudo apt-get install -y --no-install-recommends \
+            tzdata libgfortran5 libstdc++6 libgomp1 libblas3 liblapack3 \
+            libcurl4 libxrender1 libxext6 libsm6
 
       - name: Install project
         run: uv sync --locked --python ${{ matrix.python-version }}
@@ -66,6 +71,10 @@ jobs:
 
       - name: Test with PyTest
         run: uv run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml
+
+      - name: Check platform wheels build and stay under the PyPI size limit
+        if: matrix.python-version == '3.12'
+        run: uv run python scripts/build_wheels.py --out-dir dist
 
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.12'

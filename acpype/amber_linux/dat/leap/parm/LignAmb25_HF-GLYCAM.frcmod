@@ -1,0 +1,93 @@
+Combined Lignin-Carbohydrate Cross-linkage Parameters (LignAmb25/GLYCAM)
+MASS
+
+BOND
+Ca-Os    390.80   1.3580
+Ce-Os    308.60   1.4320
+Cg-Oe    308.60   1.4320
+Cd-Oe    308.60   1.4320      ANALOG Cg-Oe
+
+ANGLE
+Ca-Os-Cg     63.30     115.98
+Cd-Ca-Os     70.00     110.93
+Ce-Os-Cg     62.70     112.48
+Cg-Cg-Oe     68.00     107.97
+Cg-Oe-cE     63.00     116.09
+Cg-Oe-co     62.50     117.96
+Co-Ce-Os     68.00     107.97
+H2-Cg-Oe     50.90     109.58
+Hm-Ce-Os     50.80     109.78
+Oc-Ca-Os     75.30     123.25
+Oe-Cg-Os     72.70     108.29
+Os-Ce-cN     68.30     108.95
+Cd-Cd-Oe     68.00     107.97      ANALOG Cg-Cg-Oe
+Hd-Cd-Oe     50.90     109.58      ANALOG H2-Cg-Oe
+Cd-Oe-cE     63.00     116.09      ANALOG Cg-Oe-cE
+Cd-Oe-co     62.50     117.96      ANALOG Cg-Oe-co
+Oe-Ce-Os     68.00     107.97      ANALOG Co-Ce-Os
+
+DIHE
+Ca-Os-Cg-Cg    1       0.800       180.00        1.0
+Ca-Os-Cg-H1    3       0.128         0.00        3.0
+Cd-Ca-Os-Cg    2       1.350       180.00        2.0
+Cd-Cd-Ca-Os    2       1.087       180.00        2.0
+Ce-Ce-Os-Cg    2       0.050       180.00        2.0
+Ce-Os-Cg-Cg    2       0.050       180.00        2.0
+Ce-Os-Cg-H1    3       0.128         0.00        3.0
+Ce-Os-Cg-H2    3       0.128         0.00        3.0
+Ce-Os-Cg-Os    1       1.350       180.00        1.0
+Cg-Cg-Cg-Oe    3       0.052         0.00        3.0
+Cg-Cg-Oe-cE    3       0.128         0.00        3.0
+Cg-Cg-Oe-co    3       0.128         0.00        3.0
+Cg-Oe-cE-cE    2       0.525       180.00        2.0
+Cg-Oe-cE-cH    2       0.525       180.00        2.0
+Cg-Oe-cE-cM    2       0.450       180.00        2.0
+Cg-Oe-cE-cN    2       0.525       180.00        2.0
+Cg-Oe-cE-co    2       0.525       180.00        2.0
+Cg-Oe-co-cE    2       0.450       180.00        2.0
+Cg-Oe-co-cH    2       0.450       180.00        2.0
+Cg-Oe-co-co    2       0.450       180.00        2.0
+Cg-Os-Ca-Oc    1       1.400       180.00        1.0
+Cg-Os-Ce-Co    2       0.050       180.00        2.0
+Cg-Os-Ce-Hm    3       0.128         0.00        3.0
+Cg-Os-Ce-cN    3       0.128         0.00        3.0
+Cg-Os-Cg-Oe    1       1.350       180.00        1.0
+Co-Ce-Ce-Os    3       0.052         0.00        3.0
+Co-Co-Ce-Os    3       0.052         0.00        3.0
+H1-Cg-Cg-Oe    1       0.250         0.00        1.0
+H2-Cg-Oe-cE    3       0.128         0.00        3.0
+H2-Cg-Oe-co    3       0.128         0.00        3.0
+Hd-Cd-Ca-Os    2       1.087       180.00        2.0
+Hm-Co-Ce-Os    1       0.250         0.00        1.0
+Oc-Co-Ce-Os    2       0.588         0.00        2.0
+Oe-Ce-Ce-Os    2       0.588         0.00        2.0
+Oe-Cg-Cg-Oh    2       0.588         0.00        2.0
+Os-Ce-Ce-cN    3       0.052         0.00        3.0
+Os-Ce-Co-cN    3       0.052         0.00        3.0
+Os-Ce-cN-cH    2       0.000         0.00        2.0
+Os-Cg-Oe-cE    3       0.128         0.00        3.0
+Os-Cg-Oe-co    3       0.128         0.00        3.0
+Co-Cd-Cd-Oe    3       0.052         0.00        3.0      ANALOG Cg-Cg-Cg-Oe
+Hd-Cd-Cd-Oe    1       0.250         0.00        1.0      ANALOG H1-Cg-Cg-Oe
+Cd-Cd-Oe-cE    3       0.128         0.00        3.0      ANALOG Cg-Cg-Oe-cE
+Cd-Cd-Oe-co    3       0.128         0.00        3.0      ANALOG Cg-Cg-Oe-co
+Hd-Cd-Oe-cE    3       0.128         0.00        3.0      ANALOG H2-Cg-Oe-cE
+Hd-Cd-Oe-co    3       0.128         0.00        3.0      ANALOG H2-Cg-Oe-co
+Cd-Oe-cE-cE    2       0.525       180.00        2.0      ANALOG Cg-Oe-cE-cE
+Cd-Oe-cE-cH    2       0.525       180.00        2.0      ANALOG Cg-Oe-cE-cH
+Cd-Oe-cE-cM    2       0.450       180.00        2.0      ANALOG Cg-Oe-cE-cM
+Cd-Oe-cE-cN    2       0.525       180.00        2.0      ANALOG Cg-Oe-cE-cN
+Cd-Oe-cE-co    2       0.525       180.00        2.0      ANALOG Cg-Oe-cE-co
+Cd-Oe-co-cE    2       0.450       180.00        2.0      ANALOG Cg-Oe-co-cE
+Cd-Oe-co-cH    2       0.450       180.00        2.0      ANALOG Cg-Oe-co-cH
+Cd-Oe-co-co    2       0.450       180.00        2.0      ANALOG Cg-Oe-co-co
+cE-Oe-Ce-Os    3       0.128         0.00        3.0      ANALOG cE-Oe-Ce-Co
+Oe-Ce-Os-Cg    3       0.128         0.00        3.0      ANALOG Co-Ce-Os-Cg
+Hm-Ce-Os-Cg    3       0.128         0.00        3.0      ANALOG from Cg-Os-Ce-Hm
+cN-Ce-Os-Cg    3       0.128         0.00        3.0      ANALOG from Cg-Os-Ce-cN
+Co-Ce-Os-Cg    2       0.050       180.00        2.0      ANALOG from Ce-Os-Cg-Cg
+
+IMPROPER
+
+NONBON
+

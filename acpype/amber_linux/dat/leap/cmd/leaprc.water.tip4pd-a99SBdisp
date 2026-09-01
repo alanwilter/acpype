@@ -1,6 +1,6 @@
 #
 #       Load water and ions for TIP4D-a99SBdisp
-#
+# 
 addAtomTypes {
 	{ "F-"   "F" "sp3" }
 	{ "Cl-"  "Cl" "sp3" }
@@ -71,3 +71,4 @@ HOH = T4D
 WAT = T4D
 loadAmberParams frcmod.tip4pd-a99SB-disp
 loadAmberParams frcmod.ions_charmm22
+

@@ -18,10 +18,11 @@ function usage() {
 
 function run_pip() {
     echo ">>> Creating pip package"
-    uv build
-    uv publish
-    # python3 -m twine upload --repository testpypi dist/*"$version"* # TestPyPI
-    # python3 -m twine upload --repository pypi dist/*"$version"* # official release
+    # One wheel per platform: a combined wheel carries both AmberTools trees and
+    # exceeds PyPI's 100 MB per-file limit.
+    uv run python scripts/build_wheels.py --out-dir dist
+    uv build --sdist --out-dir dist
+    uv publish dist/*"$version"*
     rm -vfr dist/*"$version"*
 }
 

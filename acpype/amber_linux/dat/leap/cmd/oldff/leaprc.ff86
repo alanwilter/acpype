@@ -97,7 +97,7 @@ loadOff oldff/ions91.lib
 #
 loadOff oldff/all_nucleic91.lib
 #
-#	Load main chain and terminating
+#	Load main chain and terminating 
 #	amino acid libraries.
 #
 loadOff oldff/all_amino91.lib
@@ -218,3 +218,4 @@ CM = CMET
 CS = CSER
 CT = CTHR
 CP = CPRO
+

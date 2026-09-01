@@ -1,7 +1,7 @@
 #
 #       Load water and ions for TIP4P-ew + Joung-Chetham monovalent ions
 #       + Li/Merz highly charged ions (+2 to +4, 12-6 normal usage set)
-#
+# 
 addAtomTypes {
 	{ "F-"   "F" "sp3" }
 	{ "Cl-"  "Cl" "sp3" }
@@ -75,3 +75,4 @@ WAT = T4E
 loadAmberParams frcmod.tip4pew
 loadAmberParams frcmod.ionsjc_tip4pew
 loadAmberParams frcmod.ions234lm_126_tip4pew
+

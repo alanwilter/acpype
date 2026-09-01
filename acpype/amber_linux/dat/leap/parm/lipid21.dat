@@ -40,7 +40,7 @@ cB-cB    589.700   1.324
 cB-cD    328.300   1.508
 cB-cA    328.300   1.508
 cB-hB    344.300   1.087
-cA-cC    328.300   1.508
+cA-cC    328.300   1.508 
 cC-oO    648.000   1.214
 hN-nA    369.000   1.033
 cA-oH    314.100   1.426
@@ -67,13 +67,13 @@ cA-cB-cA     62.700  116.520
 cA-cB-hB     45.660  117.300
 cB-cA-hA     47.030  110.490
 oS-cC-oC     75.930  123.330
-oP-pA-oP    140.000  119.900  from O2-P -O2
+oP-pA-oP    140.000  119.900  from O2-P -O2 
 cA-nA-cA     62.840  110.640
 cA-cA-nA     64.450  114.320
-oT-pA-oP    100.000  108.230  from O2-P -OS
+oT-pA-oP    100.000  108.230  from O2-P -OS 
 oT-cA-cA     67.780  108.420
-pA-oT-cA    100.000  120.500  from CT-OS-P
-oT-pA-oT     90.000  102.600  from OS-P -OS
+pA-oT-cA    100.000  120.500  from CT-OS-P 
+oT-pA-oT     90.000  102.600  from OS-P -OS 
 cA-cA-oS     67.780  108.420
 cA-oS-cC     63.630  115.140
 hL-cD-cC     47.200  109.680
@@ -216,14 +216,14 @@ cB-cB-cD-hL    1    0.380  180.000  -3.0    SCEE=1.2 SCNB=2.0
 cB-cB-cD-hL    1    1.150    0.000   1.0    SCEE=1.2 SCNB=2.0
 hB-cB-cB-hB    1    6.650  180.000   2.0    SCEE=1.2 SCNB=2.0
 cC-cA-nA-hN    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
-nA-cA-cC-oO    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
+nA-cA-cC-oO    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0 
 hN-nA-cA-hX    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
 hX-cA-cC-oO    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
 cC-cA-cA-hE    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
 cA-cA-nA-hN    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
 cA-cA-cC-oO    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
 cC-cA-cA-oT    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
-hE-cA-oH-hO    1    0.500    0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-oH-hO    1    0.500    0.000   3.0    SCEE=1.2 SCNB=2.0 
 cA-cA-oH-hO    1    0.160    0.000  -3.0    SCEE=1.2 SCNB=2.0
 cA-cA-oH-hO    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
 hE-cA-cA-oH    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0
@@ -232,7 +232,7 @@ cA-cA-cA-oH    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
 oH-cA-cA-oT    1    0.144    0.000  -3.0    SCEE=1.2 SCNB=2.0
 oH-cA-cA-oT    1    1.175    0.000   2.0    SCEE=1.2 SCNB=2.0
 oH-cA-cA-oH    1    0.144    0.000  -3.0    SCEE=1.2 SCNB=2.0
-oH-cA-cA-oH    1    1.175    0.000   2.0    SCEE=1.2 SCNB=2.0
+oH-cA-cA-oH    1    1.175    0.000   2.0    SCEE=1.2 SCNB=2.0 
 cA-oT-pA-oH    1    0.250    0.000  -3.0    SCEE=1.2 SCNB=2.0
 cA-oT-pA-oH    1    1.200    0.000   2.0    SCEE=1.2 SCNB=2.0
 hO-oH-pA-oT    1    0.5333   0.000   3.0    SCEE=1.2 SCNB=2.0
@@ -278,18 +278,18 @@ cB-cA-cA-hE    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
 cA-cA-nN-cC    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
 cA-cA-nN-hN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
 cA-nN-cC-cD    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0
-cA-nN-cC-oC    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0
+cA-nN-cC-oC    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0 
 cB-cA-cA-nN    1    2.400    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
 cB-cA-cA-nN    1    1.300  180.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
 cB-cA-cA-nN    1    0.400   60.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
-cC-nN-cA-hE    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
-cD-cC-nN-hN    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0
+cC-nN-cA-hE    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0 
+cD-cC-nN-hN    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0 
 cD-cD-cC-nN    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
-hE-cA-cA-nN    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
-hE-cA-nN-hN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
-hL-cD-cC-nN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
-hN-nN-cC-oC    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0
-nN-cA-cA-oH    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-nN    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0 
+hE-cA-nN-hN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0 
+hL-cD-cC-nN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0 
+hN-nN-cC-oC    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0 
+nN-cA-cA-oH    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0 
 nN-cA-cA-oT    1    0.000    0.000   3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
 cB-cA-oH-hO    1    0.160    0.000  -3.0    SCEE=1.2 SCNB=2.0
 cB-cA-oH-hO    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
@@ -321,12 +321,12 @@ MOD4      RE
   cC    1.9080   0.0860
   oC    1.6612   0.2100
   oS    1.6837   0.1700
-  oP    1.6612   0.2100
-  oT    1.6837   0.1700
+  oP    1.6612   0.2100 
+  oT    1.6837   0.1700 
   oO    1.6612   0.2100
-  oH    1.7210   0.2104
+  oH    1.7210   0.2104 
   hA    1.4870   0.0157
-  hB    1.2500   0.0070 Lipid14
+  hB    1.2500   0.0070 Lipid14 
   hL    1.4600   0.0100 Lipid14
   hE    1.3870   0.0157
   hX    1.1000   0.0157
@@ -335,7 +335,7 @@ MOD4      RE
 
 ###############################################################################
 
-AMBER Lipid21 v1.0 C. J. Dickson, R.C. Walker, I.R. Gould.
+AMBER Lipid21 v1.0 C. J. Dickson, R.C. Walker, I.R. Gould. 
 
 ** Unless otherwise stated, origin parameters are GAFF v1.7. **
 
@@ -356,3 +356,4 @@ Notes
 - All parameters must have a version number and reference where the parameter came from in parentheses.
 
 ###############################################################################
+

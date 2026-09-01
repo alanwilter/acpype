@@ -73,4 +73,4 @@ Os  76   1.28
 Ir  77   1.37
 Bi  83   1.46
 Rn  86   1.45
-// for metallic elements added on 12-8-2018: empirical formula is r * 0.754974 -0.182217, r2=0.8566
+// for metallic elements added on 12-8-2018: empirical formula is r * 0.754974 -0.182217, r2=0.8566 

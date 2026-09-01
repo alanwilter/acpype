@@ -1,4 +1,9 @@
-Steinbrecher-Latzer-Case Phosphate Oxygen parameters (JCTC, 8, 4405-12, 2012)
+#       Uses ff99bsc0_chiOL3_LJbb for RNA
+#               (ff99): Wang et al. J. Comp. Chem. 21: 1049, 2000
+#               (bsc0): Perez et al. Biophys J. 92: 3817, 2007
+#               (chiOL3): Zgarbova et al. JCTC 7: 2886, 2011
+#               (LJbb): Steinbrecher et al. JCTC 8:4405, 2012
+#                Reference: Bergonzo and Cheatham III, JCTC 11:3969, 2015
 
 MASS
    O2 16.00         0.434               carboxyl and phosphate group oxygen

@@ -21,7 +21,7 @@ Sn2+ 118.71
 Pb2+ 207.2
 Eu2+ 151.96
 Sr2+ 87.62
-Sm2+ 150.36
+Sm2+ 150.36 
 Ba2+ 137.33
 Ra2+ 226.03
 Al3+ 26.98
@@ -98,3 +98,4 @@ Ce4+  1.689  0.13084945    IOD set for SPC\E water from Li et al., JPCB, 2015, 1
 U4+   1.689  0.13084945    IOD set for SPC\E water from Li et al., JPCB, 2015, 119, 883
 Pu4+  1.666  0.11617738    IOD set for SPC\E water from Li et al., JPCB, 2015, 119, 883
 Th4+  1.713  0.14710519    IOD set for SPC\E water from Li et al., JPCB, 2015, 119, 883
+

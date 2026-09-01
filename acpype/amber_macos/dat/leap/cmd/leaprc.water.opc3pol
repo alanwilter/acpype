@@ -1,7 +1,7 @@
 #
 #  Load OPC3-pol water model and ions for OPC + Li/Merz ion parameters
 #  (-1 to +4, 12-6 normal usage set)
-#
+# 
 addAtomTypes {
 	{ "F-"   "F" "sp3" }
 	{ "Cl-"  "Cl" "sp3" }
@@ -74,3 +74,4 @@ HOH = O3P
 WAT = O3P
 loadAmberParams frcmod.opc3pol
 loadAmberParams frcmod.ionslm_126_opc
+

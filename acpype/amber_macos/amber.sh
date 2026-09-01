@@ -1,7 +1,7 @@
 # Source this script to add the variables necessary to use Amber to your shell.
 # This script must be located in the Amber root folder!
 
-# Amber was configured on 2023-10-08 at 18:58:13
+# Amber was configured on 2026-07-15 at 02:22:31
 
 # determine file path of this script (credit http://unix.stackexchange.com/questions/96203/find-location-of-sourced-shell-script)
 if [ -n "$BASH_SOURCE" ]; then
@@ -22,7 +22,7 @@ export AMBERHOME=$(cd "$(dirname "$this_script")"; pwd)
 export PATH="$AMBERHOME/bin:$PATH"
 
 # Add Amber lib folder to LD_LIBRARY_PATH (if your platform supports it)
-# Note that LD_LIBRARY_PATH is only necessary to help Amber's Python programs find their dynamic libraries,
+# Note that LD_LIBRARY_PATH is only necessary to help Amber's Python programs find their dynamic libraries, 
 # unless Amber has been moved from where it was installed.
 if [ 1 = 1 ]; then
 	if [ -z "$DYLD_FALLBACK_LIBRARY_PATH" ]; then
@@ -44,9 +44,9 @@ fi
 # Add location of Amber Python modules to default Python search path (if your platform supports it)
 if [ 1 = 1 ]; then
 	if [ -z "$PYTHONPATH" ]; then
-		export PYTHONPATH="$AMBERHOME/lib/python3.11/site-packages"
+		export PYTHONPATH="$AMBERHOME/lib/python3.14/site-packages"
 	else
-		export PYTHONPATH="$AMBERHOME/lib/python3.11/site-packages:$PYTHONPATH"
+		export PYTHONPATH="$AMBERHOME/lib/python3.14/site-packages:$PYTHONPATH"
 	fi
 fi
 

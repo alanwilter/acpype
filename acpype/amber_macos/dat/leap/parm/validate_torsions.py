@@ -4,12 +4,12 @@ will highlight any specific torsions that need additional terms to explicitly
 override generic torsions
 """
 import os
+import parmed as pmd
 import sys
 
-import parmed as pmd
-
 if len(sys.argv) < 2:
-    sys.exit("%s <param_file> [<param_file> [<param_file> ...]]" % os.path.split(sys.argv[0])[1])
+    sys.exit('%s <param_file> [<param_file> [<param_file> ...]]' %
+             os.path.split(sys.argv[0])[1])
 
 params = pmd.amber.AmberParameterSet(sys.argv[1:])
 
@@ -21,7 +21,7 @@ specifics = dict()
 specific_type_ids = set()
 
 for key, dihtype in params.dihedral_types.items():
-    if key[0] == "X" and key[3] == "X":
+    if key[0] == 'X' and key[3] == 'X':
         if id(dihtype) in generic_type_ids:
             continue
         generics[(key[1], key[2])] = generics[(key[2], key[1])] = dihtype
@@ -33,7 +33,8 @@ for key, dihtype in params.dihedral_types.items():
         specific_type_ids.add(id(dihtype))
 
 # Now we have a separation of specifics and generics
-print("Found %d generic torsions and %d specific torsions" % (len(generic_type_ids), len(specific_type_ids)))
+print('Found %d generic torsions and %d specific torsions' %
+        (len(generic_type_ids), len(specific_type_ids)))
 
 for specific_key, dihtype in specifics.items():
     # Look through all generic terms and see if there are any generics that
@@ -47,13 +48,7 @@ for specific_key, dihtype in specifics.items():
     speper = {int(x.per) for x in dihtype}
     diff = genper - speper
     if len(diff) > 0:
-        print(
-            "%-2s-%-2s-%-2s-%-2s is missing overriding periodicities %s"
-            % (
-                specific_key[0],
-                specific_key[1],
-                specific_key[2],
-                specific_key[3],
-                ", ".join(str(x) for x in sorted(diff)),
-            )
+        print('%-2s-%-2s-%-2s-%-2s is missing overriding periodicities %s' %
+                (specific_key[0], specific_key[1], specific_key[2],
+                    specific_key[3], ', '.join(str(x) for x in sorted(diff)))
         )

@@ -1,95 +1,96 @@
 logFile leap.log
-# ----- NOTE: this is designed for PDB format 3!
-#       Uses ff99bsc0_chiOL3 for RNA
-#       	(ff99): Wang et al. J. Comp. Chem. 21: 1049, 2000
-#       	(bsc0): Perez et al. Biophys J. 92: 3817, 2007
-#       	(chiOL3): Zgarbova et al. JCTC 7: 2886, 2011
-#           (note: all of the above are in parm10.dat, loaded below)
 #
-#	load atom type hybridizations
+#       Uses ff99bsc0_chiOL3_LJbb for RNA
+#               (ff99): Wang et al. J. Comp. Chem. 21: 1049, 2000
+#               (bsc0): Perez et al. Biophys J. 92: 3817, 2007
+#               (chiOL3): Zgarbova et al. JCTC 7: 2886, 2011
+#               (LJbb): Steinbrecher et al. JCTC 8:4405, 2012
+#                Reference: Bergonzo and Cheatham III, JCTC 11:3969, 2015
+#
+#    load atom type hybridizations
 #
 addAtomTypes {
-	{ "H"   "H" "sp3" }
-	{ "HO"  "H" "sp3" }
-	{ "HS"  "H" "sp3" }
-	{ "H1"  "H" "sp3" }
-	{ "H2"  "H" "sp3" }
-	{ "H3"  "H" "sp3" }
-	{ "H4"  "H" "sp3" }
-	{ "H5"  "H" "sp3" }
-	{ "HW"  "H" "sp3" }
-	{ "HC"  "H" "sp3" }
-	{ "HA"  "H" "sp3" }
-	{ "HP"  "H" "sp3" }
-	{ "HZ"  "H" "sp3" }
-	{ "OH"  "O" "sp3" }
-	{ "OS"  "O" "sp3" }
-        { "OR"  "O" "sp3" }
-	{ "O"   "O" "sp2" }
-	{ "O2"  "O" "sp2" }
-	{ "OP"  "O" "sp2" }
-	{ "OW"  "O" "sp3" }
-	{ "CT"  "C" "sp3" }
-	{ "CX"  "C" "sp3" }
-	{ "CS"  "C" "sp2" }
-	{ "C"   "C" "sp2" }
-	{ "C*"  "C" "sp2" }
-	{ "CA"  "C" "sp2" }
-	{ "CB"  "C" "sp2" }
-	{ "CC"  "C" "sp2" }
-	{ "CN"  "C" "sp2" }
-	{ "CM"  "C" "sp2" }
-	{ "CK"  "C" "sp2" }
-	{ "CQ"  "C" "sp2" }
-	{ "CD"  "C" "sp2" }
-	{ "C5"  "C" "sp2" }
-	{ "C4"  "C" "sp2" }
-	{ "CP"  "C" "sp2" }
-	{ "CI"  "C" "sp3" }
-	{ "CW"  "C" "sp2" }
-	{ "CV"  "C" "sp2" }
-	{ "CR"  "C" "sp2" }
-	{ "CY"  "C" "sp2" }
-	{ "C0"  "Ca" "sp3" }
-	{ "MG"  "Mg" "sp3" }
-	{ "N"   "N" "sp2" }
-	{ "NA"  "N" "sp2" }
-	{ "N2"  "N" "sp2" }
-	{ "N*"  "N" "sp2" }
-	{ "NB"  "N" "sp2" }
-	{ "NC"  "N" "sp2" }
-	{ "NT"  "N" "sp3" }
-	{ "NY"  "N" "sp2" }
-	{ "N3"  "N" "sp3" }
-	{ "S"   "S" "sp3" }
-	{ "SH"  "S" "sp3" }
-	{ "P"   "P" "sp3" }
-	{ "LP"  ""  "sp3" }
-	{ "EP"  ""  "sp3" }
-	{ "F"   "F" "sp3" }
-	{ "Cl"  "Cl" "sp3" }
-	{ "Br"  "Br" "sp3" }
-	{ "I"   "I"  "sp3" }
+    { "H"   "H" "sp3" }
+    { "HO"  "H" "sp3" }
+    { "HS"  "H" "sp3" }
+    { "H1"  "H" "sp3" }
+    { "H2"  "H" "sp3" }
+    { "H3"  "H" "sp3" }
+    { "H4"  "H" "sp3" }
+    { "H5"  "H" "sp3" }
+    { "HW"  "H" "sp3" }
+    { "HC"  "H" "sp3" }
+    { "HA"  "H" "sp3" }
+    { "HP"  "H" "sp3" }
+    { "HZ"  "H" "sp3" }
+    { "OH"  "O" "sp3" }
+    { "OS"  "O" "sp3" }
+    { "OR"  "O" "sp3" }
+    { "O"   "O" "sp2" }
+    { "O2"  "O" "sp2" }
+    { "OP"  "O" "sp2" }
+    { "OW"  "O" "sp3" }
+    { "CT"  "C" "sp3" }
+    { "CX"  "C" "sp3" }
+    { "CS"  "C" "sp2" }
+    { "C"   "C" "sp2" }
+    { "C*"  "C" "sp2" }
+    { "CA"  "C" "sp2" }
+    { "CB"  "C" "sp2" }
+    { "CC"  "C" "sp2" }
+    { "CN"  "C" "sp2" }
+    { "CM"  "C" "sp2" }
+    { "CK"  "C" "sp2" }
+    { "CQ"  "C" "sp2" }
+    { "CD"  "C" "sp2" }
+    { "C5"  "C" "sp2" }
+    { "C4"  "C" "sp2" }
+    { "CP"  "C" "sp2" }
+    { "CI"  "C" "sp3" }
+    { "CW"  "C" "sp2" }
+    { "CV"  "C" "sp2" }
+    { "CR"  "C" "sp2" }
+    { "CY"  "C" "sp2" }
+    { "C0"  "Ca" "sp3" }
+    { "MG"  "Mg" "sp3" }
+    { "N"   "N" "sp2" }
+    { "NA"  "N" "sp2" }
+    { "N2"  "N" "sp2" }
+    { "N*"  "N" "sp2" }
+    { "NB"  "N" "sp2" }
+    { "NC"  "N" "sp2" }
+    { "NT"  "N" "sp3" }
+    { "NY"  "N" "sp2" }
+    { "N3"  "N" "sp3" }
+    { "S"   "S" "sp3" }
+    { "SH"  "S" "sp3" }
+    { "P"   "P" "sp3" }
+    { "LP"  ""  "sp3" }
+    { "EP"  ""  "sp3" }
+    { "F"   "F" "sp3" }
+    { "Cl"  "Cl" "sp3" }
+    { "Br"  "Br" "sp3" }
+    { "I"   "I"  "sp3" }
 }
 #
-#	Load the main parameter set.
+#    Load the main parameter set.
 #
 parm10 = loadamberparams parm10.dat
 #
-#	Load main chain and terminating nucleic acids
+#    Load main chain and terminating nucleic acids
 #
 
 loadOff nucleic12.LJbb-RNA.lib
 loadOff terminalphos.LJbb-RNA.lib
 
 #
-#	Define the PDB name map for the nucleic acids
+#    Define the PDB name map for the nucleic acids
 #
 addPdbResMap {
-  { 0 "G" "G5"  } { 1 "G" "G3"  }
-  { 0 "A" "A5"  } { 1 "A" "A3"  }
-  { 0 "C" "C5"  } { 1 "C" "C3"  }
-  { 0 "U" "U5"  } { 1 "U" "U3"  }
+  { 0 "G" "G5"  } { 1 "G" "G3"  } 
+  { 0 "A" "A5"  } { 1 "A" "A3"  } 
+  { 0 "C" "C5"  } { 1 "C" "C3"  } 
+  { 0 "U" "U5"  } { 1 "U" "U3"  } 
 #  some old Amber residue names for RNA:
   { 0  "RA5" "A5" } { 1 "RA3" "A3"} {"RA" "A" }
   { 0  "RC5" "C5" } { 1 "RC3" "C3"} {"RC" "C" }

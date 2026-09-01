@@ -9,7 +9,7 @@ F-   19.00         0.320               fluorine
 Cl-  35.45         1.910               chlorine  (Applequist)
 Br-  79.90         2.880               bromine   (Applequist)
 I-   126.9         4.690               iodine    (Applequist)
-
+ 
 NONBON
   Li+      0.791     0.3367344
   Na+      1.212     0.3526418
@@ -20,3 +20,4 @@ NONBON
   Cl-      2.711     0.0127850
   Br-      2.751     0.0269586
   I-       2.919     0.0427845
+
