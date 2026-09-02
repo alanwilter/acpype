@@ -81,3 +81,40 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release upload "${GITHUB_REF_NAME}" dist/*.whl --clobber
+
+  docker:
+    # Runs after PyPI so a release that failed to publish does not leave a Docker
+    # image behind. Docker Hub has no OIDC equivalent, so this one needs secrets.
+    needs: [verify, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment:
+      name: dockerhub
+      url: https://hub.docker.com/r/acpype/acpype
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          # The vendored AmberTools is linux x86_64 only, so there is no point
+          # building other architectures.
+          platforms: linux/amd64
+          push: true
+          tags: |
+            acpype/acpype:latest
+            acpype/acpype:${{ github.ref_name }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

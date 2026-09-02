@@ -177,12 +177,22 @@ If using `VSCode`:
 
 ## Releasing
 
-Publishing to PyPI happens in CI: `.github/workflows/release.yml` fires when a GitHub
-Release is published, re-runs the whole check suite, and uploads via PyPI Trusted
-Publishing (OIDC, no stored token). It has no manual trigger on purpose -- the `pypi`
-deployment environment only accepts release tags, so a release is the only path to
-PyPI. `./release.sh -p` remains for publishing by hand, and `-d` builds and pushes the
-Docker images.
+Releasing happens in CI. `.github/workflows/release.yml` fires when a GitHub Release
+is published and, in order:
+
+1. re-runs the whole check suite (`verify`),
+2. builds the distributions and uploads them to PyPI via Trusted Publishing
+   (OIDC, no stored token), then attaches the wheels to the Release,
+3. builds the Docker image and pushes `acpype/acpype:latest` and
+   `acpype/acpype:<tag>` to Docker Hub.
+
+Docker Hub has no OIDC equivalent, so that last step needs two repository secrets,
+`DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN`, and a `dockerhub` deployment environment.
+It runs after PyPI, so a release that failed to publish does not leave an image behind.
+
+There is no manual trigger on purpose: the `pypi` environment only accepts release
+tags, so publishing a Release is the only path to PyPI. `./release.sh` remains as a
+by-hand fallback (`-p` for PyPI, `-d` for Docker, `-a` for both).
 
 The PyPI step calls `scripts/build_dists.py`, which produces **one wheel per
 platform** rather than a single universal one. A combined wheel carries both vendored
