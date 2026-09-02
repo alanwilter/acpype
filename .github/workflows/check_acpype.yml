@@ -13,18 +13,29 @@ on:
       - "pyproject.toml"
       - "uv.lock"
       - ".github/workflows/check_acpype.yml"
-  # Lets the suite be run against any branch from the Actions tab, without a PR.
+  # Lets the suite be run against any branch from the Actions tab, without a PR,
+  # and doubles as the recovery path for publishing a tag that already exists.
   workflow_dispatch:
+    inputs:
+      publish_tag:
+        description: "Publish this existing tag instead of running the suite, e.g. 2026.9.2"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  # Only ever cancel superseded PR runs. Releases now happen inside this workflow, so
+  # cancelling a main or dispatch run could kill it midway through a PyPI upload.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   check-test:
+    # A publish-only dispatch targets a tag that already passed the suite on main.
+    if: inputs.publish_tag == ''
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -119,7 +130,7 @@ jobs:
         # stamps the source at commit time using the *local* date while this runner is
         # on UTC, so recomputing it here disagrees whenever a commit lands near
         # midnight. pyproject is the authority because it is what the wheel is built
-        # from; publish.yml then checks acpype.__version__ against the tag, which
+        # from; publish-pypi then checks acpype.__version__ against the tag, which
         # catches the two files drifting apart.
         run: |
           version=$(python3 -c 'import tomllib; print(tomllib.load(open("pyproject.toml","rb"))["project"]["version"])')
@@ -154,18 +165,116 @@ jobs:
           draft: false
           prerelease: false
 
-  publish:
-    # A Release created above by GITHUB_TOKEN raises no event that can start
-    # release.yml, so publishing has to happen here, in the same run.
+  publish-pypi:
+    # Inlined rather than kept in a reusable workflow on purpose. PyPI authenticates
+    # the OIDC token against `job_workflow_ref` but verifies the PEP 740 attestation
+    # against the certificate's Build Config URI, which always names the *entry-point*
+    # workflow. Behind a `workflow_call` those two claims name different files, so one
+    # check or the other must fail. Publishing from here keeps them identical.
+    #
+    # The trusted publisher on PyPI is therefore check_acpype.yml + environment pypi.
     needs: [release]
     if: >-
-      github.event_name == 'push'
-      && github.ref == 'refs/heads/main'
-      && contains(github.event.head_commit.message, 'new_release')
-    uses: ./.github/workflows/publish.yml
-    with:
-      tag: ${{ needs.release.outputs.tag }}
+      always()
+      && (
+        (
+          github.event_name == 'push'
+          && needs.release.result == 'success'
+          && github.ref == 'refs/heads/main'
+          && contains(github.event.head_commit.message, 'new_release')
+        )
+        || (github.event_name == 'workflow_dispatch' && inputs.publish_tag != '')
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: pypi
+      url: https://pypi.org/p/acpype
     permissions:
+      # contents for the checkout and the Release upload, id-token for OIDC.
       contents: write
       id-token: write
-    secrets: inherit
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - name: Resolve the tag to publish
+        id: tag
+        run: echo "tag=${{ inputs.publish_tag || needs.release.outputs.tag }}" >> $GITHUB_OUTPUT
+
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.tag.outputs.tag }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          # Version comes from `required-version` in pyproject.toml.
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install project
+        run: uv sync --locked
+
+      - name: Check the version matches the tag
+        run: |
+          version=$(uv run python -c "import acpype; print(acpype.__version__)")
+          echo "package version: ${version}   tag: ${{ steps.tag.outputs.tag }}"
+          if [ "${version}" != "${{ steps.tag.outputs.tag }}" ]; then
+            echo "::error::package version ${version} does not match tag ${{ steps.tag.outputs.tag }}"
+            exit 1
+          fi
+
+      - name: Build the distributions
+        # Two platform wheels plus a slim sdist: a combined wheel is ~129 MB and a full
+        # sdist ~121 MB, both over PyPI's 100 MB per-file limit. The script fails if
+        # anything creeps back over it.
+        run: uv run python scripts/build_dists.py --out-dir dist
+
+      - name: List distributions
+        run: ls -la dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Attach the distributions to the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ steps.tag.outputs.tag }}" dist/* --clobber
+
+  publish-docker:
+    # After PyPI, so a release that failed to publish leaves no image behind.
+    needs: [publish-pypi]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment:
+      name: dockerhub
+      url: https://hub.docker.com/r/acpype/acpype
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.publish-pypi.outputs.tag }}
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Log in to Docker Hub
+        # Docker Hub has no OIDC equivalent, so this one needs stored credentials.
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          # The vendored AmberTools is linux x86_64 only.
+          platforms: linux/amd64
+          push: true
+          tags: |
+            acpype/acpype:latest
+            acpype/acpype:${{ needs.publish-pypi.outputs.tag }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
