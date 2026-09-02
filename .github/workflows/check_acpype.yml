@@ -109,11 +109,26 @@ jobs:
     permissions:
       contents: write
     outputs:
-      tag: ${{ steps.vdate.outputs.adate }}
+      tag: ${{ steps.version.outputs.tag }}
     steps:
-      - name: Get current date
-        id: vdate
-        run: echo "adate=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v7
+
+      - name: Read the version to release
+        id: version
+        # The tag comes from the committed version, never from `date`. ver_today.sh
+        # stamps the source at commit time using the *local* date while this runner is
+        # on UTC, so recomputing it here disagrees whenever a commit lands near
+        # midnight. pyproject is the authority because it is what the wheel is built
+        # from; publish.yml then checks acpype.__version__ against the tag, which
+        # catches the two files drifting apart.
+        run: |
+          version=$(python3 -c 'import tomllib; print(tomllib.load(open("pyproject.toml","rb"))["project"]["version"])')
+          echo "version: ${version}"
+          if ! printf '%s' "${version}" | grep -qE '^[0-9]{4}\.[0-9]{1,2}\.[0-9]{1,2}$'; then
+            echo "::error::version ${version} is not a YYYY.M.D release version"
+            exit 1
+          fi
+          echo "tag=${version}" >> $GITHUB_OUTPUT
 
       - name: Create tag
         # will only create a new tag if the commit message contains 'new_tag' on main
@@ -124,7 +139,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/${{ steps.vdate.outputs.adate }}",
+              ref: "refs/tags/${{ steps.version.outputs.tag }}",
               sha: context.sha
             })
 
@@ -134,8 +149,8 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: ${{ steps.vdate.outputs.adate }}
-          name: Release ${{ steps.vdate.outputs.adate }}
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
           draft: false
           prerelease: false
 
