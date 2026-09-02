@@ -1,5 +1,4 @@
-"""
-Script to get energies from AMBER and GROMACS
+"""Script to get energies from AMBER and GROMACS
 for a given system and compare them
 """
 
@@ -12,7 +11,7 @@ from acpype.utils import _getoutput
 
 
 def error(v1, v2):
-    """percentage relative error"""
+    """Percentage relative error"""
     if v1 == v2:
         return 0
     return abs(v1 - v2) / max(abs(v1), abs(v2)) * 100
@@ -21,7 +20,13 @@ def error(v1, v2):
 ff = 4.1840
 
 vv = ["ANGLE", "BOND", "DIHED", "EPTOT", "VDW14", "VDW", "QQ14", "QQ"]
-norm_gmx = {"POTENTIAL": "EPTOT", "LJ-14": "VDW14", "LJ_SR": "VDW", "COULOMB-14": "QQ14", "COULOMB_SR": "QQ"}
+norm_gmx = {
+    "POTENTIAL": "EPTOT",
+    "LJ-14": "VDW14",
+    "LJ_SR": "VDW",
+    "COULOMB-14": "QQ14",
+    "COULOMB_SR": "QQ",
+}
 norm_amb = {"1-4_NB": "VDW14", "VDWAALS": "VDW", "1-4_EEL": "QQ14", "EELEC": "QQ"}
 
 (e_amb, e_gmx) = sys.argv[1:]
@@ -32,7 +37,11 @@ cmd_gmx = f"echo 1 2 3 4 5 6 7 8 9 | gmx energy -f {e_gmx}.edr"
 amb_out = {
     y[0].upper(): float(y[1]) * ff
     for y in [
-        x.split("=") for x in re.sub(r"\s+=\s+", "=", _getoutput(cmd_amb)).strip().replace("1-4 ", "1-4_").split()
+        x.split("=")
+        for x in re.sub(r"\s+=\s+", "=", _getoutput(cmd_amb))
+        .strip()
+        .replace("1-4 ", "1-4_")
+        .split()
     ]
 }
 
@@ -52,7 +61,11 @@ gmx_out = {
         .splitlines()
     ]
 }
-gmx_out["DIHED"] = gmx_out.get("PROPER_DIH", 0) + gmx_out.get("IMPROPER_DIH", 0) + gmx_out.get("RYCKAERT-BELL.", 0)
+gmx_out["DIHED"] = (
+    gmx_out.get("PROPER_DIH", 0)
+    + gmx_out.get("IMPROPER_DIH", 0)
+    + gmx_out.get("RYCKAERT-BELL.", 0)
+)
 for k in list(gmx_out.keys())[:]:
     v = norm_gmx.get(k)
     if v:

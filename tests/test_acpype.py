@@ -42,7 +42,9 @@ def test_pdb(janitor, capsys):
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
     # check gaff2 and force
-    molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True)
+    molecule = ACTopol(
+        "FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True
+    )
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule.molTopol is not None
@@ -69,7 +71,9 @@ def test_pdb(janitor, capsys):
     [(False, "amber", 189), (True, "amber2", 197)],
 )
 def test_amber(janitor, force, at, ndih):
-    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force)
+    molecule = ACTopol(
+        "FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force
+    )
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule.molTopol is not None
@@ -195,7 +199,10 @@ def test_charge_user(janitor):
     ("argv", "msg"),
     [
         (["-i", "cccc"], "Total time of execution:"),
-        (["-x", "Base.inpcrd", "-p", "Base.prmtop", "-b", "vir_temp"], "Total time of execution:"),
+        (
+            ["-x", "Base.inpcrd", "-p", "Base.prmtop", "-b", "vir_temp"],
+            "Total time of execution:",
+        ),
         (["-wi", "cccc", "-b", "vir_temp"], ""),
         (
             ["-i", "wrong_res_set.pdb", "-b", "vir_temp"],
@@ -241,20 +248,60 @@ def test_inputs(janitor, capsys, argv, msg):
         (None, 2, " error: "),  # NOTE: None -> sys.argv from pytest
         (["-v"], 0, version),
         ([], 2, "error: missing input files"),
-        (["-d", "-w"], 2, "error: argument -w/--verboseless: not allowed with argument -d/--debug"),
-        (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
-        (["-zx", "ILDN.inpcrd", "-p", "ILDN.prmtop"], 19, "Likely trying to convert ILDN to RB"),
-        (["-x", "glycam_exe.inpcrd", "-p", "glycam_corrupt.prmtop"], 19, "Skipping non-existent attributes dihedral_p"),
-        (["-x", "glycam_exe.inpcrd", "-p", "glycam_empty.prmtop"], 19, "ERROR: ACPYPE FAILED: PRMTOP file empty?"),
-        (["-x", "glycam_empty.inpcrd", "-p", "glycam_exe.prmtop"], 19, "ERROR: ACPYPE FAILED: INPCRD file empty?"),
+        (
+            ["-d", "-w"],
+            2,
+            "error: argument -w/--verboseless: not allowed with argument -d/--debug",
+        ),
+        (
+            ["-di", "AAAx.mol2"],
+            19,
+            "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST",
+        ),
+        (
+            ["-zx", "ILDN.inpcrd", "-p", "ILDN.prmtop"],
+            19,
+            "Likely trying to convert ILDN to RB",
+        ),
+        (
+            ["-x", "glycam_exe.inpcrd", "-p", "glycam_corrupt.prmtop"],
+            19,
+            "Skipping non-existent attributes dihedral_p",
+        ),
+        (
+            ["-x", "glycam_exe.inpcrd", "-p", "glycam_empty.prmtop"],
+            19,
+            "ERROR: ACPYPE FAILED: PRMTOP file empty?",
+        ),
+        (
+            ["-x", "glycam_empty.inpcrd", "-p", "glycam_exe.prmtop"],
+            19,
+            "ERROR: ACPYPE FAILED: INPCRD file empty?",
+        ),
         (["-di", "cccccc", "-n", "-1", "-b", "vir_temp"], 19, "Fatal Error!"),
-        (["-di", " 123", "-b", "vir_temp"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
-        (["-i", "double_res.pdb", "-b", "vir_temp"], 19, "Only ONE Residue is allowed for ACPYPE to work"),
-        (["-i", "same_coord.pdb", "-b", "vir_temp"], 19, "Atoms with same coordinates in"),
+        (
+            ["-di", " 123", "-b", "vir_temp"],
+            19,
+            "ACPYPE FAILED: [Errno 2] No such file or directory",
+        ),
+        (
+            ["-i", "double_res.pdb", "-b", "vir_temp"],
+            19,
+            "Only ONE Residue is allowed for ACPYPE to work",
+        ),
+        (
+            ["-i", "same_coord.pdb", "-b", "vir_temp"],
+            19,
+            "Atoms with same coordinates in",
+        ),
         (["-i", "too_close.pdb", "-b", "vir_temp"], 19, "Atoms TOO close (<"),
         (["-i", "too_far.pdb", "-b", "vir_temp"], 19, "Atoms TOO scattered (>"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
-        (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
+        (
+            ["-di", " 123", "-u"],
+            2,
+            "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')",
+        ),
         (
             ["-di", "HEM.pdb", "-b", "vir_temp"],
             19,

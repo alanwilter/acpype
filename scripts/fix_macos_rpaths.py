@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-De-duplicate ``LC_RPATH`` load commands in the vendored macOS AmberTools binaries.
+"""De-duplicate ``LC_RPATH`` load commands in the vendored macOS AmberTools binaries.
 
 conda-forge's macOS builds of AmberTools -- and of the GCC runtime libraries they
 link against, notably ``libgfortran`` and ``libquadmath`` -- ship Mach-O files that
@@ -128,7 +127,11 @@ def fix_file(path: Path, dry_run: bool = False) -> list[str]:
             check=False,
         )
     # install_name_tool invalidates the signature; arm64 requires at least an ad-hoc one.
-    subprocess.run(["codesign", "--force", "--sign", "-", str(path)], capture_output=True, check=False)
+    subprocess.run(
+        ["codesign", "--force", "--sign", "-", str(path)],
+        capture_output=True,
+        check=False,
+    )
     return to_delete
 
 
@@ -141,13 +144,24 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         Process exit status.
     """
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("root", type=Path, nargs="?", default=Path("acpype/amber_macos"))
-    parser.add_argument("-n", "--dry-run", action="store_true", help="report changes without applying them")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "root", type=Path, nargs="?", default=Path("acpype/amber_macos")
+    )
+    parser.add_argument(
+        "-n",
+        "--dry-run",
+        action="store_true",
+        help="report changes without applying them",
+    )
     args = parser.parse_args(argv)
 
     if sys.platform != "darwin":
-        parser.error("this fixup only applies to the macOS binaries and must run on macOS")
+        parser.error(
+            "this fixup only applies to the macOS binaries and must run on macOS"
+        )
     if not args.root.is_dir():
         parser.error(f"no such directory: {args.root}")
 
@@ -161,7 +175,9 @@ def main(argv: list[str] | None = None) -> int:
         if removed:
             fixed += 1
             verb = "would fix" if args.dry_run else "fixed"
-            print(f"  {verb} {path.relative_to(args.root)}: removed {' '.join(removed)}")
+            print(
+                f"  {verb} {path.relative_to(args.root)}: removed {' '.join(removed)}"
+            )
 
     print(f"scanned {scanned} Mach-O files, de-duplicated rpaths in {fixed}")
     return 0

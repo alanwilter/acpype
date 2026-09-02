@@ -12,7 +12,7 @@ def find_bin(abin):
 
 
 def checkOpenBabelVersion():
-    "check openbabel version"
+    """Check openbabel version"""
     import warnings
 
     from openbabel import openbabel as obl
@@ -22,28 +22,32 @@ def checkOpenBabelVersion():
 
 
 def dotproduct(aa, bb):
-    """scalar product"""
-    return sum((a * b) for a, b in zip(aa, bb))
+    """Scalar product"""
+    return sum((a * b) for a, b in zip(aa, bb, strict=False))
 
 
 def cross_product(a, b):
-    """cross product"""
-    c = [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+    """Cross product"""
+    c = [
+        a[1] * b[2] - a[2] * b[1],
+        a[2] * b[0] - a[0] * b[2],
+        a[0] * b[1] - a[1] * b[0],
+    ]
     return c
 
 
 def length(v):
-    """distance between 2 vectors"""
+    """Distance between 2 vectors"""
     return math.sqrt(dotproduct(v, v))
 
 
 def vec_sub(aa, bb):
-    """vector A - B"""
-    return [a - b for a, b in zip(aa, bb)]
+    """Vector A - B"""
+    return [a - b for a, b in zip(aa, bb, strict=False)]
 
 
 def imprDihAngle(a, b, c, d):
-    """calculate improper dihedral angle"""
+    """Calculate improper dihedral angle"""
     ba = vec_sub(a, b)
     bc = vec_sub(c, b)
     cb = vec_sub(b, c)
@@ -66,9 +70,7 @@ def distanceAA(c1, c2):
 
 
 def elapsedTime(seconds, add_s=False, separator=" "):
-    """
-    Takes an amount of seconds and turns it into a human-readable amount of time.
-    """
+    """Takes an amount of seconds and turns it into a human-readable amount of time."""
     suffixes = ["y", "w", "d", "h", "m", "s"]
     # the formatted time string to be returned
     atime = []
@@ -91,7 +93,9 @@ def elapsedTime(seconds, add_s=False, separator=" "):
         value = seconds // alength
         if value > 0:
             seconds = seconds % alength
-            atime.append(f"{value!s}{(suffix, (suffix, suffix + 's')[value > 1])[add_s]}")
+            atime.append(
+                f"{value!s}{(suffix, (suffix, suffix + 's')[value > 1])[add_s]}"
+            )
         if seconds < 1:
             break
 
@@ -99,7 +103,7 @@ def elapsedTime(seconds, add_s=False, separator=" "):
 
 
 def splitBlock(dat):
-    """split a amber parm dat file in blocks
+    """Split a amber parm dat file in blocks
     0 = mass, 1 = extra + bond, 2 = angle, 3 = dihedral, 4 = improp, 5 = hbond
     6 = equiv nbon, 7 = nbon, 8 = END, 9 = etc.
     """
@@ -143,7 +147,7 @@ def parseFrcmod(lista):
 
 
 def parmMerge(fdat1, fdat2, frcmod=False):
-    """merge two amber parm dat/frcmod files and save in /tmp"""
+    """Merge two amber parm dat/frcmod files and save in /tmp"""
     name1 = os.path.basename(fdat1).split(".dat")[0]
     if frcmod:
         name2 = os.path.basename(fdat2).split(".")[1]
@@ -159,7 +163,15 @@ def parmMerge(fdat1, fdat2, frcmod=False):
     dat1 = splitBlock(open(fdat1).readlines())
 
     if frcmod:
-        dHeads = {"MASS": 0, "BOND": 1, "ANGL": 2, "DIHE": 3, "IMPR": 4, "HBON": 5, "NONB": 7}
+        dHeads = {
+            "MASS": 0,
+            "BOND": 1,
+            "ANGL": 2,
+            "DIHE": 3,
+            "IMPR": 4,
+            "HBON": 5,
+            "NONB": 7,
+        }
         dat2 = parseFrcmod(open(fdat2).readlines())  # dict
         for kk in dat2:
             for parEntry in dat2[kk]:
@@ -176,7 +188,11 @@ def parmMerge(fdat1, fdat2, frcmod=False):
                 if idFirst is None:
                     idFirst = 0
                 for ll in rev:
-                    if dHeads[kk] in [0, 1, 7]:  # MASS has title in index 0 and so BOND, NONB
+                    if dHeads[kk] in [
+                        0,
+                        1,
+                        7,
+                    ]:  # MASS has title in index 0 and so BOND, NONB
                         dat1[dHeads[kk]].insert(idFirst + 1, ll)
                     else:
                         dat1[dHeads[kk]].insert(idFirst, ll)
@@ -239,7 +255,9 @@ def job_pids_family(jpid):
     dict_pids = {}
     pids = [apid]
     cmd = f"ps -A -o uid,pid,ppid|grep {os.getuid()}"
-    out = _getoutput(cmd).split("\n")  # getoutput("ps -A -o uid,pid,ppid|grep %i" % os.getuid()).split('\n')
+    out = _getoutput(cmd).split(
+        "\n"
+    )  # getoutput("ps -A -o uid,pid,ppid|grep %i" % os.getuid()).split('\n')
     for item in out:
         vec = item.split()
         dict_pids[vec[2]] = vec[1]
@@ -253,11 +271,12 @@ def job_pids_family(jpid):
 
 
 def _getoutput(cmd):
-    """
-    To simulate commands.getoutput
+    """To simulate commands.getoutput
     shell=True is necessary despite security issues
     """
-    out = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE).communicate()[0][:-1]
+    out = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE).communicate()[
+        0
+    ][:-1]
     return out.decode()
 
 

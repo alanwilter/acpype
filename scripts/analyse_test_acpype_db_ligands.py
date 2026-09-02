@@ -31,7 +31,11 @@ groupResults: list[list] = [
         "Dirs missing *.mol2 input files",
         [],
     ],
-    ["still running presumably", "Mols still running presumably", ["0 E, 0 W, ET , WT "]],
+    [
+        "still running presumably",
+        "Mols still running presumably",
+        ["0 E, 0 W, ET , WT "],
+    ],
     [
         "mols clean, no erros or warnings",
         "Mols clean",
@@ -96,7 +100,11 @@ groupResults: list[list] = [
     [
         "couldn't determine all parameters",
         "Mols have missing parameters",
-        ["0 E, 3 W, ET , WT _0_2_4", "0 E, 3 W, ET , WT _0_1_4", "0 E, 2 W, ET , WT _0_4"],
+        [
+            "0 E, 3 W, ET , WT _0_2_4",
+            "0 E, 3 W, ET , WT _0_1_4",
+            "0 E, 2 W, ET , WT _0_4",
+        ],
     ],
     [
         "missing parameters and atoms in close contact",
@@ -113,8 +121,16 @@ groupResults: list[list] = [
         "Mols have missing parameters, irregular bonds, maybe wrong atomtype and atoms in close contact",
         ["0 E, 5 W, ET , WT _0_4_5_6_7"],
     ],
-    ["no 'tmp', acpype did nothing at all", "Mols have no 'tmp'", ["1 E, 0 W, ET _7, WT "]],
-    ["atoms with same coordinates", "Mols have duplicated coordinates", ["1 E, 0 W, ET _1, WT "]],
+    [
+        "no 'tmp', acpype did nothing at all",
+        "Mols have no 'tmp'",
+        ["1 E, 0 W, ET _7, WT "],
+    ],
+    [
+        "atoms with same coordinates",
+        "Mols have duplicated coordinates",
+        ["1 E, 0 W, ET _1, WT "],
+    ],
     [
         "maybe wrong atomtype",
         "Mols with maybe wrong atomtype",
@@ -128,7 +144,11 @@ groupResults: list[list] = [
     [
         "maybe wrong atomtype and atoms in close contact",
         "Mols with maybe wrong atomtype and atoms in close contact",
-        ["0 E, 4 W, ET , WT _0_1_6_7", "0 E, 3 W, ET , WT _0_6_7", "0 E, 4 W, ET , WT _0_3_6_7"],
+        [
+            "0 E, 4 W, ET , WT _0_1_6_7",
+            "0 E, 3 W, ET , WT _0_6_7",
+            "0 E, 4 W, ET , WT _0_3_6_7",
+        ],
     ],
     [
         "irregular bonds, maybe wrong atomtype and atoms in close contact",
@@ -138,7 +158,11 @@ groupResults: list[list] = [
     [
         "guessCharge failed and atoms in close contact",
         "Mols have guessCharge failed and atoms in close contact",
-        ["1 E, 3 W, ET _0, WT _0_1_7", "1 E, 3 W, ET _0, WT _0_2_7", "1 E, 4 W, ET _0, WT _0_1_2_7"],
+        [
+            "1 E, 3 W, ET _0, WT _0_1_7",
+            "1 E, 3 W, ET _0, WT _0_2_7",
+            "1 E, 4 W, ET _0, WT _0_1_2_7",
+        ],
     ],
     [
         "guessCharge failed and missing parameters",
@@ -168,7 +192,11 @@ groupResults: list[list] = [
     [
         "guessCharge failed, missing parameters and maybe wrong atomtype",
         "Mols have guessCharge failed, missing parameters and maybe wrong atomtype",
-        ["1 E, 3 W, ET _0, WT _0_4_6", "1 E, 4 W, ET _0, WT _0_1_4_6", "1 E, 4 W, ET _0, WT _0_2_4_6"],
+        [
+            "1 E, 3 W, ET _0, WT _0_4_6",
+            "1 E, 4 W, ET _0, WT _0_1_4_6",
+            "1 E, 4 W, ET _0, WT _0_2_4_6",
+        ],
     ],
     [
         "guessCharge failed, irregular bonds and maybe wrong atomtype",
@@ -202,13 +230,21 @@ groupResults: list[list] = [
     ],
     ["atoms too close", "Mols have atoms too close", ["1 E, 0 W, ET _2, WT "]],
     ["atoms too alone", "Mols have atoms too alone", ["1 E, 0 W, ET _3, WT "]],
-    ["tleap failed", "Mols have tleap failed", ["3 E, 1 W, ET _4_5_6, WT _0", "3 E, 2 W, ET _4_5_6, WT _0_1"]],
+    [
+        "tleap failed",
+        "Mols have tleap failed",
+        ["3 E, 1 W, ET _4_5_6, WT _0", "3 E, 2 W, ET _4_5_6, WT _0_1"],
+    ],
     [
         "tleap failed, maybe wrong atomtype",
         "Mols have tleap failed and maybe wrong atomtype",
         ["3 E, 3 W, ET _4_5_6, WT _0_1_6", "3 E, 2 W, ET _4_5_6, WT _0_6"],
     ],
-    ["semi-QM timeout", "Mols have semi-QM timeout", ["1 E, 2 W, ET _9, WT _0_1", "1 E, 1 W, ET _9, WT _0"]],
+    [
+        "semi-QM timeout",
+        "Mols have semi-QM timeout",
+        ["1 E, 2 W, ET _9, WT _0_1", "1 E, 1 W, ET _9, WT _0"],
+    ],
     [
         "semi-QM timeout and maybe wrong atomtype",
         "Mols have semi-QM timeout and maybe wrong atomtype",
@@ -342,8 +378,7 @@ SCFfailedList = []
 
 
 def analyseFile(mol, structure, file):
-    """
-    mol = string molDir, e.g. 'Gnp'
+    """Mol = string molDir, e.g. 'Gnp'
     structure = string 'pdb' or 'ideal'
     file = string e.g. '10a/10a.none_neutral.pdb.out'
     returns e.g. 'pdb: 0 E, 3 W, ET , WT _0_1_7'
@@ -454,7 +489,9 @@ def analyseFile(mol, structure, file):
             # this excpetion should happen only if acpype early aborted for both outs
             # if mol not in `compareChargesOK.union(compareCharges)`:
             if mol not in repr(compareChargesOK) and mol not in repr(compareCharges):
-                print("!!!! Unable to compare. Failed to guess charge for", mol, structure)
+                print(
+                    "!!!! Unable to compare. Failed to guess charge for", mol, structure
+                )
 
     out = parseSummurisedLine(warnTypes, errorTypes)
     if out in mapResults:
@@ -543,8 +580,7 @@ def sortList(lista, typeMess):
 
 
 def printResults(lista, subHead, header=None):
-    """
-    print results as
+    """Print results as
     --------------------------------------------------------------------------------
 
     *** For results [1], [2], [3], totally empty dirs (NO mol2 input files for either PDB or IDEAL):
@@ -574,9 +610,18 @@ def printResults(lista, subHead, header=None):
     print(80 * "-")
     if header:
         print("\n*** For results [%i], [%i], [%i], %s:" % (id, id1, id2, header))
-    print("\n[%i] %s for both PDB and Ideal:\n%i\t %s" % (id, subHead, len(dList), str(dList)))
-    print("\n[%i] %s with PDB ONLY, besides [%i]:\n%i\t %s" % (id1, subHead, id, len(pList), str(pList)))
-    print("\n[%i] %s with IDEAL ONLY, besides [%i]:\n%i\t %s" % (id2, subHead, id, len(iList), str(iList)))
+    print(
+        "\n[%i] %s for both PDB and Ideal:\n%i\t %s"
+        % (id, subHead, len(dList), str(dList))
+    )
+    print(
+        "\n[%i] %s with PDB ONLY, besides [%i]:\n%i\t %s"
+        % (id1, subHead, id, len(pList), str(pList))
+    )
+    print(
+        "\n[%i] %s with IDEAL ONLY, besides [%i]:\n%i\t %s"
+        % (id2, subHead, id, len(iList), str(iList))
+    )
     pTotal = len(dList) + len(pList)
     iTotal = len(dList) + len(iList)
     total = pTotal + iTotal
@@ -591,10 +636,10 @@ def printResults(lista, subHead, header=None):
     return total
 
 
-def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "):
-    """
-    Takes an amount of seconds and turns it into a human-readable amount of time.
-    """
+def elapsedTime(
+    seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "
+):
+    """Takes an amount of seconds and turns it into a human-readable amount of time."""
     # the formatted time string to be returned
     if seconds == 0:
         return "0s"
@@ -618,7 +663,11 @@ def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, s
         value = seconds / length
         if value > 0:
             seconds = seconds % length
-            time.append("{}{}".format(str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
+            time.append(
+                "{}{}".format(
+                    str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]
+                )
+            )
         if seconds < 1:
             break
 
@@ -642,7 +691,8 @@ def convertStringTime2Seconds(stringTime):
 
 def locate(pattern, root=os.curdir):
     """Locate all files matching supplied filename pattern in and below
-    supplied root directory."""
+    supplied root directory.
+    """
     for path, _dirs, files in os.walk(os.path.abspath(root)):
         for filename in fnmatch.filter(files, pattern):
             yield os.path.join(path, filename)
@@ -771,7 +821,7 @@ jobsOK = []  # list of Mols that have at least a PDB or IDEAL clean: [[both],[pd
 totalTxt = ""
 for group in groupResults:
     header, subHead, dummy, lista = group
-    if "Mols clean" == subHead:
+    if subHead == "Mols clean":
         jobsOK = lista
     subTot = printResults(lista, subHead, header)
     if not subTot:
@@ -870,7 +920,9 @@ if SCFfailedList:
             molsOKinSCFfailedList.append(item)
     if molsOKinSCFfailedList:
         molsOKinSCFfailedList.sort()
-        print("\n>>>Mol Jobs whose sqm.out has 'No convergence in SCF' but finished OK<<<\n")
+        print(
+            "\n>>>Mol Jobs whose sqm.out has 'No convergence in SCF' but finished OK<<<\n"
+        )
         print(len(molsOKinSCFfailedList), molsOKinSCFfailedList)
 
 for item in listMolTime:
@@ -896,7 +948,10 @@ if listMolTime:
     print("Number of clean jobs:", nJobs)
     print(f"Longest job: Mol='{maxMolTime}', time= {elapsedTime(maxExecTime)}")
     print(f"Fatest job: Mol='{minMolTime}', time= {elapsedTime(minExecTime)}")
-    print("Average time of execution per clean job: %s" % elapsedTime(totalCleanExecTime / nJobs))
+    print(
+        "Average time of execution per clean job: %s"
+        % elapsedTime(totalCleanExecTime / nJobs)
+    )
 else:
     print("NO time stats available for clean jobs")
 
@@ -913,7 +968,10 @@ for item in list(execTime.items()):
         nGJobs += 1
 print("\nTotal number of jobs:", nGJobs)
 if nGJobs:
-    print("Global average time of execution per job: %s" % elapsedTime(totalGlobalExecTime / nGJobs))
+    print(
+        "Global average time of execution per job: %s"
+        % elapsedTime(totalGlobalExecTime / nGJobs)
+    )
 
 # mols with charge not 0
 # print WT3

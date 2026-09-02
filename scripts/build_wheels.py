@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Build one platform-specific wheel per supported OS.
+"""Build one platform-specific wheel per supported OS.
 
 ACPYPE vendors AmberTools for both Linux and macOS. A single ``py3-none-any`` wheel
 therefore carries both trees, which since AmberTools 26 comes to about 129 MB --
@@ -69,7 +68,9 @@ def build_universal(outdir: Path) -> Path:
     run(["uv", "build", "--wheel", "--out-dir", str(outdir)])
     wheels = sorted(outdir.glob("*-py3-none-any.whl"))
     if len(wheels) != 1:
-        raise SystemExit(f"expected one universal wheel in {outdir}, found {len(wheels)}")
+        raise SystemExit(
+            f"expected one universal wheel in {outdir}, found {len(wheels)}"
+        )
     return wheels[0]
 
 
@@ -124,7 +125,9 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         Process exit status.
     """
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     parser.add_argument("--out-dir", type=Path, default=Path("dist"))
     parser.add_argument(
         "--keep-universal",
@@ -135,7 +138,10 @@ def main(argv: list[str] | None = None) -> int:
 
     with tempfile.TemporaryDirectory() as staging:
         universal = build_universal(Path(staging))
-        built = [specialise(universal, tag, keep, args.out_dir) for tag, keep in TARGETS.items()]
+        built = [
+            specialise(universal, tag, keep, args.out_dir)
+            for tag, keep in TARGETS.items()
+        ]
         if args.keep_universal:
             shutil.copy2(universal, args.out_dir / universal.name)
 
@@ -147,7 +153,9 @@ def main(argv: list[str] | None = None) -> int:
         over = over or size > limit
         print(f"  {path.name}  {size / 1e6:.1f} MB{flag}")
     if over:
-        print("at least one wheel exceeds PyPI's 100 MB per-file limit", file=sys.stderr)
+        print(
+            "at least one wheel exceeds PyPI's 100 MB per-file limit", file=sys.stderr
+        )
         return 1
     return 0
 

@@ -43,7 +43,13 @@ def test_json_failed(janitor):
 
 
 def get_json():
-    json_output = acpype_api(inputFile="AAA.mol2", chargeType="gas", atomType="gaff2", debug=True, basename="AAA")
+    json_output = acpype_api(
+        inputFile="AAA.mol2",
+        chargeType="gas",
+        atomType="gaff2",
+        debug=True,
+        basename="AAA",
+    )
     return json.loads(json_output)
 
 

@@ -54,35 +54,152 @@ docs = [
 requires = ["uv_build>=0.9.0,<0.13.0"]
 build-backend = "uv_build"
 
-[tool.pytest.ini_options]
-addopts = "--durations=5"
+[tool.coverage.report]
+omit = [
+  "__main__.py",
+  # Vendored AmberTools ships a few Python helpers that ACPYPE never imports.
+  "acpype/amber_linux/*",
+  "acpype/amber_macos/*",
+]
+fail_under = 50  # minimum coverage required, but aim for 100% though
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "if typing.TYPE_CHECKING:",
+  "@overload",
+  "@typing.overload",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "raise NotImplementedError",
+  "\\.\\.\\.",
+  "no cov",
+  "if __name__ == .__main__.:",
+]
+
+[tool.pytest]
+addopts = [
+  "--cov-branch",
+  "--cov-report=term-missing:skip-covered",
+  "--cov-report=xml",
+  "--cov=acpype/",
+  "--cov=tests/",
+  "--dist=loadscope",
+  "--durations=5",
+  "-n",
+  "0"
+]
+filterwarnings = []
 testpaths = ["tests"]
 
 [tool.ruff]
 target-version = "py312"
-line-length = 120
-# `acpype/amber_*` is vendored AmberTools; it must never be linted or reformatted.
+# Vendored AmberTools and the retired CCPN bridge are upstream content, never ours to
+# lint or reformat.
 extend-exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy"]
 
+[tool.ruff.format]
+docstring-code-format = true
+
 [tool.ruff.lint]
-# Pinned explicitly rather than via extend-select: ruff's implicit default rule set
-# has grown substantially, and an explicit list keeps upgrades from silently
-# introducing hundreds of new findings. Broadening this is a deliberate, separate step.
-select = ["E4", "E7", "E9", "F", "UP", "RUF", "I"]
-# UP031 (printf-style formatting) flags ~150 sites, most of them inside the routines
-# that emit GROMACS/AMBER topology files. Rewriting those mechanically risks silently
-# corrupting output, so it is deliberately deferred to its own reviewed change.
-ignore = ["UP031"]
+select = [
+  "ANN",  # check typings
+  "B",  # flake8-bugbear
+  "D",  # check docstrings
+  "E",  # pycodestyle errors
+  "F",  # Pyflakes
+  "I",  # isort
+  "RUF",  # Ruff-specific rules
+  "SIM",  # Common simplification rules
+  "TC",  # Enforce importing certain types in a TYPE_CHECKING block
+  "TD",  # Be diligent with TODO comments
+  "TID",  # Some good import practices
+  "UP",  # Warn if certain things can changed due to newer Python versions
+  "W",  # PyCodeStyle warnings
+  "S",  # security issues
+]
+ignore = [
+  "E501",  # line length (handled by ruff format for code)
+  "B008",  # function call in defaults (standard typer pattern)
+  # Temporarily ignored during migration - to be addressed incrementally
+  "ANN001",  # missing type annotation for function argument
+  "ANN002",  # missing type annotation for *args
+  "ANN003",  # missing type annotation for **kwargs
+  "ANN201",  # missing return type annotation for public function
+  "ANN202",  # missing return type annotation for private function
+  "ANN204",  # missing return type annotation for special method
+  "ANN206",  # missing return type annotation for classmethod
+  "ANN401",  # use of typing.Any
+  "D100",  # missing docstring in public module
+  "D101",  # missing docstring in public class
+  "D102",  # missing docstring in public method
+  "D103",  # missing docstring in public function
+  "D105",  # missing docstring in magic method
+  "D107",  # missing docstring in __init__
+  "D205",  # blank line required between summary and description
+  "D415",  # first line should end with a period
+  "RUF012",  # mutable class variable (needs ClassVar annotation)
+  "RUF013",  # implicit Optional
+  "TD002",  # missing author in TODO
+  "TD003",  # missing issue link in TODO
+  "TD004",  # missing colon in TODO
+  "TD005",  # missing description in TODO
+  "D200",  # one-line docstring should fit on one line
+  "D301",  # use r""" for docstrings with backslashes
+  "B026",  # star-arg unpacking after keyword arg
+  "S110",  # try-except-pass without logging
+  "SIM105",  # use contextlib.suppress
+  "E402",  # module-level import not at top
+  "E721",  # do not compare types, use isinstance()
+  "S310",  # audit url open for permitted schemes
+  "RUF007",  # prefer itertools.pairwise
+  # Inherent to what ACPYPE is: it drives antechamber/tleap through the shell.
+  "S602",  # subprocess call with shell=True
+  "S108",  # hardcoded /tmp path
+  # Deferred refactors, tracked separately - to be addressed incrementally
+  "UP031",  # printf-style formatting; ~130 sites, most inside the topology writers
+  "SIM115",  # open() without a context manager; ~50 sites
+  "SIM102",  # collapsible if
+  "SIM108",  # if-else block instead of ternary
+  "SIM113",  # enumerate instead of a manual counter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "S"]  # ["UP", "RUF", "I", "D", "E501"]
+"__init__.py" = ["D104"]
+# Maintenance scripts, not shipped in the wheel: they shell out freely by design.
+"scripts/*" = ["B006", "S307", "S603", "S605", "S607"]
+"recipe/*" = ["S102"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+branch = "master"
+commit_message = "chore(release): {version}"
+
+[tool.ty]
+# All rules are enabled as "error" by default; no need to specify unless overriding.
 
 [tool.ty.environment]
-python-version = "3.12"
+python = ".venv"
 
 [tool.ty.src]
-# Vendored AmberTools, the retired CCPN bridge, and the conda recipe are not ours to check.
+include = ["acpype", "scripts", "tests"]
+# Vendored AmberTools, the retired CCPN bridge and the conda recipe are not ours.
 exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy", "recipe"]
 
+[tool.ty.terminal]
+# TODO: re-enable once type annotations are added
+# error-on-warning = true
+
 [tool.uv]
+# exclude-newer = "7 days"  # incompatible with pinning dev floors to the latest
+package = true
 default-groups = ["dev"]
+cache-keys = [
+  { file = "pyproject.toml" },
+  { git = { commit = true, tags = true } }
+]
 
 [tool.uv.build-backend]
 # Flat layout: the `acpype` package lives at the repository root, not under src/.

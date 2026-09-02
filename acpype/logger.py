@@ -8,9 +8,7 @@ tmpLogFile = NamedTemporaryFile().name
 
 
 class LogFormatter(logging.Formatter):
-    """
-    Define log formatter
-    """
+    """Define log formatter"""
 
     err_fmt = "ERROR: %(msg)s"
     warn_fmt = "WARNING: %(msg)s"

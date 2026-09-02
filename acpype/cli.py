@@ -29,8 +29,7 @@ def _handle_exception(level):
 
 
 def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None):
-    """
-    Orchestrate the command line usage for ACPYPE with its all input arguments.
+    """Orchestrate the command line usage for ACPYPE with its all input arguments.
 
     Args:
         binaries (dict[str, str], optional): Mostly used for debug and testing. Defaults to ``acpype.params.binaries``.
@@ -74,7 +73,9 @@ def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None
     logger(level).debug(while_replace(texta))
 
     if args.direct and not amb2gmxF:
-        parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
+        parser.error(
+            "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"
+        )
 
     acpypeFailed = False
     if amb2gmxF:
@@ -163,7 +164,9 @@ def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None
     else:
         try:
             if molecule.tmpDir:
-                logger(level).debug(f"Keeping folder '{molecule.tmpDir}' for possible helping debugging")
+                logger(level).debug(
+                    f"Keeping folder '{molecule.tmpDir}' for possible helping debugging"
+                )
         except Exception:
             logger(level).debug("No tmp folder left to be removed")
 

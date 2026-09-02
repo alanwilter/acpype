@@ -73,7 +73,8 @@ jobs:
         run: uv run ty check
 
       - name: Test with PyTest
-        run: uv run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml
+        # Coverage flags live in [tool.pytest] addopts, including fail_under.
+        run: uv run pytest --color=yes
 
       - name: Check platform wheels build and stay under the PyPI size limit
         if: matrix.python-version == '3.12'

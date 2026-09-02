@@ -1,13 +1,11 @@
-"""
-Constructors to define and store the system's topology
+"""Constructors to define and store the system's topology
 
 It will create instances for Atoms, AtomTypes, Bonds, Angles and Dihedrals
 where the topology (the relationships between atoms) is defined and
 paramenters are stored.
 
 Example:
-
-    >>> atom = acpype.mol.Atom(...) # to be improved
+    >>> atom = acpype.mol.Atom(...)  # to be improved
 
 Attributes:
     acpype.mol.Atom     : define Atom
@@ -20,9 +18,7 @@ from acpype.params import Pi
 
 
 class AtomType:
-    """
-    AtomType per atom in gaff or amber.
-    """
+    """AtomType per atom in gaff or amber."""
 
     def __init__(self, atomTypeName, mass, ACOEF, BCOEF):
         self.atomTypeName = atomTypeName
@@ -38,8 +34,7 @@ class AtomType:
 
 
 class Atom:
-    r"""
-    Atom Object Definition
+    r"""Atom Object Definition
 
     Charges in *prmtop* file are divided by ``18.2223`` to be converted
     in units of the electron charge.
@@ -75,7 +70,8 @@ class Atom:
         charge: float,
         coord: Sequence[float],
     ):
-        """
+        """Create an atom.
+
         Args:
             atomName (str): atom name
             atomType (AtomType): atomType object
@@ -102,9 +98,7 @@ class Atom:
 
 
 class Bond:
-    """
-    attributes: pair of Atoms, spring constant (kcal/mol), dist. eq. (Ang)
-    """
+    """attributes: pair of Atoms, spring constant (kcal/mol), dist. eq. (Ang)"""
 
     def __init__(self, atoms, kBond, rEq):
         self.atoms = atoms
@@ -119,9 +113,7 @@ class Bond:
 
 
 class Angle:
-    """
-    attributes: 3 Atoms, spring constant (kcal/mol/rad^2), angle eq. (rad)
-    """
+    """attributes: 3 Atoms, spring constant (kcal/mol/rad^2), angle eq. (rad)"""
 
     def __init__(self, atoms, kTheta, thetaEq):
         self.atoms = atoms
@@ -136,8 +128,7 @@ class Angle:
 
 
 class Dihedral:
-    """
-    attributes: 4 Atoms, spring constant (kcal/mol), periodicity,
+    """attributes: 4 Atoms, spring constant (kcal/mol), periodicity,
     phase (rad)
     """
 
