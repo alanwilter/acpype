@@ -35,6 +35,7 @@ from acpype.params import (
 )
 from acpype.utils import (
     _getoutput,
+    bundled_amber_dir,
     distanceAA,
     elapsedTime,
     find_bin,
@@ -3238,6 +3239,15 @@ class ACTopol(AbstractTopol):
             )
             self.printMess(hint1)
             self.printMess(hint2)
+            if bundled_amber_dir() is None:
+                self.printMess(
+                    "HINT3: this ACPYPE installation carries no AmberTools of its own."
+                    "\n    Bundled binaries ship only in the Linux x86_64 and macOS Apple Silicon"
+                    "\n    wheels. On any other platform, or when installing from the source"
+                    "\n    distribution, install AmberTools yourself, for example:"
+                    "\n        conda install -c conda-forge ambertools"
+                    "\n    or use the conda/docker route described in the README."
+                )
             msg = "Missing ANTECHAMBER"
             logger(self.level).error(msg)
             raise Exception(msg)

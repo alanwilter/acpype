@@ -150,12 +150,19 @@ If using `VSCode`:
 
 `./release.sh -p` publishes to PyPI and `-d` builds and pushes the Docker images.
 
-The PyPI step calls `scripts/build_wheels.py`, which produces **one wheel per
+The PyPI step calls `scripts/build_dists.py`, which produces **one wheel per
 platform** rather than a single universal one. A combined wheel carries both vendored
 AmberTools trees and comes to roughly 129 MB, over PyPI's 100 MB per-file limit; split,
 they are about 49 MB (Linux) and 69 MB (macOS), and each installs only where its
 binaries can actually run. The script fails if either wheel creeps back over the limit,
 and CI builds them on every run so that cannot go unnoticed.
+
+It also builds a **slim sdist** (~0.1 MB) with the vendored AmberTools stripped out.
+The full sdist would be ~121 MB, over the same limit, and without any sdist at all
+`pip install acpype` on a platform with no wheel silently resolves to the last release
+that had a universal wheel. The slim sdist means those users get the current ACPYPE and
+supply their own AmberTools; `acpype.utils.bundled_amber_dir` returns `None` for such
+an install, and ACPYPE explains that in its "Missing ANTECHAMBER" error.
 
 ## For Documenting
 

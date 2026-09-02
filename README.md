@@ -126,7 +126,11 @@ There are several ways of obtaining `acpype`:
    | --- | --- | --- |
    | Linux `x86_64`, glibc >= 2.35 (Ubuntu 22.04+, Debian 12+) | `manylinux_2_35_x86_64` | yes |
    | macOS Apple Silicon, macOS 11+ | `macosx_11_0_arm64` | yes |
-   | anything else (Intel macOS, Linux `aarch64`, Windows) | none | no, use `conda` |
+   | anything else (Intel macOS, Linux `aarch64`, Windows) | source distribution | no -- supply your own `AmberTools` |
+
+   On a platform with no wheel, `pip` falls back to the source distribution, which is
+   the same ACPYPE without the bundled binaries. It works fine against an `AmberTools`
+   you install yourself; if none is found, ACPYPE says so and points you at `conda`.
 
    On those two platforms `pip install acpype` is a complete solution. A handful of
    common system libraries are deliberately left to the host on Linux:
@@ -206,8 +210,9 @@ There are several ways of obtaining `acpype`:
 
 - Via **`pip`** and via **`docker`** you get a stripped `AmberTools 26` embedded --
   only the binaries and libraries `acpype` needs -- so CHARMM topologies work out of
-  the box. `pip` covers Linux `x86_64` and macOS Apple Silicon only (see the table
-  above); the `docker` image is Linux `x86_64`.
+  the box. That applies to the Linux `x86_64` and macOS Apple Silicon wheels (see the
+  table above) and to the `docker` image. Elsewhere `pip` installs the source
+  distribution, which carries no binaries and needs an `AmberTools` of your own.
 - Via **`conda`** the build comes from the
   [conda-forge feedstock](https://github.com/conda-forge/acpype-feedstock), which lags
   this repository and so still carries the older embedded `AmberTools`. It also pulls

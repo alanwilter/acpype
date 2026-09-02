@@ -43,7 +43,7 @@ up *ARGS:
 # Build the per-platform wheels and check they stay under the PyPI size limit
 build:
     rm -rf dist
-    uv run python scripts/build_wheels.py --out-dir dist
+    uv run python scripts/build_dists.py --out-dir dist
 
 # Build the documentation
 docs:

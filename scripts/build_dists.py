@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build one platform-specific wheel per supported OS.
+"""Build the distributions ACPYPE publishes: two platform wheels and a slim sdist.
 
 ACPYPE vendors AmberTools for both Linux and macOS. A single ``py3-none-any`` wheel
 therefore carries both trees, which since AmberTools 26 comes to about 129 MB --
@@ -20,12 +20,19 @@ Platform tags are deliberately narrow:
 ``macosx_11_0_arm64``
     conda-forge builds AmberTools for ``osx-arm64`` with a macOS 11 floor. The
     bundle contains no x86_64 slice, so Intel Macs must not resolve this wheel.
+
+The sdist has the vendored AmberTools stripped out. Left in it would be ~121 MB, over
+the same PyPI limit; more importantly, without it ``pip install acpype`` on a platform
+with no wheel silently resolves to the last release that had a universal wheel. A slim
+sdist means those users get the current ACPYPE and supply their own AmberTools, which
+is the conda route the README already documents.
 """
 
 import argparse
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 from pathlib import Path
 
@@ -114,8 +121,43 @@ def specialise(wheel: Path, platform_tag: str, keep: str, outdir: Path) -> Path:
         return final
 
 
+def build_slim_sdist(outdir: Path) -> Path:
+    """Build an sdist with the vendored AmberTools removed.
+
+    Args:
+        outdir: Directory to write the finished sdist to.
+
+    Returns:
+        Path to the slim sdist.
+
+    Raises:
+        SystemExit: If exactly one sdist is not produced.
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        staging = Path(tmp)
+        run(["uv", "build", "--sdist", "--out-dir", str(staging)])
+        sdists = sorted(staging.glob("*.tar.gz"))
+        if len(sdists) != 1:
+            raise SystemExit(f"expected one sdist in {staging}, found {len(sdists)}")
+        fat = sdists[0]
+
+        outdir.mkdir(parents=True, exist_ok=True)
+        slim = outdir / fat.name
+        if slim.exists():
+            slim.unlink()
+        with tarfile.open(fat) as src, tarfile.open(slim, "w:gz") as dst:
+            for member in src:
+                # Members look like `acpype-<version>/acpype/amber_linux/...`; drop the
+                # tree's own directory entry as well as everything beneath it.
+                parts = member.name.split("/")
+                if len(parts) > 2 and parts[1] == "acpype" and parts[2] in ALL_TREES:
+                    continue
+                dst.addfile(member, src.extractfile(member) if member.isfile() else None)
+        return slim
+
+
 def main(argv: list[str] | None = None) -> int:
-    """Build every platform-specific wheel.
+    """Build every distribution ACPYPE publishes.
 
     Args:
         argv: Command line arguments; defaults to ``sys.argv[1:]``.
@@ -130,6 +172,7 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="also leave the combined py3-none-any wheel in place (not for publishing)",
     )
+    parser.add_argument("--no-sdist", action="store_true", help="build only the wheels")
     args = parser.parse_args(argv)
 
     with tempfile.TemporaryDirectory() as staging:
@@ -137,6 +180,9 @@ def main(argv: list[str] | None = None) -> int:
         built = [specialise(universal, tag, keep, args.out_dir) for tag, keep in TARGETS.items()]
         if args.keep_universal:
             shutil.copy2(universal, args.out_dir / universal.name)
+
+    if not args.no_sdist:
+        built.append(build_slim_sdist(args.out_dir))
 
     limit = 100 * 1024 * 1024
     over = False

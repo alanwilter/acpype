@@ -298,16 +298,41 @@ def while_replace(string):
     return string
 
 
+#: Vendored AmberTools directory name per platform, for the wheels that carry one.
+BUNDLE_BY_PLATFORM = {"linux": "amber_linux", "darwin": "amber_macos"}
+
+
+def bundled_amber_dir():
+    """Locate the AmberTools bundled inside this installation, if there is one.
+
+    Only the Linux x86_64 and macOS arm64 wheels carry AmberTools. Installs from the
+    source distribution, and platforms with no wheel at all, have none.
+
+    Returns:
+        str | None: path of the bundle, or ``None`` when this installation has none.
+    """
+    name = BUNDLE_BY_PLATFORM.get(sys.platform)
+    if name is None:
+        return None
+    path = os.path.join(os.path.dirname(__file__), name)
+    return path if os.path.isdir(os.path.join(path, "bin")) else None
+
+
 def set_for_pip(binaries):
+    """Point the environment at the bundled AmberTools when one is installed.
+
+    Args:
+        binaries: mapping of tool name to executable, as in ``acpype.params.binaries``.
+    """
     # For pip package
     if which(binaries["ac_bin"]) is None:
-        LOCAL_PATH = os.path.dirname(__file__)
-        if sys.platform == "linux":
-            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber_linux/bin"
-            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber_linux/"
-            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber_linux/lib/"
-        elif sys.platform == "darwin":
-            os.environ["PATH"] += os.pathsep + LOCAL_PATH + "/amber_macos/bin"
-            os.environ["AMBERHOME"] = LOCAL_PATH + "/amber_macos/"
-            os.environ["LD_LIBRARY_PATH"] = LOCAL_PATH + "/amber_macos/lib/"
-            os.environ["DYLD_LIBRARY_PATH"] = LOCAL_PATH + "/amber_macos/lib/"
+        bundle = bundled_amber_dir()
+        if bundle is None:
+            # Nothing to wire up: either an sdist install or an unsupported platform.
+            # The caller reports this properly once it finds no antechamber.
+            return
+        os.environ["PATH"] += os.pathsep + os.path.join(bundle, "bin")
+        os.environ["AMBERHOME"] = bundle + os.sep
+        os.environ["LD_LIBRARY_PATH"] = os.path.join(bundle, "lib") + os.sep
+        if sys.platform == "darwin":
+            os.environ["DYLD_LIBRARY_PATH"] = os.path.join(bundle, "lib") + os.sep

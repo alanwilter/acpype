@@ -20,7 +20,7 @@ function run_pip() {
     echo ">>> Creating pip package"
     # One wheel per platform: a combined wheel carries both AmberTools trees and
     # exceeds PyPI's 100 MB per-file limit.
-    uv run python scripts/build_wheels.py --out-dir dist
+    uv run python scripts/build_dists.py --out-dir dist
     # No sdist: it carries both vendored AmberTools trees and comes to ~121 MB, over
     # PyPI's 100 MB per-file limit. Platforms without a wheel should use conda.
     uv publish dist/*"$version"*
