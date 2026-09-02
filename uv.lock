@@ -36,7 +36,7 @@ docs = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "openbabel-wheel", specifier = ">=3.1.1.19" }]
+requires-dist = [{ name = "openbabel-wheel", specifier = ">=3.1.1.23" }]
 
 [package.metadata.requires-dev]
 dev = [

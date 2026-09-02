@@ -16,7 +16,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
   "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
-dependencies = ["openbabel-wheel>=3.1.1.19"]
+dependencies = ["openbabel-wheel>=3.1.1.23"]
 
 [project.urls]
 "Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
