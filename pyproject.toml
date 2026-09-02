@@ -17,7 +17,11 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Bio-Informatics",
   "Typing :: Typed",
 ]
-dependencies = ["openbabel-wheel>=3.1.1.23"]
+dependencies = [
+    "openbabel-wheel>=3.1.1.23",
+    "rich>=14.2.0",
+    "typer>=0.20.0",
+]
 
 [project.urls]
 "Bug Tracker" = "https://github.com/alanwilter/acpype/issues"

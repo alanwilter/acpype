@@ -1,16 +1,60 @@
 #!/usr/bin/env python3
+"""Command line interface for ACPYPE, built on typer."""
 
 import os
 import sys
 import time
+from enum import StrEnum
 from shutil import rmtree
+from typing import Annotated
+
+import typer
 
 from acpype.logger import copy_log, tmpLogFile
 from acpype.logger import set_logging_conf as logger
-from acpype.params import binaries
-from acpype.parser_args import get_option_parser
+from acpype.params import MAXTIME, binaries, epilog
 from acpype.topol import AbstractTopol, ACTopol, MolTopol, header
 from acpype.utils import elapsedTime, while_replace
+
+
+class ChargeMethod(StrEnum):
+    """Charge methods antechamber can apply."""
+
+    gas = "gas"
+    bcc = "bcc"
+    user = "user"
+
+
+class AtomType(StrEnum):
+    """Supported atom type sets."""
+
+    gaff = "gaff"
+    amber = "amber"
+    gaff2 = "gaff2"
+    amber2 = "amber2"
+
+
+class QProg(StrEnum):
+    """Quantum programs usable for am1-bcc charges."""
+
+    mopac = "mopac"
+    sqm = "sqm"
+    divcon = "divcon"
+
+
+class OutTopol(StrEnum):
+    """Topology flavours ACPYPE can emit."""
+
+    all = "all"
+    gmx = "gmx"
+    cns = "cns"
+    charmm = "charmm"
+
+
+app = typer.Typer(
+    add_completion=False,
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
 
 
 def _chk_py_ver():
@@ -28,69 +72,127 @@ def _handle_exception(level):
     return True
 
 
-def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None):
-    """Orchestrate the command line usage for ACPYPE with its all input arguments.
+@app.command(epilog=epilog.strip())
+def main(
+    ctx: typer.Context,
+    input: Annotated[
+        str | None,
+        typer.Option("-i", "--input", help="input file ('.pdb', '.mdl', '.mol2') or SMILES string"),
+    ] = None,
+    basename: Annotated[
+        str | None, typer.Option("-b", "--basename", help="a basename for the project (folder and output files)")
+    ] = None,
+    inpcrd: Annotated[
+        str | None, typer.Option("-x", "--inpcrd", help="amber inpcrd file name (always used with -p)")
+    ] = None,
+    prmtop: Annotated[
+        str | None, typer.Option("-p", "--prmtop", help="amber prmtop file name (always used with -x)")
+    ] = None,
+    charge_method: Annotated[
+        ChargeMethod, typer.Option("-c", "--charge_method", help="charge method ('user' reads the mol2 charges)")
+    ] = ChargeMethod.bcc,
+    net_charge: Annotated[
+        int | None, typer.Option("-n", "--net_charge", help="net molecular charge; guessed when not given")
+    ] = None,
+    multiplicity: Annotated[int, typer.Option("-m", "--multiplicity", help="multiplicity (2S+1)")] = 1,
+    atom_type: Annotated[
+        AtomType,
+        typer.Option("-a", "--atom_type", help="atom type; amber is AMBER14SB, amber2 is AMBER14SB + GAFF2"),
+    ] = AtomType.gaff2,
+    qprog: Annotated[QProg, typer.Option("-q", "--qprog", help="am1-bcc flag")] = QProg.sqm,
+    keyword: Annotated[str | None, typer.Option("-k", "--keyword", help="mopac or sqm keyword, inside quotes")] = None,
+    force: Annotated[bool, typer.Option("-f", "--force", help="force topologies recalculation anew")] = False,
+    debug: Annotated[
+        bool,
+        typer.Option("-d", "--debug", help="keep any temporary file created (not allowed with -w)"),
+    ] = False,
+    verboseless: Annotated[bool, typer.Option("-w", "--verboseless", help="print nothing (not allowed with -d)")] = (
+        False
+    ),
+    outtop: Annotated[OutTopol, typer.Option("-o", "--outtop", help="output topologies")] = OutTopol.all,
+    gmx4: Annotated[bool, typer.Option("-z", "--gmx4", help="write RB dihedrals for old GMX 4.0")] = False,
+    cnstop: Annotated[
+        bool, typer.Option("-t", "--cnstop", help="write CNS topology with allhdg-like parameters (experimental)")
+    ] = False,
+    max_time: Annotated[
+        int, typer.Option("-s", "--max_time", help="max time (in sec) tolerance for sqm/mopac")
+    ] = MAXTIME,
+    ipython: Annotated[bool, typer.Option("-y", "--ipython", help="start iPython interpreter")] = False,
+    merge: Annotated[
+        bool,
+        typer.Option("-g", "--merge", help="merge lower and uppercase atomtypes in GMX top if parameters match"),
+    ] = False,
+    direct: Annotated[
+        bool,
+        typer.Option("-u", "--direct", help="in 'amb2gmx' mode, do a direct conversion for any solvent (EXPERIMENTAL)"),
+    ] = False,
+    is_sorted: Annotated[bool, typer.Option("-l", "--sorted", help="sort atoms for GMX ordering")] = False,
+    chiral: Annotated[
+        bool, typer.Option("-j", "--chiral", help="create improper dihedral parameters for chiral atoms in CNS")
+    ] = False,
+    version: Annotated[bool, typer.Option("-v", "--version", help="show the ACPYPE version and exit")] = False,
+) -> None:
+    """Generate topologies for chemical compounds, using Antechamber.
 
-    Args:
-        binaries (dict[str, str], optional): Mostly used for debug and testing. Defaults to ``acpype.params.binaries``.
-        argv (list[str] | None, optional): Mostly used for debug and testing. Defaults to None.
-
-    Returns:
-        SystemExit(status): 0 or 19 (failed)
+    Topologies can be written for GROMACS, CNS/XPLOR, CHARMM and AMBER. Given an AMBER
+    prmtop and inpcrd pair instead ('-p' and '-x'), ACPYPE runs in 'amb2gmx' mode.
     """
-    _chk_py_ver()
-    if argv is None:
-        argv = sys.argv[1:]
-
-    parser = get_option_parser()
-    args = parser.parse_args(argv)
+    state = ctx.obj if isinstance(ctx.obj, dict) else {}
+    ac_binaries = state.get("binaries", binaries)
 
     at0 = time.time()
-
     amb2gmxF = False
 
-    if args.version:
+    if version:
         print(header)
         sys.exit(0)
 
+    # argparse enforced this through a mutually exclusive group; typer has no
+    # equivalent, so it is checked by hand.
+    if debug and verboseless:
+        raise typer.BadParameter("'-d' and '-w' are mutually exclusive")
+
+    # `verboseless` inverts: the historic flag switched verbosity off.
+    verbose = not verboseless
+
     level = 20
-    if not args.verboseless:
+    if verboseless:
         level = 100
-    if args.debug:
+    if debug:
         level = 10
 
     logger(level).info(header)
 
-    if not args.input:
+    if not input:
         amb2gmxF = True
-        if not args.inpcrd or not args.prmtop:
-            parser.error("missing input files")
-    elif args.inpcrd or args.prmtop:
-        parser.error("either '-i' or ('-p', '-x'), but not both")
+        if not inpcrd or not prmtop:
+            raise typer.BadParameter("missing input files")
+    elif inpcrd or prmtop:
+        raise typer.BadParameter("either '-i' or ('-p', '-x'), but not both")
 
-    logger(level).debug(f"CLI: {' '.join(argv)}")
+    logger(level).debug(f"CLI: {' '.join(state.get('argv', sys.argv[1:]))}")
     texta = f"Python Version {sys.version}"
     logger(level).debug(while_replace(texta))
 
-    if args.direct and not amb2gmxF:
-        parser.error("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
+    if direct and not amb2gmxF:
+        raise typer.BadParameter("option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')")
 
     acpypeFailed = False
     if amb2gmxF:
         logger(level).info("Converting Amber input files to Gromacs ...")
         try:
             molecule: AbstractTopol = MolTopol(
-                acFileXyz=args.inpcrd,
-                acFileTop=args.prmtop,
+                acFileXyz=inpcrd or "",
+                acFileTop=prmtop or "",
                 amb2gmx=True,
-                debug=args.debug,
-                basename=args.basename,
-                verbose=args.verboseless,
-                gmx4=args.gmx4,
-                merge=args.merge,
-                direct=args.direct,
-                is_sorted=args.sorted,
-                chiral=args.chiral,
+                debug=debug,
+                basename=basename,
+                verbose=verbose,
+                gmx4=gmx4,
+                merge=merge,
+                direct=direct,
+                is_sorted=is_sorted,
+                chiral=chiral,
             )
         except Exception:
             acpypeFailed = _handle_exception(level)
@@ -104,26 +206,26 @@ def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None
     else:
         try:
             molecule = ACTopol(
-                args.input,
-                binaries=binaries,
-                chargeType=args.charge_method,
-                chargeVal=args.net_charge,
-                debug=args.debug,
-                multiplicity=args.multiplicity,
-                atomType=args.atom_type,
-                force=args.force,
-                outTopol=args.outtop,
-                allhdg=args.cnstop,
-                basename=args.basename,
-                timeTol=args.max_time,
-                qprog=args.qprog,
-                ekFlag=f'''"{args.keyword}"''',
-                verbose=args.verboseless,
-                gmx4=args.gmx4,
-                merge=args.merge,
-                direct=args.direct,
-                is_sorted=args.sorted,
-                chiral=args.chiral,
+                input,
+                binaries=ac_binaries,
+                chargeType=charge_method.value,
+                chargeVal=net_charge,
+                debug=debug,
+                multiplicity=multiplicity,
+                atomType=atom_type.value,
+                force=force,
+                outTopol=outtop.value,
+                allhdg=cnstop,
+                basename=basename,
+                timeTol=max_time,
+                qprog=qprog.value,
+                ekFlag=f'''"{keyword}"''',
+                verbose=verbose,
+                gmx4=gmx4,
+                merge=merge,
+                direct=direct,
+                is_sorted=is_sorted,
+                chiral=chiral,
                 amb2gmx=False,
             )
         except Exception:
@@ -140,13 +242,10 @@ def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None
                 acpypeFailed = _handle_exception(level)
 
     execTime = round(time.time() - at0)
-    if execTime == 0:
-        amsg = "less than a second"
-    else:
-        amsg = elapsedTime(execTime)
+    amsg = "less than a second" if execTime == 0 else elapsedTime(execTime)
     logger(level).info(f"Total time of execution: {amsg}")
 
-    if args.ipython:
+    if ipython:
         try:
             import IPython
 
@@ -154,7 +253,7 @@ def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None
         except ModuleNotFoundError:
             logger(level).exception("No 'ipython' installed")
 
-    if not args.debug:
+    if not debug:
         try:
             rmtree(molecule.tmpDir)
         except Exception:
@@ -176,11 +275,40 @@ def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None
 
     os.chdir(molecule.rootDir)
 
-    if not amb2gmxF and molecule.obabelExe:
-        if molecule.checkSmiles():
-            afile = "smiles_molecule.mol2"
-            if os.path.exists(afile):
-                os.remove(afile)
+    if not amb2gmxF and molecule.obabelExe and molecule.checkSmiles():
+        afile = "smiles_molecule.mol2"
+        if os.path.exists(afile):
+            os.remove(afile)
+
+    # Tells init_main this was a complete run, so the exit status typer raises on
+    # success can be swallowed while `--version` keeps exiting explicitly.
+    state["completed"] = True
+
+
+def init_main(binaries: dict[str, str] = binaries, argv: list[str] | None = None):
+    """Orchestrate the command line usage for ACPYPE with its all input arguments.
+
+    Args:
+        binaries (dict[str, str], optional): Mostly used for debug and testing. Defaults to ``acpype.params.binaries``.
+        argv (list[str] | None, optional): Mostly used for debug and testing. Defaults to None.
+
+    Returns:
+        SystemExit(status): 0 or 19 (failed)
+    """
+    _chk_py_ver()
+    if argv is None:
+        argv = sys.argv[1:]
+
+    state: dict = {"binaries": binaries, "argv": list(argv), "completed": False}
+    command = typer.main.get_command(app)
+    try:
+        command(args=list(argv), prog_name="acpype", obj=state, standalone_mode=True)
+    except SystemExit as exc:
+        # typer exits 0 after any successful invocation, but callers of init_main
+        # expect a plain return from a normal run; `--version` still exits.
+        if exc.code == 0 and state["completed"]:
+            return
+        raise
 
 
 if __name__ == "__main__":

@@ -19,6 +19,18 @@ from acpype import __version__ as version
 TESTS_DIR = Path(__file__).parent
 
 
+@pytest.fixture(autouse=True)
+def _fixed_terminal_width(monkeypatch):
+    """Pin the width rich renders errors at.
+
+    typer draws usage errors in a rich panel wrapped to the terminal width, so a
+    narrow terminal splits a long message across lines and breaks any assertion that
+    looks for it as a substring. Pinning the width keeps those assertions stable.
+    """
+    monkeypatch.setenv("COLUMNS", "200")
+    monkeypatch.setenv("TERMINAL_WIDTH", "200")
+
+
 def pytest_report_header(config):
     return f">>>\tVersion: {version}\n"
 

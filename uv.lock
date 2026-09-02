@@ -16,6 +16,8 @@ version = "2026.9.2"
 source = { editable = "." }
 dependencies = [
     { name = "openbabel-wheel" },
+    { name = "rich" },
+    { name = "typer" },
 ]
 
 [package.dev-dependencies]
@@ -58,7 +60,11 @@ tools = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "openbabel-wheel", specifier = ">=3.1.1.23" }]
+requires-dist = [
+    { name = "openbabel-wheel", specifier = ">=3.1.1.23" },
+    { name = "rich", specifier = ">=14.2.0" },
+    { name = "typer", specifier = ">=0.20.0" },
+]
 
 [package.metadata.requires-dev]
 dev = [

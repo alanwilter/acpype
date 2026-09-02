@@ -1,4 +1,5 @@
 import os
+import sys
 
 import pytest
 from pytest import approx
@@ -241,14 +242,10 @@ def test_inputs(janitor, capsys, argv, msg):
 @pytest.mark.parametrize(
     ("argv", "code", "msg"),
     [
-        (None, 2, " error: "),  # NOTE: None -> sys.argv from pytest
+        (None, 2, "No such option: --bogus"),  # NOTE: None -> sys.argv
         (["-v"], 0, version),
-        ([], 2, "error: missing input files"),
-        (
-            ["-d", "-w"],
-            2,
-            "error: argument -w/--verboseless: not allowed with argument -d/--debug",
-        ),
+        ([], 2, "missing input files"),
+        (["-d", "-w"], 2, "'-d' and '-w' are mutually exclusive"),
         (
             ["-di", "AAAx.mol2"],
             19,
@@ -306,7 +303,11 @@ def test_inputs(janitor, capsys, argv, msg):
         ),
     ],
 )
-def test_args_wrong_inputs(janitor, capsys, argv, code, msg):
+def test_args_wrong_inputs(janitor, capsys, monkeypatch, argv, code, msg):
+    if argv is None:
+        # Exercise the `argv=None` -> sys.argv path with a deterministic command line;
+        # pytest's own argv differs between runs (e.g. with and without --no-cov).
+        monkeypatch.setattr(sys, "argv", ["acpype", "--bogus"])
     with pytest.raises(SystemExit) as e_info:
         init_main(argv=argv)
     captured = capsys.readouterr()

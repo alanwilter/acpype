@@ -99,6 +99,22 @@ If you add a test that reads an input file or runs `acpype`, take `janitor` too.
 Coverage settings live in `[tool.pytest]`, so a plain `uv run pytest` already produces
 the same report CI does, including the `fail_under` gate in `[tool.coverage.report]`.
 
+### The command line
+
+The CLI is built with [typer](https://typer.tiangolo.com) and rendered by
+[rich](https://rich.readthedocs.io) (`src/acpype/cli.py`). Every flag from the old
+`argparse` interface is preserved, including combined short forms like `-di FILE` and
+negative values like `-n -1`.
+
+Two things are worth knowing when adding tests:
+
+- Usage errors are drawn in a rich panel wrapped to the terminal width, so a long
+  message splits across lines. `tests/conftest.py` pins `COLUMNS` to keep assertions on
+  those messages stable; assert on a short fragment where you can.
+- `init_main(argv=...)` keeps its old contract: it returns normally after a successful
+  run, raises `SystemExit(19)` on failure, `SystemExit(2)` on a usage error, and
+  `SystemExit(0)` for `--version`.
+
 ### Refreshing the vendored AmberTools
 
 `acpype` ships a trimmed AmberTools so `antechamber` works out of the box.
