@@ -65,7 +65,7 @@ omit = [
   "acpype/amber_linux/*",
   "acpype/amber_macos/*",
 ]
-fail_under = 50  # minimum coverage required, but aim for 100% though
+fail_under = 90  # minimum coverage required, but aim for 100% though
 exclude_also = [
   "if TYPE_CHECKING:",
   "if typing.TYPE_CHECKING:",
@@ -158,7 +158,6 @@ ignore = [
   "RUF007",  # prefer itertools.pairwise
   # Inherent to what ACPYPE is: it drives antechamber/tleap through the shell.
   "S602",  # subprocess call with shell=True
-  "S108",  # hardcoded /tmp path
   # Deferred refactors, tracked separately - to be addressed incrementally
   "UP031",  # printf-style formatting; ~130 sites, most inside the topology writers
   "SIM115",  # open() without a context manager; ~50 sites
@@ -172,7 +171,7 @@ ignore = [
 "__init__.py" = ["D104"]
 "__main__.py" = ["D100"]
 # Maintenance scripts, not shipped in the wheel: they shell out freely by design.
-"scripts/*" = ["B006", "S307", "S603", "S605", "S607"]
+"scripts/*" = ["B006", "S108", "S307", "S603", "S605", "S607"]
 "recipe/*" = ["S102"]
 
 [tool.ruff.lint.pydocstyle]

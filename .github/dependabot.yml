@@ -1,0 +1,29 @@
+version: 2
+
+updates:
+  # The absence of this entry is why the workflow actions drifted years behind:
+  # nothing was watching them, so `actions/checkout` sat on v2 while v7 shipped.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  # Python dependencies are managed by uv, so Dependabot must read uv.lock rather
+  # than the old poetry.lock it used to bump.
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "build(deps)"
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "*"

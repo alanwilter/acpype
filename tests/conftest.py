@@ -8,6 +8,7 @@ pytest --cov=acpype --cov-report=term-missing:skip-covered
 
 import os
 import shutil
+import tempfile
 from pathlib import Path
 from shutil import rmtree
 
@@ -58,6 +59,10 @@ def janitor(tmp_path, monkeypatch, data_dir):
     for src in data_dir.iterdir():
         (tmp_path / src.name).symlink_to(src)
     monkeypatch.chdir(tmp_path)
+    # acpype.utils.parmMerge caches merged parameter files in the temp directory.
+    # Pointing that at tmp_path keeps a warm cache on the developer's machine from
+    # skipping the merge, which otherwise makes coverage vary by several percent.
+    monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
 
     to_delete = []
     yield to_delete

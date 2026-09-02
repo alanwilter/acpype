@@ -1,7 +1,9 @@
+import hashlib
 import math
 import os
 import subprocess as sub
 import sys
+import tempfile
 from shutil import which
 
 from acpype.params import Pi
@@ -145,16 +147,32 @@ def parseFrcmod(lista):
 
 
 def parmMerge(fdat1, fdat2, frcmod=False):
-    """Merge two amber parm dat/frcmod files and save in /tmp"""
+    """Merge two amber parm dat/frcmod files, caching the result in the temp directory.
+
+    The cache name includes a digest of both inputs. Keying it on the file names alone
+    meant an AmberTools upgrade silently reused a merge built from the previous
+    release's parameters, since the names never change.
+
+    Args:
+        fdat1: first parm dat file.
+        fdat2: second parm dat file, or a frcmod file when ``frcmod`` is set.
+        frcmod: whether ``fdat2`` is a frcmod rather than a dat file.
+
+    Returns:
+        str: path of the merged file.
+    """
     name1 = os.path.basename(fdat1).split(".dat")[0]
     if frcmod:
         name2 = os.path.basename(fdat2).split(".")[1]
     else:
         name2 = os.path.basename(fdat2).split(".dat")[0]
-    mname = "/tmp/" + name1 + name2 + ".dat"
-    if os.path.exists(mname):
-        if os.path.getsize(mname):
-            return mname
+    digest = hashlib.sha256()
+    for path in (fdat1, fdat2):
+        with open(path, "rb") as fh:
+            digest.update(fh.read())
+    mname = os.path.join(tempfile.gettempdir(), f"{name1}{name2}-{digest.hexdigest()[:12]}.dat")
+    if os.path.exists(mname) and os.path.getsize(mname):
+        return mname
     mdatFile = open(mname, "w")
     mdat = [f"merged {name1} {name2}"]
 

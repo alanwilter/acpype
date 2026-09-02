@@ -13,6 +13,7 @@ on:
       - "pyproject.toml"
       - "uv.lock"
       - ".github/workflows/check_acpype.yml"
+  workflow_call:
 
 permissions:
   contents: read
@@ -31,10 +32,10 @@ jobs:
         python-version: ["3.12", "3.13", "3.14"]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v10
         with:
           enable-cache: true
           cache-dependency-glob: "uv.lock"
@@ -85,7 +86,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.12'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: false
         env:
@@ -93,6 +94,9 @@ jobs:
 
   release:
     needs: check-test
+    # Only for real pushes; when release.yml reuses this workflow there is no commit
+    # message to inspect and nothing to tag.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -105,7 +109,7 @@ jobs:
       - name: Create tag
         # will only create a new tag if the commit message contains 'new_tag' on main
         if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'new_tag')
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -119,7 +123,7 @@ jobs:
         # will only create a new release if the commit message contains 'new_release' on main
         if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'new_release')
         id: create_release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.vdate.outputs.adate }}
           name: Release ${{ steps.vdate.outputs.adate }}

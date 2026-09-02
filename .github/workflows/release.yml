@@ -1,0 +1,85 @@
+name: release
+
+# Publishing runs when a GitHub Release is published -- which the `new_release`
+# path in check_acpype.yml does, or you can cut one by hand. The full check suite
+# is re-run first, so nothing reaches PyPI that has not passed ruff, ty, the
+# dependency audit and the tests at >=90% coverage.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Build the wheels but do not publish"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    uses: ./.github/workflows/check_acpype.yml
+
+  publish:
+    needs: [verify]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: pypi
+      url: https://pypi.org/p/acpype
+    permissions:
+      # Job-level permissions replace the defaults, so every scope needed must be
+      # listed: checkout and the release upload need contents, OIDC needs id-token.
+      contents: write
+      # PyPI trusted publishing (OIDC) -- no API token is stored anywhere.
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install project
+        run: uv sync --locked
+
+      - name: Build the platform wheels
+        # One wheel per platform: a combined wheel is ~129 MB, over PyPI's 100 MB
+        # per-file limit. The script fails if either wheel exceeds it.
+        #
+        # No sdist is published: it carries both vendored AmberTools trees and comes
+        # to ~121 MB, so it cannot be uploaded either. Platforms without a wheel
+        # should install via conda.
+        run: uv run python scripts/build_wheels.py --out-dir dist
+
+      - name: Check the version matches the release tag
+        if: github.event_name == 'release'
+        run: |
+          version=$(uv run python -c "import acpype; print(acpype.__version__)")
+          tag="${GITHUB_REF_NAME}"
+          echo "package version: ${version}   release tag: ${tag}"
+          if [ "${version}" != "${tag}" ]; then
+            echo "::error::package version ${version} does not match release tag ${tag}"
+            exit 1
+          fi
+
+      - name: List distributions
+        run: ls -la dist/
+
+      - name: Publish to PyPI
+        if: github.event_name == 'release' || inputs.dry-run == false
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Attach wheels to the GitHub Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${GITHUB_REF_NAME}" dist/*.whl --clobber
