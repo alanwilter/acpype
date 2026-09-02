@@ -161,7 +161,12 @@ If using `VSCode`:
 
 ## Releasing
 
-`./release.sh -p` publishes to PyPI and `-d` builds and pushes the Docker images.
+Publishing to PyPI happens in CI: `.github/workflows/release.yml` fires when a GitHub
+Release is published, re-runs the whole check suite, and uploads via PyPI Trusted
+Publishing (OIDC, no stored token). It has no manual trigger on purpose -- the `pypi`
+deployment environment only accepts release tags, so a release is the only path to
+PyPI. `./release.sh -p` remains for publishing by hand, and `-d` builds and pushes the
+Docker images.
 
 The PyPI step calls `scripts/build_dists.py`, which produces **one wheel per
 platform** rather than a single universal one. A combined wheel carries both vendored

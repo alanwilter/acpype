@@ -1,19 +1,17 @@
 name: release
 
-# Publishing runs when a GitHub Release is published -- which the `new_release`
-# path in check_acpype.yml does, or you can cut one by hand. The full check suite
-# is re-run first, so nothing reaches PyPI that has not passed ruff, ty, the
-# dependency audit and the tests at >=90% coverage.
+# Publishing runs only when a GitHub Release is published -- which the `new_release`
+# path in check_acpype.yml does, or you can cut one by hand. The full check suite is
+# re-run first, so nothing reaches PyPI that has not passed ruff, ty, the dependency
+# audit and the tests at >=90% coverage.
+#
+# There is deliberately no `workflow_dispatch`: it would be the only way to publish
+# from an arbitrary branch, and the `pypi` environment restricts deployments to release
+# tags anyway. Building the distributions is already covered on every CI run.
 
 on:
   release:
     types: [published]
-  workflow_dispatch:
-    inputs:
-      dry-run:
-        description: "Build the wheels but do not publish"
-        type: boolean
-        default: true
 
 permissions:
   contents: read
@@ -64,7 +62,6 @@ jobs:
         run: uv run python scripts/build_dists.py --out-dir dist
 
       - name: Check the version matches the release tag
-        if: github.event_name == 'release'
         run: |
           version=$(uv run python -c "import acpype; print(acpype.__version__)")
           tag="${GITHUB_REF_NAME}"
@@ -78,11 +75,9 @@ jobs:
         run: ls -la dist/
 
       - name: Publish to PyPI
-        if: github.event_name == 'release' || inputs.dry-run == false
         uses: pypa/gh-action-pypi-publish@release/v1
 
       - name: Attach wheels to the GitHub Release
-        if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release upload "${GITHUB_REF_NAME}" dist/*.whl --clobber
