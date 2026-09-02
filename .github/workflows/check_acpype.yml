@@ -28,6 +28,11 @@ jobs:
   check-test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
+      # Codecov uploads over OIDC rather than a stored token; job-level permissions
+      # replace the defaults, so contents has to be repeated here.
+      id-token: write
     strategy:
       fail-fast: false
       matrix:
@@ -41,6 +46,7 @@ jobs:
         # pinned to an exact release; Dependabot keeps it current.
         uses: astral-sh/setup-uv@v10.0.1
         with:
+          version: "0.12.9"
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
@@ -93,8 +99,7 @@ jobs:
         uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: false
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          use_oidc: true
 
   release:
     needs: check-test
