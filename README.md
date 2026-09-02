@@ -202,10 +202,31 @@ There are several ways of obtaining `acpype`:
    acpype_docker -i tests/DDD.pdb -c gas
    ```
 
-**NB:**
+**NB:** what you get depends on how you install:
 
-- By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` is a stripped version from the original containing only the necessary binaries and libraries and comes with the `charmmgen` binary from `AmberTools17` in order to generate CHARMM topologies.
-- By installing via `pip` you get `AmberTools` (as described above) embedded. However, the included binaries may not work in your system (library dependencies issues) and with only provide binaries for Linux (Ubuntu20) and macOS (Intel).
+- Via **`pip`** and via **`docker`** you get a stripped `AmberTools 26` embedded --
+  only the binaries and libraries `acpype` needs -- so CHARMM topologies work out of
+  the box. `pip` covers Linux `x86_64` and macOS Apple Silicon only (see the table
+  above); the `docker` image is Linux `x86_64`.
+- Via **`conda`** the build comes from the
+  [conda-forge feedstock](https://github.com/conda-forge/acpype-feedstock), which lags
+  this repository and so still carries the older embedded `AmberTools`. It also pulls
+  `ambertools` and `openbabel` as conda packages, and it is that `antechamber` which
+  ends up on your `PATH`.
+- `OpenBabel` is `3.1.1` via `conda`/`docker`, and `3.1.0` via `pip` (from the
+  `openbabel-wheel` dependency).
+- `charmmgen` is not part of modern `AmberTools`, and conda-forge's `ambertools` does
+  not ship it, so `acpype` builds its own from the source still maintained in
+  [AmberClassic](https://github.com/Amber-MD/AmberClassic): universal `arm64` +
+  `x86_64` on macOS, `x86_64` on Linux. See `scripts/build_charmmgen.sh`. If CHARMM
+  output fails because the `antechamber` on your `PATH` cannot find it, copy the
+  bundled one next to that `antechamber`:
+
+  ```bash
+  sys=$(python3 -c "import sys; print('macos' if sys.platform == 'darwin' else 'linux')")
+  acp=$(python3 -c "import acpype, os; print(os.path.dirname(acpype.__file__))")
+  cp "${acp}/amber_${sys}/bin/charmmgen" "$(dirname "$(which antechamber)")"
+  ```
 
 ##### To Test, if doing via `git`
 

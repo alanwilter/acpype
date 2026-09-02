@@ -88,10 +88,21 @@ dyld refuses to load.
 CHARMM output. It is untarred *after* vendoring and is therefore **not** part of the
 dependency closure, so nothing guarantees a re-vendor leaves its libraries in place.
 
-The macOS binary is rebuilt by `scripts/build_charmmgen.sh` from the source still
-maintained in [Amber-MD/AmberClassic](https://github.com/Amber-MD/AmberClassic), as a
-universal arm64 + x86_64 binary so Apple Silicon no longer needs Rosetta 2. The script
-patches one line, because AmberClassic renamed `AMBERHOME` to `AMBERCLASSICHOME`.
+Both binaries are rebuilt by `scripts/build_charmmgen.sh` from the source still
+maintained in [Amber-MD/AmberClassic](https://github.com/Amber-MD/AmberClassic):
+
+```bash
+./scripts/build_charmmgen.sh macos   # native clang, universal arm64 + x86_64
+./scripts/build_charmmgen.sh linux   # via a linux/amd64 container
+./scripts/build_charmmgen.sh         # both
+```
+
+macOS is universal so Apple Silicon no longer needs Rosetta 2; Linux is built on
+Debian 12 and needs at most `GLIBC_2.34`, inside the `manylinux_2_35` floor the wheels
+promise. The script patches one line, because AmberClassic renamed `AMBERHOME` to
+`AMBERCLASSICHOME`, and aborts if that source block ever stops matching. Both
+replacements were verified to produce byte-identical `.rtf`/`.prm`/`.inp` output to the
+binaries they superseded.
 
 `scripts/check_amber_bundle.py` guards this: it runs every executable in the bundle
 and fails if the dynamic loader rejects any of them. Both update scripts run it, and
