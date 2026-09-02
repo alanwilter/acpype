@@ -4,7 +4,12 @@ from acpype.topol import MolTopol
 
 
 def test_glycam(janitor):
-    molecule = MolTopol(acFileTop="glycam_exe.prmtop", acFileXyz="glycam_exe.inpcrd", debug=True, amb2gmx=True)
+    molecule = MolTopol(
+        acFileTop="glycam_exe.prmtop",
+        acFileXyz="glycam_exe.inpcrd",
+        debug=True,
+        amb2gmx=True,
+    )
     molecule.writeGromacsTopolFiles()
     molecule.writeCnsTopolFiles()
     assert molecule
@@ -15,13 +20,24 @@ def test_glycam(janitor):
 
 @pytest.mark.parametrize(
     ("dd", "g4", "ntext"),
-    [(False, False, 14193), (True, False, 31516), (False, True, 12124), (True, True, 29447)],
+    [
+        (False, False, 14193),
+        (True, False, 31516),
+        (False, True, 12124),
+        (True, True, 29447),
+    ],
 )
 def test_amb2gmx(janitor, dd, g4, ntext):
     # oct box with water and ions
     # modified from https://ambermd.org/tutorials/basic/tutorial7/index.php
     # using addIonsRand separated for each ion and TIP3PBOX
-    molecule = MolTopol(acFileTop="RAMP1_ion.prmtop", acFileXyz="RAMP1_ion.inpcrd", debug=True, direct=dd, gmx4=g4)
+    molecule = MolTopol(
+        acFileTop="RAMP1_ion.prmtop",
+        acFileXyz="RAMP1_ion.inpcrd",
+        debug=True,
+        direct=dd,
+        gmx4=g4,
+    )
     molecule.writeGromacsTopolFiles()
     assert molecule
     assert len(molecule.topText) == ntext
@@ -42,19 +58,27 @@ def test_amb2gmx(janitor, dd, g4, ntext):
     ],
 )
 def test_merge(janitor, merge, gaff, n_at, acoef, bcoef, msg):
-    molecule = MolTopol(acFileTop=f"ComplexG{gaff}.prmtop", acFileXyz=f"ComplexG{gaff}.inpcrd", debug=True, merge=merge)
+    molecule = MolTopol(
+        acFileTop=f"ComplexG{gaff}.prmtop",
+        acFileXyz=f"ComplexG{gaff}.inpcrd",
+        debug=True,
+        merge=merge,
+    )
     molecule.writeGromacsTopolFiles()
     assert molecule
     assert len(molecule.atomTypesGromacs) == n_at
-    assert molecule.atomTypesGromacs[31].ACOEF == acoef
-    assert molecule.atomTypesGromacs[31].BCOEF == bcoef
+    assert acoef == molecule.atomTypesGromacs[31].ACOEF
+    assert bcoef == molecule.atomTypesGromacs[31].BCOEF
     assert molecule.atomTypesGromacs[31].__repr__() == msg
     janitor.append(molecule.absHomeDir)
 
 
 @pytest.mark.parametrize(
     ("mol", "n1", "n2", "n3", "n4", "n5", "msg"),
-    [("ILDN", 24931, 12230, 577, 0, 47, "<AtomType=C6>"), ("Base", 24931, 12044, 577, 0, 43, "<AtomType=HS>")],
+    [
+        ("ILDN", 24931, 12230, 577, 0, 47, "<AtomType=C6>"),
+        ("Base", 24931, 12044, 577, 0, 43, "<AtomType=HS>"),
+    ],
 )
 def test_ildn(janitor, mol, n1, n2, n3, n4, n5, msg):
     molecule = MolTopol(acFileTop=f"{mol}.prmtop", acFileXyz=f"{mol}.inpcrd", debug=True)

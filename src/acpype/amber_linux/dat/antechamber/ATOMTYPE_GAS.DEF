@@ -1,0 +1,130 @@
+# Please go to the end to see rules of defining an atom  
+
+============================================================================================
+                        Definition begin
+============================================================================================
+--------------------------------------------------------------------------------------------
+WILDATOM XX C N O S P
+WILDATOM XA O S
+WILDATOM XB N P
+WILDATOM XC F Cl Br I
+-------------------------------------------------------------------------------------------- 
+ f1  f2    f3  f4  f5  f6  f7  f8      				f9          
+-------------------------------------------------------------------------------------------- 
+ATD  c1    *   6   1   & 
+ATD  c1    *   6   2   & 
+ATD  cg    *   6   3   *   *   *                (N3,N3,N3)             & 
+ATD  c2    *   6   3   & 
+ATD  c3    *   6   4   & 
+ATD  h     *   1   1   & 
+ATD  n1    *   7   1   & 
+ATD  n2    *   7   2   &
+ATD  ng    *   7   3   *   *   *                (C3(N3,N3))             & 
+ATD  na    *   7   3   *   *   *       		(C3(XA1))  	& 
+ATD  na    *   7   3   *   *   [AR2.AR3]        &
+ATD  na    *   7   3   *   *   *       		(XX[AR1.AR2.AR3])	& 
+ATD  na    *   7   3   *   *   *       		(XX[DB])		& 
+ATD  na    *   7   3   *   *   *       		(O1,O1) 		&
+ATD  na+   *   7   3   *   *   [AR1]            & 
+ATD  na+   *   7   3   *   *   [DB.db]          & 
+ATD  n3    *   7   3   & 
+ATD  n4    *   7   4   & 
+ATD  f     *   9   1   &
+ATD  cl    *   17  1   &
+ATD  br    *   35  1   &
+ATD  i     *   53  1   &
+ATD  o-1   *   8   1   *   *   *                (C4)                    & 
+ATD  o-2   *   8   1   *   *   *                (C3(O1))                & 
+ATD  os    *   8   1   *   *   *                (S4)                    & 
+ATD  os    *   8   1   *   *   *                (S3)                    & 
+ATD  op#   *   8   1   *   *   *                (P4(O1,O1,O1))          & 
+ATD  op=   *   8   1   *   *   *                (P4(O1,O1))             & 
+ATD  op    *   8   1   *   *   *                (P4(O1))                & 
+ATD  o2    *   8   1   & 
+ATD  o3    *   8   2   & 
+ATD  s-1   *   16  1   *   *   *                (C4)                    & 
+ATD  s2    *   16  1   &  
+ATD  s3    *   16  2   &  
+ATD  so    *   16  3   *   *   *                (O1)                    & 
+ATD  so4   *   16  4   *   *   *                (O1,O1,O1,O1)           & 
+ATD  so3   *   16  4   *   *   *                (O1,O1,O1)              & 
+ATD  so2   *   16  4   *   *   *                (O1,O1)                 & 
+ATD  so1   *   16  4   *   *   *                (O1)                    & 
+ATD  s3    *   16  & 
+ATD  p#    *   15  4   *   *   *                (O1,O1,O1,O1)           & 
+ATD  p=    *   15  4   *   *   *                (O1,O1,O1)              & 
+ATD  pn    *   15  4   *   *   *                (O1,O1)                 & 
+ATD  p     *   15  & 
+ATD  lp    *   0   1   &
+ATD  LP    *   0   1   &
+ATD  DU    &   
+--------------------------------------------------------------------------------------------
+============================================================================================
+
+============================================================================================
+			Field descriptions
+============================================================================================
+(1)  ATD, which stands for atom type definition, ATD should always in the first three columns 
+(2)  Atom type name, can be letters or numbers   
+(3)  Residue names, which means this description is only applied to atoms in special residues
+(4)  Atomic number 
+(5)  Number of attached atoms 
+(6)  Number of attached hydrogen atoms
+(7)  For hydrogen, number of the electron-withdrawal atoms connected to the atom that the 
+     hydrogen attached
+(8)  atomic property
+(9)  Chemical environment definitions
+
+
+============================================================================================
+			Specific symbols
+============================================================================================
+*  Ignore this field
+&  End of definition 
+.  "or" operation in the ring and aromatity descriptions 
++  "and" operation in the ring and aromatity descriptions
+
+
+============================================================================================
+			Predefined words
+============================================================================================
+EW   Electron-withdraw atom
+AA   Amino acid residue
+NA   Nucleic acid
+BIO  AA + NA
+
+AR1  Pure aromatic atom (benzene and pyridine)
+AR2  Atom in a planar ring, usually the ring has two continuous single bonds
+AR3  Atom in a planar ring, which has one or several double bonds formed between outside atoms
+     and ring atoms
+AR4  Atom other than AR1, AR2, AR3 and AR5. 
+AR5  Pure aliphatic atom in a ring, which is made of sp3 carbon
+
+RG   Ring (from 3-membered to nine-membered)
+RG3  3-membered ring 
+RG4  4-membered ring 
+RG5  5-membered ring 
+RG6  6-membered ring 
+RG7  7-membered ring 
+RG8  8-membered ring 
+RG9  9-membered ring 
+NR   non-ring atom
+
+SB   Single bond
+DB   Double bond
+TB   Triple bond
+AB   Aromatic bond
+sb   Single bond, including aromatic single
+db   Double bond, including aromatic double
+tb   Triple bond
+ 
+============================================================================================
+			Miscellaneous
+============================================================================================
+1. maximum line length is 500 characters
+2. no space in the atomic property string
+3. no space in the chemical environment string 
+4. no filed missing before &
+5. the definition order is crucial, special atom types should defined before the more general 
+   ones
+6. Bonds in COO- and -NO2 are considered as double bonds

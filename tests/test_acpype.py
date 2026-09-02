@@ -1,4 +1,6 @@
 import os
+import re
+import sys
 
 import pytest
 from pytest import approx
@@ -20,7 +22,7 @@ def test_mol2_sorted(janitor, issorted, charge, msg):
     molecule = ACTopol("AAA.mol2", chargeType="gas", debug=True, is_sorted=issorted)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert molecule.molTopol.atomTypes[0].__repr__() == "<AtomType=nz>"
     assert len(molecule.molTopol.atoms) == 33
     assert len(molecule.molTopol.properDihedrals) == 91
@@ -36,6 +38,7 @@ def test_pdb(janitor, capsys):
     molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, force=False)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == 181
     assert len(molecule.molTopol.improperDihedrals) == 23
@@ -44,6 +47,7 @@ def test_pdb(janitor, capsys):
     molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     captured = capsys.readouterr()
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == 181
@@ -54,6 +58,7 @@ def test_pdb(janitor, capsys):
     molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     captured = capsys.readouterr()
     assert molecule
     assert "==> Pickle file FFF.pkl already present... doing nothing" in captured.out
@@ -69,7 +74,7 @@ def test_amber(janitor, force, at, ndih):
     molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 63
     assert len(molecule.molTopol.properDihedrals) == ndih
     assert len(molecule.molTopol.improperDihedrals) == 23
@@ -82,7 +87,7 @@ def test_charges_chiral(janitor):
     molecule = ACTopol("KKK.mol2", chargeType="gas", debug=True, chiral=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 69
     assert len(molecule.molTopol.properDihedrals) == 205
     assert len(molecule.molTopol.improperDihedrals) == 5
@@ -103,7 +108,7 @@ def test_smiles(janitor, base, msg):
     molecule = ACTopol(smiles, basename=base, chargeType="gas", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert molecule.inputFile == msg
     assert len(molecule.molTopol.atoms) == 29
     janitor.append(molecule.absHomeDir)
@@ -138,6 +143,7 @@ def test_sqm_tleap(janitor, capsys, ct, ft, msg):
     molecule = ACTopol(f"benzene.{ft}", chargeType=ct, debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
+    assert molecule.molTopol is not None
     captured = capsys.readouterr()
     assert molecule
     assert len(molecule.molTopol.atoms) == 12
@@ -158,7 +164,7 @@ def test_ekFlag(janitor):
     )
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 12
     janitor.append(molecule.absHomeDir)
     janitor.append(molecule.tmpDir)
@@ -177,7 +183,7 @@ def test_charge_user(janitor):
     molecule = ACTopol("ADPMg.mol2", chargeType="user", debug=True)
     molecule.createACTopol()
     molecule.createMolTopol()
-    assert molecule
+    assert molecule.molTopol is not None
     assert len(molecule.molTopol.atoms) == 39
     assert len(molecule.molTopol.properDihedrals) == 125
     assert len(molecule.molTopol.improperDihedrals) == 7
@@ -191,7 +197,10 @@ def test_charge_user(janitor):
     ("argv", "msg"),
     [
         (["-i", "cccc"], "Total time of execution:"),
-        (["-x", "Base.inpcrd", "-p", "Base.prmtop", "-b", "vir_temp"], "Total time of execution:"),
+        (
+            ["-x", "Base.inpcrd", "-p", "Base.prmtop", "-b", "vir_temp"],
+            "Total time of execution:",
+        ),
         (["-wi", "cccc", "-b", "vir_temp"], ""),
         (
             ["-i", "wrong_res_set.pdb", "-b", "vir_temp"],
@@ -234,23 +243,59 @@ def test_inputs(janitor, capsys, argv, msg):
 @pytest.mark.parametrize(
     ("argv", "code", "msg"),
     [
-        (None, 2, " error: "),  # NOTE: None -> sys.argv from pytest
+        (None, 2, "No such option: --bogus"),  # NOTE: None -> sys.argv
         (["-v"], 0, version),
-        ([], 2, "error: missing input files"),
-        (["-d", "-w"], 2, "error: argument -w/--verboseless: not allowed with argument -d/--debug"),
-        (["-di", "AAAx.mol2"], 19, "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST"),
-        (["-zx", "ILDN.inpcrd", "-p", "ILDN.prmtop"], 19, "Likely trying to convert ILDN to RB"),
-        (["-x", "glycam_exe.inpcrd", "-p", "glycam_corrupt.prmtop"], 19, "Skipping non-existent attributes dihedral_p"),
-        (["-x", "glycam_exe.inpcrd", "-p", "glycam_empty.prmtop"], 19, "ERROR: ACPYPE FAILED: PRMTOP file empty?"),
-        (["-x", "glycam_empty.inpcrd", "-p", "glycam_exe.prmtop"], 19, "ERROR: ACPYPE FAILED: INPCRD file empty?"),
+        ([], 2, "missing input files"),
+        (["-d", "-w"], 2, "'-d' and '-w' are mutually exclusive"),
+        (
+            ["-di", "AAAx.mol2"],
+            19,
+            "ACPYPE FAILED: Input file AAAx.mol2 DOES NOT EXIST",
+        ),
+        (
+            ["-zx", "ILDN.inpcrd", "-p", "ILDN.prmtop"],
+            19,
+            "Likely trying to convert ILDN to RB",
+        ),
+        (
+            ["-x", "glycam_exe.inpcrd", "-p", "glycam_corrupt.prmtop"],
+            19,
+            "Skipping non-existent attributes dihedral_p",
+        ),
+        (
+            ["-x", "glycam_exe.inpcrd", "-p", "glycam_empty.prmtop"],
+            19,
+            "ERROR: ACPYPE FAILED: PRMTOP file empty?",
+        ),
+        (
+            ["-x", "glycam_empty.inpcrd", "-p", "glycam_exe.prmtop"],
+            19,
+            "ERROR: ACPYPE FAILED: INPCRD file empty?",
+        ),
         (["-di", "cccccc", "-n", "-1", "-b", "vir_temp"], 19, "Fatal Error!"),
-        (["-di", " 123", "-b", "vir_temp"], 19, "ACPYPE FAILED: [Errno 2] No such file or directory"),
-        (["-i", "double_res.pdb", "-b", "vir_temp"], 19, "Only ONE Residue is allowed for ACPYPE to work"),
-        (["-i", "same_coord.pdb", "-b", "vir_temp"], 19, "Atoms with same coordinates in"),
+        (
+            ["-di", " 123", "-b", "vir_temp"],
+            19,
+            "ACPYPE FAILED: [Errno 2] No such file or directory",
+        ),
+        (
+            ["-i", "double_res.pdb", "-b", "vir_temp"],
+            19,
+            "Only ONE Residue is allowed for ACPYPE to work",
+        ),
+        (
+            ["-i", "same_coord.pdb", "-b", "vir_temp"],
+            19,
+            "Atoms with same coordinates in",
+        ),
         (["-i", "too_close.pdb", "-b", "vir_temp"], 19, "Atoms TOO close (<"),
         (["-i", "too_far.pdb", "-b", "vir_temp"], 19, "Atoms TOO scattered (>"),
         (["-di", " 123", "-x", "abc"], 2, "either '-i' or ('-p', '-x'), but not both"),
-        (["-di", " 123", "-u"], 2, "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')"),
+        (
+            ["-di", " 123", "-u"],
+            2,
+            "option -u is only meaningful in 'amb2gmx' mode (args '-p' and '-x')",
+        ),
         (
             ["-di", "HEM.pdb", "-b", "vir_temp"],
             19,
@@ -259,11 +304,17 @@ def test_inputs(janitor, capsys, argv, msg):
         ),
     ],
 )
-def test_args_wrong_inputs(janitor, capsys, argv, code, msg):
+def test_args_wrong_inputs(janitor, capsys, monkeypatch, argv, code, msg):
+    if argv is None:
+        # Exercise the `argv=None` -> sys.argv path with a deterministic command line;
+        # pytest's own argv differs between runs (e.g. with and without --no-cov).
+        monkeypatch.setattr(sys, "argv", ["acpype", "--bogus"])
     with pytest.raises(SystemExit) as e_info:
         init_main(argv=argv)
     captured = capsys.readouterr()
-    assert msg in captured.err + captured.out
+    # Belt and braces: assert on the text, not on however it happened to be rendered.
+    output = re.sub(r"\x1b\[[0-9;]*m", "", captured.err + captured.out)
+    assert msg in output
     assert e_info.typename == "SystemExit"
     assert e_info.value.code == code
     _getoutput("rm -vfr vir_temp* .*vir_temp*")

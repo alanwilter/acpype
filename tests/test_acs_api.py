@@ -1,5 +1,6 @@
 import json
 from glob import glob
+from pathlib import Path
 
 from acpype.acs_api import acpype_api
 
@@ -37,13 +38,20 @@ def test_json_simple(janitor):
 def test_json_failed(janitor):
     jj = json.loads(acpype_api(inputFile="_fake_", debug=True))
     assert "ERROR: [Errno 2] No such file or directory" in jj.get("file_name")
-    assert "tests/_fake_" in jj.get("file_name")
+    # The missing input is reported as an absolute path resolved against the cwd.
+    assert str(Path.cwd() / "_fake_") in jj.get("file_name")
     for ii in glob(".*_fake_*"):
         janitor.append(ii)
 
 
 def get_json():
-    json_output = acpype_api(inputFile="AAA.mol2", chargeType="gas", atomType="gaff2", debug=True, basename="AAA")
+    json_output = acpype_api(
+        inputFile="AAA.mol2",
+        chargeType="gas",
+        atomType="gaff2",
+        debug=True,
+        basename="AAA",
+    )
     return json.loads(json_output)
 
 

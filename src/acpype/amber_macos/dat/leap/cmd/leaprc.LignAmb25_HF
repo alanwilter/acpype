@@ -1,0 +1,47 @@
+# LignAmb25 initilization for use with other force fields
+# (HF/6-31G* charges + GAFF2 parameters)
+addAtomTypes {
+    { "CD"   "C" "sp3" }
+    { "Ca"   "C" "sp3" }
+    { "Cb"   "C" "sp3" }
+    { "Cd"   "C" "sp3" }
+    { "Ce"   "C" "sp3" }
+    { "Ci"   "C" "sp3" }
+    { "Cm"   "C" "sp3" }
+    { "Co"   "C" "sp3" }
+    { "Cr"   "C" "sp3" }
+    { "Ct"   "C" "sp3" }
+    { "Cx"   "C" "sp3" }
+    { "HR"   "H" "sp3" }
+    { "Hd"   "H" "sp3" }
+    { "Hm"   "H" "sp3" }
+    { "Hq"   "H" "sp3" }
+    { "Hr"   "H" "sp3" }
+    { "Hx"   "H" "sp3" }
+    { "OE"   "O" "sp3" }
+    { "Ob"   "O" "sp3" }
+    { "Oc"   "O" "sp3" }
+    { "Oe"   "O" "sp3" }
+    { "Om"   "O" "sp3" }
+    { "Or"   "O" "sp3" }
+    { "Oz"   "O" "sp3" }
+    { "cE"   "C" "sp2" }
+    { "cH"   "C" "sp2" }
+    { "cM"   "C" "sp2" }
+    { "cN"   "C" "sp2" }
+    { "co"   "C" "sp2" }
+}
+source leaprc.gaff2
+# Load parameters not explicitly found in gaff2
+# but required by LignAmb25
+lnAMbp = loadamberparams LignAmb25_HF.dat
+#
+# Load LignAmb25 residue library
+#
+lnAMbl = loadoff LignAmb25_HF.lib
+#
+#
+# Load LignAmb25 residue library
+#
+lnAMBc = loadamberparams LignAmb25_HF-GLYCAM.frcmod
+#

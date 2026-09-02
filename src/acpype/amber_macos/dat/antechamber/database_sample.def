@@ -1,0 +1,110 @@
+####	This is a sample file of how to prepare the definition files for the database command
+####	in the Antechamber package
+####    Basic Rules
+####    1  All the flags must start at the first row
+####    2  TMPFILE and MOLNAME in the command lines and add_line lines will be
+####       replaced with the defined temporary file name and molecular record name
+####    3  Commands are running in a sequential order.
+####    4  Additional lines are appended in a sequential order.
+####    5  Up to to MAXCOMMAND commands, MAXLINE add_lines and MAXLINE omit_lines can
+####       be defined.
+####    6  RECORD_BEGIN, RECORD_END, MOLNAME_FIELD, IMMEDIATE_STOP, OMIT_LINE, ADD_LINE
+####       must be placed in a pair of double quotas.
+****RECORD_BEGIN and RECORD_END****
+	Define the start and end points of each record.
+	eg RECORD_BEGIN  "########## Number      :" 
+	eg RECORD_END    "1   ****   1" 
+ 	RECORD_BEGIN and RECORD_END can not be space or '\0'
+****SEPARATOR****
+	SEPARATOR defines the separator between two records, it is suppressed by 
+	RECORD_BEGIN and RECORD_END
+	eg SEPARATOR  "@<TRIPOS>MOLECULE"  
+****SEPA_TYPE****
+	=0:  the SEPARATOR line is at the beginning of a record (may not necessary the
+	     first line for the first record, such as "@<TRIPOS>MOLECULE" in a multiple 
+	     mol2 file, it is the default)  
+	=1:  the SEPARATOR line is at the end of a record(such as "$$$$" in a sdf file)
+	eg SEPA_TYPE  0 
+****MOLNAME_DEF**** 
+ 	Define the prefix of record names
+	eg MOLNAME_DEF  COMP    
+****MOLNAME_ID**** 
+ 	Define the starting ID, default is 1   
+ 	If MOLNAME_DEF="comp" and MOLNAME_ID is 1, then record names are comp1, comp2, 
+	comp3 etc.	 
+	eg MOLNAME_ID   100
+****MOLNAME_FIELD****
+	MOLNAME_FIELD defines a reference line to be used to read in record names from 
+	the input, it is suppressed by MOLNAME_DEF 
+	eg MOLNAME_FIELD "ZINC"
+****MOLNAME_FL****
+	=1: The first line of each record is taken as the reference line. For example,
+	    some sdf files places the record name at the first line of each record. 
+	=0: not applied (the default).
+	eg MOLNAME_FL 0 
+****MOLNAME_FR****
+	=n: It is used when MOLANME_FL is set to 1. For the first record, the nth line is
+	    taken as the reference line. 
+	=0: not applied (the default).
+	eg MOLNAME_FR 0 
+****MOLNAME_LD****
+	MOLNAME_LD (line distance) specifies from which line the record names are read in 
+	The first integer specifies the line ID and the second specifies the start column 	
+	For the first integer, 
+		 0, read record name from the reference line defined by MOLNAME_FIELD or 
+		    MOLNAME_FL and MOLNAME_FR.
+ 		-1, read record name from the immediate above reference line
+ 		-2, read record name from the second immediate above reference line
+ 		-3, read record name from the third immediate above reference line
+ 		-4, read record name from the fourth immediate above reference line
+ 		-5, read record name from the fifth immediate above reference line
+		 1, read record name from the immediate next reference line (the default)
+		 2, read record name from the second immediate next reference line
+		 3, read record name from the third immediate next reference line
+		 4, read record name from the fourth immediate next reference line
+		 5, read record name from the fifth immediate next reference line
+	eg MOLNAME_LD 0 0, read molecular name from the current line starting 
+	from the first column
+****TMPFILE****
+	TMPFILE specifies the name of a temporary file that holds all lines extracted 
+	from the input for each record
+	eg TMPFILE TMP 
+****PROC_BEGIN****
+	The starting record to be handled (commands are to be executed). If PROC_BEGIN  
+	is smaller than 1, it is reset to 1 (the default is 1).
+	eg PROC_BEGIN 0
+****PROC_END****
+	The ending record to be handled. If PROC_END is smaller than 1, this 
+	restriction is ignored (the default is 0).
+	eg PROC_END 0
+****PROC_FREQ****
+	The frequency to handle records between PROC_BEGIN and PROC_END (or the 
+	last record), the default is 1.
+	eg PROC_FREQ 1
+****PROC_PROB****
+	The probability of handling a record between PROC_BEGIN and PROC_END 
+	(or the last record). This parameter should be larger than 0 and smaller than 1. 
+	It is activated only if PROC_FREQ equals to 1. The default is not applied(=-1). 
+	eg PROC_PROB 0.1
+****IMMEDIATE_STOP*****
+	Stop running if a line contains the defined string. 
+	eg IMMEDIATE_STOP "END"
+****OMIT_LINE***
+	Omit lines that contain the defined string
+	eg OMIT_LINE "RENARK"
+****ADD_LINE***
+	Add lines to records, it takes two variables (the type and content)
+	For the type flag,	
+	 1: to the beginning of each record
+	-1: to the end of the each record
+	eg. ADD_LINE -1 "End Of Record"
+****COMMAND****
+	Define commands to be executed.
+	eg COMMAND  "cp TMPFILE MOLNAME.mol2"
+	eg COMMAND  "$ACHOME/bin/antechamber -fi mol2 -fo prepi -i MOLNAME.mol2 -o MOLNAME.prepi -j 4 -pf yes"
+	eg COMMAND  "cat MOLNAME.prepi >>total.prepi"
+	eg COMMAND  "$ACHOME/bin/parmchk -i MOLNAME.prepi -o MOLNAME.frcmod -f prepi"
+	eg COMMAND  "cat MOLNAME.frcmod >>total.frcmod"
+	eg COMMAND  "rm -f TMPFILE"
+	eg COMMAND  "rm -f MOLNAME.*"
+#### end of definition

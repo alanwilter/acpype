@@ -1,103 +1,54 @@
 #!/usr/bin/env bash
 
-env_name="ambertools"
-source="$HOME/mambaforge/envs/${env_name}"
-destination="acpype/amber_linux"
+# Refresh the vendored Linux AmberTools bundle.
+#
+# Unlike the macOS counterpart this cannot run against a local conda environment on a
+# developer's Mac, so it builds a throwaway linux/amd64 image holding AmberTools and
+# vendors out of that. Run it from the repository root with Docker available.
+#
+# The list of shared libraries lives in scripts/vendor_amber.py, which derives it from
+# the executables; see that file for what is deliberately left to the host system.
 
-if mamba env list | grep -q " $env_name "; then
-    if [[ "$1" == "-f" ]]; then
-        mamba env remove --name "$env_name" --yes
-        mamba create -n "$env_name" ambertools --yes
-    else
-        echo "The '$env_name' environment already exists. Use '-f' to force re-run."
-        exit 1
-    fi
-fi
+set -euo pipefail
 
-files=(
-    bin/bondtype
-    bin/tleap
-    bin/atomtype
-    bin/wrapped_progs/bondtype
-    bin/wrapped_progs/atomtype
-    bin/wrapped_progs/antechamber
-    bin/wrapped_progs/parmchk2
-    bin/wrapped_progs/am1bcc
-    bin/antechamber
-    bin/parmchk2
-    bin/sqm
-    bin/am1bcc
-    bin/teLeap
-    LICENSE
-    GNU_LGPL_v3
-    amber.sh
-    dat/antechamber
-    dat/chamber
-    dat/leap
-    lib/libcifparse.so
-    lib/libsff_fortran.so
-    lib/libnetcdf.so.19
-    lib/libmfhdf.so.0
-    lib/libmfhdf.so.0.0.0
-    lib/libdf.so.0
-    lib/libdf.so.0.0.0
-    lib/libhdf5_hl.so.310
-    lib/libhdf5_hl.so.310.0.2
-    lib/libhdf5.so.310
-    lib/libhdf5.so.310.2.0
-    lib/libcrypto.so.3
-    lib/libzip.so.5
-    lib/libzip.so.5.5
-    lib/libsz.so.2
-    lib/libsz.so.2.0.1
-)
+amber_version="${AMBERTOOLS_VERSION:-26}"
+destination="src/acpype/amber_linux"
+image="acpype-ambertools-linux:${amber_version}"
 
-exclude=(
-    --exclude=__pycache__
-    --exclude=*.pyc
-    --exclude=*.pyo
-    --exclude=*.log
-    --exclude=pixmaps/
-)
+docker build --platform linux/amd64 -t "$image" - <<EOF
+FROM condaforge/miniforge3
+RUN mamba create -y -p /opt/amber -c conda-forge ambertools=${amber_version} && mamba clean -a -y
+RUN apt-get update && apt-get install -y --no-install-recommends binutils file \
+    && rm -rf /var/lib/apt/lists/*
+EOF
 
-rm -fr $destination
+rm -rf "$destination"
+docker run --rm --platform linux/amd64 \
+    -v "$PWD":/repo \
+    -w /repo \
+    "$image" \
+    python3 scripts/vendor_amber.py --source /opt/amber --dest "$destination"
 
-for item in "${files[@]}"; do
-    source_path="${source}/${item}"
-    destination_path="${destination}/${item}"
-    pdir=$(dirname "$destination_path")
+# charmmgen predates modern AmberTools, which dropped it; ACPYPE keeps an old build
+# for legacy compatibility. It is not part of the vendoring closure.
+tar xvfz charmmgen_linux.tgz
 
-    mkdir -p "$pdir"
-    if [ -d "$source_path" ]; then
-        rsync -av "${exclude[@]}" "$source_path" "$pdir"
-    else
-        rsync -av "${exclude[@]}" "$source_path" "$destination_path"
-    fi
-done
+# Verify against a stock distro carrying only the packages ACPYPE documents as host
+# requirements -- not the conda build image, which would hide a missing bundled
+# library behind conda's own copy. Keep this list in step with the Dockerfile and
+# .github/workflows/check_acpype.yml.
+verify_image="acpype-ambertools-verify:${amber_version}"
+docker build --platform linux/amd64 -t "$verify_image" - <<'EOF'
+FROM ubuntu:24.04
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 libgfortran5 libstdc++6 libgomp1 libblas3 liblapack3 libcurl4 \
+    && rm -rf /var/lib/apt/lists/*
+EOF
 
-tar xvfz charmmgen.tgz
+docker run --rm --platform linux/amd64 -v "$PWD":/repo -w /repo "$verify_image" \
+    python3 scripts/check_amber_bundle.py "$destination"
 
 pre-commit run -a
 
-tree -d $destination
-
-find $destination | wc -l # 569 files, 15 dirs
-# acpype/amber_linux
-# ├── bin
-# │   └── wrapped_progs
-# ├── dat
-# │   ├── antechamber
-# │   ├── chamber
-# │   └── leap
-# │       ├── cmd
-# │       │   └── oldff
-# │       ├── lib
-# │       │   └── oldff
-# │       ├── parm
-# │       └── prep
-# │           ├── oldff
-# │           └── protonated_nucleic
-# └── lib
-# amber.sh
-# GNU_LGPL_v3
-# LICENSE
+find "$destination" -type f | wc -l
+du -sh "$destination"

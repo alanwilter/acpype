@@ -1,0 +1,15 @@
+#
+# Load the OL24 force field for DNA
+# 
+
+source oldff/leaprc.ff14SB   
+
+addAtomTypes {
+	{ "C7"  "C" "sp3" }
+	{ "CJ"  "C" "sp3" }
+        { "C1"  "C" "sp2" }
+        { "C2"  "C" "sp2" }
+}
+
+loadoff ff-nucleic-OL24.lib 
+loadamberparams ff-nucleic-OL24.frcmod

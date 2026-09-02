@@ -1,0 +1,359 @@
+AMBER Lipid21 v1.0 C. J. Dickson, R.C. Walker, I.R. Gould.
+cA      12.010
+cB      12.010
+cC      12.010
+cD      12.010
+hA       1.008
+hB       1.008
+hE       1.008
+hL       1.008
+hN       1.008
+hO       1.008
+hX       1.008
+nA      14.010
+nN      14.010
+oC      16.000
+oH      16.000
+oO      16.000
+oP      16.000
+oS      16.000
+oT      16.000
+pA      30.970
+
+cD-cC    328.300   1.508
+cC-cD    328.300   1.508
+cD-cD    303.100   1.535
+cA-cD    303.100   1.535
+cC-oC    648.000   1.214
+oS-cC    411.300   1.343
+nA-cA    293.600   1.499
+cA-cA    303.100   1.535
+pA-oT    230.000   1.610  parm99
+pA-oP    525.000   1.480  parm99
+cA-oT    301.500   1.439
+cA-oS    301.500   1.439
+cA-hA    337.300   1.092
+cD-hL    337.300   1.092
+cA-hX    338.700   1.091
+cA-hE    335.900   1.093
+cB-cB    589.700   1.324
+cB-cD    328.300   1.508
+cB-cA    328.300   1.508
+cB-hB    344.300   1.087
+cA-cC    328.300   1.508 
+cC-oO    648.000   1.214
+hN-nA    369.000   1.033
+cA-oH    314.100   1.426
+hO-oH    369.600   0.974
+oH-pA    321.200   1.625
+cC-nN    478.200   1.345
+cA-nN    330.600   1.460
+hN-nN    410.200   1.009
+
+cD-cD-cD     47.200  112.050  Lipid21 v1.0 MP2 QM fit.
+cD-cC-oC     68.030  123.110
+cD-cC-oS     69.260  111.960
+cD-cD-cC     63.790  110.530
+hA-cA-hA     39.430  108.350
+cA-cA-hA     46.370  110.050
+cD-cA-hA     46.370  110.050
+cA-cD-hL     46.370  110.050
+cA-cA-cA     63.210  110.630
+cD-cD-cA     63.210  110.630
+cA-cA-cD     63.210  110.630
+cA-cA-cB     63.530  111.440
+cA-cB-cB     64.330  123.420
+cA-cB-cA     62.700  116.520
+cA-cB-hB     45.660  117.300
+cB-cA-hA     47.030  110.490
+oS-cC-oC     75.930  123.330
+oP-pA-oP    140.000  119.900  from O2-P -O2 
+cA-nA-cA     62.840  110.640
+cA-cA-nA     64.450  114.320
+oT-pA-oP    100.000  108.230  from O2-P -OS 
+oT-cA-cA     67.780  108.420
+pA-oT-cA    100.000  120.500  from CT-OS-P 
+oT-pA-oT     90.000  102.600  from OS-P -OS 
+cA-cA-oS     67.780  108.420
+cA-oS-cC     63.630  115.140
+hL-cD-cC     47.200  109.680
+hL-cD-hL     39.430  108.350
+hL-cD-cD     46.370  110.050
+hX-cA-hX     39.040  110.740
+nA-cA-hX     49.020  107.910
+hE-cA-cA     46.360  110.070
+hE-cA-hE     39.180  109.550
+cA-cA-hX     46.020  111.740
+oT-cA-hE     50.840  108.820
+hE-cA-oS     50.840  108.820
+cB-cB-cD     64.330  123.420
+cB-cD-hL     47.030  110.490
+cB-cD-cD     63.530  111.440
+cB-cB-hB     50.040  120.940
+cD-cB-hB     45.660  117.300
+cA-cC-oO     68.030  123.110
+oO-cC-oO     78.170  130.380
+cA-nA-hN     46.190  110.110
+hN-nA-hN     40.520  108.110
+cA-cA-cC     63.790  110.530
+cC-cA-nA     65.070  114.210
+cC-cA-hX     47.230  109.540
+hE-cA-oH     50.970  109.880
+cA-oH-hO     47.090  108.160
+cA-cA-oH     67.720  109.430
+hO-oH-pA     55.880  110.140
+oH-pA-oT     44.910  102.370
+oP-pA-oH     43.790  115.260
+cB-cD-cB     63.930  112.080
+cA-cA-nN     65.850  112.130
+cA-nN-cC     63.920  121.350
+cA-nN-hN     46.040  116.780
+cC-nN-hN     49.210  118.460
+cD-cC-nN     67.860  115.150
+hE-cA-nN     49.820  109.320
+nN-cC-oC     75.830  122.030
+cB-cA-oH     68.180  110.210
+cB-cA-hE     47.030  110.460
+
+cD-cD-cD-cD    1    0.100    0.000  -5.0    SCEE=1.2 SCNB=6.0  Lipid21 v1.0 MP2 QM fit.
+cD-cD-cD-cD    1    0.100    0.000  -4.0    SCEE=1.2 SCNB=6.0  Lipid21 v1.0 MP2 QM fit.
+cD-cD-cD-cD    1    0.300    0.000  -3.0    SCEE=1.2 SCNB=6.0  Lipid21 v1.0 MP2 QM fit.
+cD-cD-cD-cD    1    0.100    0.000  -2.0    SCEE=1.2 SCNB=6.0  Lipid21 v1.0 MP2 QM fit.
+cD-cD-cD-cD    1    0.100    0.000   1.0    SCEE=1.2 SCNB=6.0  Lipid21 v1.0 MP2 QM fit.
+cA-oT-pA-oP    1    0.000    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cA-oT-pA-oP    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cA-oT-pA-oP    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cA-oT-pA-oP    1    0.200    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cA-oT-pA-oP    1    0.000    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+hE-cA-oT-pA    1    0.000    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+hE-cA-oT-pA    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+hE-cA-oT-pA    1    0.383    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+hE-cA-oT-pA    1    0.000    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+hE-cA-oT-pA    1    0.000    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oS-cA-cA-cA    1    0.000    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oS-cA-cA-cA    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oS-cA-cA-cA    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oS-cA-cA-cA    1    0.000    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oS-cA-cA-cA    1    0.000    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oT-cA-cA-oS    1    0.000    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oT-cA-cA-oS    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oT-cA-cA-oS    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oT-cA-cA-oS    1    0.000    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+oT-cA-cA-oS    1    0.000    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cC-oS-cA-cA    1   -0.200  300.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cC-oS-cA-cA    1   -0.300  240.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cC-oS-cA-cA    1   -0.100    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+oS-cA-cA-oS    1    1.000    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+oS-cA-cA-oS    1    0.300    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+oS-cA-cA-oS    1   -0.100  180.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cA-oT-pA-oT    1    0.600    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+cA-oT-pA-oT    1    2.300    0.000   2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+cA-cA-oT-pA    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+cA-cA-oT-pA    1   -0.800  180.000   2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+cA-cA-cA-oT    1    0.400   60.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+cA-cA-cA-oT    1    0.200  120.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+cA-cA-cA-oT    1    0.800  180.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+nA-cA-cA-oT    1    1.000    0.000   3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 PCM QM fit.
+cD-cB-cB-cD    1    0.000    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cD-cB-cB-cD    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cD-cB-cB-cD    1    0.600    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cD-cB-cB-cD    1    3.300  180.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cD-cB-cB-cD    1    1.700  180.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cA-cB-cB-cA    1    6.650  180.000  -2.0    SCEE=1.2 SCNB=2.0
+cA-cB-cB-cA    1    1.900  180.000   1.0    SCEE=1.2 SCNB=2.0
+cD-cB-cB-cA    1    6.650  180.000  -2.0    SCEE=1.2 SCNB=2.0
+cD-cB-cB-cA    1    1.900  180.000   1.0    SCEE=1.2 SCNB=2.0
+cB-cB-cD-cD    1    0.200  180.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cD    1    0.200  180.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cD    1    0.400  180.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cD    1    0.400  180.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cD    1    0.600    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cA-cA-cB-cB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cB-cD-cD-cD    1    0.100    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cD-cD-cD    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cD-cD-cD    1    0.500    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cD-cD-cD    1    0.000    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cD-cD-cD    1    0.000    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cA-cA-cA    1    0.000    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cB-cA-cA-cA    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cB-cA-cA-cA    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cB-cA-cA-cA    1    0.000    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cB-cA-cA-cA    1    0.000    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cD-cD-cC-oC    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
+cD-cD-cC-oS    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
+cD-cC-oS-cA    1    2.700  180.000   2.0    SCEE=1.2 SCNB=2.0
+cC-cD-cD-cD    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cA-nA-cA    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-oS-cC-oC    1    2.700  180.000  -2.0    SCEE=1.2 SCNB=2.0
+cA-oS-cC-oC    1    1.400  180.000   1.0    SCEE=1.2 SCNB=2.0
+hL-cD-cC-oC    1    0.080  180.000  -3.0    SCEE=1.2 SCNB=2.0
+hL-cD-cC-oC    1    0.800    0.000   1.0    SCEE=1.2 SCNB=2.0
+hL-cD-cC-oS    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
+hL-cD-cD-hL    1    0.150    0.000   3.0    SCEE=1.2 SCNB=2.0
+hL-cD-cD-cC    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+hL-cD-cD-cD    1    0.160    0.000   3.0    SCEE=1.2 SCNB=2.0
+cD-cD-cD-hL    1    0.160    0.000   3.0    SCEE=1.2 SCNB=2.0
+cC-cD-cD-hL    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+hX-cA-nA-cA    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-hX    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-nA    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+oT-cA-cA-hX    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-oS    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-oS    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-hE    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-oT    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-oT    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
+hE-cA-oS-cC    1    0.383    0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-cA    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-hE    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0
+oS-cA-cA-hE    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0
+oS-cA-cA-hE    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
+cD-cD-cB-hB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+hB-cB-cD-hL    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cB-cD-cD-hL    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+cD-cB-cB-hB    1    6.650  180.000   2.0    SCEE=1.2 SCNB=2.0
+cB-cB-cD-hL    1    0.380  180.000  -3.0    SCEE=1.2 SCNB=2.0
+cB-cB-cD-hL    1    1.150    0.000   1.0    SCEE=1.2 SCNB=2.0
+hB-cB-cB-hB    1    6.650  180.000   2.0    SCEE=1.2 SCNB=2.0
+cC-cA-nA-hN    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+nA-cA-cC-oO    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0 
+hN-nA-cA-hX    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+hX-cA-cC-oO    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
+cC-cA-cA-hE    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cA-nA-hN    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cA-cC-oO    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
+cC-cA-cA-oT    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+hE-cA-oH-hO    1    0.500    0.000   3.0    SCEE=1.2 SCNB=2.0 
+cA-cA-oH-hO    1    0.160    0.000  -3.0    SCEE=1.2 SCNB=2.0
+cA-cA-oH-hO    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-oH    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-oH    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-oH    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+oH-cA-cA-oT    1    0.144    0.000  -3.0    SCEE=1.2 SCNB=2.0
+oH-cA-cA-oT    1    1.175    0.000   2.0    SCEE=1.2 SCNB=2.0
+oH-cA-cA-oH    1    0.144    0.000  -3.0    SCEE=1.2 SCNB=2.0
+oH-cA-cA-oH    1    1.175    0.000   2.0    SCEE=1.2 SCNB=2.0 
+cA-oT-pA-oH    1    0.250    0.000  -3.0    SCEE=1.2 SCNB=2.0
+cA-oT-pA-oH    1    1.200    0.000   2.0    SCEE=1.2 SCNB=2.0
+hO-oH-pA-oT    1    0.5333   0.000   3.0    SCEE=1.2 SCNB=2.0
+hO-oH-pA-oP    1    0.5333   0.000   3.0    SCEE=1.2 SCNB=2.0
+cB-cB-cD-cB    1    0.000    0.000  -5.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cB    1    0.000    0.000  -4.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cB    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cB    1    0.000    0.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cB-cD-cB    1    0.000    0.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cD-cB-hB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-cA    1    0.180    0.000  -3.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-cA    1    0.250  180.000  -2.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-cA    1    0.200  180.000   1.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-cD    1    0.180    0.000  -3.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-cD    1    0.250  180.000  -2.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-cD    1    0.200  180.000   1.0    SCEE=1.2 SCNB=2.0
+cA-cA-cD-cD    1    0.180    0.000  -3.0    SCEE=1.2 SCNB=2.0
+cA-cA-cD-cD    1    0.250  180.000  -2.0    SCEE=1.2 SCNB=2.0
+cA-cA-cD-cD    1    0.200  180.000   1.0    SCEE=1.2 SCNB=2.0
+cA-cD-cD-cD    1    0.180    0.000  -3.0    SCEE=1.2 SCNB=2.0
+cA-cD-cD-cD    1    0.250  180.000  -2.0    SCEE=1.2 SCNB=2.0
+cA-cD-cD-cD    1    0.200  180.000   1.0    SCEE=1.2 SCNB=2.0
+cA-cA-cA-hA    1    0.160    0.000   3.0    SCEE=1.2 SCNB=2.0
+cD-cA-cA-hA    1    0.160    0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cA-cD-hL    1    0.160    0.000   3.0    SCEE=1.2 SCNB=2.0
+hA-cA-cA-hA    1    0.150    0.000   3.0    SCEE=1.2 SCNB=2.0
+hA-cA-cD-hL    1    0.150    0.000   3.0    SCEE=1.2 SCNB=2.0
+cD-cD-cA-hA    1    0.160    0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cD-cD-hL    1    0.160    0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cA-cB-cA    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cA-cB-cB-hB    1    6.650  180.000   2.0    SCEE=1.2 SCNB=2.0
+hA-cA-cB-hB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cA-cA-cB-hB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cB-cA-cA-hA    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+cB-cA-cA-oH    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+cB-cB-cA-hA    1    0.380  180.000  -3.0    SCEE=1.2 SCNB=2.0
+cB-cB-cA-hA    1    1.150    0.000   1.0    SCEE=1.2 SCNB=2.0
+hA-cA-cA-oH    1    0.000    0.000  -3.0    SCEE=1.2 SCNB=2.0
+hA-cA-cA-oH    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
+cA-cB-cA-hA    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+hA-cA-cA-hE    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+cB-cA-cA-hE    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+cA-cA-nN-cC    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cA-cA-nN-hN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cA-nN-cC-cD    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0
+cA-nN-cC-oC    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0 
+cB-cA-cA-nN    1    2.400    0.000  -3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cA-cA-nN    1    1.300  180.000  -2.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cB-cA-cA-nN    1    0.400   60.000   1.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0 MP2 QM fit.
+cC-nN-cA-hE    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0 
+cD-cC-nN-hN    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0 
+cD-cD-cC-nN    1    0.000  180.000   2.0    SCEE=1.2 SCNB=2.0
+hE-cA-cA-nN    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0 
+hE-cA-nN-hN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0 
+hL-cD-cC-nN    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0 
+hN-nN-cC-oC    1    2.500  180.000   2.0    SCEE=1.2 SCNB=2.0 
+nN-cA-cA-oH    1    0.156    0.000   3.0    SCEE=1.2 SCNB=2.0 
+nN-cA-cA-oT    1    0.000    0.000   3.0    SCEE=1.2 SCNB=2.0  Lipid21 v1.0
+cB-cA-oH-hO    1    0.160    0.000  -3.0    SCEE=1.2 SCNB=2.0
+cB-cA-oH-hO    1    0.250    0.000   1.0    SCEE=1.2 SCNB=2.0
+cB-cB-cA-oH    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+hE-cA-cB-cB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+hE-cA-cB-hB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+oH-cA-cB-hB    1    0.000    0.000   2.0    SCEE=1.2 SCNB=2.0
+cC-cD-cD-cB    1    0.1556   0.000   3.0    SCEE=1.2 SCNB=2.0
+
+cA-cA-cB-cB               1.10         180.00           2.00
+cA-cB-cB-hB               1.10         180.00           2.00
+cA-cC-nN-hN               1.10         180.00           2.00
+cA-oO-cC-oO               1.10         180.00           2.00
+cB-cD-cB-hB               1.10         180.00           2.00
+cD-nN-cC-oC               1.10         180.00           2.00
+cD-oC-cC-oS              10.50         180.00           2.00
+cA-cC-nN-hN               1.10         180.00           2.00
+
+  hw  ow  0000.     0000.                                4.  flag for fast water    Lipid11 v1.0  (GAFF)
+
+
+MOD4      RE
+  pA    2.1000   0.2000
+  nA    1.8240   0.1700
+  nN    1.8240   0.1700
+  cA    1.9080   0.1094
+  cD    1.9080   0.1094
+  cB    1.9080   0.0860
+  cC    1.9080   0.0860
+  oC    1.6612   0.2100
+  oS    1.6837   0.1700
+  oP    1.6612   0.2100 
+  oT    1.6837   0.1700 
+  oO    1.6612   0.2100
+  oH    1.7210   0.2104 
+  hA    1.4870   0.0157
+  hB    1.2500   0.0070 Lipid14 
+  hL    1.4600   0.0100 Lipid14
+  hE    1.3870   0.0157
+  hX    1.1000   0.0157
+  hN    0.6000   0.0157
+  hO    0.6000   0.0157 Remove zero size
+
+###############################################################################
+
+AMBER Lipid21 v1.0 C. J. Dickson, R.C. Walker, I.R. Gould. 
+
+** Unless otherwise stated, origin parameters are GAFF v1.7. **
+
+Citations
+=========
+1. Dickson, C.J., Madej, B.D., Skjevik, A.A., Betz, R.M., Teigen, K., Gould, I.R., Walker, R.C. Lipid14: The Amber Lipid Force Field. J. Chem. Theory Comput. 2014.
+   DOI: 10.1021/ct4010307
+
+2. Madej, B., Gould, I.R., Walker, R.C. A Parameterization of Cholesterol for Mixed Lipid Bilayer Simulation within the Amber Lipid14 Force Field. J. Phys. Chem. B. 2015.
+   DOI: 10.1021/acs.jpcb.5b04924
+
+3. Dickson, C.J., Walker, R.C., Gould, I.R. Lipid21: Complex Lipid Membrane Simulations with AMBER, J. Chem. Theory Comput. 2022.
+   DOI: 10.1021/acs.jctc.1c01217
+
+Notes
+=====
+- Warning: Whitespace is important in reading this file. Do not attempt to change whitespace without understanding the Amber .dat file format.
+- All parameters must have a version number and reference where the parameter came from in parentheses.
+
+###############################################################################
+

@@ -6,13 +6,13 @@ If using `Linux` with Intel processors, you can skip the `conda` step and direct
 
 ### Setting `conda`
 
-For `Linux` (Ubuntu 20 recommended) and `macOS`. Anyway, `CONDA` is strongly recommended.
+For `Linux` (Ubuntu 22.04 or newer) and `macOS`. Anyway, `CONDA` is strongly recommended.
 Also recommended is GPG key, so do accordingly in [GitHub](https://docs.github.com/articles/generating-a-gpg-key/).
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-conda create -n acpype python=3.9 ambertools openbabel ocl-icd-system ipython gromacs=2019.1 -y
+conda create -n acpype python=3.12 ambertools openbabel ocl-icd-system ipython gromacs=2019.1 -y
 # ocl-icd-system: case you have GPU
 
 conda activate acpype
@@ -25,14 +25,14 @@ git clone https://github.com/alanwilter/acpype.git
 
 cd acpype
 
-poetry install
+uv sync
 
 pre-commit install
 
 pre-commit run -a
 
 sys=$(perl -e '`uname` eq "Darwin\n" ? print "macos" : print "linux"')
-cp ./acpype/amber_${sys}/bin/charmmgen $(dirname $(which antechamber))
+cp ./src/acpype/amber_${sys}/bin/charmmgen $(dirname $(which antechamber))
 
 git config user.email _email_ # as seen in 'gpg --list-secret-keys --keyid-format=long'
 
@@ -40,8 +40,122 @@ git config user.signingkey _singing_key_ # as seen in 'gpg --list-secret-keys --
 
 git config commit.gpgsign true
 
-pytest --cov=tests --cov=acpype --cov-report=term-missing:skip-covered --cov-report=xml
+uv run pytest --cov=tests --cov=src --cov-report=term-missing:skip-covered --cov-report=xml
 ```
+
+### Layout
+
+The package lives at `src/acpype/`, including the vendored AmberTools under
+`src/acpype/amber_{linux,macos}`. A `src/` layout means the installed package is what
+the tests import, rather than whatever happens to be in the working directory.
+
+Note that paths *inside* the built wheel are still `acpype/...` -- `src` is a source
+layout, not part of the importable name.
+
+### Common tasks
+
+Recipes live in the `justfile`; `just` itself comes from the `rust-just` dev
+dependency, so `uv sync` provides it.
+
+```bash
+just              # list every recipe
+just qa           # format, lint --fix, type check, audit
+just ci           # the same checks without fixes, as CI runs them
+just test         # pytest (arguments are passed through)
+just build        # the per-platform wheels, with the PyPI size check
+just docs         # build the documentation
+just check-bundle # confirm the vendored AmberTools still loads
+just charmmgen    # rebuild charmmgen from AmberClassic
+just up           # upgrade dependencies, audit, rebuild
+```
+
+The `uv` version itself is pinned by `required-version` in `[tool.uv]`. `setup-uv`
+reads the same key, so CI and local development use the same `uv`; bump it there and
+both follow. A mismatched local `uv` fails fast rather than resolving differently.
+
+Or run the tools directly:
+
+```bash
+uv run ruff check .        # lint
+uv run ruff format .       # format
+uv run ty check            # type check
+uv audit                   # dependency vulnerability audit
+```
+
+`ty` runs in CI and as a `pre-commit` hook, and the tree is expected to stay free of
+diagnostics. `src/acpype/amber_linux`, `src/acpype/amber_macos`, `legacy` and `recipe` are
+excluded from it (see `[tool.ty.src]` in `pyproject.toml`).
+
+### Running the tests
+
+Every test that touches the filesystem takes the `janitor` fixture, which gives it an
+empty working directory and links the test inputs in by name. Nothing is written into
+`tests/`, and two `pytest` runs can happen at once without colliding -- ACPYPE and
+antechamber both scatter scratch files through the working directory, so sharing one
+would make runs fail unpredictably.
+
+If you add a test that reads an input file or runs `acpype`, take `janitor` too.
+
+Coverage settings live in `[tool.pytest]`, so a plain `uv run pytest` already produces
+the same report CI does, including the `fail_under` gate in `[tool.coverage.report]`.
+
+### The command line
+
+The CLI is built with [typer](https://typer.tiangolo.com) and rendered by
+[rich](https://rich.readthedocs.io) (`src/acpype/cli.py`). Every flag from the old
+`argparse` interface is preserved, including combined short forms like `-di FILE` and
+negative values like `-n -1`.
+
+Two things are worth knowing when adding tests:
+
+- Usage errors are drawn in a rich panel wrapped to the terminal width, so a long
+  message splits across lines. `tests/conftest.py` pins `COLUMNS` to keep assertions on
+  those messages stable; assert on a short fragment where you can.
+- `init_main(argv=...)` keeps its old contract: it returns normally after a successful
+  run, raises `SystemExit(19)` on failure, `SystemExit(2)` on a usage error, and
+  `SystemExit(0)` for `--version`.
+
+### Refreshing the vendored AmberTools
+
+`acpype` ships a trimmed AmberTools so `antechamber` works out of the box.
+
+```bash
+./update_macos_bins.sh -f   # needs conda/mamba, run on macOS
+./update_linux_bins.sh      # needs Docker, runs a linux/amd64 container
+```
+
+Both call `scripts/vendor_amber.py`, which derives the shared libraries from the
+executables rather than a hand-written list, so a library rename between AmberTools
+releases is picked up automatically. On macOS `scripts/fix_macos_rpaths.py` then
+removes the duplicate `LC_RPATH` entries that conda-forge's arm64 builds carry, which
+dyld refuses to load.
+
+`charmmgen` is a special case: modern AmberTools dropped it, and conda-forge's
+`ambertools` package has never contained it, so ACPYPE builds its own for legacy
+CHARMM output. It is untarred *after* vendoring and is therefore **not** part of the
+dependency closure, so nothing guarantees a re-vendor leaves its libraries in place.
+
+Both binaries are rebuilt by `scripts/build_charmmgen.sh` from the source still
+maintained in [Amber-MD/AmberClassic](https://github.com/Amber-MD/AmberClassic):
+
+```bash
+./scripts/build_charmmgen.sh macos   # native clang, universal arm64 + x86_64
+./scripts/build_charmmgen.sh linux   # via a linux/amd64 container
+./scripts/build_charmmgen.sh         # both
+```
+
+macOS is universal so Apple Silicon no longer needs Rosetta 2; Linux is built on
+Debian 12 and needs at most `GLIBC_2.34`, inside the `manylinux_2_35` floor the wheels
+promise. The script patches one line, because AmberClassic renamed `AMBERHOME` to
+`AMBERCLASSICHOME`, and aborts if that source block ever stops matching. Both
+replacements were verified to produce byte-identical `.rtf`/`.prm`/`.inp` output to the
+binaries they superseded.
+
+`scripts/check_amber_bundle.py` guards this: it runs every executable in the bundle
+and fails if the dynamic loader rejects any of them. Both update scripts run it, and
+so does CI. On Linux it runs against a stock Ubuntu image carrying only the packages
+documented as host requirements, so a library that should have been bundled cannot
+hide behind conda's copy.
 
 If using `VSCode`:
 
@@ -51,28 +165,61 @@ If using `VSCode`:
   "git.enableCommitSigning": true,
   ```
 
-- Another `VSCode` nuisance, if using its graphic buttons for commit etc.: its environment won't necessarily recognise the dependencies installed via `poetry` under `conda` environment named `acpype` (unless you have started `VSCode` from folder repository with command `code .`). To avoid troubles do:
+- `uv sync` creates the virtualenv at `.venv` in the repository root, which `VSCode`
+  and `Kiro` pick up automatically as the `Python Interpreter` (it is also set
+  explicitly in `.vscode/settings.json`). No extra configuration is needed.
 
-  ```bash
-  conda deactivate
-  poetry install # it will create its own virtualenv
-  ```
+  Note that `ambertools`, `gromacs` and `openbabel` are **not** installed into `.venv`:
+  `acpype` ships its own `antechamber` under `src/acpype/amber_${sys}`, and the rest come
+  from the `conda` environment. If you need those on your `PATH`, run the tests from an
+  activated `conda activate acpype` shell -- `uv run` will still use `.venv` for the
+  Python dependencies.
 
-  You could use this `poetry virtualenv` as the `Python Interpreter` for `VSCode`, however `ambertools`, `gromacs` and `openbabel` won't be available (unless you've had installed them system wide by other means rather than `conda`).
-  To avoid further troubles, go back to `conda activate acpype` and remember to do the instructions above if you add new dependencies to the project via `poetry`.
+## Releasing
+
+Releasing happens in CI. `.github/workflows/release.yml` fires when a GitHub Release
+is published and, in order:
+
+1. re-runs the whole check suite (`verify`),
+2. builds the distributions and uploads them to PyPI via Trusted Publishing
+   (OIDC, no stored token), then attaches the wheels to the Release,
+3. builds the Docker image and pushes `acpype/acpype:latest` and
+   `acpype/acpype:<tag>` to Docker Hub.
+
+Docker Hub has no OIDC equivalent, so that last step needs two repository secrets,
+`DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN`, and a `dockerhub` deployment environment.
+It runs after PyPI, so a release that failed to publish does not leave an image behind.
+
+There is no manual trigger on purpose: the `pypi` environment only accepts release
+tags, so publishing a Release is the only path to PyPI. `./release.sh` remains as a
+by-hand fallback (`-p` for PyPI, `-d` for Docker, `-a` for both).
+
+The PyPI step calls `scripts/build_dists.py`, which produces **one wheel per
+platform** rather than a single universal one. A combined wheel carries both vendored
+AmberTools trees and comes to roughly 129 MB, over PyPI's 100 MB per-file limit; split,
+they are about 49 MB (Linux) and 69 MB (macOS), and each installs only where its
+binaries can actually run. The script fails if either wheel creeps back over the limit,
+and CI builds them on every run so that cannot go unnoticed.
+
+It also builds a **slim sdist** (~0.1 MB) with the vendored AmberTools stripped out.
+The full sdist would be ~121 MB, over the same limit, and without any sdist at all
+`pip install acpype` on a platform with no wheel silently resolves to the last release
+that had a universal wheel. The slim sdist means those users get the current ACPYPE and
+supply their own AmberTools; `acpype.utils.bundled_amber_dir` returns `None` for such
+an install, and ACPYPE explains that in its "Missing ANTECHAMBER" error.
 
 ## For Documenting
 
-Using [Sphinx](https://www.sphinx-doc.org) with theme from `pip install sphinx-rtd-theme`.
+Using [Sphinx](https://www.sphinx-doc.org) with the Read the Docs theme; both come from
+the `docs` dependency group.
 
 Online documentation provided by [Read the Docs](http://acpype.readthedocs.io).
 
 To test it locally:
 
 ```bash
-cd docs/
-make clean
-make html
+uv run --group docs sphinx-build -b html docs docs/_build/html
 ```
 
-Then open `_build/html/index.html` in a browser.
+Then open `docs/_build/html/index.html` in a browser. The `docs/Makefile` route
+(`cd docs && make html`) also works from an environment with the `docs` group synced.

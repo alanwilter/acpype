@@ -1,18 +1,17 @@
-"""
-Script to get energies from AMBER and GROMACS
+"""Script to get energies from AMBER and GROMACS
 for a given system and compare them
 """
 
 import re
 import sys
 
-import sander
+import sander  # ty: ignore[unresolved-import]  # optional AmberTools module, not a project dependency
 
 from acpype.utils import _getoutput
 
 
 def error(v1, v2):
-    """percentage relative error"""
+    """Percentage relative error"""
     if v1 == v2:
         return 0
     return abs(v1 - v2) / max(abs(v1), abs(v2)) * 100
@@ -21,7 +20,13 @@ def error(v1, v2):
 ff = 4.1840
 
 vv = ["ANGLE", "BOND", "DIHED", "EPTOT", "VDW14", "VDW", "QQ14", "QQ"]
-norm_gmx = {"POTENTIAL": "EPTOT", "LJ-14": "VDW14", "LJ_SR": "VDW", "COULOMB-14": "QQ14", "COULOMB_SR": "QQ"}
+norm_gmx = {
+    "POTENTIAL": "EPTOT",
+    "LJ-14": "VDW14",
+    "LJ_SR": "VDW",
+    "COULOMB-14": "QQ14",
+    "COULOMB_SR": "QQ",
+}
 norm_amb = {"1-4_NB": "VDW14", "VDWAALS": "VDW", "1-4_EEL": "QQ14", "EELEC": "QQ"}
 
 (e_amb, e_gmx) = sys.argv[1:]
@@ -59,7 +64,7 @@ for k in list(gmx_out.keys())[:]:
         gmx_out[v] = gmx_out[k]
 
 for ii in vv:
-    print(f"{ii:<10}: {error(gmx_out[ii],amb_out[ii]):-2.5f}%")
+    print(f"{ii:<10}: {error(gmx_out[ii], amb_out[ii]):-2.5f}%")
 
 # DIHED = PROPER_DIH + IMPROPER_DIH + RYCKAERT-BELL.
 # VDW14 : LJ-14, 1-4_NB
@@ -87,9 +92,9 @@ ll = [
 
 for pp in ll:
     v1, v2 = e.__getattribute__(pp[0]), amb_out[pp[1]] / ff
-    print(f"error {pp[0]:<8}: {error(v1,v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")
+    print(f"error {pp[0]:<8}: {error(v1, v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")
 
 # with round()
 for pp in ll:
     v1, v2 = round(e.__getattribute__(pp[0]), 4), amb_out[pp[1]] / ff
-    print(f"error {pp[0]:<8}: {error(v1,v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")
+    print(f"error {pp[0]:<8}: {error(v1, v2):>10.5f} %\t{v1:>10.5f} x {v2:>10.5f}")

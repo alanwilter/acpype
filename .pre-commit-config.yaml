@@ -1,24 +1,36 @@
+# Vendored AmberTools and the retired CCPN bridge are upstream content: no hook
+# may rewrite them, or a re-vendor silently diverges from what AmberTools ships.
+exclude: ^(src/acpype/amber_(linux|macos)/|legacy/)
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
-        args: ["--maxkb=11000"]
+        # AmberTools 26 bundles libicudata (~32 MB), pulled in by conda's libxml2,
+        # which libnetcdf and therefore teLeap link against.
+        args: ["--maxkb=34000"]
       - id: debug-statements
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.2
+    rev: v0.16.4
     hooks:
-      - id: ruff
+      - id: ruff-check
         args: [--fix]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.2
+    rev: v0.16.4
     hooks:
       - id: ruff-format
         # args: [-v]
   - repo: local
     hooks:
+      - id: ty
+        name: ty
+        entry: uv run ty check
+        language: system
+        types: [python]
+        pass_filenames: false
       - id: ver_today
         name: ver_today
         entry: ./scripts/ver_today.sh

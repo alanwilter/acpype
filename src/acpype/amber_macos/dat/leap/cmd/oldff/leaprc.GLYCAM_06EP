@@ -1,0 +1,71 @@
+logFile leap.log
+#
+# ----- leaprc for loading the glycam06EP force field, with lone pairs
+#       with sp2 lone pairs of 0.45A and sp3 lone pairs 0.70A
+#       no lone pairs on carboxyalate groups
+#       
+#################  PLEASE NOTE ########################
+##      
+##      Updated copies of the GLYCAM parameter and 
+##      prep files can be downloaded from the GLYCAM
+##      web site's Documentation page:
+##      
+##      http://www.glycam.org/params
+##      
+#######################################################
+#
+#       load atom type hybridizations
+#
+addAtomTypes {
+        { "H"   "H" "sp3" }
+        { "HO"  "H" "sp3" }
+        { "H1"  "H" "sp3" }
+        { "H2"  "H" "sp3" }
+        { "HW"  "H" "sp3" }
+        { "HC"  "H" "sp3" }
+        { "OH"  "O" "sp3" }
+        { "OS"  "O" "sp3" }
+        { "O"   "O" "sp2" }
+        { "O2"  "O" "sp2" }
+        { "OW"  "O" "sp3" }
+        { "C"   "C" "sp2" }
+        { "CG"  "C" "sp3" }
+        { "EP"  ""  "sp3" }
+}
+#
+#       load the main paramter set
+#
+glycam06EP = loadamberparams GLYCAM_06EPa.dat 
+#
+#       load all prep files for polysaccharides including lone pairs
+#
+loadamberprep GLYCAM_06EPa.prep 
+#
+#	load water and ions
+#       assumes most users want to use tip3p as the explicit solvent model
+#       but this can be easily switched by the following commands in leap:
+#	HOH = TP5
+#       WAT = TP5
+#       loadamberparams frcmod.tip5p
+#
+HOH = TP3
+WAT = TP3
+loadOff ions94.lib
+loadOff solvents.lib
+#
+#     modify so pdbs saved with lonepairs can be read back in
+#
+addPdbAtomMap {
+  { "1EP+" "EP+1" }
+  { "2EP+" "EP+2" }
+  { "3EP+" "EP+3" }
+  { "4EP+" "EP+4" }
+  { "5EP+" "EP+5" }
+  { "6EP+" "EP+6" }
+  { "1EP-" "EP-1" }
+  { "2EP-" "EP-2" }
+  { "3EP-" "EP-3" }
+  { "4EP-" "EP-4" }
+  { "5EP-" "EP-5" }
+  { "6EP-" "EP-6" }
+}

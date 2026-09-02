@@ -1,0 +1,32 @@
+logFile leap.log
+#
+# ----- leaprc for loading ff15ipq fluorinated, aromatic amino acid residues
+#       D.T. Yang, A.M Gronenborn, L.T. Chong, Development and Validation 
+#       of Fluorinated, Aromatic Amino Acid Parameters for Use with the 
+#       AMBER ff15ipq Protein Force Field 
+#       J. Phys. Chem. A, 126, 14, 2286-2297 (2022). 
+#
+# This file contains IPolQ optimized parameters for fluorinated amino acids:
+#
+# F4F:   4(para)-fluoro-phenylalanine
+# FTF:   4(para)-trifluoromethyl-phenylalanine  
+# Y3F:   3(meta)-fluoro-tyrosine
+# YDF:   3,5(meta)-difluro-tyrosine
+# W4F:   4-fluoro-tryptophan 
+# W5F:   5-fluoro-tryptophan
+# W6F:   6-fluoro-tryptophan
+# W7F:   7-fluoro-tryptophan 
+#
+# To use these residues, load this file into leap, after the Amber-FF, e.g.:
+#
+# > source leaprc.protein.ff15ipq
+# > source leaprc.fluorine.ff15ipq
+#
+#   Load the fluorinated amino acid parameter set.
+#
+loadamberparams frcmod.ff15ipq-19F
+#
+#   Load the fluorinated amino acid libraries.
+#
+# load individual residues
+loadoff ff15ipq-19F.lib

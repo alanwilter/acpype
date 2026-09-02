@@ -1,119 +1,138 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 name: check_acpype
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
     paths:
-      - "acpype/**"
+      - "src/**"
       - "tests/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/check_acpype.yml"
+  # Lets the suite be run against any branch from the Actions tab, without a PR.
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      # Codecov uploads over OIDC rather than a stored token; job-level permissions
+      # replace the defaults, so contents has to be repeated here.
+      id-token: write
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.12", "3.13", "3.14"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+      - name: Install uv
+        # setup-uv stopped maintaining floating major tags after v7, so this is
+        # pinned to an exact release; Dependabot keeps it current.
+        uses: astral-sh/setup-uv@v10.0.1
         with:
-          python-version: ${{ matrix.python-version }}
-
-      # - name: Python Poetry Action
-      #   uses: abatilo/actions-poetry@v2.1.3
-
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          # This path is specific to Ubuntu
-          path: ~/.cache/pip
-          # Look to see if there is a cache hit for the corresponding requirements file
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
+          # Version comes from `required-version` in pyproject.toml.
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
 
       - name: Set Env
         run: |
           echo "PYTEST_ADDOPTS=--random-order" >> $GITHUB_ENV
           echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
-          echo "AMBERHOME=$PWD/acpype/amber_linux" >> $GITHUB_ENV
-          echo "$PWD/acpype/amber_linux/bin" >> $GITHUB_PATH
+          echo "AMBERHOME=$PWD/src/acpype/amber_linux" >> $GITHUB_ENV
+          echo "$PWD/src/acpype/amber_linux/bin" >> $GITHUB_PATH
 
-      - name: Install dependencies
+      - name: Install system dependencies
+        # Libraries the vendored AmberTools bundle deliberately takes from the host
+        # (see SYSTEM_LIBS_LINUX in scripts/vendor_amber.py), plus the X11 bits
+        # openbabel-wheel needs.
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends tzdata libarpack++2-dev
+          sudo apt-get install -y --no-install-recommends \
+            tzdata libgfortran5 libstdc++6 libgomp1 libblas3 liblapack3 \
+            libcurl4 libxrender1 libxext6 libsm6
 
-      # - name: Install OpenBabel
-      #   run: |
-      #     sudo apt-get install --no-install-recommends -y openbabel
+      - name: Install project
+        run: uv sync --locked --python ${{ matrix.python-version }}
 
-      - name: Poetry install dependencies
+      - name: Check the vendored AmberTools bundle loads
         run: |
-          pip3 install poetry
-          # # poetry add openbabel-wheel
-          # poetry run pip3 install openbabel-wheel
-          poetry install
-          # which obabel
-          # ldd $(which obabel)
-          # obabel -:"cccc" -o pdb
           which antechamber
-          ldd /home/runner/work/acpype/acpype/acpype/amber_linux/bin/wrapped_progs/antechamber
-          antechamber -h
+          uv run python scripts/check_amber_bundle.py src/acpype/amber_linux
 
       - name: Run Ruff
-        run: poetry run ruff check --output-format=github .
+        run: |
+          uv run ruff check --output-format=github .
+          uv run ruff format --check .
+
+      - name: Type check with ty
+        run: uv run ty check
+
+      - name: Audit dependencies
+        run: uv audit
 
       - name: Test with PyTest
-        run: |
-          poetry run pytest --color=yes --cov=acpype --cov=tests --cov-report=xml
+        # Coverage flags live in [tool.pytest] addopts, including fail_under.
+        run: uv run pytest --color=yes
+
+      - name: Check platform wheels build and stay under the PyPI size limit
+        if: matrix.python-version == '3.12'
+        run: uv run python scripts/build_dists.py --out-dir dist
 
       - name: Upload coverage to Codecov
-        if: matrix.python-version == 3.8
-        uses: codecov/codecov-action@v3
+        if: matrix.python-version == '3.12'
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: false
+          use_oidc: true
 
   release:
     needs: check-test
+    # Only for real pushes; when release.yml reuses this workflow there is no commit
+    # message to inspect and nothing to tag.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - name: Get current date
         id: vdate
         run: echo "adate=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
 
       - name: Create tag
-        # will only create a new release if the commit message is 'new_release' to master branch
-        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_tag')
-        uses: actions/github-script@v6
+        # will only create a new tag if the commit message contains 'new_tag' on main
+        if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'new_tag')
+        uses: actions/github-script@v9
         with:
-          # github-token: ${{ github.token }} # optional
           script: |
-            github.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: "refs/tags/${{ steps.vdate.outputs.adate }}",
-            sha: context.sha
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ steps.vdate.outputs.adate }}",
+              sha: context.sha
             })
 
       - name: Create Release
-        # will only create a new release if the commit message is 'new_release' to master branch
-        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release')
+        # will only create a new release if the commit message contains 'new_release' on main
+        if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'new_release')
         id: create_release
-        uses: softprops/action-gh-release@v1
-        env:
-          # This token is provided by Actions, you do not need to create your own token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.vdate.outputs.adate }}
           name: Release ${{ steps.vdate.outputs.adate }}

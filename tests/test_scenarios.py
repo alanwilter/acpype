@@ -1,3 +1,4 @@
+import re
 import sys
 from unittest.mock import patch
 
@@ -37,7 +38,10 @@ def test_only_ac(janitor, capsys):
 @pytest.mark.parametrize(
     ("inp", "msg"),
     [
-        ("AAA.pdb", "ERROR: no 'no_obabel' executable; you need it if input is PDB or SMILES"),
+        (
+            "AAA.pdb",
+            "ERROR: no 'no_obabel' executable; you need it if input is PDB or SMILES",
+        ),
         ("cccc", "WARNING: your input may be a SMILES but"),
     ],
 )
@@ -62,9 +66,10 @@ def test_amb2gmx_no_bins(janitor, capsys):
 
 
 def test_chk_py_ver_python():
+    """Accept the running interpreter and reject anything below the supported floor."""
     _chk_py_ver()
-    with patch.object(sys, "version_info", (3, 7)):
-        with pytest.raises(Exception, match="Sorry, you need python 3.8 or higher"):
-            # This should raise an exception for Python 3.8
-            # Ensure that the exception message matches the expected one
-            _chk_py_ver()
+    with (
+        patch.object(sys, "version_info", (3, 11)),
+        pytest.raises(Exception, match=re.escape("Sorry, you need python 3.12 or higher")),
+    ):
+        _chk_py_ver()

@@ -11,9 +11,7 @@ numCpu = 20
 
 
 def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "):
-    """
-    Takes an amount of seconds and turns it into a human-readable amount of time.
-    """
+    """Takes an amount of seconds and turns it into a human-readable amount of time."""
     # the formatted time string to be returned
     if seconds == 0:
         return "0s"
@@ -50,16 +48,15 @@ def runConversionJobs(chemCompVarFiles, scriptName):
     startCode = "start"
 
     currentChemCompVarFile = None
-    currentProcesses = {startCode: None}
+    currentProcesses: dict[str, Popen | None] = {startCode: None}
     currentJobOut = {}
     currentIndex = -1
     endChemCompVarFile = chemCompVarFiles[-1]
 
-    outputHandle = sys.__stdout__
+    outputHandle = sys.stdout
 
     while currentProcesses:
-        if startCode in currentProcesses.keys():
-            del currentProcesses[startCode]
+        currentProcesses.pop(startCode, None)
 
         if len(currentProcesses.keys()) < numCpu:
             tempIndex = currentIndex + 1
@@ -77,7 +74,11 @@ def runConversionJobs(chemCompVarFiles, scriptName):
 
                     varDir, varFile = os.path.split(chemCompVarFile)
                     os.chdir(varDir)
-                    process = Popen(["nice", "-19", scriptName, "-i", varFile, "-d"], stdout=jobOut, stderr=jobOut)
+                    process = Popen(
+                        ["nice", "-19", scriptName, "-i", varFile, "-d"],
+                        stdout=jobOut,
+                        stderr=jobOut,
+                    )
 
                     currentJobOut[chemCompVarFile] = jobOut
                     currentProcesses[chemCompVarFile] = process
@@ -98,9 +99,10 @@ def runConversionJobs(chemCompVarFiles, scriptName):
         # Check if finished
         #
 
-        for chemCompVarFile in currentProcesses.keys():
+        for chemCompVarFile in currentProcesses:
             # Finished...
-            if currentProcesses[chemCompVarFile].poll() is not None:
+            process = currentProcesses[chemCompVarFile]
+            if process is not None and process.poll() is not None:
                 del currentProcesses[chemCompVarFile]
                 currentJobOut[chemCompVarFile].close()
                 del currentJobOut[chemCompVarFile]
@@ -142,7 +144,7 @@ if __name__ == "__main__":
                 chemCompVarFiles.append(os.path.join(curDir, "other", ccpCode, ccvName))
 
     runConversionJobs(chemCompVarFiles, "acpype")
-    execTime = int(round(time.time() - t0))
+    execTime = round(time.time() - t0)
     msg = elapsedTime(execTime)
     print("Total time of execution: %s" % msg)
     print("ALL DONE")

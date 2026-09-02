@@ -2,7 +2,7 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=plastic)](https://GitHub.com/alanwilter/acpype/graphs/commit-activity)<!-- [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103&style=plastic)](https://github.com/ellerbrock/open-source-badges/) -->
 [![GitHub](https://img.shields.io/github/license/alanwilter/acpype?style=plastic)](https://github.com/alanwilter/acpype)
-[![python](https://img.shields.io/badge/python-3.8%2E%2E%2E3.12-blue.svg?style=plastic&logo=python)](https://github.com/alanwilter/acpype)
+[![python](https://img.shields.io/badge/python-3.12%2E%2E%2E3.14-blue.svg?style=plastic&logo=python)](https://github.com/alanwilter/acpype)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alanwilter/acpype?display_name=tag&logo=github&style=plastic)](https://github.com/alanwilter/acpype)
 [![GitHub Release](https://img.shields.io/github/release-date/alanwilter/acpype?style=plastic&logo=github)](https://github.com/alanwilter/acpype)<!-- ![GitHub All Releases](https://img.shields.io/github/downloads/alanwilter/acpype/total?style=plastic) -->
 [![Docker Pulls](https://img.shields.io/docker/pulls/acpype/acpype?style=plastic&logo=docker)](https://hub.docker.com/r/acpype/acpype)
@@ -11,11 +11,12 @@
 [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/acpype.svg?style=plastic&logo=conda-forge)](https://anaconda.org/conda-forge/acpype/files)<!-- ![Conda](https://img.shields.io/conda/pn/conda-forge/acpype?logo=conda-forge&style=plastic) -->
 [![PyPI](https://img.shields.io/pypi/v/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/acpype?style=plastic&logo=pypi)](https://pypi.org/project/acpype/#files)
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/alanwilter/acpype/.github%2Fworkflows%2Fcheck_acpype.yml?style=plastic)
-[![Poetry](https://img.shields.io/endpoint?style=plastic&url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/alanwilter/acpype/.github%2Fworkflows%2Fcheck_acpype.yml?branch=main&style=plastic)
+[![uv](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![ty](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
-[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2023.10.27/master?style=plastic)](https://github.com/alanwilter/acpype/commits/master)
+[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2023.10.27/main?style=plastic)](https://github.com/alanwilter/acpype/commits/main)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
 [![Documentation Status](https://readthedocs.org/projects/acpype/badge/?version=latest&style=plastic)](https://acpype.readthedocs.io/en/latest/?badge=latest)
 [![Citations Badge](https://img.shields.io/endpoint?label=citations&logo=googlescholar&style=plastic&url=https%3A%2F%2Fapi.juleskreuer.eu%2Fcitation-badge.php%3Fshield%26doi%3D10.1186%2F1756-0500-5-367)](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=c68TiIUAAAAJ&citation_for_view=c68TiIUAAAAJ:UeHWp8X0CEIC)
@@ -68,8 +69,8 @@ For `Antechamber`, please cite:
 > 1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
 >    bond type perception in molecular mechanical calculations. Journal of Molecular
 >    Graphics and Modelling 25, 2 (2006), 247–260. Doi: [10.1016/j.jmgm.2005.12.005](https://doi.org/10.1016/j.jmgm.2005.12.005)
-
-> 2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
+>
+> 1. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
 >    Development and testing of a General Amber Force Field. Journal of Computational
 >    Chemistry 25, 9 (2004), 1157–1174. Doi: [10.1002/jcc.20035](https://doi.org/10.1002/jcc.20035)
 
@@ -115,22 +116,40 @@ There are several ways of obtaining `acpype`:
 
 2. Via **[PyPI](https://pypi.org/project/acpype/)**:
 
-   If you're using Linux with Intel processors then
-
    ```bash
    pip install acpype
    ```
 
-   is enough and you should have a complete solution. Oterwise ...
+   `acpype` ships the `AmberTools` binaries it needs (currently **AmberTools 26**) as
+   platform-specific wheels:
 
-   _(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)_
+   | Platform                                                  | Wheel                   | Batteries included                 |
+   | --------------------------------------------------------- | ----------------------- | ---------------------------------- |
+   | Linux `x86_64`, glibc >= 2.35 (Ubuntu 22.04+, Debian 12+) | `manylinux_2_35_x86_64` | yes                                |
+   | macOS Apple Silicon, macOS 11+                            | `macosx_11_0_arm64`     | yes                                |
+   | anything else (Intel macOS, Linux `aarch64`, Windows)     | source distribution     | no -- supply your own `AmberTools` |
+
+   On a platform with no wheel, `pip` falls back to the source distribution, which is
+   the same ACPYPE without the bundled binaries. It works fine against an `AmberTools`
+   you install yourself; if none is found, ACPYPE says so and points you at `conda`.
+
+   On those two platforms `pip install acpype` is a complete solution. A handful of
+   common system libraries are deliberately left to the host on Linux:
+
+   ```bash
+   # Ubuntu 22.04 / 24.04, Debian 12+ -- needed by the bundled AmberTools
+   apt-get install -y libgfortran5 libstdc++6 libgomp1 libblas3 liblapack3 libcurl4
+
+   # needed by the openbabel wheel that `pip install acpype` pulls in
+   apt-get install -y libxrender1 libxext6 libsm6
+   ```
+
+   Anywhere else, install `AmberTools` yourself and, optionally but highly
+   recommended, `OpenBabel`:
 
    ```bash
    # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
-
-   # Or for Ubuntu 20:
-   apt-get install -y openbabel python3-openbabel libarpack++2-dev libgfortran5
 
    pip install acpype
 
@@ -149,8 +168,8 @@ There are several ways of obtaining `acpype`:
    # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
 
-   # Or for Ubuntu 20:
-   apt-get install -y openbabel python3-openbabel libarpack++2-dev libgfortran5
+   # Or for Ubuntu 22.04 / 24.04:
+   apt-get install -y openbabel python3-openbabel libgfortran5 libblas3 liblapack3
 
    git clone https://github.com/alanwilter/acpype.git
    ```
@@ -188,10 +207,32 @@ There are several ways of obtaining `acpype`:
    acpype_docker -i tests/DDD.pdb -c gas
    ```
 
-**NB:**
+**NB:** what you get depends on how you install:
 
-- By installing via `conda` or using via `docker` you get `AmberTools v.21.11` and `OpenBabel v3.1.1`. Our `AmberTools v.21.11` is a stripped version from the original containing only the necessary binaries and libraries and comes with the `charmmgen` binary from `AmberTools17` in order to generate CHARMM topologies.
-- By installing via `pip` you get `AmberTools` (as described above) embedded. However, the included binaries may not work in your system (library dependencies issues) and with only provide binaries for Linux (Ubuntu20) and macOS (Intel).
+- Via **`pip`** and via **`docker`** you get a stripped `AmberTools 26` embedded --
+  only the binaries and libraries `acpype` needs -- so CHARMM topologies work out of
+  the box. That applies to the Linux `x86_64` and macOS Apple Silicon wheels (see the
+  table above) and to the `docker` image. Elsewhere `pip` installs the source
+  distribution, which carries no binaries and needs an `AmberTools` of your own.
+- Via **`conda`** the build comes from the
+  [conda-forge feedstock](https://github.com/conda-forge/acpype-feedstock), which lags
+  this repository and so still carries the older embedded `AmberTools`. It also pulls
+  `ambertools` and `openbabel` as conda packages, and it is that `antechamber` which
+  ends up on your `PATH`.
+- `OpenBabel` is `3.1.1` via `conda`/`docker`, and `3.1.0` via `pip` (from the
+  `openbabel-wheel` dependency).
+- `charmmgen` is not part of modern `AmberTools`, and conda-forge's `ambertools` does
+  not ship it, so `acpype` builds its own from the source still maintained in
+  [AmberClassic](https://github.com/Amber-MD/AmberClassic): universal `arm64` +
+  `x86_64` on macOS, `x86_64` on Linux. See `scripts/build_charmmgen.sh`. If CHARMM
+  output fails because the `antechamber` on your `PATH` cannot find it, copy the
+  bundled one next to that `antechamber`:
+
+  ```bash
+  sys=$(python3 -c "import sys; print('macos' if sys.platform == 'darwin' else 'linux')")
+  acp=$(python3 -c "import acpype, os; print(os.path.dirname(acpype.__file__))")
+  cp "${acp}/amber_${sys}/bin/charmmgen" "$(dirname "$(which antechamber)")"
+  ```
 
 ##### To Test, if doing via `git`
 

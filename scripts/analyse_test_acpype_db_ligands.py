@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import fnmatch
+import functools
 import os
 import sys
 
@@ -24,13 +25,17 @@ results = {}
 ccpCodes = os.listdir("other")
 ccpCodes.sort()
 
-groupResults = [
+groupResults: list[list] = [
     [
         "dirs totally empty or at least missing one *.mol2 input files for either PDB or IDEAL)",
         "Dirs missing *.mol2 input files",
         [],
     ],
-    ["still running presumably", "Mols still running presumably", ["0 E, 0 W, ET , WT "]],
+    [
+        "still running presumably",
+        "Mols still running presumably",
+        ["0 E, 0 W, ET , WT "],
+    ],
     [
         "mols clean, no erros or warnings",
         "Mols clean",
@@ -95,7 +100,11 @@ groupResults = [
     [
         "couldn't determine all parameters",
         "Mols have missing parameters",
-        ["0 E, 3 W, ET , WT _0_2_4", "0 E, 3 W, ET , WT _0_1_4", "0 E, 2 W, ET , WT _0_4"],
+        [
+            "0 E, 3 W, ET , WT _0_2_4",
+            "0 E, 3 W, ET , WT _0_1_4",
+            "0 E, 2 W, ET , WT _0_4",
+        ],
     ],
     [
         "missing parameters and atoms in close contact",
@@ -112,8 +121,16 @@ groupResults = [
         "Mols have missing parameters, irregular bonds, maybe wrong atomtype and atoms in close contact",
         ["0 E, 5 W, ET , WT _0_4_5_6_7"],
     ],
-    ["no 'tmp', acpype did nothing at all", "Mols have no 'tmp'", ["1 E, 0 W, ET _7, WT "]],
-    ["atoms with same coordinates", "Mols have duplicated coordinates", ["1 E, 0 W, ET _1, WT "]],
+    [
+        "no 'tmp', acpype did nothing at all",
+        "Mols have no 'tmp'",
+        ["1 E, 0 W, ET _7, WT "],
+    ],
+    [
+        "atoms with same coordinates",
+        "Mols have duplicated coordinates",
+        ["1 E, 0 W, ET _1, WT "],
+    ],
     [
         "maybe wrong atomtype",
         "Mols with maybe wrong atomtype",
@@ -127,7 +144,11 @@ groupResults = [
     [
         "maybe wrong atomtype and atoms in close contact",
         "Mols with maybe wrong atomtype and atoms in close contact",
-        ["0 E, 4 W, ET , WT _0_1_6_7", "0 E, 3 W, ET , WT _0_6_7", "0 E, 4 W, ET , WT _0_3_6_7"],
+        [
+            "0 E, 4 W, ET , WT _0_1_6_7",
+            "0 E, 3 W, ET , WT _0_6_7",
+            "0 E, 4 W, ET , WT _0_3_6_7",
+        ],
     ],
     [
         "irregular bonds, maybe wrong atomtype and atoms in close contact",
@@ -137,7 +158,11 @@ groupResults = [
     [
         "guessCharge failed and atoms in close contact",
         "Mols have guessCharge failed and atoms in close contact",
-        ["1 E, 3 W, ET _0, WT _0_1_7", "1 E, 3 W, ET _0, WT _0_2_7", "1 E, 4 W, ET _0, WT _0_1_2_7"],
+        [
+            "1 E, 3 W, ET _0, WT _0_1_7",
+            "1 E, 3 W, ET _0, WT _0_2_7",
+            "1 E, 4 W, ET _0, WT _0_1_2_7",
+        ],
     ],
     [
         "guessCharge failed and missing parameters",
@@ -167,7 +192,11 @@ groupResults = [
     [
         "guessCharge failed, missing parameters and maybe wrong atomtype",
         "Mols have guessCharge failed, missing parameters and maybe wrong atomtype",
-        ["1 E, 3 W, ET _0, WT _0_4_6", "1 E, 4 W, ET _0, WT _0_1_4_6", "1 E, 4 W, ET _0, WT _0_2_4_6"],
+        [
+            "1 E, 3 W, ET _0, WT _0_4_6",
+            "1 E, 4 W, ET _0, WT _0_1_4_6",
+            "1 E, 4 W, ET _0, WT _0_2_4_6",
+        ],
     ],
     [
         "guessCharge failed, irregular bonds and maybe wrong atomtype",
@@ -201,13 +230,21 @@ groupResults = [
     ],
     ["atoms too close", "Mols have atoms too close", ["1 E, 0 W, ET _2, WT "]],
     ["atoms too alone", "Mols have atoms too alone", ["1 E, 0 W, ET _3, WT "]],
-    ["tleap failed", "Mols have tleap failed", ["3 E, 1 W, ET _4_5_6, WT _0", "3 E, 2 W, ET _4_5_6, WT _0_1"]],
+    [
+        "tleap failed",
+        "Mols have tleap failed",
+        ["3 E, 1 W, ET _4_5_6, WT _0", "3 E, 2 W, ET _4_5_6, WT _0_1"],
+    ],
     [
         "tleap failed, maybe wrong atomtype",
         "Mols have tleap failed and maybe wrong atomtype",
         ["3 E, 3 W, ET _4_5_6, WT _0_1_6", "3 E, 2 W, ET _4_5_6, WT _0_6"],
     ],
-    ["semi-QM timeout", "Mols have semi-QM timeout", ["1 E, 2 W, ET _9, WT _0_1", "1 E, 1 W, ET _9, WT _0"]],
+    [
+        "semi-QM timeout",
+        "Mols have semi-QM timeout",
+        ["1 E, 2 W, ET _9, WT _0_1", "1 E, 1 W, ET _9, WT _0"],
+    ],
     [
         "semi-QM timeout and maybe wrong atomtype",
         "Mols have semi-QM timeout and maybe wrong atomtype",
@@ -341,8 +378,7 @@ SCFfailedList = []
 
 
 def analyseFile(mol, structure, file):
-    """
-    mol = string molDir, e.g. 'Gnp'
+    """Mol = string molDir, e.g. 'Gnp'
     structure = string 'pdb' or 'ideal'
     file = string e.g. '10a/10a.none_neutral.pdb.out'
     returns e.g. 'pdb: 0 E, 3 W, ET , WT _0_1_7'
@@ -470,7 +506,7 @@ def parseSummurisedLine(warnTypes, errorTypes):
     wt = list(set(warnTypes.split("_")))
     if wt != [""]:
         wt = wt[1:]
-        wt.sort(cmp=lambda x, y: int(x) - int(y))
+        wt.sort(key=int)
     warnTypes = ""
     for i in wt:
         if i:
@@ -542,8 +578,7 @@ def sortList(lista, typeMess):
 
 
 def printResults(lista, subHead, header=None):
-    """
-    print results as
+    """Print results as
     --------------------------------------------------------------------------------
 
     *** For results [1], [2], [3], totally empty dirs (NO mol2 input files for either PDB or IDEAL):
@@ -591,9 +626,7 @@ def printResults(lista, subHead, header=None):
 
 
 def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "):
-    """
-    Takes an amount of seconds and turns it into a human-readable amount of time.
-    """
+    """Takes an amount of seconds and turns it into a human-readable amount of time."""
     # the formatted time string to be returned
     if seconds == 0:
         return "0s"
@@ -641,7 +674,8 @@ def convertStringTime2Seconds(stringTime):
 
 def locate(pattern, root=os.curdir):
     """Locate all files matching supplied filename pattern in and below
-    supplied root directory."""
+    supplied root directory.
+    """
     for path, _dirs, files in os.walk(os.path.abspath(root)):
         for filename in fnmatch.filter(files, pattern):
             yield os.path.join(path, filename)
@@ -741,7 +775,7 @@ while c < len(groupResults):
 
 keys = list(mapResults.keys())
 keys.sort()
-keys.sort(cmp=myComp)
+keys.sort(key=functools.cmp_to_key(myComp))
 
 # Print messages that was not classified yet
 groupMess = []
@@ -770,7 +804,7 @@ jobsOK = []  # list of Mols that have at least a PDB or IDEAL clean: [[both],[pd
 totalTxt = ""
 for group in groupResults:
     header, subHead, dummy, lista = group
-    if "Mols clean" == subHead:
+    if subHead == "Mols clean":
         jobsOK = lista
     subTot = printResults(lista, subHead, header)
     if not subTot:

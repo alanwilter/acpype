@@ -1,0 +1,43 @@
+logFile leap.log
+#
+#  ----- leaprc for loading the FB18 phosphorylated amino acid force field
+#  see: Stoppelman et al., J Phys Chem B (2021) DOI: 10.1021/acs.jpcb.1c07547
+#
+#  Note: FB18 must be used in conjunction with the AMBER-FB15 protein force 
+#  field in leap as follows:
+#  > source leaprc.protein.fb15
+#  > source leaprc.phosfb18
+#
+#  also source leaprc.water.fb{3,4} to choose a water model and ion parameters;
+#  utilize leaprc.water.fb3mod for TIP3P-FB water with Joung-Cheatham SPC/E ion 
+#  parameters as in Stoppelman et al.
+#
+#	load atom type hybridizations
+#
+addAtomTypes {
+        { "bs"  "C" "sp3" }
+        { "bt"  "C" "sp3" }
+        { "by"  "C" "sp3" }
+        { "gt"  "C" "sp3" }
+        { "BS"  "C" "sp3" }
+        { "BT"  "C" "sp3" }
+        { "BY"  "C" "sp3" }
+        { "GT"  "C" "sp3" }
+        { "OP"  "O" "sp2" }
+        { "OQ"  "O" "sp3" }
+        { "OR"  "O" "sp3" }
+        { "OT"  "O" "sp2" }
+        { "OV"  "O" "sp3" }
+        { "OX"  "O" "sp2" }
+        { "OZ"  "O" "sp3" }
+}
+
+#
+#       load the FB18 parameter set
+#
+fb18 = loadAmberParams frcmod.phosfb18 
+
+#
+#       load phosphorylated amino acid libraries (modified from phos_aminoff94.lib)
+#
+loadOff phos_aminofb18.lib

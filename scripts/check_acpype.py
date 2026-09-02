@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import shutil
+import subprocess
 from glob import glob
 
 from acpype.topol import ACTopol
@@ -159,7 +160,7 @@ def perror(msg):
 
 
 def createAmberPdb(fpdb, opt):
-    """pdb -> apdb (amber)
+    """Pdb -> apdb (amber)
     opt = 0 : pymol pdb to apdb
     opt = 1 : ogpdb to apdb
     """
@@ -211,8 +212,7 @@ def createAmberPdb3(fpdb):
 
 
 def createAmberPdb2(fpdb, opt):
-    """
-    use formatConverter
+    """Use formatConverter
     Add N and C XXX --> NXXX, CXXX and OC1 & OC2
     """
     projectName = "testImport"
@@ -245,7 +245,7 @@ def createAmberPdb2(fpdb, opt):
 
 
 def createOldPdb2(fpdb):
-    """using my own dict for e.g. 2HB = HB2 -> HB1"""
+    """Using my own dict for e.g. 2HB = HB2 -> HB1"""
     defHB1 = [" HB2", "2HB ", " HB1"]
     defHB2 = [" HB3", "3HB ", " HB2"]
     defHG1 = [" HG2", "2HG ", " HG1"]
@@ -278,11 +278,28 @@ def createOldPdb2(fpdb):
         ),
         "HIP": (defHB1, defHB2),
         "HID": (defHB1, defHB2),
-        "LYS": (defHB1, defHB2, defHG1, defHG2, defHD1, defHD2, [" HE2", "2HE ", " HE1"], [" HE3", "3HE ", " HE2"]),
+        "LYS": (
+            defHB1,
+            defHB2,
+            defHG1,
+            defHG2,
+            defHD1,
+            defHD2,
+            [" HE2", "2HE ", " HE1"],
+            [" HE3", "3HE ", " HE2"],
+        ),
         "LEU": (defHB1, defHB2),
         "MET": (defHB1, defHB2, defHG1, defHG2),
         "ASN": (defHB1, defHB2),
-        "PRO": (defHB1, defHB2, defHG1, defHG2, defHD1, defHD2, [" H3 ", "3H  ", " H1 "]),
+        "PRO": (
+            defHB1,
+            defHB2,
+            defHG1,
+            defHG2,
+            defHD1,
+            defHD2,
+            [" H3 ", "3H  ", " H1 "],
+        ),
         "GLN": (defHB1, defHB2, defHG1, defHG2, ["HE21", "1HE2"], ["HE22", "2HE2"]),
         "ARG": (defHB1, defHB2, defHG1, defHG2, defHD1, defHD2),
         "SER": (defHB1, defHB2),
@@ -301,7 +318,7 @@ def createOldPdb2(fpdb):
     for line in aLines:
         res = line[17:20]
         nResCur = int(line[22:26])
-        for item in dictPdb2GmxAtomNames.get(res):
+        for item in dictPdb2GmxAtomNames[res]:
             atAim = item[-1]
             for at in item[:-1]:
                 # print(at, atAim)
@@ -317,8 +334,9 @@ def createOldPdb2(fpdb):
 
 
 def parseTopFile(lista):
-    """lista = top file in list format
-    return a (dict,dict) with fields"""
+    """Lista = top file in list format
+    return a (dict,dict) with fields
+    """
     defDict = {}
     parDict = {}
     for line in lista:
@@ -375,8 +393,9 @@ def checkTopAcpype(res):
     os.chdir(tmpDir)
 
     def addParam(ll, item):
-        """ll : index for bonded types
-        item : set of atomtypes"""
+        """Ll : index for bonded types
+        item : set of atomtypes
+        """
         dict_ = {2: "bondtypes", 3: "angletypes", 4: "dihedraltypes"}
         dType = {}  # dict_
         for type_ in ffBon[0][dict_[ll]]:
@@ -473,9 +492,7 @@ def checkTopAcpype(res):
             agres = []
             tAgRes = ffgRes[0][flag]  # e.g. dic 'bonds' from gmx top file
             for item in tAgRes:
-                if flag == flags[1][0]:  # 'bonds'
-                    par = addParam(ll, item)
-                elif flag == flags[2][0]:  # 'angles'
+                if flag == flags[1][0] or flag == flags[2][0]:  # 'bonds'
                     par = addParam(ll, item)
                 elif flag == flags[3][0]:  # 'dihedrals', e.g. item = [2, 1, 5, 6, 9]
                     par = addParam(ll, item)
@@ -582,21 +599,16 @@ def parseOut(out):
     while count < len(lines):
         line = lines[count]
         if "WARNING" in line.upper():
-            if "will be determined based" in line:
-                pass
-            elif "Problems reading a PDB file" in line:
-                pass
-            elif "Open Babel Warning" in line:
-                pass
-            elif "no charge value given" in line:
-                pass
-            elif "audit log messages" in line:
-                pass
-            elif "all CONECT" in line:
-                pass
-            elif "with zero occupancy" in line:
-                pass
-            elif "check:  Warnings:" in line:
+            if (
+                "will be determined based" in line
+                or "Problems reading a PDB file" in line
+                or "Open Babel Warning" in line
+                or "no charge value given" in line
+                or "audit log messages" in line
+                or "all CONECT" in line
+                or "with zero occupancy" in line
+                or "check:  Warnings:" in line
+            ):
                 pass
             else:
                 print(line)
@@ -629,7 +641,7 @@ def build_residues_tleap():
     for aai in seqi:
         # if aai != 'H': continue
         aai3 = 3 * aai
-        res = aa_dict.get(aai).upper()
+        res = aa_dict[aai].upper()
         res1 = res
         leapDict = {"amberff": amberff, "res": res, "aai3": aai3, "res1": res1}
         tleapin = genPdbTemplate % leapDict
@@ -644,7 +656,7 @@ def build_residues_tleap():
 
 
 def error(v1, v2):
-    """percentage relative error"""
+    """Percentage relative error"""
     if v1 == v2:
         return 0
     return abs(v1 - v2) / max(abs(v1), abs(v2)) * 100
@@ -678,7 +690,7 @@ def calcGmxPotEnerDiff(res):
                     dictEner["TotalNonBonded"] = dictEner["TotalNonBonded"] + v
                 else:
                     dictEner["TotalNonBonded"] = v
-        dictEner["Total_Bonded"] = dictEner.get("Potential") - dictEner.get("TotalNonBonded")
+        dictEner["Total_Bonded"] = dictEner["Potential"] - dictEner["TotalNonBonded"]
         return dictEner
 
     os.chdir(tmpDir)
@@ -773,7 +785,7 @@ if __name__ == "__main__":
     if not os.path.exists(tmpDir):
         os.mkdir(tmpDir)
     os.chdir(tmpDir)
-    os.system(r"rm -fr \#* *.acpype")
+    subprocess.run(r"rm -fr \#* *.acpype", shell=True, check=False)
     # create res.pdb
     if usePymol:
         ff = open(tmpFile, "w")
@@ -810,7 +822,14 @@ if __name__ == "__main__":
             # cmd = "%s -dfi %s -c %s -a %s" % (acpypeExe, agpdb, cType, ffType)
             if res in ["JJJ", "RRR"] and cType == "bcc":
                 cv = 3  # cmd += ' -n 3' # acpype failed to get correct charge
-            mol = ACTopol(agpdb, chargeType=cType, atomType=ffType, chargeVal=cv, debug=False, verbose=debug)
+            mol = ACTopol(
+                agpdb,
+                chargeType=cType,
+                atomType=ffType,
+                chargeVal=cv,
+                debug=False,
+                verbose=debug,
+            )
             mol.createACTopol()
             mol.createMolTopol()
 
@@ -824,5 +843,9 @@ if __name__ == "__main__":
             dihAmb, dihAcp = calcGmxPotEnerDiff(res)
             # calc gmx acpype energies
 
-    os.system(r"rm -f %s/\#* posre.itp tempScript.py" % tmpDir)
-    os.system("find . -name 'ag*GMX*.itp' | xargs grep -v 'created by acpype on' > standard_ag_itp.txt")
+    subprocess.run(r"rm -f %s/\#* posre.itp tempScript.py" % tmpDir, shell=True, check=False)
+    subprocess.run(
+        "find . -name 'ag*GMX*.itp' | xargs grep -v 'created by acpype on' > standard_ag_itp.txt",
+        shell=True,
+        check=False,
+    )

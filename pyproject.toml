@@ -1,66 +1,202 @@
-[tool.poetry]
+[project]
 name = "acpype"
-version = "2023.11.14"
+version = "2026.9.2"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
-authors = ["Alan Silva <alanwilter@gmail.com>"]
-license = "GPL-3.0-or-later"
 readme = "README.md"
-homepage = "https://alanwilter.github.io/acpype/"
-repository = "https://github.com/alanwilter/acpype"
+requires-python = ">=3.12"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Alan Silva", email = "alanwilter@gmail.com" }]
 keywords = ["acpype", "amber", "gromacs"]
 classifiers = [
   "Intended Audience :: Science/Research",
   "Natural Language :: English",
-  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Typing :: Typed",
 ]
-# packages = [{ include = "acpype" }]
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
-"Wiki" = "https://github.com/alanwilter/acpype/wiki"
-"Docs" = "https://acpype.readthedocs.io"
-"DOI" = "https://doi.org/10.1186/1756-0500-5-367"
+dependencies = [
+    "openbabel-wheel>=3.1.1.23",
+    "rich>=14.2.0",
+    "typer>=0.20.0",
+]
 
-[tool.poetry.scripts]
+[project.urls]
+"Bug Tracker" = "https://github.com/alanwilter/acpype/issues"
+DOI = "https://doi.org/10.1186/1756-0500-5-367"
+Docs = "https://acpype.readthedocs.io"
+Homepage = "https://alanwilter.github.io/acpype/"
+Repository = "https://github.com/alanwilter/acpype"
+Wiki = "https://github.com/alanwilter/acpype/wiki"
+
+[project.scripts]
 acpype = "acpype.cli:init_main"
 
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-openbabel-wheel = "^3.1.1.19"
-
-[tool.poetry.dev-dependencies]
-ruff = "^0.1.2"
-pytest-cov = "^3.0.0"
-mypy = "^0.920"
-pdbpp = "^0.10.3"
-ipdb = "0.13"
-pytest-random-order = "^1.0.4"
-pre-commit = "^2.16.0"
-importlib-metadata = "^4.1"
-twine = "^3.7.1"
-pytest-xdist = "^3.3.1"
-pip = "^23.1.2"
-wheel = "^0.40.0"
-sphinx-rtd-theme = "^1.3.0"
-sphinx = ">=6"
-
-[tool.ruff]
-target-version = "py38"
-line-length = 120
-extend-select = ["UP", "RUF", "I"] # "E501"
-ignore = ['UP036']
-
-[tool.pytest.ini_options]
-addopts = "tests --cov=tests --cov=acpype --cov-report=term-missing:skip-covered --cov-report=xml --dist=loadgroup -n 0 --durations=5"
-# markers = ["slow: marks tests as slow (deselect with '-m \"not slow\"')"]
-
-[tool.mypy]
-# ignore_missing_imports = true #waiting for some stubs
-
-[[tool.mypy.overrides]]
-module = ["setuptools", "openbabel"]
-ignore_missing_imports = true
+[dependency-groups]
+dev = [
+  { include-group = "lint" },
+  { include-group = "test" },
+  { include-group = "tools" },
+]
+docs = [
+  "doc8>=2.0.0",
+  "esbonio>=2.1.0",
+  "rstcheck>=6.3.0",
+  "sphinx>=9.1.0",
+  "sphinx-rtd-theme>=3.1.0",
+]
+lint = ["ruff>=0.16.4", "ty>=0.0.74"]
+test = [
+  "ipdb>=0.13.13",
+  "pdbpp>=0.12.1",
+  "pytest>=9.1.1",
+  "pytest-cov>=7.1.0",
+  "pytest-random-order>=1.2.0",
+  "pytest-xdist>=3.8.0",
+]
+tools = ["pre-commit>=4.6.2", "rust-just", "wheel>=0.48.0"]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.9.0,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.coverage.report]
+omit = [
+  "__main__.py",
+  # Vendored AmberTools ships a few Python helpers that ACPYPE never imports.
+  "src/acpype/amber_linux/*",
+  "src/acpype/amber_macos/*",
+]
+fail_under = 90  # minimum coverage required, but aim for 100% though
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "if typing.TYPE_CHECKING:",
+  "@overload",
+  "@typing.overload",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "raise NotImplementedError",
+  "\\.\\.\\.",
+  "no cov",
+  "if __name__ == .__main__.:",
+]
+
+[tool.pytest]
+addopts = ["--cov-branch", "--cov-report=term-missing:skip-covered", "--cov-report=xml", "--cov=src/", "--cov=tests/", "--dist=loadscope", "--durations=5", "-n", "0"]
+filterwarnings = []
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+# Vendored AmberTools and the retired CCPN bridge are upstream content, never ours to
+# lint or reformat.
+extend-exclude = ["src/acpype/amber_linux", "src/acpype/amber_macos", "legacy"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+  "ANN",  # check typings
+  "B",  # flake8-bugbear
+  "D",  # check docstrings
+  "E",  # pycodestyle errors
+  "F",  # Pyflakes
+  "I",  # isort
+  "RUF",  # Ruff-specific rules
+  "SIM",  # Common simplification rules
+  "TC",  # Enforce importing certain types in a TYPE_CHECKING block
+  "TD",  # Be diligent with TODO comments
+  "TID",  # Some good import practices
+  "UP",  # Warn if certain things can changed due to newer Python versions
+  "W",  # PyCodeStyle warnings
+  "S",  # security issues
+]
+ignore = [
+  "E501",  # line length (handled by ruff format for code)
+  "B008",  # function call in defaults (standard typer pattern)
+  # Temporarily ignored during migration - to be addressed incrementally
+  "ANN001",  # missing type annotation for function argument
+  "ANN002",  # missing type annotation for *args
+  "ANN003",  # missing type annotation for **kwargs
+  "ANN201",  # missing return type annotation for public function
+  "ANN202",  # missing return type annotation for private function
+  "ANN204",  # missing return type annotation for special method
+  "ANN206",  # missing return type annotation for classmethod
+  "ANN401",  # use of typing.Any
+  "D100",  # missing docstring in public module
+  "D101",  # missing docstring in public class
+  "D102",  # missing docstring in public method
+  "D103",  # missing docstring in public function
+  "D105",  # missing docstring in magic method
+  "D107",  # missing docstring in __init__
+  "D205",  # blank line required between summary and description
+  "D415",  # first line should end with a period
+  "RUF012",  # mutable class variable (needs ClassVar annotation)
+  "RUF013",  # implicit Optional
+  "TD002",  # missing author in TODO
+  "TD003",  # missing issue link in TODO
+  "TD004",  # missing colon in TODO
+  "TD005",  # missing description in TODO
+  "D200",  # one-line docstring should fit on one line
+  "D301",  # use r""" for docstrings with backslashes
+  "B026",  # star-arg unpacking after keyword arg
+  "S110",  # try-except-pass without logging
+  "SIM105",  # use contextlib.suppress
+  "E402",  # module-level import not at top
+  "E721",  # do not compare types, use isinstance()
+  "S310",  # audit url open for permitted schemes
+  "RUF007",  # prefer itertools.pairwise
+  # Inherent to what ACPYPE is: it drives antechamber/tleap through the shell.
+  "S602",  # subprocess call with shell=True
+  # Deferred refactors, tracked separately - to be addressed incrementally
+  "UP031",  # printf-style formatting; ~130 sites, most inside the topology writers
+  "SIM115",  # open() without a context manager; ~50 sites
+  "SIM102",  # collapsible if
+  "SIM108",  # if-else block instead of ternary
+  "SIM113",  # enumerate instead of a manual counter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "S"]  # ["UP", "RUF", "I", "D", "E501"]
+"__init__.py" = ["D104"]
+"__main__.py" = ["D100"]
+# Maintenance scripts, not shipped in the wheel: they shell out freely by design.
+"scripts/*" = ["B006", "S108", "S307", "S603", "S605", "S607"]
+"recipe/*" = ["S102"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ty]
+# All rules are enabled as "error" by default; no need to specify unless overriding.
+
+[tool.ty.environment]
+python = ".venv"
+
+[tool.ty.src]
+include = ["src", "scripts", "tests"]
+# Vendored AmberTools, the retired CCPN bridge and the conda recipe are not ours.
+exclude = ["src/acpype/amber_linux", "src/acpype/amber_macos", "legacy", "recipe"]
+
+[tool.ty.terminal]
+error-on-warning = true
+
+[tool.uv]
+# Single source for the uv version: `astral-sh/setup-uv` reads this too, so CI and
+# local development cannot drift. Bump it here and both follow.
+required-version = ">=0.12.9"
+exclude-newer = "7 days"
+package = true
+default-groups = ["dev"]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.build-backend]
+module-name = "acpype"
+# The package ships ~110 MB of AmberTools binaries, so everything under src/acpype/
+# is included by default. Guard against local tool caches leaking into a release.
+source-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]
+wheel-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]

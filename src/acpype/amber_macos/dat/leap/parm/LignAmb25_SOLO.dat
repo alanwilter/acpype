@@ -1,0 +1,1875 @@
+LignAmb25 force field for lignin polymers (Version 1.0.0 September 2025)
+Ca 12.01         0.616
+Cb 12.01         0.878
+Cd 12.01         0.360
+Ce 12.01         0.878
+Cm 12.01         0.878
+Co 12.01         0.878
+Cr 12.01         0.878
+Ct 12.01         0.878
+Cx 12.01         0.616
+HR  1.01         0.135
+Hd  1.01         0.135
+Hm  1.01         0.135
+Hq  1.01         0.135
+Hr  1.01         0.135
+Hx  1.01         0.135
+Oc 16.00         0.465
+Oe 16.00         0.465
+Om 16.00         0.465
+Oz 16.00         0.434
+cE 12.01         0.360
+cH 12.01         0.360
+cM 12.01         0.360
+cN 12.01         0.360
+co 12.01         0.360
+Cv 12.01         0.616
+OM 16.00         0.465
+
+ho  o  oh  os  OM  Oc  Oe  Om  Hq  OJ  OA  OL  OP  OQ
+ow-hw  553.0    0.9572      TIP3P
+hw-hw  553.0    1.5136      TIP3P
+Cv-Cm  336.11   1.5150      QM-FIT     1
+Ca-Cm  336.11   1.5150      QM-FIT     1
+Ca-OM  433.25    1.3580      QM-CLA     9
+Cv-Oc  970.96    1.2160      QM-CLB    36
+Ca-Oc  970.96    1.2160      QM-CLB    36
+Cv-cN  359.42   1.4960      QM-FIT    13
+Ca-cN  359.42   1.4960      QM-FIT    13
+Cb-Cb  294.45   1.5560      QM-FIT     4
+Cb-Hr  408.46   1.1000      QM-FIT     8
+Cd-Cv  356.83   1.4900      QM-FIT    24
+Cd-Ca  356.83   1.4900      QM-FIT    24
+Cd-Cd  714.14    1.3430      QM-CLB    61
+Cd-Co  347.93   1.5100      QM-FIT    30
+Cd-Hd  422.88   1.0960      QM-FIT   118
+Ce-Ce  299.57   1.5430      QM-FIT     1
+Ce-Co  301.57   1.5390      QM-FIT    36
+Ce-Cx  295.47   1.5310      QM-FIT    16
+Ce-Hm  397.98   1.1040      QM-FIT    35
+Ce-cN  343.29   1.5170      QM-FIT    11
+Cm-Hm  402.24   1.1020      QM-FIT   282
+Co-Cv  303.97   1.5310      QM-FIT     4
+Co-Ca  303.97   1.5310      QM-FIT     4
+Co-Co  306.35   1.5390      QM-FIT    44
+Co-Cr  309.00   1.5370      QM-FIT     9
+Co-Ct  332.39   1.5270      QM-FIT     1
+Co-Hm  395.30   1.1040      QM-FIT   247
+Co-Oe  300.18   1.4550      QM-FIT     1
+Cx-Cb  290.35   1.5480      QM-FIT    16
+Cr-Cb  290.35   1.5480      QM-FIT    16
+Cx-Cx  281.11   1.5540      QM-FIT     9
+Cr-Cx  281.11   1.5540      QM-FIT     9
+Cr-Cr  281.11   1.5540      QM-FIT     9
+Cx-Hr  392.57   1.1050      QM-FIT    43
+Cr-Hr  392.57   1.1050      QM-FIT    43
+Cr-Oe  323.08   1.4470      QM-FIT    12
+Ct-Ce  300.90   1.5380      GAFF2
+Ct-Ct  314.58   1.5400      QM-FIT     3
+Ct-Hm  397.67   1.1040      QM-FIT    11
+Cx-Cd  355.19   1.4850      QM-FIT    10
+Cx-Co  337.90   1.5130      QM-FIT     7
+Cx-Oe  391.41   1.3750      QM-FIT     7
+Cx-Oz  1023.76   1.2120      QM-FIT    37
+Hq-Oc  654.16   0.9700      QM-FIT   115
+Hx-Cx  362.62   1.1190      QM-FIT    30
+Oc-Co  368.35   1.4290      QM-FIT   115
+OM-Ce  301.64   1.4540      QM-FIT     8
+OM-Co  333.69   1.4450      QM-FIT     9
+OM-Cx  308.60   1.4320      GAFF2
+OM-Cr  308.60   1.4320      GAFF2
+Oe-Ce  348.30   1.4340      QM-FIT    26
+Om-Cm  380.20   1.4260      QM-FIT    92
+cE-Oe  452.01   1.3760      QM-FIT    52
+cE-cE  461.10   1.3980      GAFF2
+cE-cM  461.10   1.3980      GAFF2
+cE-cN  461.10   1.3980      GAFF2
+cH-Co  342.11   1.5200      QM-FIT     4
+cH-HR  345.80   1.0860      GAFF2
+cH-cE  461.10   1.3980      GAFF2
+cH-cH  461.10   1.3980      GAFF2
+cH-cM  461.10   1.3980      GAFF2
+cH-co  461.10   1.3980      GAFF2
+cM-Oc  472.55   1.3720      QM-FIT     1
+cM-Om  458.88   1.3710      QM-FIT    91
+cM-co  461.10   1.3980      GAFF2
+cN-Cd  384.34   1.4800      QM-FIT    68
+cN-Co  331.45   1.5240      QM-FIT    29
+cN-Cx  339.19   1.5210      QM-FIT    22
+cN-Cr  339.19   1.5210      QM-FIT    22
+cN-Ct  345.17   1.5180      QM-FIT     2
+cN-OM  447.05   1.3690      QM-FIT     4
+cN-Oz  807.79   1.2490      QM-FIT     2
+cN-cH  461.10   1.3980      GAFF2
+cN-cN  398.78   1.4740      QM-FIT    12
+co-HR  345.80   1.0860      GAFF2
+co-Oc  471.95   1.3710      QM-FIT   142
+co-Oe  415.85   1.3960      QM-FIT     1
+co-Om  430.84   1.3910      QM-FIT     1
+co-cE  461.10   1.3980      GAFF2
+co-cN  461.10   1.3980      GAFF2
+co-co  461.10   1.3980      GAFF2
+Cv-OM  976.05   1.2160      GAFF2
+cM-OM  458.88   1.3710      QM-FIT    91
+OM-Cm  380.20   1.4260      QM-FIT    92
+Cd-Oe  300.18   1.4550      QM-FIT     1
+Ct-Oc  970.96    1.2160      QM-CLB    36
+Cd-Oe  452.01   1.3760      ANALOG cE-Oe
+
+Ca-Cm-Hm  46.90       108.77      GAFF2
+Ca-Co-Cd  84.62   110.2980      QM-FIT     3
+Ca-OM-Ce  48.85   118.4130      QM-FIT     1
+Ca-OM-Co  98.07   117.3330      QM-FIT     3
+Ca-cN-cH  120.40   119.1890      QM-FIT    18
+Cb-Cb-Hr  59.19   112.9660      QM-FIT     8
+Cd-Ca-OM  120.33   111.0250      QM-FIT     5
+Cd-Ca-Oc  113.33   123.7980      QM-FIT    12
+Cd-Cd-Ca  101.00   121.3480      QM-FIT    13
+Cd-Cd-Cd  65.40       123.26      GAFF2
+Cd-Cd-Co  87.63   123.8590      QM-FIT    30
+Cd-Cd-Hd  61.73   119.7700      QM-FIT   115
+Cd-Co-Hm  57.19   110.0460      QM-FIT    54
+Cd-Co-Oc  82.72   111.6020      QM-FIT     5
+Cd-Co-OM  87.46   108.2110      QM-FIT     1
+Ce-Ce-Hm  61.65   107.2620      QM-FIT     2
+Ce-Ce-cN  95.41   113.9900      QM-FIT     1
+Ce-Co-Co  89.44   112.6970      QM-FIT     8
+Ce-Co-Hm  58.81   108.7630      QM-FIT    60
+Ce-Co-Oc  90.99   110.9480      QM-FIT     7
+Ce-Co-cN  83.67   113.2620      QM-FIT     6
+Ce-Cx-Hx  61.68   114.7650      QM-FIT    16
+Ce-Cx-Oz  89.16   123.8220      QM-FIT    16
+Ce-cN-cH  104.15   120.7150      QM-FIT    24
+Co-Ca-Oc  104.56   112.2360      QM-FIT     4
+Co-Cd-Ca  110.74   119.0230      QM-FIT     4
+Co-Ce-Ce  62.90       111.51      GAFF2
+Co-Ce-Co  89.38   114.9730      QM-FIT     6
+Co-Ce-Cx  68.77   111.1270      QM-FIT    13
+Co-Ce-cN  82.40   114.4250      QM-FIT    10
+Co-Co-Ca  63.30       111.04      GAFF2
+Co-Co-Cd  128.96   112.1590      QM-FIT     4
+Co-Co-Co  86.74   112.9400      QM-FIT    13
+Co-Co-Hm  59.40   108.9050      QM-FIT   116
+Co-Co-Oe  98.65   106.0000      QM-FIT     1
+Co-Cx-Cr  87.29   114.6160      QM-FIT     8
+Co-Cr-Cx  87.29   114.6160      QM-FIT     8
+Co-Cr-Cr  87.29   114.6160      QM-FIT     8
+Co-Cr-Hr  59.71   108.2230      QM-FIT    10
+Co-Cr-OM  96.30   109.4880      QM-FIT     1
+Co-Cr-Oe  92.20   111.3080      QM-FIT     3
+Co-Ct-Ce  62.90       111.51      GAFF2
+Co-Ct-Ct  74.09   112.7960      QM-FIT     1
+Co-Ct-Hm  56.10   109.2100      QM-FIT     2
+Co-Oe-cE  60.98   121.0000      QM-FIT     1
+Cr-Cb-Cb  190.55   103.2310      QM-FIT    15
+Cr-Cb-Cx  86.25   115.3460      QM-FIT     8
+Cr-Cb-Cr  86.25   115.3460      QM-FIT     8
+Cr-Cb-Hr  61.06   111.3100      QM-FIT    16
+Cr-Co-Co  85.80   114.5700      QM-FIT     1
+Cr-Co-Oe  88.86   107.9010      QM-FIT     1
+Cx-Cr-Hr  61.22   108.8860      QM-FIT    17
+Cr-Cx-Hr  61.22   108.8860      QM-FIT    17
+Cr-Cr-Hr  61.22   108.8860      QM-FIT    17
+Cx-Cr-Oe  105.26   109.7990      QM-CLA     3
+Cr-Cx-Oe  105.26   109.7990      QM-CLA     3
+Cr-Cr-Oe  105.26   109.7990      QM-CLA     3
+Cr-OM-Cx  124.44   106.7970      QM-FIT     7
+Cr-OM-Cr  124.44   106.7970      QM-FIT     7
+Cr-Oe-cE  107.29   114.4910      QM-FIT    11
+Cr-cN-Cx  177.80   99.8640      QM-FIT     1
+Cr-cN-Cr  177.80   99.8640      QM-FIT     1
+Ct-Ce-Hm  46.40       109.56      GAFF2
+Ct-Ce-cN  63.10       112.07      GAFF2
+Ct-Ct-Ct  62.90       111.51      GAFF2
+Ct-Ct-Hm  57.27   110.1270      QM-FIT    13
+Cx-Cd-Cd  81.10   121.1900      QM-FIT    10
+Cx-Cd-Hd  57.96   116.9180      QM-FIT    10
+HR-cH-cE  65.60   119.2620      QM-FIT    48
+HR-cH-cM  68.53   120.3380      QM-FIT    87
+HR-cH-co  66.13   119.4110      QM-FIT   142
+Hd-Cd-Ca  61.65   114.1400      QM-FIT     6
+Hd-Cd-Co  57.68   115.3790      QM-FIT    25
+Hm-Cm-Hm  50.62   109.5770      QM-FIT   281
+Hq-Oc-Co  53.68   108.5030      QM-FIT   114
+Hq-Oc-Ca  51.11   106.7640      QM-FIT    18
+Hr-Cr-Cb  46.40       109.56      GAFF2
+Hr-Cr-Hr  53.06   108.8730      QM-FIT     8
+Hr-Cr-Oe  73.95   107.8390      QM-FIT    12
+Hm-Ce-Co  57.35   108.5880      QM-FIT    39
+Hm-Ce-Cx  50.28   107.5110      QM-FIT    16
+Hm-Ce-cN  65.65   109.6690      QM-FIT    12
+Hm-Co-Ca  55.11   106.0170      QM-FIT     4
+Hm-Co-Cr  59.43   109.5330      QM-FIT    19
+Hm-Co-Ct  59.08   110.0480      QM-FIT     2
+Hm-Co-Hm  49.34   108.4200      QM-FIT   107
+Hm-Co-Oe  50.80       109.78      GAFF2
+Hm-Ct-Ce  46.30       109.80      GAFF2
+Hm-Ct-Hm  51.52   107.4200      QM-FIT     6
+Hx-Cx-Cd  70.01   115.3910      QM-FIT    10
+Hx-Cx-Oz  79.36   121.3770      QM-FIT    30
+Hx-Cx-cN  71.09   115.0500      QM-FIT     4
+Oc-Co-Co  93.35   108.2480      QM-FIT    38
+Oc-Co-Cr  88.60   112.6640      QM-FIT     5
+Oc-Co-Ct  90.84   108.7810      QM-FIT     1
+Oc-Co-Hm  71.15   107.8030      QM-FIT   138
+OM-Ca-Cm  68.90       110.72      GAFF2
+OM-Ca-cN  131.72   112.9220      QM-FIT     4
+OM-Ce-Co  68.00       107.97      GAFF2
+OM-Ce-Hm  71.80   108.3280      QM-FIT     7
+OM-Co-Co  68.00       107.97      GAFF2
+OM-Co-Hm  70.50   107.2480      QM-FIT    16
+Oc-Ca-Oc  131.67   120.6040      QM-FIT    18
+Oc-Ca-cN  125.37   113.7290      QM-FIT     5
+OM-Cr-Cb  166.61   105.1030      QM-FIT    16
+OM-Cx-Cr  171.30   105.5430      QM-FIT     1
+OM-Cr-Cx  171.30   105.5430      QM-FIT     1
+OM-Cr-Cr  171.30   105.5430      QM-FIT     1
+OM-Cr-Hr  71.22   109.0270      QM-FIT    26
+Oc-cM-cH  111.62   120.4540      QM-FIT     1
+Oc-co-cE  118.90   118.7390      QM-FIT    14
+Oc-co-cN  129.37   120.6190      QM-FIT     8
+Oc-co-co  119.50   117.2050      QM-FIT    59
+Oe-Ce-Ce  68.00       107.97      GAFF2
+Oe-Ce-Co  93.21   107.0130      QM-CLB    15
+Oe-Ce-Ct  68.00       107.97      GAFF2
+Oe-Ce-Cx  75.88   107.9500      QM-FIT    11
+Oe-Ce-Hm  50.80       109.78      GAFF2
+Oe-Ce-cN  68.30       108.95      GAFF2
+Oe-cE-cM  115.08   119.5640      QM-FIT    27
+Oe-cE-cN  69.60       119.20      GAFF2
+Oe-co-cE  115.87   118.0000      QM-FIT     1
+Om-Cm-Hm  70.64   106.4280      QM-FIT   279
+Om-cM-co  134.64   115.0090      QM-FIT    38
+Om-co-co  112.98   116.5010      QM-FIT     1
+Oc-Ca-Cm  67.40       123.20      GAFF2
+Oc-Ca-OM  143.12   121.6280      QM-FIT     5
+Oz-Cx-Cd  95.71   124.7640      QM-FIT    10
+Oz-Cx-Co  91.03   126.3950      QM-FIT     7
+Oz-Cx-Oe  140.38   119.1150      QM-FIT     7
+Oz-Cx-cN  107.97   125.1060      QM-FIT     4
+Oz-cN-cH  141.97   122.8900      QM-FIT     2
+cE-Oe-Ce  64.24   118.8130      QM-FIT    17
+cE-Oe-cE  69.87   118.6400      QM-FIT     4
+cE-cE-Oe  164.62   121.9510      QM-FIT     2
+cE-cH-cH  169.27   120.0440      QM-FIT    43
+cE-cM-Om  132.78   116.2410      QM-FIT    18
+cE-cM-cH  178.59   119.7380      QM-FIT    30
+cE-cN-Cr  212.73   107.7760      QM-FIT     4
+cE-cN-cH  172.88   119.4630      QM-FIT    10
+cE-cN-cN  111.28   122.5250      QM-FIT     6
+cH-Co-Co  125.44   111.0220      QM-FIT     3
+cH-Co-Hm  64.98   108.2870      QM-FIT     4
+cH-Co-cN  87.43   111.8170      QM-FIT     4
+cH-cE-Oe  108.19   118.7190      QM-FIT    29
+cH-cE-cE  175.61   119.8840      QM-FIT     2
+cH-cE-cH  176.04   120.3940      QM-FIT    12
+cH-cE-cN  176.18   121.2460      QM-FIT     3
+cH-cH-Co  128.23   121.0360      QM-FIT     1
+cH-cH-HR  67.65   120.1770      QM-FIT   271
+cH-cH-cH  66.60       120.02      GAFF2
+cH-cH-cM  66.60       120.02      GAFF2
+cH-cM-Om  119.79   123.9150      QM-FIT    32
+cH-cM-co  178.38   120.3250      QM-FIT    62
+cH-cN-Cd  111.55   119.3430      QM-FIT   131
+cH-cN-Co  106.69   120.7240      QM-FIT    53
+cH-cN-Cr  103.48   120.1720      QM-CLA    32
+cH-cN-Ct  98.29   120.6960      QM-FIT     4
+cH-cN-OM  168.39   119.7630      QM-FIT     4
+cH-cN-cH  178.47   119.2600      QM-FIT   148
+cH-co-Oc  115.89   119.1790      QM-FIT   141
+cH-co-Oe  82.76   120.7660      QM-FIT     1
+cH-co-Om  110.72   122.2390      QM-FIT     1
+cH-co-cE  177.37   119.7640      QM-FIT    13
+cH-co-cH  178.81   120.2040      QM-FIT    26
+cH-co-cN  189.32   120.5570      QM-FIT     4
+cH-co-co  177.84   120.1760      QM-FIT    55
+cM-Oc-Hq  57.88   108.9620      QM-FIT     1
+cM-Om-Cm  68.76   117.0020      QM-FIT    69
+cM-cE-cH  180.34   120.1440      QM-FIT     8
+cM-cE-cM  176.77   120.3580      QM-FIT     9
+cM-cE-cN  176.62   121.1650      QM-FIT     4
+cM-cH-Co  130.82   120.7170      QM-FIT     1
+cM-co-Oc  120.22   119.0970      QM-FIT    62
+cM-co-cE  180.41   118.9420      QM-FIT     2
+cM-co-cH  180.83   119.7640      QM-FIT    20
+cM-co-cM  183.36   119.6370      QM-FIT    18
+cM-co-cN  182.32   120.3720      QM-FIT     2
+cN-Cd-Cd  81.47   126.4480      QM-FIT    62
+cN-Cd-Hd  63.59   115.8460      QM-FIT    67
+cN-Ce-OM  68.30       108.95      GAFF2
+cN-Co-Co  87.09   112.3750      QM-FIT    26
+cN-Co-Hm  65.56   108.5340      QM-FIT    30
+cN-Co-Oc  101.62   109.9370      QM-FIT    14
+cN-Cr-Cb  84.94   115.3650      QM-FIT     8
+cN-Cr-Co  63.10       112.07      GAFF2
+cN-Cx-Cr  63.10       112.07      GAFF2
+cN-Cr-Cx  63.10       112.07      GAFF2
+cN-Cr-Cr  63.10       112.07      GAFF2
+cN-Cr-Hr  63.26   109.2760      QM-FIT    21
+cN-Cr-OM  105.55   110.0000      QM-FIT     9
+cN-Cr-Oe  68.30       108.95      GAFF2
+cN-Ct-Ct  72.05   112.8540      QM-FIT     2
+cN-Ct-Hm  62.05   110.0610      QM-FIT     1
+cN-OM-cN  160.32   120.7420      QM-FIT     2
+cN-cH-Co  153.58   120.4240      QM-FIT     4
+cN-cH-HR  68.62   119.8010      QM-FIT   313
+cN-cH-cE  170.29   121.0810      QM-FIT     5
+cN-cH-cH  169.95   121.0270      QM-FIT   136
+cN-cH-cM  171.33   120.3920      QM-FIT    93
+cN-cH-cN  174.06   121.5580      QM-FIT    18
+cN-cH-co  171.26   120.6240      QM-FIT    48
+cN-cN-OM  69.60       119.20      GAFF2
+cN-cN-Oz  142.35   122.8080      QM-FIT     2
+cN-cN-cH  125.00   120.2250      QM-FIT    22
+cN-cN-cN  209.25   120.4500      QM-FIT     2
+co-Oc-Hq  57.25   108.9680      QM-FIT   142
+co-Oe-Cx  73.41   117.7460      QM-FIT     1
+co-Om-Cm  66.40   113.8670      QM-FIT     1
+co-cE-Oe  121.54   117.4520      QM-FIT    10
+co-cE-cH  174.16   120.2690      QM-FIT    12
+co-cE-cM  173.70   120.2550      QM-FIT     1
+co-cE-cN  175.99   121.0640      QM-FIT     3
+co-cH-Co  130.36   121.4460      QM-FIT     2
+co-cH-cH  169.12   120.3440      QM-FIT    92
+co-cH-co  176.76   119.6680      QM-FIT     2
+co-cM-Oc  116.67   117.6050      QM-FIT     1
+co-cN-cH  174.67   118.5740      QM-FIT     6
+co-cN-cN  66.60       120.02      GAFF2
+co-co-HR  48.20       119.88      GAFF2
+co-co-cE  175.20   118.9800      QM-FIT     1
+co-co-cM  179.53   119.9980      QM-FIT     2
+co-co-cN  179.48   120.1460      QM-FIT     2
+co-co-co  170.04   118.9670      QM-FIT     4
+Cv-Cm-Hm  41.04   109.9120      QM-FIT     3
+Cv-Co-Cd  63.50       111.89      GAFF2
+Cv-OM-Ce  74.93   118.7830      QM-FIT     3
+Cv-OM-Co  97.90   117.0000      QM-FIT     1
+Cv-cN-cH  117.96   120.2800      QM-FIT     8
+Cd-Cv-OM  118.92   111.5200      QM-FIT     2
+Cd-Cv-Oc  109.66   123.2620      QM-FIT     2
+Cd-Cd-Cv  88.57   122.2310      QM-FIT     8
+Co-Cv-Oc  68.40       112.73      GAFF2
+Co-Cd-Cv  62.90       117.22      GAFF2
+Co-Co-Cv  63.30       111.04      GAFF2
+Hd-Cd-Cv  61.63   114.5800      QM-FIT     8
+Hq-Oc-Cv  49.90       106.55      GAFF2
+Hm-Co-Cv  46.90       108.77      GAFF2
+OM-Cv-Cm  104.00   111.6870      QM-FIT     1
+OM-Cv-cN  130.43   112.6590      QM-FIT     4
+Oc-Cv-Oc  75.90       122.10      GAFF2
+Oc-Cv-cN  69.20       113.45      GAFF2
+Oc-Cv-Cm  93.18   125.3580      QM-FIT     1
+Oc-Cv-OM  135.01   120.1310      QM-FIT     5
+Co-Cx-Cx  87.29   114.6160      QM-FIT     8
+Co-Cx-Hr  59.71   108.2230      QM-FIT    10
+Co-Cx-OM  96.30   109.4880      QM-FIT     1
+Co-Cx-Oe  92.20   111.3080      QM-FIT     3
+Cx-Cb-Cb  190.55   103.2310      QM-FIT    15
+Cx-Cb-Cx  86.25   115.3460      QM-FIT     8
+Cx-Cb-Hr  61.06   111.3100      QM-FIT    16
+Cx-Co-Co  85.80   114.5700      QM-FIT     1
+Cx-Co-Oe  88.86   107.9010      QM-FIT     1
+Cx-Cx-Hr  61.22   108.8860      QM-FIT    17
+Cx-Cx-Oe  105.26   109.7990      QM-CLA     3
+Cx-OM-Cx  124.44   106.7970      QM-FIT     7
+Cx-Oe-cE  107.29   114.4910      QM-FIT    11
+Cx-cN-Cx  177.80   99.8640      QM-FIT     1
+Hr-Cx-Cb  46.40       109.56      GAFF2
+Hr-Cx-Hr  53.06   108.8730      QM-FIT     8
+Hr-Cx-Oe  73.95   107.8390      QM-FIT    12
+Hm-Co-Cx  59.43   109.5330      QM-FIT    19
+Oc-Co-Cx  88.60   112.6640      QM-FIT     5
+OM-Cx-Cb  166.61   105.1030      QM-FIT    16
+OM-Cx-Cx  171.30   105.5430      QM-FIT     1
+OM-Cx-Hr  71.22   109.0270      QM-FIT    26
+cE-cN-Cx  212.73   107.7760      QM-FIT     4
+cN-Cx-Cb  84.94   115.3650      QM-FIT     8
+cN-Cx-Co  63.10       112.07      GAFF2
+cN-Cx-Cx  63.10       112.07      GAFF2
+cN-Cx-Hr  63.26   109.2760      QM-FIT    21
+cN-Cx-OM  105.55   110.0000      QM-FIT     9
+cN-Cx-Oe  68.30       108.95      GAFF2
+Cx-cN-cH  129.05       131.80      GAFF2
+cE-cM-OM  132.78   116.2410      QM-FIT    18
+cH-cM-OM  119.79   123.9150      QM-FIT    32
+cM-OM-Cm  68.76   117.0020      QM-FIT    69
+OM-Cm-Hm  70.64   106.4280      QM-FIT   279
+Cd-Ca-cN   95.41   113.9900      GAFF2
+Cr-cN-co  120.40   119.1890      GAFF2
+Hx-Cx-Oe   79.36   121.3770      GAFF2
+OM-Ce-Oe  131.67   120.6040      GAFF2
+OM-Cr-Oe  131.67   120.6040      GAFF2
+Oe-Ce-OM  131.67   120.6040      GAFF2
+Oe-Cx-Hx   79.36   121.3770      GAFF2
+cN-Ca-Cd   95.41   113.9900      GAFF2
+cN-Co-Cr   83.67   113.2620      GAFF2
+Cd-Cd-Oe  101.00   121.3480      QM-FIT    13
+Cd-Oe-cE  60.98   121.0000      QM-FIT     1
+Ce-Co-Oe  90.99   110.9480      QM-FIT     7
+Ce-Ct-Oc  62.90       111.51      ANALOG
+Co-Oe-co  60.98   121.0000      QM-FIT     1
+Ct-Oc-Hq  53.68   108.5030      QM-FIT   114
+Cx-Ce-Ct  68.77   111.1270      QM-FIT    13
+Hd-Cd-Oe  61.73   119.7700      QM-FIT   115
+Hm-Ct-Oc  56.10   109.2100      QM-FIT     2
+Oc-Co-Oe  82.72   111.6020      QM-FIT     5
+Oc-cM-cE  111.62   120.4540      QM-FIT     1
+Oe-co-cN  129.37   120.6190      QM-FIT     8
+Oe-co-co  119.50   117.2050      QM-FIT    59
+Om-co-cE  118.90   118.7390      QM-FIT    14
+cE-cE-cE  175.61   119.8840      QM-FIT     2
+cE-cE-cM  175.61   119.8840      QM-FIT     2
+cE-cE-cN  175.61   119.8840      QM-FIT     2
+cE-cE-co  175.61   119.8840      QM-FIT     2
+cE-co-Om  118.90   118.7390      QM-FIT    14
+cE-co-cN  177.37   119.7640      QM-FIT    13
+cN-cE-cE  175.61   119.8840      QM-FIT     2
+cN-cE-cN  176.18   121.2460      QM-FIT     3
+cN-co-Oe  129.37   120.6190      QM-FIT     8
+cN-co-cN  189.32   120.5570      QM-FIT     4
+co-Oe-Ce  64.24   118.8130      QM-FIT    17
+co-cE-cE  175.61   119.8840      QM-FIT     2
+co-co-Oe  119.50   117.2050      QM-FIT    59
+Cd-Cd-Oe  101.00   121.3480      ANALOG cE-cE-Oe
+Hd-Cd-Oe   61.73   119.7700      ANALOG HR-cE-Oe
+Cd-Oe-cE   60.98   121.0000      ANALOG Co-Oe-cE
+Cd-Oe-co   73.41   117.7500      ANALOG co-Oe-Cx
+co-Oe-cE  60.98   121.0000      QM-FIT     1      ANALOG Co-Oe-cE
+cH-Co-Oc  82.72   111.6020      QM-FIT     5      ANALOG Cd-Co-Oc
+cE-cH-Co  128.23   121.0360      QM-FIT     1      ANALOG cH-cH-Co
+
+Cd-Cd-cN-cH    1   -1.685         0.000          -2.000      QM-FIT   324
+Cd-Cd-cN-cH    1    2.183         0.000          -3.000      GAFF2
+Cd-Cd-cN-cH    1   -0.558         0.000          -5.000      GAFF2
+Cd-Cd-cN-cH    1    0.178       180.000           5.000      GAFF2
+Cd-Cd-Ca-OM    1    2.175       180.000           2.000      GAFF2
+Cd-Cd-Cd-Ca    1    1.000       180.000           2.000      GAFF2
+Cd-Cd-Cd-Cd    1    1.000       180.000           2.000      GAFF2
+Cd-Cd-Co-Hm    1    0.000         0.000          -2.000      GAFF2
+Cd-Cd-Co-Hm    1   -0.048       270.000          -3.000      GAFF2
+Cd-Cd-Co-Hm    1    0.061        60.000           5.000      GAFF2
+Cd-Cd-Cv-OM    1    2.175       180.000          -2.000      GAFF2
+Cd-Cd-Cv-OM    1    0.031       180.000           5.000      GAFF2
+Cd-Cd-Cv-Oc    1    0.210       180.000           4.000      GAFF2
+Cd-Cd-Cx-Hx    1   -1.035         0.000           4.000      GAFF2
+Cd-Cd-Cx-Oz    1    2.175       180.000          -2.000      GAFF2
+Cd-Cd-Cx-Oz    1    2.183         0.000          -3.000      GAFF2
+Cd-Cd-Cx-Oz    1    0.827         0.000          -4.000      GAFF2
+Cd-Cd-Cx-Oz    1   -0.128         0.000           5.000      GAFF2
+Cd-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Cd-cN-cH-cE    1    3.625       180.000           2.000      GAFF2
+Cd-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Cd-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Cd-cN-cH-cN    1    3.625       180.000           2.000      GAFF2
+Cd-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.200       180.000          -1.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.250       180.000          -2.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.180         0.000           3.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.200       180.000          -1.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.250       180.000          -2.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.180         0.000           3.000      GAFF2
+Cr-Cb-Cb-Hr    1    0.160         0.000           3.000      GAFF2
+Cr-Cb-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Cr-Cb-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Cr-OM-Cr-Cb    1    0.100       180.000          -2.000      GAFF2
+Cr-OM-Cr-Cb    1    0.383         0.000           3.000      GAFF2
+Cr-OM-Cr-Hr    1    0.383         0.000           3.000      GAFF2
+Cr-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Cr-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Cr-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Cr-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+Ca-Cd-Cd-Cd    1    1.000       180.000           2.000      GAFF2
+Ca-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Ca-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Ca-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+Ca-Cd-Cd-Ca    1    1.000       180.000           2.000      GAFF2
+Ca-Cd-Cd-Cv    1    1.000       180.000           2.000      GAFF2
+Ca-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Ca-Cd-Co-Ca    1    0.000         0.000           3.000      GAFF2
+Ca-Cd-Co-Co    1    0.000         0.000           3.000      GAFF2
+Ca-Cd-Co-Cv    1    0.000         0.000           3.000      GAFF2
+Ca-Cd-Co-Hm    1    1.150         0.000          -1.000      GAFF2
+Ca-Cd-Co-Hm    1    0.000         0.000          -2.000      GAFF2
+Ca-Cd-Co-Hm    1    0.380       180.000           3.000      GAFF2
+Ca-Co-Cd-Cd    1    0.000         0.000           3.000      GAFF2
+Ca-Co-Cd-Cv    1    0.000         0.000           3.000      GAFF2
+Ca-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Ca-Co-Co-cH    1    0.156         0.000           3.000      GAFF2
+Ca-Co-Co-cN    1    0.156         0.000           3.000      GAFF2
+Ca-OM-Ce-Co    1    0.800       180.000          -1.000      GAFF2
+Ca-OM-Ce-Co    1    0.383         0.000           3.000      GAFF2
+Ca-OM-Ce-Hm    1    0.383         0.000           3.000      GAFF2
+Ca-OM-Ce-cN    1    0.383         0.000           3.000      GAFF2
+Ca-OM-Co-Cd    1    0.383         0.000           3.000      GAFF2
+Ca-OM-Co-Co    1    0.800       180.000          -1.000      GAFF2
+Ca-OM-Co-Co    1    2.341         0.000          -2.000      QM-FIT   212
+Ca-OM-Co-Co    1    0.383         0.000          -3.000      GAFF2
+Ca-OM-Co-Co    1    0.275         0.000          -5.000      GAFF2
+Ca-OM-Co-Co    1    0.208         0.000           6.000      GAFF2
+Ca-OM-Co-Hm    1    1.219         0.000          -1.000      QM-FIT   212
+Ca-OM-Co-Hm    1    2.690         0.000          -2.000      GAFF2
+Ca-OM-Co-Hm    1    0.383         0.000           3.000      GAFF2
+Ca-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Ca-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Ca-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Ca-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+Cb-Cr-OM-Cr    1    0.100       180.000          -2.000      GAFF2
+Cb-Cr-OM-Cr    1    0.383         0.000           3.000      GAFF2
+Cb-Cr-cN-cH    1   -0.224        30.000                 2.000      QM-FIT    77
+Cb-Cb-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Cb-Cb-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Cb-Cb-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Cb-Cb-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Cb-Cb-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Cb-Cb-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Cb-Cr-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Cb-Cr-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Cb-Cr-cN-cH    1   -0.224        30.000           2.000      QM-ORI    77
+Cb-Cx-OM-Cr    1    0.100       180.000          -2.000      GAFF2
+Cb-Cx-OM-Cr    1    0.383         0.000           3.000      GAFF2
+Cb-Cx-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Cb-Cx-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Cb-Cx-cN-cH    1    0.000         0.000           2.000      GAFF2
+Cd-Cd-cN-cH    1    0.178       180.000           5.000      GAFF2
+Cd-Ca-OM-Ce    1    8.834         0.000          -1.000      QM-FIT    47
+Cd-Ca-OM-Ce    1    2.700       180.000          -2.000      GAFF2
+Cd-Ca-OM-Ce    1   -5.526         0.000          -2.000      GAFF2
+Cd-Ca-OM-Ce    1    0.539         0.000           4.000      GAFF2
+Cd-Ca-OM-Co    1    0.319        90.000          -1.000      QM-ORI    73
+Cd-Ca-OM-Co    1    2.700       180.000          -2.000      GAFF2
+Cd-Ca-OM-Co    1   -0.051        90.000          -2.000      GAFF2
+Cd-Ca-OM-Co    1   -0.442        30.000          -4.000      GAFF2
+Cd-Ca-OM-Co    1    0.464       270.000           5.000      GAFF2
+Cd-Ca-Oc-Hq    1    1.679       180.000          -1.000      QM-FIT    39
+Cd-Ca-Oc-Hq    1    2.300       180.000          -2.000      GAFF2
+Cd-Ca-Oc-Hq    1   -4.813        30.000          -2.000      GAFF2
+Cd-Ca-Oc-Hq    1   -0.218       270.000           3.000      GAFF2
+Cd-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Cd-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+Cd-Cd-Ca-OM    1    6.283         0.000          -1.000      QM-FIT   120
+Cd-Cd-Ca-OM    1    2.175       180.000          -2.000      GAFF2
+Cd-Cd-Ca-OM    1   -5.067         0.000          -2.000      GAFF2
+Cd-Cd-Ca-OM    1    0.460         0.000           4.000      GAFF2
+Cd-Cd-Ca-Oc    1   -2.370         0.000                 2.000      QM-ORI    22
+Cd-Cd-Ca-Oc    1    1.462         0.000           5.000      GAFF2
+Cd-Cd-Cd-Cv    1    1.000       180.000           2.000      GAFF2
+Cd-Cd-Co-Co    1    0.000         0.000           3.000      GAFF2
+Cd-Cd-Co-Cv    1    0.000         0.000           3.000      GAFF2
+Cd-Cd-Co-Hm    1   -0.134        60.000          -1.000      QM-FIT   662
+Cd-Cd-Co-Hm    1    0.000         0.000          -2.000      GAFF2
+Cd-Cd-Co-Hm    1   -0.048       270.000          -3.000      GAFF2
+Cd-Cd-Co-Hm    1    0.061        60.000           5.000      GAFF2
+Cd-Cd-Co-OM    1    0.000         0.000           2.000      GAFF2
+Cd-Cd-Co-Oc    1   -0.367        30.000           2.000      QM-FIT   662
+Cd-Cd-Cv-OM    1   -0.060        90.000          -1.000      QM-FIT    89
+Cd-Cd-Cv-OM    1    2.175       180.000          -2.000      GAFF2
+Cd-Cd-Cv-OM    1    0.031       180.000           5.000      GAFF2
+Cd-Cd-Cv-Oc    1    3.639       180.000          -2.000      QM-FIT    30
+Cd-Cd-Cv-Oc    1    0.020       180.000          -3.000      GAFF2
+Cd-Cd-Cv-Oc    1   -0.322       180.000           4.000      GAFF2
+Cd-Cd-Cx-Hx    1   -1.118         0.000          -2.000      QM-FIT    69
+Cd-Cd-Cx-Hx    1   -1.035         0.000           4.000      GAFF2
+Cd-Cd-Cx-Oz    1   -7.243         0.000          -1.000      QM-FIT    69
+Cd-Cd-Cx-Oz    1    2.175       180.000          -2.000      GAFF2
+Cd-Cd-Cx-Oz    1    2.183         0.000          -3.000      GAFF2
+Cd-Cd-Cx-Oz    1    0.827         0.000          -4.000      GAFF2
+Cd-Cd-Cx-Oz    1   -0.128         0.000           5.000      GAFF2
+Cd-Cd-cN-cH    1    0.260       180.000          -4.000      QM-FIT   748
+Cd-Cd-cN-cH    1    0.178       180.000           5.000      GAFF2
+Cd-Co-Ca-Oc    1    0.093       270.000          -1.000      QM-FIT    17
+Cd-Co-Ca-Oc    1    0.000       180.000          -2.000      GAFF2
+Cd-Co-Ca-Oc    1   -0.433       270.000           5.000      GAFF2
+Cd-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cd-Co-Co-cH    1    0.156         0.000           3.000      GAFF2
+Cd-Co-Co-cN    1    0.156         0.000           3.000      GAFF2
+Cd-Co-Cv-Oc    1    0.000       180.000           2.000      GAFF2
+Cd-Co-OM-Cv    1    0.383         0.000           3.000      GAFF2
+Cd-Co-Oc-Hq    1   -8.318         0.000          -1.000      QM-FIT   666
+Cd-Co-Oc-Hq    1    0.167         0.000          -3.000      GAFF2
+Cd-Co-Oc-Hq    1    0.792         0.000           3.000      GAFF2
+Cd-Cv-OM-Ce    1    6.178       180.000          -2.000      QM-FIT    91
+Cd-Cv-OM-Ce    1    7.031       180.000           3.000      GAFF2
+Cd-Cv-OM-Co    1    2.700       180.000           2.000      GAFF2
+Cd-Cv-Oc-Hq    1    1.351       180.000          -1.000      QM-FIT    28
+Cd-Cv-Oc-Hq    1    2.300       180.000          -2.000      GAFF2
+Cd-Cv-Oc-Hq    1    0.272       180.000           4.000      GAFF2
+Cd-cN-cH-Co    1    3.625       180.000           2.000      GAFF2
+Ce-Ce-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Ce-Ce-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Ce-Ce-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Ce-Ce-cN-cH    1    0.000         0.000           2.000      GAFF2
+Ce-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Ce-Co-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Ce-Co-Oc-Hq    1    0.250         0.000          -1.000      GAFF2
+Ce-Co-Oc-Hq    1    0.160         0.000           3.000      GAFF2
+Ce-Co-cN-cH    1    0.000         0.000           2.000      GAFF2
+Ce-Ct-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Ce-Ct-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Ce-OM-Ca-Oc    1    9.482         0.000          -1.000      QM-FIT    47
+Ce-OM-Ca-Oc    1    2.700       180.000           2.000      GAFF2
+Ce-OM-Ca-cN    1    2.700       180.000           2.000      GAFF2
+Ce-OM-Cv-Oc    1   -1.963       180.000          -1.000      QM-FIT    91
+Ce-OM-Cv-Oc    1    2.700       180.000          -2.000      GAFF2
+Ce-OM-Cv-Oc    1    7.317       180.000          -3.000      GAFF2
+Ce-OM-Cv-Oc    1   -0.646       180.000          -4.000      GAFF2
+Ce-OM-Cv-Oc    1    1.128       180.000           5.000      GAFF2
+Ce-OM-Cv-cN    1    5.728        60.000          -1.000      QM-FIT   125
+Ce-OM-Cv-cN    1    2.700       180.000          -2.000      GAFF2
+Ce-OM-Cv-cN    1   -0.211        30.000           6.000      GAFF2
+Ce-Oe-cE-cH    1    1.565       180.000          -2.000      QM-ORI   143
+Ce-Oe-cE-cH    1   -2.449        30.000           3.000      GAFF2
+Ce-Oe-cE-cM    1   -1.620       180.000          -1.000      QM-FIT    46
+Ce-Oe-cE-cM    1    0.900       180.000          -2.000      GAFF2
+Ce-Oe-cE-cM    1    0.976       180.000          -2.000      GAFF2
+Ce-Oe-cE-cM    1   -0.474       180.000           4.000      GAFF2
+Ce-Oe-cE-co    1   -0.042        60.000          -1.000      QM-ORI   132
+Ce-Oe-cE-co    1    0.900       180.000          -2.000      GAFF2
+Ce-Oe-cE-co    1    0.844         0.000           3.000      GAFF2
+Ce-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Ce-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Ce-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Ce-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+Cm-Ca-OM-Co    1    0.000         0.000          -1.000      GAFF2
+Cm-Ca-OM-Co    1    2.700       180.000          -2.000      GAFF2
+Cm-Ca-OM-Co    1    1.150         0.000           3.000      GAFF2
+Cm-Cv-OM-Co    1    0.000         0.000          -1.000      GAFF2
+Cm-Cv-OM-Co    1    2.700       180.000          -2.000      GAFF2
+Cm-Cv-OM-Co    1    1.150         0.000           3.000      GAFF2
+Cm-OM-cM-cE    1   -0.479         0.000          -1.000      QM-FIT    72
+Cm-OM-cM-cE    1    0.900       180.000          -2.000      GAFF2
+Cm-OM-cM-cE    1   -4.532         0.000          -2.000      GAFF2
+Cm-OM-cM-cE    1    0.132         0.000           4.000      GAFF2
+Cm-OM-cM-cH    1   -1.470         0.000          -1.000      QM-FIT    72
+Cm-OM-cM-cH    1    0.900       180.000          -2.000      GAFF2
+Cm-OM-cM-cH    1    1.805         0.000          -2.000      GAFF2
+Cm-OM-cM-cH    1   -0.721         0.000          -3.000      GAFF2
+Cm-OM-cM-cH    1   -0.466         0.000          -3.000      GAFF2
+Cm-OM-cM-cH    1    0.130         0.000           5.000      GAFF2
+Cm-Om-cM-cE    1   -0.694       180.000          -1.000      QM-ORI   239
+Cm-Om-cM-cE    1    0.900       180.000          -2.000      GAFF2
+Cm-Om-cM-cE    1   -0.032       180.000           5.000      GAFF2
+Cm-Om-cM-cH    1   -1.490         0.000          -2.000      QM-FIT   431
+Cm-Om-cM-cH    1   -0.466         0.000          -3.000      GAFF2
+Cm-Om-cM-cH    1    0.130         0.000           5.000      GAFF2
+Cm-Om-cM-co    1    2.055         0.000          -1.000      QM-FIT   431
+Cm-Om-cM-co    1    0.900       180.000          -2.000      GAFF2
+Cm-Om-cM-co    1   -0.194         0.000          -4.000      GAFF2
+Cm-Om-cM-co    1    0.202         0.000          -5.000      GAFF2
+Cm-Om-cM-co    1    0.117         0.000           6.000      GAFF2
+Cm-Om-co-cH    1    0.900       180.000           2.000      GAFF2
+Cm-Om-co-co    1    0.900       180.000           2.000      GAFF2
+Co-Ca-Oc-Hq    1   -0.528        90.000          -1.000      QM-ORI    17
+Co-Ca-Oc-Hq    1    2.300       180.000          -2.000      GAFF2
+Co-Ca-Oc-Hq    1   -4.493         0.000          -2.000      GAFF2
+Co-Ca-Oc-Hq    1   -0.401        30.000           3.000      GAFF2
+Co-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Co-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+Co-Cd-Ca-Oc    1    2.175       180.000          -2.000      GAFF2
+Co-Cd-Ca-Oc    1    0.047        60.000          -5.000      QM-ORI    17
+Co-Cd-Ca-Oc    1   -0.008        90.000           6.000      GAFF2
+Co-Cd-Cv-Oc    1    2.175       180.000           2.000      GAFF2
+Co-Ce-Ce-Hm    1    0.156         0.000           3.000      GAFF2
+Co-Ce-Ce-Oe    1    0.156         0.000           3.000      GAFF2
+Co-Ce-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Co-Ce-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Co-Ce-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Co-Ce-Co-cN    1    0.156         0.000           3.000      GAFF2
+Co-Ce-Cx-Hx    1    0.000       180.000           2.000      GAFF2
+Co-Ce-Cx-Oz    1    0.000       180.000           2.000      GAFF2
+Cv-OM-Ce-Co    1    0.800       180.000          -1.000      GAFF2
+Cv-OM-Ce-Co    1    0.383         0.000           3.000      GAFF2
+Co-Ce-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Co-Ce-cN-cH    1    0.718       180.000          -1.000      QM-FIT   154
+Co-Ce-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Co-Ce-cN-cH    1   -0.076       180.000           3.000      GAFF2
+Co-Co-Ca-Oc    1    0.000       180.000          -2.000      GAFF2
+Co-Co-Ca-Oc    1   -0.336       270.000          -4.000      QM-FIT    17
+Co-Co-Ca-Oc    1   -1.138       270.000           5.000      GAFF2
+Co-Co-Cd-Cv    1    0.000         0.000           3.000      GAFF2
+Co-Co-Ce-Hm    1    0.156         0.000           3.000      GAFF2
+Co-Co-Ce-OM    1    0.156         0.000           3.000      GAFF2
+Co-Co-Ce-Oe    1    0.156         0.000           3.000      GAFF2
+Co-Co-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Co-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Co-Co-Co-OM    1    0.156         0.000           3.000      GAFF2
+Co-Co-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Co-Co-Co-cN    1    0.156         0.000           3.000      GAFF2
+Co-Co-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Co-Co-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Co-Co-Cr-cN    1    0.200       180.000          -1.000      GAFF2
+Co-Co-Cr-cN    1    0.250       180.000          -2.000      GAFF2
+Co-Co-Cr-cN    1    0.180         0.000           3.000      GAFF2
+Co-Co-Cv-Oc    1    0.000       180.000           2.000      GAFF2
+Co-Co-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Co-Co-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Co-Co-Cx-cN    1    0.200       180.000          -1.000      GAFF2
+Co-Co-Cx-cN    1    0.250       180.000          -2.000      GAFF2
+Co-Co-Cx-cN    1    0.180         0.000           3.000      GAFF2
+Co-Co-OM-Cv    1    0.800       180.000          -1.000      GAFF2
+Co-Co-OM-Cv    1    0.383         0.000           3.000      GAFF2
+Co-Co-Oc-Hq    1    0.250         0.000          -1.000      GAFF2
+Co-Co-Oc-Hq    1    0.160         0.000           3.000      GAFF2
+Co-Co-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Co-Co-cH-cH    1    0.000         0.000           2.000      GAFF2
+Co-Co-cH-cM    1    0.000         0.000           2.000      GAFF2
+Co-Co-cH-cN    1    0.000         0.000           2.000      GAFF2
+Co-Co-cH-co    1    0.000         0.000           2.000      GAFF2
+Co-Co-cN-cH    1   -0.557        30.000           2.000      QM-FIT   352
+Co-Cr-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Co-Cr-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Co-Cr-Cr-Oe    1    0.156         0.000           3.000      GAFF2
+Co-Cr-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Co-Cr-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Co-Cr-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Co-Cr-Cx-Oe    1    0.156         0.000           3.000      GAFF2
+Co-Cr-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Co-Cr-OM-Cr    1    0.100       180.000          -2.000      GAFF2
+Co-Cr-OM-Cr    1    0.383         0.000           3.000      GAFF2
+Co-Cr-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Co-Cr-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Co-Cr-Oe-cE    1   -0.500        90.000          -2.000      QM-FIT     5
+Co-Cr-Oe-cE    1    0.383         0.000          -3.000      GAFF2
+Co-Cr-Oe-cE    1   -0.322       180.000           6.000      GAFF2
+Co-Cr-cN-Cr    1    0.200       180.000          -1.000      GAFF2
+Co-Cr-cN-Cr    1    0.250       180.000          -2.000      GAFF2
+Co-Cr-cN-Cr    1    0.180         0.000           3.000      GAFF2
+Co-Cr-cN-Cx    1    0.200       180.000          -1.000      GAFF2
+Co-Cr-cN-Cx    1    0.250       180.000          -2.000      GAFF2
+Co-Cr-cN-Cx    1    0.180         0.000           3.000      GAFF2
+Co-Cr-cN-cE    1    0.000         0.000           2.000      GAFF2
+Co-Cr-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Co-Cr-cN-cH    1    0.156         0.000           3.000  # original c2-c5-c5-c3 (atoms 21-23-24-26, k=0.156)      GAFF2
+Co-Ct-Ce-Hm    1    0.156         0.000           3.000      GAFF2
+Co-Ct-Ce-Oe    1    0.156         0.000           3.000      GAFF2
+Co-Ct-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Co-Ct-Ct-Hm    1    0.160         0.000           3.000      GAFF2
+Co-Ct-Ct-cN    1    0.156         0.000           3.000      GAFF2
+Co-Cv-Oc-Hq    1    2.300       180.000           2.000      GAFF2
+Co-Cx-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Co-Cx-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Co-Cx-Cr-Oe    1    0.156         0.000           3.000      GAFF2
+Co-Cx-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Co-Cx-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Co-Cx-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Co-Cx-Cx-Oe    1    0.156         0.000           3.000      GAFF2
+Co-Cx-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Co-Cx-OM-Cr    1    0.100       180.000          -2.000      GAFF2
+Co-Cx-OM-Cr    1    0.383         0.000           3.000      GAFF2
+Co-Cx-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Co-Cx-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Co-Cx-Oe-cE    1    3.910         0.000          -1.000      QM-FIT    57
+Co-Cx-Oe-cE    1   -4.885         0.000          -2.000      GAFF2
+Co-Cx-Oe-cE    1    0.383         0.000          -3.000      GAFF2
+Co-Cx-Oe-cE    1   -1.653         0.000          -3.000      GAFF2
+Co-Cx-Oe-cE    1   -0.202         0.000           6.000      GAFF2
+Co-Cx-Oe-co    1    2.700       180.000           2.000      GAFF2
+Co-Cx-cN-Cr    1    0.200       180.000          -1.000      GAFF2
+Co-Cx-cN-Cr    1    0.250       180.000          -2.000      GAFF2
+Co-Cx-cN-Cr    1    0.180         0.000           3.000      GAFF2
+Co-Cx-cN-Cx    1    0.200       180.000          -1.000      GAFF2
+Co-Cx-cN-Cx    1    0.250       180.000          -2.000      GAFF2
+Co-Cx-cN-Cx    1    0.180         0.000           3.000      GAFF2
+Co-Cx-cN-cE    1    0.000         0.000           2.000      GAFF2
+Co-Cx-cN-cH    1    0.000         0.000           2.000      GAFF2
+Co-OM-Ca-Oc    1    1.400       180.000          -1.000      GAFF2
+Co-OM-Ca-Oc    1   -0.625       270.000          -2.000      QM-FIT   140
+Co-OM-Ca-Oc    1   -0.565        30.000          -3.000      GAFF2
+Co-OM-Ca-Oc    1    0.505        30.000           4.000      GAFF2
+Co-OM-Ca-cN    1    1.197         0.000          -1.000      QM-FIT   140
+Co-OM-Ca-cN    1    2.700       180.000          -2.000      GAFF2
+Co-OM-Ca-cN    1   -5.657         0.000          -2.000      GAFF2
+Co-OM-Ca-cN    1   -0.190         0.000          -4.000      GAFF2
+Co-OM-Ca-cN    1   -0.121        60.000           5.000      GAFF2
+Co-OM-Cv-Oc    1    1.400       180.000          -1.000      GAFF2
+Co-OM-Cv-Oc    1    2.700       180.000           2.000      GAFF2
+Co-OM-Cv-cN    1    2.700       180.000           2.000      GAFF2
+Co-Oe-cE-cH    1   -8.475       270.000          -1.000      QM-FIT    18
+Co-Oe-cE-cH    1    0.900       180.000          -2.000      GAFF2
+Co-Oe-cE-cH    1   -1.462         0.000           2.000      GAFF2
+Co-cH-cH-HR    1    3.625       180.000           2.000      GAFF2
+Co-cH-cH-co    1    3.625       180.000           2.000      GAFF2
+Co-cH-cM-Om    1    3.625       180.000           2.000      GAFF2
+Co-cH-cM-co    1    3.625       180.000           2.000      GAFF2
+Co-cH-cN-cH    1    3.625       180.000           2.000      GAFF2
+Co-cH-co-Oc    1    3.625       180.000           2.000      GAFF2
+Co-cH-co-Om    1    3.625       180.000           2.000      GAFF2
+Co-cH-co-co    1    3.625       180.000           2.000      GAFF2
+Co-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Co-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Co-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Co-cN-cH-cN    1    3.625       180.000           2.000      GAFF2
+Co-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+Cr-Cb-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.200       180.000          -1.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.250       180.000          -2.000      GAFF2
+Cr-Cb-Cb-Cr    1    0.180         0.000           3.000      GAFF2
+Cr-Cb-Cb-Cx    1    0.200       180.000          -1.000      GAFF2
+Cr-Cb-Cb-Cx    1    0.250       180.000          -2.000      GAFF2
+Cr-Cb-Cb-Cx    1    0.180         0.000           3.000      GAFF2
+Cr-Cb-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Cr-Cb-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Cr-Cb-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Cr-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cr-Co-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Cr-Co-Oc-Hq    1    0.250         0.000          -1.000      GAFF2
+Cr-Co-Oc-Hq    1    0.160         0.000           3.000      GAFF2
+Cr-Co-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Cr-Cr-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cr-Cr-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Cr-Cr-OM-Cr    1    0.100       180.000          -2.000      GAFF2
+Cr-Cr-OM-Cr    1    0.383         0.000           3.000      GAFF2
+Cr-Cr-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Cr-Cr-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Cr-Cr-Oe-cE    1   -6.267       270.000          -2.000      QM-FIT     5
+Cr-Cr-Oe-cE    1    0.383         0.000          -3.000      GAFF2
+Cr-Cr-Oe-cE    1   -2.479       180.000          -3.000      GAFF2
+Cr-Cr-Oe-cE    1    1.862        90.000           5.000      GAFF2
+Cr-Cr-cN-Cr    1    0.200       180.000          -1.000      GAFF2
+Cr-Cr-cN-Cr    1    0.250       180.000          -2.000      GAFF2
+Cr-Cr-cN-Cr    1    0.180         0.000           3.000      GAFF2
+Cr-Cr-cN-Cx    1    0.200       180.000          -1.000      GAFF2
+Cr-Cr-cN-Cx    1    0.250       180.000          -2.000      GAFF2
+Cr-Cr-cN-Cx    1    0.180         0.000           3.000      GAFF2
+Cr-Cr-cN-cE    1    0.000         0.000           2.000      GAFF2
+Cr-Cr-cN-cH    1   -8.074        90.000          -1.000      QM-FIT   318
+Cr-Cr-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Cr-Cr-cN-cH    1   -0.504         0.000           3.000      GAFF2
+Cr-Cx-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cr-Cx-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Cr-Cx-OM-Cr    1    0.100       180.000          -2.000      GAFF2
+Cr-Cx-OM-Cr    1    0.383         0.000           3.000      GAFF2
+Cr-Cx-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Cr-Cx-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Cr-Cx-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Cr-Cx-cN-Cr    1    0.200       180.000          -1.000      GAFF2
+Cr-Cx-cN-Cr    1    0.250       180.000          -2.000      GAFF2
+Cr-Cx-cN-Cr    1    0.180         0.000           3.000      GAFF2
+Cr-Cx-cN-Cx    1    0.200       180.000          -1.000      GAFF2
+Cr-Cx-cN-Cx    1    0.250       180.000          -2.000      GAFF2
+Cr-Cx-cN-Cx    1    0.180         0.000           3.000      GAFF2
+Cr-Cx-cN-cE    1    0.000         0.000           2.000      GAFF2
+Cr-Cx-cN-cH    1    0.000         0.000           2.000      GAFF2
+Cr-OM-Cr-cN    1    0.383         0.000           3.000      GAFF2
+Cr-OM-Cr-Cx    1    0.100       180.000          -2.000      GAFF2
+Cr-OM-Cr-Cx    1    0.383         0.000           3.000      GAFF2
+Cr-OM-Cx-Cx    1    0.100       180.000          -2.000      GAFF2
+Cr-OM-Cx-Cx    1    0.383         0.000           3.000      GAFF2
+Cr-OM-Cx-Hr    1    0.383         0.000           3.000      GAFF2
+Cr-OM-Cx-cN    1    0.383         0.000           3.000      GAFF2
+Cr-Oe-cE-cE    1    0.900       180.000           2.000      GAFF2
+Cr-Oe-cE-cH    1    3.717       180.000          -1.000      QM-FIT    13
+Cr-Oe-cE-cH    1    0.900       180.000          -2.000      GAFF2
+Cr-Oe-cE-cH    1    5.718       180.000          -2.000      GAFF2
+Cr-Oe-cE-cH    1   -3.353       180.000          -3.000      GAFF2
+Cr-Oe-cE-cH    1    2.049       180.000           4.000      GAFF2
+Cr-Oe-cE-cM    1    7.619       270.000          -1.000      QM-ORI     2
+Cr-Oe-cE-cM    1    0.900       180.000          -2.000      GAFF2
+Cr-Oe-cE-cM    1    6.232       180.000          -2.000      GAFF2
+Cr-Oe-cE-cM    1   -0.522         0.000          -5.000      GAFF2
+Cr-Oe-cE-cM    1    0.275        60.000           6.000      GAFF2
+Cr-Oe-cE-cN    1    0.900       180.000          -2.000      GAFF2
+Cr-Oe-cE-cN    1   -4.465       180.000          -3.000      QM-FIT    13
+Cr-Oe-cE-cN    1   -1.282       180.000           6.000      GAFF2
+Cr-Oe-cE-co    1    0.900       180.000           2.000      GAFF2
+Cr-cN-Cr-Cx    1    0.200       180.000          -1.000      GAFF2
+Cr-cN-Cr-Cx    1    0.250       180.000          -2.000      GAFF2
+Cr-cN-Cr-Cx    1    0.180         0.000           3.000      GAFF2
+Cr-cN-Cr-Hr    1    0.160         0.000           3.000      GAFF2
+Cr-cN-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Cr-cN-Cx-Cx    1    0.200       180.000          -1.000      GAFF2
+Cr-cN-Cx-Cx    1    0.250       180.000          -2.000      GAFF2
+Cr-cN-Cx-Cx    1    0.180         0.000           3.000      GAFF2
+Cr-cN-Cx-Hr    1    0.160         0.000           3.000      GAFF2
+Cr-cN-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Cr-cN-cE-Oe    1    3.625       180.000           2.000      GAFF2
+Cr-cN-cE-cH    1    3.625       180.000           2.000      GAFF2
+Cr-cN-cE-cM    1    3.625       180.000           2.000      GAFF2
+Cr-cN-cE-co    1    3.625       180.000           2.000      GAFF2
+Cr-cN-cH-cN    1    3.625       180.000           2.000      GAFF2
+Ct-Ce-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Ct-Ce-cN-cH    1    0.000         0.000           2.000      GAFF2
+Ct-Co-Oc-Hq    1    0.307         0.000          -1.000      QM-ORI    20
+Ct-Co-Oc-Hq    1    0.160         0.000          -3.000      GAFF2
+Ct-Co-Oc-Hq    1    0.577         0.000          -3.000      GAFF2
+Ct-Co-Oc-Hq    1   -0.007         0.000           5.000      GAFF2
+Ct-Ct-Co-Hm    1   -0.050       180.000          -1.000      QM-FIT    19
+Ct-Ct-Co-Hm    1    0.156         0.000          -3.000      GAFF2
+Ct-Ct-Co-Hm    1    1.508        60.000          -3.000      GAFF2
+Ct-Ct-Co-Hm    1    0.266        30.000           6.000      GAFF2
+Ct-Ct-Co-Oc    1   -0.096       180.000          -2.000      QM-FIT    19
+Ct-Ct-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Ct-Ct-Ct-Hm    1   -0.224         0.000          -2.000      QM-FIT     6
+Ct-Ct-Ct-Hm    1    0.160         0.000          -3.000      GAFF2
+Ct-Ct-Ct-Hm    1   -0.029        60.000           6.000      GAFF2
+Ct-Ct-Ct-cN    1    9.406       180.000          -3.000      QM-FIT     6
+Ct-Ct-Ct-cN    1    0.311       180.000           6.000      GAFF2
+Ct-Ct-cN-cH    1   -0.245         0.000          -2.000      QM-FIT    26
+Ct-Ct-cN-cH    1   -0.098         0.000           4.000      GAFF2
+Ct-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Ct-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Ct-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Ct-cN-cH-cN    1    3.625       180.000           2.000      GAFF2
+Ct-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+Cv-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Cv-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Cv-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+Cv-Cd-Cd-Cv    1    1.000       180.000           2.000      GAFF2
+Cv-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Cv-Cd-Co-Cv    1    0.000         0.000           3.000      GAFF2
+Cv-Cd-Co-Hm    1    1.150         0.000          -1.000      GAFF2
+Cv-Cd-Co-Hm    1    0.000         0.000          -2.000      GAFF2
+Cv-Cd-Co-Hm    1    0.380       180.000           3.000      GAFF2
+Cv-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cv-Co-Co-cH    1    0.156         0.000           3.000      GAFF2
+Cv-Co-Co-cN    1    0.156         0.000           3.000      GAFF2
+Cv-OM-Ce-Hm    1    0.383         0.000           3.000      GAFF2
+Cv-OM-Ce-cN    1    0.383         0.000           3.000      GAFF2
+Cv-OM-Co-Hm    1    0.383         0.000           3.000      GAFF2
+Cv-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Cv-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Cv-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Cv-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+Cx-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Cx-Cb-Cb-Cx    1    0.200       180.000          -1.000      GAFF2
+Cx-Cb-Cb-Cx    1    0.250       180.000          -2.000      GAFF2
+Cx-Cb-Cb-Cx    1    0.180         0.000           3.000      GAFF2
+Cx-Cb-Cb-Hr    1    0.160         0.000           3.000      GAFF2
+Cx-Cb-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Cx-Cb-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Cx-Cb-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Cx-Cb-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Cx-Cb-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Cx-Cb-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Cx-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+Cx-Ce-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cx-Ce-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Cx-Ce-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Cx-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cx-Co-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Cx-Co-Oc-Hq    1    0.250         0.000          -1.000      GAFF2
+Cx-Co-Oc-Hq    1    0.160         0.000           3.000      GAFF2
+Cx-Co-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Cx-Cr-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cx-Cr-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Cx-Cr-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Cx-Cr-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Cx-Cr-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Cx-Cr-cN-Cx    1    0.200       180.000          -1.000      GAFF2
+Cx-Cr-cN-Cx    1    0.250       180.000          -2.000      GAFF2
+Cx-Cr-cN-Cx    1    0.180         0.000           3.000      GAFF2
+Cx-Cr-cN-cE    1    0.000         0.000           2.000      GAFF2
+Cx-Cr-cN-cH    1    0.000         0.000           2.000      GAFF2
+Cx-Cx-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Cx-Cx-Co-Oc    1    0.156         0.000           3.000      GAFF2
+Cx-Cx-OM-Cx    1    0.100       180.000          -2.000      GAFF2
+Cx-Cx-OM-Cx    1    0.383         0.000           3.000      GAFF2
+Cx-Cx-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Cx-Cx-cN-Cx    1    0.200       180.000          -1.000      GAFF2
+Cx-Cx-cN-Cx    1    0.250       180.000          -2.000      GAFF2
+Cx-Cx-cN-Cx    1    0.180         0.000           3.000      GAFF2
+Cx-Cx-cN-cE    1    0.000         0.000           2.000      GAFF2
+Cx-Cx-cN-cH    1    0.000         0.000           2.000      GAFF2
+Cx-OM-Cr-Hr    1    0.383         0.000           3.000      GAFF2
+Cx-OM-Cr-cN    1    0.383         0.000           3.000      GAFF2
+Cx-OM-Cx-Hr    1    0.383         0.000           3.000      GAFF2
+Cx-OM-Cx-cN    1    0.383         0.000           3.000      GAFF2
+Cx-Oe-cE-cE    1    0.900       180.000           2.000      GAFF2
+Cx-Oe-cE-cH    1    5.499       180.000          -1.000      QM-FIT    28
+Cx-Oe-cE-cH    1    0.900       180.000          -2.000      GAFF2
+Cx-Oe-cE-cH    1    0.668       180.000          -2.000      GAFF2
+Cx-Oe-cE-cH    1    0.175       180.000          -4.000      GAFF2
+Cx-Oe-cE-cH    1    0.062       180.000           6.000      GAFF2
+Cx-Oe-cE-cM    1   -9.234        90.000          -1.000      QM-FIT    17
+Cx-Oe-cE-cM    1    0.900       180.000          -2.000      GAFF2
+Cx-Oe-cE-cM    1    1.006       180.000          -2.000      GAFF2
+Cx-Oe-cE-cM    1   -2.611        90.000           3.000      GAFF2
+Cx-Oe-cE-cN    1    0.900       180.000           2.000      GAFF2
+Cx-Oe-cE-co    1    0.835        60.000          -1.000      QM-ORI     9
+Cx-Oe-cE-co    1    0.900       180.000          -2.000      GAFF2
+Cx-Oe-cE-co    1   -2.278         0.000          -3.000      GAFF2
+Cx-Oe-cE-co    1    0.738        90.000           5.000      GAFF2
+Cx-Oe-co-cE    1    5.259         0.000          -1.000      QM-FIT    10
+Cx-Oe-co-cE    1    0.900       180.000          -2.000      GAFF2
+Cx-Oe-co-cE    1   -1.440         0.000          -2.000      GAFF2
+Cx-Oe-co-cE    1    0.478         0.000           3.000      GAFF2
+Cx-Oe-co-cH    1    4.962         0.000          -1.000      QM-FIT    10
+Cx-Oe-co-cH    1    0.900       180.000          -2.000      GAFF2
+Cx-Oe-co-cH    1   -0.436         0.000          -4.000      GAFF2
+Cx-Oe-co-cH    1   -0.152         0.000          -5.000      GAFF2
+Cx-Oe-co-cH    1   -0.092         0.000           6.000      GAFF2
+Cx-cN-Cr-Hr    1    0.160         0.000           3.000      GAFF2
+Cx-cN-Cr-OM    1    0.156         0.000           3.000      GAFF2
+Cx-cN-Cx-Hr    1    0.160         0.000           3.000      GAFF2
+Cx-cN-Cx-OM    1    0.156         0.000           3.000      GAFF2
+Cx-cN-cE-Oe    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cE-cH    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cE-cM    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cE-co    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cH-HR    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cH-cN    1    3.625       180.000           2.000      GAFF2
+Cx-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+HR-cH-cE-Oe    1    3.625       180.000           2.000      GAFF2
+HR-cH-cE-cE    1    3.625       180.000           2.000      GAFF2
+HR-cH-cE-cH    1    3.625       180.000           2.000      GAFF2
+HR-cH-cE-cM    1    3.625       180.000           2.000      GAFF2
+HR-cH-cE-cN    1    3.625       180.000           2.000      GAFF2
+HR-cH-cE-co    1    3.625       180.000           2.000      GAFF2
+HR-cH-cH-HR    1    3.625       180.000           2.000      GAFF2
+HR-cH-cH-cE    1    3.625       180.000           2.000      GAFF2
+HR-cH-cH-cH    1    3.625       180.000           2.000      GAFF2
+HR-cH-cH-cM    1    3.625       180.000           2.000      GAFF2
+HR-cH-cH-cN    1    3.625       180.000           2.000      GAFF2
+HR-cH-cH-co    1    3.625       180.000           2.000      GAFF2
+HR-cH-cM-OM    1    3.625       180.000           2.000      GAFF2
+HR-cH-cM-Oc    1    3.625       180.000           2.000      GAFF2
+HR-cH-cM-Om    1    3.625       180.000           2.000      GAFF2
+HR-cH-cM-cE    1    3.625       180.000           2.000      GAFF2
+HR-cH-cM-co    1    3.625       180.000           2.000      GAFF2
+HR-cH-cN-OM    1    4.000       180.000           2.000      GAFF2
+HR-cH-cN-Oz    1    2.875       180.000           2.000      GAFF2
+HR-cH-cN-cE    1    3.625       180.000           2.000      GAFF2
+HR-cH-cN-cH    1    3.625       180.000           2.000      GAFF2
+HR-cH-cN-cN    1    3.625       180.000           2.000      GAFF2
+HR-cH-cN-co    1    3.625       180.000           2.000      GAFF2
+HR-cH-co-Oc    1    3.625       180.000           2.000      GAFF2
+HR-cH-co-Oe    1    3.625       180.000           2.000      GAFF2
+HR-cH-co-cE    1    3.625       180.000           2.000      GAFF2
+HR-cH-co-cH    1    2.175       180.000           2.000      GAFF2
+HR-cH-co-cM    1    3.625       180.000           2.000      GAFF2
+HR-cH-co-cN    1    3.625       180.000           2.000      GAFF2
+HR-cH-co-co    1    3.625       180.000           2.000      GAFF2
+HR-co-co-Oc    1    3.625       180.000           2.000      GAFF2
+HR-co-co-cH    1    3.625       180.000           2.000      GAFF2
+Hd-Cd-Cd-Hd    1    6.650       180.000           2.000      GAFF2
+Hd-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+Hd-Cd-cN-cH    1   -3.225         0.000          -1.000      QM-FIT   324
+Hd-Cd-cN-cH    1    3.820         0.000          -3.000      GAFF2
+Hd-Cd-cN-cH    1   -0.285         0.000          -5.000      GAFF2
+Hd-Cd-cN-cH    1   -0.017       180.000           6.000      GAFF2
+Hd-Cd-Ca-OM    1    2.175       180.000          -2.000      GAFF2
+Hd-Cd-Ca-OM    1    0.132         0.000           5.000      QM-FIT   120
+Hd-Cd-Ca-Oc    1    2.175       180.000          -2.000      GAFF2
+Hd-Cd-Ca-Oc    1    0.072         0.000          -3.000      QM-FIT   120
+Hd-Cd-Ca-Oc    1    0.475         0.000           4.000      GAFF2
+Hd-Cd-Co-Hm    1    0.000         0.000          -2.000      GAFF2
+Hd-Cd-Co-Hm    1   -0.001        90.000           4.000      QM-FIT   662
+Hd-Cd-Co-OM    1    0.000         0.000           2.000      GAFF2
+Hd-Cd-Co-Oc    1   -0.596       180.000          -1.000      QM-FIT   662
+Hd-Cd-Co-Oc    1    0.000         0.000          -2.000      GAFF2
+Hd-Cd-Co-Oc    1    1.390         0.000          -3.000      GAFF2
+Hd-Cd-Co-Oc    1   -0.205        30.000           4.000      GAFF2
+Hd-Cd-Cv-OM    1   -3.340         0.000           2.000      QM-FIT    89
+Hd-Cd-Cv-Oc    1    2.175       180.000          -2.000      GAFF2
+Hd-Cd-Cv-Oc    1    0.567       180.000           3.000      QM-FIT    30
+Hd-Cd-Cx-Hx    1    6.775         0.000          -1.000      QM-FIT    69
+Hd-Cd-Cx-Hx    1    2.175       180.000          -2.000      GAFF2
+Hd-Cd-Cx-Hx    1    0.242         0.000          -5.000      GAFF2
+Hd-Cd-Cx-Hx    1    0.123         0.000           6.000      GAFF2
+Hd-Cd-Cx-Oz    1   -2.728         0.000          -2.000      QM-FIT    69
+Hd-Cd-Cx-Oz    1    1.047         0.000           5.000      GAFF2
+Hd-Cd-cN-cH    1    1.497       180.000          -2.000      QM-FIT   748
+Hd-Cd-cN-cH    1   -0.017       180.000           6.000      GAFF2
+Hm-Ce-Ce-Hm    1    0.156         0.000           3.000      GAFF2
+Hm-Ce-Ce-Oe    1    0.250         0.000          -1.000      GAFF2
+Hm-Ce-Ce-Oe    1    0.000         0.000           3.000      GAFF2
+Hm-Ce-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Hm-Ce-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Hm-Ce-Co-Oc    1    0.250         0.000          -1.000      GAFF2
+Hm-Ce-Co-Oc    1    0.000         0.000           3.000      GAFF2
+Hm-Ce-Co-cN    1    0.156         0.000           3.000      GAFF2
+Hm-Ce-Ct-Hm    1    0.156         0.000           3.000      GAFF2
+Hm-Ce-Cx-Hx    1    0.000       180.000           2.000      GAFF2
+Hm-Ce-Cx-Oz    1    0.800         0.000          -1.000      GAFF2
+Hm-Ce-Cx-Oz    1    0.000         0.000          -2.000      GAFF2
+Hm-Ce-Cx-Oz    1    0.080       180.000           3.000      GAFF2
+Hm-Ce-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Hm-Ce-cN-cH    1   -0.491       180.000           2.000      QM-FIT   154
+Hm-Cm-Ca-OM    1    0.000       180.000           2.000      GAFF2
+Hm-Cm-Ca-Oc    1    0.800         0.000          -1.000      GAFF2
+Hm-Cm-Ca-Oc    1    0.000         0.000          -2.000      GAFF2
+Hm-Cm-Ca-Oc    1    0.080       180.000           3.000      GAFF2
+Hm-Cm-Cv-OM    1    0.000       180.000           2.000      GAFF2
+Hm-Cm-Cv-Oc    1    0.800         0.000          -1.000      GAFF2
+Hm-Cm-Cv-Oc    1    0.000         0.000          -2.000      GAFF2
+Hm-Cm-Cv-Oc    1    0.080       180.000           3.000      GAFF2
+Hm-Cm-OM-cM    1    0.383         0.000           3.000      GAFF2
+Hm-Cm-Om-cM    1    4.152        90.000          -2.000      QM-ORI   980
+Hm-Cm-Om-cM    1    0.383         0.000          -3.000      GAFF2
+Hm-Cm-Om-cM    1    0.474         0.000           3.000      GAFF2
+Hm-Cm-Om-co    1    0.383         0.000           3.000      GAFF2
+Hm-Co-Ca-Oc    1    0.120       270.000          -2.000      QM-FIT    17
+Hm-Co-Ca-Oc    1    0.766       270.000           4.000      GAFF2
+Hm-Co-Ce-OM    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Ce-OM    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Ce-Oe    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Ce-Oe    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Hm-Co-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Hm-Co-Co-OM    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Co-OM    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Co-Oc    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Co-Oc    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Co-Oe    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Co-Oe    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Co-cH    1    0.156         0.000           3.000      GAFF2
+Hm-Co-Co-cN    1    0.156         0.000           3.000      GAFF2
+Hr-Cr-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Hm-Co-Cr-OM    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Cr-OM    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Cr-Oe    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Cr-Oe    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Hm-Co-Ct-Hm    1    0.122        60.000          -1.000      QM-FIT    19
+Hm-Co-Ct-Hm    1   -0.039        90.000          -2.000      GAFF2
+Hm-Co-Ct-Hm    1    0.156         0.000          -3.000      GAFF2
+Hm-Co-Ct-Hm    1    0.648       270.000          -3.000      GAFF2
+Hm-Co-Ct-Hm    1   -0.035       180.000           4.000      GAFF2
+Hm-Co-Cv-Oc    1    0.800         0.000          -1.000      GAFF2
+Hm-Co-Cv-Oc    1    0.000         0.000          -2.000      GAFF2
+Hm-Co-Cv-Oc    1    0.080       180.000           3.000      GAFF2
+Hr-Cx-Co-Hm    1    0.156         0.000           3.000      GAFF2
+Hm-Co-Cx-OM    1    0.250         0.000          -1.000      GAFF2
+Hm-Co-Cx-OM    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Cx-Oe    1    0.499        60.000          -1.000      QM-FIT    70
+Hm-Co-Cx-Oe    1    0.000       180.000          -2.000  # original os-c-c3-hc (atoms 13-1-3-4, k=0.000)      GAFF2
+Hm-Co-Cx-Oe    1    0.000         0.000           3.000      GAFF2
+Hm-Co-Cx-Oz    1    0.800         0.000          -1.000      GAFF2
+Hm-Co-Cx-Oz    1    0.000         0.000          -2.000      GAFF2
+Hm-Co-Cx-Oz    1    0.080       180.000          -3.000      GAFF2
+Hm-Co-Cx-Oz    1    0.598       180.000           5.000      QM-FIT    70
+Hm-Co-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Hq-Oc-Co-Hm    1   -8.338         0.000          -1.000      QM-FIT   666
+Hq-Oc-Co-Hm    1   -0.577         0.000          -2.000      GAFF2
+Hq-Oc-Co-Hm    1    0.167         0.000           3.000      GAFF2
+Hm-Co-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Hm-Co-cH-cH    1    0.000         0.000           2.000      GAFF2
+Hm-Co-cH-cM    1    0.000         0.000           2.000      GAFF2
+Hm-Co-cH-cN    1    0.000         0.000           2.000      GAFF2
+Hm-Co-cH-co    1    0.000         0.000           2.000      GAFF2
+Hm-Co-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Hm-Co-cN-cH    1    2.042       180.000          -3.000      QM-FIT   352
+Hm-Co-cN-cH    1    0.435        60.000           5.000      GAFF2
+Hm-Ct-Ce-Oe    1    0.250         0.000          -1.000      GAFF2
+Hm-Ct-Ce-Oe    1    0.000         0.000           3.000      GAFF2
+Hm-Ct-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Hm-Ct-Co-Oc    1    0.250         0.000          -1.000      GAFF2
+Hm-Ct-Co-Oc    1    0.000         0.000          -3.000      GAFF2
+Hm-Ct-Co-Oc    1   -0.265        30.000           6.000      QM-FIT    19
+Hm-Ct-Ct-Hm    1    0.112       180.000          -1.000      QM-FIT     6
+Hm-Ct-Ct-Hm    1    0.150         0.000          -3.000      GAFF2
+Hm-Ct-Ct-Hm    1   -0.163        60.000           4.000      GAFF2
+Hm-Ct-Ct-cN    1   -5.519       180.000          -3.000      QM-FIT     6
+Hm-Ct-Ct-cN    1    0.185       270.000           4.000      GAFF2
+Hm-Ct-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Hm-Ct-cN-cH    1    0.000         0.000           6.000      QM-FIT    26
+Hq-Oc-Ca-Oc    1    0.217       270.000          -1.000      QM-FIT    39
+Hq-Oc-Ca-Oc    1    2.300       180.000          -2.000      GAFF2
+Hq-Oc-Ca-Oc    1   -2.404       270.000          -2.000      GAFF2
+Hq-Oc-Ca-Oc    1    0.236        90.000           4.000      GAFF2
+Hq-Oc-Ca-cN    1    2.300       180.000           2.000      GAFF2
+Hq-Oc-Co-cN    1    0.167         0.000           3.000      GAFF2
+Hq-Oc-Cv-Oc    1    1.900         0.000          -1.000      GAFF2
+Hq-Oc-Cv-Oc    1    1.119       180.000          -2.000      QM-FIT    28
+Hq-Oc-Cv-Oc    1    0.119       180.000          -3.000      GAFF2
+Hq-Oc-Cv-Oc    1    0.069       180.000           5.000      GAFF2
+Hq-Oc-Cv-cN    1    2.300       180.000           2.000      GAFF2
+Hq-Oc-cM-cH    1    0.900       180.000           2.000      GAFF2
+Hq-Oc-cM-co    1    0.900       180.000           2.000      GAFF2
+Hq-Oc-co-cE    1   -0.807        90.000          -1.000      QM-ORI   222
+Hq-Oc-co-cE    1    0.900       180.000          -2.000      GAFF2
+Hq-Oc-co-cE    1   -2.759         0.000           2.000      GAFF2
+Hq-Oc-co-cH    1    0.750       180.000          -1.000      QM-ORI  1306
+Hq-Oc-co-cH    1    0.900       180.000          -2.000      GAFF2
+Hq-Oc-co-cH    1    0.344       180.000           3.000      GAFF2
+Hq-Oc-co-cM    1   -0.334         0.000          -1.000      QM-ORI  1110
+Hq-Oc-co-cM    1    0.900       180.000          -2.000      GAFF2
+Hq-Oc-co-cM    1    0.018         0.000          -4.000      GAFF2
+Hq-Oc-co-cM    1   -0.017         0.000          -5.000      GAFF2
+Hq-Oc-co-cM    1   -0.008         0.000           6.000      GAFF2
+Hq-Oc-co-cN    1    0.900       180.000           2.000      GAFF2
+Hq-Oc-co-co    1    2.178       180.000          -2.000      QM-ORI  1306
+Hq-Oc-co-co    1   -0.009       180.000           4.000      GAFF2
+Hr-Cr-Cb-Hr    1    0.156         0.000           3.000      GAFF2
+Hr-Cr-cN-cH    1   -2.695       180.000          -1.000      QM-FIT    77
+Hr-Cr-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Hr-Cr-cN-cH    1    0.062         0.000          -4.000      GAFF2
+Hr-Cr-cN-cH    1    0.012         0.000          -5.000      GAFF2
+Hr-Cr-cN-cH    1    0.381        30.000           5.000      GAFF2
+Hr-Cb-Cr-OM    1    0.250         0.000          -1.000      GAFF2
+Hr-Cb-Cr-OM    1    0.000         0.000           3.000      GAFF2
+Hr-Cb-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Hr-Cb-Cb-Hr    1    0.150         0.000           3.000      GAFF2
+Hr-Cb-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Hr-Cb-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Hr-Cb-Cx-OM    1    0.250         0.000          -1.000      GAFF2
+Hr-Cb-Cx-OM    1    0.000         0.000           3.000      GAFF2
+Hr-Cb-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Hr-Cr-Co-Oc    1    0.250         0.000          -1.000      GAFF2
+Hr-Cr-Co-Oc    1    0.000         0.000           3.000      GAFF2
+Hr-Cr-Co-Oe    1    0.250         0.000          -1.000      GAFF2
+Hr-Cr-Co-Oe    1    0.000         0.000           3.000      GAFF2
+Hr-Cr-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+Hr-Cr-Cr-OM    1    0.250         0.000          -1.000      GAFF2
+Hr-Cr-Cr-OM    1    0.000         0.000           3.000      GAFF2
+Hr-Cr-Cr-Oe    1    0.250         0.000          -1.000      GAFF2
+Hr-Cr-Cr-Oe    1    0.000         0.000           3.000      GAFF2
+Hr-Cr-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Hr-Cr-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Hr-Cr-Cx-OM    1    0.250         0.000          -1.000      GAFF2
+Hr-Cr-Cx-OM    1    0.000         0.000           3.000      GAFF2
+Hr-Cr-Cx-Oe    1    0.250         0.000          -1.000      GAFF2
+Hr-Cr-Cx-Oe    1    0.000         0.000           3.000      GAFF2
+Hr-Cr-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Hr-Cr-Oe-cE    1   -5.652       180.000          -2.000      QM-FIT     5
+Hr-Cr-Oe-cE    1    0.383         0.000          -3.000      GAFF2
+Hr-Cr-Oe-cE    1    2.397        90.000          -4.000      GAFF2
+Hr-Cr-Oe-cE    1   -1.212        60.000           6.000      GAFF2
+Hr-Cr-cN-cE    1    0.000         0.000           2.000      GAFF2
+Hr-Cr-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Hr-Cr-cN-cH    1    0.252        90.000          -3.000      QM-FIT   318
+Hr-Cr-cN-cH    1    0.381        30.000           5.000      GAFF2
+Hr-Cx-Co-Oc    1    0.250         0.000          -1.000      GAFF2
+Hr-Cx-Co-Oc    1    0.000         0.000           3.000      GAFF2
+Hr-Cx-Co-Oe    1    0.250         0.000          -1.000      GAFF2
+Hr-Cx-Co-Oe    1    0.000         0.000           3.000      GAFF2
+Hr-Cx-Cr-OM    1    0.250         0.000          -1.000      GAFF2
+Hr-Cx-Cr-OM    1    0.000         0.000           3.000      GAFF2
+Hr-Cx-Cr-Oe    1    0.250         0.000          -1.000      GAFF2
+Hr-Cx-Cr-Oe    1    0.000         0.000           3.000      GAFF2
+Hr-Cx-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Hr-Cx-Cx-Hr    1    0.156         0.000           3.000      GAFF2
+Hr-Cx-Cx-OM    1    0.250         0.000          -1.000      GAFF2
+Hr-Cx-Cx-OM    1    0.000         0.000           3.000      GAFF2
+Hr-Cx-Cx-Oe    1    0.250         0.000          -1.000      GAFF2
+Hr-Cx-Cx-Oe    1    0.000         0.000           3.000      GAFF2
+Hr-Cx-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Hr-Cx-Oe-cE    1    0.383         0.000           3.000      GAFF2
+Hr-Cx-cN-cE    1    0.000         0.000           2.000      GAFF2
+Hr-Cx-cN-cH    1    0.000         0.000           2.000      GAFF2
+Hx-Cx-Ce-Oe    1    0.000       180.000           2.000      GAFF2
+Hx-Cx-cN-cH    1   -0.458         0.000          -1.000      QM-FIT    42
+Hx-Cx-cN-cH    1    1.000       180.000          -2.000      GAFF2
+Hx-Cx-cN-cH    1    0.568         0.000           3.000      GAFF2
+OM-Cr-cN-cH    1    0.000         0.000          -2.000      GAFF2
+OM-Cr-cN-cH    1    0.062        30.000           5.000      QM-FIT    77
+OM-Ca-cN-cH    1    7.157        30.000          -1.000      QM-FIT   139
+OM-Ca-cN-cH    1    1.000       180.000          -2.000      GAFF2
+OM-Ca-cN-cH    1    2.140       180.000          -2.000      GAFF2
+OM-Ca-cN-cH    1    0.462        90.000           5.000      GAFF2
+Oc-Co-Ce-OM    1    1.175         0.000          -2.000      GAFF2
+Oc-Co-Ce-OM    1    0.144         0.000           3.000      GAFF2
+OM-Ce-cN-cH    1    0.000         0.000           2.000      GAFF2
+Oc-Co-Co-OM    1    1.175         0.000          -2.000      GAFF2
+Oc-Co-Co-OM    1    0.144         0.000           3.000      GAFF2
+OM-Cr-Co-Oe    1    1.175         0.000          -2.000      GAFF2
+OM-Cr-Co-Oe    1    0.144         0.000           3.000      GAFF2
+OM-Cr-Cr-cN    1    0.156         0.000           3.000      GAFF2
+OM-Cr-Cx-cN    1    0.156         0.000           3.000      GAFF2
+OM-Cv-cN-cH    1   -3.704       180.000          -1.000      QM-FIT   127
+OM-Cv-cN-cH    1    1.000       180.000          -2.000      GAFF2
+OM-Cv-cN-cH    1    2.293       180.000          -2.000      GAFF2
+OM-Cv-cN-cH    1   -0.028       180.000          -5.000      GAFF2
+OM-Cv-cN-cH    1    0.026       180.000           6.000      GAFF2
+OM-Cx-Co-Oe    1    1.175         0.000          -2.000      GAFF2
+OM-Cx-Co-Oe    1    0.144         0.000           3.000      GAFF2
+OM-Cx-Cr-cN    1    0.156         0.000           3.000      GAFF2
+OM-Cx-Cx-cN    1    0.156         0.000           3.000      GAFF2
+OM-Cx-cN-cH    1    0.000         0.000           2.000      GAFF2
+OM-cM-cE-Oe    1    3.625       180.000           2.000      GAFF2
+OM-cM-cE-cH    1    3.625       180.000           2.000      GAFF2
+OM-cM-cE-cM    1    3.625       180.000           2.000      GAFF2
+OM-cM-cE-cN    1    3.625       180.000           2.000      GAFF2
+OM-cM-cE-co    1    3.625       180.000           2.000      GAFF2
+OM-cM-cH-cN    1    3.625       180.000           2.000      GAFF2
+OM-cN-cH-cN    1    4.000       180.000           2.000      GAFF2
+OM-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+OM-cN-cN-cH    1    0.700       180.000           2.000      GAFF2
+OM-cN-cN-cN    1    3.625       180.000           2.000      GAFF2
+OM-cN-cN-co    1    3.625       180.000           2.000      GAFF2
+Oc-Ca-cN-cH    1    5.056        30.000          -1.000      QM-ORI    53
+Oc-Ca-cN-cH    1    1.000       180.000          -2.000      GAFF2
+Oc-Ca-cN-cH    1    2.166       180.000          -2.000      GAFF2
+Oc-Ca-cN-cH    1    0.062       180.000           3.000      GAFF2
+Oc-Co-Ce-Oe    1    1.175         0.000          -2.000      GAFF2
+Oc-Co-Ce-Oe    1    0.144         0.000           3.000      GAFF2
+Oc-Co-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Oc-Co-Co-Oc    1    1.175         0.000          -2.000      GAFF2
+Oc-Co-Co-Oc    1    0.144         0.000           3.000      GAFF2
+Oc-Co-Co-Oe    1    1.175         0.000          -2.000      GAFF2
+Oc-Co-Co-Oe    1    0.144         0.000           3.000      GAFF2
+Oc-Co-Co-cN    1    0.156         0.000           3.000      GAFF2
+Oc-Co-Cr-Oe    1    1.175         0.000          -2.000      GAFF2
+Oc-Co-Cr-Oe    1    0.144         0.000           3.000      GAFF2
+Oc-Co-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Oc-Co-Cx-Oe    1    1.175         0.000          -2.000      GAFF2
+Oc-Co-Cx-Oe    1    0.144         0.000           3.000      GAFF2
+Oc-Co-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Oc-Co-cN-cH    1    7.887       180.000          -1.000      QM-FIT   352
+Oc-Co-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Oc-Co-cN-cH    1   -2.524         0.000           3.000      GAFF2
+Oc-Cv-cN-cH    1   -3.319       180.000          -1.000      QM-FIT   127
+Oc-Cv-cN-cH    1    1.000       180.000          -2.000      GAFF2
+Oc-Cv-cN-cH    1   -0.017       180.000           4.000      GAFF2
+Oc-cM-cH-cN    1    3.625       180.000           2.000      GAFF2
+Oc-cM-co-Oc    1    3.625       180.000           2.000      GAFF2
+Oc-cM-co-co    1    3.625       180.000           2.000      GAFF2
+Oc-co-cE-Oe    1    3.625       180.000           2.000      GAFF2
+Oc-co-cE-cH    1    3.625       180.000           2.000      GAFF2
+Oc-co-cE-cM    1    3.625       180.000           2.000      GAFF2
+Oc-co-cE-cN    1    3.625       180.000           2.000      GAFF2
+Oc-co-cH-cH    1    3.625       180.000           2.000      GAFF2
+Oc-co-cH-cN    1    3.625       180.000           2.000      GAFF2
+Oc-co-cH-co    1    3.625       180.000           2.000      GAFF2
+Oc-co-cM-Om    1    3.625       180.000           2.000      GAFF2
+Oc-co-cM-cH    1    3.625       180.000           2.000      GAFF2
+Oc-co-cN-cH    1    3.625       180.000           2.000      GAFF2
+Oc-co-cN-cN    1    3.625       180.000           2.000      GAFF2
+Oc-co-co-Oc    1    3.625       180.000           2.000      GAFF2
+Oc-co-co-Om    1    3.625       180.000           2.000      GAFF2
+Oc-co-co-cE    1    3.625       180.000           2.000      GAFF2
+Oc-co-co-cH    1    3.625       180.000           2.000      GAFF2
+Oc-co-co-cM    1    3.625       180.000           2.000      GAFF2
+Oc-co-co-cN    1    3.625       180.000           2.000      GAFF2
+Oc-co-co-co    1    3.625       180.000           2.000      GAFF2
+Oe-Ce-Ce-Oe    1    1.175         0.000          -2.000      GAFF2
+Oe-Ce-Ce-Oe    1    0.144         0.000           3.000      GAFF2
+Oe-Ce-Ce-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Ce-Co-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Ce-Cx-Oz    1    0.000       180.000           2.000      GAFF2
+Oe-Ce-cN-cH    1    0.000         0.000          -2.000      GAFF2
+Oe-Ce-cN-cH    1    0.375       180.000          -3.000      QM-FIT   154
+Oe-Ce-cN-cH    1    0.395       180.000           4.000      GAFF2
+Oe-Co-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Co-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Cr-Cr-Oe    1    1.175         0.000          -2.000      GAFF2
+Oe-Cr-Cr-Oe    1    0.144         0.000           3.000      GAFF2
+Oe-Cr-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Cr-Cx-Oe    1    1.175         0.000          -2.000      GAFF2
+Oe-Cr-Cx-Oe    1    0.144         0.000           3.000      GAFF2
+Oe-Cr-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Cr-cN-cH    1   -0.535        90.000           2.000      QM-FIT   318
+Oe-Cx-Cr-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Cx-Cx-Oe    1    1.175         0.000          -2.000      GAFF2
+Oe-Cx-Cx-Oe    1    0.144         0.000           3.000      GAFF2
+Oe-Cx-Cx-cN    1    0.156         0.000           3.000      GAFF2
+Oe-Cx-cN-cH    1    0.000         0.000           2.000      GAFF2
+Oe-cE-cE-Oe    1    3.625       180.000           2.000      GAFF2
+Oe-cE-cE-cH    1    3.625       180.000           2.000      GAFF2
+Oe-cE-cH-cH    1    3.625       180.000           2.000      GAFF2
+Oe-cE-cH-cN    1    3.625       180.000           2.000      GAFF2
+Oe-cE-cM-Om    1    3.625       180.000           2.000      GAFF2
+Oe-cE-cM-cH    1    3.625       180.000           2.000      GAFF2
+Oe-cE-cN-cH    1    3.625       180.000           2.000      GAFF2
+Oe-cE-cN-cN    1    3.625       180.000           2.000      GAFF2
+Oe-cE-co-Oe    1    3.625       180.000           2.000      GAFF2
+Oe-cE-co-cH    1    3.625       180.000           2.000      GAFF2
+Oe-cE-co-cM    1    3.625       180.000           2.000      GAFF2
+Oe-cE-co-co    1    3.625       180.000           2.000      GAFF2
+Oe-co-cE-cM    1    3.625       180.000           2.000      GAFF2
+Oe-co-cH-cN    1    3.625       180.000           2.000      GAFF2
+Om-cM-cE-cH    1    3.625       180.000           2.000      GAFF2
+Om-cM-cE-cM    1    3.625       180.000           2.000      GAFF2
+Om-cM-cE-cN    1    3.625       180.000           2.000      GAFF2
+Om-cM-cE-co    1    3.625       180.000           2.000      GAFF2
+Om-cM-cH-cH    1    3.625       180.000           2.000      GAFF2
+Om-cM-cH-cN    1    3.625       180.000           2.000      GAFF2
+Om-cM-co-cE    1    3.625       180.000           2.000      GAFF2
+Om-cM-co-cH    1    3.625       180.000           2.000      GAFF2
+Om-cM-co-cM    1    3.625       180.000           2.000      GAFF2
+Om-cM-co-cN    1    3.625       180.000           2.000      GAFF2
+Om-cM-co-co    1    3.625       180.000           2.000      GAFF2
+Om-co-cH-cN    1    3.625       180.000           2.000      GAFF2
+Om-co-co-cM    1    3.625       180.000           2.000      GAFF2
+Oz-Cx-Oe-cE    1    3.762         0.000          -1.000      QM-FIT    57
+Oz-Cx-Oe-cE    1    2.700       180.000          -2.000      GAFF2
+Oz-Cx-Oe-cE    1   -2.258         0.000          -3.000      GAFF2
+Oz-Cx-Oe-cE    1    0.727         0.000           4.000      GAFF2
+Oz-Cx-Oe-co    1    2.700       180.000           2.000      GAFF2
+Oz-Cx-cN-cH    1   -1.586         0.000          -1.000      QM-FIT    42
+Oz-Cx-cN-cH    1    1.000       180.000          -2.000      GAFF2
+Oz-Cx-cN-cH    1   -2.391         0.000          -2.000      GAFF2
+Oz-Cx-cN-cH    1    0.081         0.000          -4.000      GAFF2
+Oz-Cx-cN-cH    1   -0.138         0.000           5.000      GAFF2
+Oz-cN-cH-cN    1    2.875       180.000           2.000      GAFF2
+Oz-cN-cN-cN    1    1.000       180.000           2.000      GAFF2
+Oz-cN-cN-co    1    1.000       180.000           2.000      GAFF2
+cE-Oe-Ce-cN    1    0.383         0.000           3.000      GAFF2
+cE-Oe-Cr-cN    1    0.383         0.000           3.000      GAFF2
+cE-Oe-Cx-cN    1    0.383         0.000           3.000      GAFF2
+cE-Oe-cE-cH    1    0.900       180.000           2.000      GAFF2
+cE-Oe-cE-cM    1    0.900       180.000           2.000      GAFF2
+cE-Oe-cE-co    1    0.900       180.000           2.000      GAFF2
+cE-cE-cH-cH    1    3.625       180.000           2.000      GAFF2
+cE-cE-cH-cN    1    3.625       180.000           2.000      GAFF2
+cE-cH-cH-cH    1    3.625       180.000           2.000      GAFF2
+cE-cH-cH-cN    1    3.625       180.000           2.000      GAFF2
+cE-cH-cN-cH    1    3.625       180.000           2.000      GAFF2
+cE-cM-cH-cH    1    3.625       180.000           2.000      GAFF2
+cE-cM-cH-cN    1    3.625       180.000           2.000      GAFF2
+cE-cN-cH-cH    1    3.625       180.000           2.000      GAFF2
+cE-cN-cH-cN    1    3.625       180.000           2.000      GAFF2
+cE-cN-cN-cE    1    3.625       180.000           2.000      GAFF2
+cE-cN-cN-cH    1    3.625       180.000           2.000      GAFF2
+cE-cN-cN-co    1    3.625       180.000           2.000      GAFF2
+cE-co-cH-cH    1    3.625       180.000           2.000      GAFF2
+cE-co-cH-cN    1    3.625       180.000           2.000      GAFF2
+cE-co-cM-cH    1    3.625       180.000           2.000      GAFF2
+cE-co-co-cH    1    3.625       180.000           2.000      GAFF2
+cH-Co-cN-cH    1    0.000         0.000           2.000      GAFF2
+cH-cE-cE-cH    1    3.625       180.000           2.000      GAFF2
+cH-cE-cH-cH    1    3.625       180.000           2.000      GAFF2
+cH-cE-cM-cH    1    3.625       180.000           2.000      GAFF2
+cH-cE-cN-cH    1    3.625       180.000           2.000      GAFF2
+cH-cE-cN-cN    1    3.625       180.000           2.000      GAFF2
+cH-cE-co-cH    1    3.625       180.000           2.000      GAFF2
+cH-cE-co-cM    1    3.625       180.000           2.000      GAFF2
+cH-cE-co-co    1    3.625       180.000           2.000      GAFF2
+cH-cH-Co-cN    1    0.000         0.000           2.000      GAFF2
+cH-cH-cE-cM    1    3.625       180.000           2.000      GAFF2
+cH-cH-cE-cN    1    3.625       180.000           2.000      GAFF2
+cH-cH-cE-co    1    3.625       180.000           2.000      GAFF2
+cH-cH-cH-cH    1    3.625       180.000           2.000      GAFF2
+cH-cH-cH-cM    1    3.625       180.000           2.000      GAFF2
+cH-cH-cH-cN    1    3.625       180.000           2.000      GAFF2
+cH-cH-cH-co    1    3.625       180.000           2.000      GAFF2
+cH-cH-cM-co    1    3.625       180.000           2.000      GAFF2
+cH-cH-cN-cH    1    3.625       180.000           2.000      GAFF2
+cH-cH-co-cH    1    2.175       180.000           2.000      GAFF2
+cH-cH-co-cM    1    3.625       180.000           2.000      GAFF2
+cH-cH-co-cN    1    3.625       180.000           2.000      GAFF2
+cH-cH-co-co    1    3.625       180.000           2.000      GAFF2
+cH-cM-cE-cM    1    3.625       180.000           2.000      GAFF2
+cH-cM-cE-cN    1    3.625       180.000           2.000      GAFF2
+cH-cM-cE-co    1    3.625       180.000           2.000      GAFF2
+cH-cM-co-cH    1    3.625       180.000           2.000      GAFF2
+cH-cM-co-cM    1    3.625       180.000           2.000      GAFF2
+cH-cM-co-cN    1    3.625       180.000           2.000      GAFF2
+cH-cM-co-co    1    3.625       180.000           2.000      GAFF2
+cH-cN-OM-cN    1    1.050       180.000           2.000      GAFF2
+cH-cN-cE-cM    1    3.625       180.000           2.000      GAFF2
+cH-cN-cE-co    1    3.625       180.000           2.000      GAFF2
+cH-cN-cH-cM    1    3.625       180.000           2.000      GAFF2
+cH-cN-cH-cN    1    3.625       180.000           2.000      GAFF2
+cH-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+cH-cN-cN-cH    1    3.625       180.000           2.000      GAFF2
+cH-cN-cN-cN    1    3.625       180.000           2.000      GAFF2
+cH-cN-cN-co    1    3.625       180.000           2.000      GAFF2
+cH-cN-co-cH    1    3.625       180.000           2.000      GAFF2
+cH-cN-co-cM    1    3.625       180.000           2.000      GAFF2
+cH-cN-co-co    1    3.625       180.000           2.000      GAFF2
+cH-co-cE-cM    1    3.625       180.000           2.000      GAFF2
+cH-co-cE-cN    1    3.625       180.000           2.000      GAFF2
+cH-co-cH-cN    1    3.625       180.000           2.000      GAFF2
+cH-co-cH-co    1    3.625       180.000           2.000      GAFF2
+cH-co-cN-cN    1    3.625       180.000           2.000      GAFF2
+cH-co-co-cH    1    3.625       180.000           2.000      GAFF2
+cH-co-co-cM    1    3.625       180.000           2.000      GAFF2
+cH-co-co-cN    1    3.625       180.000           2.000      GAFF2
+cH-co-co-co    1    3.625       180.000           2.000      GAFF2
+cM-cE-cN-cN    1    3.625       180.000           2.000      GAFF2
+cM-cH-Co-cN    1    0.000         0.000           2.000      GAFF2
+cM-cH-cN-cN    1    3.625       180.000           2.000      GAFF2
+cM-co-cN-cN    1    3.625       180.000           2.000      GAFF2
+cN-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+cN-Cd-Cd-cN    1    6.650       180.000           2.000      GAFF2
+cN-Co-Co-cN    1    0.156         0.000           3.000      GAFF2
+cN-Co-cH-cN    1    0.000         0.000           2.000      GAFF2
+cN-Co-cH-co    1    0.000         0.000           2.000      GAFF2
+cN-Cr-Cr-cN    1    0.156         0.000           3.000      GAFF2
+cN-Cr-Cx-cN    1    0.156         0.000           3.000      GAFF2
+cN-Cx-Cx-cN    1    0.156         0.000           3.000      GAFF2
+cN-OM-cN-cN    1    0.900       180.000           2.000      GAFF2
+cN-cH-cE-co    1    3.625       180.000           2.000      GAFF2
+cN-cH-cH-co    1    6.650       180.000           2.000      GAFF2
+cN-cH-cM-co    1    3.625       180.000           2.000      GAFF2
+cN-cH-cN-cN    1    3.625       180.000           2.000      GAFF2
+cN-cH-cN-co    1    3.625       180.000           2.000      GAFF2
+cN-cH-co-co    1    3.625       180.000           2.000      GAFF2
+cN-cN-cE-co    1    3.625       180.000           2.000      GAFF2
+cN-cN-cH-co    1    3.625       180.000           2.000      GAFF2
+cN-cN-co-co    1    3.625       180.000           2.000      GAFF2
+cN-co-cH-co    1    3.625       180.000           2.000      GAFF2
+co-cN-cN-co    1    3.625       180.000           2.000      GAFF2
+Cd-Cd-Ca-cN    1    2.175       180.000           2.000      GAFF2
+Ca-OM-Ce-Oe    1    0.800       180.000          -1.000      GAFF2
+Ca-OM-Ce-Oe    1    0.383         0.000           3.000      GAFF2
+Cd-Ca-cN-cH    1    7.157        30.000          -1.000      GAFF2
+Cd-Ca-cN-cH    1    1.000       180.000          -2.000      GAFF2
+Cd-Ca-cN-cH    1    2.140       180.000          -2.000      GAFF2
+Cd-Ca-cN-cH    1    0.462        90.000           5.000      GAFF2
+Ce-Oe-cE-cE    1    1.926       180.000          -1.000      GAFF2
+Ce-Oe-cE-cE    1    1.755       180.000          -2.000      GAFF2
+Ce-Oe-cE-cE    1    0.707        60.000          -3.000      GAFF2
+Ce-Oe-cE-cE    1    0.414        90.000           4.000      GAFF2
+Ce-Oe-cE-cN    1    1.926       180.000          -1.000      GAFF2
+Ce-Oe-cE-cN    1    1.755       180.000          -2.000      GAFF2
+Ce-Oe-cE-cN    1    0.707        60.000          -3.000      GAFF2
+Ce-Oe-cE-cN    1    0.414        90.000           4.000      GAFF2
+Cr-Cr-cN-co    1    0.000         0.000          -2.000      GAFF2
+Cr-Cr-cN-co    1   -0.224        30.000           2.000      GAFF2
+Cr-OM-Cr-Oe    1    0.100       180.000          -2.000      GAFF2
+Cr-OM-Cr-Oe    1    0.383         0.000           3.000      GAFF2
+Cr-cN-co-Oc    1    3.625       180.000           2.000      GAFF2
+Cr-cN-co-cH    1    3.625       180.000           2.000      GAFF2
+Cr-cN-co-cM    1    3.625       180.000           2.000      GAFF2
+Cr-cN-co-cN    1    3.625       180.000           2.000      GAFF2
+Cr-cN-co-co    1    3.625       180.000           2.000      GAFF2
+Cv-OM-Ce-Oe    1    0.800       180.000          -1.000      GAFF2
+Cv-OM-Ce-Oe    1    0.383         0.000           3.000      GAFF2
+Cx-Oe-co-cN    1    5.259         0.000          -1.000      GAFF2
+Cx-Oe-co-cN    1    0.900       180.000          -2.000      GAFF2
+Cx-Oe-co-cN    1   -1.440         0.000          -2.000      GAFF2
+Cx-Oe-co-cN    1    0.478         0.000           3.000      GAFF2
+Cx-Oe-co-co    1    5.259         0.000          -1.000      GAFF2
+Cx-Oe-co-co    1    0.900       180.000          -2.000      GAFF2
+Cx-Oe-co-co    1   -1.440         0.000          -2.000      GAFF2
+Cx-Oe-co-co    1    0.478         0.000           3.000      GAFF2
+Hd-Cd-Ca-cN    1    2.175       180.000           2.000      GAFF2
+Hr-Cr-cN-co    1    0.000         0.000          -2.000      GAFF2
+Hr-Cr-cN-co    1   -0.224        30.000           2.000      GAFF2
+Hx-Cx-Oe-cE    1    3.910         0.000          -1.000      GAFF2
+Hx-Cx-Oe-cE    1   -4.885         0.000          -2.000      GAFF2
+Hx-Cx-Oe-cE    1    0.383         0.000          -3.000      GAFF2
+Hx-Cx-Oe-cE    1   -1.653         0.000          -3.000      GAFF2
+Hx-Cx-Oe-cE    1   -0.202         0.000           6.000      GAFF2
+Hx-Cx-Oe-co    1    3.910         0.000          -1.000      GAFF2
+Hx-Cx-Oe-co    1   -4.885         0.000          -2.000      GAFF2
+Hx-Cx-Oe-co    1    0.383         0.000          -3.000      GAFF2
+Hx-Cx-Oe-co    1   -1.653         0.000          -3.000      GAFF2
+Hx-Cx-Oe-co    1   -0.202         0.000           6.000      GAFF2
+OM-Ce-Oe-cE    1    0.383         0.000           3.000      GAFF2
+OM-Cr-Oe-cE    1   -0.500        90.000          -2.000      GAFF2
+OM-Cr-Oe-cE    1    0.383         0.000          -3.000      GAFF2
+OM-Cr-Oe-cE    1   -0.322       180.000           6.000      GAFF2
+OM-Cr-cN-cE    1    0.000         0.000          -2.000      GAFF2
+OM-Cr-cN-cE    1   -0.224        30.000           2.000      GAFF2
+OM-Cr-cN-co    1    0.000         0.000          -2.000      GAFF2
+OM-Cr-cN-co    1   -0.224        30.000           2.000      GAFF2
+Oe-Ce-Ct-Oc    1    0.156         0.000           3.000      GAFF2
+Oe-Ce-OM-Ca    1    0.800       180.000          -1.000      GAFF2
+Oe-Ce-OM-Ca    1    0.383         0.000           3.000      GAFF2
+Oe-cE-co-cN    1    3.625       180.000           2.000      GAFF2
+cE-Oe-Ce-OM    1    0.383         0.000           3.000      GAFF2
+cE-Oe-Cx-Hx    1    3.910         0.000          -1.000      GAFF2
+cE-Oe-Cx-Hx    1   -4.885         0.000          -2.000      GAFF2
+cE-Oe-Cx-Hx    1    0.383         0.000          -3.000      GAFF2
+cE-Oe-Cx-Hx    1   -1.653         0.000          -3.000      GAFF2
+cE-Oe-Cx-Hx    1   -0.202         0.000           6.000      GAFF2
+cE-cH-cN-Cr    1    3.625       180.000           2.000      GAFF2
+cE-cH-cN-Ca    1    3.625       180.000           2.000      GAFF2
+cE-cH-cN-Ce    1    3.625       180.000           2.000      GAFF2
+cE-cH-cN-Co    1    3.625       180.000           2.000      GAFF2
+cE-cH-cN-Ct    1    3.625       180.000           2.000      GAFF2
+cE-cH-cN-Cx    1    3.625       180.000           2.000      GAFF2
+cH-cN-Ca-Cd    1    7.157        30.000          -1.000      GAFF2
+cH-cN-Ca-Cd    1    1.000       180.000          -2.000      GAFF2
+cH-cN-Ca-Cd    1    2.140       180.000          -2.000      GAFF2
+cH-cN-Ca-Cd    1    0.462        90.000           5.000      GAFF2
+cH-cN-Co-Cr    1    0.000         0.000           2.000      GAFF2
+cM-cE-Oe-Co    1    1.926       180.000          -1.000      GAFF2
+cM-cE-Oe-Co    1    1.755       180.000          -2.000      GAFF2
+cM-cE-Oe-Co    1    0.707        60.000          -3.000      GAFF2
+cM-cE-Oe-Co    1    0.414        90.000           4.000      GAFF2
+cN-Ca-Cd-Cd    1    2.175       180.000           2.000      GAFF2
+cN-Ca-Cd-Hd    1    2.175       180.000           2.000      GAFF2
+cN-Co-Cr-Hr    1    0.156         0.000           3.000      GAFF2
+cN-Co-Cr-OM    1    0.156         0.000           3.000      GAFF2
+cN-Co-Cr-cN    1    0.156         0.000           3.000      GAFF2
+cN-cE-Oe-Ce    1    1.926       180.000          -1.000      GAFF2
+cN-cE-Oe-Ce    1    1.755       180.000          -2.000      GAFF2
+cN-cE-Oe-Ce    1    0.707        60.000          -3.000      GAFF2
+cN-cE-Oe-Ce    1    0.414        90.000           4.000      GAFF2
+cN-cE-Oe-Co    1    1.926       180.000          -1.000      GAFF2
+cN-cE-Oe-Co    1    1.755       180.000          -2.000      GAFF2
+cN-cE-Oe-Co    1    0.707        60.000          -3.000      GAFF2
+cN-cE-Oe-Co    1    0.414        90.000           4.000      GAFF2
+cN-cE-Oe-cE    1    1.926       180.000          -1.000      GAFF2
+cN-cE-Oe-cE    1    1.755       180.000          -2.000      GAFF2
+cN-cE-Oe-cE    1    0.707        60.000          -3.000      GAFF2
+cN-cE-Oe-cE    1    0.414        90.000           4.000      GAFF2
+cN-cH-cN-Cr    1    3.625       180.000           2.000      GAFF2
+cN-cH-cN-Ca    1    3.625       180.000           2.000      GAFF2
+cN-cH-cN-Ce    1    3.625       180.000           2.000      GAFF2
+cN-co-Oe-Cx    1    5.259         0.000          -1.000      GAFF2
+cN-co-Oe-Cx    1    0.900       180.000          -2.000      GAFF2
+cN-co-Oe-Cx    1   -1.440         0.000          -2.000      GAFF2
+cN-co-Oe-Cx    1    0.478         0.000           3.000      GAFF2
+co-Oe-Cx-Hx    1    3.910         0.000          -1.000      GAFF2
+co-Oe-Cx-Hx    1   -4.885         0.000          -2.000      GAFF2
+co-Oe-Cx-Hx    1    0.383         0.000          -3.000      GAFF2
+co-Oe-Cx-Hx    1   -1.653         0.000          -3.000      GAFF2
+co-Oe-Cx-Hx    1   -0.202         0.000           6.000      GAFF2
+cE-co-Oc-Hq     1    0.900       180.000           2.000      GAFF2
+cH-co-Oc-Hq     1    0.900       180.000           2.000      GAFF2
+cM-co-Oc-Hq     1    0.900       180.000           2.000      GAFF2
+cN-co-Oc-Hq     1    0.900       180.000           2.000      GAFF2
+co-co-Oc-Hq     1    0.900       180.000           2.000      GAFF2
+Cd-Oe-cE-cH    1    0.900       180.000          -2.000      ANALOG
+Cd-Oe-cE-cH    1    1.565       180.000          -2.000      QM-ORI   143
+Cd-Oe-cE-cH    1   -2.449        30.000           3.000      ANALOG
+Ce-Co-Oe-co    1    0.383         0.000           3.000      ANALOG
+Cm-Om-co-cE    1    0.900       180.000           2.000      ANALOG
+Co-Cd-Cd-Oe    1    6.650       180.000           2.000      ANALOG
+Co-Cd-Cd-Oe    1    6.650       180.000           2.000      ANALOG
+Co-Ce-Co-Oe    1    0.156         0.000           3.000      ANALOG
+Co-Oe-cE-co    1   -0.042        60.000          -1.000      QM-ORI   132
+Co-Oe-cE-co    1    0.900       180.000          -2.000      ANALOG
+Co-Oe-cE-co    1    0.844         0.000           3.000      ANALOG
+Co-Oe-co-cH    1    4.962         0.000          -1.000      QM-FIT    10
+Co-Oe-co-cH    1    0.900       180.000          -2.000      ANALOG
+Co-Oe-co-cH    1   -0.436         0.000          -4.000      ANALOG
+Co-Oe-co-cH    1   -0.152         0.000          -5.000      ANALOG
+Co-Oe-co-cH    1   -0.092         0.000           6.000      ANALOG
+Co-Oe-co-co    1    5.259         0.000          -1.000      ANALOG
+Co-Oe-co-co    1    0.900       180.000          -2.000      ANALOG
+Co-Oe-co-co    1   -1.440         0.000          -2.000      ANALOG
+Co-Oe-co-co    1    0.478         0.000           3.000      ANALOG
+Cx-Ce-Ct-Hm    1    0.156         0.000           3.000      ANALOG
+Cx-Ce-Ct-Oc    1    0.156         0.000           3.000      ANALOG
+HR-co-co-Oe    1    3.625       180.000           2.000      ANALOG
+Hd-Cd-Cd-Oe    1    6.650       180.000           2.000      ANALOG
+Hd-Cd-Cd-Oe    1    6.650       180.000           2.000      ANALOG
+Hd-Cd-Cd-Oe    1    6.650       180.000           2.000      ANALOG
+Hm-Ce-Co-Oe    1    0.250         0.000          -1.000      ANALOG
+Hm-Ce-Co-Oe    1    0.000         0.000           3.000      ANALOG
+Hm-Ce-Ct-Oc    1    0.156         0.000           3.000      ANALOG
+Hm-Co-Oe-co    1    0.383         0.000           3.000      ANALOG
+Hq-Oc-Co-Oe    1   -8.318         0.000          -1.000      QM-FIT   666
+Hq-Oc-Co-Oe    1    0.167         0.000          -3.000      ANALOG
+Hq-Oc-Co-Oe    1    0.792         0.000           3.000      ANALOG
+Hq-Oc-cM-cE    1    0.900       180.000           2.000      ANALOG
+Hx-Cx-Ce-Ct    1    0.000       180.000           2.000      ANALOG
+Oc-Co-Oe-co    1    0.383         0.000           3.000      ANALOG
+Oc-cM-cE-Oe    1    3.625       180.000           2.000      ANALOG
+Oc-cM-cE-co    1    3.625       180.000           2.000      ANALOG
+Oe-cE-co-Om    1    3.625       180.000           2.000      ANALOG
+Oe-co-cH-co    1    3.625       180.000           2.000      ANALOG
+Oe-co-cN-cN    1    3.625       180.000           2.000      ANALOG
+Oe-co-co-HR    1    3.625       180.000           2.000      ANALOG
+Oe-co-co-co    1    3.625       180.000           2.000      ANALOG
+Om-co-cE-Oe    1    3.625       180.000           2.000      ANALOG
+Om-co-cE-cE    1    3.625       180.000           2.000      ANALOG
+Oz-Cx-Ce-Ct    1    0.000       180.000           2.000      ANALOG
+cE-cE-cE-Oe    1    3.625       180.000           2.000      ANALOG
+cE-cE-cE-cH    1    3.625       180.000           2.000      ANALOG
+cE-cE-cM-Om    1    3.625       180.000           2.000      ANALOG
+cE-cE-cM-cH    1    3.625       180.000           2.000      ANALOG
+cE-cE-cN-cH    1    3.625       180.000           2.000      ANALOG
+cE-cE-co-Oc    1    3.625       180.000           2.000      ANALOG
+cE-cE-co-cH    1    3.625       180.000           2.000      ANALOG
+cE-co-Om-Cm    1    0.900       180.000           2.000      ANALOG
+cE-co-cN-cH    1    3.625       180.000           2.000      ANALOG
+cH-cE-cE-cE    1    3.625       180.000           2.000      ANALOG
+cH-cE-cE-cM    1    3.625       180.000           2.000      ANALOG
+cH-cE-cE-cN    1    3.625       180.000           2.000      ANALOG
+cH-cE-cE-co    1    3.625       180.000           2.000      ANALOG
+cH-cE-co-cN    1    3.625       180.000           2.000      ANALOG
+cH-cN-cE-cE    1    3.625       180.000           2.000      ANALOG
+cH-cN-cE-cN    1    3.625       180.000           2.000      ANALOG
+cH-cN-co-cN    1    3.625       180.000           2.000      ANALOG
+cH-co-Oe-Ce    1    4.962         0.000          -1.000      QM-FIT    10
+cH-co-Oe-Ce    1    0.900       180.000          -2.000      ANALOG
+cH-co-Oe-Ce    1   -0.436         0.000          -4.000      ANALOG
+cH-co-Oe-Ce    1   -0.152         0.000          -5.000      ANALOG
+cH-co-Oe-Ce    1   -0.092         0.000           6.000      ANALOG
+cH-co-cE-cE    1    3.625       180.000           2.000      ANALOG
+cM-cE-co-Om    1    3.625       180.000           2.000      ANALOG
+cN-Ce-Co-Oe    1    0.156         0.000           3.000      ANALOG
+cN-cE-cE-Oe    1    3.625       180.000           2.000      ANALOG
+cN-cE-cE-cH    1    3.625       180.000           2.000      ANALOG
+cN-cE-cN-cH    1    3.625       180.000           2.000      ANALOG
+cN-cN-co-Oe    1    3.625       180.000           2.000      ANALOG
+cN-co-cN-cH    1    3.625       180.000           2.000      ANALOG
+cN-co-cN-cN    1    3.625       180.000           2.000      ANALOG
+co-Oe-Ce-Co    1    0.383         0.000           3.000      ANALOG
+co-Oe-Ce-Hm    1    0.383         0.000           3.000      ANALOG
+co-cE-cE-Oe    1    3.625       180.000           2.000      ANALOG
+co-cE-cE-cH    1    3.625       180.000           2.000      ANALOG
+co-cH-co-Oe    1    3.625       180.000           2.000      ANALOG
+co-co-Oe-Ce    1    5.259         0.000          -1.000      ANALOG
+co-co-Oe-Ce    1    0.900       180.000          -2.000      ANALOG
+co-co-Oe-Ce    1   -1.440         0.000          -2.000      ANALOG
+co-co-Oe-Ce    1    0.478         0.000           3.000      ANALOG
+co-co-co-Oe    1    3.625       180.000           2.000      ANALOG
+Ce-Ct-Oc-Hq    1    0.250         0.000          -1.000      GAFF2      ANALOG Ce-Co-Oc-Hq
+Ce-Ct-Oc-Hq    1    0.160         0.000           3.000      GAFF2      ANALOG Ce-Co-Oc-Hq
+Hm-Ct-Oc-Hq    1   -8.338         0.000          -1.000      QM-FIT   666      ANALOG Hq-Oc-Co-Hm
+Hm-Ct-Oc-Hq    1   -0.577         0.000          -2.000      GAFF2      ANALOG Hq-Oc-Co-Hm
+Hm-Ct-Oc-Hq    1    0.167         0.000           3.000      GAFF2      ANALOG Hq-Oc-Co-Hm
+Cd-Cd-Oe-cE    1    0.900       180.000           2.000      ANALOG cE-cE-Oe-Ce
+Cd-Cd-Oe-co    1    0.900       180.000           2.000      ANALOG cE-cE-Oe-Ce
+Hd-Cd-Oe-cE    1    0.900       180.000           2.000      ANALOG HR-cE-Oe-Ce
+Hd-Cd-Oe-co    1    0.900       180.000           2.000      ANALOG HR-cE-Oe-Ce
+Co-Cd-Cd-Oe    1    6.650       180.000           2.000      ANALOG cH-cE-cE-Oe
+Hd-Cd-Cd-Oe    1    6.650       180.000           2.000      ANALOG HR-cE-cE-Oe
+Cd-Oe-cE-cH    1    0.900       180.000           2.000      ANALOG co-Oe-cE-cH
+Cd-Oe-cE-cM    1    0.900       180.000           2.000      ANALOG co-Oe-cE-cM
+Cd-Oe-cE-cN    1    0.900       180.000           2.000      ANALOG co-Oe-cE-cN
+Cd-Oe-cE-cE    1    0.900       180.000           2.000      ANALOG co-Oe-cE-cE
+Cd-Oe-cE-co    1    0.900       180.000           2.000      ANALOG co-Oe-cE-co
+Cd-Oe-co-cE    1    0.900       180.000           2.000      ANALOG cE-Oe-co-cE
+Cd-Oe-co-cH    1    0.900       180.000           2.000      ANALOG cE-Oe-co-cH
+Cd-Oe-co-co    1    0.900       180.000           2.000      ANALOG cE-Oe-co-co
+Cd-Oe-co-cN    1    0.900       180.000           2.000      ANALOG cE-Oe-co-cN
+cE-cE-Oe-cE    1    0.900       180.000           2.000      ANALOG cH-cE-Oe-cE
+cE-Oe-cE-cE    1    0.900       180.000           2.000      ANALOG cE-Oe-cE-cH
+cE-co-cN-cN    1    3.625       180.000           2.000      GAFF2      ANALOG cH-co-cN-cN
+cN-cE-cN-cN    1    3.625       180.000           2.000      GAFF2      ANALOG cH-cE-cN-cN
+cE-cE-cN-cN    1    3.625       180.000           2.000      GAFF2      ANALOG cH-cE-cN-cN
+co-Oe-cE-co    1    0.900       180.000           2.000      GAFF2      ANALOG cE-Oe-cE-co
+co-Oe-cE-cH    1    0.900       180.000           2.000      GAFF2      ANALOG cE-Oe-cE-cH
+cH-co-Oe-cE    1    4.962         0.000          -1.000      QM-FIT    10      ANALOG cH-co-Oe-Ce
+cH-co-Oe-cE    1    0.900       180.000          -2.000      ANALOG      ANALOG cH-co-Oe-Ce
+cH-co-Oe-cE    1   -0.436         0.000          -4.000      ANALOG      ANALOG cH-co-Oe-Ce
+cH-co-Oe-cE    1   -0.152         0.000          -5.000      ANALOG      ANALOG cH-co-Oe-Ce
+cH-co-Oe-cE    1   -0.092         0.000           6.000      ANALOG      ANALOG cH-co-Oe-Ce
+cM-cE-cE-Oe    1    3.625       180.000           2.000      GAFF2      ANALOG Oe-cE-cE-cH
+co-co-Oe-cE    1    5.259         0.000          -1.000      GAFF2      ANALOG Cx-Oe-co-co
+co-co-Oe-cE    1    0.900       180.000          -2.000      GAFF2      ANALOG Cx-Oe-co-co
+co-co-Oe-cE    1   -1.440         0.000          -2.000      GAFF2      ANALOG Cx-Oe-co-co
+co-co-Oe-cE    1    0.478         0.000           3.000      GAFF2      ANALOG Cx-Oe-co-co
+cE-cE-cH-Co    1    3.625       180.000           2.000      GAFF2      ANALOG Oe-cE-cH-cH
+cE-cH-cH-Co    1    3.625       180.000           2.000      GAFF2      ANALOG Co-cH-cH-HR
+cE-cH-Co-cN    1    0.000         0.000           2.000      GAFF2      ANALOG cH-cH-Co-cN
+cE-cH-Co-Co    1    0.000         0.000           2.000      GAFF2      ANALOG cH-cH-Co-Co
+cE-cH-Co-Hm    1    0.000         0.000           2.000      GAFF2      ANALOG cH-cH-Co-Hm
+cE-cM-cH-Co    1    3.625       180.000           2.000      GAFF2      ANALOG OM-cM-cH-cN
+cE-co-cH-Co    1    3.625       180.000           2.000      GAFF2      ANALOG Oc-co-cH-cH
+Oe-cE-cH-Co    1    3.625       180.000           2.000      GAFF2      ANALOG Oe-cE-cH-cH
+cE-cN-cH-Co    1    3.625       180.000           2.000      GAFF2      ANALOG Co-cH-cN-cH
+Co-cH-cN-cN    1    3.625       180.000           2.000      GAFF2      ANALOG Co-cH-cN-cH
+
+Ca-Cd-Cd-Cd        1.1          180.          2.
+Ca-Cd-Cd-Co        1.1          180.          2.
+Ca-Cd-Cd-Hd        1.1          180.          2.
+Ca-cH-cN-cH        1.1          180.          2.
+Cd-Co-Cd-Hd        1.1          180.          2.
+Cd-Hx-Cx-Oz        10.5          180.          2.
+Cd-Oc-Ca-Oc        1.1          180.          2.
+Cd-Oc-Ca-OM        1.1          180.          2.
+Cd-cH-cN-cH        1.1          180.          2.
+Cd-cN-Cd-Hd        1.1          180.          2.
+Ce-Hx-Cx-Oz        10.5          180.          2.
+Ce-cH-cN-cH        1.1          180.          2.
+Cm-Oc-Ca-OM        1.1          180.          2.
+Co-Oc-Ca-Oc        1.1          180.          2.
+Co-cH-cN-cH        1.1          180.          2.
+Co-cN-cH-cH        1.1          180.          2.
+Co-cN-cH-cM        1.1          180.          2.
+Co-cN-cH-co        1.1          180.          2.
+Cr-cE-cN-cH        1.1          180.          2.
+Ct-cH-cN-cH        1.1          180.          2.
+Cx-Cd-Cd-Hd        1.1          180.          2.
+HR-cH-cH-cH        1.1          180.          2.
+Oe-Cx-Oz-Co        10.5          180.          2.
+cE-cH-cE-Oe        1.1          180.          2.
+cE-cH-cH-HR        1.1          180.          2.
+cE-cH-cM-Om        1.1          180.          2.
+cE-cH-cN-cN        1.1          180.          2.
+cH-cE-cE-Oe        1.1          180.          2.
+cH-cE-cH-HR        1.1          180.          2.
+cH-cE-cM-Om        1.1          180.          2.
+cH-cE-co-Oc        1.1          180.          2.
+cH-cE-co-Oe        1.1          180.          2.
+cH-cH-cE-Oe        1.1          180.          2.
+cH-cH-cN-cN        1.1          180.          2.
+cH-cH-co-Oc        10.5          180.          2.
+cH-cM-cH-HR        1.1          180.          2.
+cH-cN-cE-Oe        1.1          180.          2.
+cH-cN-cH-Cr        1.1          180.          2.
+cH-cN-cH-HR        1.1          180.          2.
+cH-cN-co-Oc        1.1          180.          2.
+cH-co-cH-HR        1.1          180.          2.
+cH-co-cM-Om        1.1          180.          2.
+cH-co-co-Oc        1.1          180.          2.
+cH-co-co-Om        1.1          180.          2.
+cM-cE-co-Oc        1.1          180.          2.
+cM-cH-cE-Oe        1.1          180.          2.
+cM-cH-co-Oc        1.1          180.          2.
+cM-cM-cE-Oe        1.1          180.          2.
+cM-cM-co-Oc        1.1          180.          2.
+cM-cN-cE-Oe        1.1          180.          2.
+cM-cN-co-Oc        1.1          180.          2.
+cN-Cd-Cd-Hd        1.1          180.          2.
+cN-Hx-Cx-Oz        10.5          180.          2.
+cN-Oc-Ca-OM        1.1          180.          2.
+cN-Oc-Ca-Oc        10.5          180.          2.
+cN-cE-cH-HR        1.1          180.          2.
+cN-cE-cN-cH        1.1          180.          2.
+cN-cH-cH-HR        1.1          180.          2.
+cN-cH-cN-OM        1.1          180.          2.
+cN-cH-cN-Oz        10.5          180.          2.
+cN-cM-cH-HR        1.1          180.          2.
+cN-cN-cH-HR        1.1          180.          2.
+cN-co-cH-HR        1.1          180.          2.
+cN-co-cN-cH        1.1          180.          2.
+cN-co-cN-cN        1.1          180.          2.
+co-cE-co-Oc        1.1          180.          2.
+co-cH-cE-Oe        1.1          180.          2.
+co-cH-cH-HR        1.1          180.          2.
+co-cH-cM-Oc        1.1          180.          2.
+co-cH-cM-Om        1.1          180.          2.
+co-cH-cN-cN        1.1          180.          2.
+co-cH-co-Oc        1.1          180.          2.
+co-cM-cE-Oe        1.1          180.          2.
+co-cM-co-Oc        1.1          180.          2.
+co-cN-cE-Oe        1.1          180.          2.
+co-cN-cH-HR        1.1          180.          2.
+co-cN-co-Oc        1.1          180.          2.
+co-co-cH-HR        1.1          180.          2.
+co-co-co-HR        1.1          180.          2.
+Cv-Cd-Cd-Cd        1.1          180.          2.
+Cv-Cd-Cd-Co        1.1          180.          2.
+Cv-Cd-Cd-Hd        1.1          180.          2.
+Cv-cH-cN-cH        1.1          180.          2.
+Cd-Oc-Cv-Oc        1.1          180.          2.
+Cd-Oc-Cv-OM        1.1          180.          2.
+Cm-Oc-Cv-OM        1.1          180.          2.
+Co-Oc-Cv-Oc        1.1          180.          2.
+cN-Oc-Cv-OM        1.1          180.          2.
+cN-Oc-Cv-Oc        10.5          180.          2.
+Cx-cE-cN-cH        1.1          180.          2.
+cH-cN-cH-Cx        1.1          180.          2.
+cE-cH-cM-OM        1.1          180.          2.
+cH-cE-cM-OM        1.1          180.          2.
+cH-co-cM-OM        1.1          180.          2.
+co-cH-cM-OM        1.1          180.          2.
+cH-co-co-OM        1.1          180.          2.
+
+   hw  ow  0000.     0000.                                4.  flag for fast water
+
+
+ MOD4      RE
+  Ca          1.9080  0.0860
+  Cb          1.9080  0.1094
+  Cd          1.9080  0.0860
+  Ce          1.9080  0.1094
+  Cm          1.9080  0.1094
+  Co          1.9080  0.1094
+  Cr          1.9080  0.1094
+  Ct          1.9080  0.1094
+  Cx          1.9080  0.0860
+  HR          1.4590  0.0150
+  Hd          1.4590  0.0150
+  Hm          1.3870  0.0157
+  Hq          0.0000  0.0000
+  Hr          1.3870  0.0157
+  Hx          1.4090  0.0150
+  Oc          1.7210  0.2104
+  Oe          1.6837  0.1700
+  Om          1.6837  0.1700
+  Oz          1.6612  0.2100
+  cE          1.9080  0.0860
+  cH          1.9080  0.0860
+  cM          1.9080  0.0860
+  cN          1.9080  0.0860
+  co          1.9080  0.0860
+  Cv          1.9080  0.0860
+  Cx          1.9080  0.1094
+  Cr          1.9080  0.1094
+  Cd          1.9080  0.0860
+  OM          1.6837  0.1700
+
+END
