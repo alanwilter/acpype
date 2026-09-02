@@ -11,11 +11,11 @@ keywords = ["acpype", "amber", "gromacs"]
 classifiers = [
   "Intended Audience :: Science/Research",
   "Natural Language :: English",
-  "Typing :: Typed",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
   "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Typing :: Typed",
 ]
 dependencies = ["openbabel-wheel>=3.1.1.23"]
 
@@ -36,6 +36,13 @@ dev = [
   { include-group = "test" },
   { include-group = "tools" },
 ]
+docs = [
+  "doc8>=2.0.0",
+  "esbonio>=2.1.0",
+  "rstcheck>=6.3.0",
+  "sphinx>=9.1.0",
+  "sphinx-rtd-theme>=3.1.0",
+]
 lint = ["ruff>=0.16.4", "ty>=0.0.74"]
 test = [
   "ipdb>=0.13.13",
@@ -46,13 +53,6 @@ test = [
   "pytest-xdist>=3.8.0",
 ]
 tools = ["pre-commit>=4.6.2", "rust-just", "wheel>=0.48.0"]
-docs = [
-  "doc8>=2.0.0",
-  "esbonio>=2.1.0",
-  "rstcheck>=6.3.0",
-  "sphinx>=9.1.0",
-  "sphinx-rtd-theme>=3.1.0",
-]
 
 [build-system]
 requires = ["uv_build>=0.9.0,<0.13.0"]
@@ -80,17 +80,7 @@ exclude_also = [
 ]
 
 [tool.pytest]
-addopts = [
-  "--cov-branch",
-  "--cov-report=term-missing:skip-covered",
-  "--cov-report=xml",
-  "--cov=acpype/",
-  "--cov=tests/",
-  "--dist=loadscope",
-  "--durations=5",
-  "-n",
-  "0"
-]
+addopts = ["--cov-branch", "--cov-report=term-missing:skip-covered", "--cov-report=xml", "--cov=acpype/", "--cov=tests/", "--dist=loadscope", "--durations=5", "-n", "0"]
 filterwarnings = []
 testpaths = ["tests"]
 
@@ -194,14 +184,11 @@ error-on-warning = true
 [tool.uv]
 # Single source for the uv version: `astral-sh/setup-uv` reads this too, so CI and
 # local development cannot drift. Bump it here and both follow.
-required-version = "==0.12.9"
+required-version = ">=0.12.9"
 exclude-newer = "7 days"
 package = true
 default-groups = ["dev"]
-cache-keys = [
-  { file = "pyproject.toml" },
-  { git = { commit = true, tags = true } }
-]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
 
 [tool.uv.build-backend]
 # Flat layout: the `acpype` package lives at the repository root, not under src/.
