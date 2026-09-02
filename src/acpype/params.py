@@ -64,7 +64,14 @@ epilog = """
     root_CNS.inp      :  run parameters file for CNS/XPLOR
     root_CHARMM.rtf   :  topology file for CHARMM
     root_CHARMM.prm   :  parameter file for CHARMM
-    root_CHARMM.inp   :  run parameters file for CHARMM"""
+    root_CHARMM.inp   :  run parameters file for CHARMM
+
+    note: only 'sqm' is bundled with acpype. '-q mopac' and '-q divcon' need a
+          full external AmberTools, with AMBERHOME pointing at it: antechamber
+          runs them through its own mopac.sh/divcon wrappers, which neither the
+          bundled AmberTools nor conda-forge's ambertools package provides. For
+          an open-shell system sqm cannot handle, computing the charges
+          elsewhere and reading them back with '-c user' is usually easier."""
 
 TLEAP_TEMPLATE = """
 verbosity 1

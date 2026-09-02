@@ -36,7 +36,13 @@ class AtomType(StrEnum):
 
 
 class QProg(StrEnum):
-    """Quantum programs usable for am1-bcc charges."""
+    """Quantum programs usable for am1-bcc charges.
+
+    Only ``sqm`` is usable out of the box. ``mopac`` and ``divcon`` are kept for
+    compatibility but need a full external AmberTools: antechamber drives them
+    through its own ``mopac.sh``/``divcon`` wrapper scripts, which are absent from
+    the AmberTools bundled here and from conda-forge's ``ambertools`` package.
+    """
 
     mopac = "mopac"
     sqm = "sqm"
@@ -120,7 +126,14 @@ def main(
         AtomType,
         typer.Option("-a", "--atom_type", help="atom type; amber is AMBER14SB, amber2 is AMBER14SB + GAFF2"),
     ] = AtomType.gaff2,
-    qprog: Annotated[QProg, typer.Option("-q", "--qprog", help="am1-bcc flag")] = QProg.sqm,
+    qprog: Annotated[
+        QProg,
+        typer.Option(
+            "-q",
+            "--qprog",
+            help="am1-bcc engine; only sqm is bundled, mopac and divcon need an external AmberTools",
+        ),
+    ] = QProg.sqm,
     keyword: Annotated[str | None, typer.Option("-k", "--keyword", help="mopac or sqm keyword, inside quotes")] = None,
     force: Annotated[bool, typer.Option("-f", "--force", help="force topologies recalculation anew")] = False,
     debug: Annotated[

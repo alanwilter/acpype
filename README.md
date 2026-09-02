@@ -129,6 +129,14 @@ write (`all`, `gmx`, `cns`, `charmm`), and `-r` the antechamber atom/bond type
 prediction index if the default perception struggles with your molecule. Run
 `acpype -h` for the full list and for what every output file is.
 
+A note on `-q`, the quantum engine behind `bcc` and `abcg2` charges: only `sqm` is
+bundled with ACPYPE. `-q mopac` and `-q divcon` are still accepted, but they need a
+full external AmberTools with `AMBERHOME` pointing at it, because `antechamber` drives
+them through its own `mopac.sh`/`divcon` wrapper scripts — and neither the AmberTools
+bundled here nor conda-forge's `ambertools` package ships those. For an open-shell
+system that `sqm` cannot converge, computing the charges elsewhere and reading them
+back from a `mol2` with `-c user` is usually the easier route.
+
 ##### Introduction
 
 We now have an up-to-date _web service_ at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` functionality).
