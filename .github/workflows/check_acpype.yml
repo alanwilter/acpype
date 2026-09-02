@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - "acpype/**"
+      - "src/**"
       - "tests/**"
       - "pyproject.toml"
       - "uv.lock"
@@ -54,8 +54,8 @@ jobs:
         run: |
           echo "PYTEST_ADDOPTS=--random-order" >> $GITHUB_ENV
           echo "DEBIAN_FRONTEND=noninteractive" >> $GITHUB_ENV
-          echo "AMBERHOME=$PWD/acpype/amber_linux" >> $GITHUB_ENV
-          echo "$PWD/acpype/amber_linux/bin" >> $GITHUB_PATH
+          echo "AMBERHOME=$PWD/src/acpype/amber_linux" >> $GITHUB_ENV
+          echo "$PWD/src/acpype/amber_linux/bin" >> $GITHUB_PATH
 
       - name: Install system dependencies
         # Libraries the vendored AmberTools bundle deliberately takes from the host
@@ -73,7 +73,7 @@ jobs:
       - name: Check the vendored AmberTools bundle loads
         run: |
           which antechamber
-          uv run python scripts/check_amber_bundle.py acpype/amber_linux
+          uv run python scripts/check_amber_bundle.py src/acpype/amber_linux
 
       - name: Run Ruff
         run: |

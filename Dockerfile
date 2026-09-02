@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # run_acpype.py imports `acpype` from its own directory, so both must sit in /home.
 COPY run_acpype.py /home/
-COPY acpype /home/acpype
+COPY src/acpype /home/acpype
 # Repository files carry restrictive owner-only permissions; the image runs as a
 # non-root user, so make the launcher and the bundled binaries world-readable.
 RUN chmod -R a+rX /home/acpype /home/run_acpype.py \

@@ -32,7 +32,7 @@ pre-commit install
 pre-commit run -a
 
 sys=$(perl -e '`uname` eq "Darwin\n" ? print "macos" : print "linux"')
-cp ./acpype/amber_${sys}/bin/charmmgen $(dirname $(which antechamber))
+cp ./src/acpype/amber_${sys}/bin/charmmgen $(dirname $(which antechamber))
 
 git config user.email _email_ # as seen in 'gpg --list-secret-keys --keyid-format=long'
 
@@ -40,8 +40,17 @@ git config user.signingkey _singing_key_ # as seen in 'gpg --list-secret-keys --
 
 git config commit.gpgsign true
 
-uv run pytest --cov=tests --cov=acpype --cov-report=term-missing:skip-covered --cov-report=xml
+uv run pytest --cov=tests --cov=src --cov-report=term-missing:skip-covered --cov-report=xml
 ```
+
+### Layout
+
+The package lives at `src/acpype/`, including the vendored AmberTools under
+`src/acpype/amber_{linux,macos}`. A `src/` layout means the installed package is what
+the tests import, rather than whatever happens to be in the working directory.
+
+Note that paths *inside* the built wheel are still `acpype/...` -- `src` is a source
+layout, not part of the importable name.
 
 ### Common tasks
 
@@ -74,7 +83,7 @@ uv audit                   # dependency vulnerability audit
 ```
 
 `ty` runs in CI and as a `pre-commit` hook, and the tree is expected to stay free of
-diagnostics. `acpype/amber_linux`, `acpype/amber_macos`, `legacy` and `recipe` are
+diagnostics. `src/acpype/amber_linux`, `src/acpype/amber_macos`, `legacy` and `recipe` are
 excluded from it (see `[tool.ty.src]` in `pyproject.toml`).
 
 ### Running the tests
@@ -145,7 +154,7 @@ If using `VSCode`:
   explicitly in `.vscode/settings.json`). No extra configuration is needed.
 
   Note that `ambertools`, `gromacs` and `openbabel` are **not** installed into `.venv`:
-  `acpype` ships its own `antechamber` under `acpype/amber_${sys}`, and the rest come
+  `acpype` ships its own `antechamber` under `src/acpype/amber_${sys}`, and the rest come
   from the `conda` environment. If you need those on your `PATH`, run the tests from an
   activated `conda activate acpype` shell -- `uv run` will still use `.venv` for the
   Python dependencies.

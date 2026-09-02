@@ -52,7 +52,7 @@ docs:
 
 # Confirm every executable in a vendored AmberTools bundle still loads
 check-bundle SYS=os():
-    uv run python scripts/check_amber_bundle.py acpype/amber_{{ if SYS == "macos" { "macos" } else { "linux" } }}
+    uv run python scripts/check_amber_bundle.py src/acpype/amber_{{ if SYS == "macos" { "macos" } else { "linux" } }}
 
 # Re-vendor AmberTools for macOS (needs conda/mamba, must run on macOS)
 vendor-macos:

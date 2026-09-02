@@ -68,7 +68,7 @@ build_macos() {
     python3 -c "$patch_py" "$src/charmmgen.c"
 
     echo ">>> macOS: building universal (arm64 + x86_64)"
-    local stage_bin="$workdir/stage/acpype/amber_macos/bin"
+    local stage_bin="$workdir/stage/src/acpype/amber_macos/bin"
     mkdir -p "$stage_bin"
     (
         cd "$src"
@@ -78,7 +78,7 @@ build_macos() {
     strip -S "$stage_bin/charmmgen"
     codesign -f -s - "$stage_bin/charmmgen"
 
-    tar czf "$outdir/charmmgen_macos.tgz" -C "$workdir/stage" acpype/amber_macos/bin/charmmgen
+    tar czf "$outdir/charmmgen_macos.tgz" -C "$workdir/stage" src/acpype/amber_macos/bin/charmmgen
     file "$stage_bin/charmmgen"
     echo ">>> Wrote $outdir/charmmgen_macos.tgz"
 }
@@ -96,7 +96,7 @@ EOF
     local workdir
     workdir="$(mktemp -d)"
     trap 'rm -rf "$workdir"' RETURN
-    mkdir -p "$workdir/acpype/amber_linux/bin"
+    mkdir -p "$workdir/src/acpype/amber_linux/bin"
     printf '%s' "$patch_py" > "$workdir/patch.py"
 
     docker run --rm --platform linux/amd64 -v "$workdir":/out "$image" bash -c '
@@ -105,12 +105,12 @@ EOF
         git -C /src sparse-checkout set src/antechamber >/dev/null 2>&1
         cd /src/src/antechamber
         python3 /out/patch.py charmmgen.c
-        gcc -O2 -o /out/acpype/amber_linux/bin/charmmgen charmmgen.c eprintf.c -lm
-        strip /out/acpype/amber_linux/bin/charmmgen
+        gcc -O2 -o /out/src/acpype/amber_linux/bin/charmmgen charmmgen.c eprintf.c -lm
+        strip /out/src/acpype/amber_linux/bin/charmmgen
     '
 
     rm -f "$workdir/patch.py"
-    tar czf "$outdir/charmmgen_linux.tgz" -C "$workdir" acpype/amber_linux/bin/charmmgen
+    tar czf "$outdir/charmmgen_linux.tgz" -C "$workdir" src/acpype/amber_linux/bin/charmmgen
     echo ">>> Wrote $outdir/charmmgen_linux.tgz"
 }
 

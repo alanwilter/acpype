@@ -12,7 +12,7 @@ set -euo pipefail
 amber_version="${AMBERTOOLS_VERSION:-26}"
 env_name="ambertools"
 source="$HOME/mambaforge/envs/${env_name}"
-destination="acpype/amber_macos"
+destination="src/acpype/amber_macos"
 
 if mamba env list | grep -q " $env_name "; then
     if [[ "${1:-}" == "-f" ]]; then

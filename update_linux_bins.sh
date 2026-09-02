@@ -12,7 +12,7 @@
 set -euo pipefail
 
 amber_version="${AMBERTOOLS_VERSION:-26}"
-destination="acpype/amber_linux"
+destination="src/acpype/amber_linux"
 image="acpype-ambertools-linux:${amber_version}"
 
 docker build --platform linux/amd64 -t "$image" - <<EOF

@@ -88,7 +88,7 @@ def main(argv: list[str] | None = None) -> int:
         Process exit status: non-zero if any executable failed to load.
     """
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("root", type=Path, help="bundle to check, e.g. acpype/amber_linux")
+    parser.add_argument("root", type=Path, help="bundle to check, e.g. src/acpype/amber_linux")
     args = parser.parse_args(argv)
 
     if not (args.root / "bin").is_dir():

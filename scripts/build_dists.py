@@ -147,10 +147,10 @@ def build_slim_sdist(outdir: Path) -> Path:
             slim.unlink()
         with tarfile.open(fat) as src, tarfile.open(slim, "w:gz") as dst:
             for member in src:
-                # Members look like `acpype-<version>/acpype/amber_linux/...`; drop the
-                # tree's own directory entry as well as everything beneath it.
+                # Members look like `acpype-<version>/src/acpype/amber_linux/...`;
+                # drop the tree's own directory entry as well as everything beneath it.
                 parts = member.name.split("/")
-                if len(parts) > 2 and parts[1] == "acpype" and parts[2] in ALL_TREES:
+                if len(parts) > 3 and parts[1:3] == ["src", "acpype"] and parts[3] in ALL_TREES:
                     continue
                 dst.addfile(member, src.extractfile(member) if member.isfile() else None)
         return slim

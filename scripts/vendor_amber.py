@@ -220,7 +220,7 @@ def main(argv: list[str] | None = None) -> int:
         required=True,
         help="conda environment holding AmberTools",
     )
-    parser.add_argument("--dest", type=Path, required=True, help="target, e.g. acpype/amber_linux")
+    parser.add_argument("--dest", type=Path, required=True, help="target, e.g. src/acpype/amber_linux")
     parser.add_argument("--macos", action="store_true", default=platform.system() == "Darwin")
     args = parser.parse_args(argv)
 

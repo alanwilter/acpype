@@ -1,6 +1,6 @@
 # Vendored AmberTools and the retired CCPN bridge are upstream content: no hook
 # may rewrite them, or a re-vendor silently diverges from what AmberTools ships.
-exclude: ^(acpype/amber_(linux|macos)/|legacy/)
+exclude: ^(src/acpype/amber_(linux|macos)/|legacy/)
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

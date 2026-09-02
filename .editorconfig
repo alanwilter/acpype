@@ -24,7 +24,7 @@ indent_style = space
 indent_size = 4
 
 # Vendored AmberTools is upstream content: never touch its whitespace or line endings.
-[acpype/amber_*/**]
+[src/acpype/amber_*/**]
 charset = unset
 end_of_line = unset
 indent_style = unset

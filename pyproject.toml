@@ -62,8 +62,8 @@ build-backend = "uv_build"
 omit = [
   "__main__.py",
   # Vendored AmberTools ships a few Python helpers that ACPYPE never imports.
-  "acpype/amber_linux/*",
-  "acpype/amber_macos/*",
+  "src/acpype/amber_linux/*",
+  "src/acpype/amber_macos/*",
 ]
 fail_under = 90  # minimum coverage required, but aim for 100% though
 exclude_also = [
@@ -80,7 +80,7 @@ exclude_also = [
 ]
 
 [tool.pytest]
-addopts = ["--cov-branch", "--cov-report=term-missing:skip-covered", "--cov-report=xml", "--cov=acpype/", "--cov=tests/", "--dist=loadscope", "--durations=5", "-n", "0"]
+addopts = ["--cov-branch", "--cov-report=term-missing:skip-covered", "--cov-report=xml", "--cov=src/", "--cov=tests/", "--dist=loadscope", "--durations=5", "-n", "0"]
 filterwarnings = []
 testpaths = ["tests"]
 
@@ -89,7 +89,7 @@ target-version = "py312"
 line-length = 120
 # Vendored AmberTools and the retired CCPN bridge are upstream content, never ours to
 # lint or reformat.
-extend-exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy"]
+extend-exclude = ["src/acpype/amber_linux", "src/acpype/amber_macos", "legacy"]
 
 [tool.ruff.format]
 docstring-code-format = true
@@ -174,9 +174,9 @@ convention = "google"
 python = ".venv"
 
 [tool.ty.src]
-include = ["acpype", "scripts", "tests"]
+include = ["src", "scripts", "tests"]
 # Vendored AmberTools, the retired CCPN bridge and the conda recipe are not ours.
-exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy", "recipe"]
+exclude = ["src/acpype/amber_linux", "src/acpype/amber_macos", "legacy", "recipe"]
 
 [tool.ty.terminal]
 error-on-warning = true
@@ -191,10 +191,8 @@ default-groups = ["dev"]
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
 
 [tool.uv.build-backend]
-# Flat layout: the `acpype` package lives at the repository root, not under src/.
-module-root = ""
 module-name = "acpype"
-# The package ships ~110 MB of AmberTools binaries, so everything under acpype/
+# The package ships ~110 MB of AmberTools binaries, so everything under src/acpype/
 # is included by default. Guard against local tool caches leaking into a release.
 source-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]
 wheel-exclude = ["**/.DS_Store", "**/.mypy_cache", "**/.pytest_cache", "**/.ruff_cache"]

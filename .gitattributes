@@ -1,5 +1,5 @@
 # GitHub language detection
-acpype/amber*/**     linguist-vendored
+src/acpype/amber*/**     linguist-vendored
 # Vendored upstream content: store bytes exactly as AmberTools ships them,
 # rather than letting git normalise line endings in its data files.
-acpype/amber*/**     -text
+src/acpype/amber*/**     -text

@@ -3,7 +3,7 @@ Shared pytest fixtures.
 
 To run:
 pytest
-pytest --cov=acpype --cov-report=term-missing:skip-covered
+pytest --cov=src --cov-report=term-missing:skip-covered
 """
 
 import os

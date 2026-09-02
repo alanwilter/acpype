@@ -145,7 +145,7 @@ def main(argv: list[str] | None = None) -> int:
         Process exit status.
     """
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("root", type=Path, nargs="?", default=Path("acpype/amber_macos"))
+    parser.add_argument("root", type=Path, nargs="?", default=Path("src/acpype/amber_macos"))
     parser.add_argument(
         "-n",
         "--dry-run",
