@@ -15,7 +15,6 @@ on:
       - ".github/workflows/check_acpype.yml"
   # Lets the suite be run against any branch from the Actions tab, without a PR.
   workflow_dispatch:
-  workflow_call:
 
 permissions:
   contents: read
@@ -103,13 +102,14 @@ jobs:
 
   release:
     needs: check-test
-    # Only for real pushes; when release.yml reuses this workflow there is no commit
-    # message to inspect and nothing to tag.
+    # Only for real pushes: the magic words live in the head commit message.
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
       contents: write
+    outputs:
+      tag: ${{ steps.vdate.outputs.adate }}
     steps:
       - name: Get current date
         id: vdate
@@ -138,3 +138,19 @@ jobs:
           name: Release ${{ steps.vdate.outputs.adate }}
           draft: false
           prerelease: false
+
+  publish:
+    # A Release created above by GITHUB_TOKEN raises no event that can start
+    # release.yml, so publishing has to happen here, in the same run.
+    needs: [release]
+    if: >-
+      github.event_name == 'push'
+      && github.ref == 'refs/heads/main'
+      && contains(github.event.head_commit.message, 'new_release')
+    uses: ./.github/workflows/publish.yml
+    with:
+      tag: ${{ needs.release.outputs.tag }}
+    permissions:
+      contents: write
+      id-token: write
+    secrets: inherit

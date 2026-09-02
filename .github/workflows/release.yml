@@ -1,13 +1,15 @@
 name: release
 
-# Publishing runs only when a GitHub Release is published -- which the `new_release`
-# path in check_acpype.yml does, or you can cut one by hand. The full check suite is
-# re-run first, so nothing reaches PyPI that has not passed ruff, ty, the dependency
-# audit and the tests at >=90% coverage.
+# Fallback path: publishes when a GitHub Release is created by a person.
 #
-# There is deliberately no `workflow_dispatch`: it would be the only way to publish
-# from an arbitrary branch, and the `pypi` environment restricts deployments to release
-# tags anyway. Building the distributions is already covered on every CI run.
+# The normal path is a commit to main whose message contains `new_release`, which makes
+# check_acpype.yml tag, release *and* publish in a single run. That exists because a
+# Release created by GITHUB_TOKEN raises no event capable of starting another workflow,
+# so the automated path can never rely on this one firing.
+#
+# The tag always points at a commit that already passed check_acpype on main, so the
+# suite is not re-run here. Re-running it would mean nesting a workflow call, which
+# cannot request more permissions than its caller grants.
 
 on:
   release:
@@ -17,104 +19,15 @@ permissions:
   contents: read
 
 concurrency:
-  group: release
+  group: publish-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
-  verify:
-    uses: ./.github/workflows/check_acpype.yml
-
   publish:
-    needs: [verify]
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    environment:
-      name: pypi
-      url: https://pypi.org/p/acpype
+    uses: ./.github/workflows/publish.yml
+    with:
+      tag: ${{ github.ref_name }}
     permissions:
-      # Job-level permissions replace the defaults, so every scope needed must be
-      # listed: checkout and the release upload need contents, OIDC needs id-token.
       contents: write
-      # PyPI trusted publishing (OIDC) -- no API token is stored anywhere.
       id-token: write
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Install uv
-        # setup-uv stopped maintaining floating major tags after v7, so this is
-        # pinned to an exact release; Dependabot keeps it current.
-        uses: astral-sh/setup-uv@v10.0.1
-        with:
-          # Version comes from `required-version` in pyproject.toml.
-          enable-cache: true
-          cache-dependency-glob: "uv.lock"
-
-      - name: Install project
-        run: uv sync --locked
-
-      - name: Build the platform wheels
-        # One wheel per platform: a combined wheel is ~129 MB, over PyPI's 100 MB
-        # per-file limit. The script fails if either wheel exceeds it.
-        #
-        # No sdist is published: it carries both vendored AmberTools trees and comes
-        # to ~121 MB, so it cannot be uploaded either. Platforms without a wheel
-        # should install via conda.
-        run: uv run python scripts/build_dists.py --out-dir dist
-
-      - name: Check the version matches the release tag
-        run: |
-          version=$(uv run python -c "import acpype; print(acpype.__version__)")
-          tag="${GITHUB_REF_NAME}"
-          echo "package version: ${version}   release tag: ${tag}"
-          if [ "${version}" != "${tag}" ]; then
-            echo "::error::package version ${version} does not match release tag ${tag}"
-            exit 1
-          fi
-
-      - name: List distributions
-        run: ls -la dist/
-
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-
-      - name: Attach wheels to the GitHub Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${GITHUB_REF_NAME}" dist/*.whl --clobber
-
-  docker:
-    # Runs after PyPI so a release that failed to publish does not leave a Docker
-    # image behind. Docker Hub has no OIDC equivalent, so this one needs secrets.
-    needs: [verify, publish]
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    environment:
-      name: dockerhub
-      url: https://hub.docker.com/r/acpype/acpype
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Set up Buildx
-        uses: docker/setup-buildx-action@v4
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v4
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          # The vendored AmberTools is linux x86_64 only, so there is no point
-          # building other architectures.
-          platforms: linux/amd64
-          push: true
-          tags: |
-            acpype/acpype:latest
-            acpype/acpype:${{ github.ref_name }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+    secrets: inherit
