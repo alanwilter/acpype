@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 
 import pytest
@@ -311,7 +312,9 @@ def test_args_wrong_inputs(janitor, capsys, monkeypatch, argv, code, msg):
     with pytest.raises(SystemExit) as e_info:
         init_main(argv=argv)
     captured = capsys.readouterr()
-    assert msg in captured.err + captured.out
+    # Belt and braces: assert on the text, not on however it happened to be rendered.
+    output = re.sub(r"\x1b\[[0-9;]*m", "", captured.err + captured.out)
+    assert msg in output
     assert e_info.typename == "SystemExit"
     assert e_info.value.code == code
     _getoutput("rm -vfr vir_temp* .*vir_temp*")

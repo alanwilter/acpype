@@ -68,8 +68,8 @@ For `Antechamber`, please cite:
 > 1. WANG, J., WANG, W., KOLLMAN, P. A., and CASE, D. A. Automatic atom type and
 >    bond type perception in molecular mechanical calculations. Journal of Molecular
 >    Graphics and Modelling 25, 2 (2006), 247–260. Doi: [10.1016/j.jmgm.2005.12.005](https://doi.org/10.1016/j.jmgm.2005.12.005)
-
-> 2. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
+>
+> 1. WANG, J., WOLF, R. M., CALDWELL, J. W., KOLLMAN, P. A., and CASE, D. A.
 >    Development and testing of a General Amber Force Field. Journal of Computational
 >    Chemistry 25, 9 (2004), 1157–1174. Doi: [10.1002/jcc.20035](https://doi.org/10.1002/jcc.20035)
 
@@ -122,11 +122,11 @@ There are several ways of obtaining `acpype`:
    `acpype` ships the `AmberTools` binaries it needs (currently **AmberTools 26**) as
    platform-specific wheels:
 
-   | Platform | Wheel | Batteries included |
-   | --- | --- | --- |
-   | Linux `x86_64`, glibc >= 2.35 (Ubuntu 22.04+, Debian 12+) | `manylinux_2_35_x86_64` | yes |
-   | macOS Apple Silicon, macOS 11+ | `macosx_11_0_arm64` | yes |
-   | anything else (Intel macOS, Linux `aarch64`, Windows) | source distribution | no -- supply your own `AmberTools` |
+   | Platform                                                  | Wheel                   | Batteries included                 |
+   | --------------------------------------------------------- | ----------------------- | ---------------------------------- |
+   | Linux `x86_64`, glibc >= 2.35 (Ubuntu 22.04+, Debian 12+) | `manylinux_2_35_x86_64` | yes                                |
+   | macOS Apple Silicon, macOS 11+                            | `macosx_11_0_arm64`     | yes                                |
+   | anything else (Intel macOS, Linux `aarch64`, Windows)     | source distribution     | no -- supply your own `AmberTools` |
 
    On a platform with no wheel, `pip` falls back to the source distribution, which is
    the same ACPYPE without the bundled binaries. It works fine against an `AmberTools`

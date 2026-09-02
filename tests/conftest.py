@@ -12,6 +12,12 @@ import tempfile
 from pathlib import Path
 from shutil import rmtree
 
+# typer reads this once, when `typer.rich_utils` is imported, so it has to be set
+# before anything pulls in acpype.cli -- a fixture would run far too late. Without it
+# CI renders usage errors in colour and rich highlights option names *inside* the
+# message, so "-i" becomes an escape-wrapped token.
+os.environ.setdefault("_TYPER_FORCE_DISABLE_TERMINAL", "1")
+
 import pytest
 
 from acpype import __version__ as version
@@ -21,11 +27,11 @@ TESTS_DIR = Path(__file__).parent
 
 @pytest.fixture(autouse=True)
 def _fixed_terminal_width(monkeypatch):
-    """Pin the width rich renders errors at.
+    """Pin the width rich wraps usage errors at.
 
-    typer draws usage errors in a rich panel wrapped to the terminal width, so a
-    narrow terminal splits a long message across lines and breaks any assertion that
-    looks for it as a substring. Pinning the width keeps those assertions stable.
+    typer draws them in a rich panel wrapped to the terminal width, so a narrow
+    terminal splits a long message and breaks any assertion looking for it as a
+    substring. Colour is handled separately, at module scope above.
     """
     monkeypatch.setenv("COLUMNS", "200")
     monkeypatch.setenv("TERMINAL_WIDTH", "200")
