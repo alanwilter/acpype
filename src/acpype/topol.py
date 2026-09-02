@@ -2167,7 +2167,7 @@ class AbstractTopol(abc.ABC):
                 % (
                     aTypeName,
                     aTypeName,
-                    0.0,
+                    aType.mass,
                     0.0,
                     sigma,
                     epsilon,

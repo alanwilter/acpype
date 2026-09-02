@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+from pathlib import Path
 
 import pytest
 from pytest import approx
@@ -79,6 +80,29 @@ def test_amber(janitor, force, at, ndih):
     assert len(molecule.molTopol.properDihedrals) == ndih
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=N3>>"
+    janitor.append(molecule.absHomeDir)
+    janitor.append(molecule.tmpDir)
+
+
+def test_gmx_atomtypes_mass(janitor):
+    """The GROMACS [ atomtypes ] block reports each type's real mass, not zero."""
+    molecule = ACTopol("benzene.pdb", chargeType="gas", debug=True, basename="vir_temp")
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule.molTopol is not None
+
+    itp = Path(molecule.absHomeDir) / "vir_temp_GMX.itp"
+    block = itp.read_text().split("[ atomtypes ]")[1].split("[ moleculetype ]")[0]
+    masses = {
+        parts[0]: float(parts[2])
+        for line in block.splitlines()
+        if (parts := line.split()) and not line.startswith(";") and len(parts) > 2
+    }
+    assert masses, "no atom types parsed from the itp"
+    assert all(m > 0 for m in masses.values()), f"zero mass in [ atomtypes ]: {masses}"
+    assert masses["ca"] == approx(12.01, abs=0.01)
+    assert masses["ha"] == approx(1.008, abs=0.01)
+
     janitor.append(molecule.absHomeDir)
     janitor.append(molecule.tmpDir)
 
