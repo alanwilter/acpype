@@ -115,22 +115,36 @@ There are several ways of obtaining `acpype`:
 
 2. Via **[PyPI](https://pypi.org/project/acpype/)**:
 
-   If you're using Linux with Intel processors then
-
    ```bash
    pip install acpype
    ```
 
-   is enough and you should have a complete solution. Oterwise ...
+   `acpype` ships the `AmberTools` binaries it needs (currently **AmberTools 26**) as
+   platform-specific wheels:
 
-   _(Make sure you have `AmberTools` and, optionally but highly recommended, `OpenBabel`)_
+   | Platform | Wheel | Batteries included |
+   | --- | --- | --- |
+   | Linux `x86_64`, glibc >= 2.35 (Ubuntu 22.04+, Debian 12+) | `manylinux_2_35_x86_64` | yes |
+   | macOS Apple Silicon, macOS 11+ | `macosx_11_0_arm64` | yes |
+   | anything else (Intel macOS, Linux `aarch64`, Windows) | none | no, use `conda` |
+
+   On those two platforms `pip install acpype` is a complete solution. A handful of
+   common system libraries are deliberately left to the host on Linux:
+
+   ```bash
+   # Ubuntu 22.04 / 24.04, Debian 12+ -- needed by the bundled AmberTools
+   apt-get install -y libgfortran5 libstdc++6 libgomp1 libblas3 liblapack3 libcurl4
+
+   # needed by the openbabel wheel that `pip install acpype` pulls in
+   apt-get install -y libxrender1 libxext6 libsm6
+   ```
+
+   Anywhere else, install `AmberTools` yourself and, optionally but highly
+   recommended, `OpenBabel`:
 
    ```bash
    # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
-
-   # Or for Ubuntu 20:
-   apt-get install -y openbabel python3-openbabel libarpack++2-dev libgfortran5
 
    pip install acpype
 
@@ -149,8 +163,8 @@ There are several ways of obtaining `acpype`:
    # You can use conda to get the needed 3rd parties for example
    conda create -n acpype --channel conda-forge ambertools openbabel
 
-   # Or for Ubuntu 20:
-   apt-get install -y openbabel python3-openbabel libarpack++2-dev libgfortran5
+   # Or for Ubuntu 22.04 / 24.04:
+   apt-get install -y openbabel python3-openbabel libgfortran5 libblas3 liblapack3
 
    git clone https://github.com/alanwilter/acpype.git
    ```

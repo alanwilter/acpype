@@ -6,7 +6,7 @@ If using `Linux` with Intel processors, you can skip the `conda` step and direct
 
 ### Setting `conda`
 
-For `Linux` (Ubuntu 20 recommended) and `macOS`. Anyway, `CONDA` is strongly recommended.
+For `Linux` (Ubuntu 22.04 or newer) and `macOS`. Anyway, `CONDA` is strongly recommended.
 Also recommended is GPG key, so do accordingly in [GitHub](https://docs.github.com/articles/generating-a-gpg-key/).
 
 ```bash
@@ -54,6 +54,19 @@ uv run ty check            # type check
 `ty` runs in CI and as a `pre-commit` hook, and the tree is expected to stay free of
 diagnostics. `acpype/amber_linux`, `acpype/amber_macos`, `legacy` and `recipe` are
 excluded from it (see `[tool.ty.src]` in `pyproject.toml`).
+
+### Running the tests
+
+Every test that touches the filesystem takes the `janitor` fixture, which gives it an
+empty working directory and links the test inputs in by name. Nothing is written into
+`tests/`, and two `pytest` runs can happen at once without colliding -- ACPYPE and
+antechamber both scatter scratch files through the working directory, so sharing one
+would make runs fail unpredictably.
+
+If you add a test that reads an input file or runs `acpype`, take `janitor` too.
+
+Coverage settings live in `[tool.pytest]`, so a plain `uv run pytest` already produces
+the same report CI does, including the `fail_under` gate in `[tool.coverage.report]`.
 
 ### Refreshing the vendored AmberTools
 
@@ -104,18 +117,29 @@ If using `VSCode`:
   activated `conda activate acpype` shell -- `uv run` will still use `.venv` for the
   Python dependencies.
 
+## Releasing
+
+`./release.sh -p` publishes to PyPI and `-d` builds and pushes the Docker images.
+
+The PyPI step calls `scripts/build_wheels.py`, which produces **one wheel per
+platform** rather than a single universal one. A combined wheel carries both vendored
+AmberTools trees and comes to roughly 129 MB, over PyPI's 100 MB per-file limit; split,
+they are about 49 MB (Linux) and 69 MB (macOS), and each installs only where its
+binaries can actually run. The script fails if either wheel creeps back over the limit,
+and CI builds them on every run so that cannot go unnoticed.
+
 ## For Documenting
 
-Using [Sphinx](https://www.sphinx-doc.org) with theme from `pip install sphinx-rtd-theme`.
+Using [Sphinx](https://www.sphinx-doc.org) with the Read the Docs theme; both come from
+the `docs` dependency group.
 
 Online documentation provided by [Read the Docs](http://acpype.readthedocs.io).
 
 To test it locally:
 
 ```bash
-cd docs/
-make clean
-make html
+uv run --group docs sphinx-build -b html docs docs/_build/html
 ```
 
-Then open `_build/html/index.html` in a browser.
+Then open `docs/_build/html/index.html` in a browser. The `docs/Makefile` route
+(`cd docs && make html`) also works from an environment with the `docs` group synced.
