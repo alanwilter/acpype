@@ -43,12 +43,30 @@ git config commit.gpgsign true
 uv run pytest --cov=tests --cov=acpype --cov-report=term-missing:skip-covered --cov-report=xml
 ```
 
-### Linting and type checking
+### Common tasks
+
+Recipes live in the `justfile`; `just` itself comes from the `rust-just` dev
+dependency, so `uv sync` provides it.
+
+```bash
+just              # list every recipe
+just qa           # format, lint --fix, type check, audit
+just ci           # the same checks without fixes, as CI runs them
+just test         # pytest (arguments are passed through)
+just build        # the per-platform wheels, with the PyPI size check
+just docs         # build the documentation
+just check-bundle # confirm the vendored AmberTools still loads
+just charmmgen    # rebuild charmmgen from AmberClassic
+just up           # upgrade dependencies, audit, rebuild
+```
+
+Or run the tools directly:
 
 ```bash
 uv run ruff check .        # lint
 uv run ruff format .       # format
 uv run ty check            # type check
+uv audit                   # dependency vulnerability audit
 ```
 
 `ty` runs in CI and as a `pre-commit` hook, and the tree is expected to stay free of

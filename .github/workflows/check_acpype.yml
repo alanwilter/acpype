@@ -72,6 +72,9 @@ jobs:
       - name: Type check with ty
         run: uv run ty check
 
+      - name: Audit dependencies
+        run: uv audit
+
       - name: Test with PyTest
         # Coverage flags live in [tool.pytest] addopts, including fail_under.
         run: uv run pytest --color=yes

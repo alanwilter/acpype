@@ -11,6 +11,7 @@ keywords = ["acpype", "amber", "gromacs"]
 classifiers = [
   "Intended Audience :: Science/Research",
   "Natural Language :: English",
+  "Typing :: Typed",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
@@ -31,17 +32,20 @@ acpype = "acpype.cli:init_main"
 
 [dependency-groups]
 dev = [
+  { include-group = "lint" },
+  { include-group = "test" },
+  { include-group = "tools" },
+]
+lint = ["ruff>=0.16.4", "ty>=0.0.74"]
+test = [
   "ipdb>=0.13.13",
   "pdbpp>=0.12.1",
-  "pre-commit>=4.6.2",
   "pytest>=9.1.1",
   "pytest-cov>=7.1.0",
   "pytest-random-order>=1.2.0",
   "pytest-xdist>=3.8.0",
-  "ruff>=0.16.4",
-  "ty>=0.0.74",
-  "wheel>=0.48.0",
 ]
+tools = ["pre-commit>=4.6.2", "rust-just", "wheel>=0.48.0"]
 docs = [
   "doc8>=2.0.0",
   "esbonio>=2.1.0",
@@ -166,6 +170,7 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["D", "S"]  # ["UP", "RUF", "I", "D", "E501"]
 "__init__.py" = ["D104"]
+"__main__.py" = ["D100"]
 # Maintenance scripts, not shipped in the wheel: they shell out freely by design.
 "scripts/*" = ["B006", "S307", "S603", "S605", "S607"]
 "recipe/*" = ["S102"]
@@ -185,8 +190,7 @@ include = ["acpype", "scripts", "tests"]
 exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy", "recipe"]
 
 [tool.ty.terminal]
-# TODO: re-enable once type annotations are added
-# error-on-warning = true
+error-on-warning = true
 
 [tool.uv]
 exclude-newer = "7 days"
