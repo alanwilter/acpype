@@ -32,22 +32,22 @@ acpype = "acpype.cli:init_main"
 [dependency-groups]
 dev = [
   "ipdb>=0.13.13",
-  "pdbpp>=0.11.6",
-  "pre-commit>=4.1",
-  "pytest>=8.3",
-  "pytest-cov>=6.0",
-  "pytest-random-order>=1.1",
-  "pytest-xdist>=3.6",
-  "ruff>=0.9",
+  "pdbpp>=0.12.1",
+  "pre-commit>=4.6.2",
+  "pytest>=9.1.1",
+  "pytest-cov>=7.1.0",
+  "pytest-random-order>=1.2.0",
+  "pytest-xdist>=3.8.0",
+  "ruff>=0.16.5",
   "ty>=0.0.77",
-  "wheel>=0.45",
+  "wheel>=0.48.0",
 ]
 docs = [
-  "doc8>=1.1.2",
-  "esbonio>=0.16.5",
-  "rstcheck>=6.2.4",
-  "sphinx>=8.1",
-  "sphinx-rtd-theme>=3.0",
+  "doc8>=2.0.0",
+  "esbonio>=2.1.0",
+  "rstcheck>=6.3.0",
+  "sphinx>=9.1.0",
+  "sphinx-rtd-theme>=3.1.0",
 ]
 
 [build-system]

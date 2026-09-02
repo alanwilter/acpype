@@ -41,22 +41,22 @@ requires-dist = [{ name = "openbabel-wheel", specifier = ">=3.1.1.19" }]
 [package.metadata.requires-dev]
 dev = [
     { name = "ipdb", specifier = ">=0.13.13" },
-    { name = "pdbpp", specifier = ">=0.11.6" },
-    { name = "pre-commit", specifier = ">=4.1" },
-    { name = "pytest", specifier = ">=8.3" },
-    { name = "pytest-cov", specifier = ">=6.0" },
-    { name = "pytest-random-order", specifier = ">=1.1" },
-    { name = "pytest-xdist", specifier = ">=3.6" },
-    { name = "ruff", specifier = ">=0.9" },
+    { name = "pdbpp", specifier = ">=0.12.1" },
+    { name = "pre-commit", specifier = ">=4.6.2" },
+    { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pytest-cov", specifier = ">=7.1.0" },
+    { name = "pytest-random-order", specifier = ">=1.2.0" },
+    { name = "pytest-xdist", specifier = ">=3.8.0" },
+    { name = "ruff", specifier = ">=0.16.5" },
     { name = "ty", specifier = ">=0.0.77" },
-    { name = "wheel", specifier = ">=0.45" },
+    { name = "wheel", specifier = ">=0.48.0" },
 ]
 docs = [
-    { name = "doc8", specifier = ">=1.1.2" },
-    { name = "esbonio", specifier = ">=0.16.5" },
-    { name = "rstcheck", specifier = ">=6.2.4" },
-    { name = "sphinx", specifier = ">=8.1" },
-    { name = "sphinx-rtd-theme", specifier = ">=3.0" },
+    { name = "doc8", specifier = ">=2.0.0" },
+    { name = "esbonio", specifier = ">=2.1.0" },
+    { name = "rstcheck", specifier = ">=6.3.0" },
+    { name = "sphinx", specifier = ">=9.1.0" },
+    { name = "sphinx-rtd-theme", specifier = ">=3.1.0" },
 ]
 
 [[package]]
