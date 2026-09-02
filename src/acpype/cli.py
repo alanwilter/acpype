@@ -22,6 +22,7 @@ class ChargeMethod(StrEnum):
 
     gas = "gas"
     bcc = "bcc"
+    abcg2 = "abcg2"
     user = "user"
 
 
@@ -89,7 +90,12 @@ def main(
         str | None, typer.Option("-p", "--prmtop", help="amber prmtop file name (always used with -x)")
     ] = None,
     charge_method: Annotated[
-        ChargeMethod, typer.Option("-c", "--charge_method", help="charge method ('user' reads the mol2 charges)")
+        ChargeMethod,
+        typer.Option(
+            "-c",
+            "--charge_method",
+            help="charge method: abcg2 is recommended for GAFF2, user reads charges from the mol2",
+        ),
     ] = ChargeMethod.bcc,
     net_charge: Annotated[
         int | None, typer.Option("-n", "--net_charge", help="net molecular charge; guessed when not given")

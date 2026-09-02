@@ -122,7 +122,8 @@ from LEaP, `acpype` converts them to GROMACS without needing AmberTools at all:
 acpype -p FFF_AC.prmtop -x FFF_AC.inpcrd
 ```
 
-Useful options for the first mode: `-c` charge method (`gas`, `bcc`, `user`), `-n` net
+Useful options for the first mode: `-c` charge method (`bcc`, `abcg2`, `gas`, `user`
+— `abcg2` is AmberTools' newer method, recommended for GAFF2), `-n` net
 charge, `-a` atom types (`gaff2`, `gaff`, `amber`, `amber2`), `-o` which topologies to
 write (`all`, `gmx`, `cns`, `charmm`), and `-r` the antechamber atom/bond type
 prediction index if the default perception struggles with your molecule. Run
