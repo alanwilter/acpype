@@ -13,6 +13,8 @@ on:
       - "pyproject.toml"
       - "uv.lock"
       - ".github/workflows/check_acpype.yml"
+  # Lets the suite be run against any branch from the Actions tab, without a PR.
+  workflow_dispatch:
   workflow_call:
 
 permissions:
