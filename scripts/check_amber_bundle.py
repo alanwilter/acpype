@@ -74,9 +74,7 @@ def loader_failure(path: Path, amberhome: Path) -> str | None:
     output = (result.stdout + result.stderr).decode("utf-8", errors="replace")
     for marker in LOADER_ERRORS:
         if marker in output:
-            return next(
-                (ln for ln in output.splitlines() if marker in ln), marker
-            ).strip()
+            return next((ln for ln in output.splitlines() if marker in ln), marker).strip()
     return None
 
 
@@ -89,12 +87,8 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         Process exit status: non-zero if any executable failed to load.
     """
-    parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
-    parser.add_argument(
-        "root", type=Path, help="bundle to check, e.g. acpype/amber_linux"
-    )
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("root", type=Path, help="bundle to check, e.g. acpype/amber_linux")
     args = parser.parse_args(argv)
 
     if not (args.root / "bin").is_dir():

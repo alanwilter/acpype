@@ -139,8 +139,7 @@ def get_option_parser():
         action="store",
         default=MAXTIME,
         dest="max_time",
-        help="max time (in sec) tolerance for sqm/mopac, default is %i hours"
-        % (MAXTIME // 3600),
+        help="max time (in sec) tolerance for sqm/mopac, default is %i hours" % (MAXTIME // 3600),
     )
     parser.add_argument(
         "-y",

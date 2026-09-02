@@ -38,8 +38,8 @@ dev = [
   "pytest-cov>=7.1.0",
   "pytest-random-order>=1.2.0",
   "pytest-xdist>=3.8.0",
-  "ruff>=0.16.5",
-  "ty>=0.0.77",
+  "ruff>=0.16.4",
+  "ty>=0.0.74",
   "wheel>=0.48.0",
 ]
 docs = [
@@ -92,6 +92,7 @@ testpaths = ["tests"]
 
 [tool.ruff]
 target-version = "py312"
+line-length = 120
 # Vendored AmberTools and the retired CCPN bridge are upstream content, never ours to
 # lint or reformat.
 extend-exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy"]
@@ -172,11 +173,6 @@ ignore = [
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.semantic_release]
-version_toml = ["pyproject.toml:project.version"]
-branch = "master"
-commit_message = "chore(release): {version}"
-
 [tool.ty]
 # All rules are enabled as "error" by default; no need to specify unless overriding.
 
@@ -193,7 +189,7 @@ exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy", "recipe"]
 # error-on-warning = true
 
 [tool.uv]
-# exclude-newer = "7 days"  # incompatible with pinning dev floors to the latest
+exclude-newer = "7 days"
 package = true
 default-groups = ["dev"]
 cache-keys = [

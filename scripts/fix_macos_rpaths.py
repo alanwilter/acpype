@@ -144,12 +144,8 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         Process exit status.
     """
-    parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
-    parser.add_argument(
-        "root", type=Path, nargs="?", default=Path("acpype/amber_macos")
-    )
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("root", type=Path, nargs="?", default=Path("acpype/amber_macos"))
     parser.add_argument(
         "-n",
         "--dry-run",
@@ -159,9 +155,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if sys.platform != "darwin":
-        parser.error(
-            "this fixup only applies to the macOS binaries and must run on macOS"
-        )
+        parser.error("this fixup only applies to the macOS binaries and must run on macOS")
     if not args.root.is_dir():
         parser.error(f"no such directory: {args.root}")
 
@@ -175,9 +169,7 @@ def main(argv: list[str] | None = None) -> int:
         if removed:
             fixed += 1
             verb = "would fix" if args.dry_run else "fixed"
-            print(
-                f"  {verb} {path.relative_to(args.root)}: removed {' '.join(removed)}"
-            )
+            print(f"  {verb} {path.relative_to(args.root)}: removed {' '.join(removed)}")
 
     print(f"scanned {scanned} Mach-O files, de-duplicated rpaths in {fixed}")
     return 0

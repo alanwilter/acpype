@@ -213,21 +213,15 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         Process exit status.
     """
-    parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         "--source",
         type=Path,
         required=True,
         help="conda environment holding AmberTools",
     )
-    parser.add_argument(
-        "--dest", type=Path, required=True, help="target, e.g. acpype/amber_linux"
-    )
-    parser.add_argument(
-        "--macos", action="store_true", default=platform.system() == "Darwin"
-    )
+    parser.add_argument("--dest", type=Path, required=True, help="target, e.g. acpype/amber_linux")
+    parser.add_argument("--macos", action="store_true", default=platform.system() == "Darwin")
     args = parser.parse_args(argv)
 
     if not (args.source / "bin").is_dir():
@@ -257,9 +251,7 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(f"  note: {rel} absent from {args.source}", file=sys.stderr)
 
-    print(
-        f"vendored {len(programs)} programs and {len(libraries)} libraries into {args.dest}"
-    )
+    print(f"vendored {len(programs)} programs and {len(libraries)} libraries into {args.dest}")
     return 0
 
 

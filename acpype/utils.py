@@ -93,9 +93,7 @@ def elapsedTime(seconds, add_s=False, separator=" "):
         value = seconds // alength
         if value > 0:
             seconds = seconds % alength
-            atime.append(
-                f"{value!s}{(suffix, (suffix, suffix + 's')[value > 1])[add_s]}"
-            )
+            atime.append(f"{value!s}{(suffix, (suffix, suffix + 's')[value > 1])[add_s]}")
         if seconds < 1:
             break
 
@@ -255,9 +253,7 @@ def job_pids_family(jpid):
     dict_pids = {}
     pids = [apid]
     cmd = f"ps -A -o uid,pid,ppid|grep {os.getuid()}"
-    out = _getoutput(cmd).split(
-        "\n"
-    )  # getoutput("ps -A -o uid,pid,ppid|grep %i" % os.getuid()).split('\n')
+    out = _getoutput(cmd).split("\n")  # getoutput("ps -A -o uid,pid,ppid|grep %i" % os.getuid()).split('\n')
     for item in out:
         vec = item.split()
         dict_pids[vec[2]] = vec[1]
@@ -274,9 +270,7 @@ def _getoutput(cmd):
     """To simulate commands.getoutput
     shell=True is necessary despite security issues
     """
-    out = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE).communicate()[
-        0
-    ][:-1]
+    out = sub.Popen(cmd, shell=True, stderr=sub.STDOUT, stdout=sub.PIPE).communicate()[0][:-1]
     return out.decode()
 
 

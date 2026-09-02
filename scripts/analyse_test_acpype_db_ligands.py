@@ -489,9 +489,7 @@ def analyseFile(mol, structure, file):
             # this excpetion should happen only if acpype early aborted for both outs
             # if mol not in `compareChargesOK.union(compareCharges)`:
             if mol not in repr(compareChargesOK) and mol not in repr(compareCharges):
-                print(
-                    "!!!! Unable to compare. Failed to guess charge for", mol, structure
-                )
+                print("!!!! Unable to compare. Failed to guess charge for", mol, structure)
 
     out = parseSummurisedLine(warnTypes, errorTypes)
     if out in mapResults:
@@ -610,18 +608,9 @@ def printResults(lista, subHead, header=None):
     print(80 * "-")
     if header:
         print("\n*** For results [%i], [%i], [%i], %s:" % (id, id1, id2, header))
-    print(
-        "\n[%i] %s for both PDB and Ideal:\n%i\t %s"
-        % (id, subHead, len(dList), str(dList))
-    )
-    print(
-        "\n[%i] %s with PDB ONLY, besides [%i]:\n%i\t %s"
-        % (id1, subHead, id, len(pList), str(pList))
-    )
-    print(
-        "\n[%i] %s with IDEAL ONLY, besides [%i]:\n%i\t %s"
-        % (id2, subHead, id, len(iList), str(iList))
-    )
+    print("\n[%i] %s for both PDB and Ideal:\n%i\t %s" % (id, subHead, len(dList), str(dList)))
+    print("\n[%i] %s with PDB ONLY, besides [%i]:\n%i\t %s" % (id1, subHead, id, len(pList), str(pList)))
+    print("\n[%i] %s with IDEAL ONLY, besides [%i]:\n%i\t %s" % (id2, subHead, id, len(iList), str(iList)))
     pTotal = len(dList) + len(pList)
     iTotal = len(dList) + len(iList)
     total = pTotal + iTotal
@@ -636,9 +625,7 @@ def printResults(lista, subHead, header=None):
     return total
 
 
-def elapsedTime(
-    seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "
-):
+def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "):
     """Takes an amount of seconds and turns it into a human-readable amount of time."""
     # the formatted time string to be returned
     if seconds == 0:
@@ -663,11 +650,7 @@ def elapsedTime(
         value = seconds / length
         if value > 0:
             seconds = seconds % length
-            time.append(
-                "{}{}".format(
-                    str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]
-                )
-            )
+            time.append("{}{}".format(str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
         if seconds < 1:
             break
 
@@ -920,9 +903,7 @@ if SCFfailedList:
             molsOKinSCFfailedList.append(item)
     if molsOKinSCFfailedList:
         molsOKinSCFfailedList.sort()
-        print(
-            "\n>>>Mol Jobs whose sqm.out has 'No convergence in SCF' but finished OK<<<\n"
-        )
+        print("\n>>>Mol Jobs whose sqm.out has 'No convergence in SCF' but finished OK<<<\n")
         print(len(molsOKinSCFfailedList), molsOKinSCFfailedList)
 
 for item in listMolTime:
@@ -948,10 +929,7 @@ if listMolTime:
     print("Number of clean jobs:", nJobs)
     print(f"Longest job: Mol='{maxMolTime}', time= {elapsedTime(maxExecTime)}")
     print(f"Fatest job: Mol='{minMolTime}', time= {elapsedTime(minExecTime)}")
-    print(
-        "Average time of execution per clean job: %s"
-        % elapsedTime(totalCleanExecTime / nJobs)
-    )
+    print("Average time of execution per clean job: %s" % elapsedTime(totalCleanExecTime / nJobs))
 else:
     print("NO time stats available for clean jobs")
 
@@ -968,10 +946,7 @@ for item in list(execTime.items()):
         nGJobs += 1
 print("\nTotal number of jobs:", nGJobs)
 if nGJobs:
-    print(
-        "Global average time of execution per job: %s"
-        % elapsedTime(totalGlobalExecTime / nGJobs)
-    )
+    print("Global average time of execution per job: %s" % elapsedTime(totalGlobalExecTime / nGJobs))
 
 # mols with charge not 0
 # print WT3

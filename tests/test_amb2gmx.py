@@ -81,9 +81,7 @@ def test_merge(janitor, merge, gaff, n_at, acoef, bcoef, msg):
     ],
 )
 def test_ildn(janitor, mol, n1, n2, n3, n4, n5, msg):
-    molecule = MolTopol(
-        acFileTop=f"{mol}.prmtop", acFileXyz=f"{mol}.inpcrd", debug=True
-    )
+    molecule = MolTopol(acFileTop=f"{mol}.prmtop", acFileXyz=f"{mol}.inpcrd", debug=True)
     molecule.writeGromacsTopolFiles()
     assert molecule
     assert len(molecule.atoms) == n1
@@ -96,21 +94,14 @@ def test_ildn(janitor, mol, n1, n2, n3, n4, n5, msg):
 
 
 def test_ildn_gmx4_fail(janitor):
-    molecule = MolTopol(
-        acFileTop="ILDN.prmtop", acFileXyz="ILDN.inpcrd", debug=True, gmx4=True
-    )
+    molecule = MolTopol(acFileTop="ILDN.prmtop", acFileXyz="ILDN.inpcrd", debug=True, gmx4=True)
     with pytest.raises(Exception) as e_info:
         molecule.writeGromacsTopolFiles()
-    assert (
-        e_info.value.args[0]
-        == "Likely trying to convert ILDN to RB, DO NOT use option '-z'"
-    )
+    assert e_info.value.args[0] == "Likely trying to convert ILDN to RB, DO NOT use option '-z'"
     janitor.append(molecule.absHomeDir)
 
 
 def test_wrong_input(janitor):
     with pytest.raises(Exception) as e_info:
-        MolTopol(
-            acFileTop="nope.prmtop", acFileXyz="ILDN.inpcrd", debug=True, gmx4=True
-        )
+        MolTopol(acFileTop="nope.prmtop", acFileXyz="ILDN.inpcrd", debug=True, gmx4=True)
     assert e_info.value.args == (2, "No such file or directory")

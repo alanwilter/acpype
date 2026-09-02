@@ -3,10 +3,10 @@ name: check_acpype
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "acpype/**"
       - "tests/**"
@@ -100,8 +100,8 @@ jobs:
         run: echo "adate=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
 
       - name: Create tag
-        # will only create a new tag if the commit message contains 'new_tag' on master
-        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_tag')
+        # will only create a new tag if the commit message contains 'new_tag' on main
+        if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'new_tag')
         uses: actions/github-script@v8
         with:
           script: |
@@ -113,8 +113,8 @@ jobs:
             })
 
       - name: Create Release
-        # will only create a new release if the commit message contains 'new_release' on master
-        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'new_release')
+        # will only create a new release if the commit message contains 'new_release' on main
+        if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'new_release')
         id: create_release
         uses: softprops/action-gh-release@v2
         with:

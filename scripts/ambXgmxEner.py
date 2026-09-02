@@ -37,11 +37,7 @@ cmd_gmx = f"echo 1 2 3 4 5 6 7 8 9 | gmx energy -f {e_gmx}.edr"
 amb_out = {
     y[0].upper(): float(y[1]) * ff
     for y in [
-        x.split("=")
-        for x in re.sub(r"\s+=\s+", "=", _getoutput(cmd_amb))
-        .strip()
-        .replace("1-4 ", "1-4_")
-        .split()
+        x.split("=") for x in re.sub(r"\s+=\s+", "=", _getoutput(cmd_amb)).strip().replace("1-4 ", "1-4_").split()
     ]
 }
 
@@ -61,11 +57,7 @@ gmx_out = {
         .splitlines()
     ]
 }
-gmx_out["DIHED"] = (
-    gmx_out.get("PROPER_DIH", 0)
-    + gmx_out.get("IMPROPER_DIH", 0)
-    + gmx_out.get("RYCKAERT-BELL.", 0)
-)
+gmx_out["DIHED"] = gmx_out.get("PROPER_DIH", 0) + gmx_out.get("IMPROPER_DIH", 0) + gmx_out.get("RYCKAERT-BELL.", 0)
 for k in list(gmx_out.keys())[:]:
     v = norm_gmx.get(k)
     if v:

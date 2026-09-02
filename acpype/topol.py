@@ -120,9 +120,7 @@ class Topology_14:
             try:
                 setattr(self, attributes[i], self.p7_array_read(buff, flag_strings[i]))
             except Exception:
-                logger().exception(
-                    f"Skipping non-existent attributes {attributes[i]} {flag_strings[i]}"
-                )
+                logger().exception(f"Skipping non-existent attributes {attributes[i]} {flag_strings[i]}")
 
     @staticmethod
     def skipline(buff, index) -> int:
@@ -170,14 +168,7 @@ class Topology_14:
                 ntypes = int(self.pointers[1])
                 ai_index = int(self.atom_type_index[ai])
                 al_index = int(self.atom_type_index[al])
-                nb_parm_index = (
-                    int(
-                        self.nonbonded_parm_index[
-                            ntypes * (ai_index - 1) + al_index - 1
-                        ]
-                    )
-                    - 1
-                )
+                nb_parm_index = int(self.nonbonded_parm_index[ntypes * (ai_index - 1) + al_index - 1]) - 1
                 scnb_scale_factor = self.scnb_scale_factor[parm_idx]
                 if scnb_scale_factor == 0:
                     scnb_scale_factor = 2
@@ -361,9 +352,7 @@ class AbstractTopol(abc.ABC):
             ob.cvar.obErrorLog.StopLogging()
         else:
             logger(self.level).warning("WARNING: your input may be a SMILES but")
-            logger(self.level).warning(
-                "         without OpenBabel, this functionality won't work"
-            )
+            logger(self.level).warning("         without OpenBabel, this functionality won't work")
             return False
 
         # Check if input is a smiles string
@@ -451,9 +440,7 @@ class AbstractTopol(abc.ABC):
         drift = abs(charge2 - charge)
         self.printDebug(f"Net charge drift '{drift:3.6f}'")
         if drift > diffTol:
-            self.printWarn(
-                f"Net charge drift '{drift:3.5f}' bigger than tolerance '{diffTol:3.5f}'"
-            )
+            self.printWarn(f"Net charge drift '{drift:3.5f}' bigger than tolerance '{diffTol:3.5f}'")
             if not self.force and self.chargeType != "user":
                 msg = "Error with calculated charge"
                 logger(self.level).error(msg)
@@ -555,13 +542,9 @@ class AbstractTopol(abc.ABC):
 
         if exit_:
             if self.force:
-                self.printWarn(
-                    "You chose to proceed anyway with '-f' option. GOOD LUCK!"
-                )
+                self.printWarn("You chose to proceed anyway with '-f' option. GOOD LUCK!")
             else:
-                self.printError(
-                    "Use '-f' option if you want to proceed anyway. Aborting ..."
-                )
+                self.printError("Use '-f' option if you want to proceed anyway. Aborting ...")
                 if not self.debug:
                     rmtree(self.tmpDir)
                 msg = "Coordinates issues with your system"
@@ -876,9 +859,7 @@ class AbstractTopol(abc.ABC):
         global pid
         pids = job_pids_family(pid)
         self.printDebug(f"PID: {pid}, PIDS: {pids}")
-        self.printMess(
-            f"Timed out! Process {pids} killed, max exec time ({self.timeTol}s) exceeded"
-        )
+        self.printMess(f"Timed out! Process {pids} killed, max exec time ({self.timeTol}s) exceeded")
         # os.system('kill -15 %s' % pids)
         for i in pids.split():
             os.kill(int(i), 15)
@@ -1038,9 +1019,7 @@ class AbstractTopol(abc.ABC):
         """Convert PDB to MOL2 by using obabel."""
         if self.ext == ".pdb":
             if self.execObabel():
-                self.printError(
-                    f"convert pdb to mol2 via {binaries['obabel_bin']} failed"
-                )
+                self.printError(f"convert pdb to mol2 via {binaries['obabel_bin']} failed")
                 return True
         return False
 
@@ -1225,9 +1204,7 @@ class AbstractTopol(abc.ABC):
         residueLabel = self.getFlagData("RESIDUE_LABEL")
         residueLabel = list(map(str, residueLabel))
         if residueLabel[0] != residueLabel[0].upper():
-            self.printWarn(
-                f"residue label '{residueLabel[0]}' in '{self.inputFile}' is not all UPPERCASE"
-            )
+            self.printWarn(f"residue label '{residueLabel[0]}' in '{self.inputFile}' is not all UPPERCASE")
             self.printWarn("this may raise problem with some applications like CNS")
         self.residueLabel = residueLabel
 
@@ -1279,10 +1256,7 @@ class AbstractTopol(abc.ABC):
         FirstNonSoluteId = None
         for atomName in atomNameList:
             if atomName != atomName.upper():
-                self.printDebug(
-                    "atom name '%s' HAS to be all UPPERCASE... Applying this here."
-                    % atomName
-                )
+                self.printDebug("atom name '%s' HAS to be all UPPERCASE... Applying this here." % atomName)
                 atomName = atomName.upper()
             atomTypeName = atomTypeNameList[id_]
             if id_ + 1 == resIds[countRes]:
@@ -1302,15 +1276,11 @@ class AbstractTopol(abc.ABC):
             if atomTypeName not in tmpList:
                 tmpList.append(atomTypeName)
                 atomTypes.append(atomType)
-            atom = Atom(
-                atomName, atomType, id_ + 1, resid, mass, chargeConverted, coord
-            )
+            atom = Atom(atomName, atomType, id_ + 1, resid, mass, chargeConverted, coord)
             atoms.append(atom)
             id_ += 1
 
-        balanceChargeList, balanceValue, balanceIds = self.balanceCharges(
-            chargeList, FirstNonSoluteId
-        )
+        balanceChargeList, balanceValue, balanceIds = self.balanceCharges(chargeList, FirstNonSoluteId)
 
         for id_ in balanceIds:
             atoms[id_].charge = balanceValue / qConv
@@ -1319,9 +1289,7 @@ class AbstractTopol(abc.ABC):
             self.atomTypeSystem = "gaff"
         else:
             self.atomTypeSystem = "amber"
-        self.printDebug(
-            "Balanced TotalCharge %13.10f" % float(sum(balanceChargeList) / qConv)
-        )
+        self.printDebug("Balanced TotalCharge %13.10f" % float(sum(balanceChargeList) / qConv))
 
         self.totalCharge = round(totalCharge / qConv)
 
@@ -1402,9 +1370,7 @@ class AbstractTopol(abc.ABC):
             idAtom2 = dihCodeList[i + 1] // 3
             # 3 and 4 indexes can be negative: if id3 < 0, end group interations
             # in amber are to be ignored; if id4 < 0, dihedral is improper
-            idAtom3raw = (
-                dihCodeList[i + 2] // 3
-            )  # can be negative -> exclude from 1-4vdw
+            idAtom3raw = dihCodeList[i + 2] // 3  # can be negative -> exclude from 1-4vdw
             idAtom4raw = dihCodeList[i + 3] // 3  # can be negative -> Improper
             idAtom3 = abs(idAtom3raw)
             idAtom4 = abs(idAtom4raw)
@@ -1481,9 +1447,7 @@ class AbstractTopol(abc.ABC):
                     quad.append(bAts[0])
             if len(quad) != 4:
                 if self.chiral:
-                    self.printWarn(
-                        f"Atom {atChi} has less than 4 connections to 4 different atoms. It's NOT Chiral!"
-                    )
+                    self.printWarn(f"Atom {atChi} has less than 4 connections to 4 different atoms. It's NOT Chiral!")
                 continue
             v1, v2, v3, v4 = (x.coords for x in quad)
             chiralGroups.append((atChi, quad, imprDihAngle(v1, v2, v3, v4)))
@@ -1519,9 +1483,7 @@ class AbstractTopol(abc.ABC):
 
         # Build list of sorted atoms, assigning charge groups by heavy atom.
         sorted_atoms = list()
-        cgnr = (
-            1  # charge group number: each heavy atoms is assigned its own charge group
-        )
+        cgnr = 1  # charge group number: each heavy atoms is assigned its own charge group
         # First pass: add heavy atoms, followed by the hydrogens bonded to them.
         for atom in self.atoms:
             if is_heavy(atom):
@@ -1666,9 +1628,7 @@ class AbstractTopol(abc.ABC):
                                 C[2] -= 4 * V[period]
                                 C[4] += 4 * V[period]
                 else:
-                    properDihedralsAlphaGamma.append(
-                        [item[0].atoms, phaseRaw, kPhi, period]
-                    )
+                    properDihedralsAlphaGamma.append([item[0].atoms, phaseRaw, kPhi, period])
                     # print phaseRaw, kPhi, period
             if phase in [0, 180]:
                 properDihedralsCoefRB.append([item[0].atoms, C])
@@ -1879,9 +1839,7 @@ class AbstractTopol(abc.ABC):
             >>> CA and ca -> CA and ca_
         """
         if self.merge:
-            self.printMess(
-                "Merging identical lower and uppercase atomtypes in GMX top file.\n"
-            )
+            self.printMess("Merging identical lower and uppercase atomtypes in GMX top file.\n")
             atNames = [at.atomTypeName for at in self.atomTypes]
             delAtomTypes = []
             modAtomTypes = []
@@ -1892,11 +1850,7 @@ class AbstractTopol(abc.ABC):
                 dictAtomTypes[atName] = at
                 if atName.islower() and atName.upper() in atNames:
                     atUpper = self.atomTypes[atNames.index(atName.upper())]
-                    if (
-                        at.ACOEF == atUpper.ACOEF
-                        and at.BCOEF == atUpper.BCOEF
-                        and at.mass == atUpper.mass
-                    ):
+                    if at.ACOEF == atUpper.ACOEF and at.BCOEF == atUpper.BCOEF and at.mass == atUpper.mass:
                         delAtomTypes.append(atName)
                     else:
                         newAtName = atName + "_"
@@ -1941,9 +1895,7 @@ class AbstractTopol(abc.ABC):
             self.atomsGromacs = atomsGromacs
             return
 
-        self.printMess(
-            "Disambiguating lower and uppercase atomtypes in GMX top file, even if identical.\n"
-        )
+        self.printMess("Disambiguating lower and uppercase atomtypes in GMX top file, even if identical.\n")
         self.atomTypesGromacs = self.atomTypes
         self.atomsGromacs = self.atoms
 
@@ -2160,9 +2112,7 @@ class AbstractTopol(abc.ABC):
 #endif
 """
         if self.direct and self.amb2gmx:
-            self.printMess(
-                "Converting directly from AMBER to GROMACS (EXPERIMENTAL).\n"
-            )
+            self.printMess("Converting directly from AMBER to GROMACS (EXPERIMENTAL).\n")
 
         # Dict of ions dealt by acpype emulating amb2gmx
         ionsDict = {"Na+": headNa, "Cl-": headCl, "K+": headK}
@@ -2423,22 +2373,19 @@ class AbstractTopol(abc.ABC):
                 a2,
                 a3,
             )
-            oline = (
-                "%6i %6i %6i %6i ; %13.4e %13.4e ; %6s - %-4s - %-6s %4s - %+4s - %-4s\n"
-                % (
-                    id1,
-                    id2,
-                    id3,
-                    1,
-                    angle.thetaEq * radPi,
-                    2 * cal * angle.kTheta,
-                    a1,
-                    a2,
-                    a3,
-                    oat1,
-                    oat2,
-                    oat3,
-                )
+            oline = "%6i %6i %6i %6i ; %13.4e %13.4e ; %6s - %-4s - %-6s %4s - %+4s - %-4s\n" % (
+                id1,
+                id2,
+                id3,
+                1,
+                angle.thetaEq * radPi,
+                2 * cal * angle.kTheta,
+                a1,
+                a2,
+                a3,
+                oat1,
+                oat2,
+                oat3,
             )
             temp.append(line)
             otemp.append(oline)
@@ -2457,9 +2404,7 @@ class AbstractTopol(abc.ABC):
 
         self.setProperDihedralsCoef()
         self.printDebug("properDihedralsCoefRB %i" % len(self.properDihedralsCoefRB))
-        self.printDebug(
-            "properDihedralsAlphaGamma %i" % len(self.properDihedralsAlphaGamma)
-        )
+        self.printDebug("properDihedralsAlphaGamma %i" % len(self.properDihedralsAlphaGamma))
         self.printDebug("properDihedralsGmx45 %i" % len(self.properDihedralsGmx45))
         temp = []
         otemp = []
@@ -2479,41 +2424,32 @@ class AbstractTopol(abc.ABC):
                 oat3 = id2oplsATDict.get(id3)
                 oat4 = id2oplsATDict.get(id4)
                 c0, c1, c2, c3, c4, c5 = dih[1]
-                line = (
-                    "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
-                    % (
-                        id1,
-                        id2,
-                        id3,
-                        id4,
-                        3,
-                        c0,
-                        c1,
-                        c2,
-                        c3,
-                        c4,
-                        c5,
-                    )
-                    + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
-                )
-                oline = (
-                    "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f"
-                    % (
-                        id1,
-                        id2,
-                        id3,
-                        id4,
-                        3,
-                        c0,
-                        c1,
-                        c2,
-                        c3,
-                        c4,
-                        c5,
-                    )
-                    + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n"
-                    % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
-                )
+                line = "%6i %6i %6i %6i %6i %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
+                    id1,
+                    id2,
+                    id3,
+                    id4,
+                    3,
+                    c0,
+                    c1,
+                    c2,
+                    c3,
+                    c4,
+                    c5,
+                ) + " ; %6s-%6s-%6s-%6s\n" % (a1, a2, a3, a4)
+                oline = "%6i %6i %6i %6i %6i ; %10.5f %10.5f %10.5f %10.5f %10.5f %10.5f" % (
+                    id1,
+                    id2,
+                    id3,
+                    id4,
+                    3,
+                    c0,
+                    c1,
+                    c2,
+                    c3,
+                    c4,
+                    c5,
+                ) + " ; %6s-%6s-%6s-%6s    %4s-%4s-%4s-%4s\n" % (a1, a2, a3, a4, oat1, oat2, oat3, oat4)
                 temp.append(line)
                 otemp.append(oline)
             temp.sort()
@@ -2735,10 +2671,7 @@ class AbstractTopol(abc.ABC):
                 + '     to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241"\n'
             )
 
-            msg = (
-                "Non-default 1-4 scale parameters detected.  Converting individually. Please cite:\n\n"
-                + citation
-            )
+            msg = "Non-default 1-4 scale parameters detected.  Converting individually. Please cite:\n\n" + citation
 
             self.printMess(msg)
             topText = self.topo14Data.patch_gmx_topol14("".join(topText))
@@ -2830,9 +2763,7 @@ class AbstractTopol(abc.ABC):
         posreFileName = os.path.join(gmxDir, posre)
         posreFile = open(posreFileName, "w")
         posreFile.write("; " + head % (posre, date))
-        posreFile.write(
-            "\n[ position_restraints ]\n; atom  type      fx      fy      fz\n"
-        )
+        posreFile.write("\n[ position_restraints ]\n; atom  type      fx      fy      fz\n")
         for atom in self.atoms:
             if not atom.atomType.atomTypeName.upper().startswith("H"):
                 posreFile.write(f"{atom.id:>6d}     1 {fc:>5d} {fc:>5d} {fc:>5d}\n")
@@ -3091,9 +3022,7 @@ eriod phase }\n"
         # print "Writing CNS TOP file\n"
         topFile.write("Remarks " + head % (top, date))
         topFile.write("\nset echo=false end\n")
-        topFile.write(
-            f"\nautogenerate angles={autoAngleFlag} dihedrals={autoDihFlag} end\n"
-        )
+        topFile.write(f"\nautogenerate angles={autoAngleFlag} dihedrals={autoDihFlag} end\n")
         topFile.write("\n{ atomType  mass }\n")
 
         for at in self.atomTypes:
@@ -3316,9 +3245,7 @@ class ACTopol(AbstractTopol):
         self.rootDir = os.path.abspath(".")
         self.absInputFile = os.path.abspath(inputFile)
 
-        if not os.path.exists(self.absInputFile) and not re.search(
-            r"\.mol2$|\.mdl$|\.pdb$", self.inputFile
-        ):
+        if not os.path.exists(self.absInputFile) and not re.search(r"\.mol2$|\.mdl$|\.pdb$", self.inputFile):
             self.smiles = inputFile
             if self.checkSmiles():
                 self.is_smiles = True
@@ -3342,25 +3269,17 @@ class ACTopol(AbstractTopol):
         self.obabelExe = find_bin(binaries["obabel_bin"])
         if not os.path.exists(self.obabelExe):
             if self.ext != ".mol2" and self.ext != ".mdl":
-                self.printError(
-                    f"no '{binaries['obabel_bin']}' executable; you need it if input is PDB or SMILES"
-                )
-                self.printError(
-                    "otherwise use only MOL2 or MDL file as input ... aborting!"
-                )
+                self.printError(f"no '{binaries['obabel_bin']}' executable; you need it if input is PDB or SMILES")
+                self.printError("otherwise use only MOL2 or MDL file as input ... aborting!")
                 msg = "Missing OBABEL"
                 logger(self.level).error(msg)
                 raise Exception(msg)
             else:
-                self.printWarn(
-                    f"no '{binaries['obabel_bin']}' executable, no PDB file can be used as input!"
-                )
+                self.printWarn(f"no '{binaries['obabel_bin']}' executable, no PDB file can be used as input!")
         if self.is_smiles:
             self.convertSmilesToMol2()
         self.timeTol = timeTol
-        self.printDebug(
-            "Max execution time tolerance is %s" % elapsedTime(self.timeTol)
-        )
+        self.printDebug("Max execution time tolerance is %s" % elapsedTime(self.timeTol))
         # ekFlag e.g. (default used by sqm):
         # acpype -i cccc -k "qm_theory='AM1', grms_tol=0.0005, scfconv=1.d-10, ndiis_attempts=700, qmcharge=0"
         if ekFlag == '"None"' or ekFlag is None:
@@ -3387,9 +3306,7 @@ class ACTopol(AbstractTopol):
         self.acXyzFileName = acBase + ".inpcrd"
         self.acTopFileName = acBase + ".prmtop"
         self.acFrcmodFileName = acBase + ".frcmod"
-        self.tmpDir = os.path.join(
-            self.rootDir, ".acpype_tmp_%s" % os.path.basename(base)
-        )
+        self.tmpDir = os.path.join(self.rootDir, ".acpype_tmp_%s" % os.path.basename(base))
         self.setResNameCheckCoords()
         self.guessCharge()
         acMol2FileName = f"{base}_{chargeType}_{atomType}.mol2"
@@ -3477,18 +3394,14 @@ class MolTopol(AbstractTopol):
             self.printError("molTopol object won't be created")
 
         self.xyzFileData = open(acFileXyz).readlines()
-        self.topFileData = [
-            x for x in open(acFileTop).readlines() if not x.startswith("%COMMENT")
-        ]
+        self.topFileData = [x for x in open(acFileTop).readlines() if not x.startswith("%COMMENT")]
         self.topo14Data = Topology_14()
         self.topo14Data.read_amber_topology("".join(self.topFileData))
         self.printDebug("prmtop and inpcrd files loaded")
 
         self.getResidueLabel()
         if len(self.residueLabel) > 1:
-            self.baseName = (
-                basename or os.path.splitext(os.path.basename(acFileTop))[0]
-            )  # 'solute'
+            self.baseName = basename or os.path.splitext(os.path.basename(acFileTop))[0]  # 'solute'
         else:
             self.baseName = basename or self.residueLabel[0]  # 3 caps letters
         if acTopolObj:

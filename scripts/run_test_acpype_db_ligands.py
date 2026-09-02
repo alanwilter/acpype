@@ -10,9 +10,7 @@ from subprocess import Popen
 numCpu = 20
 
 
-def elapsedTime(
-    seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "
-):
+def elapsedTime(seconds, suffixes=["y", "w", "d", "h", "m", "s"], add_s=False, separator=" "):
     """Takes an amount of seconds and turns it into a human-readable amount of time."""
     # the formatted time string to be returned
     if seconds == 0:
@@ -37,11 +35,7 @@ def elapsedTime(
         value = seconds / length
         if value > 0:
             seconds = seconds % length
-            time.append(
-                "{}{}".format(
-                    str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]
-                )
-            )
+            time.append("{}{}".format(str(value), (suffix, (suffix, suffix + "s")[value > 1])[add_s]))
         if seconds < 1:
             break
 
@@ -66,9 +60,7 @@ def runConversionJobs(chemCompVarFiles, scriptName):
 
         if len(currentProcesses.keys()) < numCpu:
             tempIndex = currentIndex + 1
-            for _i in range(
-                currentIndex, currentIndex + numCpu - len(currentProcesses.keys())
-            ):
+            for _i in range(currentIndex, currentIndex + numCpu - len(currentProcesses.keys())):
                 # Don't start a job if it's at the end!
                 if currentChemCompVarFile != endChemCompVarFile:
                     chemCompVarFile = chemCompVarFiles[tempIndex]

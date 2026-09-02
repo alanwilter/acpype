@@ -42,9 +42,7 @@ def test_pdb(janitor, capsys):
     assert len(molecule.molTopol.improperDihedrals) == 23
     assert molecule.molTopol.atoms[0].__repr__() == "<Atom id=1, name=N, <AtomType=nz>>"
     # check gaff2 and force
-    molecule = ACTopol(
-        "FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True
-    )
+    molecule = ACTopol("FFF.pdb", chargeType="gas", debug=True, atomType="gaff2", force=True)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule.molTopol is not None
@@ -71,9 +69,7 @@ def test_pdb(janitor, capsys):
     [(False, "amber", 189), (True, "amber2", 197)],
 )
 def test_amber(janitor, force, at, ndih):
-    molecule = ACTopol(
-        "FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force
-    )
+    molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force)
     molecule.createACTopol()
     molecule.createMolTopol()
     assert molecule.molTopol is not None

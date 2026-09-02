@@ -947,9 +947,7 @@ dictOplsMass = {
 }
 for ambKey in dictAmbAtomType2AmbGmxCode:
     if ambKey in dictOplsAtomType2OplsGmxCode:
-        dictAtomTypeAmb2OplsGmxCode[ambKey] = dictOplsAtomType2OplsGmxCode[
-            ambKey
-        ] + list(dictOplsMass[ambKey])
+        dictAtomTypeAmb2OplsGmxCode[ambKey] = dictOplsAtomType2OplsGmxCode[ambKey] + list(dictOplsMass[ambKey])
 
 # learnt from 22 residues test.
 dictAtomTypeAmb2OplsGmxCode = {

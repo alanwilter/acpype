@@ -22,9 +22,7 @@ delList = ["topol.top", "posre.itp"]
 
 # create Dummy PDB
 tpdb = "/tmp/tmp.pdb"
-dummyLine = (
-    "ATOM      1  N   ALA A   1      -1.188  -0.094   0.463  1.00  0.00           N\n"
-)
+dummyLine = "ATOM      1  N   ALA A   1      -1.188  -0.094   0.463  1.00  0.00           N\n"
 open(tpdb, "w").writelines(dummyLine)
 tempObj = ACTopol(tpdb, chargeVal=0, verbose=False)
 
@@ -406,9 +404,7 @@ def checkTopAcpype(res):
             dType[str(i)] = j  # dict_ {[atomtypes,funct] : parameters}
         entries = []
         lNum = item[ll]  # funct
-        ent = [
-            ffDictAtom[x] for x in item[:ll]
-        ]  # convert atomtypes ids to atomtypes names
+        ent = [ffDictAtom[x] for x in item[:ll]]  # convert atomtypes ids to atomtypes names
         rent = ent[:]
         rent.reverse()
         entries.append([*ent, lNum])
@@ -782,12 +778,8 @@ def calcGmxPotEnerDiff(res):
 if __name__ == "__main__":
     """order: (tleap/EM or pymol) AAA.pdb -f-> _AAA.pdb -f-> aAAA.pdb
     --> (pdb2gmx) agAAA.pdb -f-> agAAA.pdb --> acpype"""
-    aNb = nbDict(
-        open(gmxTopDir + "/gromacs/top/amber99sb.ff/ffnonbonded.itp").readlines()
-    )
-    aBon = parseTopFile(
-        open(gmxTopDir + "/gromacs/top/amber99sb.ff/ffbonded.itp").readlines()
-    )
+    aNb = nbDict(open(gmxTopDir + "/gromacs/top/amber99sb.ff/ffnonbonded.itp").readlines())
+    aBon = parseTopFile(open(gmxTopDir + "/gromacs/top/amber99sb.ff/ffbonded.itp").readlines())
 
     tmpFile = "tempScript.py"
     if not os.path.exists(tmpDir):
@@ -851,9 +843,7 @@ if __name__ == "__main__":
             dihAmb, dihAcp = calcGmxPotEnerDiff(res)
             # calc gmx acpype energies
 
-    subprocess.run(
-        r"rm -f %s/\#* posre.itp tempScript.py" % tmpDir, shell=True, check=False
-    )
+    subprocess.run(r"rm -f %s/\#* posre.itp tempScript.py" % tmpDir, shell=True, check=False)
     subprocess.run(
         "find . -name 'ag*GMX*.itp' | xargs grep -v 'created by acpype on' > standard_ag_itp.txt",
         shell=True,
