@@ -130,6 +130,22 @@ def test_predindex_rejects_out_of_range(janitor, capsys):
     assert "9" in output
 
 
+def test_abcg2_charges(janitor):
+    """abcg2 is accepted and gives charges distinct from gas, as AmberTools 26 allows."""
+    molecule = ACTopol("benzene.pdb", chargeType="abcg2", debug=True, basename="vir_temp")
+    molecule.createACTopol()
+    molecule.createMolTopol()
+    assert molecule.molTopol is not None
+    assert molecule.chargeType == "abcg2"
+    charges = [a.charge for a in molecule.molTopol.atoms]
+    assert len(charges) == 12
+    # benzene: six equivalent carbons and six hydrogens, summing to a neutral molecule
+    assert sum(charges) == approx(0.0, abs=1e-6)
+    assert min(charges) == approx(-0.112, abs=1e-3)
+    janitor.append(molecule.absHomeDir)
+    janitor.append(molecule.tmpDir)
+
+
 def test_charges_chiral(janitor):
     molecule = ACTopol("KKK.mol2", chargeType="gas", debug=True, chiral=True)
     molecule.createACTopol()

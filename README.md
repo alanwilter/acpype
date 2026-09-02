@@ -92,6 +92,43 @@ alanwilter _at_ gmail _dot_ com
 
 #### How To Use ACPYPE
 
+##### What ACPYPE does in one command
+
+`acpype` has two modes, and both are a single command.
+
+**Starting from a small molecule** — a `.mol2`, `.pdb`, `.mdl`/`.mol` file, or even a
+SMILES string — `acpype` drives the whole AmberTools pipeline for you:
+
+```bash
+acpype -i molecule.mol2 -b MOL -c bcc -n 0 -a gaff2
+```
+
+That one line does the work of three separate AmberTools runs:
+
+| Step | Tool | What it does |
+| --- | --- | --- |
+| 1 | `antechamber` | assigns GAFF/GAFF2 atom types and computes partial charges |
+| 2 | `parmchk2` | fills in any missing force field parameters (the `frcmod`) |
+| 3 | `tleap` | builds the AMBER topology and coordinates |
+
+and then converts the result into **GROMACS**, **CNS/XPLOR** and **CHARMM** formats as
+well, all into a single `MOL.acpype/` folder. There is no need to run `antechamber`,
+`parmchk2` and `tleap` yourself, or to convert between formats afterwards.
+
+**Starting from existing AMBER files** — if you already have a `prmtop`/`inpcrd` pair
+from LEaP, `acpype` converts them to GROMACS without needing AmberTools at all:
+
+```bash
+acpype -p FFF_AC.prmtop -x FFF_AC.inpcrd
+```
+
+Useful options for the first mode: `-c` charge method (`bcc`, `abcg2`, `gas`, `user`
+— `abcg2` is AmberTools' newer method, recommended for GAFF2), `-n` net
+charge, `-a` atom types (`gaff2`, `gaff`, `amber`, `amber2`), `-o` which topologies to
+write (`all`, `gmx`, `cns`, `charmm`), and `-r` the antechamber atom/bond type
+prediction index if the default perception struggles with your molecule. Run
+`acpype -h` for the full list and for what every output file is.
+
 ##### Introduction
 
 We now have an up-to-date _web service_ at **[Bio2Byte](http://bio2byte.be/acpype/)** (but it **does not** have the `amb2gmx` functionality).
