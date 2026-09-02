@@ -192,6 +192,9 @@ exclude = ["acpype/amber_linux", "acpype/amber_macos", "legacy", "recipe"]
 error-on-warning = true
 
 [tool.uv]
+# Single source for the uv version: `astral-sh/setup-uv` reads this too, so CI and
+# local development cannot drift. Bump it here and both follow.
+required-version = "==0.12.9"
 exclude-newer = "7 days"
 package = true
 default-groups = ["dev"]

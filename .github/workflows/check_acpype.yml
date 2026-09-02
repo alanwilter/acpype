@@ -46,7 +46,7 @@ jobs:
         # pinned to an exact release; Dependabot keeps it current.
         uses: astral-sh/setup-uv@v10.0.1
         with:
-          version: "0.12.9"
+          # Version comes from `required-version` in pyproject.toml.
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 

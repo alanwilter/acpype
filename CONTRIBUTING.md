@@ -60,6 +60,10 @@ just charmmgen    # rebuild charmmgen from AmberClassic
 just up           # upgrade dependencies, audit, rebuild
 ```
 
+The `uv` version itself is pinned by `required-version` in `[tool.uv]`. `setup-uv`
+reads the same key, so CI and local development use the same `uv`; bump it there and
+both follow. A mismatched local `uv` fails fast rather than resolving differently.
+
 Or run the tools directly:
 
 ```bash
