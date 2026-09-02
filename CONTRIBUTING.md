@@ -115,6 +115,16 @@ Two things are worth knowing when adding tests:
   run, raises `SystemExit(19)` on failure, `SystemExit(2)` on a usage error, and
   `SystemExit(0)` for `--version`.
 
+### Antechamber prediction index
+
+`-r/--predindex` maps straight onto antechamber's `-j` flag and is threaded through
+every antechamber call ACPYPE makes, including the charge-reading ones -- a molecule
+that needs a non-default index because full bond perception fails would fail in those
+preparatory steps too.
+
+antechamber accepts 0-5, but ACPYPE needs atom types, so only **1, 4 and 5** can
+actually produce a topology; 0, 2 and 3 skip atom typing and the run fails.
+
 ### Refreshing the vendored AmberTools
 
 `acpype` ships a trimmed AmberTools so `antechamber` works out of the box.

@@ -95,6 +95,21 @@ def main(
         int | None, typer.Option("-n", "--net_charge", help="net molecular charge; guessed when not given")
     ] = None,
     multiplicity: Annotated[int, typer.Option("-m", "--multiplicity", help="multiplicity (2S+1)")] = 1,
+    predindex: Annotated[
+        int,
+        typer.Option(
+            "-r",
+            "--predindex",
+            min=0,
+            max=5,
+            help=(
+                "antechamber atom/bond type prediction index (its -j flag): 0 none, "
+                "1 atom type, 2 full bond types, 3 part bond types, 4 atom and full "
+                "bond type, 5 atom and part bond type. ACPYPE needs atom types, so "
+                "only 1, 4 and 5 can produce a topology"
+            ),
+        ),
+    ] = 4,
     atom_type: Annotated[
         AtomType,
         typer.Option("-a", "--atom_type", help="atom type; amber is AMBER14SB, amber2 is AMBER14SB + GAFF2"),
@@ -212,6 +227,7 @@ def main(
                 chargeVal=net_charge,
                 debug=debug,
                 multiplicity=multiplicity,
+                predIndex=predindex,
                 atomType=atom_type.value,
                 force=force,
                 outTopol=outtop.value,

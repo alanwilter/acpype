@@ -107,6 +107,29 @@ def test_gmx_atomtypes_mass(janitor):
     janitor.append(molecule.tmpDir)
 
 
+@pytest.mark.parametrize("predindex", [1, 4, 5])
+def test_predindex_reaches_antechamber(janitor, capsys, predindex):
+    """The -r choice reaches antechamber as its -j flag.
+
+    Only 1, 4 and 5 are exercised: the others skip atom type assignment, which
+    ACPYPE needs, so they cannot produce a topology at all.
+    """
+    init_main(argv=["-di", "benzene.pdb", "-c", "gas", "-r", str(predindex), "-b", "vir_temp"])
+    captured = capsys.readouterr()
+    assert f"-j {predindex}" in captured.out
+    _getoutput("rm -vfr vir_temp* .*vir_temp*")
+
+
+def test_predindex_rejects_out_of_range(janitor, capsys):
+    """An index outside antechamber's 0-5 range is refused before anything runs."""
+    with pytest.raises(SystemExit) as e_info:
+        init_main(argv=["-i", "benzene.pdb", "-r", "9"])
+    captured = capsys.readouterr()
+    output = re.sub(r"\x1b\[[0-9;]*m", "", captured.err + captured.out)
+    assert e_info.value.code == 2
+    assert "9" in output
+
+
 def test_charges_chiral(janitor):
     molecule = ACTopol("KKK.mol2", chargeType="gas", debug=True, chiral=True)
     molecule.createACTopol()
@@ -146,17 +169,17 @@ def test_smiles(janitor, base, msg):
         (
             "bcc",
             "pdb",
-            "-dr no -i 'benzene.mol2' -fi mol2 -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+            "-dr no -i 'benzene.mol2' -fi mol2 -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -j 4 -s 2 -df 2 -at gaff2",
         ),
         (
             "bcc",
             "mol",
-            "-dr no -i 'benzene.mol' -fi mdl -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+            "-dr no -i 'benzene.mol' -fi mdl -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -j 4 -s 2 -df 2 -at gaff2",
         ),
         (
             "bcc",
             "mdl",
-            "-dr no -i 'benzene.mdl' -fi mdl -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -s 2 -df 2 -at gaff2",
+            "-dr no -i 'benzene.mdl' -fi mdl -o 'benzene_bcc_gaff2.mol2' -fo mol2 -c bcc -nc 0 -m 1 -j 4 -s 2 -df 2 -at gaff2",
         ),
         ("user", "pdb", "cannot read charges from a PDB file"),
     ],

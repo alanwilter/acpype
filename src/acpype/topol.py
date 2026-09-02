@@ -241,6 +241,7 @@ class AbstractTopol(abc.ABC):
         self.atomType: str = ""
         self.acMol2FileName: str = ""
         self.multiplicity: str = ""
+        self.predIndex: int = 4
         self.qFlag: int = 0
         self.ekFlag: str = ""
         self.timeTol: int = 0
@@ -405,7 +406,7 @@ class AbstractTopol(abc.ABC):
                 if in_mol == "mol":
                     in_mol = "mdl"
 
-            cmd = f"'{self.acExe}' -dr no -i '{mol2FileForGuessCharge}' -fi {in_mol} -o tmp -fo mol2 -c gas -pf n"
+            cmd = f"'{self.acExe}' -dr no -i '{mol2FileForGuessCharge}' -fi {in_mol} -o tmp -fo mol2 -c gas -pf n -j {self.predIndex}"
 
             logger(self.level).debug(while_replace(cmd))
 
@@ -469,7 +470,7 @@ class AbstractTopol(abc.ABC):
         else:
             if exten == "mol":
                 exten = "mdl"
-            cmd = f"'{self.acExe}' -dr no -i '{self.inputFile}' -fi {exten} -o tmp -fo ac -pf y"
+            cmd = f"'{self.acExe}' -dr no -i '{self.inputFile}' -fi {exten} -o tmp -fo ac -pf y -j {self.predIndex}"
             self.printDebug(cmd)
             out = _getoutput(cmd)
             if not out.isspace():
@@ -675,7 +676,7 @@ class AbstractTopol(abc.ABC):
         """Reads the charges in given mol2 file and returns the total."""
         charge = 0.0
         ll = []
-        cmd = f"'{self.acExe}' -dr no -i '{mol2File}' -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf n"
+        cmd = f"'{self.acExe}' -dr no -i '{mol2File}' -fi mol2 -o tmp -fo mol2 -c wc -cf tmp.crg -pf n -j {self.predIndex}"
 
         self.printDebug(cmd)
 
@@ -829,7 +830,7 @@ class AbstractTopol(abc.ABC):
         if exten == "mol":
             exten = "mdl"
 
-        cmd = f"'{self.acExe}' -dr no -i '{self.inputFile}' -fi {exten} -o '{self.acMol2FileName}' -fo mol2 {ct} -nc {self.chargeVal} -m {self.multiplicity} -s 2 -df {self.qFlag} -at {at} -pf n {self.ekFlag}"
+        cmd = f"'{self.acExe}' -dr no -i '{self.inputFile}' -fi {exten} -o '{self.acMol2FileName}' -fo mol2 {ct} -nc {self.chargeVal} -m {self.multiplicity} -j {self.predIndex} -s 2 -df {self.qFlag} -at {at} -pf n {self.ekFlag}"
 
         self.printDebug(cmd)
 
@@ -1649,7 +1650,7 @@ class AbstractTopol(abc.ABC):
         res = self.resName
 
         cmd = f"'{self.acExe}' -dr no -i '{self.acMol2FileName}' -fi mol2 -o '{self.charmmBase}' \
-            -fo charmm -s 2 -at {at} -pf n -rn {res}"
+            -fo charmm -s 2 -at {at} -pf n -rn {res} -j {self.predIndex}"
 
         self.printDebug(cmd)
 
@@ -3193,6 +3194,7 @@ class ACTopol(AbstractTopol):
         chargeType="bcc",
         chargeVal=None,
         multiplicity="1",
+        predIndex=4,
         atomType="gaff2",
         force=False,
         basename=None,
@@ -3301,6 +3303,7 @@ class ACTopol(AbstractTopol):
         self.chargeType = chargeType
         self.chargeVal = chargeVal
         self.multiplicity = multiplicity
+        self.predIndex = predIndex
         self.atomType = atomType
         self.gaffDatfile = "gaff.dat"
         leapGaffFile = "leaprc.gaff"
