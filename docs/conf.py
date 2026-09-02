@@ -14,7 +14,9 @@ import os
 import sys
 from datetime import datetime
 
-sys.path.insert(0, os.path.abspath(".."))
+# The package lives under src/ since the move to a src layout; pointing at the repo
+# root stopped resolving `import acpype` at all.
+sys.path.insert(0, os.path.abspath("../src"))
 
 
 # -- Project information -----------------------------------------------------
