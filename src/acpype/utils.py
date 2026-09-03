@@ -126,14 +126,20 @@ def parseFrcmod(lista):
     heads = ["MASS", "BOND", "ANGL", "DIHE", "IMPR", "HBON", "NONB"]
     dict_ = {}
     dd = {}
+    ahead = None
     for line in lista[1:]:
         line = line.strip()
+        if line[:4] == "CMAP":
+            # ff19SB's frcmod ends with a CMAP block of %FLAG records and grids that has
+            # no place in a parm .dat; it used to be swept into NONB as junk keys.
+            ahead = None
+            continue
         if line[:4] in heads:
             ahead = line[:4]
             dict_[ahead] = []
             dd = {}
             continue
-        if line:
+        if line and ahead:
             key = line.replace(" -", "-").replace("- ", "-").split()[0]
             if key in dd:
                 if not dd[key].count(line):

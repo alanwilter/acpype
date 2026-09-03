@@ -1,5 +1,6 @@
 """Tests for the parameter file helpers in :mod:`acpype.utils`."""
 
+import re
 from pathlib import Path
 
 import pytest
@@ -68,3 +69,36 @@ def test_parse_frcmod_on_the_bundled_ff99SB() -> None:
         assert all(parsed.values()), "an empty section survived parsing"
         return
     pytest.skip("no bundled AmberTools to read frcmod.ff99SB from")
+
+
+def test_parse_frcmod_ignores_a_trailing_cmap_block(tmp_path: Path) -> None:
+    """ff19SB's CMAP block after NONBON is skipped instead of polluting the NONBON section."""
+    path = tmp_path / "frcmod.cmap"
+    path.write_text(
+        "remark\nMASS\nXC 12.01 0.360\n\nNONBON\n  XC  1.9080  0.1094\n\nCMAP\n"
+        "%FLAG CMAP_COUNT   1\n%FLAG CMAP_RESLIST  1\nGLY\n%FLAG CMAP_PARAMETER\n"
+        "  0.82366   1.09817   1.13106\n  1.38658   2.11377   3.63194\n"
+    )
+
+    parsed = parseFrcmod(path.read_text().splitlines(keepends=True))
+
+    assert sorted(parsed) == ["MASS", "NONB"]
+    assert list(parsed["NONB"]) == ["XC"]
+
+
+def test_parse_frcmod_on_the_bundled_ff19SB() -> None:
+    """The bundled frcmod.ff19SB parses with only real parameter keys."""
+    for platform in ("amber_macos", "amber_linux"):
+        path = Path("src/acpype") / platform / "dat/leap/parm/frcmod.ff19SB"
+        if not path.is_file():
+            continue
+        parsed = parseFrcmod(path.read_text().splitlines(keepends=True))
+        # 2C and 3C are real types; junk is a %FLAG record or a bare grid number.
+        junk = [
+            key
+            for key in parsed.get("NONB", {})
+            if key.startswith(("%", "CMAP")) or re.fullmatch(r"-?\d+(\.\d+)?", key)
+        ]
+        assert not junk, junk[:5]
+        return
+    pytest.skip("no bundled AmberTools to read frcmod.ff19SB from")
