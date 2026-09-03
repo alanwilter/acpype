@@ -275,6 +275,62 @@ def mergeFrcmodGaps(amberOnly, withGaff):
     return out
 
 
+def readParmAtomTypes(parmFiles):
+    """Collect the atom types declared in the MASS block of parm ``.dat`` and frcmod files.
+
+    A ``.dat`` opens with a title line and then its MASS entries up to the first blank
+    line; a frcmod opens with a remark line and a ``MASS`` header before the same block.
+
+    Args:
+        parmFiles: paths to the files to read.
+
+    Returns:
+        set: every atom type name declared.
+    """
+    types = set()
+    for path in parmFiles:
+        with open(path) as fh:
+            lines = fh.read().splitlines()
+        start = 1
+        for index, line in enumerate(lines[:3]):
+            if line.strip().upper().startswith("MASS"):
+                start = index + 1
+                break
+        for line in lines[start:]:
+            if not line.strip():
+                break
+            types.add(line.split()[0])
+    return types
+
+
+def unknownMol2Types(mol2Lines, knownTypes):
+    """Find the atoms of a mol2 whose type no parameter set defines.
+
+    ``DU`` is antechamber's dummy type for an atom it could not type at all; anything
+    else outside ``knownTypes`` is a type the force field being used has no entry for.
+
+    Args:
+        mol2Lines: the lines of a Tripos mol2 file.
+        knownTypes: atom types the parameter files declare.
+
+    Returns:
+        list: ``(atom name, atom type)`` for every offending atom, in file order.
+    """
+    found = []
+    inAtoms = False
+    for line in mol2Lines:
+        if line.startswith("@<TRIPOS>ATOM"):
+            inAtoms = True
+            continue
+        if line.startswith("@<TRIPOS>"):
+            inAtoms = False
+            continue
+        tokens = line.split()
+        if inAtoms and len(tokens) >= 6 and (tokens[5] == "DU" or tokens[5] not in knownTypes):
+            found.append((tokens[1], tokens[5]))
+    return found
+
+
 def parmMerge(fdat1, fdat2, frcmod=False):
     """Merge two amber parm dat/frcmod files, caching the result in the temp directory.
 

@@ -295,7 +295,9 @@ def main(
             acpypeFailed = _handle_exception(level)
         if not acpypeFailed:
             try:
-                molecule.createACTopol()
+                # A clean failure inside the AmberTools steps has already been
+                # reported; do not go on to convert files that were never written.
+                acpypeFailed = bool(molecule.createACTopol())
             except Exception:
                 acpypeFailed = _handle_exception(level)
         if not acpypeFailed:

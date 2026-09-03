@@ -111,6 +111,10 @@ with 'acpype -p -x' matches GROMACS amber14sb.ff to 0.0002% on proper dihedrals 
     uv run python scripts/check_acpype.py                     # ff14SB vs amber14sb
     uv run python scripts/check_acpype.py --protein_ff ff99SB # ff99SB vs amber99sb
 
+When a residue disagrees, `scripts/dih_report.py DIR` (DIR from `--dir ... --keep`)
+lists every proper dihedral that differs, with atom names, types on both sides and
+both parameter sets, grouped by atom-type pattern. It is what pinned the causes above.
+
 == ACPYPE and OPLS/AA Parameters Generation (Experimental) ==
 
 The biggest problem here is to guess the correct atom type according to OPLS/AA

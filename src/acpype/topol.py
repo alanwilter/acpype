@@ -47,8 +47,10 @@ from acpype.utils import (
     mergeFrcmodGaps,
     parmMerge,
     readAmberLibTypes,
+    readParmAtomTypes,
     retypeMol2Atoms,
     set_for_pip,
+    unknownMol2Types,
     while_replace,
 )
 
@@ -919,11 +921,11 @@ class AbstractTopol(abc.ABC):
         if self.execAntechamber():
             self.printError("Antechamber failed")
             fail = True
-
         else:
             self.retypeForProteinFF()
-
-        if self.execParmchk():
+            if self.checkAtomTypes():
+                fail = True
+        if not fail and self.execParmchk():
             self.printError("Parmchk failed")
             fail = True
 
@@ -954,6 +956,12 @@ class AbstractTopol(abc.ABC):
         if self.checkXyzAndTopFiles():
             self.printMess("* Tleap OK *")
         else:
+            missing = sorted(set(re.findall(r"Could not find (\w+) parameter for atom types:\s*(.+)", self.tleapLog)))
+            if missing:
+                shown = "; ".join(f"{kind} {types.strip()}" for kind, types in missing[:6])
+                if len(missing) > 6:
+                    shown += f"; ... ({len(missing)} in total)"
+                self.printError(f"tleap has no parameters for: {shown}")
             self.printErrorQuoted(self.tleapLog)
             return True
         return False
@@ -1028,6 +1036,38 @@ class AbstractTopol(abc.ABC):
         summary = ", ".join(f"{change} x{n}" for change, n in sorted(counts.items()))
         self.printMess(f"Applied {self.proteinFF} residue atom types to {len(changes)} atoms: {summary}")
 
+    def checkAtomTypes(self):
+        """Fail early, and clearly, when antechamber typed atoms outside the force field.
+
+        antechamber writes ``DU`` for an atom it cannot type, and with ``-at amber`` it
+        also emits types such as ``NO`` for a nitro nitrogen that neither the AMBER
+        protein set nor GAFF define. Left alone, parmchk2 aborts with an empty frcmod,
+        which used to pass as "Parmchk OK", and tleap then fails once per missing bond
+        and angle. This names the atoms instead.
+
+        Returns:
+            bool: True when the topology cannot be built with the requested atom types.
+        """
+        if "amber" in self.atomType:
+            ff = PROTEIN_FF[self.proteinFF]
+            names = (ff["parm"], ff["frcmod"], self.gaffDatfile)
+            hint = "This chemistry is outside the AMBER protein atom types; try '-a gaff2'."
+        else:
+            names = (self.gaffDatfile,)
+            hint = f"antechamber could not assign {self.atomType} types to it."
+        files = [path for path in (self.locateDat(name) for name in names) if path]
+        if len(files) != len(names):
+            return False  # cannot check without the parameter files; let tleap decide
+        with open(self.acMol2FileName) as fh:
+            offending = unknownMol2Types(fh.readlines(), readParmAtomTypes(files))
+        if not offending:
+            return False
+        shown = ", ".join(f"{name}({atomType})" for name, atomType in offending[:8])
+        if len(offending) > 8:
+            shown += f", ... ({len(offending)} in total)"
+        self.printError(f"No parameters for atom(s) {shown}. {hint}")
+        return True
+
     def execParmchk(self):
         """Execute parmchk."""
         self.makeDir()
@@ -1068,6 +1108,11 @@ class AbstractTopol(abc.ABC):
                 cmd += " -s 2"
             self.printDebug(cmd)
             self.parmchkLog = _getoutput(cmd)
+
+        unknown = sorted(set(re.findall(r"Atom type of (\S+) does not exist in PARMCHK.DAT", self.parmchkLog)))
+        if unknown:
+            self.printError(f"parmchk2 does not know atom type(s) {', '.join(unknown)}; its frcmod would be incomplete")
+            return True
 
         if os.path.exists(self.acFrcmodFileName):
             check = self.checkFrcmod()
@@ -1145,11 +1190,18 @@ class AbstractTopol(abc.ABC):
         return True
 
     def createACTopol(self):
-        """If successful, Amber Top and Xyz files will be generated."""
-        if self.execTleap():
+        """Build the AMBER prmtop/inpcrd pair.
+
+        Returns:
+            bool: True when any step failed, so callers can stop before converting.
+        """
+        failed = self.execTleap()
+        if failed and self.tleapLog:
+            # Only when tleap itself ran; earlier steps report their own failure.
             self.printError("Tleap failed")
         if not self.debug:
             self.delOutputFiles()
+        return failed
 
     def createMolTopol(self):
         """Create MolTopol obj."""

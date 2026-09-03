@@ -208,7 +208,7 @@ def test_amber_tripeptide_end_to_end(janitor: list[str], protein_ff: str, ca_typ
     """A real tripeptide through -a amber gets the right C-alpha type and no GAFF backbone terms."""
     molecule = ACTopol("AAA.pdb", chargeType="gas", atomType="amber", protein_ff=protein_ff, debug=True, verbose=False)
     janitor.append(molecule.absHomeDir)
-    assert molecule.createACTopol() is None
+    assert not molecule.createACTopol()
 
     home = Path(molecule.absHomeDir)
     mol2 = (home / molecule.acMol2FileName).read_text()
