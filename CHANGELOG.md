@@ -4,9 +4,11 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
-## [Unreleased]
+## [2026.9.3] - 2026-09-03
 
-Everything here is on `main` and will ship as the next date-tagged release.
+Force field correctness. `-a amber` produced peptide backbone torsions that had been
+wrong since before 2023.10.27, and `amb2gmx` silently dropped ff19SB's CMAP correction;
+both are fixed and validated against GROMACS' own AMBER ports.
 
 ### Added
 
