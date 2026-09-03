@@ -76,9 +76,9 @@ def parse_top(path: Path) -> tuple[list[Moleculetype], list[tuple[str, int]]]:
     return blocks, molecules
 
 
-def write_topology(base: str) -> tuple[MolTopol, Path]:
+def write_topology(base: str, split: bool = False) -> tuple[MolTopol, Path]:
     """Convert an AMBER prmtop/inpcrd pair and return the molecule and its ``.top``."""
-    molecule = MolTopol(acFileTop=f"{base}.prmtop", acFileXyz=f"{base}.inpcrd")
+    molecule = MolTopol(acFileTop=f"{base}.prmtop", acFileXyz=f"{base}.inpcrd", split_molecules=split)
     molecule.writeGromacsTopolFiles()
     return molecule, Path(molecule.absHomeDir) / f"{base}_GMX.top"
 
@@ -144,10 +144,11 @@ def test_solute_block_merges_every_amber_molecule(janitor: list[str], base: str)
     assert solute.count("atoms") == sum(per_molecule) - solvent_atoms
 
 
+@pytest.mark.parametrize("split", [False, True], ids=["merged", "split"])
 @pytest.mark.parametrize("base", [r[0] for r in REFERENCE])
-def test_atom_indices_are_local_to_their_block(janitor: list[str], base: str) -> None:
+def test_atom_indices_are_local_to_their_block(janitor: list[str], base: str, split: bool) -> None:
     """Atom indices restart at 1 in every moleculetype and run without gaps."""
-    molecule, top = write_topology(base)
+    molecule, top = write_topology(base, split=split)
     janitor.append(molecule.absHomeDir)
 
     blocks, _ = parse_top(top)
@@ -157,10 +158,11 @@ def test_atom_indices_are_local_to_their_block(janitor: list[str], base: str) ->
         assert ids == list(range(1, len(ids) + 1)), f"{block.name} atom ids are not 1..N"
 
 
+@pytest.mark.parametrize("split", [False, True], ids=["merged", "split"])
 @pytest.mark.parametrize("base", [r[0] for r in REFERENCE])
-def test_bonded_terms_stay_inside_their_block(janitor: list[str], base: str) -> None:
+def test_bonded_terms_stay_inside_their_block(janitor: list[str], base: str, split: bool) -> None:
     """No bonded term references an atom outside the moleculetype that declares it."""
-    molecule, top = write_topology(base)
+    molecule, top = write_topology(base, split=split)
     janitor.append(molecule.absHomeDir)
 
     blocks, _ = parse_top(top)
@@ -177,3 +179,89 @@ def test_bonded_terms_stay_inside_their_block(janitor: list[str], base: str) -> 
             for line in block.sections.get(section, []):
                 refs = [int(tok) for tok in line.split()[:width]]
                 assert all(1 <= ref <= natoms for ref in refs), f"{block.name} {section}: {line.strip()!r}"
+
+
+# What -S/--split_molecules produces. RAMP1_ion has a single solute molecule, so the
+# split has nothing to do and the output keeps its one block.
+SPLIT: list[tuple[str, list[tuple[str, int]], list[tuple[str, int]]]] = [
+    (
+        "ILDN",
+        [("ILDN_1", 1560), ("ILDN_2", 1560), ("DMP", 80), ("NA+", 1), ("CL-", 1), ("WAT", 3)],
+        [("ILDN_1", 1), ("ILDN_2", 1), ("DMP", 1), ("NA+", 23), ("CL-", 27), ("WAT", 7227)],
+    ),
+    (
+        # The Zn2+ that ionsDict does not recognise now gets a block of its own, and
+        # the two chemically identical ADP are kept apart rather than collapsed.
+        "ComplexG1",
+        [("ComplexG1_1", 3313), ("ADP", 39), ("ADP_2", 39), ("ZN", 1), ("NA+", 1), ("WAT", 3)],
+        [("ComplexG1_1", 1), ("ADP", 1), ("ADP_2", 1), ("ZN", 1), ("NA+", 15), ("WAT", 8855)],
+    ),
+    (
+        "RAMP1_ion",
+        [("RAMP1_ion", 1289), ("NA+", 1), ("CL-", 1), ("WAT", 3)],
+        [("RAMP1_ion", 1), ("NA+", 21), ("CL-", 19), ("WAT", 5763)],
+    ),
+]
+
+
+@pytest.mark.parametrize(("base", "expected_blocks", "expected_molecules"), SPLIT, ids=[r[0] for r in SPLIT])
+def test_split_moleculetype_blocks(
+    janitor: list[str],
+    base: str,
+    expected_blocks: list[tuple[str, int]],
+    expected_molecules: list[tuple[str, int]],
+) -> None:
+    """Splitting emits one moleculetype per AMBER molecule, with unique names."""
+    molecule, top = write_topology(base, split=True)
+    janitor.append(molecule.absHomeDir)
+
+    blocks, molecules = parse_top(top)
+
+    assert [(b.name, b.count("atoms")) for b in blocks] == expected_blocks
+    assert molecules == expected_molecules
+
+
+@pytest.mark.parametrize("base", [r[0] for r in SPLIT])
+def test_split_conserves_every_term(janitor: list[str], base: str) -> None:
+    """Splitting redistributes the solute's sections without losing or duplicating a line."""
+    merged_molecule, merged_top = write_topology(base)
+    janitor.append(merged_molecule.absHomeDir)
+    split_molecule, split_top = write_topology(base, split=True)
+    janitor.append(split_molecule.absHomeDir)
+
+    merged_blocks, _ = parse_top(merged_top)
+    split_blocks, _ = parse_top(split_top)
+
+    # The solvent templates are untouched, so compare only what came from the solute.
+    solvent = {"NA+", "CL-", "K+", "WAT"}
+    merged_solute = [b for b in merged_blocks if b.name not in solvent]
+    split_solute = [b for b in split_blocks if b.name not in solvent]
+
+    for section in ("atoms", "bonds", "pairs", "angles", "dihedrals"):
+        before = sum(b.count(section) for b in merged_solute)
+        after = sum(b.count(section) for b in split_solute)
+        assert before == after, f"{section}: {before} before, {after} after"
+
+
+@pytest.mark.parametrize("base", [r[0] for r in SPLIT])
+def test_split_charges_are_integral(janitor: list[str], base: str) -> None:
+    """Each split moleculetype carries an integral charge, not just the system as a whole."""
+    molecule, top = write_topology(base, split=True)
+    janitor.append(molecule.absHomeDir)
+
+    blocks, _ = parse_top(top)
+
+    for block in blocks:
+        charge = sum(float(line.split()[6]) for line in block.sections["atoms"])
+        assert abs(charge - round(charge)) < 1e-6, f"{block.name} carries {charge:+.6f}"
+
+
+def test_split_needs_the_amber_molecule_table(janitor: list[str]) -> None:
+    """A prmtop without ATOMS_PER_MOLECULE, i.e. no box, is left as one moleculetype."""
+    molecule, top = write_topology("DNA_BSC0", split=True)
+    janitor.append(molecule.absHomeDir)
+
+    assert not molecule.getFlagData("ATOMS_PER_MOLECULE")
+    blocks, molecules = parse_top(top)
+    assert [b.name for b in blocks] == ["DNA_BSC0"]
+    assert molecules == [("DNA_BSC0", 1)]

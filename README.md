@@ -129,6 +129,16 @@ write (`all`, `gmx`, `cns`, `charmm`), and `-r` the antechamber atom/bond type
 prediction index if the default perception struggles with your molecule. Run
 `acpype -h` for the full list and for what every output file is.
 
+In `amb2gmx` mode, `-S/--split_molecules` writes one `[ moleculetype ]` per molecule
+that AMBER identified, instead of merging the whole solute into one. Converting a
+tleap system built as `complex = combine { target ligand }` then gives a separate
+block for the target and for the ligand, each usable on its own in `[ molecules ]`.
+The molecules come from the prmtop's `ATOMS_PER_MOLECULE`, so they match AMBER's own
+bonded connectivity; a prmtop with no box does not carry that record and is left as a
+single moleculetype. Charges are rounded per molecule when splitting, because AMBER's
+stored precision leaves an individual molecule off by ~1e-3 even when the system as a
+whole is exactly integral.
+
 A note on `-q`, the quantum engine behind `bcc` and `abcg2` charges: only `sqm` is
 bundled with ACPYPE. `-q mopac` and `-q divcon` are still accepted, but they need a
 full external AmberTools with `AMBERHOME` pointing at it, because `antechamber` drives

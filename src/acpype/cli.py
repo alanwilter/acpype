@@ -156,6 +156,14 @@ def main(
         bool,
         typer.Option("-g", "--merge", help="merge lower and uppercase atomtypes in GMX top if parameters match"),
     ] = False,
+    split_molecules: Annotated[
+        bool,
+        typer.Option(
+            "-S",
+            "--split_molecules",
+            help="in 'amb2gmx' mode, write one [ moleculetype ] per molecule AMBER found, e.g. protein and ligand apart",
+        ),
+    ] = False,
     direct: Annotated[
         bool,
         typer.Option("-u", "--direct", help="in 'amb2gmx' mode, do a direct conversion for any solvent (EXPERIMENTAL)"),
@@ -225,6 +233,7 @@ def main(
                 gmx4=gmx4,
                 merge=merge,
                 direct=direct,
+                split_molecules=split_molecules,
                 is_sorted=is_sorted,
                 chiral=chiral,
             )
@@ -259,6 +268,7 @@ def main(
                 gmx4=gmx4,
                 merge=merge,
                 direct=direct,
+                split_molecules=split_molecules,
                 is_sorted=is_sorted,
                 chiral=chiral,
                 amb2gmx=False,

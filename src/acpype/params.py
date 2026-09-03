@@ -66,6 +66,10 @@ epilog = """
     root_CHARMM.prm   :  parameter file for CHARMM
     root_CHARMM.inp   :  run parameters file for CHARMM
 
+    note: '-S' (amb2gmx only) writes one [ moleculetype ] per molecule AMBER
+          identified, so a tleap 'combine { target ligand }' complex comes out as
+          separate target and ligand blocks rather than one merged solute.
+
     note: only 'sqm' is bundled with acpype. '-q mopac' and '-q divcon' need a
           full external AmberTools, with AMBERHOME pointing at it: antechamber
           runs them through its own mopac.sh/divcon wrappers, which neither the

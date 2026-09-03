@@ -256,6 +256,8 @@ class AbstractTopol(abc.ABC):
         self.rootDir: str = ""
         self.extOld: str = ""
         self.direct: bool = False
+        self.splitMolecules: bool = False
+        self.gmxSplitNames: list = []
         self.merge: bool = False
         self.gmx4: bool = False
         self.sorted: bool = False
@@ -1282,10 +1284,17 @@ class AbstractTopol(abc.ABC):
             atoms.append(atom)
             id_ += 1
 
-        balanceChargeList, balanceValue, balanceIds = self.balanceCharges(chargeList, FirstNonSoluteId)
+        soluteRanges = []
+        if self.splitMolecules:
+            soluteRanges = self.amberMoleculeRanges(FirstNonSoluteId or len(chargeList))
+        if soluteRanges:
+            self.balanceChargesPerMolecule(chargeList, atoms, soluteRanges)
+            balanceChargeList = chargeList
+        else:
+            balanceChargeList, balanceValue, balanceIds = self.balanceCharges(chargeList, FirstNonSoluteId)
 
-        for id_ in balanceIds:
-            atoms[id_].charge = balanceValue / qConv
+            for id_ in balanceIds:
+                atoms[id_].charge = balanceValue / qConv
 
         if atomTypeName[0].islower():
             self.atomTypeSystem = "gaff"
@@ -1303,6 +1312,60 @@ class AbstractTopol(abc.ABC):
             self.pbc = [coords[-2], coords[-1]]
         self.printDebug("PBC = %s" % self.pbc)
         self.printDebug("getAtoms done")
+
+    def amberMoleculeRanges(self, nSoluteAtoms):
+        """Split the solute into the molecules AMBER already identified.
+
+        ``ATOMS_PER_MOLECULE`` is written by tleap from bonded connectivity, and its
+        atoms are contiguous by construction, which is exactly what GROMACS needs: the
+        coordinate file order has to match the order of ``[ molecules ]``. Working from
+        that flag means no connectivity analysis and no reordering here.
+
+        The flag only exists when the prmtop carries a box, so a vacuum system yields
+        nothing and the caller keeps its single moleculetype.
+
+        Args:
+            nSoluteAtoms: how many leading atoms belong to the solute, i.e. everything
+                before the first water or ion handled by its own template.
+
+        Returns:
+            list: ``(lo, hi)`` pairs of 0-based, half-open atom ranges covering exactly
+            the solute, or ``[]`` when the split cannot be made safely.
+        """
+        perMolecule = self.getFlagData("ATOMS_PER_MOLECULE")
+        if not perMolecule:
+            return []
+        ranges = []
+        lo = 0
+        for count in perMolecule:
+            if lo >= nSoluteAtoms:
+                break
+            ranges.append((lo, lo + count))
+            lo += count
+        # The molecule boundaries must land exactly on the solute boundary. If they do
+        # not, the solvent split disagrees with AMBER's and splitting would silently
+        # move atoms between moleculetypes.
+        if lo != nSoluteAtoms:
+            self.printDebug("ATOMS_PER_MOLECULE does not align with the solute; not splitting")
+            return []
+        return ranges
+
+    def balanceChargesPerMolecule(self, chargeList, atoms, ranges):
+        """Round each molecule's charge to an integer on its own.
+
+        AMBER stores charges to a limited precision, so a molecule taken out of a
+        system is typically off by ~1e-3: ILDN's two chains carry +2.001 each and its
+        DMP ligand -0.002, summing to an exact +4. Balancing globally, as
+        :meth:`balanceCharges` does, hides that inside one moleculetype. Once the
+        molecules are written separately each has to be integral by itself, or grompp
+        reports a non-integer charge for every one of them.
+        """
+        for lo, hi in ranges:
+            subList = chargeList[lo:hi]
+            balanced, value, ids = self.balanceCharges(subList)
+            chargeList[lo:hi] = balanced
+            for id_ in ids:
+                atoms[lo + id_].charge = value / qConv
 
     def getBonds(self):
         """Get Bonds."""
@@ -1901,6 +1964,76 @@ class AbstractTopol(abc.ABC):
         self.atomTypesGromacs = self.atomTypes
         self.atomsGromacs = self.atoms
 
+    def shiftLineIds(self, line, nIds, offset):
+        """Renumber the leading atom-id columns of a topology line, keeping its width."""
+        out = ""
+        rest = line
+        for _ in range(nIds):
+            match = re.match(r"(\s*)(\d+)", rest)
+            if not match:
+                break
+            out += "%*d" % (len(match.group(0)), int(match.group(2)) - offset)
+            rest = rest[match.end() :]
+        return out + rest
+
+    def gmxMoleculeName(self, lo, hi, used):
+        """Name one solute molecule, preferring its residue name when it has just one."""
+        resids = {self.atoms[id_].resid for id_ in range(lo, hi)}
+        if len(resids) == 1:
+            name = self.residueLabel[resids.pop()]
+        else:
+            name = "%s_%i" % (self.baseName, len(used) + 1)
+        # GROMACS matches moleculetypes by name, so two blocks may never share one.
+        # Identical molecules are written out separately rather than collapsed into an
+        # nmols count: mistaking two different molecules for one corrupts the system,
+        # while repeating an identical one only costs a few lines.
+        stem, count = name, 2
+        while name in used:
+            name = "%s_%i" % (stem, count)
+            count += 1
+        used.append(name)
+        return name
+
+    def gmxSoluteBlocks(self, headMoleculetype, sections):
+        """Render the solute as one ``[ moleculetype ]`` per AMBER molecule.
+
+        Args:
+            headMoleculetype: the ``[ moleculetype ]`` template, taking a name.
+            sections: ``(header, lines, nIds)`` triples in the order they were built,
+                where ``nIds`` is how many leading columns of each line are atom ids.
+
+        Returns:
+            list: the lines to write, or ``None`` when the solute cannot be split and
+            the caller should fall back to a single block.
+        """
+        atomLines = sections[0][1]
+        ranges = self.amberMoleculeRanges(len(atomLines))
+        if len(ranges) < 2:
+            return None
+
+        text = []
+        names = []
+        for lo, hi in ranges:
+            text.append(headMoleculetype % self.gmxMoleculeName(lo, hi, names))
+            for header, lines, nIds in sections:
+                # A bonded term never spans two molecules -- that is what makes them
+                # separate molecules -- so the first id decides where the line belongs.
+                picked = [line for line in lines if lo < int(line.split()[0]) <= hi]
+                if not picked:
+                    continue
+                text.append(header)
+                if nIds == 1:
+                    qtot = 0.0
+                    for line in picked:
+                        qtot += float(line.split()[6])
+                        shifted = self.shiftLineIds(line, nIds, lo)
+                        text.append(re.sub(r"(; qtot )\S+", "\\g<1>%1.3f" % qtot, shifted))
+                else:
+                    text += [self.shiftLineIds(line, nIds, lo) for line in picked]
+        self.printMess("Split the solute into %i moleculetypes: %s\n" % (len(names), ", ".join(names)))
+        self.gmxSplitNames = names
+        return text
+
     def writeGromacsTop(self):
         """Write GMX topology file."""
         if self.atomTypeSystem == "amber":
@@ -2130,6 +2263,9 @@ class AbstractTopol(abc.ABC):
         topText.append(headDefault)
 
         nSolute = 0
+        # Section lines are collected rather than written straight out, so that a split
+        # solute can partition them per molecule without duplicating any formatting.
+        soluteSections = []
         if not self.amb2gmx:
             topText.append(headItp % (itp, itp))
             topText.append(headLigPosre % posre)
@@ -2205,9 +2341,7 @@ class AbstractTopol(abc.ABC):
             self.printDebug("type of water '%s'" % headWater[43:48].strip())
 
         if nSolute:
-            if self.amb2gmx:
-                topText.append(headMoleculetype % self.baseName)
-            else:
+            if not self.amb2gmx:
                 itpText.append(headMoleculetype % self.baseName)
                 oitpText.append(headMoleculetype % self.baseName)
 
@@ -2266,8 +2400,7 @@ class AbstractTopol(abc.ABC):
             otemp.append(oline)
         if temp:
             if self.amb2gmx:
-                topText.append(headAtoms)
-                topText += temp
+                soluteSections.append((headAtoms, temp, 1))
             else:
                 itpText.append(headAtoms)
                 itpText += temp
@@ -2316,8 +2449,7 @@ class AbstractTopol(abc.ABC):
         otemp.sort()
         if temp:
             if self.amb2gmx:
-                topText.append(headBonds)
-                topText += temp
+                soluteSections.append((headBonds, temp, 2))
             else:
                 itpText.append(headBonds)
                 itpText += temp
@@ -2342,8 +2474,7 @@ class AbstractTopol(abc.ABC):
         temp.sort()
         if temp:
             if self.amb2gmx:
-                topText.append(headPairs)
-                topText += temp
+                soluteSections.append((headPairs, temp, 2))
             else:
                 itpText.append(headPairs)
                 itpText += temp
@@ -2395,8 +2526,7 @@ class AbstractTopol(abc.ABC):
         otemp.sort()
         if temp:
             if self.amb2gmx:
-                topText.append(headAngles)
-                topText += temp
+                soluteSections.append((headAngles, temp, 3))
             else:
                 itpText.append(headAngles)
                 itpText += temp
@@ -2458,8 +2588,7 @@ class AbstractTopol(abc.ABC):
             otemp.sort()
             if temp:
                 if self.amb2gmx:
-                    topText.append(headProDih)
-                    topText += temp
+                    soluteSections.append((headProDih, temp, 4))
                 else:
                     itpText.append(headProDih)
                     itpText += temp
@@ -2515,8 +2644,7 @@ class AbstractTopol(abc.ABC):
             otemp.sort()
             if temp:
                 if self.amb2gmx:
-                    topText.append(headProDihGmx45)
-                    topText += temp
+                    soluteSections.append((headProDihGmx45, temp, 4))
                 else:
                     itpText.append(headProDihGmx45)
                     itpText += temp
@@ -2576,8 +2704,7 @@ class AbstractTopol(abc.ABC):
         otemp.sort()
         if temp:
             if self.amb2gmx:
-                topText.append(headProDihAlphaGamma)
-                topText += temp
+                soluteSections.append((headProDihAlphaGamma, temp, 4))
             else:
                 itpText.append(headProDihAlphaGamma)
                 itpText += temp
@@ -2634,14 +2761,22 @@ class AbstractTopol(abc.ABC):
         otemp.sort()
         if temp:
             if self.amb2gmx:
-                topText.append(headImpDih)
-                topText += temp
+                soluteSections.append((headImpDih, temp, 4))
             else:
                 itpText.append(headImpDih)
                 itpText += temp
                 oitpText.append(headImpDih)
                 oitpText += otemp
         self.printDebug("GMX improper dihedrals done")
+
+        if self.amb2gmx and nSolute:
+            blocks = self.gmxSoluteBlocks(headMoleculetype, soluteSections) if self.splitMolecules else None
+            if blocks is None:
+                blocks = [headMoleculetype % self.baseName]
+                for header, lines, _ in soluteSections:
+                    blocks.append(header)
+                    blocks += lines
+            topText += blocks
 
         if not self.direct:
             for ion in ionsSorted:
@@ -2656,7 +2791,8 @@ class AbstractTopol(abc.ABC):
         otopText.append(headMols)
 
         if nSolute > 0:
-            topText.append(" %-16s %-6i\n" % (self.baseName, nSolute))
+            for name in self.gmxSplitNames or [self.baseName]:
+                topText.append(" %-16s %-6i\n" % (name, nSolute))
             otopText.append(" %-16s %-6i\n" % (self.baseName, nSolute))
 
         if not self.direct:
@@ -3208,6 +3344,7 @@ class ACTopol(AbstractTopol):
         gmx4=False,
         merge=False,
         direct=False,
+        split_molecules=False,
         is_sorted=False,
         chiral=False,
         amb2gmx=False,
@@ -3221,6 +3358,7 @@ class ACTopol(AbstractTopol):
         self.gmx4 = gmx4
         self.merge = merge
         self.direct = direct
+        self.splitMolecules = split_molecules
         self.sorted = is_sorted
         self.chiral = chiral
 
@@ -3367,6 +3505,7 @@ class MolTopol(AbstractTopol):
         gmx4=False,
         merge=False,
         direct=False,
+        split_molecules=False,
         is_sorted=False,
         chiral=False,
         amb2gmx=False,
@@ -3381,6 +3520,7 @@ class MolTopol(AbstractTopol):
         self.gmx4 = gmx4
         self.merge = merge
         self.direct = direct
+        self.splitMolecules = split_molecules
         self.sorted = is_sorted
         self.verbose = verbose
         self.inputFile = acFileTop
