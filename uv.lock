@@ -12,7 +12,7 @@ exclude-newer-span = "P7D"
 
 [[package]]
 name = "acpype"
-version = "2026.9.2"
+version = "2026.9.3"
 source = { editable = "." }
 dependencies = [
     { name = "openbabel-wheel" },
