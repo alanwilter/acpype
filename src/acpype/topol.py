@@ -11,6 +11,7 @@ from datetime import datetime
 from shutil import copy2, rmtree, which
 
 from acpype import __version__ as version
+from acpype.errors import UnsupportedTopologyError
 from acpype.logger import set_logging_conf as logger
 from acpype.mol import Angle, Atom, AtomType, Bond, Dihedral
 from acpype.params import (
@@ -1261,6 +1262,30 @@ class AbstractTopol(abc.ABC):
         if dumpFlag:
             with open(pklFile, "wb") as f:  # for python 3.3 or higher
                 pickle.dump(self, f)
+
+    def refuseUnsupportedFlags(self, topName):
+        """Refuse a prmtop carrying terms the GROMACS writer cannot express yet.
+
+        ff19SB keeps its backbone correction in CMAP grids (``%FLAG CMAP_COUNT`` and
+        friends). The writer knows nothing of them, so it would emit a topology that
+        grompp accepts and that silently lacks the correction. Refusing is the only
+        honest option until ``[ cmaptypes ]``/``[ cmap ]`` output exists.
+
+        Args:
+            topName: the prmtop file name, for the message.
+
+        Raises:
+            UnsupportedTopologyError: when the prmtop declares CMAP terms.
+        """
+        cmap = self.getFlagData("CMAP_COUNT")
+        if not cmap:
+            return
+        nTerms, nTypes = [*cmap, 0, 0][:2]
+        raise UnsupportedTopologyError(
+            f"'{topName}' carries {nTerms} CMAP term(s) of {nTypes} type(s), as ff19SB topologies do. "
+            "acpype cannot write GROMACS [ cmap ] terms yet, so the converted topology would silently "
+            "lose the backbone correction. Build the system with ff14SB or ff99SB, or wait for CMAP support."
+        )
 
     def getFlagData(self, flag):
         """For a given acFileTop flag, return a list of the data related."""
@@ -3675,6 +3700,7 @@ class MolTopol(AbstractTopol):
 
         self.xyzFileData = open(acFileXyz).readlines()
         self.topFileData = [x for x in open(acFileTop).readlines() if not x.startswith("%COMMENT")]
+        self.refuseUnsupportedFlags(acFileTop)
         self.topo14Data = Topology_14()
         self.topo14Data.read_amber_topology("".join(self.topFileData))
         self.printDebug("prmtop and inpcrd files loaded")

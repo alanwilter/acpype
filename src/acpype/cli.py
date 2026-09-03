@@ -10,6 +10,7 @@ from typing import Annotated
 
 import typer
 
+from acpype.errors import AcpypeError
 from acpype.logger import copy_log, tmpLogFile
 from acpype.logger import set_logging_conf as logger
 from acpype.params import MAXTIME, binaries, epilog
@@ -82,7 +83,11 @@ def _chk_py_ver():
 
 def _handle_exception(level):
     _exceptionType, exceptionValue, _exceptionTraceback = sys.exc_info()
-    logger(level).exception(f"ACPYPE FAILED: {exceptionValue}")
+    if isinstance(exceptionValue, AcpypeError):
+        # A deliberate refusal already says what is wrong; a traceback would only bury it.
+        logger(level).error(f"ACPYPE FAILED: {exceptionValue}")
+    else:
+        logger(level).exception(f"ACPYPE FAILED: {exceptionValue}")
     return True
 
 

@@ -143,6 +143,11 @@ energies agree with GROMACS' own `amber14sb.ff` to within 0.05% for 21 of them a
 1% for tyrosine, where antechamber types the ring `CZ` differently, an exception on
 record in `NOTE.txt` since 2010.
 
+`amb2gmx` refuses, with a clear message, a `prmtop` that carries CMAP terms, as ff19SB
+topologies do: ACPYPE cannot write GROMACS `[ cmap ]` terms yet and would otherwise
+produce a topology that grompp accepts but that silently lacks the backbone correction.
+CMAP support is the next piece of work; until then convert ff14SB or ff99SB systems.
+
 In `amb2gmx` mode, `-S/--split_molecules` writes one `[ moleculetype ]` per molecule
 that AMBER identified, instead of merging the whole solute into one. Converting a
 tleap system built as `complex = combine { target ligand }` then gives a separate
