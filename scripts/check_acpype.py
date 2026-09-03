@@ -42,7 +42,12 @@ from acpype.utils import _getoutput
 def _parse_args():
     """Read the command line, keeping the historical defaults."""
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--ff", default="amber", choices=("amber", "gaff"), help="ACPYPE atom types to compare")
+    parser.add_argument(
+        "--ff",
+        default="amber",
+        choices=("amber", "amber2", "gaff", "gaff2"),
+        help="ACPYPE atom types to compare (only 'amber'/'amber2' are like-for-like with the AMBER reference)",
+    )
     parser.add_argument("--charge", default="gas", choices=("gas", "bcc"), help="ACPYPE charge method")
     parser.add_argument("--dir", default=None, help="working directory (default: a fresh temporary one)")
     parser.add_argument("--pymol", action="store_true", help="build the tripeptides with pymol instead of tleap")

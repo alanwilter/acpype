@@ -140,10 +140,10 @@ def parseFrcmod(lista):
             else:
                 dd[key] = [line]
             dict_[ahead] = dd
-    for kk in dict_:
-        if not dict_[kk]:
-            dict_.pop(kk)
-    return dict_
+    # Built as a comprehension rather than popping in place: mutating the dict while
+    # iterating it raises RuntimeError, which frcmod.ff14SB never triggered because it
+    # has no empty section, but frcmod.ff99SB does.
+    return {kk: vv for kk, vv in dict_.items() if vv}
 
 
 def parmMerge(fdat1, fdat2, frcmod=False):
