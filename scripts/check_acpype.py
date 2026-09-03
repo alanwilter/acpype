@@ -1,27 +1,90 @@
 #!/usr/bin/env python3
+"""Compare ACPYPE topologies and energies against GROMACS/AMBER99SB references.
+
+This is the comparative test described in ``NOTE.txt``. It builds the 22 tripeptides
+(one per usual amino acid, plus the three histidine protonation states), converts each
+one with both ``pdb2gmx -ff amber99sb`` and ACPYPE, and reports where the atom types,
+bonded parameters and single-point potential energies disagree.
+
+It is a development harness, not part of the test suite: it needs external tools, takes
+minutes to run, and its output is meant to be read rather than asserted on.
+
+Requirements:
+    * GROMACS on ``PATH`` (or ``$GMX``), providing ``gmx`` and its ``amber99sb.ff``
+      data. ``brew install gromacs`` or ``conda install -c conda-forge gromacs``.
+    * AmberTools for ``tleap``. The copy bundled with ACPYPE is used automatically.
+    * ``sander`` and ``ambpdb``, to energy minimise each tripeptide. These are *not*
+      part of the AmberTools bundled with ACPYPE, so a full install is needed:
+      ``conda install -c conda-forge ambertools``. The script runs without them, using
+      the geometry ``tleap savepdb`` writes, but that geometry is strained enough that
+      antechamber mis-perceives aromatic rings -- PHE's CD2 comes out as type ``DU``,
+      which Gasteiger has no parameter for -- and the energies drift far from the
+      figures quoted in ``NOTE.txt``. Treat a run without them as indicative only.
+    * Optionally ``pymol``, an alternative way to build the tripeptides (``--pymol``).
+
+Usage:
+    uv run python scripts/check_acpype.py [--ff amber|gaff] [--charge gas|bcc]
+                                          [--dir DIR] [--pymol] [--keep]
+"""
+
+import argparse
 import os
 import shutil
 import subprocess
+import sys
+import tempfile
 from glob import glob
 
 from acpype.topol import ACTopol
 from acpype.utils import _getoutput
 
-usePymol = False
-ffType = "amber"  # gaff
-cType = "gas"
+
+def _parse_args():
+    """Read the command line, keeping the historical defaults."""
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--ff", default="amber", choices=("amber", "gaff"), help="ACPYPE atom types to compare")
+    parser.add_argument("--charge", default="gas", choices=("gas", "bcc"), help="ACPYPE charge method")
+    parser.add_argument("--dir", default=None, help="working directory (default: a fresh temporary one)")
+    parser.add_argument("--pymol", action="store_true", help="build the tripeptides with pymol instead of tleap")
+    parser.add_argument("--keep", action="store_true", help="do not delete the working directory afterwards")
+    return parser.parse_args()
+
+
+def _which(name, *extraDirs):
+    """Find an executable next to the bundled AmberTools first, then on PATH."""
+    for directory in extraDirs:
+        candidate = os.path.join(directory, name)
+        if os.path.isfile(candidate) and os.access(candidate, os.X_OK):
+            return candidate
+    return shutil.which(name)
+
+
+def _gmxDataDir(gmxExe):
+    """Locate the GROMACS ``share`` tree holding ``gromacs/top/amber99sb.ff``."""
+    if os.environ.get("GMXDATA"):
+        return os.environ["GMXDATA"]
+    # gmx is usually a symlink into a versioned prefix, e.g. Homebrew's Cellar.
+    prefix = os.path.dirname(os.path.dirname(os.path.realpath(gmxExe)))
+    return os.path.join(prefix, "share")
+
+
+args = _parse_args()
+
+usePymol = args.pymol
+ffType = args.ff
+cType = args.charge
 debug = True
 
 water = " -water none"
 
 print(f"usePymol: {usePymol}, ffType: {ffType}, cType: {cType}")
 
-tmpDir = "/tmp/testAcpype"
+tmpDir = args.dir or tempfile.mkdtemp(prefix="acpype-check-")
 
 delList = ["topol.top", "posre.itp"]
 
-# create Dummy PDB
-tpdb = "/tmp/tmp.pdb"
+# create Dummy PDB, only so ACTopol resolves the AmberTools binaries for us
+tpdb = os.path.join(tempfile.gettempdir(), "acpype-check-dummy.pdb")
 dummyLine = "ATOM      1  N   ALA A   1      -1.188  -0.094   0.463  1.00  0.00           N\n"
 open(tpdb, "w").writelines(dummyLine)
 tempObj = ACTopol(tpdb, chargeVal=0, verbose=False)
@@ -29,19 +92,31 @@ tempObj = ACTopol(tpdb, chargeVal=0, verbose=False)
 # Binaries for ambertools
 acExe = tempObj.acExe
 tleapExe = tempObj.tleapExe
-sanderExe = os.path.join(os.path.dirname(acExe), "sander")
-ambpdbExe = os.path.join(os.path.dirname(acExe), "ambpdb")
+amberBin = os.path.dirname(acExe)
+# sander and ambpdb are not part of the AmberTools bundled with acpype, and are only
+# needed to minimise the tripeptides. Without them tleap's savepdb geometry is used.
+sanderExe = _which("sander", amberBin)
+ambpdbExe = _which("ambpdb", amberBin)
 
-exePymol = "/sw/bin/pymol"
+exePymol = _which("pymol")
 
 # Binaries for gromacs
-gpath = "/home/awilter/miniconda3/envs/acpype/"
-gmxTopDir = gpath + "share"
-pdb2gmx = gpath + "bin/gmx pdb2gmx"
-grompp = gpath + "bin/gmx grompp"
-mdrun = gpath + "bin/gmx mdrun"
-g_energy = gpath + "bin/gmx energy"
-gmxdump = gpath + "bin/gmx dump"
+gmxExe = os.environ.get("GMX") or _which("gmx") or _which("gmx_mpi")
+if not gmxExe:
+    sys.exit("ERROR: no 'gmx' found. Install GROMACS or point $GMX at it.")
+gmxTopDir = _gmxDataDir(gmxExe)
+if not os.path.isdir(os.path.join(gmxTopDir, "gromacs", "top", "amber99sb.ff")):
+    sys.exit(f"ERROR: no amber99sb.ff under {gmxTopDir}/gromacs/top. Set $GMXDATA to the GROMACS share directory.")
+pdb2gmx = f"{gmxExe} pdb2gmx"
+grompp = f"{gmxExe} grompp"
+mdrun = f"{gmxExe} mdrun"
+editconf = f"{gmxExe} editconf"
+g_energy = f"{gmxExe} energy"
+gmxdump = f"{gmxExe} dump"
+
+print(
+    f"gmx: {gmxExe}\ntleap: {tleapExe}\nminimise: {'yes' if sanderExe and ambpdbExe else 'no (sander/ambpdb absent)'}"
+)
 
 amberff = "oldff/leaprc.ff99SB"
 
@@ -53,36 +128,35 @@ saveamberparm mol prmtop inpcrd
 quit
 """
 
-spe_mdp = """
-# Create SPE.mdp file #single point energy
-cat << EOF >| SPE.mdp
-define = -DFLEXIBLE
-cutoff-scheme            = group
-integrator               = md
+# Single point energy: one force evaluation. GROMACS dropped the group cutoff scheme
+# in 2020, and Verlet supports neither infinite cutoffs nor pbc=no, so the molecule now
+# goes in a large box (editconf -d 3.0) with cutoffs well beyond its own size. Both
+# sides of the comparison use these same settings, so the difference is unaffected.
+# This used to carry its shell heredoc wrapper ("cat << EOF >| SPE.mdp" ... "EOF")
+# into the file itself, which modern grompp rejects as three malformed parameters.
+spe_mdp = """integrator               = md
 nsteps                   = 0
 dt                       = 0.001
 constraints              = none
-emtol                    = 10.0
-emstep                   = 0.01
-nstcomm                  = 1
-ns_type                  = simple
-nstlist                  = 0
-rlist                    = 0
-rcoulomb                 = 0
-rvdw                     = 0
+cutoff-scheme            = Verlet
+nstlist                  = 1
+verlet-buffer-tolerance  = -1
+rlist                    = 2.0
+pbc                      = xyz
+coulombtype              = Cut-off
+rcoulomb                 = 2.0
+vdwtype                  = Cut-off
+rvdw                     = 2.0
 Tcoupl                   = no
 Pcoupl                   = no
 gen_vel                  = no
+nstcomm                  = 1
+comm_mode                = Linear
+nstlog                   = 1
+nstenergy                = 1
+nstcalcenergy            = 1
 nstxout                  = 1
-pbc                      = no
-nstlog = 1
-nstenergy = 1
-nstvout = 1
-nstfout = 1
-nstxtcout = 1
-comm_mode = ANGULAR
-continuation = yes
-EOF
+continuation             = yes
 """
 
 aa_dict = {
@@ -650,8 +724,11 @@ def build_residues_tleap():
         _getoutput(cmd)
         # cmd = "%s -O; %s < restrt > %s.pdb; mv mdinfo %s.mdinfo" % (sanderExe, ambpdbExe, aai3, aai3)
         # -i mdin -o mdout -p prmtop -c inpcrd" % (sanderExe)
-        cmd = f"{sanderExe} -O; {ambpdbExe} -c restrt > {aai3}.pdb"
-        _getoutput(cmd)
+        # tleap has already written aai3.pdb via savepdb; sander/ambpdb only replace
+        # it with a minimised geometry, so skip that step when they are not installed.
+        if sanderExe and ambpdbExe:
+            cmd = f"{sanderExe} -O; {ambpdbExe} -c restrt > {aai3}.pdb"
+            _getoutput(cmd)
     _getoutput("rm -f mdout mdinfo mdin restrt tleap.in prmtop inpcrd leap.log")
 
 
@@ -670,15 +747,15 @@ def calcGmxPotEnerDiff(res):
         out = out.split("\n")[-nEner:]
         dictEner = {}
         for item in out:
-            k, v = (
-                item.replace(" Dih.", "_Dih.")
-                .replace(" (SR)", "_(SR)")
-                .replace("c En.", "c_En.")
-                .replace(" (bar)", "_(bar)")
-                .replace("l E", "l_E")
-                .split()[:2]
-            )
-            v = eval(v)
+            # A gmx energy summary row is "<name words...> <average> <err.est> <rmsd>
+            # <tot-drift> (<unit>)". Gluing the name with a fixed list of replacements
+            # broke as soon as GROMACS renamed "Improper Dih." to "Per. Imp. Dih.", a
+            # three word name, so the columns are counted from the right instead.
+            tokens = item.split()
+            if len(tokens) < 6:
+                continue
+            k = "_".join(tokens[:-5])
+            v = float(tokens[-5])
             dictEner[k] = v
             if "Dih." in k or "Bell." in k:
                 if "Dihedral P+I" in list(dictEner.keys()):
@@ -706,11 +783,13 @@ def calcGmxPotEnerDiff(res):
         "tEner": tEner,
         "water": water,
         "gmxdump": gmxdump,
+        "editconf": editconf,
     }
 
     # calc Pot Ener for aXXX.pdb (AMB_GMX)
     template = """%(pdb2gmx)s -ff amber99sb -f a%(res)s.pdb -o a%(res)s_.pdb -p a%(res)s.top %(water)s
-    %(grompp)s -c a%(res)s_.pdb -p a%(res)s.top -f SPE.mdp -o a%(res)s.tpr -pp a%(res)sp.top
+    %(editconf)s -f a%(res)s_.pdb -o a%(res)s_box.pdb -bt cubic -d 3.0
+    %(grompp)s -c a%(res)s_box.pdb -p a%(res)s.top -f SPE.mdp -o a%(res)s.tpr -pp a%(res)sp.top
     %(mdrun)s -v -deffnm a%(res)s
     echo %(tEner)s | %(g_energy)s -f a%(res)s.edr
     """
@@ -719,7 +798,8 @@ def calcGmxPotEnerDiff(res):
 
     # calc Pot Ener for agXXX.acpype/agXXX.pdb (ACPYPE_GMX)
     template = """
-    %(grompp)s -c ag%(res)s.acpype/ag%(res)s_NEW.pdb -p ag%(res)s.acpype/ag%(res)s_GMX.top -f SPE.mdp \
+    %(editconf)s -f ag%(res)s.acpype/ag%(res)s_NEW.pdb -o ag%(res)s_box.pdb -bt cubic -d 3.0
+    %(grompp)s -c ag%(res)s_box.pdb -p ag%(res)s.acpype/ag%(res)s_GMX.top -f SPE.mdp \
     -o ag%(res)s.tpr -pp ag%(res)sp.top
     %(mdrun)s -v -deffnm ag%(res)s
     echo %(tEner)s | %(g_energy)s -f ag%(res)s.edr
@@ -792,56 +872,80 @@ if __name__ == "__main__":
         ff.writelines(pymolScript)
         ff.close()
         cmd = f"{exePymol} -qc {tmpFile}"
-        os.system(cmd)
+        subprocess.run(cmd, shell=True, check=False)
     else:
         build_residues_tleap()
     listRes = os.listdir(".")  # list all res.pdb
     listRes = glob("???.pdb")
     listRes.sort()
+    failures = []
     for resFile in listRes:
         res, ext = os.path.splitext(resFile)  # eg. res = 'AAA'
         # if res != 'RRR': continue
         if len(resFile) == 7 and ext == ".pdb" and resFile[:3].isupper():
             print(f"\nFile {resFile} : residue {aa_dict[res[0]].upper()}")
+            # ACPYPE and calcGmxPotEnerDiff both chdir, so a residue that fails part
+            # way through would otherwise strand the loop in its output directory and
+            # take every later residue down with it.
+            os.chdir(tmpDir)
+            try:
+                _pdb = createOldPdb2(resFile)  # using my own dict
+                apdb = createAmberPdb3(_pdb)  # create file aAAA.pdb with NXXX, CXXX
 
-            _pdb = createOldPdb2(resFile)  # using my own dict
-            apdb = createAmberPdb3(_pdb)  # create file aAAA.pdb with NXXX, CXXX
+                # from ogpdb to amber pdb and top
+                agpdb = "ag%s.pdb" % res  # output name
+                agtop = "ag%s.top" % res
+                cmd = f" {pdb2gmx} -f {apdb} -o {agpdb} -p {agtop} -ff amber99sb {water}"
+                pdebug(cmd)
+                out = _getoutput(cmd)
+                # print(out)
+                # parseOut(out)
 
-            # from ogpdb to amber pdb and top
-            agpdb = "ag%s.pdb" % res  # output name
-            agtop = "ag%s.top" % res
-            cmd = f" {pdb2gmx} -f {apdb} -o {agpdb} -p {agtop} -ff amber99sb {water}"
-            pdebug(cmd)
-            out = _getoutput(cmd)
-            # print(out)
-            # parseOut(out)
+                # acpype on agpdb file
+                fixRes4Acpype(agpdb)
+                cv = None
+                # cmd = "%s -dfi %s -c %s -a %s" % (acpypeExe, agpdb, cType, ffType)
+                if res in ["JJJ", "RRR"] and cType == "bcc":
+                    cv = 3  # cmd += ' -n 3' # acpype failed to get correct charge
+                mol = ACTopol(
+                    agpdb,
+                    chargeType=cType,
+                    atomType=ffType,
+                    chargeVal=cv,
+                    debug=False,
+                    verbose=debug,
+                )
+                mol.createACTopol()
+                mol.createMolTopol()
 
-            # acpype on agpdb file
-            fixRes4Acpype(agpdb)
-            cv = None
-            # cmd = "%s -dfi %s -c %s -a %s" % (acpypeExe, agpdb, cType, ffType)
-            if res in ["JJJ", "RRR"] and cType == "bcc":
-                cv = 3  # cmd += ' -n 3' # acpype failed to get correct charge
-            mol = ACTopol(
-                agpdb,
-                chargeType=cType,
-                atomType=ffType,
-                chargeVal=cv,
-                debug=False,
-                verbose=debug,
-            )
-            mol.createACTopol()
-            mol.createMolTopol()
-
-            # out = commands.getstatusoutput(cmd)
-            # parseOut(out[1])
-            print("Compare ACPYPE x GMX AMBER99SB topol & param")
-            checkTopAcpype(res)
-            # calc Pot Energy
-            print("Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)")
-            # calc gmx amber energies
-            dihAmb, dihAcp = calcGmxPotEnerDiff(res)
+                # out = commands.getstatusoutput(cmd)
+                # parseOut(out[1])
+                print("Compare ACPYPE x GMX AMBER99SB topol & param")
+                checkTopAcpype(res)
+                # calc Pot Energy
+                print("Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)")
+                # calc gmx amber energies
+                dihAmb, dihAcp = calcGmxPotEnerDiff(res)
+            # One bad residue must not end a run that takes minutes.
+            except Exception as exc:
+                failures.append((res, f"{type(exc).__name__}: {exc}"))
+                perror(f"{res} FAILED: {type(exc).__name__}: {exc}")
             # calc gmx acpype energies
+
+    print(f"\n=== {len(listRes) - len(failures)}/{len(listRes)} residues compared ===")
+    if failures:
+        print("Failed:")
+        for res, why in failures:
+            print(f"  {res}: {why}")
+        if not (sanderExe and ambpdbExe):
+            print(
+                "\nNote: sander/ambpdb were not found, so the tripeptides were not energy\n"
+                "minimised. tleap's raw geometry is often poor enough that antechamber\n"
+                "mis-perceives aromatic rings (atom type DU), which is the usual cause of\n"
+                "the failures above. Install a full AmberTools for a faithful comparison:\n"
+                "    conda install -c conda-forge ambertools"
+            )
+    print(f"\nWorking directory: {tmpDir}")
 
     subprocess.run(r"rm -f %s/\#* posre.itp tempScript.py" % tmpDir, shell=True, check=False)
     subprocess.run(

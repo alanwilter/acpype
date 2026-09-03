@@ -29,9 +29,47 @@ GROMACS' AMBER99SB (including a Single Point Energy minimisation with GROMACS) r
 
 When we look the bonded potential energies for all entries, the difference is no bigger than 0.002% (even for the entries with inverted improper dihedrals) with one solely exception: YYY with 1.9%, because of the atom type change seen above.
 
-The source code for these tests can be seen [http://code.google.com/p/acpype/source/browse/trunk/test/check_acpype.py here].
+The source code for these tests is `scripts/check_acpype.py` in this repository. It
+was previously hosted on Google Code, which is long gone.
 
-See detailed output [ResiduesTest here]
+=== How to run it ===
+
+It is a development harness, not part of the pytest suite: it needs external tools and
+takes several minutes.
+
+    uv run python scripts/check_acpype.py --help
+    uv run python scripts/check_acpype.py --ff amber --charge gas
+
+What it needs:
+
+  * GROMACS on PATH, for `gmx pdb2gmx`, `editconf`, `grompp`, `mdrun` and `energy`, plus
+    its bundled `amber99sb.ff` data. `brew install gromacs`, or
+    `conda install -c conda-forge gromacs`. Set $GMX to pick a specific binary and
+    $GMXDATA if the share directory cannot be derived from it.
+  * AmberTools for `tleap`. The copy bundled with acpype is found automatically, so
+    nothing extra is needed for this.
+  * `sander` and `ambpdb`, to energy minimise each tripeptide before comparing. These
+    are NOT part of the AmberTools bundled with acpype, so a full install is needed:
+    `conda install -c conda-forge ambertools`. The script does run without them, using
+    the geometry `tleap savepdb` writes, and says so on startup -- but that geometry is
+    strained enough that antechamber mis-perceives aromatic rings (PHE's CD2 is typed
+    `DU`, which Gasteiger cannot charge), and the energy differences come out orders of
+    magnitude larger than the figures quoted above. The minimisation is what makes the
+    numbers in this note reproducible, so treat an unminimised run as indicative only.
+  * Optionally `pymol` (`--pymol`), an alternative way to build the tripeptides.
+
+Two things dated badly and were fixed rather than worked around:
+
+  * the single point energy `.mdp` was stored with its shell heredoc wrapper
+    (`cat << EOF >| SPE.mdp` ... `EOF`) still inside it, so grompp read those lines as
+    malformed parameters;
+  * it asked for `cutoff-scheme = group`, removed from GROMACS in 2020. Verlet supports
+    neither infinite cutoffs nor `pbc = no`, so each molecule is now placed in a large
+    box with cutoffs far beyond its own size. Both sides of the comparison use the same
+    settings, so the differences reported are unchanged in meaning.
+
+The GROMACS reference in this note was generated with version 4.5; the harness itself
+has been run against 2026.3.
 
 == ACPYPE and OPLS/AA Parameters Generation (Experimental) ==
 
