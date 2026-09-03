@@ -108,6 +108,14 @@ The amb2gmx converter was checked separately: a native tleap ff14SB prmtop conve
 with 'acpype -p -x' matches GROMACS amber14sb.ff to 0.0002% on proper dihedrals and
 0.0005% on total potential on identical coordinates.
 
+ff19SB (CMAP) and OPC water are converted since September 2026. AMBER and GROMACS list
+CMAP grid values in the same order, so the grids are copied with a kcal-to-kJ scaling
+and keyed per residue as in GROMACS' amber19sb port. An ALA tripeptide converted from a
+tleap ff19SB prmtop reproduces pdb2gmx's CMAP energy exactly (-2.31952 kJ/mol) and its
+total potential to 0.0000% on identical coordinates. The same peptide in a box of 789
+OPC waters with a Na+/Cl- pair, compared with pdb2gmx -ff amber19sb -water opc on the
+same coordinates: CMAP identical, every term within 0.0016%, total potential 0.0009%.
+
     uv run python scripts/check_acpype.py                     # ff14SB vs amber14sb
     uv run python scripts/check_acpype.py --protein_ff ff99SB # ff99SB vs amber99sb
 

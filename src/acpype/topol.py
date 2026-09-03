@@ -302,6 +302,8 @@ class AbstractTopol(abc.ABC):
         self.angles: list = []
         self.properDihedrals: list = []
         self.improperDihedrals: list = []
+        self.cmaps: list = []
+        self.cmapGrids: list = []
         self.condensedProperDihedrals: list = []
         self.chiralGroups: list = []
         self.excludedAtoms: list = []
@@ -1263,29 +1265,36 @@ class AbstractTopol(abc.ABC):
             with open(pklFile, "wb") as f:  # for python 3.3 or higher
                 pickle.dump(self, f)
 
-    def refuseUnsupportedFlags(self, topName):
-        """Refuse a prmtop carrying terms the GROMACS writer cannot express yet.
+    def getCmaps(self):
+        """Read the CMAP correction grids and the atom quintets they apply to.
 
-        ff19SB keeps its backbone correction in CMAP grids (``%FLAG CMAP_COUNT`` and
-        friends). The writer knows nothing of them, so it would emit a topology that
-        grompp accepts and that silently lacks the correction. Refusing is the only
-        honest option until ``[ cmaptypes ]``/``[ cmap ]`` output exists.
-
-        Args:
-            topName: the prmtop file name, for the message.
+        ff19SB keeps its backbone correction in these grids. ``CMAP_COUNT`` gives the
+        number of terms and of grids, ``CMAP_RESOLUTION`` the side of each square grid,
+        ``CMAP_PARAMETER_nn`` its values in kcal/mol and ``CMAP_INDEX`` five atom indices
+        plus a grid number per term. AMBER and GROMACS list grid values in the same
+        order, so the only conversion is kcal to kJ, done when writing.
 
         Raises:
-            UnsupportedTopologyError: when the prmtop declares CMAP terms.
+            UnsupportedTopologyError: when the grids are not the square blocks the
+                writer knows how to emit.
         """
-        cmap = self.getFlagData("CMAP_COUNT")
-        if not cmap:
+        self.cmaps, self.cmapGrids = [], []
+        count = self.getFlagData("CMAP_COUNT")
+        if not count:
             return
-        nTerms, nTypes = [*cmap, 0, 0][:2]
-        raise UnsupportedTopologyError(
-            f"'{topName}' carries {nTerms} CMAP term(s) of {nTypes} type(s), as ff19SB topologies do. "
-            "acpype cannot write GROMACS [ cmap ] terms yet, so the converted topology would silently "
-            "lose the backbone correction. Build the system with ff14SB or ff99SB, or wait for CMAP support."
-        )
+        nTerms, nGrids = int(count[0]), int(count[1])
+        resolutions = self.getFlagData("CMAP_RESOLUTION")
+        for k in range(1, nGrids + 1):
+            side = int(resolutions[k - 1])
+            grid = self.getFlagData(f"CMAP_PARAMETER_{k:02d}")
+            if len(grid) != side * side:
+                raise UnsupportedTopologyError(f"CMAP grid {k} holds {len(grid)} values, not {side}x{side}")
+            self.cmapGrids.append((side, grid))
+        index = self.getFlagData("CMAP_INDEX")
+        self.cmaps = [(tuple(index[i : i + 5]), index[i + 5]) for i in range(0, len(index), 6)]
+        if len(self.cmaps) != nTerms:
+            raise UnsupportedTopologyError(f"CMAP_INDEX lists {len(self.cmaps)} terms, CMAP_COUNT says {nTerms}")
+        self.printDebug(f"{nTerms} CMAP terms over {nGrids} grids")
 
     def getFlagData(self, flag):
         """For a given acFileTop flag, return a list of the data related."""
@@ -1854,6 +1863,8 @@ class AbstractTopol(abc.ABC):
 
     def writeCharmmTopolFiles(self):
         """Write CHARMM topology files."""
+        if self.cmaps:
+            self.printWarn("CMAP terms are not written for this format; the backbone correction is lost here")
         self.printMess("Writing CHARMM files\n")
 
         at = self.atomType
@@ -2182,8 +2193,101 @@ class AbstractTopol(abc.ABC):
         self.gmxSplitNames = names
         return text
 
+    def gmxCmapTypes(self):
+        """Render ``[ cmaptypes ]`` for the CMAP grids, keyed as GROMACS' amber19sb port keys them.
+
+        GROMACS looks a ``[ cmap ]`` term up by its five atom types, and in AMBER two
+        residues can share the types but not the grid: ALA and GLY are both C-N-XC-C-N.
+        The port resolves that with residue-qualified keys such as
+        ``C-* N-ALA XC-ALA C-ALA N-*``, which grompp matches against each atom's type
+        and residue name, ``*`` being a wildcard for the flanking residues. The same keys
+        are written here, with the grid values in kJ/mol in AMBER's own order.
+
+        Returns:
+            list: lines to place with the other file-level parameter sections.
+        """
+        if not self.cmaps:
+            return []
+        keyed = {}
+        for atoms, gridId in self.cmaps:
+            types = [self.atomsGromacs[i - 1].atomType.atomTypeName for i in atoms]
+            resName = self.residueLabel[self.atoms[atoms[2] - 1].resid]
+            key = (
+                f"{types[0]}-*",
+                f"{types[1]}-{resName}",
+                f"{types[2]}-{resName}",
+                f"{types[3]}-{resName}",
+                f"{types[4]}-*",
+            )
+            if keyed.setdefault(key, gridId) != gridId:
+                raise UnsupportedTopologyError(f"CMAP key {' '.join(key)} would need two different grids")
+        lines = ["\n[ cmaptypes ]\n; residue-qualified keys as in GROMACS' amber19sb port; values in kJ/mol\n"]
+        for key, gridId in keyed.items():
+            side, grid = self.cmapGrids[gridId - 1]
+            lines.append(" ".join(key) + f" 1 {side} {side}\\\n")
+            rows = [" ".join(f"{value * cal:.8f}" for value in grid[i : i + 10]) for i in range(0, len(grid), 10)]
+            lines.append("\\\n".join(rows) + "\n\n")
+        return lines
+
+    def gmxFourSiteWater(self, waterAtoms):
+        """Render a ``[ moleculetype ]`` for a four-site water from the prmtop's own data.
+
+        OPC and TIP4P-Ew carry a massless fourth site that AMBER writes as an ordinary
+        atom bonded to the oxygen. The settles come from the O-H and H-H bond equilibria,
+        the virtual site from the O-M one, placed on the bisector with
+        ``a = b = dOM / (2 dOH cos(HOH/2))``; for OPC that is the 0.14772 of GROMACS'
+        ``opc.itp``. Charges, masses, names and types are the prmtop's.
+
+        Args:
+            waterAtoms: the atoms of one water residue, in file order.
+
+        Returns:
+            str: the moleculetype text.
+        """
+        oxygen = max(waterAtoms, key=lambda a: a.mass)
+        site = min(waterAtoms, key=lambda a: a.mass)
+        hydrogens = [a for a in waterAtoms if a is not oxygen and a is not site]
+        ids = {a.id: n + 1 for n, a in enumerate(waterAtoms)}
+        req = {}
+        for bond in self.bonds:
+            pair = frozenset(a.id for a in bond.atoms)
+            if pair <= set(ids):
+                req[pair] = (bond.rEq * 0.1, bond.kBond * 200 * cal)
+        dOH, kOH = req[frozenset((oxygen.id, hydrogens[0].id))]
+        dHH = req[frozenset((hydrogens[0].id, hydrogens[1].id))][0]
+        dOM = req[frozenset((oxygen.id, site.id))][0]
+        half = math.asin(dHH / (2 * dOH))
+        weight = dOM / (2 * dOH * math.cos(half))
+        o, h1, h2, m = (ids[a.id] for a in (oxygen, hydrogens[0], hydrogens[1], site))
+        text = [
+            "\n[ moleculetype ]\n; molname       nrexcl ; four-site water built from the prmtop\n  WAT             2\n"
+        ]
+        text.append("\n[ atoms ]\n;   nr   type  resnr residue  atom   cgnr     charge       mass\n")
+        for n, atom in enumerate(waterAtoms, 1):
+            gType = self.atomsGromacs[atom.id - 1].atomType.atomTypeName
+            text.append(
+                f"{n:6d} {gType:>6}      1     WAT {atom.atomName:>5}      1 {atom.charge:10.5f} {atom.mass:10.5f}\n"
+            )
+        text.append(
+            f"\n#ifdef FLEXIBLE\n[ bonds ]\n; i j   funct   length  force.c.\n{o}   {h1}   1   {dOH:.8f}   {kOH:.1f}\n{o}   {h2}   1   {dOH:.8f}   {kOH:.1f}\n"
+        )
+        text.append(
+            f"\n[ angles ]\n; i j   k   funct   angle   force.c.\n{h1}   {o}   {h2}   1   {math.degrees(2 * half):.3f}    836.800\n"
+        )
+        text.append(f"#else\n[ settles ]\n; i funct   doh     dhh\n{o}   1   {dOH:.8f} {dHH:.8f}\n#endif\n")
+        text.append(
+            f"\n[ virtual_sites3 ]\n; site  from            funct   a           b\n{m}   {o}   {h1}   {h2}   1   {weight:.8f}   {weight:.8f}\n"
+        )
+        text.append(
+            "\n[ exclusions ]\n"
+            + "".join(f"{i}   " + "   ".join(str(j) for j in range(1, 5) if j != i) + "\n" for i in range(1, 5))
+        )
+        return "".join(text)
+
     def writeGromacsTop(self):
         """Write GMX topology file."""
+        if self.cmaps and self.gmx4:
+            raise UnsupportedTopologyError("CMAP terms cannot be written in the GROMACS 4 flavour (-z); drop -z")
         if self.atomTypeSystem == "amber":
             d2opls = dictAtomTypeAmb2OplsGmxCode
         else:
@@ -2406,6 +2510,7 @@ class AbstractTopol(abc.ABC):
         headWater = headWaterTip3p
 
         nWat = 0
+        waterSites = 3
         topText.append("; " + head % (top, date))
         otopText.append("; " + head % (otop, date))
         topText.append(headDefault)
@@ -2466,7 +2571,14 @@ class AbstractTopol(abc.ABC):
         if self.amb2gmx:
             topText.append(headAtomtypes)
             topText += temp
+            topText += self.gmxCmapTypes()
             nWat = self.residueLabel.count("WAT")
+            if nWat:
+                firstWater = self.residueLabel.index("WAT")
+                waterAtoms = [a for a in self.atoms if a.resid == firstWater]
+                waterSites = len(waterAtoms)
+                if waterSites == 4:
+                    headWater = self.gmxFourSiteWater(waterAtoms)
             for ion in ionsDict:
                 nIon = self.residueLabel.count(ion)
                 if nIon > 0:
@@ -2481,7 +2593,7 @@ class AbstractTopol(abc.ABC):
             oitpText += otemp
         self.printDebug("GMX atomtypes done")
 
-        if len(self.atoms) > 3 * nWat + sum(x[1] for x in ionsSorted):
+        if len(self.atoms) > waterSites * nWat + sum(x[1] for x in ionsSorted):
             nSolute = 1
 
         if nWat:
@@ -2917,6 +3029,16 @@ class AbstractTopol(abc.ABC):
                 oitpText += otemp
         self.printDebug("GMX improper dihedrals done")
 
+        if self.cmaps:
+            headCmap = "\n[ cmap ]\n;   ai     aj     ak     al     am  funct\n"
+            temp = [f"{a[0]:6d} {a[1]:6d} {a[2]:6d} {a[3]:6d} {a[4]:6d} {1:6d}\n" for a, _ in self.cmaps]
+            if self.amb2gmx:
+                soluteSections.append((headCmap, temp, 5))
+            else:
+                itpText.append(headCmap)
+                itpText += temp
+            self.printDebug("GMX cmap done")
+
         if self.amb2gmx and nSolute:
             blocks = self.gmxSoluteBlocks(headMoleculetype, soluteSections) if self.splitMolecules else None
             if blocks is None:
@@ -3119,6 +3241,8 @@ gmx mdrun -ntmpi 1 -v -deffnm md
 
     def writeCnsTopolFiles(self):
         """Write CNS topology files."""
+        if self.cmaps:
+            self.printWarn("CMAP terms are not written for this format; the backbone correction is lost here")
         if self.amb2gmx:
             os.chdir(self.absHomeDir)
 
@@ -3700,7 +3824,6 @@ class MolTopol(AbstractTopol):
 
         self.xyzFileData = open(acFileXyz).readlines()
         self.topFileData = [x for x in open(acFileTop).readlines() if not x.startswith("%COMMENT")]
-        self.refuseUnsupportedFlags(acFileTop)
         self.topo14Data = Topology_14()
         self.topo14Data.read_amber_topology("".join(self.topFileData))
         self.printDebug("prmtop and inpcrd files loaded")
@@ -3721,6 +3844,8 @@ class MolTopol(AbstractTopol):
         self.getAngles()
 
         self.getDihedrals()
+
+        self.getCmaps()
 
         if self.amb2gmx:
             self.rootDir = os.path.abspath(".")

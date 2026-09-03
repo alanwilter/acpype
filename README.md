@@ -143,10 +143,16 @@ energies agree with GROMACS' own `amber14sb.ff` to within 0.05% for 21 of them a
 1% for tyrosine, where antechamber types the ring `CZ` differently, an exception on
 record in `NOTE.txt` since 2010.
 
-`amb2gmx` refuses, with a clear message, a `prmtop` that carries CMAP terms, as ff19SB
-topologies do: ACPYPE cannot write GROMACS `[ cmap ]` terms yet and would otherwise
-produce a topology that grompp accepts but that silently lacks the backbone correction.
-CMAP support is the next piece of work; until then convert ff14SB or ff99SB systems.
+`amb2gmx` converts ff19SB systems, CMAP backbone correction included. The `prmtop`'s
+CMAP grids become `[ cmaptypes ]` keyed the way GROMACS' own `amber19sb.ff` port keys
+them, `C-* N-ALA XC-ALA C-ALA N-*`, which grompp matches on atom type and residue name;
+that syntax needs a GROMACS recent enough to ship that port (verified with 2026.3).
+Four-site waters such as OPC and TIP4P-Ew are written from the `prmtop`'s own
+geometry and charges, settles plus a virtual site, rather than from a fixed template.
+On an ALA tripeptide in vacuum the CMAP energy matches `pdb2gmx -ff amber19sb` to
+five decimals on identical coordinates, and the same peptide in a box of OPC with ions
+reproduces `pdb2gmx -water opc`'s total potential to 0.001%. The GROMACS 4 flavour (`-z`) cannot carry CMAP and is refused
+for such systems; the CNS and CHARMM writers warn that they drop it.
 
 In `amb2gmx` mode, `-S/--split_molecules` writes one `[ moleculetype ]` per molecule
 that AMBER identified, instead of merging the whole solute into one. Converting a
