@@ -35,6 +35,13 @@ class AtomType(StrEnum):
     amber2 = "amber2"
 
 
+class ProteinFF(StrEnum):
+    """Protein force field behind the amber atom types."""
+
+    ff14SB = "ff14SB"
+    ff99SB = "ff99SB"
+
+
 class QProg(StrEnum):
     """Quantum programs usable for am1-bcc charges.
 
@@ -124,8 +131,18 @@ def main(
     ] = 4,
     atom_type: Annotated[
         AtomType,
-        typer.Option("-a", "--atom_type", help="atom type; amber is AMBER14SB, amber2 is AMBER14SB + GAFF2"),
+        typer.Option(
+            "-a", "--atom_type", help="atom type; amber is the protein force field (-F) + GAFF, amber2 + GAFF2"
+        ),
     ] = AtomType.gaff2,
+    protein_ff: Annotated[
+        ProteinFF,
+        typer.Option(
+            "-F",
+            "--protein_ff",
+            help="protein force field for -a amber/amber2; ff14SB applies its residue atom types after antechamber",
+        ),
+    ] = ProteinFF.ff14SB,
     qprog: Annotated[
         QProg,
         typer.Option(
@@ -257,6 +274,7 @@ def main(
                 multiplicity=multiplicity,
                 predIndex=predindex,
                 atomType=atom_type.value,
+                protein_ff=protein_ff.value,
                 force=force,
                 outTopol=outtop.value,
                 allhdg=cnstop,

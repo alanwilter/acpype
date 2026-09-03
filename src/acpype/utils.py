@@ -1,6 +1,7 @@
 import hashlib
 import math
 import os
+import re
 import subprocess as sub
 import sys
 import tempfile
@@ -144,6 +145,134 @@ def parseFrcmod(lista):
     # iterating it raises RuntimeError, which frcmod.ff14SB never triggered because it
     # has no empty section, but frcmod.ff99SB does.
     return {kk: vv for kk, vv in dict_.items() if vv}
+
+
+def readAmberLibTypes(libFiles):
+    """Read ``(residue, atom name) -> atom type`` from AMBER OFF library files.
+
+    Args:
+        libFiles: paths to ``.lib`` files such as ``amino12.lib``.
+
+    Returns:
+        dict: the atom type each residue template assigns to each atom name.
+    """
+    types = {}
+    for path in libFiles:
+        residue = None
+        with open(path) as fh:
+            for line in fh:
+                if line.startswith("!"):
+                    match = re.match(r"!entry\.(\S+)\.unit\.atoms table", line)
+                    residue = match.group(1) if match else None
+                    continue
+                if residue is None:
+                    continue
+                tokens = line.split()
+                if len(tokens) >= 2:
+                    types[(residue, tokens[0].strip('"'))] = tokens[1].strip('"')
+    return types
+
+
+RESIDUE_ALIASES = {"HIS": "HIE", "CYS2": "CYX", "ASPH": "ASH", "GLUH": "GLH", "LYSH": "LYS"}
+
+
+def retypeMol2Atoms(mol2Lines, templates, allowedTypes, aliases=RESIDUE_ALIASES):
+    """Apply residue-template atom types to the matching atoms of a mol2.
+
+    An atom is retyped when its residue and atom names match a template and the
+    template type is in ``allowedTypes``. The first and last residues try their
+    N- and C-terminal templates first. Everything else keeps its current type, so
+    non-protein atoms are untouched and hydrogen naming conventions never matter.
+
+    Args:
+        mol2Lines: the lines of a Tripos mol2 file.
+        templates: ``(residue, atom name) -> type`` as returned by
+            :func:`readAmberLibTypes`.
+        allowedTypes: the only types this function may assign.
+        aliases: residue name synonyms tried when a name is not in the templates.
+
+    Returns:
+        tuple: the new lines, and a list of ``(residue, atom, old type, new type)``.
+    """
+    lines = list(mol2Lines)
+    try:
+        start = next(i for i, line in enumerate(lines) if line.startswith("@<TRIPOS>ATOM")) + 1
+    except StopIteration:
+        return lines, []
+    end = next((i for i in range(start, len(lines)) if lines[i].startswith("@<TRIPOS>")), len(lines))
+
+    atoms = []
+    for i in range(start, end):
+        tokens = lines[i].split()
+        if len(tokens) >= 8:
+            atoms.append((i, tokens))
+    if not atoms:
+        return lines, []
+    substIds = [int(tokens[6]) for _, tokens in atoms]
+    first, last = min(substIds), max(substIds)
+
+    changes = []
+    for i, tokens in atoms:
+        name, current, substId, residue = tokens[1], tokens[5], int(tokens[6]), tokens[7]
+        candidates = [residue, aliases.get(residue, residue)]
+        if substId == first:
+            candidates = ["N" + c for c in candidates] + candidates
+        if substId == last:
+            candidates = ["C" + c for c in candidates] + candidates
+        newType = next((templates[(c, name)] for c in candidates if (c, name) in templates), None)
+        if newType is None or newType not in allowedTypes or newType == current:
+            continue
+        # Replace the type token in place, keeping the line's own column layout.
+        parts = re.split(r"(\s+)", lines[i].rstrip("\n"))
+        fields = [k for k, part in enumerate(parts) if part and not part.isspace()]
+        parts[fields[5]] = newType.ljust(len(current))
+        lines[i] = "".join(parts) + "\n"
+        changes.append((residue, name, current, newType))
+    return lines, changes
+
+
+_FRCMOD_SECTIONS = (
+    ("MASS", "MASS"),
+    ("BOND", "BOND"),
+    ("ANGL", "ANGLE"),
+    ("DIHE", "DIHE"),
+    ("IMPR", "IMPROPER"),
+    ("NONB", "NONBON"),
+)
+
+
+def _reverseKey(key):
+    return "-".join(reversed(key.split("-")))
+
+
+def mergeFrcmodGaps(amberOnly, withGaff):
+    """Keep GAFF-analogue parameters only where the AMBER set has a genuine gap.
+
+    Both arguments are the lines of a parmchk2 frcmod for the same molecule. The first
+    comes from a run against the AMBER parameter set alone, so its entries are the
+    terms AMBER cannot supply. The second comes from a run against AMBER merged with
+    GAFF; it also contains GAFF analogues that parmchk2 prefers over AMBER wildcards
+    it already had, which is what must not reach tleap. The result carries the first
+    run's keys with the second run's values.
+
+    Args:
+        amberOnly: frcmod lines from the AMBER-only parmchk2 run.
+        withGaff: frcmod lines from the AMBER + GAFF parmchk2 run.
+
+    Returns:
+        list: the lines of the merged frcmod.
+    """
+    gaps = parseFrcmod(amberOnly)
+    filled = parseFrcmod(withGaff)
+    out = ["Remark: terms AMBER lacks, filled by parmchk2 from GAFF where it could\n"]
+    for section, header in _FRCMOD_SECTIONS:
+        out.append(header + "\n")
+        available = filled.get(section, {})
+        for key, lines in gaps.get(section, {}).items():
+            chosen = available.get(key) or available.get(_reverseKey(key)) or lines
+            out.extend(line.rstrip("\n") + "\n" for line in chosen)
+        out.append("\n")
+    return out
 
 
 def parmMerge(fdat1, fdat2, frcmod=False):

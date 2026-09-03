@@ -37,6 +37,26 @@ specialGaffAtoms = ["CU", "BR", "CL"]
 # leapAmberFile = 'leaprc.ff99SB'  # 'leaprc.ff10' and 'leaprc.ff99bsc0' has extra Atom Types not in parm99.dat
 leapAmberFile = "leaprc.protein.ff14SB"  # 'leaprc.ff14SB'
 
+# Protein force field behind `-a amber` and `-a amber2`.
+#
+# ff14SB types the backbone C-alpha as CX and several side-chain carbons as CO, 2C,
+# 3C or C8, and keys its torsions on those types. antechamber's AMBER typer predates
+# them and emits CT throughout, so acpype applies the types itself, after antechamber,
+# from the residue templates listed in `libs`. ff99SB keys everything on the classic
+# types antechamber does emit; it needs no retyping and is the fallback.
+PROTEIN_FF: dict[str, dict[str, str]] = {
+    "ff14SB": {"leaprc": "leaprc.protein.ff14SB", "parm": "parm10.dat", "frcmod": "frcmod.ff14SB"},
+    "ff99SB": {"leaprc": "oldff/leaprc.ff99SB", "parm": "parm99.dat", "frcmod": "frcmod.ff99SB"},
+}
+# Residue templates whose atom types are applied after antechamber; empty means the
+# force field keys its torsions on the types antechamber already emits.
+PROTEIN_FF_LIBS: dict[str, tuple[str, ...]] = {
+    "ff14SB": ("amino12.lib", "aminont12.lib", "aminoct12.lib"),
+    "ff99SB": (),
+}
+# The atom types ff14SB introduced; the only ones the retyping is allowed to assign.
+FF14SB_RETYPES = frozenset({"CX", "CO", "2C", "3C", "C8"})
+
 # "qm_theory='AM1', grms_tol=0.0002, maxcyc=999, tight_p_conv=1, scfconv=1.d-10,"
 # "AM1 ANALYT MMOK GEO-OK PRECISE"
 
@@ -65,6 +85,10 @@ epilog = """
     root_CHARMM.rtf   :  topology file for CHARMM
     root_CHARMM.prm   :  parameter file for CHARMM
     root_CHARMM.inp   :  run parameters file for CHARMM
+
+    note: '-a amber' is ff14SB + GAFF: AMBER types where antechamber assigns them,
+          ff14SB's own CX/CO/2C/3C/C8 applied from the residue templates, GAFF only
+          for parameters AMBER lacks. '-F ff99SB' selects the older protein set.
 
     note: '-S' (amb2gmx only) writes one [ moleculetype ] per molecule AMBER
           identified, so a tleap 'combine { target ligand }' complex comes out as

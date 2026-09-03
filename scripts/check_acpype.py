@@ -49,6 +49,15 @@ def _parse_args():
         help="ACPYPE atom types to compare (only 'amber'/'amber2' are like-for-like with the AMBER reference)",
     )
     parser.add_argument("--charge", default="gas", choices=("gas", "bcc"), help="ACPYPE charge method")
+    parser.add_argument(
+        "--protein_ff", default="ff14SB", choices=("ff14SB", "ff99SB"), help="protein force field for -a amber"
+    )
+    parser.add_argument(
+        "--gmxff",
+        default=None,
+        choices=("amber14sb", "amber99sb"),
+        help="GROMACS reference force field (default: the one matching --protein_ff)",
+    )
     parser.add_argument("--dir", default=None, help="working directory (default: a fresh temporary one)")
     parser.add_argument("--pymol", action="store_true", help="build the tripeptides with pymol instead of tleap")
     parser.add_argument("--keep", action="store_true", help="do not delete the working directory afterwards")
@@ -78,11 +87,13 @@ args = _parse_args()
 usePymol = args.pymol
 ffType = args.ff
 cType = args.charge
+proteinFF = args.protein_ff
+gmxFF = args.gmxff or {"ff14SB": "amber14sb", "ff99SB": "amber99sb"}[proteinFF]
 debug = True
 
 water = " -water none"
 
-print(f"usePymol: {usePymol}, ffType: {ffType}, cType: {cType}")
+print(f"usePymol: {usePymol}, ffType: {ffType}, cType: {cType}, proteinFF: {proteinFF}, reference: {gmxFF}")
 
 tmpDir = args.dir or tempfile.mkdtemp(prefix="acpype-check-")
 
@@ -110,8 +121,8 @@ gmxExe = os.environ.get("GMX") or _which("gmx") or _which("gmx_mpi")
 if not gmxExe:
     sys.exit("ERROR: no 'gmx' found. Install GROMACS or point $GMX at it.")
 gmxTopDir = _gmxDataDir(gmxExe)
-if not os.path.isdir(os.path.join(gmxTopDir, "gromacs", "top", "amber99sb.ff")):
-    sys.exit(f"ERROR: no amber99sb.ff under {gmxTopDir}/gromacs/top. Set $GMXDATA to the GROMACS share directory.")
+if not os.path.isdir(os.path.join(gmxTopDir, "gromacs", "top", f"{gmxFF}.ff")):
+    sys.exit(f"ERROR: no {gmxFF}.ff under {gmxTopDir}/gromacs/top. Set $GMXDATA to the GROMACS share directory.")
 pdb2gmx = f"{gmxExe} pdb2gmx"
 grompp = f"{gmxExe} grompp"
 mdrun = f"{gmxExe} mdrun"
@@ -789,10 +800,11 @@ def calcGmxPotEnerDiff(res):
         "water": water,
         "gmxdump": gmxdump,
         "editconf": editconf,
+        "gmxff": gmxFF,
     }
 
     # calc Pot Ener for aXXX.pdb (AMB_GMX)
-    template = """%(pdb2gmx)s -ff amber99sb -f a%(res)s.pdb -o a%(res)s_.pdb -p a%(res)s.top %(water)s
+    template = """%(pdb2gmx)s -ff %(gmxff)s -f a%(res)s.pdb -o a%(res)s_.pdb -p a%(res)s.top %(water)s
     %(editconf)s -f a%(res)s_.pdb -o a%(res)s_box.pdb -bt cubic -d 3.0
     %(grompp)s -c a%(res)s_box.pdb -p a%(res)s.top -f SPE.mdp -o a%(res)s.tpr -pp a%(res)sp.top
     %(mdrun)s -v -deffnm a%(res)s
@@ -863,8 +875,8 @@ def calcGmxPotEnerDiff(res):
 if __name__ == "__main__":
     """order: (tleap/EM or pymol) AAA.pdb -f-> _AAA.pdb -f-> aAAA.pdb
     --> (pdb2gmx) agAAA.pdb -f-> agAAA.pdb --> acpype"""
-    aNb = nbDict(open(gmxTopDir + "/gromacs/top/amber99sb.ff/ffnonbonded.itp").readlines())
-    aBon = parseTopFile(open(gmxTopDir + "/gromacs/top/amber99sb.ff/ffbonded.itp").readlines())
+    aNb = nbDict(open(gmxTopDir + f"/gromacs/top/{gmxFF}.ff/ffnonbonded.itp").readlines())
+    aBon = parseTopFile(open(gmxTopDir + f"/gromacs/top/{gmxFF}.ff/ffbonded.itp").readlines())
 
     tmpFile = "tempScript.py"
     if not os.path.exists(tmpDir):
@@ -900,7 +912,7 @@ if __name__ == "__main__":
                 # from ogpdb to amber pdb and top
                 agpdb = "ag%s.pdb" % res  # output name
                 agtop = "ag%s.top" % res
-                cmd = f" {pdb2gmx} -f {apdb} -o {agpdb} -p {agtop} -ff amber99sb {water}"
+                cmd = f" {pdb2gmx} -f {apdb} -o {agpdb} -p {agtop} -ff {gmxFF} {water}"
                 pdebug(cmd)
                 out = _getoutput(cmd)
                 # print(out)
@@ -916,6 +928,7 @@ if __name__ == "__main__":
                     agpdb,
                     chargeType=cType,
                     atomType=ffType,
+                    protein_ff=proteinFF,
                     chargeVal=cv,
                     debug=False,
                     verbose=debug,
@@ -925,10 +938,10 @@ if __name__ == "__main__":
 
                 # out = commands.getstatusoutput(cmd)
                 # parseOut(out[1])
-                print("Compare ACPYPE x GMX AMBER99SB topol & param")
+                print(f"Compare ACPYPE x GMX {gmxFF.upper()} topol & param")
                 checkTopAcpype(res)
                 # calc Pot Energy
-                print("Compare ACPYPE x GMX AMBER99SB Pot. Energy (|ERROR|%)")
+                print(f"Compare ACPYPE x GMX {gmxFF.upper()} Pot. Energy (|ERROR|%)")
                 # calc gmx amber energies
                 dihAmb, dihAcp = calcGmxPotEnerDiff(res)
             # One bad residue must not end a run that takes minutes.

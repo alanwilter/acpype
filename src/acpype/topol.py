@@ -1,5 +1,6 @@
 import abc
 import array
+import collections
 import math
 import os
 import pickle
@@ -13,7 +14,10 @@ from acpype import __version__ as version
 from acpype.logger import set_logging_conf as logger
 from acpype.mol import Angle, Atom, AtomType, Bond, Dihedral
 from acpype.params import (
+    FF14SB_RETYPES,
     MAXTIME,
+    PROTEIN_FF,
+    PROTEIN_FF_LIBS,
     TLEAP_TEMPLATE,
     binaries,
     cal,
@@ -21,7 +25,6 @@ from acpype.params import (
     dictAtomTypeGaff2OplsGmxCode,
     diffTol,
     ionOrSolResNameList,
-    leapAmberFile,
     maxDist,
     maxDist2,
     minDist,
@@ -41,7 +44,10 @@ from acpype.utils import (
     find_bin,
     imprDihAngle,
     job_pids_family,
+    mergeFrcmodGaps,
     parmMerge,
+    readAmberLibTypes,
+    retypeMol2Atoms,
     set_for_pip,
     while_replace,
 )
@@ -257,6 +263,7 @@ class AbstractTopol(abc.ABC):
         self.extOld: str = ""
         self.direct: bool = False
         self.splitMolecules: bool = False
+        self.proteinFF: str = "ff14SB"
         self.gmxSplitNames: list = []
         self.merge: bool = False
         self.gmx4: bool = False
@@ -913,6 +920,9 @@ class AbstractTopol(abc.ABC):
             self.printError("Antechamber failed")
             fail = True
 
+        else:
+            self.retypeForProteinFF()
+
         if self.execParmchk():
             self.printError("Parmchk failed")
             fail = True
@@ -976,27 +986,88 @@ class AbstractTopol(abc.ABC):
             return aFileF
         return None
 
+    def locateLib(self, aFile):
+        """Locate a file pertinent to $AMBERHOME/dat/leap/lib/."""
+        amberhome = os.environ.get("AMBERHOME")
+        if amberhome:
+            aFileF = os.path.join(amberhome, "dat/leap/lib", aFile)
+            if os.path.exists(aFileF):
+                return aFileF
+        aFileF = os.path.join(os.path.dirname(self.acExe), "../dat/leap/lib", aFile)
+        if os.path.exists(aFileF):
+            return aFileF
+        return None
+
+    def retypeForProteinFF(self):
+        """Apply the protein force field's residue-specific atom types after antechamber.
+
+        ff14SB types the backbone C-alpha as CX and several side-chain carbons as CO,
+        2C, 3C or C8, and keys its torsions on them. antechamber's AMBER typer predates
+        those types and emits CT throughout, so every ff14SB backbone torsion would
+        otherwise miss, fall back to a zero wildcard, and be back-filled by parmchk2
+        from GAFF. Atoms whose residue and atom names match an amino-acid template take
+        the template type; anything else keeps what antechamber assigned.
+        """
+        libs = PROTEIN_FF_LIBS[self.proteinFF]
+        if not libs or "amber" not in self.atomType:
+            return
+        paths = [path for path in (self.locateLib(name) for name in libs) if path]
+        if len(paths) != len(libs):
+            self.printWarn(f"{self.proteinFF} residue templates not found; keeping antechamber's atom types")
+            return
+        templates = readAmberLibTypes(paths)
+        with open(self.acMol2FileName) as fh:
+            lines = fh.readlines()
+        lines, changes = retypeMol2Atoms(lines, templates, FF14SB_RETYPES)
+        if not changes:
+            self.printDebug("no residue template atom types to apply")
+            return
+        with open(self.acMol2FileName, "w") as fh:
+            fh.writelines(lines)
+        counts = collections.Counter(f"{old}->{new}" for _, _, old, new in changes)
+        summary = ", ".join(f"{change} x{n}" for change, n in sorted(counts.items()))
+        self.printMess(f"Applied {self.proteinFF} residue atom types to {len(changes)} atoms: {summary}")
+
     def execParmchk(self):
         """Execute parmchk."""
         self.makeDir()
-        cmd = f"'{self.parmchkExe}' -i '{self.acMol2FileName}' -f mol2 -o '{self.acFrcmodFileName}'"
+        cmdBase = f"'{self.parmchkExe}' -i '{self.acMol2FileName}' -f mol2"
 
         if "amber" in self.atomType:
+            ff = PROTEIN_FF[self.proteinFF]
             gaffFile = self.locateDat(self.gaffDatfile)
-            parmfile = self.locateDat("parm10.dat")
-            frcmodffxxSB = self.locateDat("frcmod.ff14SB")
-            # frcmodparmbsc0 = self.locateDat('frcmod.parmbsc0')
-            parmGaffFile = parmMerge(parmfile, gaffFile)
-            parmGaffffxxSBFile = parmMerge(parmGaffFile, frcmodffxxSB, frcmod=True)
-            # parm99gaffff99SBparmbsc0File = parmMerge(parm99gaffff99SBFile, frcmodparmbsc0, frcmod = True)
-            # parm10file = self.locateDat('parm10.dat') # PARM99 + frcmod.ff99SB + frcmod.parmbsc0 in AmberTools 1.4
-
-            cmd += f" -p '{parmGaffffxxSBFile}'"  # Ignoring BSC0
-        elif "gaff2" in self.atomType:
-            cmd += " -s 2"
-
-        self.printDebug(cmd)
-        self.parmchkLog = _getoutput(cmd)
+            parmfile = self.locateDat(ff["parm"])
+            frcmodSB = self.locateDat(ff["frcmod"])
+            # Two passes, because parmchk2 does not only fill gaps. Given a parameter
+            # file with GAFF merged in it also replaces AMBER terms it already has with
+            # GAFF analogues its correspondence table scores as equivalent -- the amide
+            # X-C-N-X torsion by c3-c-n-c3, the carboxylate H-CT-C-O2 by hc-c3-c-o --
+            # and tleap loads the frcmod last, so those analogues win. The first pass,
+            # against AMBER alone, decides what is genuinely missing; the second, against
+            # the merge, supplies GAFF values for exactly those entries and nothing else.
+            amberOnly = parmMerge(parmfile, frcmodSB, frcmod=True)
+            withGaff = parmMerge(parmMerge(parmfile, gaffFile), frcmodSB, frcmod=True)
+            gapsFrcmod = self.acFrcmodFileName + ".amber"
+            gaffFrcmod = self.acFrcmodFileName + ".gaff"
+            self.parmchkLog = ""
+            for out, parm in ((gapsFrcmod, amberOnly), (gaffFrcmod, withGaff)):
+                cmd = f"{cmdBase} -o '{out}' -p '{parm}'"
+                self.printDebug(cmd)
+                self.parmchkLog += _getoutput(cmd)
+            if os.path.exists(gapsFrcmod) and os.path.exists(gaffFrcmod):
+                with open(gapsFrcmod) as gaps, open(gaffFrcmod) as filled:
+                    merged = mergeFrcmodGaps(gaps.readlines(), filled.readlines())
+                with open(self.acFrcmodFileName, "w") as fh:
+                    fh.writelines(merged)
+                if not self.debug:
+                    os.remove(gapsFrcmod)
+                    os.remove(gaffFrcmod)
+        else:
+            cmd = f"{cmdBase} -o '{self.acFrcmodFileName}'"
+            if "gaff2" in self.atomType:
+                cmd += " -s 2"
+            self.printDebug(cmd)
+            self.parmchkLog = _getoutput(cmd)
 
         if os.path.exists(self.acFrcmodFileName):
             check = self.checkFrcmod()
@@ -3345,6 +3416,7 @@ class ACTopol(AbstractTopol):
         merge=False,
         direct=False,
         split_molecules=False,
+        protein_ff="ff14SB",
         is_sorted=False,
         chiral=False,
         amb2gmx=False,
@@ -3444,6 +3516,9 @@ class ACTopol(AbstractTopol):
         self.predIndex = predIndex
         self.atomType = atomType
         self.gaffDatfile = "gaff.dat"
+        if protein_ff not in PROTEIN_FF:
+            raise ValueError(f"protein_ff must be one of {sorted(PROTEIN_FF)}, not {protein_ff!r}")
+        self.proteinFF = protein_ff
         leapGaffFile = "leaprc.gaff"
         if "2" in self.atomType:
             leapGaffFile = "leaprc.gaff2"
@@ -3473,7 +3548,7 @@ class ACTopol(AbstractTopol):
             "acBase": acBase,
             "acMol2FileName": acMol2FileName,
             "res": self.resName,
-            "leapAmberFile": leapAmberFile,
+            "leapAmberFile": PROTEIN_FF[protein_ff]["leaprc"],
             "baseOrg": self.baseOriginal,
             "leapGaffFile": leapGaffFile,
         }

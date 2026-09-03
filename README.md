@@ -129,6 +129,20 @@ write (`all`, `gmx`, `cns`, `charmm`), and `-r` the antechamber atom/bond type
 prediction index if the default perception struggles with your molecule. Run
 `acpype -h` for the full list and for what every output file is.
 
+`-a amber` and `-a amber2` type the molecule with the AMBER protein force field and
+fall back to GAFF (or GAFF2) only for parameters AMBER does not have. The protein
+force field is ff14SB by default, or ff99SB with `-F/--protein_ff`. ff14SB keys its
+backbone and side-chain torsions on atom types antechamber never emits (`CX`, `CO`,
+`2C`, `3C`, `C8`), so ACPYPE applies them itself after antechamber, from AMBER's own
+residue templates; atoms that match no amino-acid template keep antechamber's types.
+parmchk2 is then run twice, against AMBER alone and against AMBER plus GAFF, and GAFF
+values are kept only where AMBER has a genuine gap, because parmchk2 would otherwise
+replace AMBER's backbone torsions with GAFF analogues it scores as equivalent. This is
+validated by `scripts/check_acpype.py`: over the 22 standard tripeptides the bonded
+energies agree with GROMACS' own `amber14sb.ff` to within 0.05% for 21 of them and to
+1% for tyrosine, where antechamber types the ring `CZ` differently, an exception on
+record in `NOTE.txt` since 2010.
+
 In `amb2gmx` mode, `-S/--split_molecules` writes one `[ moleculetype ]` per molecule
 that AMBER identified, instead of merging the whole solute into one. Converting a
 tleap system built as `complex = combine { target ligand }` then gives a separate

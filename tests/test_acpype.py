@@ -69,7 +69,12 @@ def test_pdb(janitor, capsys):
 
 @pytest.mark.parametrize(
     ("force", "at", "ndih"),
-    [(False, "amber", 189), (True, "amber2", 197)],
+    # 225 for both since -a amber applies ff14SB's residue types after antechamber: the
+    # backbone torsions are then the CX-keyed four-term series parm10 defines, rather
+    # than GAFF analogues parmchk2 invented for CT-typed quartets. The two GAFF flavours
+    # used to give different counts (189 and 197) only because their analogues
+    # differed; for a plain peptide GAFF no longer contributes any term at all.
+    [(False, "amber", 225), (True, "amber2", 225)],
 )
 def test_amber(janitor, force, at, ndih):
     molecule = ACTopol("FFF.mol2", chargeType="gas", debug=True, atomType=at, force=force)

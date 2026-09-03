@@ -14,8 +14,9 @@ that ACPYPE may guess a wrong net charge when running it on your own molecule.
 Next, I used ACPYPE to generate the topologies and parameters for these 22 entries and compare theirs
 results with the ones from GROMACS reference.
 
-By using ACPYPE with option '-a amber' (which means parm99.dat + gaff.dat +
-frcmod.ff99SB + frcmod.parmbsc0), it seems to give better results than using just GAFF (the default option in ACPYPE) when comparing with GROMACS outputs, i.e., the former basically got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference, while the latter missed just a few more.
+By using ACPYPE with option '-a amber' (which meant parm99.dat + gaff.dat +
+frcmod.ff99SB + frcmod.parmbsc0 when this was written; today it means ff14SB, see the
+2026 status below, and '-F ff99SB' restores the original set), it seems to give better results than using just GAFF (the default option in ACPYPE) when comparing with GROMACS outputs, i.e., the former basically got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference, while the latter missed just a few more.
 
 A more detailed comparison between ACPYPE with option '-a amber' against
 GROMACS' AMBER99SB (including a Single Point Energy minimisation with GROMACS) results and it can be seen that they *match* except by:
@@ -70,6 +71,45 @@ Two things dated badly and were fixed rather than worked around:
 
 The GROMACS reference in this note was generated with version 4.5; the harness itself
 has been run against 2026.3.
+
+=== 2026 status: what had broken, and what the numbers are now ===
+
+When the harness was revived in September 2026 the agreement above no longer held:
+proper dihedrals from '-a amber' were 26-148% off for every one of the 22 peptides,
+while bonds, angles, impropers and Lennard-Jones matched to 5-6 significant figures.
+Two causes, one origin:
+
+  * '-a amber' had been moved from ff99SB to ff14SB. ff14SB retyped the backbone
+    C-alpha from CT to CX (and side chains to CO/2C/3C/C8) and keys its torsions on
+    those types. antechamber's AMBER typer predates them and emits CT, so every ff14SB
+    backbone torsion silently fell back to the zero wildcard X-CT-N-X.
+  * parmchk2, given a parameter file with gaff.dat merged in, does not only fill gaps:
+    it replaces AMBER terms it already has with GAFF analogues its correspondence table
+    scores as equivalent ("CT-C -N -CT same as c3-c -n -c3"), and tleap loads the
+    frcmod last, so the analogues won. The 2010 parmchk did not do this.
+
+Neither is a change in acpype's design. The fix keeps the design: ff14SB's residue
+types are applied after antechamber from AMBER's own templates (amino12.lib and the
+terminal variants), and parmchk2 is run twice, against AMBER alone to decide what is
+genuinely missing and against AMBER+GAFF to supply values for exactly those entries.
+'-F ff99SB' selects the original parameter set, which needs no retyping.
+
+Results, all 22 tripeptides, sander-minimised, |error| in Total_Bonded against
+GROMACS 2026.3:
+
+    -F ff14SB vs amber14sb.ff:  21 residues within 0.05%; TYR 0.99%
+    -F ff99SB vs amber99sb.ff:  20 residues within 0.05%; TRP 0.40%, TYR 2.79%
+
+The residual cases are the ones listed above from 2010 and have the same causes: the
+TYR CZ atom type, and inverted or extra improper dihedrals in HHH, JJJ, OOO and WWW.
+Coulomb terms are not comparable in this harness because it runs '-c gas'.
+
+The amb2gmx converter was checked separately: a native tleap ff14SB prmtop converted
+with 'acpype -p -x' matches GROMACS amber14sb.ff to 0.0002% on proper dihedrals and
+0.0005% on total potential on identical coordinates.
+
+    uv run python scripts/check_acpype.py                     # ff14SB vs amber14sb
+    uv run python scripts/check_acpype.py --protein_ff ff99SB # ff99SB vs amber99sb
 
 == ACPYPE and OPLS/AA Parameters Generation (Experimental) ==
 
