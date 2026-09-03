@@ -137,7 +137,9 @@ The molecules come from the prmtop's `ATOMS_PER_MOLECULE`, so they match AMBER's
 bonded connectivity; a prmtop with no box does not carry that record and is left as a
 single moleculetype. Charges are rounded per molecule when splitting, because AMBER's
 stored precision leaves an individual molecule off by ~1e-3 even when the system as a
-whole is exactly integral.
+whole is exactly integral. That does alter the charges slightly -- a `Zn2+` AMBER
+stored as `+2.002` becomes exactly `+2.000` -- so a single-point energy can differ
+from an unsplit run by a few parts per million.
 
 A note on `-q`, the quantum engine behind `bcc` and `abcg2` charges: only `sqm` is
 bundled with ACPYPE. `-q mopac` and `-q divcon` are still accepted, but they need a

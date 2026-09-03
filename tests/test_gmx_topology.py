@@ -10,6 +10,8 @@ blocks appear, how many atoms each holds, and what the ``[ molecules ]`` table s
 """
 
 import re
+import shutil
+import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -265,3 +267,40 @@ def test_split_needs_the_amber_molecule_table(janitor: list[str]) -> None:
     blocks, molecules = parse_top(top)
     assert [b.name for b in blocks] == ["DNA_BSC0"]
     assert molecules == [("DNA_BSC0", 1)]
+
+
+@pytest.mark.skipif(shutil.which("gmx") is None, reason="needs a GROMACS install")
+@pytest.mark.parametrize("split", [False, True], ids=["merged", "split"])
+@pytest.mark.parametrize("base", ["ILDN", "ComplexG1"])
+def test_grompp_accepts_the_topology(janitor: list[str], base: str, split: bool) -> None:
+    """GROMACS itself accepts the topology, split or merged, with no warnings allowed."""
+    molecule, top = write_topology(base, split=split)
+    janitor.append(molecule.absHomeDir)
+    home = Path(molecule.absHomeDir)
+
+    # -maxwarn 0 is the point: a split that left a moleculetype with a non-integer
+    # charge, or a bonded term pointing at the wrong atom, is reported as a warning
+    # rather than an error, and would otherwise pass unnoticed.
+    result = subprocess.run(
+        [
+            "gmx",
+            "grompp",
+            "-f",
+            "em.mdp",
+            "-c",
+            top.with_suffix(".gro").name,
+            "-p",
+            top.name,
+            "-o",
+            "test.tpr",
+            "-maxwarn",
+            "0",
+        ],
+        cwd=home,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr[-3000:]
+    assert (home / "test.tpr").is_file()
