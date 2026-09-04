@@ -4,7 +4,10 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
-## [Unreleased]
+## [2026.9.4] - 2026-09-04
+
+CHARMM output, which failed silently on any installation without ACPYPE's bundled
+AmberTools, conda's above all, because modern AmberTools dropped `charmmgen`.
 
 ### Added
 
