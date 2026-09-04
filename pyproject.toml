@@ -1,6 +1,6 @@
 [project]
 name = "acpype"
-version = "2026.9.3"
+version = "2026.9.4"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 readme = "README.md"
 requires-python = ">=3.12"

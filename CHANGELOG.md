@@ -4,6 +4,24 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
+## [Unreleased]
+
+### Added
+
+- `acpype --fetch-charmmgen` downloads the `charmmgen` build for the current platform,
+  verifies it against a checksum pinned to a release tag, and installs it beside
+  antechamber. CHARMM output needs it, modern AmberTools dropped it, and installations
+  without ACPYPE's bundled AmberTools, conda's among them, therefore had no way to
+  produce CHARMM files. Builds exist for macOS (universal) and Linux x86_64. A topology
+  run never downloads anything by itself.
+
+### Fixed
+
+- CHARMM output failed silently when `charmmgen` was missing: the run announced
+  "Writing CHARMM files" and wrote none. It now says what is missing and how to get it.
+  The check looks beside antechamber, at `$AMBERHOME/bin/charmmgen`, which is where
+  antechamber invokes it from; a copy on `PATH` alone was never used.
+
 ## [2026.9.3] - 2026-09-03
 
 Force field correctness. `-a amber` produced peptide backbone torsions that had been

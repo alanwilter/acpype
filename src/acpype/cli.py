@@ -15,7 +15,7 @@ from acpype.logger import copy_log, tmpLogFile
 from acpype.logger import set_logging_conf as logger
 from acpype.params import MAXTIME, binaries, epilog
 from acpype.topol import AbstractTopol, ACTopol, MolTopol, header
-from acpype.utils import elapsedTime, while_replace
+from acpype.utils import charmmgen_path, download_charmmgen, elapsedTime, while_replace
 
 
 class ChargeMethod(StrEnum):
@@ -195,6 +195,13 @@ def main(
         bool, typer.Option("-j", "--chiral", help="create improper dihedral parameters for chiral atoms in CNS")
     ] = False,
     version: Annotated[bool, typer.Option("-v", "--version", help="show the ACPYPE version and exit")] = False,
+    fetch_charmmgen: Annotated[
+        bool,
+        typer.Option(
+            "--fetch-charmmgen",
+            help="download this platform's charmmgen, needed for CHARMM output, and exit",
+        ),
+    ] = False,
 ) -> None:
     """Generate topologies for chemical compounds, using Antechamber.
 
@@ -209,6 +216,20 @@ def main(
 
     if version:
         print(header)
+        sys.exit(0)
+
+    if fetch_charmmgen:
+        # An explicit, one-shot action: a topology run never reaches the network by
+        # itself, which matters on clusters and for reproducing published work.
+        installed = charmmgen_path()
+        if installed:
+            print(f"charmmgen is already available at {installed}")
+            sys.exit(0)
+        try:
+            print(f"charmmgen installed at {download_charmmgen()}")
+        except AcpypeError as exc:
+            logger(20).error(f"ACPYPE FAILED: {exc}")
+            sys.exit(19)
         sys.exit(0)
 
     # argparse enforced this through a mutually exclusive group; typer has no

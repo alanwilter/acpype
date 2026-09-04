@@ -1,13 +1,29 @@
 import hashlib
+import io
 import math
 import os
+import platform
 import re
 import subprocess as sub
 import sys
+import tarfile
 import tempfile
 from shutil import which
+from urllib.request import urlopen
 
+from acpype.errors import AcpypeError
 from acpype.params import Pi
+
+# charmmgen was dropped by AmberTools, so ACPYPE keeps an old build of its own. The
+# wheels bundle it; installs without a bundle, conda's among them, can fetch it with
+# `acpype --fetch-charmmgen`. Pinned to a tag and checksummed so the download is
+# reproducible: bump the ref and the digests together whenever the binaries change.
+CHARMMGEN_REF = "2026.9.3"
+CHARMMGEN_URL = "https://raw.githubusercontent.com/alanwilter/acpype/{ref}/charmmgen_{key}.tgz"
+CHARMMGEN_SHA256 = {
+    "linux": "851408fa0e42fe53e283acda6bd1675e47835284a4134b1250e01a4c1299c93a",
+    "macos": "67057e988d7b620f9460fa816000fa5a560d2bc8e5607b2ce38b3d012c442c01",
+}
 
 
 def find_bin(abin):
@@ -507,6 +523,106 @@ def bundled_amber_dir():
         return None
     path = os.path.join(os.path.dirname(__file__), name)
     return path if os.path.isdir(os.path.join(path, "bin")) else None
+
+
+def charmmgen_platform():
+    """Name the charmmgen build this machine can run, if there is one.
+
+    Returns:
+        str | None: ``"macos"`` (a universal binary, so it serves Apple Silicon and
+        Intel alike), ``"linux"`` for x86_64, or ``None`` where no build exists, such
+        as Linux on aarch64.
+    """
+    if sys.platform == "darwin":
+        return "macos"
+    if sys.platform.startswith("linux") and platform.machine().lower() in ("x86_64", "amd64"):
+        return "linux"
+    return None
+
+
+def amber_bin_dir():
+    """The AmberTools ``bin`` the antechamber that will actually run belongs to.
+
+    PATH comes first, and the bundle only as a fallback, mirroring
+    :func:`set_for_pip`, which wires the bundle in only when nothing is on PATH
+    already. Getting that order wrong would check one AmberTools while antechamber
+    ran from another, and antechamber resolves charmmgen against its own AMBERHOME.
+
+    Returns:
+        str | None: the directory, or ``None`` when no AmberTools can be found.
+    """
+    antechamber = which("antechamber")
+    if antechamber:
+        return os.path.dirname(antechamber)
+    bundle = bundled_amber_dir()
+    return os.path.join(bundle, "bin") if bundle else None
+
+
+def charmmgen_path():
+    """Path of the charmmgen antechamber would actually run, or ``None``.
+
+    antechamber invokes ``$AMBERHOME/bin/charmmgen`` by absolute path, so a copy merely
+    on PATH is never found. This looks where antechamber looks.
+    """
+    directory = amber_bin_dir()
+    if directory is None:
+        return None
+    path = os.path.join(directory, "charmmgen")
+    return path if os.access(path, os.X_OK) else None
+
+
+def download_charmmgen(destDir=None):
+    """Download this platform's charmmgen and install it beside antechamber.
+
+    Args:
+        destDir: where to write it; the AmberTools ``bin`` in use by default.
+
+    Returns:
+        str: path of the installed executable.
+
+    Raises:
+        AcpypeError: when no build exists for this platform, no AmberTools can be
+            found, the destination is not writable, the download fails, or the archive
+            does not match its recorded checksum.
+    """
+    key = charmmgen_platform()
+    if key is None:
+        raise AcpypeError(
+            f"no charmmgen build for {sys.platform} on {platform.machine()}; "
+            "the Docker image ships a full AmberTools and can write CHARMM files"
+        )
+    directory = destDir or amber_bin_dir()
+    if directory is None:
+        raise AcpypeError("no AmberTools found to install charmmgen into; is antechamber on PATH?")
+
+    url = CHARMMGEN_URL.format(ref=CHARMMGEN_REF, key=key)
+    if not os.access(directory, os.W_OK):
+        raise AcpypeError(
+            f"'{directory}' is not writable. Install it by hand with:\n"
+            f"    curl -sL {url} | tar xz --strip-components=4 -C '{directory}'"
+        )
+    try:
+        with urlopen(url, timeout=60) as response:
+            blob = response.read()
+    except OSError as exc:
+        raise AcpypeError(f"could not download '{url}': {exc}") from exc
+
+    digest = hashlib.sha256(blob).hexdigest()
+    if digest != CHARMMGEN_SHA256[key]:
+        raise AcpypeError(f"'{url}' does not match its recorded checksum ({digest}); refusing to install it")
+
+    with tarfile.open(fileobj=io.BytesIO(blob), mode="r:gz") as archive:
+        member = next((m for m in archive.getmembers() if m.name.endswith("bin/charmmgen")), None)
+        extracted = archive.extractfile(member) if member else None
+        if extracted is None:
+            raise AcpypeError(f"'{url}' holds no charmmgen binary")
+        binary = extracted.read()
+
+    path = os.path.join(directory, "charmmgen")
+    with open(path, "wb") as fh:
+        fh.write(binary)
+    os.chmod(path, 0o755)  # noqa: S103 - it sits beside antechamber, which is world-executable too
+    return path
 
 
 def set_for_pip(binaries):

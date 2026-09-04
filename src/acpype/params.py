@@ -90,6 +90,10 @@ epilog = """
           ff14SB's own CX/CO/2C/3C/C8 applied from the residue templates, GAFF only
           for parameters AMBER lacks. '-F ff99SB' selects the older protein set.
 
+    note: CHARMM output needs 'charmmgen', which modern AmberTools dropped. The
+          wheels and the Docker image bundle it; elsewhere run
+          'acpype --fetch-charmmgen' once to install it beside antechamber.
+
     note: amb2gmx writes ff19SB's CMAP terms as residue-qualified [ cmaptypes ],
           the syntax of GROMACS' own amber19sb port, and builds four-site waters
           (OPC, TIP4P-Ew) from the prmtop. Not available with '-z' (GROMACS 4).

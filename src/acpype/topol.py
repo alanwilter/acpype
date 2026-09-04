@@ -40,6 +40,7 @@ from acpype.params import (
 from acpype.utils import (
     _getoutput,
     bundled_amber_dir,
+    charmmgen_path,
     distanceAA,
     elapsedTime,
     find_bin,
@@ -1865,6 +1866,16 @@ class AbstractTopol(abc.ABC):
         """Write CHARMM topology files."""
         if self.cmaps:
             self.printWarn("CMAP terms are not written for this format; the backbone correction is lost here")
+        # antechamber writes CHARMM output by shelling out to charmmgen, which modern
+        # AmberTools no longer ships. Without it the run used to announce the files and
+        # then write nothing at all, silently.
+        if not charmmgen_path():
+            self.printWarn(
+                "No CHARMM files: they need 'charmmgen', which modern AmberTools dropped and this "
+                "installation does not have. Run 'acpype --fetch-charmmgen' to download it, or use "
+                "the pip wheel or the Docker image, which bundle it."
+            )
+            return
         self.printMess("Writing CHARMM files\n")
 
         at = self.atomType

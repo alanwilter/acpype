@@ -16,7 +16,7 @@
 [![Ruff](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![ty](https://img.shields.io/endpoint?style=plastic&url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=plastic)](https://github.com/pre-commit/pre-commit)
-[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2026.9.2/main?style=plastic)](https://github.com/alanwilter/acpype/commits/main)
+[![Commits since release](https://img.shields.io/github/commits-since/alanwilter/acpype/2026.9.3/main?style=plastic)](https://github.com/alanwilter/acpype/commits/main)
 [![Codecov](https://img.shields.io/codecov/c/github/alanwilter/acpype?style=plastic)](https://app.codecov.io/gh/alanwilter/acpype)
 [![Documentation Status](https://readthedocs.org/projects/acpype/badge/?version=latest&style=plastic)](https://acpype.readthedocs.io/en/latest/?badge=latest)
 [![Citations Badge](https://img.shields.io/endpoint?label=citations&logo=googlescholar&style=plastic&url=https%3A%2F%2Fapi.juleskreuer.eu%2Fcitation-badge.php%3Fshield%26doi%3D10.1186%2F1756-0500-5-367)](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=c68TiIUAAAAJ&citation_for_view=c68TiIUAAAAJ:UeHWp8X0CEIC)
@@ -165,6 +165,16 @@ stored precision leaves an individual molecule off by ~1e-3 even when the system
 whole is exactly integral. That does alter the charges slightly -- a `Zn2+` AMBER
 stored as `+2.002` becomes exactly `+2.000` -- so a single-point energy can differ
 from an unsplit run by a few parts per million.
+
+CHARMM output needs `charmmgen`, which modern AmberTools dropped; ACPYPE keeps an old
+build and the wheels and the Docker image bundle it. An installation without that
+bundle, a conda one for instance, has none, and antechamber looks for it beside itself
+at `$AMBERHOME/bin/charmmgen`, so a copy merely on `PATH` is never used. ACPYPE now says
+so instead of announcing CHARMM files and writing none, and `acpype --fetch-charmmgen`
+downloads the right build for the platform, checksummed and pinned to a release tag,
+and installs it there. A topology run never reaches the network by itself. There are
+builds for macOS (universal, Intel and Apple Silicon) and Linux x86_64; elsewhere the
+Docker image ships a full AmberTools.
 
 A note on `-q`, the quantum engine behind `bcc` and `abcg2` charges: only `sqm` is
 bundled with ACPYPE. `-q mopac` and `-q divcon` are still accepted, but they need a
