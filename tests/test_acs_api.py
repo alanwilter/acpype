@@ -1,6 +1,5 @@
 import json
 from glob import glob
-from pathlib import Path
 
 from acpype.acs_api import acpype_api
 
@@ -37,9 +36,11 @@ def test_json_simple(janitor):
 
 def test_json_failed(janitor):
     jj = json.loads(acpype_api(inputFile="_fake_", debug=True))
-    assert "ERROR: [Errno 2] No such file or directory" in jj.get("file_name")
-    # The missing input is reported as an absolute path resolved against the cwd.
-    assert str(Path.cwd() / "_fake_") in jj.get("file_name")
+    # Neither a file nor SMILES. This used to surface as a bare FileNotFoundError
+    # carrying the resolved path; it now names the input and says why both readings
+    # failed, which is the more useful half of that information.
+    assert "ERROR: Input file _fake_ DOES NOT EXIST" in jj.get("file_name")
+    assert "not a file" in jj.get("file_name")
     for ii in glob(".*_fake_*"):
         janitor.append(ii)
 

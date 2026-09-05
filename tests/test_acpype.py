@@ -8,6 +8,7 @@ from pytest import approx
 
 from acpype import __version__ as version
 from acpype.cli import init_main
+from acpype.errors import AcpypeError
 from acpype.topol import ACTopol
 from acpype.utils import _getoutput
 
@@ -342,9 +343,11 @@ def test_inputs(janitor, capsys, argv, msg):
         ),
         (["-di", "cccccc", "-n", "-1", "-b", "vir_temp"], 19, "Fatal Error!"),
         (
+            # Neither a file nor SMILES. This used to fall through and die on a bare
+            # FileNotFoundError; it now says which of the two readings failed.
             ["-di", " 123", "-b", "vir_temp"],
             19,
-            "ACPYPE FAILED: [Errno 2] No such file or directory",
+            "ACPYPE FAILED: Input file  123 DOES NOT EXIST: it is not a file",
         ),
         (
             ["-i", "double_res.pdb", "-b", "vir_temp"],
@@ -386,3 +389,30 @@ def test_args_wrong_inputs(janitor, capsys, monkeypatch, argv, code, msg):
     assert e_info.typename == "SystemExit"
     assert e_info.value.code == code
     _getoutput("rm -vfr vir_temp* .*vir_temp*")
+
+
+def test_bad_input_that_is_neither_a_file_nor_smiles(janitor: list[str]) -> None:
+    """An input that is neither an existing file nor valid SMILES is refused with a reason.
+
+    'C3H3' is a molecular formula, which OpenBabel rejects as SMILES. The check used to
+    fall through silently, leaving absInputFile pointing at a path that did not exist,
+    and the run died on a bare FileNotFoundError from the first step to open it.
+    """
+    with pytest.raises(AcpypeError, match=r"C3H3 DOES NOT EXIST.*not a file.*SMILES"):
+        ACTopol("C3H3", chargeType="gas", verbose=False)
+
+
+def test_missing_file_with_a_known_extension_is_refused(janitor: list[str]) -> None:
+    """A missing .mol2 is never mistaken for SMILES, and reports the plain file error."""
+    with pytest.raises(AcpypeError, match=r"^Input file nope\.mol2 DOES NOT EXIST$"):
+        ACTopol("nope.mol2", chargeType="gas", verbose=False)
+
+
+def test_a_real_smiles_is_accepted(janitor: list[str]) -> None:
+    """A valid SMILES is turned into a mol2 the rest of the pipeline reads normally."""
+    molecule = ACTopol("CCO", basename="ethanol", chargeType="gas", verbose=False)
+    janitor.append(molecule.absHomeDir)
+
+    assert molecule.is_smiles is True
+    assert molecule.smiles == "CCO"
+    assert molecule.inputFile == "ethanol.mol2"

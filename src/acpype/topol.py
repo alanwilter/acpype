@@ -11,7 +11,7 @@ from datetime import datetime
 from shutil import copy2, rmtree, which
 
 from acpype import __version__ as version
-from acpype.errors import UnsupportedTopologyError
+from acpype.errors import AcpypeError, UnsupportedTopologyError
 from acpype.logger import set_logging_conf as logger
 from acpype.mol import Angle, Atom, AtomType, Bond, Dihedral
 from acpype.params import (
@@ -3689,12 +3689,23 @@ class ACTopol(AbstractTopol):
                     self.inputFile = f"{basename}.mol2"
                 self.absInputFile = os.path.abspath(self.inputFile)
             else:
+                # Neither a file nor something OpenBabel can read as SMILES. Saying so
+                # here matters: falling through left absInputFile pointing at a path
+                # that does not exist, and the run died on a bare FileNotFoundError
+                # from the first step that tried to open it.
                 self.is_smiles = False
                 self.smiles = ""
+                if find_bin(self.binaries["obabel_bin"]):
+                    why = "it is not a file, and OpenBabel cannot read it as a SMILES string either"
+                else:
+                    why = "it is not a file, and without OpenBabel it cannot be tried as a SMILES string"
+                msg = f"Input file {inputFile} DOES NOT EXIST: {why}"
+                logger(self.level).error(msg)
+                raise AcpypeError(msg)
         elif not os.path.exists(self.absInputFile):
             msg = f"Input file {inputFile} DOES NOT EXIST"
             logger(self.level).error(msg)
-            raise Exception(msg)
+            raise AcpypeError(msg)
         baseOriginal, ext = os.path.splitext(self.inputFile)
         base = basename or baseOriginal
         self.baseOriginal = baseOriginal
