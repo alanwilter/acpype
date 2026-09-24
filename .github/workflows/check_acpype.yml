@@ -54,7 +54,7 @@ jobs:
       - name: Install uv
         # setup-uv stopped maintaining floating major tags after v7, so this is
         # pinned to an exact release; Dependabot keeps it current.
-        uses: astral-sh/setup-uv@v10.1.0
+        uses: astral-sh/setup-uv@v10.2.0
         with:
           # Version comes from `required-version` in pyproject.toml.
           enable-cache: true
@@ -206,7 +206,7 @@ jobs:
           ref: ${{ steps.tag.outputs.tag }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.1.0
+        uses: astral-sh/setup-uv@v10.2.0
         with:
           # Version comes from `required-version` in pyproject.toml.
           enable-cache: true
