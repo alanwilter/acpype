@@ -12,6 +12,10 @@ that followed 2023.10.27.
   formula such as `C3H3` for instance, died on a bare `FileNotFoundError` traceback
   from deep inside the run. It now reports which of the two readings failed, in one
   line and with no traceback. A missing file with a known extension does the same.
+- `prmtop` records are typed from the `%FORMAT` they declare rather than guessed by
+  looking for a `.` in the data. The guess read any text record holding a dot, an atom
+  named `N.4` for instance, as a line of floats and died in `float()`. No real file in
+  the test set was affected: on every record ACPYPE reads, the two agree.
 
 ## [2026.9.4] - 2026-09-04
 

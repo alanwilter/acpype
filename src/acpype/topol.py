@@ -1299,22 +1299,26 @@ class AbstractTopol(abc.ABC):
 
     def getFlagData(self, flag):
         """For a given acFileTop flag, return a list of the data related."""
+        fmtCode = ""
 
         def proc_line(line):
             # data need format
             data = line.rstrip()
             sdata = [data[i : i + f].strip() for i in range(0, len(data), f)]
-            if "+" and "." in data and flag != "RESIDUE_LABEL":  # it's a float
-                ndata = list(map(float, sdata))
-            elif flag != "RESIDUE_LABEL":
-                try:  # try if it's integer
-                    ndata = list(map(int, sdata))
-                except Exception:
-                    ndata = sdata
-            else:
-                ndata = sdata
-
-            return ndata
+            if flag == "RESIDUE_LABEL":
+                return sdata
+            # The %FORMAT record states the type, so read it rather than sniff the data:
+            # E, F and D are Fortran reals, I an integer, a text. The old test was
+            # `"." in data`, which took any text field holding a dot -- an atom named
+            # 'N.4', say -- for a line of floats and died in float(). It was written as
+            # `"+" and "." in data`, which Python evaluates as `"." in data` since a
+            # non-empty string is truthy, so the '+' never took part.
+            if fmtCode in ("E", "F", "D"):
+                return list(map(float, sdata))
+            try:  # try if it's integer
+                return list(map(int, sdata))
+            except Exception:
+                return sdata
 
         block = False
         tFlag = "%FLAG " + flag
@@ -1338,6 +1342,7 @@ class AbstractTopol(abc.ABC):
                     for c in line:
                         if c.isalpha():
                             f = int(line.split(c)[1])
+                            fmtCode = c.upper()
                             break
                     continue
                 ndata += proc_line(line)
