@@ -4,7 +4,11 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
-## [Unreleased]
+## [2026.10.8] - 2026-10-08
+
+Periodic boxes. A truncated-octahedron system converted with `amb2gmx` had every atom
+in the wrong periodic image, silently: GROMACS accepted the files and the error showed
+only in the energy.
 
 **Anyone who converted a truncated-octahedron system with `amb2gmx` should convert it
 again and discard results from the old topology.** See the first entry below.
