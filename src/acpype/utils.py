@@ -353,6 +353,39 @@ def unknownMol2Types(mol2Lines, knownTypes):
     return found
 
 
+def cellToBoxVectors(lengths, angles):
+    """Convert a periodic cell to the box vectors GROMACS expects.
+
+    AMBER stores a box as three edge lengths and three angles; GROMACS wants the three
+    cell vectors reduced so that v1 lies along x and v2 in the xy plane. This is the
+    standard crystallographic reduction, which covers every cell shape.
+
+    The signs matter, and getting them wrong is silent. For a truncated octahedron the
+    reduction yields a negative v2x and v3y, which is the orientation AMBER writes its
+    coordinates in. GROMACS' own canonical octahedron mirrors those two components, so
+    emitting that instead leaves every atom in the wrong periodic image: the topology
+    still passes grompp, and the Lennard-Jones energy explodes by ten orders of
+    magnitude because the images overlap.
+
+    Args:
+        lengths: cell edge lengths a, b and c, in whatever unit the caller wants back.
+        angles: cell angles alpha, beta and gamma, in degrees.
+
+    Returns:
+        tuple: the three cell vectors, each a tuple of three floats.
+    """
+    a, b, c = lengths
+    cosAlpha, cosBeta, cosGamma = (math.cos(math.radians(x)) for x in angles)
+    sinGamma = math.sin(math.radians(angles[2]))
+    v1 = (a, 0.0, 0.0)
+    v2 = (b * cosGamma, b * sinGamma, 0.0)
+    v3x = c * cosBeta
+    v3y = c * (cosAlpha - cosBeta * cosGamma) / sinGamma
+    # Clamped because a cell whose angles do not close leaves this marginally negative.
+    v3 = (v3x, v3y, math.sqrt(max(c * c - v3x * v3x - v3y * v3y, 0.0)))
+    return v1, v2, v3
+
+
 def parmMerge(fdat1, fdat2, frcmod=False):
     """Merge two amber parm dat/frcmod files, caching the result in the temp directory.
 

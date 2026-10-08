@@ -6,8 +6,23 @@ that followed 2023.10.27.
 
 ## [Unreleased]
 
+**Anyone who converted a truncated-octahedron system with `amb2gmx` should convert it
+again and discard results from the old topology.** See the first entry below.
+
 ### Fixed
 
+- **`amb2gmx` placed every atom of a truncated-octahedron box in the wrong periodic
+  image.** AMBER writes its coordinates in an orientation whose reduced cell has a
+  negative `v2x` and `v3y`; ACPYPE emitted GROMACS' own canonical octahedron, which
+  mirrors exactly those two components. Nothing complained: `grompp -maxwarn 0`
+  accepted the result, and the damage showed only in the energy. On a peptide in
+  `solvateoct` TIP3P, Lennard-Jones came out at 3.2e10 kJ/mol where sander gives
+  717 kcal/mol. The box is now derived by the standard crystallographic reduction, and
+  the same system reproduces sander's electrostatics to 0.08%, matching what a
+  rectangular box already achieved. Rectangular boxes are unaffected and their output
+  is unchanged (#155).
+- Box angles other than 90 and 109.47 degrees raised `UnboundLocalError` instead of
+  being written; the reduction above covers every cell shape.
 - An input that is neither an existing file nor a valid SMILES string, a molecular
   formula such as `C3H3` for instance, died on a bare `FileNotFoundError` traceback
   from deep inside the run. It now reports which of the two readings failed, in one

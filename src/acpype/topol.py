@@ -40,6 +40,7 @@ from acpype.params import (
 from acpype.utils import (
     _getoutput,
     bundled_amber_dir,
+    cellToBoxVectors,
     charmmgen_path,
     distanceAA,
     elapsedTime,
@@ -3145,26 +3146,22 @@ class AbstractTopol(abc.ABC):
                 count = 0
             groFile.write(line)
         if self.pbc:
-            boxX = self.pbc[0][0] * 0.1
-            boxY = self.pbc[0][1] * 0.1
-            boxZ = self.pbc[0][2] * 0.1
-            vX = self.pbc[1][0]
-            # vY = self.pbc[1][1]
-            # vZ = self.pbc[1][2]
-            if vX == 90.0:
+            # One reduction for every cell shape. The code here used to special case
+            # right angles and the truncated octahedron, write GROMACS' own canonical
+            # octahedron for the latter -- which mirrors AMBER's in v2x and v3y, so the
+            # coordinates landed in the wrong periodic images -- and raise
+            # UnboundLocalError on any other angle.
+            v1, v2, v3 = cellToBoxVectors([x * 0.1 for x in self.pbc[0]], self.pbc[1])
+            if max(abs(v2[0]), abs(v3[0]), abs(v3[1])) < 1e-6:
+                self.printDebug("PBC rectangular")
+                text = f"{v1[0]:11.5f} {v2[1]:11.5f} {v3[2]:11.5f}\n"
+            else:
                 self.printDebug("PBC triclinic")
-                text = f"{boxX:11.5f} {boxY:11.5f} {boxZ:11.5f}\n"
-            elif round(vX, 2) == 109.47:
-                self.printDebug("PBC octahedron")
-                f1 = 0.471405  # 1/3 * sqrt(2)
-                f2 = 0.333333 * boxX
-                v22 = boxY * 2 * f1
-                v33 = boxZ * f1 * 1.73205  # f1 * sqrt(3)
-                v21 = v31 = v32 = 0.0
-                v12 = f2
-                v13 = -f2
-                v23 = f1 * boxX
-                text = f"{boxX:11.5f} {v22:11.5f} {v33:11.5f} {v21:11.5f} {v31:11.5f} {v12:11.5f} {v32:11.5f} {v13:11.5f} {v23:11.5f}\n"
+                # .gro order: v1x v2y v3z v1y v1z v2x v2z v3x v3y
+                text = (
+                    f"{v1[0]:11.5f} {v2[1]:11.5f} {v3[2]:11.5f} {v1[1]:11.5f} {v1[2]:11.5f} "
+                    f"{v2[0]:11.5f} {v2[2]:11.5f} {v3[0]:11.5f} {v3[1]:11.5f}\n"
+                )
         else:
             self.printDebug("Box size estimated")
             X = [a.coords[0] * 0.1 for a in self.atoms]
