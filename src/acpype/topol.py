@@ -53,6 +53,7 @@ from acpype.utils import (
     readParmAtomTypes,
     retypeMol2Atoms,
     set_for_pip,
+    solventTailRuns,
     unknownMol2Types,
     while_replace,
 )
@@ -2521,6 +2522,7 @@ class AbstractTopol(abc.ABC):
         # Dict of ions dealt by acpype emulating amb2gmx
         ionsDict = {"Na+": headNa, "Cl-": headCl, "K+": headK}
         ionsSorted = []
+        solventRuns = []
         # NOTE: headWaterTip3p and headWaterSpce actually do the real thing
         #      so, skipping headTopWaterTip3p and headWaterTip3p
         # headTopWater = headTopWaterTip3p
@@ -2603,6 +2605,7 @@ class AbstractTopol(abc.ABC):
                     ionType = self.search(name=ion).atomType.atomTypeName
                     ionsSorted.append((idIon, nIon, ion, ionType))
             ionsSorted.sort()
+            solventRuns = solventTailRuns(self.residueLabel, [*ionsDict, "WAT"])
         else:
             itpText.append(headAtomtypes)
             itpText += temp
@@ -3083,11 +3086,12 @@ class AbstractTopol(abc.ABC):
             otopText.append(" %-16s %-6i\n" % (self.baseName, nSolute))
 
         if not self.direct:
-            for ion in ionsSorted:
-                topText.append(" %-16s %-6i\n" % (ion[2].upper(), ion[1]))
-
-            if nWat:
-                topText.append(" %-16s %-6i\n" % ("WAT", nWat))
+            # One entry per contiguous run, never one per species: this table is
+            # positional, and tleap interleaves the ions when a single addions call
+            # names two of them. Grouping put each ion's parameters on the other
+            # species' atom (#155).
+            for resName, nRes in solventRuns:
+                topText.append(" %-16s %-6i\n" % (resName.upper(), nRes))
 
         if self.topo14Data.hasNondefault14():
             citation = (

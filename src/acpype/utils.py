@@ -386,6 +386,42 @@ def cellToBoxVectors(lengths, angles):
     return v1, v2, v3
 
 
+def solventTailRuns(residueLabel, known):
+    """Split the ions and waters trailing a system into runs, in the order stored.
+
+    GROMACS' ``[ molecules ]`` table is positional: it names the molecules in the order
+    the coordinates give them, not a tally per species. Counting instead, which is what
+    ACPYPE did, is only right while each species happens to sit in one contiguous block.
+    ``addions m Na+ 8 Cl- 8`` interleaves them, so a counted table claims eight sodiums
+    followed by eight chlorides where the coordinates alternate, and every ion gets the
+    other species' charge and mass. grompp refuses it over the atom names, but offers to
+    carry on using the topology's, which is exactly the wrong half to keep.
+
+    Two ``addions`` calls, one species each, do give contiguous blocks, which is why
+    this went unseen: it is how the test fixtures and most older tutorials build a box.
+
+    Args:
+        residueLabel: every residue name in the system, in the order stored.
+        known: the residue names that count as solvent, ions and water alike.
+
+    Returns:
+        list: ``(residue name, count)`` per contiguous run, from the first solvent
+        residue onwards; empty when the system carries no solvent at all.
+    """
+    runs = []
+    started = False
+    for name in residueLabel:
+        if not started:
+            if name not in known:
+                continue
+            started = True
+        if runs and runs[-1][0] == name:
+            runs[-1][1] += 1
+        else:
+            runs.append([name, 1])
+    return [(name, count) for name, count in runs]
+
+
 def parmMerge(fdat1, fdat2, frcmod=False):
     """Merge two amber parm dat/frcmod files, caching the result in the temp directory.
 

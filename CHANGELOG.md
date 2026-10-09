@@ -4,6 +4,24 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
+## [Unreleased]
+
+### Fixed
+
+- **`amb2gmx` mismatched the ions against their coordinates whenever a system's ions
+  were not stored one species at a time.** The `[ molecules ]` table is positional: it
+  names molecules in the order the coordinates give them. ACPYPE built it by counting
+  each species instead, which is only right while each sits in one contiguous block.
+  A single `addions m Na+ 8 Cl- 8` interleaves them, so the table claimed eight sodiums
+  followed by eight chlorides where the coordinates alternate, and every ion was handed
+  the other species' charge and mass. `grompp` refuses this over the atom names, but
+  offers to continue using the topology's over the coordinates' -- the wrong half to
+  keep -- and doing so moved the electrostatics 4.2% off sander. The table now carries
+  one entry per contiguous run, and the same system agrees with sander to 0.064%.
+  Systems whose ions are already blocked, which is what two `addions` calls produce and
+  how every test fixture here was built, are written exactly as before. Independent of
+  box shape (#155).
+
 ## [2026.10.8] - 2026-10-08
 
 Periodic boxes. A truncated-octahedron system converted with `amb2gmx` had every atom
