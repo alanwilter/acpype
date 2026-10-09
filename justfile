@@ -20,6 +20,17 @@ ci:
     uv run ty check
     uv audit
 
+# This is not a read-only check. Besides ruff and ty, which `qa` already runs, the
+# ver_today hook stamps today's date as the version in pyproject.toml,
+# src/acpype/__init__.py and uv.lock, repoints the README badges at the newest tag,
+# and `git add`s all four. That is what you want immediately before a commit, and not
+# what you want in the middle of a QA sweep -- hence its own recipe. To run the hooks
+# without stamping a version: SKIP=ver_today just pre-commit
+
+# Run every pre-commit hook over the whole tree (stamps the version, see above)
+pre-commit:
+    uv run pre-commit run -a
+
 # Run all the tests, but allow for arguments to be passed
 test *ARGS:
     uv run pytest {{ ARGS }}
@@ -28,16 +39,30 @@ test *ARGS:
 pdb *ARGS:
     uv run pytest --pdb --maxfail=10 {{ ARGS }}
 
-# Run the formatting, linting, type checking and tests commands
+# The hooks add what `qa` does not cover: trailing whitespace, missing final newlines,
+# oversized files and stray debug statements. ver_today is skipped because it would
+# stamp today's date as the version and stage four files, which a QA sweep must not do.
+
+# Run the formatting, linting, type checking, hooks and tests commands
 qa-all:
     just qa
+    SKIP=ver_today uv run pre-commit run -a
     uv run pytest
 
-# Upgrade the project libraries and rebuild
+# autoupdate moves the hook revs in .pre-commit-config.yaml, which are pinned
+# independently of the dependency bounds in pyproject.toml, so bumping both here keeps
+# them in step. Expect a gap in either direction anyway: autoupdate has no equivalent of
+# --exclude-newer and always takes the newest tag, while the uv steps above hold the
+# project a week behind, so any ruff released in that window lands in the hook first.
+# Both read the same [tool.ruff] config, so a gap only bites when a release changes
+# formatting or adds a rule.
+
+# Upgrade the project libraries and pre-commit hooks, then rebuild
 up *ARGS:
     uv lock --exclude-newer "7 days" -U {{ ARGS }}
     uv audit
     uv sync --exclude-newer "7 days" --all-groups
+    uv run pre-commit autoupdate
     just build
 
 # Build the per-platform wheels and check they stay under the PyPI size limit
