@@ -6,6 +6,18 @@ that followed 2023.10.27.
 
 ## [Unreleased]
 
+### Added
+
+- `amb2gmx` writes a `[ moleculetype ]` for **any** free ion, built from the `prmtop`'s
+  own type, charge and mass. ACPYPE carried literal templates for three ions, so a
+  system holding any of the other 64 in AmberTools' `atomic_ions.lib` -- magnesium, zinc
+  or calcium, say -- lost it from the topology once it followed one of those three, and
+  grompp refused the result over a coordinate count that did not match, naming neither
+  the ion nor the reason. Free ions are now recognised structurally, from the
+  single-atom molecules in `ATOMS_PER_MOLECULE`, which is AMBER's own decomposition. The
+  three masses that used to be quoted in the templates disagreed with the `prmtop` in
+  the last decimal (sodium at 22.9898 against 22.99) and now come from the file.
+
 ### Fixed
 
 - **`amb2gmx` mismatched the ions against their coordinates whenever a system's ions

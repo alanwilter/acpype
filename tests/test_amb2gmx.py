@@ -18,12 +18,15 @@ def test_glycam(janitor):
     janitor.append(molecule.absHomeDir)
 
 
+# ntext counts entries in topText, not lines of output. Each ion moleculetype is now
+# built from the prmtop as three entries where a literal template was one, so the two
+# species here add 4. The direct cases are unchanged: direct mode writes no ion blocks.
 @pytest.mark.parametrize(
     ("dd", "g4", "ntext"),
     [
-        (False, False, 14193),
+        (False, False, 14197),
         (True, False, 31516),
-        (False, True, 12124),
+        (False, True, 12128),
         (True, True, 29447),
     ],
 )

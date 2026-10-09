@@ -1515,6 +1515,66 @@ class AbstractTopol(abc.ABC):
             return []
         return ranges
 
+    def freeIonResidues(self):
+        """Return the residue names AMBER stores as molecules of a single atom.
+
+        ``ATOMS_PER_MOLECULE`` is tleap's own decomposition by bonded connectivity, so a
+        molecule holding one atom is a free ion by construction, whatever it is named.
+        Reading the names from there rather than from a fixed list means every ion
+        AmberTools can place is recognised: ACPYPE knew three of the 67 in
+        ``atomic_ions.lib``, and dropped any other from the topology once it followed one
+        of those three, leaving grompp to report a coordinate count that did not match.
+
+        Only the molecules at or after the solvent boundary count, the one
+        :data:`ionOrSolResNameList` already draws for charge balancing. An ion ahead of
+        it, such as the structural zinc in ``ComplexG1``, stays part of the solute
+        exactly as before: it is balanced there, and pulling it out would leave its
+        stored charge of 2.002 standing alone as a moleculetype.
+
+        Returns:
+            set: residue names, empty when the prmtop carries no molecule map at all,
+            which is the case for a vacuum system.
+        """
+        boundary = next(
+            (i for i, name in enumerate(self.residueLabel) if name in ionOrSolResNameList),
+            len(self.residueLabel),
+        )
+        perMolecule = self.getFlagData("ATOMS_PER_MOLECULE")
+        if not perMolecule:
+            # A vacuum prmtop carries no molecule map, so fall back to residue size: past
+            # the boundary, a residue of one atom is an ion by every available measure.
+            sizes = collections.Counter(atom.resid for atom in self.atoms)
+            return {self.residueLabel[r] for r, n in sizes.items() if n == 1 and r >= boundary}
+        names = set()
+        lo = 0
+        for count in perMolecule:
+            if count == 1 and lo < len(self.atoms) and self.atoms[lo].resid >= boundary:
+                names.add(self.residueLabel[self.atoms[lo].resid])
+            lo += count
+        return names
+
+    def gmxIonBlock(self, resName):
+        """Build the GROMACS ``[ moleculetype ]`` for a free monoatomic ion.
+
+        Type, charge and mass are taken from the prmtop, so the block describes whatever
+        ion is actually there. The three ions ACPYPE used to carry as literal templates
+        quoted their own masses, which disagreed with the prmtop in the last decimal.
+
+        Args:
+            resName: the ion's residue name, as the prmtop spells it.
+
+        Returns:
+            list: the lines of the moleculetype, ready to append to the topology.
+        """
+        atom = next(a for a in self.atoms if self.residueLabel[a.resid] == resName)
+        name = resName.upper()
+        return [
+            "\n[ moleculetype ]\n  ; molname       nrexcl\n  %-16s1\n" % name,
+            "\n[ atoms ]\n  ;   nr  type  resi  res  atom  cgnr     charge      mass\n",
+            "%6d %4s %5d %5s %5s %4d %12.6f %12.5f\n"
+            % (1, atom.atomType.atomTypeName, 1, name, atom.atomName, 1, atom.charge, atom.mass),
+        ]
+
     def balanceChargesPerMolecule(self, chargeList, atoms, ranges):
         """Round each molecule's charge to an integer on its own.
 
@@ -2426,33 +2486,6 @@ class AbstractTopol(abc.ABC):
         # """
         # ==============================================================================================================
 
-        headNa = """
-[ moleculetype ]
-  ; molname       nrexcl
-  NA+             1
-
-[ atoms ]
-  ; id_    at type res nr  residue name     at name  cg nr  charge   mass
-    1       %s      1          NA+         NA+       1      1     22.9898
-"""
-        headCl = """
-[ moleculetype ]
-  ; molname       nrexcl
-  CL-             1
-
-[ atoms ]
-  ; id_    at type res nr  residue name     at name  cg nr  charge   mass
-    1       %s      1         CL-           CL-      1     -1     35.45300
-"""
-        headK = """
-[ moleculetype ]
-  ; molname       nrexcl
-  K+             1
-
-[ atoms ]
-  ; id_    at type res nr  residue name     at name  cg nr  charge   mass
-    1       %s       1          K+         K+       1      1     39.100
-"""
         headWaterTip3p = """
 [ moleculetype ]
 ; molname       nrexcl ; TIP3P model
@@ -2519,10 +2552,10 @@ class AbstractTopol(abc.ABC):
         if self.direct and self.amb2gmx:
             self.printMess("Converting directly from AMBER to GROMACS (EXPERIMENTAL).\n")
 
-        # Dict of ions dealt by acpype emulating amb2gmx
-        ionsDict = {"Na+": headNa, "Cl-": headCl, "K+": headK}
-        ionsSorted = []
+        # Free ions are whatever AMBER stored as a one-atom molecule, not a fixed list.
+        solventNames = (self.freeIonResidues() if self.amb2gmx else set()) | {"WAT"}
         solventRuns = []
+        ionBlocks = {}
         # NOTE: headWaterTip3p and headWaterSpce actually do the real thing
         #      so, skipping headTopWaterTip3p and headWaterTip3p
         # headTopWater = headTopWaterTip3p
@@ -2598,14 +2631,11 @@ class AbstractTopol(abc.ABC):
                 waterSites = len(waterAtoms)
                 if waterSites == 4:
                     headWater = self.gmxFourSiteWater(waterAtoms)
-            for ion in ionsDict:
-                nIon = self.residueLabel.count(ion)
-                if nIon > 0:
-                    idIon = self.residueLabel.index(ion)
-                    ionType = self.search(name=ion).atomType.atomTypeName
-                    ionsSorted.append((idIon, nIon, ion, ionType))
-            ionsSorted.sort()
-            solventRuns = solventTailRuns(self.residueLabel, [*ionsDict, "WAT"])
+            solventRuns = solventTailRuns(self.residueLabel, solventNames)
+            # One block per species, in the order the species first appear.
+            for resName, _ in solventRuns:
+                if resName != "WAT" and resName not in ionBlocks:
+                    ionBlocks[resName] = self.gmxIonBlock(resName)
         else:
             itpText.append(headAtomtypes)
             itpText += temp
@@ -2613,7 +2643,8 @@ class AbstractTopol(abc.ABC):
             oitpText += otemp
         self.printDebug("GMX atomtypes done")
 
-        if len(self.atoms) > waterSites * nWat + sum(x[1] for x in ionsSorted):
+        # Every free ion is one atom by definition, so its run count is its atom count.
+        if len(self.atoms) > waterSites * nWat + sum(n for name, n in solventRuns if name != "WAT"):
             nSolute = 1
 
         if nWat:
@@ -2635,7 +2666,7 @@ class AbstractTopol(abc.ABC):
             resid = atom.resid
             resname = self.residueLabel[resid]
             if not self.direct:
-                if resname in [*list(ionsDict), "WAT"]:
+                if resname in solventNames:
                     break
             aName = atom.atomName
             aType = atom.atomType.atomTypeName
@@ -3069,8 +3100,8 @@ class AbstractTopol(abc.ABC):
             topText += blocks
 
         if not self.direct:
-            for ion in ionsSorted:
-                topText.append(ionsDict[ion[2]] % ion[3])
+            for lines in ionBlocks.values():
+                topText += lines
 
             if nWat:
                 topText.append(headWater)

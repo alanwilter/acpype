@@ -53,6 +53,29 @@ saveamberparm m {0}.prmtop {0}.inpcrd
 quit
 """
 
+# tleap ships 67 ions and addions takes two species per call, so a third needs a second
+# call. ACPYPE used to carry literal templates for three of them and drop the rest.
+THREE_KNOWN = """source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+m = sequence {{ ACE ALA ALA ALA NME }}
+solvatebox m TIP3PBOX 6.0
+addions m Na+ 4 Cl- 4
+addions m K+ 2 Cl- 2
+saveamberparm m {0}.prmtop {0}.inpcrd
+quit
+"""
+
+MAGNESIUM = """source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+loadamberparams frcmod.ions234lm_126_tip3p
+m = sequence {{ ACE ALA ALA ALA NME }}
+solvatebox m TIP3PBOX 6.0
+addions m Na+ 4 Cl- 4
+addions m MG 2 Cl- 4
+saveamberparm m {0}.prmtop {0}.inpcrd
+quit
+"""
+
 
 def tleap(script: str, prefix: str) -> tuple[str, str]:
     """Run the bundled tleap and return the prmtop and inpcrd it wrote."""
@@ -139,8 +162,71 @@ def test_written_table_follows_the_prmtop(
     assert entries[-1][0] == "WAT"
 
 
+def moleculetypes(path: Path) -> list[str]:
+    """Return the name of every [ moleculetype ] the topology defines, in order."""
+    lines = path.read_text().splitlines()
+    names = []
+    for i, line in enumerate(lines):
+        if line.startswith("[ moleculetype ]"):
+            names.append(lines[i + 2].split()[0])
+    return names
+
+
+def ionAtom(path: Path, molName: str) -> list[str]:
+    """Return the single [ atoms ] record of the named moleculetype, as fields.
+
+    Scoped to the block deliberately: an ion's type name also appears in [ atomtypes ],
+    where the columns mean something else entirely.
+    """
+    lines = path.read_text().splitlines()
+    start = next(
+        i for i, line in enumerate(lines) if line.startswith("[ moleculetype ]") and lines[i + 2].split()[0] == molName
+    )
+    atoms = next(i for i in range(start, len(lines)) if lines[i].startswith("[ atoms ]"))
+    return next(
+        lines[i].split()
+        for i in range(atoms + 1, len(lines))
+        if lines[i].strip() and not lines[i].lstrip().startswith(";")
+    )
+
+
+def test_a_third_species_gets_its_own_moleculetype(janitor: list[str]) -> None:
+    """Three ion species are all defined, where only Na+, Cl- and K+ were hard-coded."""
+    home = convert(*tleap(THREE_KNOWN, "three"), janitor)
+
+    assert {"NA+", "CL-", "K+"} <= set(moleculetypes(home / "three_GMX.top"))
+
+
+def test_an_ion_outside_the_old_list_is_written(janitor: list[str]) -> None:
+    """Magnesium is defined from the prmtop, where it used to vanish from the topology.
+
+    ACPYPE carried literal templates for three ions. Any other one following them was
+    left out of both the moleculetypes and the table, so grompp refused the result over
+    a coordinate count that did not match the topology, naming neither the ion nor why.
+    """
+    home = convert(*tleap(MAGNESIUM, "mg"), janitor)
+    top = home / "mg_GMX.top"
+
+    assert "MG" in moleculetypes(top)
+    assert ("MG", 1) in moleculesTable(top)
+    fields = ionAtom(top, "MG")
+    assert fields[1] == "Mg2+", "the type must come from the prmtop"
+    assert float(fields[6]) == pytest.approx(2.0), "charge must come from the prmtop"
+    assert float(fields[7]) == pytest.approx(24.305), "mass must come from the prmtop"
+
+
+def test_ion_mass_comes_from_the_prmtop(janitor: list[str]) -> None:
+    """Sodium carries the prmtop's mass, not the 22.9898 the old template quoted."""
+    home = convert(*tleap(BLOCKED, "mass"), janitor)
+
+    assert float(ionAtom(home / "mass_GMX.top", "NA+")[7]) == pytest.approx(22.99)
+
+
 @pytest.mark.skipif(not GMX, reason="needs a GROMACS install")
-@pytest.mark.parametrize(("name", "script"), [("inter", INTERLEAVED), ("block", BLOCKED)])
+@pytest.mark.parametrize(
+    ("name", "script"),
+    [("inter", INTERLEAVED), ("block", BLOCKED), ("three", THREE_KNOWN), ("mg", MAGNESIUM)],
+)
 def test_grompp_accepts_the_result(name: str, script: str, janitor: list[str]) -> None:
     """grompp reads topology and coordinates back without a single name mismatch.
 
