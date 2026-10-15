@@ -4,7 +4,16 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
-## [Unreleased]
+## [2026.10.15] - 2026-10-15
+
+Ions. A system whose ions were not stored one species at a time handed every ion the
+other species' charge and mass, and any ion outside a hard-coded list of three went
+missing from the topology altogether.
+
+**If you ever passed `-maxwarn` to get a converted system past a grompp complaint that
+atom names "do not match", convert it again and discard the results.** That warning was
+this bug, and accepting it keeps the topology's ion order over the coordinates' -- the
+wrong half.
 
 ### Added
 
