@@ -1,6 +1,6 @@
 [project]
 name = "acpype"
-version = "2026.10.15"
+version = "2026.10.24"
 description = "ACPYPE - AnteChamber PYthon Parser interfacE"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -190,6 +190,14 @@ error-on-warning = true
 # local development cannot drift. Bump it here and both follow.
 required-version = ">=0.12.9"
 exclude-newer = "7 days"
+# TEMPORARY. A wave of advisories is landing across common packages faster than the 7 day
+# window clears them, so `uv audit` flags versions whose fix is still inside the window.
+# These three are shortened to 1 day, not lifted: a per-package span replaces the global
+# one, and a short relative window still skips an upload withdrawn within hours. All are
+# dev-only (certifi via sphinx for the docs, filelock and virtualenv via pre-commit), so
+# nothing here reaches anyone who installs acpype. Delete this table once `just up` and
+# `uv audit` are clean on the plain 7 day window again.
+exclude-newer-package = { certifi = "1 day", filelock = "1 day", virtualenv = "1 day" }
 package = true
 default-groups = ["dev"]
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
