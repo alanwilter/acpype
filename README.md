@@ -212,6 +212,18 @@ There are several ways of obtaining `acpype`:
    pip install acpype
    ```
 
+   **Python 3.12 or newer is required.** On an older Python, `pip` does not complain:
+   it quietly installs the last release that still supports it, 2026.10.15, which has
+   long-fixed bugs (on Linux its bundled AmberTools lacks shared-library names that
+   `teLeap` needs, so it fails to start). Ubuntu 22.04's system Python is 3.10, so check
+   `acpype --version` after installing. `uv` can fetch a suitable Python for you
+   without touching the system one:
+
+   ```bash
+   uv venv --python 3.12 acpype-env
+   uv pip install --python acpype-env/bin/python acpype
+   ```
+
    `acpype` ships the `AmberTools` binaries it needs (currently **AmberTools 26**) as
    platform-specific wheels:
 
