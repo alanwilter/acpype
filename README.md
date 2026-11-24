@@ -323,8 +323,8 @@ There are several ways of obtaining `acpype`:
   this repository and so still carries the older embedded `AmberTools`. It also pulls
   `ambertools` and `openbabel` as conda packages, and it is that `antechamber` which
   ends up on your `PATH`.
-- `OpenBabel` is `3.1.1` via `conda`/`docker`, and `3.1.0` via `pip` (from the
-  `openbabel-wheel` dependency).
+- `OpenBabel` is `3.1.1` via `conda`/`docker`, and `3.2.x` via `pip` (from the official
+  `openbabel` wheels).
 - `charmmgen` is not part of modern `AmberTools`, and conda-forge's `ambertools` does
   not ship it, so `acpype` builds its own from the source still maintained in
   [AmberClassic](https://github.com/Amber-MD/AmberClassic): universal `arm64` +
