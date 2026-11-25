@@ -49,13 +49,10 @@ qa-all:
     SKIP=ver_today uv run pre-commit run -a
     uv run pytest
 
-# autoupdate moves the hook revs in .pre-commit-config.yaml, which are pinned
-# independently of the dependency bounds in pyproject.toml, so bumping both here keeps
-# them in step. Expect a gap in either direction anyway: autoupdate has no equivalent of
-# --exclude-newer and always takes the newest tag, while the uv steps above hold the
-# project a week behind, so any ruff released in that window lands in the hook first.
-# Both read the same [tool.ruff] config, so a gap only bites when a release changes
-# formatting or adds a rule.
+# autoupdate only moves pre-commit-hooks now: ruff and ty run from uv.lock as local
+# hooks. autoupdate has no equivalent of --exclude-newer and always takes the newest
+# tag, which pip's 7-day `uploaded-prior-to` cooldown then refuses to install, so a
+# pre-commit-hooks release under a week old will still fail `qa-all` until it ages.
 
 # Upgrade the project libraries and pre-commit hooks, then rebuild
 up *ARGS:

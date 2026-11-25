@@ -13,18 +13,25 @@ repos:
         # which libnetcdf and therefore teLeap link against.
         args: ["--maxkb=34000"]
       - id: debug-statements
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.17.5
-    hooks:
-      - id: ruff-check
-        args: [--fix]
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.17.5
-    hooks:
-      - id: ruff-format
-        # args: [-v]
+  # ruff runs from uv.lock, like ty, rather than from astral-sh/ruff-pre-commit. That
+  # repo's rev is moved by `pre-commit autoupdate`, which always takes the newest tag,
+  # and pip's 7-day `uploaded-prior-to` cooldown then refuses to install it. The lock
+  # already honours `exclude-newer = "7 days"`, so `just qa` and the hooks share a ruff.
+  # Entries and file types mirror the upstream hooks.
   - repo: local
     hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --force-exclude --fix
+        language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format --force-exclude
+        language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true
       - id: ty
         name: ty
         entry: uv run ty check
