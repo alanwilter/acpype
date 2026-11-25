@@ -364,7 +364,7 @@ class AbstractTopol(abc.ABC):
             bool: True/False
         """
         if find_bin(self.binaries["obabel_bin"]):
-            # openbabel-wheel >= 3.1.1.19 is a hard dependency, so only the 3.x API is used.
+            # openbabel >= 3.2.0 is a hard dependency, so only the 3.x API is used.
             from openbabel import openbabel as ob
             from openbabel import pybel
 
