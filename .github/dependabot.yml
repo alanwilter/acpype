@@ -22,6 +22,12 @@ updates:
       interval: "weekly"
     commit-message:
       prefix: "build(deps)"
+    # Dependabot picks versions on its own 3-day default cooldown, but `uv lock` honours
+    # `exclude-newer = "7 days"` in pyproject.toml and refuses anything younger, so every
+    # release 3-7 days old failed with "can't resolve your Python dependency files".
+    # One day over uv's window absorbs any rounding between the two clocks.
+    cooldown:
+      default-days: 8
     groups:
       dev-dependencies:
         dependency-type: "development"
