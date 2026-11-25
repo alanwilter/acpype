@@ -4,6 +4,17 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
+## [Unreleased]
+
+### Changed
+
+- `pip install acpype` now pulls OpenBabel from the official `openbabel` wheels (3.2.x)
+  instead of `openbabel-wheel`, which is archived and deprecated in their favour. The
+  official wheels link no X11 or cairo, so `libxrender1`, `libxext6` and `libsm6` are
+  no longer needed on Linux, and on Apple Silicon they need macOS 11, matching ACPYPE's
+  own wheel, where `openbabel-wheel` needed macOS 14. The import path and the `obabel`
+  command are unchanged (PR #169 by @yehiasamehsaleh).
+
 ## [2026.10.15] - 2026-10-15
 
 Ions. A system whose ions were not stored one species at a time handed every ion the

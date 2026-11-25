@@ -243,9 +243,6 @@ There are several ways of obtaining `acpype`:
    ```bash
    # Ubuntu 22.04 / 24.04, Debian 12+ -- needed by the bundled AmberTools
    apt-get install -y libgfortran5 libstdc++6 libgomp1 libblas3 liblapack3 libcurl4
-
-   # needed by the openbabel wheel that `pip install acpype` pulls in
-   apt-get install -y libxrender1 libxext6 libsm6
    ```
 
    Anywhere else, install `AmberTools` yourself and, optionally but highly
