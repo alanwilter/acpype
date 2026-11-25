@@ -4,7 +4,16 @@ All notable changes to ACPYPE. Versions are dates, `YYYY.M.D`, stamped at releas
 by `scripts/ver_today.sh`. This file starts at the first release after the long gap
 that followed 2023.10.27.
 
-## [Unreleased]
+## [2026.11.25] - 2026-11-25
+
+Packaging. OpenBabel now comes from its official wheels, so a Linux `pip install acpype`
+no longer needs any X11 libraries. No change to what ACPYPE computes.
+
+### Added
+
+- The README states the Python 3.12 requirement next to `pip install`. On an older
+  Python, `pip` silently installs 2023.10.27 instead, and the README shows how to get a
+  3.12 environment with `uv` without touching the system Python.
 
 ### Changed
 
