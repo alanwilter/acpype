@@ -31,10 +31,14 @@ for afile in "${version_files[@]}"; do
     git add "$afile"
 done
 
-# The README badges must reference a release that exists, not the pending version.
-if grep -qwE "$version_re" README.md; then
+# The "commits since release" badge must reference a release that exists, not the
+# pending version. Only the badge URL is rewritten: other dates in the README are
+# history, and a blanket replace turned "the last release that still supports [an
+# older Python], 2023.10.27" into whatever the newest tag was.
+badge='commits-since/alanwilter/acpype/'
+if grep -qE "${badge}${version_re}/" README.md; then
     echo "Updated last_tag to $last_tag in file README.md"
-    perl -pi -e "s/\b${version_re}\b/$last_tag/g" README.md
+    perl -pi -e "s{\Q${badge}\E${version_re}/}{${badge}${last_tag}/}g" README.md
     git add README.md
 fi
 
