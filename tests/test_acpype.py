@@ -132,8 +132,12 @@ def test_predindex_rejects_out_of_range(janitor, capsys):
         init_main(argv=["-i", "benzene.pdb", "-r", "9"])
     captured = capsys.readouterr()
     output = re.sub(r"\x1b\[[0-9;]*m", "", captured.err + captured.out)
+    # Unwrap rich's error panel: its borders and line breaks can split the message.
+    output = " ".join(re.sub(r"[│╭╮╰╯─]", " ", output).split())
     assert e_info.value.code == 2
-    assert "9" in output
+    # typer < 0.29 (click) echoes the rejected value; >= 0.29 (pydantic) only gives the
+    # bound, so match on what both say: the option it refused.
+    assert "Invalid value for '-r' / '--predindex'" in output
 
 
 def test_abcg2_charges(janitor):

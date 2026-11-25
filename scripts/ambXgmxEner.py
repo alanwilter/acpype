@@ -5,7 +5,7 @@ for a given system and compare them
 import re
 import sys
 
-import sander  # ty: ignore[unresolved-import]  # optional AmberTools module, not a project dependency
+import sander  # ty: ignore[import-not-found]  # optional AmberTools module, not a project dependency
 
 from acpype.utils import _getoutput
 
