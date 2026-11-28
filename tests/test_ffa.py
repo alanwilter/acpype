@@ -91,6 +91,9 @@ def test_bonded_types_reach_the_topology(janitor: list[str]) -> None:
     janitor.append(molecule.absHomeDir)
     text = (addon / "forcefield-addon.itp").read_text()
     assert '#include "ffbonded.itp"' in text
+    # Priority first, before any section: grompp resolves type conflicts by it.
+    assert text.index("[ addon_priority ]") < text.index("[ atomtypes ]")
+    assert text.splitlines()[text.splitlines().index("[ addon_priority ]") + 1].strip() == "10"
     atomtypes = parse_sections(addon / "forcefield-addon.itp")["atomtypes"]
     # Full LJ definitions: name bondA mass charge ptype sigma epsilon.
     assert all(len(line.split()) == 7 for line in atomtypes)

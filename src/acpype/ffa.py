@@ -18,7 +18,9 @@ The addon carries:
     The full Lennard-Jones definitions plus ``#include "ffbonded.itp"``;
     pdb2gmx includes this file into the generated topology directly after
     the base force field, so it is the only path through which the addon
-    bonded type tables reach grompp.
+    bonded type tables reach grompp.  It starts with a ``[ addon_priority ]``
+    declaration so that the addon definitions win conflicts with the base
+    force field; grompp propagates it into the included files.
 ``ffbonded.itp``
     Bonded *type* definitions (``[ bondtypes ]``, ``[ angletypes ]``,
     ``[ dihedraltypes ]``) merged into pdb2gmx's type tables. Proper
@@ -106,7 +108,14 @@ def write_ffa(mol):
 
     # forcefield-addon.itp: full atom type definitions, included into the
     # generated topology right after the base force field.
-    itp = [stamp, "\n[ atomtypes ]\n", ";name   bond_type     mass     charge   ptype   sigma         epsilon\n"]
+    # [ addon_priority ] makes the addon definitions win type conflicts with the
+    # base force field, and grompp propagates it into the included files below.
+    itp = [
+        stamp,
+        "\n[ addon_priority ]\n10\n",
+        "\n[ atomtypes ]\n",
+        ";name   bond_type     mass     charge   ptype   sigma         epsilon\n",
+    ]
     for a_type in mol.atomTypesGromacs:
         sigma, epsilon = _sigma_epsilon(a_type)
         if a_type.BCOEF == 0.0:
