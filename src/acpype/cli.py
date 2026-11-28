@@ -167,6 +167,10 @@ def main(
     ),
     outtop: Annotated[OutTopol, typer.Option("-o", "--outtop", help="output topologies")] = OutTopol.all,
     gmx4: Annotated[bool, typer.Option("-z", "--gmx4", help="write RB dihedrals for old GMX 4.0")] = False,
+    ffa: Annotated[
+        bool,
+        typer.Option("--ffa", help="also write a GROMACS force field addon (name.ffa) for pdb2gmx -ffa"),
+    ] = False,
     cnstop: Annotated[
         bool, typer.Option("-t", "--cnstop", help="write CNS topology with allhdg-like parameters (experimental)")
     ] = False,
@@ -274,6 +278,7 @@ def main(
                 basename=basename,
                 verbose=verbose,
                 gmx4=gmx4,
+                ffa=ffa,
                 merge=merge,
                 direct=direct,
                 split_molecules=split_molecules,
@@ -310,6 +315,7 @@ def main(
                 ekFlag=f'''"{keyword}"''',
                 verbose=verbose,
                 gmx4=gmx4,
+                ffa=ffa,
                 merge=merge,
                 direct=direct,
                 split_molecules=split_molecules,

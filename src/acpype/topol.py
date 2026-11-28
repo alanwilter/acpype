@@ -12,6 +12,7 @@ from shutil import copy2, rmtree, which
 
 from acpype import __version__ as version
 from acpype.errors import AcpypeError, UnsupportedTopologyError
+from acpype.ffa import write_ffa
 from acpype.logger import set_logging_conf as logger
 from acpype.mol import Angle, Atom, AtomType, Bond, Dihedral
 from acpype.params import (
@@ -1217,6 +1218,7 @@ class AbstractTopol(abc.ABC):
             verbose=self.verbose,
             debug=self.debug,
             gmx4=self.gmx4,
+            ffa=self.ffa,
             merge=self.merge,
             direct=self.direct,
             is_sorted=self.sorted,
@@ -2125,6 +2127,9 @@ class AbstractTopol(abc.ABC):
         self.writePosreFile()
 
         self.writeGromacsTop()
+
+        if self.ffa:
+            write_ffa(self)
 
         self.writeMdpFiles()
 
@@ -3662,6 +3667,7 @@ class ACTopol(AbstractTopol):
         ekFlag=None,
         verbose=True,
         gmx4=False,
+        ffa=False,
         merge=False,
         direct=False,
         split_molecules=False,
@@ -3677,6 +3683,7 @@ class ACTopol(AbstractTopol):
         self.debug = debug
         self.verbose = verbose
         self.gmx4 = gmx4
+        self.ffa = ffa
         self.merge = merge
         self.direct = direct
         self.splitMolecules = split_molecules
@@ -3838,6 +3845,7 @@ class MolTopol(AbstractTopol):
         basename=None,
         verbose=True,
         gmx4=False,
+        ffa=False,
         merge=False,
         direct=False,
         split_molecules=False,
@@ -3853,6 +3861,7 @@ class MolTopol(AbstractTopol):
         self.debug = debug
         self.level = level
         self.gmx4 = gmx4
+        self.ffa = ffa
         self.merge = merge
         self.direct = direct
         self.splitMolecules = split_molecules
